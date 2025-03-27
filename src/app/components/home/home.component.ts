@@ -1,19 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { T0001Component } from '../../templates/t-0001/t-0001.component';
-import { T0002Component } from '../../templates/t-0002/t-0002.component';
-import { StorageService } from '../../services/storage.service';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserModel } from '../../models/UserModel';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, T0001Component, T0002Component],
+  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  
+
   // @ViewChild('customPlaceholder', { read: ViewContainerRef, static: true }) customPlaceholder!: ViewContainerRef;
   userInfo : UserModel;
 
