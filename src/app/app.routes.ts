@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { SearchComponent } from './templates/shared/search/search.component';
 import { T1HomeComponent } from './templates/t1/t1-home/t1-home.component';
 import { T1SearchComponent } from './templates/t1/t1-search/t1-search.component';
 import { T1Component } from './templates/t1/t1.component';
@@ -18,7 +19,7 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: '/t1/home', pathMatch: 'full' },
             { path: 'home', component:  T1HomeComponent},
-            { path: 'search', component:  T1SearchComponent},
+            { path: 'search', component:  SearchComponent},
         ]
     },
     {
@@ -27,7 +28,7 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: '/t2/home', pathMatch: 'full' },
             { path: 'home', component:  T2HomeComponent},
-            { path: 'search', component:  T2SearchComponent},
+            { path: 'search', component:  SearchComponent},
         ]
     },
     // { path: 't2', component: T0002Component },
