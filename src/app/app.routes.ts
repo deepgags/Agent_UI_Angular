@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
-import { T0001Component } from './templates/t-0001/t-0001.component';
-import { T0002Component } from './templates/t-0002/t-0002.component';
 import { HomeComponent } from './components/home/home.component';
-import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { TemplateComponent } from './components/template/template.component';
+import { SearchComponent } from './templates/shared/search/search.component';
+import { T1HomeComponent } from './templates/t1/t1-home/t1-home.component';
+import { T1Component } from './templates/t1/t1.component';
+import { T2HomeComponent } from './templates/t2/t2-home/t2-home.component';
+import { T2Component } from './templates/t2/t2.component';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,6 +17,23 @@ export const routes: Routes = [
     { path: 'template', component:  TemplateComponent},
     { path: 'home', component:  HomeComponent},
     { path: 'notfound', component:  HomeComponent},
-    // { path: 't1', component:  T0001Component},
+    {
+        path: 't1',
+        component: T1Component,
+        children: [
+            { path: '', redirectTo: '/t1/home', pathMatch: 'full' },
+            { path: 'home', component:  T1HomeComponent},
+            { path: 'search', component:  SearchComponent},
+        ]
+    },
+    {
+        path: 't2',
+        component: T2Component,
+        children: [
+            { path: '', redirectTo: '/t2/home', pathMatch: 'full' },
+            { path: 'home', component:  T2HomeComponent},
+            { path: 'search', component:  SearchComponent},
+        ]
+    },
     // { path: 't2', component: T0002Component },
 ];
