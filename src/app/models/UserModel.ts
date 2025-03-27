@@ -14,5 +14,7 @@ export class UserModel {
     LogoImagePath: string = "";
     ProfileImage: string = "";
     ProfileImagePath: string = "";
-    IsLogged: boolean = false;
+    get IsLogged(): boolean { 
+        return this.CustomerId != "" ;
+    }
 }

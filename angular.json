@@ -32,7 +32,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/app/styles/styles.scss",
+              "src/app/styles/notification.css",
+              "src/app/styles/material.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",

@@ -3,7 +3,8 @@ import { CustomerModel } from '../models/CustomerModel';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { StorageService } from './storage.service';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,16 +20,9 @@ export class CustomerService {
     this.Apiurl = environment.agentApiUrl + environment.customerUrl;
   }
 
- login(userInfo:CustomerModel) : Promise<Observable<string>> {
+   login(userInfo:CustomerModel): Observable<any> {
     let content = {emailAddress: userInfo.EmailAddress, password: userInfo.Password};
-    const response = this.http.post<any>(this.Apiurl + '/login', content);
-    
-    response.subscribe(response => {
-      this.storageService.saveToken(response.token);
-      this.storageService.saveUserInfo(JSON.stringify(response.data));
-    });
-    
-    return Promise.resolve(response as Observable<string>);
+    return this.http.post(this.Apiurl + '/login', content);
   }
 
   async save(customer : CustomerModel) : Promise<CustomerModel> {

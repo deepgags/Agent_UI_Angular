@@ -13,7 +13,6 @@ export class T0001Component {
   @Output() notifySignout: EventEmitter<any> = new EventEmitter();
 
   sendNotification() {
-    debugger;
     this.notifySignout.emit('Value send From Template1');
   }
 }

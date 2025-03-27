@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { CustomerService } from '../../services/customer.service';
 import {Router} from "@angular/router"
+import { stopCoverage } from 'v8';
+import { StorageService } from '../../services/storage.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -37,11 +39,17 @@ export class LoginComponent implements OnInit {
     // private dialog: MatDialog,
     private customerService: CustomerService,
     private notificationService: NotificationService,
+    private storageService: StorageService,
     private router: Router) {
       
     }
     
     ngOnInit() {
+      var userInfo = this.storageService.getLoggedUserFromUserInfo();
+      if(userInfo.CustomerId!="")
+      {
+        this.router.navigateByUrl("home");
+      }
     
       this.loginForm = this.fb.group({
         emailAddress: new FormControl(this.customerModel.EmailAddress, [Validators.required, Validators.email]),
@@ -61,14 +69,18 @@ export class LoginComponent implements OnInit {
       const {value, valid} = this.loginForm;
       if (valid)
       {
-        this.customerService.login(this.customerModel).then((response)=>
-        {
-          this.notificationService.showNotification("User logged successfully.Redirecting...")
-          this.router.navigate(['/home']);//, 5])
-        }).catch(ex =>
-        {
-          this.notificationService.showNotification("Invalid username/password")
-        });
+        this.customerService.login(this.customerModel)
+        .subscribe(
+          (response) => {         
+            this.storageService.saveToken(response.token);
+            this.storageService.saveUserInfo(JSON.stringify(response.data));      
+            this.notificationService.showNotification("User logged successfully.Redirecting...")
+            this.router.navigateByUrl("home");
+          },
+          (error) => {
+            this.notificationService.showNotification("Invalid username/password")
+          }
+        )
      } 
   }
 }

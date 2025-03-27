@@ -27,7 +27,7 @@ export class StorageService {
 
   getLoggedUserFromUserInfo() : UserModel {
     const userData = localStorage.getItem("LoggedUserInfo") ?? "";
-    return JSON.parse(userData) as UserModel;
+    return userData?JSON.parse(userData) as UserModel : new UserModel();
   }
 
   getLoggedUserFromToken() : UserModel {

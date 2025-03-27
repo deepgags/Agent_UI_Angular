@@ -15,7 +15,7 @@ import { StorageService } from './services/storage.service';
 
 const serverConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     CustomerService,
     RoleService,
     TemplateService,

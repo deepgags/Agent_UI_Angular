@@ -93,7 +93,7 @@
                                 <img class="img-fluid " src="t1/images/vector img/login.png" alt="">
                                 <div class="d-flex align-items-center justify-content-center">
                                     <div class="">
-                                        <a class="nav-link nav_content" (click)="sendNotification()" href="#">Signout </a>
+                                        <a class="nav-link nav_content" (click)="sendNotification()" href="#">Sign Out</a>
                                     </div>
                                 </div>
                             </div>
@@ -622,8 +622,7 @@
                         <p class="fs-3 fw-semibold text-center">Address</p>
 
                         <p class=" text-center">
-                            HomeLife/Miracle Realty Ltd., Brokerage <br>
-                            470 Chrysler Dr # 20 , Brampton, L6S 0C1
+                            {{userInfo.Address}}
                         </p>
                     </div>
                     <div class="col-lg-2 col-12 mb-3 mb-lg-0 footer-contact">
@@ -636,7 +635,7 @@
                                 <p>
                                     <a
                                        class="text-white fw-semibold text-decoration-none"
-                                       href="tel:+4733378901">+47 333 78 901</a>
+                                       href="tel:+{{userInfo.PhoneNumber}}">{{userInfo.PhoneNumber}}</a>
                                 </p>
                             </div>
                         </div>
@@ -648,7 +647,7 @@
                                 <p>
                                     <a
                                        class="text-white fw-semibold text-decoration-none"
-                                       href="mailto:someone@example.com">demo&#64;cc.com
+                                       href="mailto:someone@example.com">{{userInfo.EmailAddress}}
                                     </a>
                                 </p>
                             </div>
