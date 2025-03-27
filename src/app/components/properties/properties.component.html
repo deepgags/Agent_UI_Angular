@@ -1,0 +1,9 @@
+<div [ngSwitch]="userData.template">
+    <div *ngSwitchCase="'t1'">
+        <app-t-0001 [userData]="userData" />
+    </div>
+    <div *ngSwitchCase="'t2'">
+        <app-t-0002 [userData]="userData" />
+    </div>
+    <div *ngSwitchDefault>Default case</div>
+</div>

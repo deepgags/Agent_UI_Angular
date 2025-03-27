@@ -1,0 +1,21 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="row justify-content-center w-100">
+        <div class="col-lg-5 col-12 bg-white p-4 rounded shadow">
+            <form [formGroup]="loginForm" name="loginForm" *ngIf="loginForm">
+            <h4 class="mb-3">Login</h4>
+            <mat-form-field appearance="fill">
+                <mat-label>Email Address</mat-label>
+                <input formControlName="emailAddress" class="form-control" required matInput placeholder="Email Address" />
+                <mat-error>Email address is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" class="form-control" required matInput="password" placeholder="Password" />
+                <mat-error>Password is required</mat-error>
+            </mat-form-field>
+            
+            <button (click)="login()" id="btnLoginCustomer" class="btn btn-success w-100 mt-3">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

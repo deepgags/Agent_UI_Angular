@@ -1,8 +1,7 @@
-<div>
     <div class="container">
         <div class="row py-2 align-items-center justify-content-center">
             <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-                <img [src]="userData.heroBanner" alt="" />
+                <img src="images/brokerage.png" alt="" />
             </div>
             <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
                 <div class="d-flex justify-content-center">
@@ -13,7 +12,7 @@
                         <p class="mb-0">
                             <a
                                class="text-dark fw-semibold text-decoration-none"
-                               [href]="'tel:'+userData.phone">{{userData.phone}}</a>
+                               [href]="'tel:'+userInfo.PhoneNumber">{{userInfo.PhoneNumber}}</a>
                         </p>
                     </div>
                 </div>
@@ -25,14 +24,14 @@
                         <p class="mb-0">
                             <a
                                class="text-dark fw-semibold text-decoration-none"
-                               [href]="'mailto:' + userData.email">{{userData.email}}</a>
+                               [href]="'mailto:' + userInfo.EmailAddress">{{userInfo.EmailAddress}}</a>
                         </p>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
                 <div class="">
-                    <h2 class="mb-0">{{userData.name}}</h2>
+                    <h2 class="mb-0">{{userInfo.FirstName}}</h2>
                     <p class="text-center mb-0">SALES REPRESENTATIVE</p>
                 </div>
             </div>
@@ -94,12 +93,7 @@
                                 <img class="img-fluid " src="t1/images/vector img/login.png" alt="">
                                 <div class="d-flex align-items-center justify-content-center">
                                     <div class="">
-                                        <a class="nav-link nav_content" href="./login.html">Login </a>
-                                    </div>
-                                    <div class="">|</div>
-                                    <div class="">
-                                        <a class="nav-link nav_content" href="./login.html">Signup</a>
-
+                                        <a class="nav-link nav_content" (click)="sendNotification()" href="#">Signout </a>
                                     </div>
                                 </div>
                             </div>
@@ -114,13 +108,14 @@
         <img class="banner" src="t1/images/banner.png" alt="">
     </div>
 
+
+
     <div class="container-fluid menu_img">
         <div class="container">
             <div class="row justify-content-center">
                 <p class="text fw-semibold text-white  py-5">Search Your Dream Home</p>
                 <div class="col-12 bg-white p-4 mb-5">
                     <div class="row justify-content-around">
-
                         <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
                             <input
                                    type="text"
@@ -339,6 +334,8 @@
             </div>
         </div>
     </div>
+
+
 
     <div class="container py-lg-5 p-lg-0 p-4">
         <div class="row p-lg-4 p-3 estate-border">
@@ -662,6 +659,3 @@
             </footer>
         </div>
     </div>
-
-
-</div>

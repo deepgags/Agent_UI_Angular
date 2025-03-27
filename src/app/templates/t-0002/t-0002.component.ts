@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-t-0002',
@@ -8,5 +8,10 @@ import { Component, Input } from '@angular/core';
   standalone: true
 })
 export class T0002Component {
-  @Input('userData') userData: any;
+  @Input('userInfo') userInfo: any;
+  @Output() notifySignout: EventEmitter<any> = new EventEmitter();
+
+  sendNotification() {
+    this.notifySignout.emit('Value send From Template2');
+  }
 }
