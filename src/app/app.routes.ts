@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { T0001Component } from './templates/t-0001/t-0001.component';
 import { T0002Component } from './templates/t-0002/t-0002.component';
-import { HomeComponent } from './pages/core/home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { TemplateComponent } from './components/template/template.component';

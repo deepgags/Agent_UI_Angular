@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { T0001Component } from '../../../templates/t-0001/t-0001.component';
-import { T0002Component } from '../../../templates/t-0002/t-0002.component';
-import { StorageService } from '../../../services/storage.service';
+import { T0001Component } from '../../templates/t-0001/t-0001.component';
+import { T0002Component } from '../../templates/t-0002/t-0002.component';
+import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
-import { CustomerModel } from '../../../models/CustomerModel';
-import { UserModel } from '../../../models/UserModel';
+import { UserModel } from '../../models/UserModel';
 
 @Component({
   selector: 'app-home',
