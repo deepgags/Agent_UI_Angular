@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { T0001Component } from './t-0001.component';
+import { T2SearchComponent } from './t2-search.component';
 
-describe('T0001Component', () => {
-  let component: T0001Component;
-  let fixture: ComponentFixture<T0001Component>;
+describe('T2SearchComponent', () => {
+  let component: T2SearchComponent;
+  let fixture: ComponentFixture<T2SearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [T0001Component]
+      imports: [T2SearchComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(T0001Component);
+    fixture = TestBed.createComponent(T2SearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
