@@ -1,4 +1,5 @@
-<div class="container vh-100 d-flex justify-content-center align-items-center">
+<link rel="stylesheet" href="./login.component.scss">
+<!-- <div class="container vh-100 d-flex justify-content-center align-items-center">
     <div class="row justify-content-center w-100">
         <div class="col-lg-5 col-12 bg-white p-4 rounded shadow">
             <form [formGroup]="loginForm" name="loginForm" *ngIf="loginForm">
@@ -13,9 +14,38 @@
                 <input formControlName="password" class="form-control" required matInput="password" placeholder="Password" />
                 <mat-error>Password is required</mat-error>
             </mat-form-field>
-            
             <button (click)="login()" id="btnLoginCustomer" class="btn btn-success w-100 mt-3">Login</button>
             </form>
+        </div>
+    </div>
+</div> -->
+
+<div class="container-fluid vh-100 d-flex">
+    <div class="row w-100">
+        <div class="col-lg-7 d-none d-lg-block p-0">
+            <img class="img-fluid vh-100 w-100" src="images/login-img.jpg" alt="Login Image" style="object-fit: cover;">
+        </div>
+
+        <div class="col-lg-5 col-12 bg-white p-5 d-flex flex-column justify-content-center ">
+            <div class="text-center mb-4">
+                <img src="images/login-icon.png" alt="Logo" class="mb-3" style="width: 90px;">
+                <h3 class="fw-bold">Log in</h3>
+        </div>
+            <form id="loginForm" [formGroup]="loginForm" name="loginForm" *ngIf="loginForm">
+                <div class="mb-3">
+                    <input type="email" class="form-control p-2" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control p-2" placeholder="Password" required>
+                </div>
+                <div class="text-start mb-3">
+                    <a href="#" class="text-decoration-none text-success">Forgot Password?</a>
+                </div>
+                <button (click)="login()" id="btnLoginCustomer" class="btn btn-success w-100 mt-3">Login</button>
+            </form>
+            <div class="text-center mt-3">
+                <span>Don't have an account? </span><a href="/register" class="text-decoration-none text-success fw-bold">Sign up</a>
+            </div>
         </div>
     </div>
 </div>
