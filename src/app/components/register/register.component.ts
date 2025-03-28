@@ -1,14 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CustomerModel } from '../../models/CustomerModel';
-import { NotificationService } from '../../services/notification.service';
-import { CommonModule } from '@angular/common';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { CustomerService } from '../../services/customer.service';
 import { ImageCropperComponent } from 'ngx-smart-cropper';
+import { CustomerModel } from '../../models/CustomerModel';
+import { CustomerService } from '../../services/customer.service';
+import { NotificationService } from '../../services/notification.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -19,7 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 @Component({
   selector: 'app-register',
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule,ImageCropperComponent, MatDialogModule, MatFormFieldModule, MatInputModule],
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -72,11 +72,11 @@ export class RegisterComponent implements OnInit {
     // private dialog: MatDialog,
     private customerService: CustomerService,
     private notificationService: NotificationService) {
-      
+
     }
-    
+
     ngOnInit() {
-    
+
       this.customerForm = this.fb.group({
         businessName: new FormControl(this.customerModel.BusinessName, Validators.required),
         firstName: new FormControl(this.customerModel.FirstName, Validators.required),
@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
         profileImage: new FormControl(this.customerModel.ProfileImage),
         profileImagePath: new FormControl(this.customerModel.ProfileImagePath),
       });
-    
+
       this.customerForm.valueChanges.subscribe(
         (data) => {
           if (JSON.stringify(data) !== JSON.stringify({})) {
@@ -108,9 +108,9 @@ export class RegisterComponent implements OnInit {
             this.customerModel.ProfileImage = this.profileImageSource;//data.profileImage;
             this.customerModel.ProfileImagePath = data.profileImagePath;
           }
-        });  
+        });
     }
-    
+
     save() {
       const {value, valid} = this.customerForm;
       debugger;
@@ -120,6 +120,6 @@ export class RegisterComponent implements OnInit {
         {
           this.notificationService.showNotification(response.Message)
         });
-     } 
+     }
   }
 }

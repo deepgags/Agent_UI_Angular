@@ -1,5 +1,4 @@
-export class PropertyModel
-{
+export class PropertyModel{
     BrokerFaxNumber: string | "" | undefined
     BusinessName: string | "" | undefined
     UnparsedAddress: string | "" | undefined
@@ -29,6 +28,8 @@ export class PropertyModel
     PropertySubType: string | "" | undefined
     PropertyType: string | "" | undefined
     _id: string | "" | undefined
+    BuildingAreaTotal?: number
+    BuildingAreaUnits?: string
 }
 
 export type MediaModel = {
@@ -36,5 +37,5 @@ export type MediaModel = {
     Media_type: "",
     Media_url: "",
     Modification_Timestamp: "",
-    _id: "", 
+    _id: "",
   }

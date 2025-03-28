@@ -1,11 +1,51 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { bathTypes, bedTypes, maxPrices, minPrices, propertyTypes, sqFitTypes, statusTypes, storyTypes } from '../../../consts/DefaultTypes';
 
 @Component({
   selector: 'app-search',
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss', '../../t1/t1.component.scss']
+  styleUrls: ['./search.component.scss', '../../t1/t1.component.scss'],
+  standalone: true,
 })
 export class SearchComponent {
+  @Input('onSearch') onSearch: Function = () => { };
+  @Input('filters') filters:any = {
+    location: '',
+    propertyType: '',
+    storyType: '',
+    beds: '0',
+    baths: '0',
+    minPrice: '',
+    maxPrice: '',
+    propertyStatus: '',
+    sqFt: '0',
+  };
 
+  propertyTypesDropDown = propertyTypes;
+  storyTypesDropDown = storyTypes;
+  bedTypesDropDown = bedTypes;
+  bathTypesDropDown = bathTypes;
+  statusTypesDropDown = statusTypes;
+  minPricesDropDown = minPrices;
+  maxPricesDropDown = maxPrices;
+  sqFtTypesDropDown = sqFitTypes;
+
+  // selectedFilters = {
+  //   location: '',
+  //   propertyType: '',
+  //   storyType: '',
+  //   beds: '0',
+  //   baths: '0',
+  //   minPrice: '',
+  //   maxPrice: '',
+  //   propertyStatus: '',
+  //   sqFt: '0',
+  // }
+
+  searchProperties = () => {
+    this.onSearch(this.filters);
+  }
 }

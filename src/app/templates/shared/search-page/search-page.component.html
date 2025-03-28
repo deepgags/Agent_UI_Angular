@@ -1,0 +1,54 @@
+<div>
+	<div class="container-fluid menu_img">
+		<div class="container">
+			<div class="row justify-content-center">
+				<p class="text fw-semibold text-white  py-5">Search Your Dream Home</p>
+				<div class="col-12 bg-white p-4 mb-5">
+					<app-search [filters]="selectedFilters" [onSearch]="searchProperties" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid sec-3">
+		<div class="container py-lg-5 p-lg-0 p-4">
+			<p class="text text-center mb-0 fw-semibold">Filtered Properties</p>
+			<p class="text-center fw-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			<div class="row pt-5">
+				<div class="col d-flex justify-content-center mb-lg-0 mb-3" *ngFor="let property of properties">
+					<a class="text-decoration-none" href="./room.html">
+						<div class="card" style="width: 18rem;">
+							<img src="t1/images/property-img-1.png" class="card-img-top" alt="...">
+							<div class="card-body pb-0">
+								<h5 class="card-title  fw-semibold">{{property.StreetName}}</h5>
+								<p class="card-text pro-text"><span><img src="t1/images/vector img/location.png" alt=""></span> {{property.City}}, {{property.CityRegion}}, {{property.Country}}</p>
+								<div class="d-flex justify-content-between">
+									<div class="">
+										<p class="card-text pro-text"><span><img src="t1/images/vector img/bed.png" alt=""></span> {{property.BedroomsTotal}}</p>
+
+									</div>
+									<div class="">
+										<p class="card-text pro-text">
+											<span><img src="t1/images/vector img/shower.png" alt=""></span>{{property.BathroomsTotalInteger}}
+										</p>
+
+									</div>
+									<div class="">
+										<p class="card-text pro-text"><span><img src="t1/images/vector img/area.png" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
+
+									</div>
+								</div>
+								<div class="pt-3">
+									<p class="fw-bold" style="color: #22614B;">Price: <span class="fw-bold text-dark pro-text">${{property.ListPrice}}</span></p>
+								</div>
+							</div>
+
+						</div>
+					</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

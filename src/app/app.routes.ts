@@ -3,7 +3,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TemplateComponent } from './components/template/template.component';
-import { SearchComponent } from './templates/shared/search/search.component';
+import { SearchPageComponent } from './templates/shared/search-page/search-page.component';
 import { T1HomeComponent } from './templates/t1/t1-home/t1-home.component';
 import { T1Component } from './templates/t1/t1.component';
 import { T2HomeComponent } from './templates/t2/t2-home/t2-home.component';
@@ -23,7 +23,7 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: '/t1/home', pathMatch: 'full' },
             { path: 'home', component:  T1HomeComponent},
-            { path: 'search', component:  SearchComponent},
+            { path: 'search', component:  SearchPageComponent},
         ]
     },
     {
@@ -32,7 +32,7 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: '/t2/home', pathMatch: 'full' },
             { path: 'home', component:  T2HomeComponent},
-            { path: 'search', component:  SearchComponent},
+            { path: 'search', component:  SearchPageComponent},
         ]
     },
     // { path: 't2', component: T0002Component },
