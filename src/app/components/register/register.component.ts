@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +15,8 @@ import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-register',
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule,
+     MatFormFieldModule, MatInputModule, MatSelectModule, ImageCropperComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -26,9 +27,9 @@ export class RegisterComponent implements OnInit {
   customerModel: CustomerModel = new CustomerModel();
   brokerageTypes: BrokerageTypeModel[] = [];
 
-  profileCroppedImage = '';//'/images/NoLogo.png';
+  profileCroppedImage = '';
   profileImageSource: string = '';
-  logoCroppedImage = '';//'/images/NoLogo.png';
+  logoCroppedImage = '';
   logoImageSource: string = '';
 
   onFileChange(event: Event): void {
@@ -41,12 +42,10 @@ export class RegisterComponent implements OnInit {
       reader.onload = (e: any) => {
         if(input?.id=="profileImageUpload")
         {
-        this.profileImageSource = e.target.result;
-         //this.profileCroppedImage = e.target.result;
+           this.profileImageSource = e.target.result;
         }
         else{
           this.logoImageSource = e.target.result;
-        //this.logoCroppedImage = e.target.result;
         }
       };
       reader.readAsDataURL(file);
@@ -56,8 +55,9 @@ export class RegisterComponent implements OnInit {
   profileImageCropped(event: any) {
     this.profileCroppedImage = event;
   }
-  logoImageCropped(event: any) {
-    this.profileCroppedImage = event;
+
+  logoImageCropped(event: any, test:any) {
+    this.logoCroppedImage = event;
   }
 
   constructor(
@@ -99,10 +99,6 @@ export class RegisterComponent implements OnInit {
             this.customerModel.address = data.address;
             this.customerModel.password = data.password;
             this.customerModel.confirmPassword = data.confirmPassword;
-            this.customerModel.logoImage = data.logoImage;
-            this.customerModel.logoImagePath = data.logoImagePath;
-            this.customerModel.profileImage = this.profileImageSource;//data.profileImage;
-            this.customerModel.profileImagePath = data.profileImagePath;
           }
         });
 
@@ -122,6 +118,8 @@ export class RegisterComponent implements OnInit {
       const {valid} = this.customerForm;
       if (valid)
       {
+        this.customerModel.profileImage = this.profileImageSource;
+        this.customerModel.logoImage = this.logoImageSource;
         this.sharedDataService.changeData(this.customerModel);
         this.router.navigateByUrl('template');
       }
