@@ -52,15 +52,15 @@ export class LoginComponent implements OnInit {
       }
     
       this.loginForm = this.fb.group({
-        emailAddress: new FormControl(this.customerModel.EmailAddress, [Validators.required, Validators.email]),
-        password: new FormControl(this.customerModel.Password, Validators.required),
+        emailAddress: new FormControl(this.customerModel.emailAddress, [Validators.required, Validators.email]),
+        password: new FormControl(this.customerModel.password, Validators.required),
       });
     
       this.loginForm.valueChanges.subscribe(
         (data) => {
           if (JSON.stringify(data) !== JSON.stringify({})) {
-            this.customerModel.EmailAddress = data.emailAddress;
-            this.customerModel.Password = data.password;
+            this.customerModel.emailAddress = data.emailAddress;
+            this.customerModel.password = data.password;
           }
         });  
     }

@@ -1,41 +1,35 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 import { ImageCropperComponent } from 'ngx-smart-cropper';
 import { CustomerModel } from '../../models/CustomerModel';
-import { CustomerService } from '../../services/customer.service';
+import { Router } from '@angular/router';
+import { SharedDataService } from '../../services/shareddata.service';
+import { BrokerageTypeService } from '../../services/brokerage.service';
+import { BrokerageTypeModel } from '../../models/BrokerageTypeModel';
 import { NotificationService } from '../../services/notification.service';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-register',
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule],
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 
 export class RegisterComponent implements OnInit {
 
-  @Input() saveButtonText = "Next"
-
   customerForm!: FormGroup;
   customerModel: CustomerModel = new CustomerModel();
+  brokerageTypes: BrokerageTypeModel[] = [];
 
   profileCroppedImage = '';//'/images/NoLogo.png';
   profileImageSource: string = '';
   logoCroppedImage = '';//'/images/NoLogo.png';
   logoImageSource: string = '';
-
 
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -67,59 +61,69 @@ export class RegisterComponent implements OnInit {
   }
 
   constructor(
-    // @Inject(MAT_DIALOG_DATA) public data: {name: string},
     private fb: FormBuilder,
-    // private dialog: MatDialog,
-    private customerService: CustomerService,
-    private notificationService: NotificationService) {
+    private router: Router,
+    private brokerageTypeService: BrokerageTypeService,
+    private notificationService: NotificationService,
+    private sharedDataService: SharedDataService) {
 
     }
 
     ngOnInit() {
 
       this.customerForm = this.fb.group({
-        businessName: new FormControl(this.customerModel.BusinessName, Validators.required),
-        firstName: new FormControl(this.customerModel.FirstName, Validators.required),
-        lastName: new FormControl(this.customerModel.LastName, Validators.required),
-        phoneNumber: new FormControl(this.customerModel.PhoneNumber, [Validators.required]),//, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
-        emailAddress: new FormControl(this.customerModel.EmailAddress, [Validators.required, Validators.email]),
-        address: new FormControl(this.customerModel.Address, Validators.required),
-        password: new FormControl(this.customerModel.Password, Validators.required),
-        confirmPassword: new FormControl(this.customerModel.ConfirmPassword, Validators.required),
-        logoImage: new FormControl(this.customerModel.LogoImage),
-        logoImagePath: new FormControl(this.customerModel.LogoImagePath),
-        profileImage: new FormControl(this.customerModel.ProfileImage),
-        profileImagePath: new FormControl(this.customerModel.ProfileImagePath),
+        businessName: new FormControl(this.customerModel.businessName, Validators.required),
+        brokerageType: new FormControl("", Validators.required),
+        firstName: new FormControl(this.customerModel.firstName, Validators.required),
+        lastName: new FormControl(this.customerModel.lastName, Validators.required),
+        phoneNumber: new FormControl(this.customerModel.phoneNumber, [Validators.required]),//, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
+        emailAddress: new FormControl(this.customerModel.emailAddress, [Validators.required, Validators.email]),
+        address: new FormControl(this.customerModel.address, Validators.required),
+        password: new FormControl(this.customerModel.password, Validators.required),
+        confirmPassword: new FormControl(this.customerModel.confirmPassword, Validators.required),
+        logoImage: new FormControl(this.customerModel.logoImage),
+        logoImagePath: new FormControl(this.customerModel.logoImagePath),
+        profileImage: new FormControl(this.customerModel.profileImage),
+        profileImagePath: new FormControl(this.customerModel.profileImagePath),
       });
 
       this.customerForm.valueChanges.subscribe(
         (data) => {
           if (JSON.stringify(data) !== JSON.stringify({})) {
-            this.customerModel.BusinessName = data.businessName;
-            this.customerModel.FirstName = data.firstName;
-            this.customerModel.LastName = data.lastName;
-            this.customerModel.PhoneNumber = data.phoneNumber;
-            this.customerModel.EmailAddress = data.emailAddress;
-            this.customerModel.Address = data.address;
-            this.customerModel.Password = data.password;
-            this.customerModel.ConfirmPassword = data.confirmPassword;
-            this.customerModel.LogoImage = data.logoImage;
-            this.customerModel.LogoImagePath = data.logoImagePath;
-            this.customerModel.ProfileImage = this.profileImageSource;//data.profileImage;
-            this.customerModel.ProfileImagePath = data.profileImagePath;
+            this.customerModel.businessName = data.businessName;
+            this.customerModel.brokerageTypeId = data.brokerageType;
+            this.customerModel.firstName = data.firstName;
+            this.customerModel.lastName = data.lastName;
+            this.customerModel.phoneNumber = data.phoneNumber;
+            this.customerModel.emailAddress = data.emailAddress;
+            this.customerModel.address = data.address;
+            this.customerModel.password = data.password;
+            this.customerModel.confirmPassword = data.confirmPassword;
+            this.customerModel.logoImage = data.logoImage;
+            this.customerModel.logoImagePath = data.logoImagePath;
+            this.customerModel.profileImage = this.profileImageSource;//data.profileImage;
+            this.customerModel.profileImagePath = data.profileImagePath;
           }
         });
+
+        this.getBrokerageTypes();
+    }
+
+    getBrokerageTypes()
+    {
+      this.brokerageTypeService.getBrokerageTypes().then((response)=>{
+        this.brokerageTypes = response;
+      }).catch((ex) => {
+          this.notificationService.showNotification("Error occurred while getting brokerages");
+      });
     }
 
     save() {
-      const {value, valid} = this.customerForm;
-      debugger;
+      const {valid} = this.customerForm;
       if (valid)
       {
-        this.customerService.save(this.customerModel).then((response)=>
-        {
-          this.notificationService.showNotification(response.Message)
-        });
-     }
+        this.sharedDataService.changeData(this.customerModel);
+        this.router.navigateByUrl('template');
+      }
   }
 }

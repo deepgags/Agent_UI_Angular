@@ -1,42 +1,42 @@
-import { BaseModel } from "./BaseModel";
-
-export class CustomerModel extends BaseModel {
-    CustomerId: string = "";
-    FirstName: string = "";
-    LastName: string = "";
-    EmailAddress: string = "";
-    BusinessName: string = "";
-    PhoneNumber: string = "";
-    Address: string = "";
-    Password: string = "";
-    ConfirmPassword: string = "";
-    RoleId: string = "";
-    SiteUrl: string = "";
-    LogoImage: string = "";
-    LogoImagePath: string = "";
-    ProfileImage: string = "";
-    ProfileImagePath: string = "";
-    TemplateId: string;
-    IsApproved: boolean = false;
+export class CustomerModel {
+    customerId: string = "";
+    brokerageTypeId: string = "";
+    firstName: string = "";
+    lastName: string = "";
+    emailAddress: string = "";
+    businessName: string = "";
+    phoneNumber: string = "";
+    address: string = "";
+    password: string = "";
+    confirmPassword: string = "";
+    roleId: string = "";
+    siteUrl: string = "";
+    logoImage: string = "";
+    logoImagePath: string = "";
+    profileImage: string = "";
+    profileImagePath: string = "";
+    templateId: string = "";
+    isApproved: boolean = false;
     
-    constructor(message: string = "", status: boolean = false, customerId: string = "", firstname: string = "",
+    constructor(customerId: string = "", firstname: string = "",
         lastname: string = "", emailAddress: string = "", businessName: string = "", phoneNumber: string = "",
-        isApproved: boolean = false, roleId: string = "", templateId: string = "") {
+        isApproved: boolean = false, roleId: string = "", templateId: string = "", brokerageTypeId: string = ""
+        , siteUrl: string="" ) {
 
-      super(message,status);
-      
-      this.CustomerId = customerId;
-      this.FirstName = firstname;
-      this.LastName = lastname;
-      this.EmailAddress = emailAddress;
-      this.BusinessName = businessName;
-      this.PhoneNumber = phoneNumber;
-      this.IsApproved = isApproved;
-      this.RoleId =  roleId;
-      this.TemplateId = templateId;
+      this.customerId = customerId;
+      this.firstName = firstname;
+      this.lastName = lastname;
+      this.emailAddress = emailAddress;
+      this.businessName = businessName;
+      this.phoneNumber = phoneNumber;
+      this.isApproved = isApproved;
+      this.roleId =  roleId;
+      this.templateId = templateId;
+      this.brokerageTypeId = brokerageTypeId;
+      this.siteUrl = siteUrl;
     }
 
     getFullName(): string {
-        return `${this.FirstName} (${this.LastName})`;
+        return `${this.firstName} (${this.lastName})`;
     }
   }
