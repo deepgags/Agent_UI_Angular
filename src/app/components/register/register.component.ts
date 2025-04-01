@@ -12,6 +12,7 @@ import { SharedDataService } from '../../services/shareddata.service';
 import { BrokerageTypeService } from '../../services/brokerage.service';
 import { BrokerageTypeModel } from '../../models/BrokerageTypeModel';
 import { NotificationService } from '../../services/notification.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -65,12 +66,13 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private brokerageTypeService: BrokerageTypeService,
     private notificationService: NotificationService,
+    private titleService : Title,
     private sharedDataService: SharedDataService) {
-
+      this.titleService.setTitle("Register")
     }
 
     ngOnInit() {
-
+      
       this.customerForm = this.fb.group({
         businessName: new FormControl(this.customerModel.businessName, Validators.required),
         brokerageType: new FormControl("", Validators.required),
@@ -107,11 +109,15 @@ export class RegisterComponent implements OnInit {
 
     getBrokerageTypes()
     {
-      this.brokerageTypeService.getBrokerageTypes().then((response)=>{
-        this.brokerageTypes = response;
-      }).catch((ex) => {
-          this.notificationService.showNotification("Error occurred while getting brokerages");
-      });
+      this.brokerageTypeService.getBrokerageTypes().subscribe({
+        next: (response) => {
+          this.brokerageTypes = response;
+        },
+        error: () => {
+          this.notificationService.showNotification("Error occurred while getting brokerage types");
+        },
+        complete: () => {}
+      })
     }
 
     save() {

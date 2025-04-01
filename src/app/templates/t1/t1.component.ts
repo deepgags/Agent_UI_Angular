@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { T1FooterComponent } from './t1-footer/t1-footer.component';
 import { T1HeaderComponent } from './t1-header/t1-header.component';
+import { UserModel } from '../../models/UserModel';
 
 @Component({
   selector: 'app-t1',
@@ -10,6 +11,7 @@ import { T1HeaderComponent } from './t1-header/t1-header.component';
   styleUrl: './t1.component.scss'
 })
 export class T1Component {
+  // @Input() userData = new UserModel();
   userData = {
     name: 'James Doe',
     phone: '+47 333 78 901',

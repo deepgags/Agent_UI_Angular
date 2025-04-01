@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserModel } from '../../models/UserModel';
+import { CustomerModel } from '../../models/CustomerModel';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { StorageService } from '../../services/storage.service';
 export class HomeComponent implements OnInit {
 
   // @ViewChild('customPlaceholder', { read: ViewContainerRef, static: true }) customPlaceholder!: ViewContainerRef;
-  userInfo : UserModel;
+  userInfo : CustomerModel;
 
   constructor(private router : Router,
     private storageService : StorageService,

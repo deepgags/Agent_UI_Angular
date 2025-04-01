@@ -10,6 +10,6 @@
       </form>
       </mat-dialog-content>
       <mat-dialog-actions>
-        <button mat-button [mat-dialog-close]="true" class="btn btn-dark me-2 px-4 py-2 fw-semibold mt-5">Close</button>
+        <button mat-button (click)="close()" class="btn btn-dark me-2 px-4 py-2 fw-semibold mt-5">Close</button>
         <button class="btn btn-success me-2 px-4 py-2 fw-semibold mt-5" (click)="save()">Save</button>
       </mat-dialog-actions>

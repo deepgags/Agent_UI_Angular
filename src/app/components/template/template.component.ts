@@ -11,6 +11,7 @@ import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TemplatesiteComponent } from '../dialogs/templatesite/templatesite.component';
 import { NotificationService } from '../../services/notification.service';
 import { SharedDataService } from '../../services/shareddata.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-template',
@@ -27,14 +28,6 @@ export class TemplateComponent implements OnInit {
   customerModel: CustomerModel = new CustomerModel();
   templates: TemplateModel[] = [];
 
-  images = [
-    "https://media.istockphoto.com/id/1311600080/photo/small-shipping-packages-on-a-notebook-with-the-inscription-online-shopping.jpg?s=1024x1024&w=is&k=20&c=VvROXDiVybH5cjLcumXAcyKlzZJ11hCSVr1_abHs42w=",
-   "https://media.istockphoto.com/id/1467976868/photo/the-convenience-of-shopping-online.jpg?s=1024x1024&w=is&k=20&c=TW1sWVSVTo-GtbD7tLz3IO98v_JUJWqAnbgMrjtKLfs=",
-    "https://media.istockphoto.com/id/1336136316/photo/woman-online-shopping-on-smart-phone-fashion-clothes-at-home.webp?s=1024x1024&w=is&k=20&c=h8kYPGldqOh6Bg80sivXiVe-opkuk7COHR2MW7Z6op0=",
-     "https://media.istockphoto.com/id/1165069915/photo/shopping-bags-in-shopping-cart-and-credit-card-on-laptop-with-paper-boxes-on-table-and-sales.jpg?s=1024x1024&w=is&k=20&c=Fvp_9Je6Mwj8WWiNgjMk1Enpi-foLW6rmoHx248Dgew=",
-    "https://media.istockphoto.com/id/1312231371/photo/hand-touching-to-virtual-info-graphics-with-trolley-cart-icons-technology-online-shopping.jpg?s=1024x1024&w=is&k=20&c=QAwjsNOPl9YdAXLtv7SHi_GErUTIxxnlGak11tMVZho="
-  ];
-
   selectTemplate(template:TemplateModel, sender:any)
   {
     template.IsSelected = !template.IsSelected;
@@ -50,7 +43,9 @@ export class TemplateComponent implements OnInit {
     private _siteDialog: MatDialog,
     private templateService: TemplateService,
     private notificationService: NotificationService,
+    private titleService : Title,
     private sharedDataService: SharedDataService) {
+      this.titleService.setTitle("Templates")
     }
     
     ngOnInit() {
@@ -59,67 +54,21 @@ export class TemplateComponent implements OnInit {
       });
 
       this.getTemplates();
-//       this.templates.push(new TemplateModel(),
-//     {
-//             Data:"",
-//             Description:"Template Description 1",
-//             Images: this.images,
-//             IsApproved:true,
-//             IsDefault:true,
-//             TemplateId:"ABC",
-//             TemplateName:"Template 1",
-//             IsSelected  :false
-//     },
-//     {
-//       Data:"",
-//       Description:"Template Description 1",
-//       Images: this.images,
-//       IsApproved:true,
-//       IsDefault:true,
-//       TemplateId:"XYZ",
-//       TemplateName:"Template 2",
-//       IsSelected  :false
-// },
-// {
-//   Data:"",
-//   Description:"Template Description 3",
-//   Images: this.images,
-//   IsApproved:true,
-//   IsDefault:true,
-//   TemplateId:"ABC 3",
-//   TemplateName:"Template 3",
-//   IsSelected  :false
-// },
-// {
-//   Data:"",
-//   Description:"Template Description 4",
-//   Images: this.images,
-//   IsApproved:true,
-//   IsDefault:true,
-//   TemplateId:"ABC 4",
-//   TemplateName:"Template 4",
-//   IsSelected  :false
-// },
-// {
-//   Data:"",
-//   Description:"Template Description 5",
-//   Images: this.images,
-//   IsApproved:true,
-//   IsDefault:true,
-//   TemplateId:"ABC 5",
-//   TemplateName:"Template 5",
-//   IsSelected  :false
-// }
-//   );
     }
 
     getTemplates()
     {
-      this.templateService.getTemplates().then((response)=>{
-        this.templates = response;
-      }).catch((ex) => {
-          this.notificationService.showNotification("Error occurred while getting templates");
-      });
+      this.templateService.getTemplates().subscribe({
+          next: (response) => {
+            if (response && response.length > 0) {
+               this.templates = response;
+            }
+          },
+          error: () => {
+            this.notificationService.showNotification("Error occurred while getting templates");
+          },
+          complete: () => {}
+        });
     }
 
     openDialog() {

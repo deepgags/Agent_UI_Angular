@@ -1,9 +1,6 @@
-import { inject, Injectable, resource, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CustomerModel } from '../models/CustomerModel';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { UserModel } from '../models/UserModel';
-import * as bcrypt from 'bcryptjs';
 import crypto from 'crypto'
 
 @Injectable({
@@ -25,12 +22,12 @@ export class StorageService {
     localStorage.removeItem("LoggedUserToken");
   }
 
-  getLoggedUserFromUserInfo() : UserModel {
+  getLoggedUserFromUserInfo() : CustomerModel {
     const userData = localStorage.getItem("LoggedUserInfo") ?? "";
-    return userData ? JSON.parse(userData) as UserModel : new UserModel();
+    return userData ? JSON.parse(userData) as CustomerModel : new CustomerModel();
   }
 
-  getLoggedUserFromToken() : UserModel {
+  getLoggedUserFromToken() : CustomerModel {
     const encryptedData = localStorage.getItem("LoggedUserToken") ?? "";
     const buff = Buffer.from(encryptedData, 'base64')
 
@@ -52,18 +49,18 @@ export class StorageService {
     const tokenArray = originalText?.split('#_');
     const tokenValidaty = tokenArray[11];
     return {
-        TemplateId: tokenArray ? tokenArray[0] : "",
-        BusinessName: tokenArray ? tokenArray[1] : "",
-        FirstName: tokenArray ? tokenArray[2] : "",
-        LastName: tokenArray ? tokenArray[3] : "",
-        PhoneNumber: tokenArray ? tokenArray[4] : "",
-        Address: tokenArray ? tokenArray[5] : "",
-        SiteUrl: tokenArray ? tokenArray[6] : "",
-        RoleId: tokenArray ? tokenArray[7] : "",
-        RoleName: tokenArray ? tokenArray[8] : "",
-        ProfileImage: tokenArray ? tokenArray[9] : "",
-        ProfileImagePath: tokenArray ? tokenArray[10] : "",
-        IsLogged: tokenArray && tokenArray.length > 0
-    } as UserModel;
+      TemplateId: tokenArray ? tokenArray[0] : "",
+      BusinessName: tokenArray ? tokenArray[1] : "",
+      FirstName: tokenArray ? tokenArray[2] : "",
+      LastName: tokenArray ? tokenArray[3] : "",
+      PhoneNumber: tokenArray ? tokenArray[4] : "",
+      Address: tokenArray ? tokenArray[5] : "",
+      SiteUrl: tokenArray ? tokenArray[6] : "",
+      RoleId: tokenArray ? tokenArray[7] : "",
+      RoleName: tokenArray ? tokenArray[8] : "",
+      ProfileImage: tokenArray ? tokenArray[9] : "",
+      ProfileImagePath: tokenArray ? tokenArray[10] : "",
+      IsLogged: tokenArray && tokenArray.length > 0
+    } as unknown as CustomerModel;
   }
 }

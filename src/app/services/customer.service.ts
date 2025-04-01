@@ -1,10 +1,10 @@
-import { inject, Injectable, resource, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { CustomerModel } from '../models/CustomerModel';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { StorageService } from './storage.service';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class CustomerService {
     this.Apiurl = environment.agentApiUrl + environment.customerUrl;
   }
 
-   login(userInfo:CustomerModel): Observable<any> {
+  login(userInfo:CustomerModel): Observable<any> {
     let content = {emailAddress: userInfo.emailAddress, password: userInfo.password};
     return this.http.post(this.Apiurl + '/login', content);
   }
@@ -29,24 +29,53 @@ export class CustomerService {
     return this.http.post(this.Apiurl + '/save', customer);
   }
 
-  customerExistWithSiteUrl(siteUrl:string): Observable<any> {
+  customerExistWithSiteUrl(siteUrl:string): Observable<CustomerModel[]> {
+
     return this.http.get<CustomerModel[]>(this.Apiurl + '/siteExist?siteUrl=' + siteUrl)
-        .pipe(
-            catchError(error => {
-                console.error('Error fetching customers:', error);
-                return throwError(error);
-            })
-        );
+        .pipe(map((result: any) => {
+          if(result && result.data && result.data.length > 0)
+          {
+            result.data.forEach( (x:any) => {
+              this.customers.push(new CustomerModel(
+                x.customerid,
+                x.firstname,
+                x.lastname,
+                x.emailaddress,
+                x.businessname,
+                x.phonenumber,
+                x.isapproved,
+                x.roleid,
+                x.templateid,
+                x.brokeragetypeid,
+                x.siteurl
+          ))
+        })}
+          return this.customers;
+        }),
+        catchError(error => {
+          console.error('Error fetching customers:', error);
+          return throwError(() => error);
+        }));
   }
 
-  getCustomers(emailAddress:string): Observable<any> {
-    return this.http.get<any>(this.Apiurl + '/login?emailAddress=' + emailAddress)
-        .pipe(
-            catchError(error => {
-                console.error('Error fetching customers:', error);
-                return throwError(error);
-            })
-        );
+  getCustomers(emailAddress : string): Observable<CustomerModel> {
+
+    return this.http.get<CustomerModel>(this.Apiurl + '/login?emailAddress=' + emailAddress)
+    .pipe(map((result: any) => {
+        if(result && result.data)
+        {
+          const loginData = result.data;
+            return new CustomerModel(loginData.customerid, loginData.firstname, loginData.lastname,
+              loginData.emailaddress, loginData.businessname, loginData.phonenumber, loginData.isapproved,
+              loginData.roleid, loginData.templateid, loginData.brokeragetypeid, loginData.siteurl)
+        }
+          return {} as CustomerModel;
+      }),
+      catchError(error => {
+        console.error('Error fetching customers:', error);
+        return throwError(() => error);
+      })
+    )
   }
 
 }

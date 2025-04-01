@@ -2,6 +2,7 @@ import { inject, Injectable, resource, signal } from '@angular/core';
 import { BrokerageTypeModel } from '../models/BrokerageTypeModel';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,21 +17,27 @@ export class BrokerageTypeService {
     this.Apiurl = environment.agentApiUrl + environment.brokerageTypeUrl;
   }
 
-  async getBrokerageTypes(name:string=''): Promise<BrokerageTypeModel[]> {
-
-    this.http.get<any>(this.Apiurl + '?name=' + name)
-        .subscribe(data => 
-            {
-                data.data.forEach((brokeragetype: any) => {
-                    this.brokerageTypes.push(new BrokerageTypeModel(
-                      brokeragetype.brokeragetypeid,
-                      brokeragetype.name,
-                      brokeragetype.isapproved,
-                      brokeragetype.isdefault))
-                });
-          });
+  getBrokerageTypes(name:string=''): Observable<BrokerageTypeModel[]> {
     
-     return this.brokerageTypes;
-  }
+        return this.http.get<BrokerageTypeModel[]>(this.Apiurl + '?name=' + name)
+            .pipe(map((result: any) => {
+              if(result && result.data && result.data.length > 0)
+              {
+                result.data.forEach((brokeragetype:any) => {
+                  this.brokerageTypes.push(new BrokerageTypeModel(
+                    brokeragetype.brokeragetypeid,
+                    brokeragetype.name,
+                    brokeragetype.isapproved,
+                    brokeragetype.isdefault))
+                })
+              }
 
-}
+              return this.brokerageTypes;
+            }),
+              catchError(error => {
+                console.error('Error fetching brokerage types:', error);
+                return throwError(() => error);
+              })
+            );
+      }
+    }

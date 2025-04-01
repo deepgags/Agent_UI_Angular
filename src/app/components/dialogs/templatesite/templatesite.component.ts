@@ -8,6 +8,7 @@ import { NotificationService } from '../../../services/notification.service';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-templatesite',
@@ -24,8 +25,9 @@ export class TemplatesiteComponent implements OnInit {
   private fb: FormBuilder,
   private router : Router,
   private customerService: CustomerService,
+  private titleService : Title,
   private notificationService: NotificationService) {
-
+    this.titleService.setTitle("Site Url")
   }
 
   ngOnInit(): void {
@@ -40,6 +42,11 @@ export class TemplatesiteComponent implements OnInit {
             this.customerData.siteUrl = data.siteUrl;
         }
       });  
+  }
+
+  close(){
+    this.dialogRef.close();
+    this.titleService.setTitle("Templates")
   }
 
   save()

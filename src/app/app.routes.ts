@@ -9,10 +9,12 @@ import { T1Component } from './templates/t1/t1.component';
 import { T2HomeComponent } from './templates/t2/t2-home/t2-home.component';
 import { T2Component } from './templates/t2/t2.component';
 import { ThankyouComponent } from './components/thankyou/thankyou.component';
+import { RedirectUserComponent } from './components/redirectuser/redirectuser.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '', redirectTo: '/loading', pathMatch: 'full' },
     { path: 'login', component:  LoginComponent},
+    { path: 'loading', component:  RedirectUserComponent},
     { path: 'register', component:  RegisterComponent},
     { path: 'template', component:  TemplateComponent},
     { path: 'home', component:  HomeComponent},

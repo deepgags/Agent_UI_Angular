@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PLATFORM_ID,  Inject } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,8 +9,9 @@ import { CustomerModel } from '../../models/CustomerModel';
 import { NotificationService } from '../../services/notification.service';
 import { CommonModule } from '@angular/common';
 import { CustomerService } from '../../services/customer.service';
-import {Router} from "@angular/router"
+import { Router} from "@angular/router"
 import { StorageService } from '../../services/storage.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -34,47 +34,26 @@ export class LoginComponent implements OnInit {
     private customerService: CustomerService,
     private notificationService: NotificationService,
     private storageService: StorageService,
+    private titleService : Title,
     private router: Router) {
-      
+      this.titleService.setTitle("Login Page")
     }
     
     ngOnInit() {
-      var isBrowser = isPlatformBrowser(this.platformId);
-      if (isBrowser) {
-        var currentUrl = window.location.host;
-        this.customerService.customerExistWithSiteUrl(currentUrl)
-        .subscribe({
-          next: (response) => {
-            if (response && response.data && response.data.length > 0 && response.data[0].customerId!="") {
-              this.storageService.saveUserInfo(JSON.stringify(response.data[0]));
+      
+      this.loginForm = this.fb.group({
+            emailAddress: new FormControl(this.customerModel.emailAddress, [Validators.required, Validators.email]),
+            password: new FormControl(this.customerModel.password, Validators.required),
+        });
+        
+      this.loginForm.valueChanges.subscribe(
+          (data) => {
+            if (JSON.stringify(data) !== JSON.stringify({})) {
+                this.customerModel.emailAddress = data.emailAddress;
+                this.customerModel.password = data.password;
             }
-            
-            var userInfo = this.storageService.getLoggedUserFromUserInfo();
-            if(userInfo.CustomerId != "")
-            {
-              this.router.navigateByUrl("home");
-            }
-          },
-          error: () => {
-            this.notificationService.showNotification("Error occurred while getting customer information");
-          },
-          complete:() => {
-            this.loginForm = this.fb.group({
-              emailAddress: new FormControl(this.customerModel.emailAddress, [Validators.required, Validators.email]),
-              password: new FormControl(this.customerModel.password, Validators.required),
-            });
-          
-            this.loginForm.valueChanges.subscribe(
-              (data) => {
-                if (JSON.stringify(data) !== JSON.stringify({})) {
-                  this.customerModel.emailAddress = data.emailAddress;
-                  this.customerModel.password = data.password;
-                }
-              }); 
-          }
-       });
-      }
-    }
+        }); 
+  }
 
     public togglePasswordVisibility(): void {
       this.showPassword = !this.showPassword;
