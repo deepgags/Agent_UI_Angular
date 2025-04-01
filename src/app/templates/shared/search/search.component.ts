@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { bathTypes, bedTypes, maxPrices, minPrices, propertyTypes, sqFitTypes, statusTypes, storyTypes } from '../../../consts/DefaultTypes';
 
@@ -7,8 +7,9 @@ import { bathTypes, bedTypes, maxPrices, minPrices, propertyTypes, sqFitTypes, s
   selector: 'app-search',
   imports: [FormsModule, CommonModule],
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss', '../../t1/t1.component.scss'],
-  standalone: true,
+  styleUrls: ['./search.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  standalone: true
 })
 export class SearchComponent {
   @Input('onSearch') onSearch: Function = () => { };

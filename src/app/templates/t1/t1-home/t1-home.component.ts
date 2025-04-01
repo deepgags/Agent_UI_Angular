@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SearchComponent } from '../../shared/search/search.component';
 
@@ -7,7 +7,8 @@ import { SearchComponent } from '../../shared/search/search.component';
   selector: 'app-t1-home',
   imports: [RouterModule, SearchComponent],
   templateUrl: './t1-home.component.html',
-  styleUrls: ['./t1-home.component.scss', '../t1.component.scss']
+  styleUrls: ['./t1-home.component.scss', '../t1.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class T1HomeComponent {
 

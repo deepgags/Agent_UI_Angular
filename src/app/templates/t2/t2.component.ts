@@ -7,7 +7,7 @@ import { T2HeaderComponent } from './t2-header/t2-header.component';
   selector: 'app-t2',
   imports: [T2HeaderComponent, T2FooterComponent, RouterModule],
   templateUrl: './t2.component.html',
-  styleUrl: './t2.component.scss'
+  styleUrl: './t2.component.scss',
 })
 export class T2Component {
   userData = {
