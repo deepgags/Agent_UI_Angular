@@ -29,26 +29,24 @@ export class CustomerService {
     return this.http.post(this.Apiurl + '/save', customer);
   }
 
-  async getCustomers(emailAddress:string): Promise<CustomerModel[]> {
+  customerExistWithSiteUrl(siteUrl:string): Observable<any> {
+    return this.http.get<CustomerModel[]>(this.Apiurl + '/siteExist?siteUrl=' + siteUrl)
+        .pipe(
+            catchError(error => {
+                console.error('Error fetching customers:', error);
+                return throwError(error);
+            })
+        );
+  }
 
-    this.http.get<any>(this.Apiurl + '/login?emailAddress=' + emailAddress)
-        .subscribe(data => 
-            {
-                data.data.forEach((customer: any) => {
-                    this.customers.push(new CustomerModel(
-                            customer.customerid,
-                            customer.firstname,
-                            customer.lastname,
-                            customer.emailaddress,
-                            customer.businessname,
-                            customer.phonenumber,
-                            customer.isapproved,
-                            customer.roleid,
-                            customer.templateid))
-                });
-          });
-    
-     return this.customers;
+  getCustomers(emailAddress:string): Observable<any> {
+    return this.http.get<any>(this.Apiurl + '/login?emailAddress=' + emailAddress)
+        .pipe(
+            catchError(error => {
+                console.error('Error fetching customers:', error);
+                return throwError(error);
+            })
+        );
   }
 
 }
