@@ -1,13 +1,26 @@
-<!-- <div class="">
+<div class="">
     <div class="row justify-content-center w-100">
         <div class="col-lg-5 col-12 bg-white p-4 rounded shadow">
             <form [formGroup]="customerForm" name="brokerageForm" *ngIf="customerForm">
             <h4 class="mb-3">Sign Up</h4>
-            <mat-form-field appearance="fill">
-                <mat-label>Business Name</mat-label>
-                <input formControlName="businessName" class="form-control" required matInput placeholder="Business Name" />
-                <mat-error>Business name is required</mat-error>
-            </mat-form-field>
+            <div class="row mt-3">
+              <div class="col">
+                <mat-form-field appearance="fill">
+                  <mat-label>Brokerage Type</mat-label>
+                  <mat-select required name="brokerageType" formControlName="brokerageType" >
+                    <mat-option *ngFor="let brokerageType of brokerageTypes" [value]="brokerageType.BrokerageTypeId">{{brokerageType.Name}}</mat-option >
+                  </mat-select>
+                  <mat-error>Borkerage type is required</mat-error>
+              </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="fill">
+                  <mat-label>Business Name</mat-label>
+                  <input formControlName="businessName" class="form-control" required matInput placeholder="Business Name" />
+                  <mat-error>Business name is required</mat-error>
+              </mat-form-field>
+              </div>  
+          </div>
             <div class="row mt-3">
                 <div class="col">
                   <mat-form-field appearance="fill">
@@ -58,50 +71,64 @@
                 @if (customerForm.hasError('required', 'confirmPassword')) {
                   <mat-error>Confirm password is required</mat-error>
                 }
-              </mat-form-field>         
+              </mat-form-field>    
+              
               <div class="upload-container p-3">
-                    <img id="profileimagePreview" alt="No Image" class="upload-preview" [src]="profileImageSource">
-                    <div class="upload-info">
-                        <label class="form-label fw-semibold">Upload profile image</label>
-                        <p class="text-muted small">Images</p>
-                        <input type="file" (change)="onFileChange($event)" class="form-control upload-btn" id="profileImageUpload" accept="image/*">
-                    </div>
+                <div class="upload-info">
+                  <label class="form-label fw-semibold">Upload logo</label>
+                  <input type="file" (change)="onFileChange($event)" data-cropper="#logoImageCropper"  class="form-control upload-btn" id="logoImageUpload" accept="image/*">
                 </div>
-                <div id="ProfileCropContainer" class="mt-3">
-                    <div class="row" style="margin-top: 15px;">
-                        <div class="text-center col-md-8">
-                            <ngx-smart-cropper
-                            [imageType]="'webp'"
-                            [cropX]="50"
-                            [cropY]="50"
-                            [cropWidth]="150"
-                            [cropHeight]="150"
-                            [theme]="'mixed'"
-                            [imageSource]="profileImageSource"
-                            (imageCroppedEvent)="profileImageCropped($event)"></ngx-smart-cropper>
-                        </div>
-                        <img [src]="profileCroppedImage"/>
+          </div>
+          <div id="LogoCropContainer" class="mt-3">
+              <div class="row" style="margin-top: 15px;">
+                <div class="text-center col-md-8">
+                  <ngx-smart-cropper id="logoImageCropper"
+                        [imageType]="'png'"
+                        [cropX]="0"
+                        [cropY]="0"
+                        [cropWidth]="220"
+                        [cropHeight]="167"
+                        [theme]="'dark'"
+                        [imageSource]="logoImageSource"
+                        (onTouchResizeStart)="logoImageCropped($event, this)">
+                  </ngx-smart-cropper>
                 </div>
               </div>
+          </div>
+              
               <div class="upload-container p-3">
-                <img id="logoImagePreview" alt="No Image" class="upload-preview" [src]="logoImageSource">
-                <div class="upload-info">
-                    <label class="form-label fw-semibold">Upload Logo</label>
-                    <p class="text-muted small">Images</p>
-                    <input type="file" (change)="onFileChange($event)" class="form-control upload-btn" id="logoImageUpload" accept="image/*">
-                </div>
-            </div>
+                    <div class="upload-info">
+                      <label class="form-label fw-semibold">Upload profile image</label>
+                      <input type="file" (change)="onFileChange($event)" data-cropper="#profileImageCropper" class="form-control upload-btn" id="profileImageUpload" accept="image/*">
+                    </div>
+              </div>
+              <div id="ProfileCropContainer" class="mt-3">
+                  <div class="row" style="margin-top: 15px;">
+                    <div class="text-center col-md-8">
+                      <ngx-smart-cropper id="profileImageCropper"
+                            [imageType]="'webp'"
+                            [cropX]="0"
+                            [cropY]="0"
+                            [cropWidth]="435"
+                            [cropHeight]="170"
+                            [theme]="'mixed'"
+                            [imageSource]="profileImageSource"
+                            (ngOnChanges)="profileImageCropped($event)">
+                      </ngx-smart-cropper>
+                    </div>
+                  </div>
+              </div>
           
                 <button (click)="save()" id="btnSaveCustomer" class="btn btn-success w-100 mt-3">Next</button>
             </form>
         </div>
     </div>
-</div> -->
+</div>
 
 
 
 
-<div class="container-fluid vh-100 d-flex">
+<!-- <div class="container-fluid vh-100 d-flex">
   <div class="row w-100">
       <div class="col-lg-7 d-none d-lg-block p-0">
           <img class="img-fluid vh-100 w-100" src="/images/login-img.jpg" alt="Login Image" style="object-fit: cover;">
@@ -149,11 +176,11 @@
                     <button type="button" class="btn btn-success btn-sm" id="cropButton">Crop Image</button>
                 </div>
             </div>
-            <button type="submit" id="submitBtn" class="btn btn-success w-100 mt-3">Register</button>
+            <button type="submit" id="submitBtn" class="btn btn-success w-100 mt-3">Next</button>
         </form>
         <div class="text-center mt-3">
           <span>Already have an account? </span><a href="/login" class="text-decoration-none text-success fw-bold">Login</a>
       </div>
     </div>
   </div>
-</div>
+</div> -->

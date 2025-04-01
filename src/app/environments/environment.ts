@@ -5,5 +5,6 @@ export const environment = {
     customerUrl: '/customers',
     templateUrl: '/templates',
     roleUrl: '/roles/',
+    brokerageTypeUrl: '/brokeragetypes/',
     propertySearchUrl: '/properties'
 };

@@ -21,17 +21,12 @@ export class CustomerService {
   }
 
    login(userInfo:CustomerModel): Observable<any> {
-    let content = {emailAddress: userInfo.EmailAddress, password: userInfo.Password};
+    let content = {emailAddress: userInfo.emailAddress, password: userInfo.password};
     return this.http.post(this.Apiurl + '/login', content);
   }
 
-  async save(customer : CustomerModel) : Promise<CustomerModel> {
-    this.http.post<any>(this.Apiurl + '/save', customer).subscribe((data:any) => 
-      {
-            this.customers.push(new CustomerModel(data.message, data.status))
-      });
-
-    return this.customers[0];
+  save(customer : CustomerModel) {
+    return this.http.post(this.Apiurl + '/save', customer);
   }
 
   async getCustomers(emailAddress:string): Promise<CustomerModel[]> {
@@ -41,8 +36,6 @@ export class CustomerService {
             {
                 data.data.forEach((customer: any) => {
                     this.customers.push(new CustomerModel(
-                            data.message,
-                            data.status,
                             customer.customerid,
                             customer.firstname,
                             customer.lastname,

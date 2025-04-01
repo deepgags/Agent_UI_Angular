@@ -17,24 +17,22 @@ export class TemplateService {
     this.Apiurl = environment.agentApiUrl + environment.templateUrl;
   }
 
-  async getTemplate(name:string): Promise<TemplateModel[]> {
-
+  async getTemplates(name:string = ''): Promise<TemplateModel[]> {
     this.http.get<any>(this.Apiurl + '?name=' + name)
         .subscribe(data => 
             {
                 data.data.forEach((template: any) => {
-                    this.templates.push(new TemplateModel(
-                            data.message,
-                            data.status,
-                            template.templateid,
-                            template.name,
-                            template.description,
-                            template.data,
-                            template.images,
-                            template.isapproved,
-                            template.isdefault))
-                });
-          });
+                    this.templates.push({
+                        TemplateId: template.templateid,
+                        TemplateName: template.name,
+                        Description: template.description,
+                        Data: template.data,
+                        Images: template.images.split(','),
+                        IsApproved: template.isapproved,
+                        IsDefault: template.isdefault,
+                    } as TemplateModel)
+            })
+          })
     
      return this.templates;
   }

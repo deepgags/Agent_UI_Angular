@@ -1,27 +1,19 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomerModel } from '../../models/CustomerModel';
 import { NotificationService } from '../../services/notification.service';
 import { CommonModule } from '@angular/common';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { CustomerService } from '../../services/customer.service';
 import {Router} from "@angular/router"
-import { stopCoverage } from 'v8';
 import { StorageService } from '../../services/storage.service';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-login',
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule],
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatIconModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -32,6 +24,8 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   customerModel: CustomerModel = new CustomerModel();
+  public showPassword: boolean = false;
+  
 
   constructor(
     // @Inject(MAT_DIALOG_DATA) public data: {name: string},
@@ -52,17 +46,21 @@ export class LoginComponent implements OnInit {
       }
     
       this.loginForm = this.fb.group({
-        emailAddress: new FormControl(this.customerModel.EmailAddress, [Validators.required, Validators.email]),
-        password: new FormControl(this.customerModel.Password, Validators.required),
+        emailAddress: new FormControl(this.customerModel.emailAddress, [Validators.required, Validators.email]),
+        password: new FormControl(this.customerModel.password, Validators.required),
       });
     
       this.loginForm.valueChanges.subscribe(
         (data) => {
           if (JSON.stringify(data) !== JSON.stringify({})) {
-            this.customerModel.EmailAddress = data.emailAddress;
-            this.customerModel.Password = data.password;
+            this.customerModel.emailAddress = data.emailAddress;
+            this.customerModel.password = data.password;
           }
         });  
+    }
+
+    public togglePasswordVisibility(): void {
+      this.showPassword = !this.showPassword;
     }
     
     login() {
