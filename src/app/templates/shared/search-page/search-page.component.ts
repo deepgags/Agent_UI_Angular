@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PropertyModel } from '../../../models/PropertyModel';
@@ -11,12 +11,14 @@ import { SearchComponent } from '../search/search.component';
   selector: 'app-search-page',
   imports: [FormsModule, CommonModule, SearchComponent, RouterModule],
   templateUrl: './search-page.component.html',
-  styleUrls: ['./search-page.component.scss', '../../t1/t1.component.scss']
+  styleUrls: ['./search-page.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SearchPageComponent {
   properties: PropertyModel[] = [];
   page = 1;
-  selectedFilters: any = {}
+  selectedFilters: any = {};
+  templateClass: string = '';
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,

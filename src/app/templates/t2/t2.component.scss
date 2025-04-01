@@ -1,106 +1,123 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-
-
-
-*{
-    font-family: "Raleway", serif ;
+* {
+  font-family: "Raleway", serif;
 }
 
 
-
-.nav_bg{
-    background-color: #002FD5;
-}
-.nav_content{
-    color: white;
-}
-.hero_img{
-    background-image: url("/t2/images/HomelifeKalra.png");
-    background-repeat: no-repeat, repeat;
+.nav_bg {
+  background-color: #002FD5;
 }
 
-.home_nav{
-    align-items: center;
-    justify-content: center;
-    gap: 46px;
-    font-weight: 600;
+.nav_content {
+  color: white;
+}
+
+.hero_img {
+  background-image: url("/t2/images/HomelifeKalra.png");
+  background-repeat: no-repeat, repeat;
+}
+
+.home_nav {
+  align-items: center;
+  justify-content: center;
+  gap: 46px;
+  font-weight: 600;
 }
 
 
-.banner{
+.banner {
   height: 100%;
   width: 100%;
 }
 
-.menu_img{
-    background-image: url("/t2/images/menu.png");
-    background-size: cover;
+.menu_img {
+  background-image: url("/t2/images/menu.png");
+  background-size: cover;
 }
 
-.search_btn{
-    color: white;
-    background-color: #002FD5;
-    border-radius: 10px;
-}
 
-.search_btn:hover{
-  background-color: #092daf;
-  color: white;
+:host-context(.t2-template) {
+  app-search {
+    display: block;
 
-}
+    .search_btn {
+      color: white;
+      background-color: #002FD5;
+      border-radius: 10px;
 
-.drop{
-    border-radius: 0px;
-    color: black;
-}
-.drop:hover{
+      &:hover {
+        background-color: #092daf;
+        color: white;
+      }
+    }
+
+    .drop {
+      border-radius: 0px;
+      color: black;
+
+      &:hover,
+      &:active,
+      &:focus-visible {
         background-color: #002FD5;
-        border-color:  #002FD5;
+        border-color: #002FD5;
+      }
+    }
+  }
 }
 
-.drop:first-child:active{
-    background-color: #002FD5;
-    border-color:  #002FD5;
+.drop {
+  border-radius: 0px;
+  color: black;
+}
+
+.drop:hover {
+  background-color: #002FD5;
+  border-color: #002FD5;
+}
+
+.drop:first-child:active {
+  background-color: #002FD5;
+  border-color: #002FD5;
 }
 
 .drop:focus-visible {
-    background-color: #002FD5;
-    border-color:  #002FD5;
+  background-color: #002FD5;
+  border-color: #002FD5;
 }
 
 .dropdown-item:active {
-    color: var(--bs-dropdown-link-active-color);
-    text-decoration: none;
-    background-color: var(--bs-dropdown-link-active-bg);
+  color: var(--bs-dropdown-link-active-color);
+  text-decoration: none;
+  background-color: var(--bs-dropdown-link-active-bg);
 }
 
-.dropdown-item.active, .dropdown-item:active {
-    color: var(--bs-dropdown-link-active-color);
-    text-decoration: none;
-    background-color: #002FD5;
+.dropdown-item.active,
+.dropdown-item:active {
+  color: var(--bs-dropdown-link-active-color);
+  text-decoration: none;
+  background-color: #002FD5;
 }
 
-.text{
-    font-size: 35px;
-    text-align: center;
+.text {
+  font-size: 35px;
+  text-align: center;
 }
 
 
-.estate{
-    font-family: "Patua One", serif;
-    font-weight: 400;
-    font-size: 35px;
-    color: #002FD5;
+.estate {
+  font-family: "Patua One", serif;
+  font-weight: 400;
+  font-size: 35px;
+  color: #002FD5;
 }
 
-.estate-border{
-    border: 2px solid  #002FD5;
-    border-radius: 10px;
+.estate-border {
+  border: 2px solid #002FD5;
+  border-radius: 10px;
 }
 
 
@@ -114,82 +131,91 @@
 .pro_card:hover {
   transform: translateY(-20px);
 }
-.pro-card-text{
+
+.pro-card-text {
   top: 265px;
   font-weight: 600;
   font-size: 30px;
   position: absolute;
 }
+
 .pro_card .content {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-  .sec-3{
-    background-color: #F9F9F9;
-  }
 
-  .pro-text{
-    font-family: "Roboto", serif;
-  }
+.sec-3 {
+  background-color: #F9F9F9;
+}
 
-  .sec-4{
-    background-color: #002FD5;
-  }
+.pro-text {
+  font-family: "Roboto", serif;
+}
 
-  .worth{
-    font-size:40px;
-    font-weight: 600;
-    color: white;
-    line-height: 45px;
-  }
-
-  .email{
-    font-family: "Poppins", serif;
-    border-radius: 10px;
-    background-color: #22614b00;
-    color: white;
-  }
-
-  .email::placeholder{
-    color: white;
-  }
-
-  .req{
-    font-family: "Poppins", serif;
-    border-radius: 0px;
-    background-color: #22614b00;
-    color: white;
-  }
-
-  .req::placeholder{
-    color:#A1A1A1A1;
-  }
-   label{
-    color:#A1A1A1A1;
-  }
-  .baner-text{
-    top: 280px;
-    left:748px;
-
-  }
-
-  .submit{
-    border-radius:10px ;
-    color: #002FD5;
-  }
-.sub{
+.sec-4 {
   background-color: #002FD5;
 }
-  .fotter-bg{
-    background-color: #222222;
-  }
-  footer{
-    color: white ;
-  }
 
-  .nav-link:focus, .nav-link:hover {
-    color: rgb(217 217 217);
+.worth {
+  font-size: 40px;
+  font-weight: 600;
+  color: white;
+  line-height: 45px;
+}
+
+.email {
+  font-family: "Poppins", serif;
+  border-radius: 10px;
+  background-color: #22614b00;
+  color: white;
+}
+
+.email::placeholder {
+  color: white;
+}
+
+.req {
+  font-family: "Poppins", serif;
+  border-radius: 0px;
+  background-color: #22614b00;
+  color: white;
+}
+
+.req::placeholder {
+  color: #A1A1A1A1;
+}
+
+label {
+  color: #A1A1A1A1;
+}
+
+.baner-text {
+  top: 280px;
+  left: 748px;
+
+}
+
+.submit {
+  border-radius: 10px;
+  color: #002FD5;
+}
+
+.sub {
+  background-color: #002FD5;
+}
+
+.fotter-bg {
+  background-color: #222222;
+}
+
+footer {
+  color: white;
+}
+
+.nav-link:focus,
+.nav-link:hover {
+  color: rgb(217 217 217);
 }
 
 .tool {
@@ -219,14 +245,15 @@
   transition: 100ms;
 }
 
-.featured-bg{
+.featured-bg {
   background-color: #F9F9F9;
 }
 
-.featured-bg1{
+.featured-bg1 {
   font-weight: 600;
   background-color: #F9F9F9;
 }
+
 .btn-outline-success {
   --bs-btn-color: #002FD5;
   --bs-btn-border-color: #002FD5;
@@ -243,62 +270,102 @@
   --bs-btn-disabled-border-color: #002FD5;
   --bs-gradient: none;
 }
-.cus-widht{
+
+.cus-widht {
   width: 289px !important;
 }
 
-.top-padding{
+.top-padding {
   padding-top: 230px;
 }
 
-.login-bg{
+.login-bg {
   background-image: url("/t2/images/login-bg.png");
   background-size: cover;
 }
 
-.sign{
+.sign {
   font-size: 14px;
 }
 
-h5{
+h5 {
   color: #002FD5;
 }
 
-.sign-wid{
+.sign-wid {
   width: 247px;
 }
 
-  @media screen and (max-width:600px)
-   {
-    .cus-widht{
-      width: 187px !important;
-    }
-    .text{
-      font-size: 26px;
-    }
-
-    .estate{
-      font-family: "Patua One", serif;
-      font-weight: 400;
-      font-size: 26px;
-      color: #002FD5;
-    }
-
-    p{
-      font-size: 12px;
-    }
-
-    .worth {
-      font-size: 30px;
-      font-weight: 600;
-      color: white;
-      line-height: 45px;
+@media screen and (max-width:600px) {
+  .cus-widht {
+    width: 187px !important;
   }
-.footer-contact{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+
+  .text {
+    font-size: 26px;
+  }
+
+  .estate {
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-size: 26px;
+    color: #002FD5;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .worth {
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    line-height: 45px;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
+.search-container{
+    .search_btn {
+      color: white;
+      background-color: #002FD5;
+      border-radius: 10px;
 
+      &:hover {
+        background-color: #092daf;
+        color: white;
+      }
+    }
+
+    .drop {
+      border-radius: 0px;
+      color: black;
+
+      &:hover,
+      &:active,
+      &:focus-visible {
+        background-color: #002FD5;
+        border-color: #002FD5;
+      }
+}
+}
+
+:host ::ng-deep {
+  app-search-page{
+    app-search {
+      .search-container{
+        @extend .search-container;
+      }
+    }
+  }
+  app-search {
+      .search-container{
+        @extend .search-container;
+      }
+    }
   }
