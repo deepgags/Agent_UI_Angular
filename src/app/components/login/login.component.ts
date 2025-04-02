@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
             this.storageService.saveToken(response.token);
             this.storageService.saveUserInfo(JSON.stringify(response.data));      
             this.notificationService.showNotification("User login successfully.")
-            this.router.navigateByUrl("home");
+            this.router.navigateByUrl("loading");
           },
           (error) => {
             this.loadingService.loadingOff();
