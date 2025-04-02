@@ -1,29 +1,39 @@
 <div class="container-fluid">
+  <div class="container">
 
-  <h1>Choose Template</h1>
-  <div class="row">
-    <div class="col-lg-8">
-    <ngb-carousel [pauseOnHover]="true" (slide)="1" *ngFor="let template of templates">
-    <ng-template ngbSlide style="margin-bottom : 20px;"  *ngFor="let image of template.Images">
-      <div class="wrapper">
-        <img [src]="image" alt="No Image"/>
+    <h1 class="text-center pt-2">Choose Template</h1>
+    <div class="row py-5">
+      <div class="col-lg-12">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col" *ngFor="let template of templates">
+            <ngb-carousel [pauseOnHover]="true" (slide)="1" class="shadow-lg bg-body-secondary">
+              <ng-template ngbSlide style="margin-bottom: 20px;" *ngFor="let image of template.Images">
+                <div class="wrapper text-center">
+                  <img [src]="image" class="img-fluid rounded shadow" alt="No Image" />
+                </div>
+                <div class="carousel-caption bg-dark bg-opacity-50 p-3 rounded">
+                  <h3>{{ template.TemplateName }}</h3>
+                  <p>{{ template.Description }}</p>
+                  <button
+                    [ngClass]="template.IsSelected ? 'btn btn-success' : 'btn btn-primary'" 
+                    (click)="selectTemplate(template, $event)" class="me-2">
+                    {{ template.IsSelected ? "Selected" : "Select" }}
+                    <i class="bi bi-check"></i>
+                  </button>
+                  <button class="btn btn-danger" title="Coming Soon">Preview</button>
+                </div>
+              </ng-template>
+            </ngb-carousel>
+          </div>
+        </div>
       </div>
-      <div class="carousel-caption">
-        <h3>{{template.TemplateName}}</h3>
-        <p>{{template.Description}}</p>
-        <button [ngClass]="template.IsSelected ? 'btn btn-success' : 'btn btn-primary'" 
-        (click)="selectTemplate(template, $event)">{{template.IsSelected ? "Selected" : "Select"}}
-        <i class="bi bi-check"></i></button>
-        <button class="btn btn-danger" title="Coming Soon">Preview</button>
-      </div>
-    </ng-template>
-   </ngb-carousel>
   </div>
-</div>
-<div class="col-lg-3">
-    <button id="saveTemplate" (click)="save()" class="btn btn-success w-100 mt-3">Next</button>
+  <div class="d-flex justify-content-center">
+      <button id="saveTemplate" (click)="save()" class="btn btn-success w-50 mt-3">Next</button>
+    </div>
   </div>
-</div>
+  </div>
+
 <!-- <div className="container-fluid">      
     <div className="container">
       <div className="row justify-content-center">
