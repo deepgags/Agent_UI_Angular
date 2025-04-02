@@ -17,14 +17,24 @@ import { SearchComponent } from '../search/search.component';
 export class SearchPageComponent {
   properties: PropertyModel[] = [];
   page = 1;
-  selectedFilters: any = {};
+  selectedFilters: any = {
+    location: '',
+    propertyType: '',
+    storyType: '',
+    beds: '0',
+    baths: '0',
+    minPrice: '',
+    maxPrice: '',
+    propertyStatus: '',
+    sqFt: '0',
+  };
   templateClass: string = '';
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
   ) {
     this.route.queryParams.subscribe(params => {
-      if (params) {
+      if (Object.keys(params).length > 0) {
         this.selectedFilters = params;
         this.searchProperties(params);
       }
@@ -32,7 +42,8 @@ export class SearchPageComponent {
   }
 
   searchProperties = (selectedFilters: any) => {
-    const { location, propertyType, storyType, beds, baths, minPrice, maxPrice,propertyStatus, sqFt } = selectedFilters;
+    const { location, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt } = selectedFilters;
+    console.log(selectedFilters);
     const params: RequestPropertyModel = {
       page: this.page,
       page_size: 20,
@@ -47,8 +58,8 @@ export class SearchPageComponent {
       min_area: sqFt,
     }
     this.propertyService.searchProperties(params).then((properties) => {
-      console.log(properties);
       this.properties = properties
+      console.log(properties);
     }).catch((error) => {
       console.error('Error fetching properties:', error);
     });
