@@ -22,7 +22,7 @@ export class SearchComponent {
     minPrice: '',
     maxPrice: '',
     propertyStatus: '',
-    sqFt: '0',
+    sqFt: '',
   };
 
   propertyTypesDropDown = propertyTypes;
@@ -34,19 +34,11 @@ export class SearchComponent {
   maxPricesDropDown = maxPrices;
   sqFtTypesDropDown = sqFitTypes;
 
-  // selectedFilters = {
-  //   location: '',
-  //   propertyType: '',
-  //   storyType: '',
-  //   beds: '0',
-  //   baths: '0',
-  //   minPrice: '',
-  //   maxPrice: '',
-  //   propertyStatus: '',
-  //   sqFt: '0',
-  // }
-
   searchProperties = () => {
-    this.onSearch(this.filters);
+    const filtersWithValue = Object.fromEntries(
+      Object.entries(this.filters)
+        .filter(([_, val]) => val !== null && val !== '' && val !== undefined)
+    );
+    this.onSearch(filtersWithValue);
   }
 }

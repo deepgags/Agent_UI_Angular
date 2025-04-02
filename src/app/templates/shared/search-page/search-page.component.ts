@@ -26,7 +26,7 @@ export class SearchPageComponent {
     minPrice: '',
     maxPrice: '',
     propertyStatus: '',
-    sqFt: '0',
+    sqFt: '',
   };
   templateClass: string = '';
   constructor(
@@ -35,7 +35,10 @@ export class SearchPageComponent {
   ) {
     this.route.queryParams.subscribe(params => {
       if (Object.keys(params).length > 0) {
-        this.selectedFilters = params;
+        this.selectedFilters = {
+          ...this.selectedFilters,
+          ...params
+        };
         this.searchProperties(params);
       }
     });
@@ -43,25 +46,57 @@ export class SearchPageComponent {
 
   searchProperties = (selectedFilters: any) => {
     const { location, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt } = selectedFilters;
-    console.log(selectedFilters);
     const params: RequestPropertyModel = {
       page: this.page,
       page_size: 20,
-      address: location,
-      property_type: propertyType,
-      property_subtype: storyType,
-      bedrooms: baths,
-      bathrooms: beds,
-      property_for: propertyStatus,
-      min_price: minPrice,
-      max_price: maxPrice,
-      min_area: sqFt,
     }
-    this.propertyService.searchProperties(params).then((properties) => {
-      this.properties = properties
-      console.log(properties);
-    }).catch((error) => {
-      console.error('Error fetching properties:', error);
-    });
+
+    if (location) {
+      params.address = location;
+    }
+
+    if (propertyType) {
+      params.property_type = propertyType;
+    }
+
+    if (storyType) {
+      params.property_subtype = storyType;
+    }
+
+    if (beds && beds !== '0') {
+      params.bedrooms = beds;
+    }
+
+    if (baths && baths !== '0') {
+      params.bathrooms = baths;
+    }
+
+    if (propertyStatus) {
+      params.property_for = propertyStatus;
+    }
+
+    if (minPrice) {
+      params.min_price = minPrice;
+    }
+
+    if (maxPrice) {
+      params.max_price = maxPrice;
+    }
+
+    if (sqFt && sqFt !== '0') {
+      params.min_area = sqFt;
+    }
+    this.propertyService.searchProperties(params).subscribe({
+      next: ({data, message, status}) => {
+        if (status) {
+          this.properties = data;
+        } else {
+          this.properties = [];
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching properties:', error);
+      }
+    })
   }
 }
