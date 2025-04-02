@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Title } from '@angular/platform-browser';
+import { LoadingService } from '../../../services/loading.service';
 
 @Component({
   selector: 'app-templatesite',
@@ -26,6 +27,7 @@ export class TemplatesiteComponent implements OnInit {
   private router : Router,
   private customerService: CustomerService,
   private titleService : Title,
+  private loadingService: LoadingService,
   private notificationService: NotificationService) {
     this.titleService.setTitle("Site Url")
   }
@@ -54,15 +56,17 @@ export class TemplatesiteComponent implements OnInit {
     if (valid)
     {
         this.customerData.roleId = '0b69c6031f111d63bc2c975dd2837e20';
+        this.loadingService.loadingOn();
         this.customerService.save(this.customerData).subscribe({
-          next: (v) =>  console.log(v),
+          next: (v) =>  {},
           error: (e) => 
             {
-              console.error(e)
+              this.loadingService.loadingOff();
               this.notificationService.showNotification('Something went wrong while saving information.');
             },
           complete: () => {
             this.dialogRef.close();
+            this.loadingService.loadingOff();
             this.router.navigateByUrl("thanks")
           }
      })  

@@ -3,7 +3,7 @@ import { provideServerRendering } from '@angular/platform-server';
 import { provideServerRouting } from '@angular/ssr';
 import { appConfig } from './app.config';
 import { serverRoutes } from './app.routes.server';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
 import { CustomerService } from './services/customer.service';
 import { NotificationService } from './services/notification.service';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -14,9 +14,11 @@ import { TemplateService } from './services/template.service';
 import { PropertyService } from './services/property.service';
 import { StorageService } from './services/storage.service';
 import { SharedDataService } from './services/shareddata.service';
+import { LoadingInterceptor1 } from './LoadingInterceptor';
 
 const serverConfig: ApplicationConfig = {
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor1, multi: true },
     provideHttpClient(withFetch()),
     SharedDataService,
     CustomerService,

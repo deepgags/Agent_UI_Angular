@@ -10,7 +10,6 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 
 export class TemplateService {
   private templates: TemplateModel[] = [];
-  private authToken: string = "";
   query = signal<string>("");
   private Apiurl:string ="";
 
@@ -22,7 +21,7 @@ export class TemplateService {
   
       return this.http.get<TemplateModel[]>(this.Apiurl + '?name=' + name)
           .pipe(map((result: any) => {
-            
+            this.templates.length = 0;
             if(result && result.data && result.data.length > 0)
             {
               result.data.forEach((template:any) => {

@@ -12,6 +12,7 @@ import { CustomerService } from '../../services/customer.service';
 import { Router} from "@angular/router"
 import { StorageService } from '../../services/storage.service';
 import { Title } from '@angular/platform-browser';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -30,10 +31,10 @@ export class LoginComponent implements OnInit {
   
   constructor(
     private fb: FormBuilder,
-    @Inject(PLATFORM_ID) private platformId: Object,
     private customerService: CustomerService,
     private notificationService: NotificationService,
     private storageService: StorageService,
+    private loadingService: LoadingService,
     private titleService : Title,
     private router: Router) {
       this.titleService.setTitle("Login Page")
@@ -63,15 +64,18 @@ export class LoginComponent implements OnInit {
       const {value, valid} = this.loginForm;
       if (valid)
       {
+        this.loadingService.loadingOn();
         this.customerService.login(this.customerModel)
         .subscribe(
-          (response) => {         
+          (response) => {     
+            this.loadingService.loadingOff();    
             this.storageService.saveToken(response.token);
             this.storageService.saveUserInfo(JSON.stringify(response.data));      
             this.notificationService.showNotification("User login successfully.")
             this.router.navigateByUrl("home");
           },
           (error) => {
+            this.loadingService.loadingOff();
             this.notificationService.showNotification("Invalid username/password")
           }
         )

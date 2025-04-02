@@ -1,4 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+  
+.loading-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 5;
+}
+
+.spinner {
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #198754; /* Spinner color */
+  border-radius: 50%;
+  width: 100px; /* Spinner size */
+  height: 100px; /* Spinner size */
+  animation: spin 1s linear infinite; /* Spin animation */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 *{
     font-family: "Raleway", sans-serif;

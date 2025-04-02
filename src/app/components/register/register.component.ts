@@ -13,6 +13,7 @@ import { BrokerageTypeService } from '../../services/brokerage.service';
 import { BrokerageTypeModel } from '../../models/BrokerageTypeModel';
 import { NotificationService } from '../../services/notification.service';
 import { Title } from '@angular/platform-browser';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-register',
@@ -66,6 +67,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private brokerageTypeService: BrokerageTypeService,
     private notificationService: NotificationService,
+    private loadingService: LoadingService,
     private titleService : Title,
     private sharedDataService: SharedDataService) {
       this.titleService.setTitle("Register")
@@ -109,11 +111,14 @@ export class RegisterComponent implements OnInit {
 
     getBrokerageTypes()
     {
+      this.loadingService.setLoading1(true);
       this.brokerageTypeService.getBrokerageTypes().subscribe({
         next: (response) => {
+          this.loadingService.setLoading1(false);
           this.brokerageTypes = response;
         },
         error: () => {
+          this.loadingService.setLoading1(false);
           this.notificationService.showNotification("Error occurred while getting brokerage types");
         },
         complete: () => {}

@@ -12,6 +12,7 @@ import { TemplatesiteComponent } from '../dialogs/templatesite/templatesite.comp
 import { NotificationService } from '../../services/notification.service';
 import { SharedDataService } from '../../services/shareddata.service';
 import { Title } from '@angular/platform-browser';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-template',
@@ -44,6 +45,7 @@ export class TemplateComponent implements OnInit {
     private templateService: TemplateService,
     private notificationService: NotificationService,
     private titleService : Title,
+    private loadingService: LoadingService,
     private sharedDataService: SharedDataService) {
       this.titleService.setTitle("Templates")
     }
@@ -58,14 +60,17 @@ export class TemplateComponent implements OnInit {
 
     getTemplates()
     {
+      this.loadingService.loadingOn();
       this.templateService.getTemplates().subscribe({
           next: (response) => {
             if (response && response.length > 0) {
                this.templates = response;
             }
+            this.loadingService.loadingOff();
           },
           error: () => {
             this.notificationService.showNotification("Error occurred while getting templates");
+            this.loadingService.loadingOff();
           },
           complete: () => {}
         });
