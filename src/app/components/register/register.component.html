@@ -60,17 +60,21 @@
               </mat-form-field>   
               <mat-form-field appearance="fill">                
                 <mat-label>Password</mat-label>
-                <input type="text" formControlName="password" required matInput placeholder="Password" />                
+                <input type="password" formControlName="password" required matInput placeholder="Password" 
+                pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"/>                
                 @if (customerForm.hasError('required', 'password')) {
                   <mat-error>Password is required</mat-error>
                 }
+                <mat-error *ngIf="customerForm.value.password">Password must be a combination of lower-case, upper-case, numbers and at least 9 characters long</mat-error>
               </mat-form-field> 
               <mat-form-field appearance="fill">                
                 <mat-label>Confirm Password</mat-label>
-                <input type="text" formControlName="confirmPassword" required matInput placeholder="Confirm Password" />                
+                <input type="password" formControlName="confirmPassword" required matInput 
+                placeholder="Confirm Password" pattern="{{customerForm.value.password}}" />                
                 @if (customerForm.hasError('required', 'confirmPassword')) {
                   <mat-error>Confirm password is required</mat-error>
                 }
+                <mat-error *ngIf="customerForm.value.confirmPassword">Passwords do not match.</mat-error>
               </mat-form-field>    
               
               <div class="upload-container p-3">

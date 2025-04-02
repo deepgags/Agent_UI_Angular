@@ -4,8 +4,9 @@
           <br>
         <mat-form-field appearance="fill">
           <mat-label>Site URL</mat-label>
-          <input formControlName="siteUrl" required matInput placeholder="Site URL" />
-          <mat-error>Site Url is required</mat-error>
+          <input formControlName="siteUrl" placeholder="Ex. abc.com | www.abc.com | http://abc.com | https://abc.com" required matInput pattern="(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)" />
+          <mat-error *ngIf="templateForm.get('siteUrl')?.hasError('required')">Site Url is required</mat-error>
+          <mat-error *ngIf="templateForm.value.siteUrl">Incorrect url</mat-error>
         </mat-form-field>
       </form>
       </mat-dialog-content>

@@ -31,9 +31,8 @@ export class TemplatesiteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
     this.templateForm = this.fb.group({
-      siteUrl: new FormControl("", Validators.required),
+      siteUrl: new FormControl("", [Validators.required]),
     });
 
     this.templateForm.valueChanges.subscribe(

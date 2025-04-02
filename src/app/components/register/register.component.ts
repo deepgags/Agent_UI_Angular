@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
         phoneNumber: new FormControl(this.customerModel.phoneNumber, [Validators.required]),//, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
         emailAddress: new FormControl(this.customerModel.emailAddress, [Validators.required, Validators.email]),
         address: new FormControl(this.customerModel.address, Validators.required),
-        password: new FormControl(this.customerModel.password, Validators.required),
+        password: new FormControl(this.customerModel.password, [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$')]),
         confirmPassword: new FormControl(this.customerModel.confirmPassword, Validators.required),
         logoImage: new FormControl(this.customerModel.logoImage),
         logoImagePath: new FormControl(this.customerModel.logoImagePath),
