@@ -1,59 +1,51 @@
 <div class="row justify-content-around search-container">
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<input type="text" [(ngModel)]="filters.location" class="w-100" placeholder="Location" aria-label="Location" aria-describedby="basic-addon1" />
-	</div>
-
-	<div class="btn-group ms-2 ms-lg-0 p-0 col-12 col-lg-auto mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.propertyType" class="form-select btn-outline-secondary btn-sm drop w-100">
-			<option *ngFor="let property of propertyTypesDropDown" [value]="property.value">{{property.label}}</option>
-		</select>
-	</div>
-
-	<div class="btn-group ms-2 ms-lg-0 p-0 col-12 col-lg-auto mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.storyType" class="form-select btn-outline-secondary btn-sm drop w-100">
-			<option *ngFor="let story of storyTypesDropDown" [value]="story.value">{{story.label}}</option>
-		</select>
-	</div>
-
-	<div class="btn-group ms-2 ms-lg-0 p-0 col-12 col-lg-auto mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.beds" class="form-select btn-outline-secondary btn-sm drop w-100">
-			<option *ngFor="let beds of bedTypesDropDown" [value]="beds.value">{{beds.label}}</option>
-		</select>
-	</div>
-
-	<div class="btn-group ms-2 ms-lg-0 p-0 col-12 col-lg-auto mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.baths" class="form-select btn-outline-secondary btn-sm drop w-100">
-			<option *ngFor="let bath of bathTypesDropDown" [value]="bath.value">{{bath.label}}</option>
-		</select>
-	</div>
-
-	<div class="btn-group ms-2 ms-lg-0 p-0 col-12 col-lg-auto mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.propertyStatus" class="form-select btn-outline-secondary btn-sm drop w-100">
-			<option *ngFor="let status of statusTypesDropDown" [value]="status.value">{{status.label}}</option>
-		</select>
-	</div>
-
-	<div class="btn-group ms-2 ms-lg-0 p-0 col-12 col-lg-auto mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.minPrice" class="form-select btn-outline-secondary btn-sm drop w-100">
-			<option *ngFor="let price of minPricesDropDown" [value]="price.value">{{price.label}}</option>
-		</select>
-	</div>
-
-	<div class="btn-group ms-2 ms-lg-0 p-0 col-12 col-lg-auto mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.maxPrice" class="form-select btn-outline-secondary btn-sm drop w-100">
-			<option *ngFor="let price of maxPricesDropDown" [value]="price.value">{{price.label}}</option>
-		</select>
-	</div>
-
-	<div class="btn-group ms-2 ms-lg-0 p-0 col-12 col-lg-auto mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.sqFt" class="form-select btn-outline-secondary btn-sm drop w-100">
-			<option *ngFor="let area of sqFtTypesDropDown" [value]="area.value">{{area.label}}</option>
-		</select>
-	</div>
-
-	<div class="col-12 col-lg-auto">
-		<button type="button" class="btn btn-sm search_btn w-100" (click)="searchProperties()">
-			Search
-		</button>
-	</div>
+    <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+        <input type="text" [(ngModel)]="filters.location" class="form-control" placeholder="Location" />
+    </div>
+    
+    <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+        <select [(ngModel)]="filters.propertyType" class="form-select">
+            <option *ngFor="let property of propertyTypesDropDown" [value]="property.value">{{property.label}}</option>
+        </select>
+    </div>
+    
+    <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
+		<select [(ngModel)]="filters.beds" class="form-select">
+            <option *ngFor="let beds of bedTypesDropDown" [value]="beds.value">{{beds.label}}</option>
+        </select>
+    </div>
+    
+    <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
+        <select [(ngModel)]="filters.baths" class="form-select">
+            <option *ngFor="let bath of bathTypesDropDown" [value]="bath.value">{{bath.label}}</option>
+        </select>
+    </div>
+    
+    <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
+        <select [(ngModel)]="filters.propertyStatus" class="form-select">
+            <option *ngFor="let status of statusTypesDropDown" [value]="status.value">{{status.label}}</option>
+        </select>
+    </div>
+    
+    <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
+        <select [(ngModel)]="filters.minPrice" class="form-select">
+            <option *ngFor="let price of minPricesDropDown" [value]="price.value">{{price.label}}</option>
+        </select>
+    </div>
+    
+    <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
+        <select [(ngModel)]="filters.maxPrice" class="form-select">
+            <option *ngFor="let price of maxPricesDropDown" [value]="price.value">{{price.label}}</option>
+        </select>
+    </div>
+    
+    <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
+        <select [(ngModel)]="filters.sqFt" class="form-select ">
+            <option *ngFor="let area of sqFtTypesDropDown" [value]="area.value">{{area.label}}</option>
+        </select>
+    </div>
+    
+    <div class="col-12 col-lg-auto">
+        <button type="button" class="btn btn-dark" (click)="searchProperties()">Search</button>
+    </div>
 </div>
