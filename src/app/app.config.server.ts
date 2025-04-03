@@ -15,11 +15,13 @@ import { PropertyService } from './services/property.service';
 import { StorageService } from './services/storage.service';
 import { SharedDataService } from './services/shareddata.service';
 import { LoadingInterceptor1 } from './LoadingInterceptor';
+import { Title } from '@angular/platform-browser';
 
 const serverConfig: ApplicationConfig = {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor1, multi: true },
     provideHttpClient(withFetch()),
+    Title,
     SharedDataService,
     CustomerService,
     RoleService,

@@ -144,11 +144,11 @@
           <div class="row mt-3">
             <div class="col">
               <mat-form-field appearance="fill">
-                <mat-label>Brokerage Type</mat-label>
+                <mat-label>My Brokerage</mat-label>
                 <mat-select required name="brokerageType" formControlName="brokerageType" >
                   <mat-option *ngFor="let brokerageType of brokerageTypes" [value]="brokerageType.BrokerageTypeId">{{brokerageType.Name}}</mat-option >
                 </mat-select>
-                <mat-error>Borkerage type is required</mat-error>
+                <mat-error>Brokerage is required</mat-error>
             </mat-form-field>
             </div>
             <div class="col">

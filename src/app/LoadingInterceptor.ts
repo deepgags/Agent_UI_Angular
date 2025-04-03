@@ -51,13 +51,13 @@ export class LoadingInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     this.totalRequests++;
-    this.loadingService.setLoading1(true);
+    this.loadingService.loadingOn();
 
     return next.handle(request).pipe(
       finalize(() => {
         this.totalRequests--;
         if (this.totalRequests === 0) {
-          this.loadingService.setLoading1(false);
+          this.loadingService.loadingOff();
         }
       })
     );

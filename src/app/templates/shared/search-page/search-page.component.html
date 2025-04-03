@@ -11,35 +11,41 @@
 	</div>
 
 	<div class="container-fluid sec-3">
-		<div class="container py-lg-5 p-lg-0 p-4">
+		<div class="container">
 			<p class="text text-center mb-0 fw-semibold">Filtered Properties</p>
-			<p class="text-center fw-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-			<div class="row pt-5">
-				<div class="col d-flex justify-content-center mb-lg-0 mb-3" *ngFor="let property of properties">
-					<a class="text-decoration-none" href="./room.html">
+			<mat-paginator 
+			    [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords+1 : 0"
+				[pageIndex]="pageIndex"
+				(page)="pageEvent = searchProperties(selectedFilters, $event)"
+             	[pageSize]="pageSize"
+              	[pageSizeOptions]="[1,2,3,4, 5,6,7,8,9, 10,11,12,13, 15, 20, 30, 40, 50, 80, 90, 100]"
+              	aria-label="Select page">
+			  </mat-paginator>
+			  <!--  "propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0" -->
+			<div class="row">
+				<div class="col d-flex justify-content-center mb-lg-0 mb-3" *ngFor="let property of propertiesList">
+					<a class="text-decoration-none" href="#PropertyDetail">
 						<div class="card" style="width: 18rem;">
-							<img src="t1/images/property-img-1.png" class="card-img-top" alt="...">
+							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url:''" class="card-img-top" alt="No property image to display">
 							<div class="card-body pb-0">
-								<h5 class="card-title  fw-semibold">{{property.StreetName}}</h5>
-								<p class="card-text pro-text"><span><img src="t1/images/vector img/location.png" alt=""></span> {{property.City}}, {{property.CityRegion}}, {{property.Country}}</p>
+								<h3 class="card-title fw-semibold">{{property.TransactionType}}</h3>
+								<h5 class="card-title fw-semibold">{{property.StreetName}}</h5>
+								<p class="card-text pro-text"><span><img src="t1/images/vector img/location.png" alt=""></span> {{property.UnparsedAddress}}</p>
 								<div class="d-flex justify-content-between">
 									<div class="">
 										<p class="card-text pro-text"><span><img src="t1/images/vector img/bed.png" alt=""></span> {{property.BedroomsTotal}}</p>
-
 									</div>
 									<div class="">
 										<p class="card-text pro-text">
 											<span><img src="t1/images/vector img/shower.png" alt=""></span>{{property.BathroomsTotalInteger}}
 										</p>
-
 									</div>
 									<div class="">
 										<p class="card-text pro-text"><span><img src="t1/images/vector img/area.png" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
-
 									</div>
 								</div>
 								<div class="pt-3">
-									<p class="fw-bold" style="color: #22614B;">Price: <span class="fw-bold text-dark pro-text">${{property.ListPrice}}</span></p>
+									<p class="fw-bold" style="color: #22614B;">MLS# <span class="fw-bold text-dark pro-text">${{property.ListingKey}}</span></p>
 								</div>
 							</div>
 
