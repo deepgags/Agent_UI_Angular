@@ -22,19 +22,6 @@ export class AppComponent {
   ){ }
 
   ngOnInit() {
-    if (this.detectRouteTransitions) {
-      this.router.events
-        .pipe(
-          tap((event) => {
-            if (event instanceof RouteConfigLoadStart) {
-              this.loadingService.loadingOn();
-            } else if (event instanceof RouteConfigLoadEnd) {
-              this.loadingService.loadingOff();
-            }
-          })
-        )
-        .subscribe();
-    }
-  }
+   }
 
 }

@@ -28,9 +28,9 @@ export class LoadingService {
   private isLoading$$ = new BehaviorSubject<boolean>(false);
   isLoading$ = this.isLoading$$.asObservable();
   
-  setLoading1(isLoading: boolean) {
-    this.isLoading$$.next(isLoading);
-  }
+  // setLoading1(isLoading: boolean) {
+  //   this.isLoading$$.next(isLoading);
+  // }
 
   /**
    * Sets the loadingSub property value based on the following:

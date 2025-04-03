@@ -53,9 +53,8 @@ export class TemplateComponent implements OnInit {
     ngOnInit() {
       this.sharedDataService.CustomerData.subscribe(data => {
         this.customerModel = data;
+        this.getTemplates();
       });
-
-      this.getTemplates();
     }
 
     getTemplates()
@@ -66,13 +65,11 @@ export class TemplateComponent implements OnInit {
             if (response && response.length > 0) {
                this.templates = response;
             }
-            this.loadingService.loadingOff();
           },
           error: () => {
             this.notificationService.showNotification("Error occurred while getting templates");
-            this.loadingService.loadingOff();
           },
-          complete: () => {}
+          complete: () => {this.loadingService.loadingOff()}
         });
     }
 

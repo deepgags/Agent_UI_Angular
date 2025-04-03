@@ -21,7 +21,6 @@ export class TemplateService {
   
       return this.http.get<TemplateModel[]>(this.Apiurl + '?name=' + name)
           .pipe(map((result: any) => {
-            this.templates.length = 0;
             if(result && result.data && result.data.length > 0)
             {
               result.data.forEach((template:any) => {

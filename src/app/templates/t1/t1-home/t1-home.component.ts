@@ -1,7 +1,8 @@
 
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SearchComponent } from '../../shared/search/search.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-t1-home',
@@ -10,15 +11,21 @@ import { SearchComponent } from '../../shared/search/search.component';
   styleUrls: ['./t1-home.component.scss', '../t1.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class T1HomeComponent {
+export class T1HomeComponent implements OnInit  {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private titleService : Title
+  ) { }
+
+  ngOnInit(): void {
+    this.titleService.setTitle("Home")
+  }
 
   searchProperties = (selectedFilters: any) => {
-    const { location, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt } = selectedFilters;
+    const { location, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt, pageNumber, pageSize } = selectedFilters;
     this.router.navigate(['/t1', 'search'], {
       queryParams: {
-        location, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt
+        location, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt, pageNumber, pageSize
       }
     });
   }

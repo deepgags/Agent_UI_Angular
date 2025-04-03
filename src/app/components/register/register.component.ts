@@ -111,17 +111,15 @@ export class RegisterComponent implements OnInit {
 
     getBrokerageTypes()
     {
-      this.loadingService.setLoading1(true);
+      this.loadingService.loadingOn();
       this.brokerageTypeService.getBrokerageTypes().subscribe({
         next: (response) => {
-          this.loadingService.setLoading1(false);
           this.brokerageTypes = response;
         },
         error: () => {
-          this.loadingService.setLoading1(false);
           this.notificationService.showNotification("Error occurred while getting brokerage types");
         },
-        complete: () => {}
+        complete: () => {this.loadingService.loadingOff();}
       })
     }
 

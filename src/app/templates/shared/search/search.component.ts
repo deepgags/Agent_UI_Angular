@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { bathTypes, bedTypes, maxPrices, minPrices, propertyTypes, sqFitTypes, statusTypes, storyTypes } from '../../../consts/DefaultTypes';
+import { stringiFy } from '../../../consts/Utility';
 
 @Component({
   selector: 'app-search',
@@ -11,7 +12,7 @@ import { bathTypes, bedTypes, maxPrices, minPrices, propertyTypes, sqFitTypes, s
   encapsulation: ViewEncapsulation.None,
   standalone: true
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
   @Input('onSearch') onSearch: Function = () => { };
   @Input('filters') filters:any = {
     location: '',
@@ -37,8 +38,11 @@ export class SearchComponent {
   searchProperties = () => {
     const filtersWithValue = Object.fromEntries(
       Object.entries(this.filters)
-        .filter(([_, val]) => val !== null && val !== '' && val !== undefined)
+        .map((x)=>{return stringiFy(x)})
     );
     this.onSearch(filtersWithValue);
+  }
+
+  ngOnInit(): void {
   }
 }

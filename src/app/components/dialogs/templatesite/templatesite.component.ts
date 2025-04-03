@@ -61,7 +61,6 @@ export class TemplatesiteComponent implements OnInit {
           next: (v) =>  {},
           error: (e) => 
             {
-              this.loadingService.loadingOff();
               this.notificationService.showNotification('Something went wrong while saving information.');
             },
           complete: () => {

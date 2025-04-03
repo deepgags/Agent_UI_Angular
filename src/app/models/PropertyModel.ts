@@ -1,4 +1,7 @@
 export class PropertyModel{
+    TotalRecords: number | 0
+    // PageIndex: number | 0 
+    // PageSize: number | 0 
     BrokerFaxNumber: string | "" | undefined
     BusinessName: string | "" | undefined
     UnparsedAddress: string | "" | undefined
@@ -8,6 +11,7 @@ export class PropertyModel{
     OriginalListPrice: string | "" | undefined
     LotSizeDimensions: string | "" | undefined
     UnitNumber: string | "" | undefined
+    TransactionType: string | "" | undefined
     CrossStreet: string | "" | undefined
     StreetSuffix: string | "" | undefined
     StreetNumber: string | "" | undefined
@@ -30,12 +34,18 @@ export class PropertyModel{
     _id: string | "" | undefined
     BuildingAreaTotal?: number
     BuildingAreaUnits?: string
+
+    constructor() {
+        // this.PageIndex = 1;
+        // this.PageSize = 10;
+        this.TotalRecords = 10;
+    }
 }
 
 export type MediaModel = {
-    Media_status: "",
-    Media_type: "",
-    Media_url: "",
-    Modification_Timestamp: "",
-    _id: "",
+    Media_status: string | "",
+    Media_type: string | "",
+    Media_url: string | "",
+    Modification_Timestamp: string | "",
+    _id: string | "",
   }
