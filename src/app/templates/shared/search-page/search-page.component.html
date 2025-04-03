@@ -1,4 +1,9 @@
-<div class="container-fluid menu_img">
+<div>	
+	<div class="loading-container flex-content-center" *ngIf="loading$ | async">
+		<div class="spinner">
+		</div>  
+	</div> 
+	<div class="container-fluid menu_img">
 		<div class="container">
 			<div class="row justify-content-center">
 				<p class="text fw-semibold py-5">Search Your Dream Home</p>
@@ -9,7 +14,7 @@
 		</div>
 	</div>
 
-	<div class="container-fluid sec-3">
+	<div class="container-fluid sec-3" *ngIf="propertiesList && propertiesList.length>0">
 		<div class="container">
 			<p class="text text-center mb-0 fw-semibold">Filtered Properties</p>
 			<mat-paginator 
@@ -45,8 +50,8 @@
 									</div>
 								</div>
 								<div class="pt-3">
-									<p class="fw-bold mb-1" style="color: #22614B;">MLS# <span class="fw-bold text-dark pro-text">${{property.ListingKey}}</span></p>
-									<p class="fw-bold" style="color: #22614B;">Price <span class="fw-bold text-dark pro-text">${{property.ListPrice}}</span></p>
+									<p class="fw-bold mb-1" style="color: #22614B;">MLS# <span class="fw-bold text-dark pro-text">{{property.ListingKey}}</span></p>
+									<p class="fw-bold" style="color: #22614B;">Price <span class="fw-bold text-dark pro-text">{{property.ListPrice}}</span></p>
 								</div>
 							</div>
 
@@ -55,6 +60,7 @@
 
 				</div>
 			</div>
+			<h3 *ngIf="propertiesList && propertiesList.length==0">No properties found for selected criteria.</h3>
 		</div>
 	</div>
 

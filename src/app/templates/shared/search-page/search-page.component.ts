@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PropertyModel } from '../../../models/PropertyModel';
@@ -11,19 +11,25 @@ import { LoadingService } from '../../../services/loading.service';
 import { NotificationService } from '../../../services/notification.service';
 import { stringiFy } from '../../../consts/Utility';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-search-page',
-  imports: [FormsModule, CommonModule, SearchComponent, RouterModule, MatPaginatorModule],
+  imports: [FormsModule, CommonModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule],
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchPageComponent implements OnInit {
   propertiesList: PropertyModel[] = [];
   pageEvent: PageEvent | undefined;
   pageIndex:number;
   pageSize:number;
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  
+  loading$ = this.loadingSubject.asObservable();
  
   selectedFilters: any = {
     location: '',
@@ -40,13 +46,13 @@ export class SearchPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
-    private loadingService: LoadingService,
+    public loadingService: LoadingService,
     private notificationService: NotificationService,
     private titleService : Title
   ) {
     this.titleService.setTitle("Search Properties");
     this.pageIndex = 0;
-    this.pageSize = 3;
+    this.pageSize = 10;
   }
 
   ngOnInit(): void {
@@ -297,7 +303,7 @@ export class SearchPageComponent implements OnInit {
      this.propertiesList.push(property11);
   }
 
-  searchProperties = (selectedFilters: any, event?:PageEvent) => {
+   searchProperties = (selectedFilters: any, event?:PageEvent) => {
     this.pageIndex = event?.pageIndex ?? this.pageIndex;
     this.pageSize = event?.pageSize ?? this.pageSize;
 
@@ -314,17 +320,21 @@ export class SearchPageComponent implements OnInit {
       max_price: stringiFy(selectedFilters.maxPrice),
       min_area: stringiFy(selectedFilters.minArea),
     }
- this.dummyData();
-  //   this.loadingService.loadingOn();
-  //   this.propertyService.searchProperties(params).subscribe({
-  //     next: (response) => {
-  //       this.propertiesList = response;
-  //     },
-  //     error: (err) => {
-  //       this.notificationService.showNotification("Error occurred while getting properties");
-  //     },
-  //     complete: () => {this.loadingService.loadingOff();}
-  //   })
+//  this.dummyData();
+    this.loadingService.loadingOn();
+    this.loadingSubject.next(true);
+    this.propertyService.searchProperties(params).subscribe({
+      next: (response) => {
+        this.propertiesList = response;
+      },
+      error: (err) => {
+        this.notificationService.showNotification("Error occurred while getting properties");
+      },
+      complete: () => {
+        this.loadingSubject.next(false);
+       // this.loadingService.loadingOff();
+      }
+    })
    return event;
   }
 }

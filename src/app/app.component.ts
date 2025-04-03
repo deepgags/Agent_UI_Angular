@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { RouteConfigLoadEnd, RouteConfigLoadStart, Router, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { LoadingService } from './services/loading.service';
 import { CommonModule } from '@angular/common';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { tap } from 'rxjs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, CommonModule, MatProgressSpinnerModule],
@@ -12,9 +11,6 @@ import { tap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-
-  @Input()
-  detectRouteTransitions = false;
 
   constructor(
     public loadingService: LoadingService,
