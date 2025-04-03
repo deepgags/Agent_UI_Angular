@@ -3,19 +3,19 @@
     <h1 class="text-center pt-2">Choose Template</h1>
     <div class="row py-5">
       <div class="col-lg-12">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
           <div class="col" *ngFor="let template of templates">
-            <ngb-carousel [pauseOnHover]="true" (slide)="1" [wrap]="true" class="shadow-lg bg-body-secondary">
+            <ngb-carousel [pauseOnHover]="true" (slide)="1" [wrap]="true" class="card card_hover">
               <ng-template ngbSlide style="margin-bottom: 20px;" *ngFor="let image of template.Images">
                 <div class="wrapper text-center h-100">
-                  <img [src]="image" class="img-fluid rounded shadow border border-black fixed-height" alt="No Image" />
+                  <img [src]="image" class="img-fluid rounded  fixed-height" alt="No Image" />
                 </div>
-                <div class="carousel-caption bg-dark bg-opacity-50 rounded">
+                <div class="carousel-caption bg-dark bg-opacity-75 rounded">
                   <h3>{{ template.TemplateName }}</h3>
                   <p>{{ template.Description }}</p>
                   <div class="mt-4">
                     <button 
-                      [ngClass]="template.IsSelected ? 'btn btn-success border' : 'btn btn-primary'" 
+                      [ngClass]="template.IsSelected ? 'btn btn-success border border-success green' : 'btn btn-primary'" 
                       (click)="selectTemplate(template, $event)" class="me-2">
                       {{ template.IsSelected ? "Selected" : "Select" }}
                       <i class="bi bi-check"></i>
@@ -30,7 +30,7 @@
       </div>
     </div>
    <div class="d-flex justify-content-center">
-      <button id="saveTemplate" (click)="save()" class="btn btn-success w-50 mt-3">Next</button>
+      <button id="saveTemplate" (click)="save()" class="btn btn-success w-25 mt-3">Next</button>
    </div>
   </div>
   <h2 *ngIf="templates.length==0">No templates found</h2>
