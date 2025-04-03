@@ -13,3 +13,23 @@ h2 {
   .carousel .carousel-inner{
     margin-bottom: 20px !important;
   }
+
+
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  left: 15%;
+  top: 21% !important;
+  padding-top: 1.25rem;
+  bottom: 0% !important;
+  padding-bottom: 1.25rem;
+  color: #fff;
+  text-align: center;
+}
+
+  .fixed-height {
+    height: 300px; /* Adjust height as needed */
+    width: 100%; 
+    object-fit: cover;
+  }
+  
