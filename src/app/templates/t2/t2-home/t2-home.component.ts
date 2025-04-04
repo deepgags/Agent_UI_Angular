@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-t2-home',
   imports: [RouterModule, SearchComponent],
   templateUrl: './t2-home.component.html',
-  styleUrls: ['./t2-home.component.scss', '../t2.component.scss']
+  styleUrls: ['./t2-home.component.scss']
 })
 export class T2HomeComponent implements OnInit {
   constructor(private router: Router,

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PropertyModel } from '../../../models/PropertyModel';
 import { RequestPropertyModel } from '../../../models/RequestPropertyModel';
 import { PropertyService } from '../../../services/property.service';
@@ -48,7 +48,8 @@ export class SearchPageComponent implements OnInit {
     private propertyService: PropertyService,
     public loadingService: LoadingService,
     private notificationService: NotificationService,
-    private titleService : Title
+    private titleService : Title,
+    private router: Router
   ) {
     this.titleService.setTitle("Search Properties");
     this.pageIndex = 0;
@@ -301,6 +302,15 @@ export class SearchPageComponent implements OnInit {
      this.propertiesList.push(property9);
      this.propertiesList.push(property10);
      this.propertiesList.push(property11);
+  }
+
+  selectProperty(propertyId:string, mlsId:string):void{
+    this.router.navigate(['/propertydetail'], {
+      queryParams: {
+        propertyId,
+        mlsId
+      }
+    });
   }
 
    searchProperties = (selectedFilters: any, event?:PageEvent) => {

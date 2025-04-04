@@ -28,7 +28,7 @@
 			  <!--  "propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0" -->
 			<div class="row">
 				<div class="col d-flex justify-content-center mb-lg-0 mb-3" *ngFor="let property of propertiesList">
-					<a class="text-decoration-none" href="#PropertyDetail">
+					<a class="text-decoration-none" (click)="selectProperty(property._id, property.ListingKey)">
 						<div class="card" style="width: 18rem;">
 							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url:''" class="card-img-top" alt="No property image to display">
 							<div class="card-body pb-0">

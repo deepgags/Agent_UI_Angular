@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SearchComponent } from '../../shared/search/search.component';
 import { Title } from '@angular/platform-browser';
@@ -8,13 +8,12 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-t1-home',
   imports: [RouterModule, SearchComponent],
   templateUrl: './t1-home.component.html',
-  styleUrls: ['./t1-home.component.scss', '../t1.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./t1-home.component.scss']
 })
 export class T1HomeComponent implements OnInit  {
 
   constructor(private router: Router,
-    private titleService : Title
+    private titleService : Title   
   ) { }
 
   ngOnInit(): void {

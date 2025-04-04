@@ -10,6 +10,7 @@ import { T2HomeComponent } from './templates/t2/t2-home/t2-home.component';
 import { T2Component } from './templates/t2/t2.component';
 import { ThankyouComponent } from './components/thankyou/thankyou.component';
 import { RedirectUserComponent } from './components/redirectuser/redirectuser.component';
+import { PropertydetailComponent } from './templates/shared/propertydetail/propertydetail.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'home', component:  HomeComponent},
     { path: 'thanks', component:  ThankyouComponent},
     { path: 'notfound', component:  HomeComponent},
+    { path: 'propertydetail', component:  PropertydetailComponent},
     {
         path: 't1',
         component: T1Component,
@@ -35,7 +37,7 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: '/t2/home', pathMatch: 'full' },
             { path: 'home', component:  T2HomeComponent},
-            { path: 'search', component:  SearchPageComponent},
+            { path: 'search', component:  SearchPageComponent}            
         ]
     },
     // { path: 't2', component: T0002Component },

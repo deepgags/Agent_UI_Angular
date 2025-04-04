@@ -59,6 +59,8 @@ export class PropertyService {
                   BuildingAreaTotal: property.BuildingAreaTotal,
                   BuildingAreaUnits: property.BuildingAreaUnits,
                   TotalRecords: result.total,
+                  ListOfficeName: result.ListOfficeName,
+                  ListingContractDate: result.ListingContractDate,
               }});
             }
             return [];
@@ -66,6 +68,62 @@ export class PropertyService {
           catchError(error => {
             return throwError(() => error);
           }));
+    }
+
+  getProperty(propertId:any, mlsId:any): Observable<PropertyModel> {
+      return this.http.get<PropertyModel>(`${environment.propertyApiUrl}/propertyinformation?id=${propertId}&mlsId=${mlsId}`)
+            .pipe(map((result: any) => {
+              if(result && result.data)
+              {
+                const property = result.data;
+                const propertyModel: PropertyModel =
+                   {
+                    _id: property._id,                    
+                    BuildingName: property.BuildingName,
+                    BathroomsTotalInteger: property.BathroomsTotalInteger,
+                    BedroomsTotal: property.BedroomsTotal,
+                    BrokerFaxNumber: property.BrokerFaxNumber,
+                    BusinessName: property.BusinessName,
+                    City: property.City,
+                    CityRegion: property.CityRegion,
+                    Country: property.Country,
+                    CountyOrParish: property.CountyOrParish,
+                    CrossStreet: property.CrossStreet,
+                    Latitude: property.Latitude,
+                    ListingKey: property.ListingKey,
+                    ListPrice: property.ListPrice,
+                    Longitude: property.Longitude,
+                    LotSizeDimensions: property.LotSizeDimensions,
+                    OriginalListPrice: property.OriginalListPrice,
+                    PrivateRemarks: property.PrivateRemarks,
+                    PropertySubType: property.PropertySubType,
+                    PropertyType: property.PropertyType,
+                    PropertyUse: property.PropertyUse,
+                    PublicRemarks: property.PublicRemarks,
+                    StreetName: property.StreetName,
+                    StreetNumber: property.StreetNumber,
+                    StreetSuffix: property.StreetSuffix,
+                    Town: property.Town,
+                    TransactionType: property.TransactionType,
+                    UnitNumber: property.UnitNumber,
+                    UnparsedAddress: property.UnparsedAddress,
+                    Media: property.Media.filter((x:any)=>x.Media_type && x.Media_type.includes('image')),
+                    BuildingAreaTotal: property.BuildingAreaTotal,
+                    BuildingAreaUnits: property.BuildingAreaUnits,
+                    TotalRecords: result.total,
+                    ListOfficeName: property.ListOfficeName,
+                    PublicRemarksExtra: property.PublicRemarksExtra,
+                    ListingContractDate: property.ListingContractDate,
+                    PurchaseContractDate: property.PurchaseContractDate,
+                    TaxLegalDescription: property.TaxLegalDescription,
+                   }
+                return propertyModel;
+              }
+              return {} as PropertyModel
+            }),
+            catchError(error => {
+              return throwError(() => error);
+            }));
     }
 
 }

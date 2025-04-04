@@ -30,8 +30,8 @@ export class RedirectUserComponent implements OnInit {
     }
     
     ngOnInit() {
-      const savedUserInfo = this.storageService.getLoggedUserFromUserInfo();
-      if(savedUserInfo)
+      let savedUserInfo = this.storageService.getLoggedUserFromUserInfo();
+      if(savedUserInfo.customerId == "")
       {
           var isBrowser = isPlatformBrowser(this.platformId);
           if (isBrowser) {
@@ -42,31 +42,7 @@ export class RedirectUserComponent implements OnInit {
                 if (response && response.length > 0 && response[0].customerId!="") {
                   this.storageService.saveUserInfo(JSON.stringify(response[0]));
                 }
-                
-                const userInfo = this.storageService.getLoggedUserFromUserInfo();
-                if(userInfo.customerId != "")
-                {
-                  switch(userInfo.templateId)
-                  {
-                    case "0b69c6031f111d63bc2c975dd2837e38":
-                      this.router.navigateByUrl("/t1");
-                      break;
-                    case "0b69c6031f111d63bc2c975dd2837e39":
-                      this.router.navigateByUrl("/t2");
-                      break;
-                    case "0b69c6031f111d63bc2c975dd2837e40":
-                        this.router.navigateByUrl("/t3");
-                        break;
-                    case "0b69c6031f111d63bc2c975dd2837e41":
-                        this.router.navigateByUrl("/t4");
-                          break;
-                    default:
-                        this.router.navigateByUrl("/register");
-                  }               
-                }
-                else{
-                  this.router.navigateByUrl("/register");
-                }
+                this.redirectUser(response[0]);
               },
               error: () => {
                 this.router.navigateByUrl("/register");
@@ -74,6 +50,38 @@ export class RedirectUserComponent implements OnInit {
               complete:() => {
               }
           })}
+          return;
       }
+      else{
+      this.redirectUser(savedUserInfo);
+      }
+  }
+
+  redirectUser(userInfo:CustomerModel)
+  {
+    userInfo = this.storageService.getLoggedUserFromUserInfo();
+    if(userInfo.customerId != "")
+    {
+      switch(userInfo.templateId)
+      {
+        case "0b69c6031f111d63bc2c975dd2837e38":
+          this.router.navigateByUrl("/t1");
+          break;
+        case "0b69c6031f111d63bc2c975dd2837e39":
+          this.router.navigateByUrl("/t2");
+          break;
+        case "0b69c6031f111d63bc2c975dd2837e40":
+            this.router.navigateByUrl("/t3");
+            break;
+        case "0b69c6031f111d63bc2c975dd2837e41":
+            this.router.navigateByUrl("/t4");
+              break;
+        default:
+            this.router.navigateByUrl("/register");
+      }               
+    }
+    else{
+      this.router.navigateByUrl("/register");
+    }
   }
 }

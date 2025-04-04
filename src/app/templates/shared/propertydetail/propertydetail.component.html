@@ -1,0 +1,84 @@
+<div>
+    <div class="loading-container flex-content-center" *ngIf="loading$ | async">
+		<div class="spinner">
+		</div>  
+	</div> 
+    <div class="container-fluid " *ngIf="property">
+        <div class="container py-3">    
+          <h1 class="text-center pt-2">Property Information</h1>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row-cols-2 row-cols-md-12 row-cols-lg-12 g-5">
+                  <ngb-carousel [pauseOnHover]="true" (slide)="1" [wrap]="true" class="card card_hover">
+                    <ng-template ngbSlide style="margin-bottom: 20px;" *ngFor="let image of property.Media">
+                      <div class="wrapper text-center h-100">
+                        <img [src]="image.Media_url" class="img-fluid rounded fixed-height" alt="No Image" />
+                      </div>
+                    </ng-template>
+                  </ngb-carousel>                 
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+                <h6>{{property.UnparsedAddress}}</h6>
+            </div>
+            <div class="col-lg-6">
+                <button mat-fab extended>
+                    <!-- <mat-icon>home</mat-icon> -->
+                    {{property.TransactionType}}
+                  </button>
+                <!-- <mat-fab>{{property.TransactionType}}</mat-fab> -->
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="">
+                <p class="card-text pro-text"><span><img src="t1/images/vector img/bed.png" alt=""></span> {{property.BedroomsTotal}}</p>
+            </div>
+            <div class="">
+                <p class="card-text pro-text">
+                    <span><img src="t1/images/vector img/shower.png" alt=""></span>{{property.BathroomsTotalInteger}}
+                </p>
+            </div>
+            <div class="">
+                <p class="card-text pro-text"><span><img src="t1/images/vector img/area.png" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
+            </div>
+        </div>
+        <div class="pt-3">
+            <p class="fw-bold" style="color: #22614B;">MLS# <span class="fw-bold text-dark pro-text">{{property.ListingKey}}</span></p>
+            <p class="fw-bold" style="color: #22614B;">Price <span class="fw-bold text-dark pro-text">{{property.ListPrice}}</span></p>
+        </div>
+         <div class="d-flex justify-content-center pt-3 ">
+            <div class="row search-container">
+            <div class="col-ls-6">  
+                <h6>Public Remarks</h6>
+                <p>{{property.PublicRemarks}}</p>
+                <h6>Public Remarks Extras</h6>
+                <p>{{property.PublicRemarksExtra?property.PublicRemarksExtra:"No remarks"}}</p>
+                <h6>Private Remarks</h6>
+                <p>{{property.PrivateRemarks}}</p>
+                <h6>Cross Street</h6>
+                <p>{{property.CrossStreet}}</p>
+                <h6>List Contract Date</h6>
+                <p>{{property.ListingContractDate}}</p>
+                <h6>Purchase Contract Date</h6>
+                <p>{{property.PurchaseContractDate?property.PurchaseContractDate:"No Date"}}</p>
+                <h6>List Office Name</h6>
+                <p>{{property.ListOfficeName}}</p>
+                <h6>Property SubType</h6>
+                <p>{{property.PropertySubType}}</p>
+                <h6>Property Type</h6>
+                <p>{{property.PropertyType}}</p>
+                <h6>Property Use</h6>
+                <p>{{property.PropertyUse}}</p>
+                <h6>Tax Legal Description</h6>
+                <p>{{property.TaxLegalDescription}}</p>
+            </div>
+            <!-- <div class="col-ls-6">   -->
+                <button type="button" class="btn search_btn">Back</button>
+            <!-- </div> -->
+        </div>
+         </div>
+        </div>
+    </div>
+</div>

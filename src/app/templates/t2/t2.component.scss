@@ -333,7 +333,7 @@ h5 {
 .search-container{
     .search_btn {
       color: white;
-      background-color: #002FD5;
+      background-color: #002FD5 !important;
       border-radius: 10px;
 
       &:hover {
@@ -341,7 +341,7 @@ h5 {
         color: white;
       }
     }
-
+    
     .drop {
       border-radius: 0px;
       color: black;

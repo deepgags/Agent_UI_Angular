@@ -340,43 +340,28 @@ h5{
   font-weight: 700;
 }
 
-.search-container{
-    .search_btn{
-      color: white;
+.search-container {
+  .search_btn {
+    color: white;
+    background-color: #22614B  !important;
+    border-radius: 10px;
+
+    &:hover {
       background-color: #22614B;
-      border-radius: 0px;
+      color: white;
+    }
   }
+  .drop {
+    border-radius: 0px;
+    color: black;
 
-  .drop{
-      border-radius: 0px;
-      color: black;
-  }
-  .drop:hover{
-          background-color: #22614b;
-          border-color:  #22614b;
-  }
-
-  .drop:first-child:active{
-      background-color: #22614b;
-      border-color:  #22614b;
-  }
-
-  .drop:focus-visible {
-      background-color: #22614b;
-      border-color:  #22614b;
-  }
-
-  .dropdown-item:active {
-      color: var(--bs-dropdown-link-active-color);
-      text-decoration: none;
-      background-color: var(--bs-dropdown-link-active-bg);
-  }
-
-  .dropdown-item.active, .dropdown-item:active {
-      color: var(--bs-dropdown-link-active-color);
-      text-decoration: none;
-      background-color: #22614b;
-  }
+    &:hover,
+    &:active,
+    &:focus-visible {
+      background-color: #22614B;
+      border-color: #22614B;
+    }
+}
 }
 
 :host ::ng-deep {

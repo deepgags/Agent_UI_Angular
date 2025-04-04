@@ -1,7 +1,5 @@
 export class PropertyModel{
     TotalRecords: number | 0
-    // PageIndex: number | 0 
-    // PageSize: number | 0 
     BrokerFaxNumber: string | "" | undefined
     BusinessName: string | "" | undefined
     UnparsedAddress: string | "" | undefined
@@ -26,19 +24,24 @@ export class PropertyModel{
     BathroomsTotalInteger: any
     BedroomsTotal: any
     Latitude: number | undefined
-    ListingKey: string | "" | undefined
+    ListingKey: string | ""
     Longitude: number | undefined
     Media: Array<MediaModel> | [] | undefined
     PropertySubType: string | "" | undefined
     PropertyType: string | "" | undefined
-    _id: string | "" | undefined
+    _id: string | "" 
     BuildingAreaTotal?: number
     BuildingAreaUnits?: string
+    ListOfficeName?: string
+    ListingContractDate?: string
+    PublicRemarksExtra?: string
+    PurchaseContractDate?: string
+    TaxLegalDescription?: string
 
     constructor() {
-        // this.PageIndex = 1;
-        // this.PageSize = 10;
         this.TotalRecords = 10;
+        this._id = "";
+        this.ListingKey = "";
     }
 }
 
