@@ -59,6 +59,7 @@ export class RedirectUserComponent implements OnInit {
           return;
       }
       else{
+      this.loadTemplateStyles();
       this.redirectUser(savedUserInfo);
       }
   }
@@ -67,10 +68,10 @@ export class RedirectUserComponent implements OnInit {
     debugger;
       switch (userInfo.templateId) {
         case '0b69c6031f111d63bc2c975dd2837e38': 
-        this.cssFile = `GreenTemplate.css`; 
+       // this.cssFile = `GreenTemplate.css`; 
           break;
         case '0b69c6031f111d63bc2c975dd2837e39': 
-        this.cssFile = `BlueTemplate.css`;    
+        //this.cssFile = `BlueTemplate.css`;    
           break;
       }
     

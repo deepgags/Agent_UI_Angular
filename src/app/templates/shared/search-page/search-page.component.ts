@@ -13,6 +13,7 @@ import { stringiFy } from '../../../consts/Utility';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BehaviorSubject } from 'rxjs';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-search-page',
@@ -48,6 +49,7 @@ export class SearchPageComponent implements OnInit {
     private propertyService: PropertyService,
     public loadingService: LoadingService,
     private notificationService: NotificationService,
+    private storageService: StorageService,
     private titleService : Title,
     private router: Router
   ) {
@@ -305,12 +307,26 @@ export class SearchPageComponent implements OnInit {
   }
 
   selectProperty(propertyId:string, mlsId:string):void{
-    this.router.navigate(['/propertydetail'], {
-      queryParams: {
-        propertyId,
-        mlsId
-      }
-    });
+    const userInfo = this.storageService.getLoggedUserFromUserInfo();
+    if(userInfo.templateId == "0b69c6031f111d63bc2c975dd2837e38")
+    {
+      this.router.navigate(['/t1/propertydetail'], {
+        queryParams: {
+          propertyId,
+          mlsId
+        }
+      });
+    }
+    if(userInfo.templateId == "0b69c6031f111d63bc2c975dd2837e39")
+    {
+      this.router.navigate(['/t2/propertydetail'], {
+        queryParams: {
+          propertyId,
+          mlsId
+        }
+      });
+    }
+   
   }
 
    searchProperties = (selectedFilters: any, event?:PageEvent) => {
