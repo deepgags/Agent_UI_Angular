@@ -13,6 +13,7 @@ import { NotificationService } from '../../services/notification.service';
 import { SharedDataService } from '../../services/shareddata.service';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../services/loading.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-template',
@@ -27,7 +28,9 @@ export class TemplateComponent implements OnInit {
 
   templateForm!: FormGroup;
   customerModel: CustomerModel = new CustomerModel();
-  templates: TemplateModel[] = [];
+  //templates: TemplateModel[] = [];
+  private templatesSubject = new BehaviorSubject<TemplateModel[]>([]);
+  templates$ = this.templatesSubject.asObservable();
 
   selectTemplate(template:TemplateModel, sender:any)
   {
@@ -37,7 +40,7 @@ export class TemplateComponent implements OnInit {
       this.customerModel.templateId = template.TemplateId;
     }
 
-    this.templates.forEach( x=> {if(template.TemplateId!=x.TemplateId){ x.IsSelected = false }});
+    //this.templates$.forEach( x=> {if(template.TemplateId!=x.TemplateId){ x.IsSelected = false }});
   }
   
   constructor(
@@ -63,7 +66,7 @@ export class TemplateComponent implements OnInit {
       this.templateService.getTemplates().subscribe({
           next: (response) => {
             if (response && response.length > 0) {
-               this.templates = response;
+               this.templatesSubject.next(response);
             }
           },
           error: () => {

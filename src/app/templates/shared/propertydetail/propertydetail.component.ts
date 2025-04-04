@@ -21,7 +21,6 @@ export class PropertydetailComponent implements OnInit {
 
   property: PropertyModel;
   private loadingSubject = new BehaviorSubject<boolean>(false);
-  
   loading$ = this.loadingSubject.asObservable();
 
   selectedFilters: any = {

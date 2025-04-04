@@ -146,6 +146,7 @@ export const maxPrices = [
 ];
 
 export const sqFitTypes = [
+  { label: "SQ Fit", value: "", text: "Any" },
   { label: "0+ Sqft", value: "0", text: "0+ Sqft" },
   { label: "500 + Sqft", value: "500", text: "500 + Sqft" },
   { label: "1000 + Sqft", value: "1000", text: "1000 + Sqft" },
