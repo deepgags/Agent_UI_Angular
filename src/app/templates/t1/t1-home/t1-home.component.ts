@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-t1-home',
   imports: [RouterModule, SearchComponent],
   templateUrl: './t1-home.component.html',
-  styleUrls: ['./t1-home.component.scss']
+  styleUrls: ['./t1-home.component.scss','../t1.component.scss']
 })
 export class T1HomeComponent implements OnInit  {
 
@@ -21,10 +21,10 @@ export class T1HomeComponent implements OnInit  {
   }
 
   searchProperties = (selectedFilters: any) => {
-    const { location, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt, pageNumber, pageSize } = selectedFilters;
+    const { address, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt, pageNumber, pageSize } = selectedFilters;
     this.router.navigate(['/t1', 'search'], {
       queryParams: {
-        location, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt, pageNumber, pageSize
+        address, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt, pageNumber, pageSize
       }
     });
   }

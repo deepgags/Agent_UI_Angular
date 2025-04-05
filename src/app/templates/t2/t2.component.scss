@@ -28,7 +28,6 @@
   font-weight: 600;
 }
 
-
 .banner {
   height: 100%;
   width: 100%;
@@ -331,6 +330,44 @@ h5 {
 }
 
 .search-container{
+  .info {
+    color: #002FD5 !important;
+  }
+
+  .card_hover {
+    cursor: pointer !important;
+    box-shadow: #002FD5 0px 2px 30px -10px;
+    transition: transform 250ms;
+    &:hover{
+        box-shadow: #002FD5 0px 10px 15px -3px, #002FD5 0px 4px 6px -2px !important;
+    }
+  }
+
+  .location{
+    content:url("/t2/images/vector img/location.svg");
+  } 
+
+  .bed{
+    content:url("/t2/images/vector img/bed.svg");
+  } 
+
+  .shower{
+    content:url("/t2/images/vector img/shower.svg");
+  }
+
+  .area{
+    content:url("/t2/images/vector img/area.svg");
+  } 
+  // .card_hover{
+  //   &:hover {
+  //     box-shadow: #002FD5 0px 10px 15px -3px, #002FD5 0px 4px 6px -2px !important;
+  //   }
+  // }
+
+  .mat-mdc-select-panel{
+    background-color: rgb(225, 225, 225) !important;
+  }
+  
     .search_btn {
       color: white;
       background-color: #002FD5 !important;
@@ -356,16 +393,12 @@ h5 {
 }
 
 :host ::ng-deep {
-  app-search-page{
-    app-search {
+   app-search-page{
       .search-container{
         @extend .search-container;
       }
-    }
-  }
-  app-search {
+ }
       .search-container{
         @extend .search-container;
       }
-    }
   }

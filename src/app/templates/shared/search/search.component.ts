@@ -15,7 +15,7 @@ import { stringiFy } from '../../../consts/Utility';
 export class SearchComponent implements OnInit {
   @Input('onSearch') onSearch: Function = () => { };
   @Input('filters') filters:any = {
-    location: '',
+    address: '',
     propertyType: '',
     storyType: '',
     beds: '0',

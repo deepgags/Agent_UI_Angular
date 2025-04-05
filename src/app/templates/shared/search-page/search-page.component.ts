@@ -14,14 +14,17 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BehaviorSubject } from 'rxjs';
 import { StorageService } from '../../../services/storage.service';
+import {MatIconModule} from '@angular/material/icon';
+import { HighlightSearch } from '../../../Pipes/highlight';
 
 @Component({
   selector: 'app-search-page',
-  imports: [FormsModule, CommonModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule],
+  imports: [FormsModule, CommonModule, MatIconModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule],
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss'],
-  // encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true
 })
 export class SearchPageComponent implements OnInit {
   propertiesList: PropertyModel[] = [];
@@ -33,7 +36,7 @@ export class SearchPageComponent implements OnInit {
   loading$ = this.loadingSubject.asObservable();
  
   selectedFilters: any = {
-    location: '',
+    address: '',
     propertyType: '',
     storyType: '',
     beds: '0',
@@ -65,6 +68,7 @@ export class SearchPageComponent implements OnInit {
           ...this.selectedFilters,
           ...params
         };
+        //this.dummyData()
         this.searchProperties(params);
       }
     });
@@ -346,7 +350,7 @@ export class SearchPageComponent implements OnInit {
       max_price: stringiFy(selectedFilters.maxPrice),
       min_area: stringiFy(selectedFilters.minArea),
     }
-//  this.dummyData();
+
     this.loadingService.loadingOn();
     this.loadingSubject.next(true);
     this.propertyService.searchProperties(params).subscribe({

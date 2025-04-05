@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PropertyModel } from '../../../models/PropertyModel';
@@ -31,6 +31,7 @@ export class PropertydetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private propertyService: PropertyService,
      private notificationService: NotificationService,
+     private location: Location
   ) {
     this.property = new PropertyModel(); 
   }
@@ -60,6 +61,10 @@ export class PropertydetailComponent implements OnInit {
         this.loadingSubject.next(false);
       }
     })
+  }
+
+  back() {
+    this.location.back();
   }
 
 }

@@ -44,7 +44,6 @@ export class RedirectUserComponent implements OnInit {
             .subscribe({
               next: (response) => {
                 if (response && response.length > 0 && response[0].customerId!="") {
-                  debugger;
                   this.storageService.saveUserInfo(JSON.stringify(response[0]));
                 }
                 this.loadTemplateStyles();
@@ -65,7 +64,6 @@ export class RedirectUserComponent implements OnInit {
   }
   loadTemplateStyles() {
     const userInfo = this.storageService.getLoggedUserFromUserInfo();
-    debugger;
       switch (userInfo.templateId) {
         case '0b69c6031f111d63bc2c975dd2837e38': 
        // this.cssFile = `GreenTemplate.css`; 

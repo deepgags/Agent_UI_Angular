@@ -1,9 +1,8 @@
-<div>
     <div class="loading-container flex-content-center" *ngIf="loading$ | async">
 		<div class="spinner">
 		</div>  
 	</div> 
-    <div class="container-fluid " *ngIf="property">
+    <div class="container-fluid search-container" *ngIf="property">
         <div class="container py-3">    
           <h1 class="text-center pt-2">Property Information</h1>
           <div class="row">
@@ -33,23 +32,23 @@
           </div>
           <div class="d-flex justify-content-between">
             <div class="">
-                <p class="card-text pro-text"><span><img src="t1/images/vector img/bed.png" alt=""></span> {{property.BedroomsTotal}}</p>
+                <p class="card-text pro-text"><span><img class="bed" alt=""></span> {{property.BedroomsTotal}}</p>
             </div>
             <div class="">
                 <p class="card-text pro-text">
-                    <span><img src="t1/images/vector img/shower.png" alt=""></span>{{property.BathroomsTotalInteger}}
+                    <span><img class="shower" alt=""></span>{{property.BathroomsTotalInteger}}
                 </p>
             </div>
             <div class="">
-                <p class="card-text pro-text"><span><img src="t1/images/vector img/area.png" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
+                <p class="card-text pro-text"><span><img class="area" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
             </div>
         </div>
         <div class="pt-3">
-            <p class="fw-bold" style="color: #22614B;">MLS# <span class="fw-bold text-dark pro-text">{{property.ListingKey}}</span></p>
-            <p class="fw-bold" style="color: #22614B;">Price <span class="fw-bold text-dark pro-text">{{property.ListPrice}}</span></p>
+            <p class="fw-bold info">MLS# <span class="fw-bold text-dark pro-text">{{property.ListingKey}}</span></p>
+            <p class="fw-bold info">Price <span class="fw-bold text-dark pro-text">{{property.ListPrice}}</span></p>
         </div>
          <div class="d-flex justify-content-center pt-3 ">
-            <div class="row search-container">
+            <div class="row">
             <div class="col-ls-6">  
                 <h6>Public Remarks</h6>
                 <p>{{property.PublicRemarks}}</p>
@@ -75,10 +74,9 @@
                 <p>{{property.TaxLegalDescription}}</p>
             </div>
             <!-- <div class="col-ls-6">   -->
-                <button type="button" class="btn search_btn">Back</button>
+                <button type="button" (click)="back()" class="btn search_btn">Back</button>
             <!-- </div> -->
         </div>
          </div>
         </div>
     </div>
-</div>
