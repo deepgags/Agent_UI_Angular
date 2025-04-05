@@ -4,43 +4,43 @@
     </div>
     
     <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.propertyType" class="form-select">
+        <select [(ngModel)]="filters.property_type" class="form-select">
             <option *ngFor="let property of propertyTypesDropDown" [value]="property.value">{{property.label}}</option>
         </select>
     </div>
     
     <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.beds" class="form-select">
+		<select [(ngModel)]="filters.bedrooms" class="form-select">
             <option *ngFor="let beds of bedTypesDropDown" [value]="beds.value">{{beds.label}}</option>
         </select>
     </div>
     
     <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.baths" class="form-select">
+        <select [(ngModel)]="filters.bathrooms" class="form-select">
             <option *ngFor="let bath of bathTypesDropDown" [value]="bath.value">{{bath.label}}</option>
         </select>
     </div>
     
     <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.propertyStatus" class="form-select">
+        <select [(ngModel)]="filters.property_status" class="form-select">
             <option *ngFor="let status of statusTypesDropDown" [value]="status.value">{{status.label}}</option>
         </select>
     </div>
     
     <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.minPrice" class="form-select">
+        <select [(ngModel)]="filters.min_price" class="form-select">
             <option *ngFor="let price of minPricesDropDown" [value]="price.value">{{price.label}}</option>
         </select>
     </div>
     
     <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.maxPrice" class="form-select">
+        <select [(ngModel)]="filters.max_price" class="form-select">
             <option *ngFor="let price of maxPricesDropDown" [value]="price.value">{{price.label}}</option>
         </select>
     </div>
     
     <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.sqFt" class="form-select ">
+        <select [(ngModel)]="filters.min_area" class="form-select ">
             <option *ngFor="let area of sqFtTypesDropDown" [value]="area.value">{{area.label}}</option>
         </select>
     </div>

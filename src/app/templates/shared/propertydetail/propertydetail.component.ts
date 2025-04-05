@@ -3,14 +3,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PropertyModel } from '../../../models/PropertyModel';
 import { BehaviorSubject } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyService } from '../../../services/property.service';
 import {MatButtonModule} from '@angular/material/button';
 import { NotificationService } from '../../../services/notification.service';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-propertydetail',
-  imports: [CommonModule, NgbModule, MatButtonModule],
+  imports: [CommonModule, NgbModule, MatButtonModule, SearchComponent],
   providers: [NgbCarouselConfig],
   templateUrl: './propertydetail.component.html',
   encapsulation: ViewEncapsulation.None,
@@ -31,7 +32,8 @@ export class PropertydetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private propertyService: PropertyService,
      private notificationService: NotificationService,
-     private location: Location
+     private location: Location,
+     private router: Router,
   ) {
     this.property = new PropertyModel(); 
   }
@@ -65,6 +67,15 @@ export class PropertydetailComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  searchProperties = (selectedFilters: any) => {
+    const { address, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt } = selectedFilters;
+    this.router.navigate(['/t2', 'search'], {
+      queryParams: {
+        address, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt
+      }
+    });
   }
 
 }

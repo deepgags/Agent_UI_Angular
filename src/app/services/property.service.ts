@@ -55,7 +55,7 @@ export class PropertyService {
                   TransactionType: property.TransactionType,
                   UnitNumber: property.UnitNumber,
                   UnparsedAddress: property.UnparsedAddress,
-                  Media: property.Media.filter((x:any)=>x.Media_type && x.Media_type.includes('image')),
+                  Media: property.Media.filter((x:any)=>x.Media_type && x.Media_status=="Active" && x.Media_type.includes('image')),
                   BuildingAreaTotal: property.BuildingAreaTotal,
                   BuildingAreaUnits: property.BuildingAreaUnits,
                   TotalRecords: result.total,

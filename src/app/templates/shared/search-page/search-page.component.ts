@@ -341,14 +341,14 @@ export class SearchPageComponent implements OnInit {
       page: this.pageIndex,
       pageSize: this.pageSize,
       address: stringiFy(selectedFilters.address),
-      property_type: stringiFy(selectedFilters.propertyType),
-      property_subtype: stringiFy(selectedFilters.propertySubtype),
+      property_type: stringiFy(selectedFilters.property_type),
+      property_subtype: stringiFy(selectedFilters.property_subtype),
       bedrooms: stringiFy(selectedFilters.bedrooms),
       bathrooms: stringiFy(selectedFilters.bathrooms),
-      property_for: stringiFy(selectedFilters.propertyFor),
-      min_price: stringiFy(selectedFilters.minPrice),
-      max_price: stringiFy(selectedFilters.maxPrice),
-      min_area: stringiFy(selectedFilters.minArea),
+      property_for: stringiFy(selectedFilters.property_status),
+      min_price: stringiFy(selectedFilters.min_price),
+      max_price: stringiFy(selectedFilters.max_price),
+      min_area: stringiFy(selectedFilters.min_area),
     }
 
     this.loadingService.loadingOn();

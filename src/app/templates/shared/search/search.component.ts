@@ -16,14 +16,14 @@ export class SearchComponent implements OnInit {
   @Input('onSearch') onSearch: Function = () => { };
   @Input('filters') filters:any = {
     address: '',
-    propertyType: '',
-    storyType: '',
-    beds: '0',
-    baths: '0',
-    minPrice: '',
-    maxPrice: '',
-    propertyStatus: '',
-    sqFt: '',
+    property_type: '',
+    // storyType: '',
+    bedrooms: '0',
+    bathrooms: '0',
+    min_price: '',
+    max_price: '',
+    property_status: '',
+    min_area: '',
   };
 
   propertyTypesDropDown = propertyTypes;

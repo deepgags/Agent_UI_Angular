@@ -21,10 +21,10 @@ export class T1HomeComponent implements OnInit  {
   }
 
   searchProperties = (selectedFilters: any) => {
-    const { address, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt, pageNumber, pageSize } = selectedFilters;
+    const { address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, min_area } = selectedFilters;
     this.router.navigate(['/t1', 'search'], {
       queryParams: {
-        address, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt, pageNumber, pageSize
+        address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, min_area
       }
     });
   }

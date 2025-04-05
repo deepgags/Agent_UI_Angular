@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
-    agentApiUrl: 'http://localhost:8001',
-    propertyApiUrl: 'http://localhost:9001',
+    agentApiUrl: 'http://agentuiuxapi.sonnetinfotech.com:8082',
+    propertyApiUrl: 'http://agentuiuxapi.sonnetinfotech.com:8081',
     customerUrl: '/customers',
     templateUrl: '/templates',
     roleUrl: '/roles/',
