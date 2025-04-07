@@ -351,13 +351,18 @@ h5{
       color: white;
     }
   }
+  .text_bg{
+    background-color: #22614b;
+    position: absolute;
+    top: 164px;
+  }
 
   .info {
     color: #22614B !important;
   }
 
   .card_hover {
-    box-shadow: #22614B 0px 2px 30px -10px;
+    box-shadow: #22614b6e 0px 2px 30px -10px;
     transition: transform 250ms;
     cursor: pointer !important;
     &:hover{
@@ -366,20 +371,21 @@ h5{
   }
 
   .location{
-    content:url("/t1/images/vector img/location.png");
+    content:url("/t1/images/vector img/location.svg");
+    width: 13px;
   }
 
   .bed{
     content:url("/t1/images/vector img/bed.png");
-  } 
+   } 
 
   .shower{
     content:url("/t1/images/vector img/shower.png");
-  } 
+    } 
 
   .area{
     content:url("/t2/images/vector img/area.png");
-  } 
+    } 
 
   .drop {
     border-radius: 0px;

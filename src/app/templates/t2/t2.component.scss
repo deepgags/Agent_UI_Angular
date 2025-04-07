@@ -330,16 +330,22 @@ h5 {
 }
 
 .search-container{
+  .text_bg{
+    background-color: #002fd5;
+    position: absolute;
+    top: 164px;
+  }
   .info {
     color: #002FD5 !important;
   }
 
   .card_hover {
     cursor: pointer !important;
-    box-shadow: #002FD5 0px 2px 30px -10px;
-    transition: transform 250ms;
+    box-shadow: #809cff 0px 2px 30px -10px;
+    transition: transform 250ms !important;
     &:hover{
         box-shadow: #002FD5 0px 10px 15px -3px, #002FD5 0px 4px 6px -2px !important;
+        transform: translateY(-18px) !important;
     }
   }
 
@@ -358,11 +364,6 @@ h5 {
   .area{
     content:url("/t2/images/vector img/area.svg");
   } 
-  // .card_hover{
-  //   &:hover {
-  //     box-shadow: #002FD5 0px 10px 15px -3px, #002FD5 0px 4px 6px -2px !important;
-  //   }
-  // }
 
   .mat-mdc-select-panel{
     background-color: rgb(225, 225, 225) !important;
