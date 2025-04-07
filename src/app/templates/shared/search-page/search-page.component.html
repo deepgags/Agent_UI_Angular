@@ -25,18 +25,22 @@
               	[pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
               	aria-label="Select page">
 			  </mat-paginator>
-			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
-				<div class="col d-flex justify-content-center mb-lg-0 mb-3" *ngFor="let property of propertiesList">
+			  <div class="row g-4">
+				<div class="col-lg-3 col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of propertiesList">
 					<a class="text-decoration-none" (click)="selectProperty(property._id, property.ListingKey)">
-						<div class="card h-100 card_hover " style="width: 18rem;">
-							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url:''" class="card-img-top" alt="No property image to display">
-							<div class="card-body pb-0">
-								<h4 class="card-title fw-semibold price">{{property.TransactionType}}</h4>
-								<h5 class="card-title fw-semibold price">{{property.StreetName}}</h5>
-								<p class="card-text pro-text"><span><img class="location" alt=""></span> {{property.UnparsedAddress}}</p>
-								<div class="d-flex justify-content-between">
+						<div class="card h-100 card_hover border-0">
+							<div class="image-container">
+								<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url:''" class="card-img-top" alt="No property image to display">
+							</div>
+							<div class="card-body pt-1">
+								<div class="">
+									<p class=" mb-1 fs-5 fw-semibold">$ {{property.ListPrice}}</p>
+								</div>
+								<span class="badge text_bg rounded-pill">{{property.TransactionType}}</span>
+								<p class="card-text pro-text mb-1 d-flex py-1 overflow-hidden"><span><img class="location me-2" alt=""></span> {{property.UnparsedAddress}}</p>
+								<div class="d-flex justify-content-between align-items-center">
 									<div class="">
-										<p class="card-text pro-text"><span><img class="bed" alt=""></span> {{property.BedroomsTotal}}</p>
+										<p class="card-text pro-text"><span><img class="bed" alt=""></span>{{property.BedroomsTotal}}</p>
 									</div>
 									<div class="">
 										<p class="card-text pro-text">
@@ -47,10 +51,8 @@
 										<p class="card-text pro-text"><span><img class="area" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
 									</div>
 								</div>
-								<div class="pt-3">
-									<p class="mb-1 info">MLS# <span class="text-dark pro-text">{{property.ListingKey}}</span></p>
-									<p class="info">Price <span class="text-dark pro-text">$ {{property.ListPrice}}</span></p>
-								</div>
+								<p class="info pro-text  mb-0 fw-semibold">MLS# <span class="text-dark fw-normal pro-text">{{property.ListingKey}}</span></p>
+								
 							</div>
 
 						</div>
