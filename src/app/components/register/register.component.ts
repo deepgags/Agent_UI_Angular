@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -14,10 +14,12 @@ import { BrokerageTypeModel } from '../../models/BrokerageTypeModel';
 import { NotificationService } from '../../services/notification.service';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../services/loading.service';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
-  imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule,
+  imports: [CommonModule, HttpClientModule, AngularSvgIconModule, FormsModule, ReactiveFormsModule, MatDialogModule,
      MatFormFieldModule, MatInputModule, MatSelectModule, ImageCropperComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
@@ -33,6 +35,7 @@ export class RegisterComponent implements OnInit {
   profileImageSource: string = '';
   logoCroppedImage = '';
   logoImageSource: string = '';
+  showSVG: boolean = false;
 
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -80,9 +83,10 @@ export class RegisterComponent implements OnInit {
         brokerageType: new FormControl("", Validators.required),
         firstName: new FormControl(this.customerModel.firstName, Validators.required),
         lastName: new FormControl(this.customerModel.lastName, Validators.required),
-        phoneNumber: new FormControl(this.customerModel.phoneNumber, [Validators.required]),//, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
+        phoneNumber: new FormControl(this.customerModel.phoneNumber),//, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
+        cellNumber: new FormControl(this.customerModel.cellNumber),
         emailAddress: new FormControl(this.customerModel.emailAddress, [Validators.required, Validators.email]),
-        address: new FormControl(this.customerModel.address, Validators.required),
+        address: new FormControl(this.customerModel.address),
         password: new FormControl(this.customerModel.password, [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$')]),
         confirmPassword: new FormControl(this.customerModel.confirmPassword, Validators.required),
         logoImage: new FormControl(this.customerModel.logoImage),
@@ -95,9 +99,10 @@ export class RegisterComponent implements OnInit {
         (data) => {
           if (JSON.stringify(data) !== JSON.stringify({})) {
             this.customerModel.businessName = data.businessName;
-            this.customerModel.brokerageTypeId = data.brokerageType;
+            this.customerModel.brokerageTypeId = data.brokerageType.BrokerageTypeId;
             this.customerModel.firstName = data.firstName;
             this.customerModel.lastName = data.lastName;
+            this.customerModel.cellNumber = data.cellNumber;
             this.customerModel.phoneNumber = data.phoneNumber;
             this.customerModel.emailAddress = data.emailAddress;
             this.customerModel.address = data.address;
@@ -121,6 +126,11 @@ export class RegisterComponent implements OnInit {
         },
         complete: () => {this.loadingService.loadingOff();}
       })
+    }
+
+    brokerageChange(selectedBrokerage:any):void{
+      this.logoImageSource = selectedBrokerage.LogoPath;
+      this.showSVG = selectedBrokerage.isSVGLogo();
     }
 
     save() {

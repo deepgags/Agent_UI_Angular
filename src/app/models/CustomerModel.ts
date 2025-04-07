@@ -6,6 +6,7 @@ export class CustomerModel {
     emailAddress: string = "";
     businessName: string = "";
     phoneNumber: string = "";
+    cellNumber: string = "";
     address: string = "";
     password: string = "";
     confirmPassword: string = "";

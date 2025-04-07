@@ -28,7 +28,6 @@ export class TemplateComponent implements OnInit {
 
   templateForm!: FormGroup;
   customerModel: CustomerModel = new CustomerModel();
-  //templates: TemplateModel[] = [];
   private templatesSubject = new BehaviorSubject<TemplateModel[]>([]);
   templates$ = this.templatesSubject.asObservable();
 
@@ -40,7 +39,12 @@ export class TemplateComponent implements OnInit {
       this.customerModel.templateId = template.TemplateId;
     }
 
-    //this.templates$.forEach( x=> {if(template.TemplateId!=x.TemplateId){ x.IsSelected = false }});
+    this.templates$.subscribe(x=> x.forEach( item => {
+      if(template.TemplateId!=item.TemplateId)
+        { 
+          item.IsSelected = false
+        }
+    }));
   }
   
   constructor(
