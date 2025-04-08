@@ -14,6 +14,7 @@ import { SharedDataService } from '../../services/shareddata.service';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../services/loading.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-template',
@@ -46,6 +47,11 @@ export class TemplateComponent implements OnInit {
         }
     }));
   }
+
+  previewTemplate(template:TemplateModel, sender:any)
+  {
+    window.open("/loading?templateid="+template.TemplateId, '_blank');
+  }
   
   constructor(
     private _siteDialog: MatDialog,
@@ -53,7 +59,8 @@ export class TemplateComponent implements OnInit {
     private notificationService: NotificationService,
     private titleService : Title,
     private loadingService: LoadingService,
-    private sharedDataService: SharedDataService) {
+    private sharedDataService: SharedDataService,
+    private router: Router,) {
       this.titleService.setTitle("Templates")
     }
     

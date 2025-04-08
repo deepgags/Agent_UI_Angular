@@ -63,22 +63,31 @@
               </mat-form-field>
             </div>
             <div class="col">
-              <mat-form-field appearance="fill">                
-                <mat-label>Phone Number</mat-label>
-                <input type="text" formControlName="phoneNumber" matInput placeholder="Phone Number" />                
-                <!-- @if (customerForm.hasError('required', 'phoneNumber')) {
-                  <mat-error>Phone number is required</mat-error>
-                } -->
-              </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Phone Number</mat-label>
+              <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
+            </mat-form-field>
+              <!-- <angular-phone-number-input
+              formControlName="phoneNumber"
+              [defaultCountry]="'CA'"
+              [preferredCountries]="['CA']"
+              [error]="customerForm.get('phoneNumber')?.touched && customerForm.get('phoneNumber')?.invalid">
+            </angular-phone-number-input> -->
+            @if (customerForm.hasError('pattern', 'phoneNumber')) {
+              <mat-error>Please enter a valid phone number</mat-error>
+             }
             </div>
             <div class="col">
               <mat-form-field appearance="fill">                
                 <mat-label>Cell Number</mat-label>
-                <input type="text" formControlName="cellNumber" required matInput placeholder="Cell Number" />                
+                <input type="text" formControlName="cellNumber" required matInput  placeholder="Ex. 123-456-1234" />
                 @if (customerForm.hasError('required', 'cellNumber')) {
                   <mat-error>Cell number is required</mat-error>
                 }
               </mat-form-field>
+              @if (customerForm.hasError('pattern', 'cellNumber')) {
+                <mat-error>Please enter a valid cell number</mat-error>
+               }
             </div>
           </div> 
             <mat-form-field appearance="fill">                

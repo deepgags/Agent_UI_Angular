@@ -19,7 +19,7 @@
                       {{ template.IsSelected ? "Selected" : "Select" }}
                       <i class="bi bi-check"></i>
                     </button>
-                    <button class="btn btn-danger mt-4" title="Coming Soon">Preview</button>
+                    <button class="btn btn-danger mt-4" title="Coming Soon" (click)="previewTemplate(template, $event)">Preview</button>
                   </footer>
                 </div>
               </ng-template>

@@ -5,7 +5,7 @@ import { CustomerModel } from '../../models/CustomerModel';
 import { NotificationService } from '../../services/notification.service';
 import { CommonModule } from '@angular/common';
 import { CustomerService } from '../../services/customer.service';
-import { Router} from "@angular/router"
+import { ActivatedRoute, Router} from "@angular/router"
 import { StorageService } from '../../services/storage.service';
 import {Title} from "@angular/platform-browser";
 
@@ -21,6 +21,9 @@ export class RedirectUserComponent implements OnInit {
   customerModel: CustomerModel = new CustomerModel();
   private style: HTMLLinkElement | null = null;
   private cssFile: string = "";
+  routeParams: any = {
+    templateid: '',
+  };
   
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -29,14 +32,21 @@ export class RedirectUserComponent implements OnInit {
     private storageService: StorageService,
     @Inject(DOCUMENT) private document: Document,
     private renderer2: Renderer2,
-    private router: Router) {
+    private router: Router,
+    private route: ActivatedRoute) {
      this.titleService.setTitle("Redirecting...")
     }
     
     ngOnInit() {
-      let savedUserInfo = this.storageService.getLoggedUserFromUserInfo();
-      if(savedUserInfo.customerId == "")
+
+      if(this.verifiyTemplatePreview())
       {
+        return;
+      }
+      
+        let savedUserInfo = this.storageService.getLoggedUserFromUserInfo();
+        if(savedUserInfo.customerId == "")
+        {
           var isBrowser = isPlatformBrowser(this.platformId);
           if (isBrowser) {
             var currentUrl = window.location.host;
@@ -54,14 +64,50 @@ export class RedirectUserComponent implements OnInit {
               },
               complete:() => {
               }
-          })}
+          })
+        }
           return;
-      }
-      else{
-      this.loadTemplateStyles();
-      this.redirectUser(savedUserInfo);
-      }
+        }
+        else{
+          this.loadTemplateStyles();
+          this.redirectUser(savedUserInfo);
+        }
   }
+
+  verifiyTemplatePreview() : boolean
+  {
+    this.route.queryParams.subscribe(params => {
+      if (Object.keys(params).length > 0) {
+        this.routeParams = {
+          ...this.routeParams,
+          ...params
+        };
+      }
+    });
+
+    if(this.routeParams.templateid)
+    {
+      this.storageService.removeUserInfo();
+      this.customerService.customerExistWithPassedTemplate(this.routeParams.templateid)
+      .subscribe({
+        next: (response) => {
+          if (response && response.length > 0 && response[0].customerId!="") {
+            this.storageService.saveUserInfo(JSON.stringify(response[0]));
+          }
+          this.loadTemplateStyles();
+          this.redirectUser(response[0]);
+        },
+        error: () => {
+          this.router.navigateByUrl("/register");
+        },
+        complete:() => {
+        }
+      })
+      return true;
+    }
+    return false;
+  }
+
   loadTemplateStyles() {
     const userInfo = this.storageService.getLoggedUserFromUserInfo();
       switch (userInfo.templateId) {
@@ -86,8 +132,7 @@ export class RedirectUserComponent implements OnInit {
 
   redirectUser(userInfo:CustomerModel)
   {
-    userInfo = this.storageService.getLoggedUserFromUserInfo();
-    if(userInfo.customerId != "")
+    if(userInfo && userInfo.customerId != "")
     {
       switch(userInfo.templateId)
       {

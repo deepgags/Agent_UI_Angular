@@ -25,6 +25,7 @@
     "@popperjs/core": "^2.11.8",
     "@types/crypto-js": "^4.2.2",
     "@types/jquery": "^3.5.32",
+    "angular-phone-number-input": "^1.0.7",
     "angular-svg-icon": "^19.1.1",
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
@@ -53,6 +54,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "libphonenumber-js": "^1.12.6",
     "typescript": "~5.7.2"
   },
   "browser": {
