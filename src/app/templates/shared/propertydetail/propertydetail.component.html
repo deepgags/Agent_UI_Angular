@@ -70,7 +70,7 @@
           </div>
 
           <div class="row mt-3">
-            <div class="col-8">
+            <div class="col-lg-8 col-12">
               <ul class="nav nav-underline mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Description</button>
@@ -89,13 +89,22 @@
                   This condo apartment home located at 250 Wellington Street W, Toronto is currently for rent and has been available on Zolo.ca for 0 day. It has 1 bed, 1 bathroom, and is 600-699 square feet. 250 Wellington Street W, Toronto is in the Waterfront Communities C1 neighborhood Toronto. Bay Street Corridor, Niagara and University are nearby neighborhoods.
                 </p></div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13716.88692065074!2d76.77234779844747!3d30.740272636132765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed0afe5003d3%3A0x8f47abe9f2044934!2sSector%2017%2C%20Chandigarh!5e0!3m2!1sen!2sin!4v1744101448440!5m2!1sen!2sin" width="700" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <div class="ratio ratio-16x9">
+                    <iframe 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13716.88692065074!2d76.77234779844747!3d30.740272636132765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed0afe5003d3%3A0x8f47abe9f2044934!2sSector%2017%2C%20Chandigarh!5e0!3m2!1sen!2sin!4v1744101448440!5m2!1sen!2sin" 
+                      style="border:0;" 
+                      allowfullscreen="" 
+                      loading="lazy" 
+                      referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                  </div>
+                  
                 </div>
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
               </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-lg-4 col-12 mt-4 mt-lg-0">
                 <div class="card shadow">
                   <div class="card-body">
                     <h5 class="card-title mb-3">Ask About this Home</h5>
@@ -135,31 +144,67 @@
                 </div>
             </div>
           </div>
+
+          <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
+            <div class="col">
+              <div class="card h-100 border border-2 shadow-sm">
+                <div class="card-body ">
+                  <h6 class="card-title info">Property SubType</h6>
+                  <p class="card-text">{{property.PropertySubType}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100 border border-2 shadow-sm">
+                <div class="card-body ">
+                  <h6 class="card-title info">Property Type</h6>
+                  <p class="card-text">{{property.PropertyType}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100 border border-2 shadow-sm">
+                <div class="card-body ">
+                  <h6 class="card-title info">Property Use</h6>
+                  <p class="card-text">{{property.PropertyUse}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100 border border-2 shadow-sm">
+                <div class="card-body ">
+                  <h6 class="card-title info">List Office Name</h6>
+                  <p class="card-text">{{property.TaxLegalDescription}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
            
 
           <div class="row mt-5 ">
-            <div class="col p-0">
+            <div class="col">
               <div class="card ">
                 <div class="card-header card_col text-white">
-                  <h5 class="mb-0">Property Listing Details</h5>
+                  <h5 class="mb-0 text-dark">Property Listing Details</h5>
                 </div>
                 <div class="card-body p-0">
                   <table class="table table-striped mb-0">
                     <tbody>
                       <tr>
-                        <th scope="row" class="w-25 info">Cross Street</th>
+                        <th scope="row" class="w-25 fw-normal info">Cross Street</th>
                         <td>{{property.CrossStreet}}</td>
                       </tr>
                       <tr>
-                        <th scope="row" class="info">List Contract Date</th>
+                        <th scope="row" class="info fw-normal">List Contract Date</th>
                         <td>{{property.ListingContractDate}}</td>
                       </tr>
                       <tr>
-                        <th scope="row" class="info">Purchase Contract Date</th>
+                        <th scope="row" class="info fw-normal">Purchase Contract Date</th>
                         <td>{{property.PurchaseContractDate ? property.PurchaseContractDate : "No Date"}}</td>
                       </tr>
                       <tr>
-                        <th scope="row" class="info">List Office Name</th>
+                        <th scope="row" class="info fw-normal">List Office Name</th>
                         <td>{{property.ListOfficeName}}</td>
                       </tr>
                     </tbody>
@@ -180,7 +225,7 @@
                       </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
+                      <div class="accordion-body bg-secondary-subtle  ">
                         <p>{{property.PublicRemarks}}</p>
                       </div>
                     </div>
@@ -192,7 +237,7 @@
                       </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
+                      <div class="accordion-body bg-secondary-subtle  ">
                         {{property.PublicRemarksExtra?property.PublicRemarksExtra:"No remarks"}}
                       </div>
                     </div>
@@ -204,7 +249,7 @@
                       </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
+                      <div class="accordion-body bg-secondary-subtle  ">
                         {{property.PrivateRemarks}}
                       </div>
                     </div>
@@ -212,22 +257,7 @@
                 </div>
               </div>
             </div>
-            <div class="row mt-5 border rounded p-3">
-            <div class="col">  
-                
-               
-                <h6 class="info">Property SubType</h6>
-                <p>{{property.PropertySubType}}</p>
-                <h6 class="info">Property Type</h6>
-                <p>{{property.PropertyType}}</p>
-                <h6 class="info">Property Use</h6>
-                <p>{{property.PropertyUse}}</p>
-                <h6 class="info">Tax Legal Description</h6>
-                <p>{{property.TaxLegalDescription}}</p>
-            </div>
-            <!-- <div class="col-ls-6">   -->
-              <!-- </div> -->
-            </div>
+ 
             <button type="button" (click)="back()" class="btn w-25 mt-3 search_btn">Back</button>
 
         
