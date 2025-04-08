@@ -14,50 +14,120 @@
 	</div>
     <div class="container-fluid search-container" *ngIf="property">
         <div class="container py-3">    
-          <h2 class="fw-semibold py-2">Property Information</h2>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="row-cols-2 row-cols-md-12 row-cols-lg-12 g-5">
-                  <ngb-carousel [pauseOnHover]="true" (slide)="1" [wrap]="true" class="card card_hover">
+          <h1 class="fw-semibold text-center pb-4">Property Information</h1>
+          <div class="row ">
+            <div class="col-12">
+                  <ngb-carousel [pauseOnHover]="true" (slide)="1" [wrap]="true" class="">
                     <ng-template ngbSlide style="margin-bottom: 20px;" *ngFor="let image of property.Media">
                       <div class="wrapper text-center h-100">
                         <img [src]="image.Media_url" class="img-fluid rounded fixed-height" alt="No Image" />
                       </div>
                     </ng-template>
                   </ngb-carousel>                 
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                
+                <span class="badge lable fs-6">{{property.TransactionType}}</span>
+  
+                  <h6 class="">{{property.UnparsedAddress}}</h6>
+              </div>
+              <!-- <div class="col-lg-6">
+                  <button mat-fab extended>
+                      <mat-icon>home</mat-icon>
+                      
+                    </button>
+                  <mat-fab>{{property.TransactionType}}</mat-fab>
+              </div> -->
+              <p class="fw-bold info"><span class="fw-bold text-dark pro-text fs-4">${{property.ListPrice}}</span></p>
+
+            </div>
+            <div class="d-flex ">
+              <div class="">
+                  <p class="card-text pro-text"><span><img class="bed" alt=""></span> {{property.BedroomsTotal}}</p>
+              </div>
+              <div class="ms-5">
+                  <p class="card-text pro-text">
+                      <span><img class="shower" alt=""></span>{{property.BathroomsTotalInteger}}
+                  </p>
+              </div>
+              <div class="ms-5">
+                  <p class="card-text pro-text"><span><img class="area" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
+              </div>
+          </div>
+          <div class="pt-3">
+              <p class="fw-bold info">MLS# <span class="fw-bold text-dark pro-text">{{property.ListingKey}}</span></p>
+          </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-7">
+              <ul class="nav nav-underline mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Description</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><span><i class="fa-solid me-1 fa-location-dot"></i></span>View on map</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                  <p>Luxury Tridel Built Icon 1+Den, 1 Bath, With A Balcony In The Heart Of Downtown Business/Entertainment District. Minutes To Path, Subway, Highways, Restaurants, Cn Tower, Rogers Centre, And Financial District. Building Amenities Includes State Of The Art Fitness Centre, 24Hrs Concierge, Rooftop Patio With Bbq. 1 Parking Included.</p>
+                <p>
+                  This condo apartment home located at 250 Wellington Street W, Toronto is currently for rent and has been available on Zolo.ca for 0 day. It has 1 bed, 1 bathroom, and is 600-699 square feet. 250 Wellington Street W, Toronto is in the Waterfront Communities C1 neighborhood Toronto. Bay Street Corridor, Niagara and University are nearby neighborhoods.
+                </p></div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
+              </div>
+            </div>
+
+            <div class="col-5">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title mb-3">Ask About this Home</h5>
+                  <p class="text-muted small">
+                    Learn more by viewing our <a href="#" class="text-decoration-underline">privacy policy</a> or <a href="#" class="text-decoration-underline">contact us</a>.
+                  </p>
+          
+                  <form>
+                    <div class="mb-3">
+                      <label for="fullName" class="form-label">Full Name</label>
+                      <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                      </div>
+                    </div>
+          
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email Address</label>
+                      <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <input type="email" class="form-control" id="email" placeholder="Email Address">
+                      </div>
+                    </div>
+          
+                    <div class="mb-3">
+                      <label for="phone" class="form-label">Phone Number (Mobile)</label>
+                      <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-phone"></i></span>
+                        <input type="tel" class="form-control" id="phone" placeholder="Phone Number (Mobile)">
+                      </div>
+                    </div>
+          
+                    <div class="mb-3">
+                      <textarea class="form-control" rows="4">I would like more information regarding a property at 543 - 250 Wellington Street W Toronto</textarea>
+                    </div>
+          
+                    <button type="submit" class="btn btn-success w-100 fw-bold">Go Tour This Home</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-4">
-                <h6>{{property.UnparsedAddress}}</h6>
-            </div>
-            <div class="col-lg-6">
-                <button mat-fab extended>
-                    <!-- <mat-icon>home</mat-icon> -->
-                    {{property.TransactionType}}
-                  </button>
-                <!-- <mat-fab>{{property.TransactionType}}</mat-fab> -->
-            </div>
-          </div>
-          <div class="d-flex justify-content-between">
-            <div class="">
-                <p class="card-text pro-text"><span><img class="bed" alt=""></span> {{property.BedroomsTotal}}</p>
-            </div>
-            <div class="">
-                <p class="card-text pro-text">
-                    <span><img class="shower" alt=""></span>{{property.BathroomsTotalInteger}}
-                </p>
-            </div>
-            <div class="">
-                <p class="card-text pro-text"><span><img class="area" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
-            </div>
-        </div>
-        <div class="pt-3">
-            <p class="fw-bold info">MLS# <span class="fw-bold text-dark pro-text">{{property.ListingKey}}</span></p>
-            <p class="fw-bold info">Price <span class="fw-bold text-dark pro-text">$ {{property.ListPrice}}</span></p>
-        </div>
-         <div class="d-flex justify-content-center pt-3 ">
+          <div class="d-flex justify-content-center pt-3 ">
             <div class="row">
             <div class="col-ls-6">  
                 <h6>Public Remarks</h6>
@@ -88,5 +158,7 @@
             <!-- </div> -->
         </div>
          </div>
+
+        
         </div>
     </div>
