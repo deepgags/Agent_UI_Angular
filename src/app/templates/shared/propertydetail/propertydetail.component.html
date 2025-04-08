@@ -39,21 +39,30 @@
                     </button>
                   <mat-fab>{{property.TransactionType}}</mat-fab>
               </div> -->
-              <p class="fw-bold info"><span class="fw-bold text-dark pro-text fs-4">${{property.ListPrice}}</span></p>
-
+              <p class="fw-bold info"><span class="fw-bold text-dark pro-text fs-3">${{property.ListPrice}}</span></p>
             </div>
-            <div class="d-flex ">
-              <div class="">
-                  <p class="card-text pro-text"><span><img class="bed" alt=""></span> {{property.BedroomsTotal}}</p>
+            
+          <div class="row mb-4">
+            <div class="col-md-3">
+              <div class="border rounded p-3 text-center bg-light">
+               <span><img class="bed" alt=""></span>  {{property.BedroomsTotal}}
               </div>
-              <div class="ms-5">
-                  <p class="card-text pro-text">
-                      <span><img class="shower" alt=""></span>{{property.BathroomsTotalInteger}}
-                  </p>
+            </div>
+            <div class="col-md-3">
+              <div class="border rounded p-3 text-center bg-light">
+                <span><img class="shower" alt=""></span>{{property.BathroomsTotalInteger}}
               </div>
-              <div class="ms-5">
-                  <p class="card-text pro-text"><span><img class="area" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
+            </div>
+            <div class="col-md-3">
+              <div class="border rounded p-3 text-center bg-light">
+                <span><img class="area" alt=""></span>{{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}
               </div>
+            </div>
+            <div class="col-md-3">
+              <div class="border rounded p-3 text-center bg-light">
+                <i class="fa-solid fa-car info"></i> 2 Car Garage
+              </div>
+            </div>
           </div>
           <div class="pt-3">
               <p class="fw-bold info">MLS# <span class="fw-bold text-dark pro-text">{{property.ListingKey}}</span></p>
@@ -61,7 +70,7 @@
           </div>
 
           <div class="row mt-3">
-            <div class="col-7">
+            <div class="col-8">
               <ul class="nav nav-underline mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Description</button>
@@ -86,8 +95,8 @@
               </div>
             </div>
 
-            <div class="col-5">
-                <div class="card shadow-sm">
+            <div class="col-4">
+                <div class="card shadow">
                   <div class="card-body">
                     <h5 class="card-title mb-3">Ask About this Home</h5>
                     <p class="text-muted small">
@@ -96,7 +105,6 @@
         
                     <form>
                       <div class="mb-3">
-                        <label for="fullName" class="form-label">Full Name</label>
                         <div class="input-group">
                           <span class="input-group-text"><i class="bi bi-person"></i></span>
                           <input type="text" class="form-control" id="fullName" placeholder="Full Name">
@@ -104,7 +112,6 @@
                       </div>
         
                       <div class="mb-3">
-                        <label for="email" class="form-label">Email Address</label>
                         <div class="input-group">
                           <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                           <input type="email" class="form-control" id="email" placeholder="Email Address">
@@ -112,7 +119,6 @@
                       </div>
         
                       <div class="mb-3">
-                        <label for="phone" class="form-label">Phone Number (Mobile)</label>
                         <div class="input-group">
                           <span class="input-group-text"><i class="bi bi-phone"></i></span>
                           <input type="tel" class="form-control" id="phone" placeholder="Phone Number (Mobile)">
@@ -121,60 +127,108 @@
         
                       <div class="mb-3">
                         <textarea class="form-control" rows="4">I would like more information regarding a property at 543 - 250 Wellington Street W Toronto</textarea>
-                        </div>
+                      </div>
         
-                      <button type="submit" class="btn btn-success w-100 fw-bold">Go Tour This Home</button>
+                      <button type="submit" class="btn search_btn w-100 fw-bold">Go Tour This Home</button>
                     </form>
+                  </div>
+                </div>
+            </div>
+          </div>
+           
+
+          <div class="row mt-5 ">
+            <div class="col p-0">
+              <div class="card ">
+                <div class="card-header card_col text-white">
+                  <h5 class="mb-0">Property Listing Details</h5>
+                </div>
+                <div class="card-body p-0">
+                  <table class="table table-striped mb-0">
+                    <tbody>
+                      <tr>
+                        <th scope="row" class="w-25 info">Cross Street</th>
+                        <td>{{property.CrossStreet}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="info">List Contract Date</th>
+                        <td>{{property.ListingContractDate}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="info">Purchase Contract Date</th>
+                        <td>{{property.PurchaseContractDate ? property.PurchaseContractDate : "No Date"}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" class="info">List Office Name</th>
+                        <td>{{property.ListOfficeName}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+          
+            <div class="row mt-5">
+              <div class="col">
+                <div class="accordion" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Public Remarks
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <p>{{property.PublicRemarks}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Public Remarks Extras
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        {{property.PublicRemarksExtra?property.PublicRemarksExtra:"No remarks"}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Private Remarks
+                      </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        {{property.PrivateRemarks}}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
             <div class="row mt-5 border rounded p-3">
-              <div class="col">
-                <h6 class="info">Public Remarks</h6>
-                <p>{{property.PublicRemarks}}</p>
-                <h6 class="info">Public Remarks Extras</h6>
-                <p>{{property.PublicRemarksExtra?property.PublicRemarksExtra:"No remarks"}}</p>
-              </div>
-              <div class="col">
-                <h6 class="info">Private Remarks</h6>
-                <p>{{property.PrivateRemarks}}</p>
-                <h6 class="info">Cross Street</h6>
-                <p>{{property.CrossStreet}}</p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col">
-                <h6>List Contract Date</h6>
-                <p>{{property.ListingContractDate}}</p>
-                <h6>Purchase Contract Date</h6>
-                <p>{{property.PurchaseContractDate?property.PurchaseContractDate:"No Date"}}</p>
-                <h6>List Office Name</h6>
-                <p>{{property.ListOfficeName}}</p>
-              </div>
-              <div class="col">
-                
-              </div>
-            </div>
-            <div class="row">
             <div class="col">  
                 
                
-                <h6>Property SubType</h6>
+                <h6 class="info">Property SubType</h6>
                 <p>{{property.PropertySubType}}</p>
-                <h6>Property Type</h6>
+                <h6 class="info">Property Type</h6>
                 <p>{{property.PropertyType}}</p>
-                <h6>Property Use</h6>
+                <h6 class="info">Property Use</h6>
                 <p>{{property.PropertyUse}}</p>
-                <h6>Tax Legal Description</h6>
+                <h6 class="info">Tax Legal Description</h6>
                 <p>{{property.TaxLegalDescription}}</p>
             </div>
             <!-- <div class="col-ls-6">   -->
-                <button type="button" (click)="back()" class="btn search_btn">Back</button>
-            <!-- </div> -->
-        </div>
+              <!-- </div> -->
+            </div>
+            <button type="button" (click)="back()" class="btn w-25 mt-3 search_btn">Back</button>
 
         
         </div>
