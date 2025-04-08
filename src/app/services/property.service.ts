@@ -18,8 +18,8 @@ export class PropertyService {
   }
 
   searchProperties(propertyParams:any): Observable<PropertyModel[]> {
-    const { page, pageSize, address, property_type, property_subtype, bedrooms, bathrooms, property_for, min_price, max_price, min_area } = propertyParams;
-    return this.http.get<PropertyModel[]>(`${this.Apiurl}?page=${page}&pageSize=${pageSize}&address=${address}&property_type=${property_type}&property_subtype=${property_subtype}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}&max_price=${max_price}&min_area=${min_area}`)
+    const { page, pageSize, address, property_type, property_subtype, bedrooms, bathrooms, property_for, min_price, max_price, sqFt } = propertyParams;
+    return this.http.get<PropertyModel[]>(`${this.Apiurl}?page=${page}&pageSize=${pageSize}&address=${address}&property_type=${property_type}&property_subtype=${property_subtype}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}&max_price=${max_price}&min_area=${sqFt}`)
           .pipe(map((result: any) => {
             if(result && result.data && result.data.length > 0)
             {

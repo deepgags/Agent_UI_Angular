@@ -75,10 +75,10 @@ export class PropertydetailComponent implements OnInit {
   }
 
   searchProperties = (selectedFilters: any) => {
-    const { address, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt } = selectedFilters;
+    const { address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } = selectedFilters;
     this.router.navigate(['/t2', 'search'], {
       queryParams: {
-        address, propertyType, storyType, beds, baths, minPrice, maxPrice, propertyStatus, sqFt
+        address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt
       }
     });
   }
