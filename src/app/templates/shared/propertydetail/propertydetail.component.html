@@ -86,13 +86,13 @@
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
                   <p>Luxury Tridel Built Icon 1+Den, 1 Bath, With A Balcony In The Heart Of Downtown Business/Entertainment District. Minutes To Path, Subway, Highways, Restaurants, Cn Tower, Rogers Centre, And Financial District. Building Amenities Includes State Of The Art Fitness Centre, 24Hrs Concierge, Rooftop Patio With Bbq. 1 Parking Included.</p>
                 <p>
-                  This condo apartment home located at 250 Wellington Street W, Toronto is currently for rent and has been available on Zolo.ca for 0 day. It has 1 bed, 1 bathroom, and is 600-699 square feet. 250 Wellington Street W, Toronto is in the Waterfront Communities C1 neighborhood Toronto. Bay Street Corridor, Niagara and University are nearby neighborhoods.
+                  This condo apartment home located at 250 Wellington Street W, Toronto is currently for rent and has been available on Zolo.ca for 0 day. It has 1 bed, 1 bathroom, and is 600-699 square feet. 250 Wellington Street W, Toronto is in the Waterfront Communities C1 neighborhood Toronto. Bay Street Corridor, Niagara and University are nearby neighborhoods.This condo apartment home located at 250 Wellington Street W, Toronto is currently for rent and has been available on Zolo.ca for 0 day. It has 1 bed, 1 bathroom, and is 600-699 square feet. 250 Wellington Street W, Toronto is in the Waterfront Communities C1 neighborhood Toronto. Bay Street Corridor, Niagara and University are nearby neighborhoods.This condo apartment home located at 250 Wellington Street W, Toronto is currently for rent and has been available on Zolo.ca for 0 day. It has 1 bed, 1 bathroom, and is 600-699 square feet. 250 Wellington Street W, Toronto is in the Waterfront Communities C1 neighborhood Toronto. Bay Street Corridor, Niagara and University are nearby neighborhoods.
                 </p></div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                   <div class="ratio ratio-16x9">
                     <iframe 
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13716.88692065074!2d76.77234779844747!3d30.740272636132765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed0afe5003d3%3A0x8f47abe9f2044934!2sSector%2017%2C%20Chandigarh!5e0!3m2!1sen!2sin!4v1744101448440!5m2!1sen!2sin" 
-                      style="border:0;" 
+                      style="border:0; border-radius: 10px;" 
                       allowfullscreen="" 
                       loading="lazy" 
                       referrerpolicy="no-referrer-when-downgrade">
@@ -113,26 +113,25 @@
                     </p>
         
                     <form>
-                      <div class="mb-3">
-                        <div class="input-group">
-                          <span class="input-group-text"><i class="bi bi-person"></i></span>
-                          <input type="text" class="form-control" id="fullName" placeholder="Full Name">
-                        </div>
-                      </div>
+                      <mat-form-field appearance="fill">
+                        <mat-label class="info">First Name</mat-label>
+                        <input  required matInput placeholder="First Name" />
+                        <mat-error>First name is required</mat-error>
+                      </mat-form-field>
         
-                      <div class="mb-3">
-                        <div class="input-group">
-                          <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                          <input type="email" class="form-control" id="email" placeholder="Email Address">
-                        </div>
-                      </div>
+                      <mat-form-field appearance="fill">
+                        <mat-label class="info">Email</mat-label>
+                        <input class="w-100" type="email"required email matInput placeholder="Ex. pat@example.com" />
+                         <mat-error>Please enter a valid email address</mat-error>
+                      </mat-form-field>
         
-                      <div class="mb-3">
-                        <div class="input-group">
-                          <span class="input-group-text"><i class="bi bi-phone"></i></span>
-                          <input type="tel" class="form-control" id="phone" placeholder="Phone Number (Mobile)">
-                        </div>
-                      </div>
+                      <mat-form-field appearance="fill">                
+                        <mat-label class="info">Phone Number</mat-label>
+                        <input type="text" formControlName="phoneNumber" matInput placeholder="Phone Number" />                
+                        <!-- @if (customerForm.hasError('required', 'phoneNumber')) {
+                          <mat-error>Phone number is required</mat-error>
+                        } -->
+                      </mat-form-field>
         
                       <div class="mb-3">
                         <textarea class="form-control" rows="4">I would like more information regarding a property at 543 - 250 Wellington Street W Toronto</textarea>
@@ -141,6 +140,16 @@
                       <button type="submit" class="btn search_btn w-100 fw-bold">Go Tour This Home</button>
                     </form>
                   </div>
+                </div>
+
+                <div class="ratio ratio-16x9 mt-3">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13716.88692065074!2d76.77234779844747!3d30.740272636132765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed0afe5003d3%3A0x8f47abe9f2044934!2sSector%2017%2C%20Chandigarh!5e0!3m2!1sen!2sin!4v1744101448440!5m2!1sen!2sin" 
+                    style="border:0; border-radius: 10px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
                 </div>
             </div>
           </div>

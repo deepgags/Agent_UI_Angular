@@ -8,10 +8,15 @@ import { PropertyService } from '../../../services/property.service';
 import {MatButtonModule} from '@angular/material/button';
 import { NotificationService } from '../../../services/notification.service';
 import { SearchComponent } from '../search/search.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-propertydetail',
-  imports: [CommonModule, NgbModule, MatButtonModule, SearchComponent],
+  imports: [CommonModule, NgbModule, MatButtonModule, SearchComponent,MatDialogModule,
+    MatFormFieldModule, MatInputModule, MatSelectModule,],
   providers: [NgbCarouselConfig],
   templateUrl: './propertydetail.component.html',
   encapsulation: ViewEncapsulation.None,
