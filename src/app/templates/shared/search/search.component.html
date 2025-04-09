@@ -1,6 +1,6 @@
 <div class="row justify-content-around search-container">
     <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-        <input type="text" [(ngModel)]="filters.address" class="form-control" placeholder="Location" />
+        <input type="text" [(ngModel)]="filters.address" class="form-select" placeholder="Location" />
     </div>
     
     <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
@@ -46,7 +46,7 @@
     </div>
     
     <div class="col-12 col-lg-auto">
-        <button type="button" class="btn btn-secondary rounded-3 me-2" (click)="resetFilters()">Reset</button>
-        <button type="button" class="btn search_btn" (click)="searchProperties()">Search</button>
+        <button type="button" class="btn btn-secondary btn-sm rounded-3 me-2" (click)="resetFilters()">Reset</button>
+        <button type="button" class="btn search_btn btn-sm" (click)="searchProperties()">Search</button>
     </div>
 </div>
