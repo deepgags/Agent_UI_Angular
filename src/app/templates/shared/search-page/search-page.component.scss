@@ -89,9 +89,11 @@
 
 .property-card {
   transition: transform 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .property-card:hover {
+  cursor: pointer;
   transform: scale(1.05);
 }
 
