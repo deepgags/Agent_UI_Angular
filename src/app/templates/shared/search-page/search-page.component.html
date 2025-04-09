@@ -26,7 +26,7 @@
               	aria-label="Select page">
 			  </mat-paginator>
 			  <div class="row g-4">
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of propertiesList">
+				<div class="col-lg-4 col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of propertiesList">
 					<a class="text-decoration-none" (click)="selectProperty(property._id, property.ListingKey)">
 						<!-- <div class="card h-100 card_hover border-0">
 							<div class="image-container">
@@ -55,7 +55,7 @@
 							</div>
 						</div> -->
 						
-						<div class="card h-100 property-card border-0 rounded-4 shadow-sm">
+						<!-- <div class="card h-100 property-card border-0 rounded-4 shadow-sm">
 							<div class="image-container position-relative">
 							  <img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url:''" class="card-img-top  rounded-top-4" alt="No property image to display">
 							  <span class="position-absolute top-0 end-0 m-2 badge bg-primary">{{property.TransactionType}}</span>
@@ -78,7 +78,7 @@
 							  </div>
 							  <p class="info pro-text pt-2 mt-3 mb-0 fw-semibold">MLS# <span class="text-dark fw-normal">{{property.ListingKey}}</span></p>
 							</div>
-						  </div>
+						  </div> -->
 						  
 						  <!-- <div class="card-container">
 							<div class="flip-card">
@@ -104,7 +104,78 @@
 							  </div>
 							</div>
 						  </div> -->
-					</a>
+					
+						  <!-- <div class="card h-100 property-card border-0 rounded-4 shadow-sm d-flex flex-row">
+							<div class="image-container position-relative flex-shrink-0" style="width: 40%;">
+							  <img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : ''" class="card-img-left rounded-start-4" alt="No property image to display">
+							  <span class="position-absolute top-0 end-0 m-2 badge bg-badge">{{property.TransactionType}}</span>
+							</div>
+							<div class="card-body p-3">
+							  <p class="mb-2 fs-5 fw-semibold">$ {{property.ListPrice}}</p>
+							  <p class="card-text pro-text mb-1 d-flex align-items-center">
+								<span><img class="location me-1 info" alt=""></span>{{property.UnparsedAddress}}
+							  </p>
+							  <div class="d-flex justify-content-between align-items-center mt-3">
+								<div><p class="card-text pro-text"><span><img class="bed me-1" alt=""></span>{{property.BedroomsTotal}} Bedrooms</p></div>
+								<div><p class="card-text pro-text"><span><img class="shower me-1" alt=""></span>{{property.BathroomsTotalInteger}} Bathrooms</p></div>
+								<div><p class="card-text pro-text"><span><img class="area me-1" alt=""></span>{{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p></div>
+							  </div>
+							  <p class="info pro-text pt-2 mt-3 mb-0 fw-semibold">MLS# <span class="text-dark fw-normal">{{property.ListingKey}}</span></p>
+							</div>
+						  </div> -->
+						
+						  <!-- <div class="card h-100 property-card border-0 rounded-4 shadow-sm">
+							<div class="image-container position-relative">
+							  <img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : ''" class="card-img-top rounded-4" alt="No property image to display">
+							  <div class="overlay-content position-absolute bottom-0 start-0 w-100 p-3 text-light" style="background: rgba(0, 0, 0, 0.6);">
+								<p class="mb-1 fs-5 fw-semibold">$ {{property.ListPrice}}</p>
+								<p class="mb-0">{{property.UnparsedAddress}}</p>
+							  </div>
+							  <span class="position-absolute top-0 end-0 m-2 badge bg-primary">{{property.TransactionType}}</span>
+							</div>
+							<div class="card-body p-3">
+							  <div class="d-flex justify-content-between align-items-center">
+								<div><p class="card-text pro-text"><span><img class="bed me-1" alt=""></span>{{property.BedroomsTotal}} Bedrooms</p></div>
+								<div><p class="card-text pro-text"><span><img class="shower me-1" alt=""></span>{{property.BathroomsTotalInteger}} Bathrooms</p></div>
+								<div><p class="card-text pro-text"><span><img class="area me-1" alt=""></span>{{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p></div>
+							  </div>
+							  <p class="info pro-text pt-2 mt-3 mb-0 fw-semibold">MLS# <span class="text-dark fw-normal">{{property.ListingKey}}</span></p>
+							</div>
+						  </div> -->
+						
+						  <div class="card h-100 property-card rounded-4 shadow-sm overflow-hidden">
+							<div class="image-container position-relative">
+							  <img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : ''" class="card-img-top rounded-4" alt="No property image to display">
+							  <div class="overlay-content position-absolute bottom-0 start-0 w-100 p-3 text-light" style="background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));">
+								<p class="mb-1 fs-5 fw-bold">$ {{property.ListPrice}}</p>
+								<p class="mb-0 ">{{property.UnparsedAddress}}</p>
+							  </div>
+							  <span class="position-absolute top-0 end-0 m-2 badge bg-badge text-white">{{property.TransactionType}}</span>
+							</div>
+							<div class="card-body p-3">
+							  <div class="d-flex justify-content-between align-items-center">
+								<div>
+								  <p class="card-text pro-text d-flex align-items-center">
+									<i class="fa-solid fa-bed me-2 text-primary"></i>{{property.BedroomsTotal}} Bedrooms
+								  </p>
+								</div>
+								<div>
+								  <p class="card-text pro-text d-flex align-items-center">
+									<i class="fa-solid fa-shower me-2 text-success"></i>{{property.BathroomsTotalInteger}} Bathrooms
+								  </p>
+								</div>
+								<div>
+								  <p class="card-text pro-text d-flex align-items-center">
+									<i class="fa-solid fa-ruler-combined me-2 text-danger"></i>{{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}
+								  </p>
+								</div>
+							  </div>
+							  <p class="info pro-text pt-2 mt-3 mb-0 fw-semibold">
+								MLS# <span class="text-dark fw-normal">{{property.ListingKey}}</span>
+							  </p>
+							</div>
+						  </div>
+						</a>
 				</div>
 			</div>
 			<h3 *ngIf="propertiesList && propertiesList.length==0">No properties found for selected criteria.</h3>
