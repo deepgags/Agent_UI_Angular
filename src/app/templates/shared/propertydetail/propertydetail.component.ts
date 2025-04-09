@@ -44,8 +44,8 @@ export class PropertydetailComponent implements OnInit {
   // @ViewChild(GoogleMap) googleMap: GoogleMap;
 
   // branches = signal<Branch[]>([]);
-  center: google.maps.LatLngLiteral = { lat: 46.8182, lng: 8.2275 }; // Center of Switzerland
-  zoom = 80;
+  zoom = 14;
+  center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Cananda
   // markers: BranchMapMarker[] = [];
   // selectedBranch = signal<Branch | null>(null);
 
@@ -95,10 +95,10 @@ export class PropertydetailComponent implements OnInit {
         }
       });
 
-      this.getLocation();
+    this.getLocation();
   }
 
-  openInfoWindow( property:PropertyModel, marker: MapMarker): void {
+  openInfoWindow(property : PropertyModel, marker: MapMarker): void {
     if (this.infoWindow) {
       this.infoWindow.open(marker);
     }
@@ -110,8 +110,13 @@ export class PropertydetailComponent implements OnInit {
     this.propertyService.getProperty(this.selectedFilters.propertyId, this.selectedFilters.mlsId).subscribe({
       next: (response) => {
         this.property = response;
-        this.center.lat = this.property.Latitude;
-        this.center.lng = this.property.Longitude;
+         this.center.lat = this.property.Latitude;
+         this.center.lng = this.property.Longitude;
+        const parser = new DOMParser();
+        // this is an SVG string of a house icon, but feel free to use whatever SVG icon you'd like
+        const svgString = `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FF5733" stroke="#FFFFFF" viewBox="0 0 24 24">
+                          <path fill-rule="evenodd" d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z" clip-rule="evenodd"/>
+                          </svg>`;
       },
       error: (err) => {
         this.notificationService.showNotification("Error occurred while getting property information");

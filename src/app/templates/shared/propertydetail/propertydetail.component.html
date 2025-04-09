@@ -91,27 +91,29 @@
                 </p></div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                   <div class="ratio ratio-16x9">
-                    <google-map [center]="center" [zoom]="zoom" height="500px" width="100%">
-                      <!-- *ngFor="let marker of markers" -->
-                      <!-- [options]="marker.options" -->
-                      <map-marker
-                        #mapMarker="mapMarker"
-                        [position]="{lat:property.Latitude, lng:property.Longitude}"
-                        [label]="property.ListOfficeName"
-                        [title]="property.CrossStreet"
-                        (mapClick)="openInfoWindow(property, mapMarker)"
-                      ></map-marker>
-                      <map-info-window>
-                        // Define your HTML for the Map Markers
-                      </map-info-window>
-                    </google-map>
-                    <!-- <iframe 
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13716.88692065074!2d76.77234779844747!3d30.740272636132765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed0afe5003d3%3A0x8f47abe9f2044934!2sSector%2017%2C%20Chandigarh!5e0!3m2!1sen!2sin!4v1744101448440!5m2!1sen!2sin" 
-                      style="border:0; border-radius: 10px;" 
-                      allowfullscreen="" 
-                      loading="lazy" 
-                      referrerpolicy="no-referrer-when-downgrade">
-                    </iframe> -->
+                      <google-map [center]="{lat:property.Latitude, lng:property.Longitude}" [zoom]="zoom" height="500px" width="100%">
+                        <!-- *ngFor="let marker of markers" -->
+                        <!-- [options]="marker.options" -->
+                        <map-marker id="mapMarkerLarge"
+                          #mapMarker="mapMarker"
+                          [position]="{lat:property.Latitude, lng:property.Longitude}"
+                          [label]="property.ListOfficeName"
+                          [title]="property.PropertyUse"
+                          (mapClick)="openInfoWindow(property, mapMarker)"
+                          ></map-marker>
+                          <!-- [options]="{icon: { url:'/Icons/MapIcon.svg'}}" -->
+                        <map-info-window #mapMarkerLarge>
+                          <div>
+                            <h5>{{property.ListingKey}}</h5>
+                            <p><b>Address:</b> {{property.UnparsedAddress}}</p>
+                            <p><b>Cross Street:</b> {{property.CrossStreet}}</p>
+                            <p><b>City:</b> {{property.City}}</p>
+                            <p><b>Price:</b> ${{property.ListPrice}}</p>
+                            <p><b>Property Type:</b> {{property.PropertySubType}}</p>
+                            <p><b>Property Use:</b> {{property.TransactionType}}</p>
+                          </div>
+                        </map-info-window>
+                      </google-map>
                   </div>
                   
                 </div>
@@ -170,16 +172,26 @@
                     </form>
                   </div>
                 </div>
-                <!-- 
+                
                 <div class="ratio ratio-16x9 mt-3">
-                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13716.88692065074!2d76.77234779844747!3d30.740272636132765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed0afe5003d3%3A0x8f47abe9f2044934!2sSector%2017%2C%20Chandigarh!5e0!3m2!1sen!2sin!4v1744101448440!5m2!1sen!2sin" 
-                    style="border:0; border-radius: 10px;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                  </iframe>
-                </div> -->
+                  <google-map [center]="{lat:property.Latitude, lng:property.Longitude}" [zoom]="zoom" height="200px" width="100%">
+                    <map-marker id="mapMarkerSmall"
+                      #mapMarkerSmall="mapMarker"
+                      [position]="{lat:property.Latitude, lng:property.Longitude}"
+                      [label]="property.ListOfficeName"></map-marker>
+                      <map-info-window #mapMarkerSmall>
+                        <div>
+                          <h5>{{property.ListingKey}}</h5>
+                          <p><b>Address:</b> {{property.UnparsedAddress}}</p>
+                          <p><b>Cross Street:</b> {{property.CrossStreet}}</p>
+                          <p><b>City:</b> {{property.City}}</p>
+                          <p><b>Price:</b> ${{property.ListPrice}}</p>
+                          <p><b>Property Type:</b> {{property.PropertySubType}}</p>
+                          <p><b>Property Use:</b> {{property.TransactionType}}</p>
+                        </div>
+                      </map-info-window>
+					        </google-map>
+                </div> 
             </div>
           </div>
 
