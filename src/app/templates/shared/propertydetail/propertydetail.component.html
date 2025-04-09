@@ -1,4 +1,4 @@
-    <div class="loading-container flex-content-center" *ngIf="loading$ | async">
+  <div class="loading-container flex-content-center" *ngIf="loading$ | async">
 		<div class="spinner">
 		</div>  
 	</div> 
@@ -90,13 +90,27 @@
                 </p></div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                   <div class="ratio ratio-16x9">
-                    <iframe 
+                    <google-map [center]="center" [zoom]="zoom" height="500px" width="100%">
+                      <!-- *ngFor="let marker of markers" -->
+                      <!-- [options]="marker.options" -->
+                      <map-marker
+                        #mapMarker="mapMarker"
+                        [position]="{lat:property.Latitude, lng:property.Longitude}"
+                        [label]="property.ListOfficeName"
+                        [title]="property.CrossStreet"
+                        (mapClick)="openInfoWindow(property, mapMarker)"
+                      ></map-marker>
+                      <map-info-window>
+                        // Define your HTML for the Map Markers
+                      </map-info-window>
+                    </google-map>
+                    <!-- <iframe 
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13716.88692065074!2d76.77234779844747!3d30.740272636132765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed0afe5003d3%3A0x8f47abe9f2044934!2sSector%2017%2C%20Chandigarh!5e0!3m2!1sen!2sin!4v1744101448440!5m2!1sen!2sin" 
                       style="border:0; border-radius: 10px;" 
                       allowfullscreen="" 
                       loading="lazy" 
                       referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    </iframe> -->
                   </div>
                   
                 </div>
@@ -111,45 +125,59 @@
                     <p class="text-muted small">
                       Learn more by viewing our <a href="#" class="text-decoration-underline">privacy policy</a> or <a href="#" class="text-decoration-underline">contact us</a>.
                     </p>
-        
-                    <form>
+                    <form [formGroup]="userForm" name="userForm" *ngIf="userForm">
                       <mat-form-field appearance="fill">
                         <mat-label class="info">First Name</mat-label>
-                        <input  required matInput placeholder="First Name" />
+                        <input formControlName="firstName" required matInput placeholder="First Name" />
                         <mat-error>First name is required</mat-error>
                       </mat-form-field>
         
                       <mat-form-field appearance="fill">
                         <mat-label class="info">Email</mat-label>
-                        <input class="w-100" type="email"required email matInput placeholder="Ex. pat@example.com" />
+                        <input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
+                        @if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
                          <mat-error>Please enter a valid email address</mat-error>
+                        }
+                       @if (userForm.hasError('required', 'emailAddress')) {
+                         <mat-error>Email is required</mat-error>
+                       }
                       </mat-form-field>
         
                       <mat-form-field appearance="fill">                
                         <mat-label class="info">Phone Number</mat-label>
-                        <input type="text" formControlName="phoneNumber" matInput placeholder="Phone Number" />                
-                        <!-- @if (customerForm.hasError('required', 'phoneNumber')) {
+                        <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
+                        @if (userForm.hasError('pattern', 'phoneNumber')) {
+                          <mat-error>Please enter a valid phone number</mat-error>
+                         }
+                         @if (userForm.hasError('required', 'phoneNumber')) {
                           <mat-error>Phone number is required</mat-error>
-                        } -->
+                        }
+                      </mat-form-field>
+
+                      <mat-form-field appearance="fill">
+                        <mat-label class="info">Leave a comment</mat-label>
+                        <textarea formControlName="comment" class="form-control" rows="4" matInput placeholder="Ex. Enter comment about this property"></textarea>
+                        <mat-error>Comment is required</mat-error>
                       </mat-form-field>
         
-                      <div class="mb-3">
-                        <textarea class="form-control" rows="4">I would like more information regarding a property at 543 - 250 Wellington Street W Toronto</textarea>
-                      </div>
+                      <!-- <div class="mb-3">
+                        <textarea formControlName="comment" class="form-control" rows="4">I would like more information regarding a property at 543 - 250 Wellington Street W Toronto</textarea>
+                      </div> -->
         
-                      <button type="submit" class="btn search_btn w-100 fw-bold">Go Tour This Home</button>
+                      <button class="btn search_btn w-100 fw-bold" (click)="save()">Go Tour This Home</button>
+
                     </form>
                   </div>
                 </div>
 
                 <div class="ratio ratio-16x9 mt-3">
-                  <iframe 
+                  <!-- <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13716.88692065074!2d76.77234779844747!3d30.740272636132765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed0afe5003d3%3A0x8f47abe9f2044934!2sSector%2017%2C%20Chandigarh!5e0!3m2!1sen!2sin!4v1744101448440!5m2!1sen!2sin" 
                     style="border:0; border-radius: 10px;" 
                     allowfullscreen="" 
                     loading="lazy" 
                     referrerpolicy="no-referrer-when-downgrade">
-                  </iframe>
+                  </iframe> -->
                 </div>
             </div>
           </div>
@@ -188,8 +216,6 @@
               </div>
             </div>
           </div>
-          
-           
 
           <div class="row mt-5 ">
             <div class="col">
@@ -224,7 +250,7 @@
           
           </div>
           
-            <div class="row mt-5">
+          <div class="row mt-5">
               <div class="col">
                 <div class="accordion" id="accordionExample">
                   <div class="accordion-item">
@@ -265,10 +291,7 @@
                   </div>
                 </div>
               </div>
-            </div>
- 
-            <button type="button" (click)="back()" class="btn w-25 mt-3 search_btn">Back</button>
-
-        
+          </div>
+          <button type="button" (click)="back()" class="btn w-25 mt-3 search_btn">Back</button>
         </div>
     </div>

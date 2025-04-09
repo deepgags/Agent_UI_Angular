@@ -1,7 +1,7 @@
 export class PropertyModel{
     TotalRecords: number | 0
     BrokerFaxNumber: string | "" | undefined
-    BusinessName: string | "" | undefined
+    BusinessName: string 
     UnparsedAddress: string | "" | undefined
     PublicRemarks: string | "" | undefined
     PrivateRemarks: string | "" | undefined
@@ -10,7 +10,7 @@ export class PropertyModel{
     LotSizeDimensions: string | "" | undefined
     UnitNumber: string | "" | undefined
     TransactionType: string | "" | undefined
-    CrossStreet: string | "" | undefined
+    CrossStreet: string
     StreetSuffix: string | "" | undefined
     StreetNumber: string | "" | undefined
     PropertyUse: string | "" | undefined
@@ -20,19 +20,19 @@ export class PropertyModel{
     Country: string | "" | undefined
     CountyOrParish: string | "" | undefined
     CityRegion: string | "" | undefined
-    BuildingName: string | "" | undefined
+    BuildingName: string
     BathroomsTotalInteger: any
     BedroomsTotal: any
-    Latitude: number | undefined
+    Latitude: number 
     ListingKey: string | ""
-    Longitude: number | undefined
+    Longitude: number
     Media: Array<MediaModel> | [] | undefined
     PropertySubType: string | "" | undefined
     PropertyType: string | "" | undefined
     _id: string | "" 
     BuildingAreaTotal?: number
     BuildingAreaUnits?: string
-    ListOfficeName?: string
+    ListOfficeName: string
     ListingContractDate?: string
     PublicRemarksExtra?: string
     PurchaseContractDate?: string
@@ -42,6 +42,12 @@ export class PropertyModel{
         this.TotalRecords = 10;
         this._id = "";
         this.ListingKey = "";
+        this.Latitude = 0;
+        this.Longitude = 0;
+        this.BusinessName = "";
+        this.BuildingName = "";
+        this.CrossStreet = "";
+        this.ListOfficeName="";
     }
 }
 

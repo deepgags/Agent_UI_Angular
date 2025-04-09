@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule} from '@angular/material/select';
 import { ImageCropperComponent } from 'ngx-smart-cropper';
 import { CustomerModel } from '../../models/CustomerModel';
 import { Router } from '@angular/router';
@@ -15,11 +15,10 @@ import { NotificationService } from '../../services/notification.service';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../services/loading.service';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, HttpClientModule, AngularSvgIconModule, FormsModule, ReactiveFormsModule, MatDialogModule,
+  imports: [CommonModule, AngularSvgIconModule, FormsModule, ReactiveFormsModule, MatDialogModule,
      MatFormFieldModule, MatInputModule, MatSelectModule, ImageCropperComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'

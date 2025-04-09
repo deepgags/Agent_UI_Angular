@@ -16,6 +16,7 @@ import { StorageService } from './services/storage.service';
 import { SharedDataService } from './services/shareddata.service';
 import { LoadingInterceptor1 } from './LoadingInterceptor';
 import { Title } from '@angular/platform-browser';
+import { InterestedUserService } from './services/interestedUser.service';
 
 const serverConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +25,7 @@ const serverConfig: ApplicationConfig = {
     Title,
     SharedDataService,
     CustomerService,
+    InterestedUserService,
     RoleService,
     BrokerageTypeService,
     TemplateService,
