@@ -14,7 +14,7 @@
 	</div>
     <div class="container-fluid search-container" *ngIf="property">
         <div class="container py-3">    
-          <h1 class="fw-semibold text-center pb-4">Property Information</h1>
+          <h3 class="fw-semibold text-center">Property Information</h3>
           <div class="row card p-3">
             <div class="col-12">
                   <ngb-carousel [pauseOnHover]="true" (slide)="1" [wrap]="true" class="">
@@ -25,27 +25,22 @@
                     </ng-template>
                   </ngb-carousel>                 
             </div>
-            <div class="row card-body">
-              <div class="col-lg-4">
-                
-                <span class="badge lable fs-6">{{property.TransactionType}}</span>
-  
-                  <h6 class="">{{property.UnparsedAddress}}</h6>
-              </div>
-              <!-- <div class="col-lg-6">
-                  <button mat-fab extended>
-                      <mat-icon>home</mat-icon>
-                      
-                    </button>
-                  <mat-fab>{{property.TransactionType}}</mat-fab>
-              </div> -->
-              <p class="fw-bold info"><span class="fw-bold text-dark pro-text fs-3">${{property.ListPrice}}</span></p>
+          <div class="row card-body">
+            <div class="col-lg-6">
+              <span class="badge lable fs-6">{{property.TransactionType}}</span>
+              <h6 class="">{{property.UnparsedAddress}}</h6>
             </div>
-            
-          <div class="row mb-4">
+            <div class="col-lg-3">
+              <p class="fw-bold info">MLS# <span class="fw-bold text-dark pro-text">{{property.ListingKey}}</span></p>
+             </div>
+            <div class="col-lg-3 text-end">
+              <p class="fw-bold info">${{property.ListPrice}}</p>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-md-3">
               <div class="border rounded p-3 text-center bg-light">
-               <span><img class="bed" alt=""></span>  {{property.BedroomsTotal}}
+               <span><img class="bed" alt=""></span> {{property.BedroomsTotal}}
               </div>
             </div>
             <div class="col-md-3 mt-lg-0 mt-3">
@@ -58,18 +53,13 @@
                 <span><img class="area" alt=""></span>{{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}
               </div>
             </div>
-            <div class="col-md-3 mt-lg-0 mt-3">
+            <!-- <div class="col-md-3 mt-lg-0 mt-3">
               <div class="border rounded p-3 text-center bg-light">
                 <i class="fa-solid fa-car info"></i> 2 Car Garage
               </div>
-            </div>
-          </div>
-          <div class="pt-3">
-              <p class="fw-bold info">MLS# <span class="fw-bold text-dark pro-text">{{property.ListingKey}}</span></p>
+            </div> -->
           </div>
           </div>
-          
-
           <div class="row mt-4">
             <div class="col-lg-8 col-12">
               <ul class="nav nav-underline mb-3 g-5" id="pills-tab" role="tablist">
@@ -79,29 +69,78 @@
                 <li class="nav-item ms-lg-5" role="presentation">
                   <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><span><i class="fa-solid me-1 fa-location-dot"></i></span>View on map</button>
                 </li>
-                <!-- <li class="nav-item ms-lg-5" role="presentation">
-                  <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
-                </li> -->
               </ul>
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-                  <p>Luxury Tridel Built Icon 1+Den, 1 Bath, With A Balcony In The Heart Of Downtown Business/Entertainment District. Minutes To Path, Subway, Highways, Restaurants, Cn Tower, Rogers Centre, And Financial District. Building Amenities Includes State Of The Art Fitness Centre, 24Hrs Concierge, Rooftop Patio With Bbq. 1 Parking Included.</p>
-                <p>
-                  This condo apartment home located at 250 Wellington Street W, Toronto is currently for rent and has been available on Zolo.ca for 0 day. It has 1 bed, 1 bathroom, and is 600-699 square feet. 250 Wellington Street W, Toronto is in the Waterfront Communities C1 neighborhood Toronto. Bay Street Corridor, Niagara and University are nearby neighborhoods.This condo apartment home located at 250 Wellington Street W, Toronto is currently for rent and has been available on Zolo.ca for 0 day. It has 1 bed, 1 bathroom, and is 600-699 square feet. 250 Wellington Street W, Toronto is in the Waterfront Communities C1 neighborhood Toronto. Bay Street Corridor, Niagara and University are nearby neighborhoods.This condo apartment home located at 250 Wellington Street W, Toronto is currently for rent and has been available on Zolo.ca for 0 day. It has 1 bed, 1 bathroom, and is 600-699 square feet. 250 Wellington Street W, Toronto is in the Waterfront Communities C1 neighborhood Toronto. Bay Street Corridor, Niagara and University are nearby neighborhoods.
-                </p></div>
+                  <p>{{property.PublicRemarks}}</p>
+                  <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
+                    <div class="col">
+                      <div class="card h-100 border border-2 shadow-sm">
+                        <div class="card-body ">
+                          <h6 class="card-title info">Property SubType</h6>
+                          <p class="card-text">{{property.PropertySubType}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="card h-100 border border-2 shadow-sm">
+                        <div class="card-body ">
+                          <h6 class="card-title info">Property Type</h6>
+                          <p class="card-text">{{property.PropertyType}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="card h-100 border border-2 shadow-sm">
+                        <div class="card-body ">
+                          <h6 class="card-title info">Property Use</h6>
+                          <p class="card-text">{{property.PropertyUse}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="card h-100 border border-2 shadow-sm">
+                        <div class="card-body ">
+                          <h6 class="card-title info">List Office Name</h6>
+                          <p class="card-text">{{property.ListOfficeName}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-5">
+                    <div class="col">
+                      <div class="timeline">
+                        <div class="timeline-item">
+                          <div class="timeline-icon bg-primary text-white">
+                            <i class="bi bi-chat-dots"></i>
+                          </div>
+                          <div class="timeline-content shadow-sm rounded">
+                            <h5>Remarks</h5>
+                            <p>{{property.PublicRemarksExtra ? property.PublicRemarksExtra : "No remarks"}}</p>
+                          </div>
+                        </div>
+                        <div class="timeline-item">
+                          <div class="timeline-icon bg-success text-white">
+                            <i class="bi bi-chat-left-dots"></i>
+                          </div>
+                          <div class="timeline-content shadow-sm rounded">
+                            <h5>Private Remarks</h5>
+                            <p>{{property.PrivateRemarks}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                   <div class="ratio ratio-16x9">
                       <google-map [center]="{lat:property.Latitude, lng:property.Longitude}" [zoom]="zoom" height="500px" width="100%">
-                        <!-- *ngFor="let marker of markers" -->
-                        <!-- [options]="marker.options" -->
                         <map-marker id="mapMarkerLarge"
                           #mapMarker="mapMarker"
                           [position]="{lat:property.Latitude, lng:property.Longitude}"
                           [label]="property.ListOfficeName"
                           [title]="property.PropertyUse"
-                          (mapClick)="openInfoWindow(property, mapMarker)"
-                          ></map-marker>
-                          <!-- [options]="{icon: { url:'/Icons/MapIcon.svg'}}" -->
+                          (mapClick)="openInfoWindow(property, mapMarker)"></map-marker>
                         <map-info-window #mapMarkerLarge>
                           <div>
                             <h5>{{property.ListingKey}}</h5>
@@ -115,12 +154,9 @@
                         </map-info-window>
                       </google-map>
                   </div>
-                  
                 </div>
-                <!-- <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div> -->
               </div>
             </div>
-
             <div class="col-lg-4 col-12 mt-4 mt-lg-0">
                 <div class="card shadow">
                   <div class="card-body">
@@ -134,7 +170,6 @@
                         <input formControlName="firstName" required matInput placeholder="First Name" />
                         <mat-error>First name is required</mat-error>
                       </mat-form-field>
-        
                       <mat-form-field appearance="fill">
                         <mat-label class="info">Email</mat-label>
                         <input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
@@ -143,9 +178,8 @@
                         }
                        @if (userForm.hasError('required', 'emailAddress')) {
                          <mat-error>Email is required</mat-error>
-                       }
+                        }
                       </mat-form-field>
-        
                       <mat-form-field appearance="fill">                
                         <mat-label class="info">Phone Number</mat-label>
                         <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
@@ -156,23 +190,15 @@
                           <mat-error>Phone number is required</mat-error>
                         }
                       </mat-form-field>
-
                       <mat-form-field appearance="fill">
                         <mat-label class="info">Leave a comment</mat-label>
                         <textarea formControlName="comment" class="form-control" rows="4" matInput placeholder="Ex. Enter comment about this property"></textarea>
                         <mat-error>Comment is required</mat-error>
                       </mat-form-field>
-        
-                      <!-- <div class="mb-3">
-                        <textarea formControlName="comment" class="form-control" rows="4">I would like more information regarding a property at 543 - 250 Wellington Street W Toronto</textarea>
-                      </div> -->
-        
                       <button class="btn search_btn w-100 fw-bold" (click)="save()">Go Tour This Home</button>
-
                     </form>
                   </div>
                 </div>
-                
                 <div class="ratio ratio-16x9 mt-3">
                   <google-map [center]="{lat:property.Latitude, lng:property.Longitude}" [zoom]="zoom" height="200px" width="100%">
                     <map-marker id="mapMarkerSmall"
@@ -194,47 +220,11 @@
                 </div> 
             </div>
           </div>
-
-          <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
-            <div class="col">
-              <div class="card h-100 border border-2 shadow-sm">
-                <div class="card-body ">
-                  <h6 class="card-title info">Property SubType</h6>
-                  <p class="card-text">{{property.PropertySubType}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100 border border-2 shadow-sm">
-                <div class="card-body ">
-                  <h6 class="card-title info">Property Type</h6>
-                  <p class="card-text">{{property.PropertyType}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100 border border-2 shadow-sm">
-                <div class="card-body ">
-                  <h6 class="card-title info">Property Use</h6>
-                  <p class="card-text">{{property.PropertyUse}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100 border border-2 shadow-sm">
-                <div class="card-body ">
-                  <h6 class="card-title info">List Office Name</h6>
-                  <p class="card-text">{{property.TaxLegalDescription}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div class="row mt-5 ">
             <div class="col">
                 <div class="card shadow-sm border-0 rounded-4">
                   <div class="card-header head-bg text-white rounded-top-4">
-                    <h5 class="">Property Listing Details</h5>
+                    <h5 class="">Property Details</h5>
                   </div>
                   <div class="card-body">
                     <div class="d-flex justify-content-between py-2 border-bottom">
@@ -243,11 +233,11 @@
                     </div>
                     <div class="d-flex justify-content-between py-2 border-bottom">
                       <span class="fw-bold">List Contract Date:</span>
-                      <span>{{property.ListingContractDate}}</span>
+                      <span>{{property.ListingContractDate ? (property.ListingContractDate | date) : "No Date"}}</span>
                     </div>
                     <div class="d-flex justify-content-between py-2 border-bottom">
                       <span class="fw-bold">Purchase Contract Date:</span>
-                      <span>{{property.PurchaseContractDate ? property.PurchaseContractDate : "No Date"}}</span>
+                      <span>{{property.PurchaseContractDate ? (property.PurchaseContractDate | date) : "No Date"}}</span>
                     </div>
                     <div class="d-flex justify-content-between py-2">
                       <span class="fw-bold">List Office Name:</span>
@@ -258,41 +248,6 @@
             </div>
           </div>
           
-          <div class="row mt-5">
-              <div class="col">
-                <div class="timeline">
-                  <div class="timeline-item">
-                    <div class="timeline-icon bg-primary text-white">
-                      <i class="bi bi-chat-dots"></i>
-                    </div>
-                    <div class="timeline-content shadow-sm rounded">
-                      <h5>Public Remarks</h5>
-                      <p>{{property.PublicRemarks}}</p>
-                    </div>
-                  </div>
-                
-                  <div class="timeline-item">
-                    <div class="timeline-icon bg-success text-white">
-                      <i class="bi bi-chat-left-dots"></i>
-                    </div>
-                    <div class="timeline-content shadow-sm rounded">
-                      <h5>Public Remarks Extras</h5>
-                      <p>{{property.PublicRemarksExtra ? property.PublicRemarksExtra : "No remarks"}}</p>
-                    </div>
-                  </div>
-                
-                  <div class="timeline-item">
-                    <div class="timeline-icon bg-info text-white">
-                      <i class="bi bi-shield-check"></i>
-                    </div>
-                    <div class="timeline-content shadow-sm rounded">
-                      <h5>Private Remarks</h5>
-                      <p>{{property.PrivateRemarks}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
           <button type="button" (click)="back()" class="btn w-25 mt-3 search_btn">Back</button>
         </div>
     </div>
