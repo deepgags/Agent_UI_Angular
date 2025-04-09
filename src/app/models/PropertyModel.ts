@@ -2,7 +2,7 @@ export class PropertyModel{
     TotalRecords: number | 0
     BrokerFaxNumber: string | "" | undefined
     BusinessName: string 
-    UnparsedAddress: string | "" | undefined
+    UnparsedAddress: string
     PublicRemarks: string | "" | undefined
     PrivateRemarks: string | "" | undefined
     ListPrice: string | "" | undefined
@@ -13,7 +13,7 @@ export class PropertyModel{
     CrossStreet: string
     StreetSuffix: string | "" | undefined
     StreetNumber: string | "" | undefined
-    PropertyUse: string | "" | undefined
+    PropertyUse: string
     StreetName: string | "" | undefined
     Town: string | "" | undefined
     City: string | "" | undefined
@@ -47,7 +47,9 @@ export class PropertyModel{
         this.BusinessName = "";
         this.BuildingName = "";
         this.CrossStreet = "";
-        this.ListOfficeName="";
+        this.ListOfficeName = "";
+        this.PropertyUse = "";
+        this.UnparsedAddress = "";
     }
 }
 
