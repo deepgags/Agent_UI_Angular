@@ -5,6 +5,8 @@ import { environment } from '../environments/environment';
 import { StorageService } from './storage.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { BrokerageTypeModel } from '../models/BrokerageTypeModel';
+import { RoleModel } from '../models/RoleModel';
 
 @Injectable({
   providedIn: 'root'
@@ -29,29 +31,35 @@ export class CustomerService {
     return this.http.post(this.Apiurl + '/save', customer);
   }
 
-  customerExistWithSiteUrl(siteUrl:string): Observable<CustomerModel[]> {
+  customerExistWithSiteUrl(siteUrl:string): Observable<CustomerModel> {
 
-    return this.http.get<CustomerModel[]>(this.Apiurl + '/siteExist?siteUrl=' + siteUrl)
+    return this.http.get<CustomerModel>(this.Apiurl + '/siteExist?siteUrl=' + siteUrl)
         .pipe(map((result: any) => {
-          if(result && result.data && result.data.length > 0)
+          if(result && result.data)
           {
-            result.data.forEach( (x:any) => {
-              this.customers.push(new CustomerModel(
-                x.customerid,
-                x.firstname,
-                x.lastname,
-                x.emailaddress,
-                x.businessname,
-                x.phonenumber,
-                x.isapproved,
-                x.roleid,
-                x.templateid,
-                x.brokeragetypeid,
-                x.siteurl
-          ))
-        })}
-          return this.customers;
-        }),
+            const x = result.data;
+            const customer = new CustomerModel(
+            x.customerid,
+            x.firstname,
+            x.lastname,
+            x.emailaddress,
+            x.businessname,
+            x.phonenumber,
+            x.isapproved,
+            x.roleid,
+            x.templateid,
+            x.brokeragetypeid,
+            x.siteurl)
+            
+            customer.brokerage = new BrokerageTypeModel(x.brokerages.brokeragetypeid,
+              x.brokerages.name, x.brokerages.alternatename,x.brokerages.logopath,x.brokerages.isapproved,x.brokerages.isdefault);
+
+            customer.role=new RoleModel(x.roles.roleid,x.roles.name,x.roles.isapproved,x.roles.isdefault);
+
+            return customer;
+          }
+          return this.customers[0];
+    }),
         catchError(error => {
           console.error('Error fetching customers:', error);
           return throwError(() => error);

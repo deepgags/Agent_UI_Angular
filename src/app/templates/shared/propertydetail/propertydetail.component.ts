@@ -10,12 +10,13 @@ import { NotificationService } from '../../../services/notification.service';
 import { SearchComponent } from '../search/search.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InterestedUserModel } from '../../../models/InterestedUserModel';
 import { InterestedUserService } from '../../../services/interestedUser.service';
 import { Title } from '@angular/platform-browser';
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-propertydetail',
@@ -41,23 +42,20 @@ export class PropertydetailComponent implements OnInit {
   userModel: InterestedUserModel = new InterestedUserModel();
 
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
-  // @ViewChild(GoogleMap) googleMap: GoogleMap;
-
-  // branches = signal<Branch[]>([]);
   zoom = 14;
   center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Cananda
-  // markers: BranchMapMarker[] = [];
-  // selectedBranch = signal<Branch | null>(null);
 
   selectedFilters: any = {
     propertyId: '',
     mlsId: ''
   };
 
-  constructor(private route: ActivatedRoute,
+  constructor(     
+     private route: ActivatedRoute,
      private propertyService: PropertyService,
      private interestdUserService: InterestedUserService,
      private notificationService: NotificationService,
+     private storageService: StorageService,
      private titleService : Title,
      private location: Location,
      private router: Router,
@@ -158,10 +156,13 @@ export class PropertydetailComponent implements OnInit {
     const {valid} = this.userForm;
     if (valid)
     {
+      const userInfo = this.storageService.getLoggedUserFromUserInfo();
       this.userModel.latitude = this.Latitude;
       this.userModel.longitude = this.Longitude
       this.userModel.propertyId = this.selectedFilters.propertyId;
       this.userModel.mlsId = this.selectedFilters.mlsId;
+      this.userModel.customerId = userInfo.customerId;
+      this.userModel.templateId = userInfo.templateId;
 
       this.loadingSubject.next(true);
       this.interestdUserService.save(this.userModel).subscribe({

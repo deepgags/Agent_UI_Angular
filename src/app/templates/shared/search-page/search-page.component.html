@@ -1,63 +1,62 @@
-	<div class="loading-container flex-content-center" *ngIf="loading$ | async">
-		<div class="spinner">
-		</div>  
-	</div> 
-	<div class="container-fluid menu_img">
-		<div class="container">
-			<div class="row justify-content-center">
-				<p class="text fw-semibold py-3">Search Your Dream Home</p>
-				<div class="col-12 bg-white p-4 mb-5">
-					<app-search [filters]="selectedFilters" [onSearch]="searchProperties" class="search-container" />
-				</div>
+<div class="loading-container flex-content-center" *ngIf="loading$ | async">
+	<div class="spinner">
+	</div>  
+</div> 
+<div class="container-fluid menu_img">
+	<div class="container">
+		<div class="row justify-content-center">
+			<p class="text fw-semibold py-3">Search Your Dream Home</p>
+			<div class="col-12 bg-white p-4 mb-5">
+				<app-search [filters]="selectedFilters" [onSearch]="searchProperties" class="search-container" />
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div class="container-fluid sec-3 search-container" *ngIf="propertiesList && propertiesList.length>0">
-		<div class="container">
-			<p class="text text-center mb-0 fw-semibold">Filtered Properties</p>
-			<mat-paginator 
-			class="py-3"
-			    [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
-				[pageIndex]="pageIndex"
-				(page)="pageEvent = searchProperties(selectedFilters, $event)"
-             	[pageSize]="pageSize"
-              	[pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
-              	aria-label="Select page">
-			  </mat-paginator>
-			  <div class="row g-4">
-				<div class="col-lg-3 col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of propertiesList">
-					<a class="text-decoration-none" (click)="selectProperty(property._id, property.ListingKey)">
-						<div class="card h-100 property-card border border-light-subtle">
-							<div class="image-container">
-								<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url:''" class="card-img-top" alt="No property image to display">
-							</div>
-							<div class="card-body pt-1">
-								<div class="">
-									<p class=" mb-1 fs-5 fw-semibold">$ {{property.ListPrice}}</p>
-								</div>
-								<span class="badge text_bg rounded-pill">{{property.TransactionType}}</span>
-								<p class="card-text pro-text mb-1 d-flex py-1"><span><img class="location me-1 info" alt=""></span> {{property.UnparsedAddress}}</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="">
-										<p class="card-text pro-text"><span><img class="bed" alt=""></span>{{property.BedroomsTotal}}</p>
-									</div>
-									<div class="">
-										<p class="card-text pro-text">
-											<span><img class="shower" alt=""></span>{{property.BathroomsTotalInteger}}
-										</p>
-									</div>
-									<div class="">
-										<p class="card-text pro-text"><span><img class="area" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
-									</div>
-								</div>
-								<p class="info pro-text pt-2 mb-0 fw-semibold">MLS# <span class="text-dark fw-normal pro-text">{{property.ListingKey}}</span></p>
-							</div>
+<div class="container-fluid sec-3 search-container" *ngIf="propertiesList && propertiesList.length>0">
+	<div class="container">
+		<p class="text text-center mb-0 fw-semibold">Filtered Properties</p>
+		<mat-paginator 
+		class="py-3"
+			[length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
+			[pageIndex]="pageIndex"
+			(page)="pageEvent = searchProperties(selectedFilters, $event)"
+			 [pageSize]="pageSize"
+			  [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+			  aria-label="Select page">
+		  </mat-paginator>
+		  <div class="row g-4">
+			<div class="col-lg-3 col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of propertiesList">
+				<a class="text-decoration-none" (click)="selectProperty(property)">
+					<div class="card h-100 property-card border border-light-subtle">
+						<div class="image-container">
+							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url:''" class="card-img-top" alt="No property image to display">
 						</div>
-						</a>
-				</div>
+						<div class="card-body pt-1">
+							<div class="">
+								<p class=" mb-1 fs-5 fw-semibold">$ {{property.ListPrice}}</p>
+							</div>
+							<span class="badge text_bg rounded-pill">{{property.TransactionType}}</span>
+							<p class="card-text pro-text mb-1 d-flex py-1"><span><img class="location me-1 info" alt=""></span> {{property.UnparsedAddress}}</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="">
+									<p class="card-text pro-text"><span><img class="bed" alt=""></span>{{property.BedroomsTotal}}</p>
+								</div>
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img class="shower" alt=""></span>{{property.BathroomsTotalInteger}}
+									</p>
+								</div>
+								<div class="">
+									<p class="card-text pro-text"><span><img class="area" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
+								</div>
+							</div>
+							<p class="info pro-text pt-2 mb-0 fw-semibold">MLS# <span class="text-dark fw-normal pro-text">{{property.ListingKey}}</span></p>
+						</div>
+					</div>
+					</a>
 			</div>
-			<h3 *ngIf="propertiesList && propertiesList.length==0">No properties found for selected criteria.</h3>
 		</div>
+		<h3 *ngIf="propertiesList && propertiesList.length==0">No properties found for selected criteria.</h3>
 	</div>
-
+</div>

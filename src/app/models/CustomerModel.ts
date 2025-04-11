@@ -1,3 +1,6 @@
+import { BrokerageTypeModel } from "./BrokerageTypeModel";
+import { RoleModel } from "./RoleModel";
+
 export class CustomerModel {
     customerId: string = "";
     brokerageTypeId: string = "";
@@ -18,6 +21,8 @@ export class CustomerModel {
     profileImagePath: string = "";
     templateId: string = "";
     isApproved: boolean = false;
+    brokerage: BrokerageTypeModel | undefined ;
+    role: RoleModel | undefined ;
     
     constructor(customerId: string = "", firstname: string = "",
         lastname: string = "", emailAddress: string = "", businessName: string = "", phoneNumber: string = "",

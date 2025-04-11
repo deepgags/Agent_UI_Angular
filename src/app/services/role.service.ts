@@ -16,15 +16,13 @@ export class RoleService {
     this.Apiurl = environment.agentApiUrl + environment.templateUrl;
   }
 
-  async getTemplate(name:string): Promise<RoleModel[]> {
+  async getRoles(name:string): Promise<RoleModel[]> {
 
     this.http.get<any>(this.Apiurl + '?name=' + name)
         .subscribe(data => 
             {
                 data.data.forEach((role: any) => {
                     this.roles.push(new RoleModel(
-                            data.message,
-                            data.status,
                             role.roleid,
                             role.name,
                             role.isapproved,
