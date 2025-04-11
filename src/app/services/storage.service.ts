@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CustomerModel } from '../models/CustomerModel';
 import { environment } from '../environments/environment';
 import crypto from 'crypto'
+import { InterestedUserModel } from '../models/InterestedUserModel';
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +10,28 @@ import crypto from 'crypto'
 
 export class StorageService {
 
-  saveToken(token:string) : void{
-    localStorage.setItem("LoggedUserToken", token);
+  saveToken(token:string, key : string = "LoggedUserToken") : void{
+    localStorage.setItem(key, token);
   }
 
-  saveUserInfo(data:string) : void{
-    localStorage.setItem("LoggedUserInfo", data);
+  saveUserInfo(data:string, key : string = "LoggedUserInfo") : void{
+    localStorage.setItem(key, data);
   }
 
   removeUserInfo() : void{
     localStorage.removeItem("LoggedUserInfo");
     localStorage.removeItem("LoggedUserToken");
+    localStorage.removeItem("InterestedUser");
   }
 
   getLoggedUserFromUserInfo() : CustomerModel {
     const userData = localStorage.getItem("LoggedUserInfo") ?? "";
     return userData ? JSON.parse(userData) as CustomerModel : new CustomerModel();
+  }
+
+  getInterestedUser() : InterestedUserModel {
+    const userData = localStorage.getItem("InterestedUser") ?? "";
+    return userData ? JSON.parse(userData) as InterestedUserModel : new InterestedUserModel();
   }
 
   getLoggedUserFromToken() : CustomerModel {

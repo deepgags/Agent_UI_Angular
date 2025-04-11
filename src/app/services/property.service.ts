@@ -64,7 +64,7 @@ export class PropertyService {
                   TotalRecords: result.total,
                   ListOfficeName: property.ListOfficeName,
                   ListingContractDate: property.ListingContractDate,
-                  IsFeatureListing : property.ListOfficeName && officesName?.includes(property.ListOfficeName)
+                  IsFeatureListing : true,//property.ListOfficeName && officesName?.includes(property.ListOfficeName)
               }});
             }
             return [];

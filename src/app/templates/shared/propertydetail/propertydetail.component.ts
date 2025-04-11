@@ -76,11 +76,12 @@ export class PropertydetailComponent implements OnInit {
       }
     });
 
+    const interestedUserInfo = this.storageService.getInterestedUser();
     this.userForm = this.fb.group({
-      firstName: new FormControl(this.userModel.firstName, Validators.required),
-      phoneNumber: new FormControl(this.userModel.phoneNumber, [Validators.required, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
-      emailAddress: new FormControl(this.userModel.emailAddress, [Validators.required, Validators.email]),
-      comment: new FormControl("I would like more information regarding a property", Validators.required),
+      firstName: new FormControl(interestedUserInfo.firstName, Validators.required),
+      phoneNumber: new FormControl(interestedUserInfo.phoneNumber, [Validators.required, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
+      emailAddress: new FormControl(interestedUserInfo.emailAddress, [Validators.required, Validators.email]),
+      comment: new FormControl(interestedUserInfo.comment ? interestedUserInfo.comment : "I would like more information regarding a property", Validators.required),
     });
 
     this.userForm.valueChanges.subscribe(
@@ -118,6 +119,7 @@ export class PropertydetailComponent implements OnInit {
       },
       error: (err) => {
         this.notificationService.showNotification("Error occurred while getting property information");
+        this.loadingSubject.next(false);
       },
       complete: () => {
         this.loadingSubject.next(false);
@@ -172,6 +174,7 @@ export class PropertydetailComponent implements OnInit {
             this.notificationService.showNotification('Something went wrong while saving information');
           },
         complete: () => {
+          this.storageService.saveUserInfo(JSON.stringify(this.userModel) , "InterestedUser");
           this.notificationService.showNotification('Information has been saved');
           this.loadingSubject.next(false);
           this.userModel = new InterestedUserModel();

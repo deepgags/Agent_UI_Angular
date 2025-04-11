@@ -35,7 +35,6 @@ export class InteresteduserComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public userData : PropertyModel,
     private fb: FormBuilder,
-    private router : Router,
     private interestedUserService: InterestedUserService,
     private storageService: StorageService,
     private notificationService: NotificationService) {
@@ -43,11 +42,12 @@ export class InteresteduserComponent implements OnInit {
 }
 
 ngOnInit(): void {
+  const interestedUserInfo = this.storageService.getInterestedUser();
   this.userForm = this.fb.group({
-    firstName: new FormControl(this.userModel.firstName, Validators.required),
-    phoneNumber: new FormControl(this.userModel.phoneNumber, [Validators.required, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
-    emailAddress: new FormControl(this.userModel.emailAddress, [Validators.required, Validators.email]),
-    comment: new FormControl("I would like more information regarding a property", Validators.required),
+    firstName: new FormControl(interestedUserInfo.firstName, Validators.required),
+    phoneNumber: new FormControl(interestedUserInfo.phoneNumber, [Validators.required, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
+    emailAddress: new FormControl(interestedUserInfo.emailAddress, [Validators.required, Validators.email]),
+    comment: new FormControl(interestedUserInfo.comment ? interestedUserInfo.comment : "I would like more information regarding a property", Validators.required),
   });
 
   this.userForm.valueChanges.subscribe(
@@ -71,28 +71,31 @@ save() {
   const {valid} = this.userForm;
   if (valid)
   {
-    const userInfo = this.storageService.getLoggedUserFromUserInfo();
-    this.userModel.latitude = this.Latitude;
-    this.userModel.longitude = this.Longitude;
-    this.userModel.propertyId = this.userData._id;
-    this.userModel.mlsId = this.userData.ListingKey;
-    this.userModel.customerId = userInfo.customerId;
-    this.userModel.templateId = userInfo.templateId;
+      const userInfo = this.storageService.getLoggedUserFromUserInfo();
+      this.userModel.latitude = this.Latitude;
+      this.userModel.longitude = this.Longitude;
+      this.userModel.propertyId = this.userData._id;
+      this.userModel.mlsId = this.userData.ListingKey;
+      this.userModel.customerId = userInfo.customerId;
+      this.userModel.templateId = userInfo.templateId;
 
-    this.loadingSubject.next(true);
-    this.interestedUserService.save(this.userModel).subscribe({
-      next: (v) =>  {},
-       error: (e) => 
-        {
-          this.notificationService.showNotification('Something went wrong while saving information');
-        },
-      complete: () => {
-        this.notificationService.showNotification('Information has been saved');
-        this.loadingSubject.next(false);
-        this.userForm.reset();
-        this.close();
-      }
-   })  
+      this.storageService.saveUserInfo(JSON.stringify(this.userModel) , "InterestedUser");
+      this.close();
+
+  //   this.loadingSubject.next(true);
+  //   this.interestedUserService.save(this.userModel).subscribe({
+  //     next: (v) =>  {},
+  //      error: (e) => 
+  //       {
+  //         this.notificationService.showNotification('Something went wrong while saving information');
+  //       },
+  //     complete: () => {
+  //       this.notificationService.showNotification('Information has been saved');
+  //       this.loadingSubject.next(false);
+  //       this.userForm.reset();
+  //       this.close();
+  //     }
+  //  })  
  }
 }
 
