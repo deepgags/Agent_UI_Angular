@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<!-- <p class="text fw-semibold text-white  py-5">Search Your Dream Home</p> -->
-				<div class="col-12 bg-white p-4 mb-5">
+				<div class="col-12 bg-white pt-5 pb-4">
 					<app-search [filters]="selectedFilters" [onSearch]="searchProperties" />
 				</div>
 			</div>
@@ -14,7 +14,7 @@
 	</div>
     <div class="container-fluid search-container" *ngIf="property">
         <div class="container py-3">    
-          <h3 class="fw-semibold text-center">Property Information</h3>
+          <h2 class="fw-semibold text-start mb-3">Property Information</h2>
           <div class="row card p-3">
             <div class="col-12">
                   <ngb-carousel [pauseOnHover]="true" (slide)="1" [wrap]="true" class="">
@@ -25,19 +25,19 @@
                     </ng-template>
                   </ngb-carousel>                 
             </div>
-          <div class="row card-body">
-            <div class="col-lg-6">
+          <div class="row card-body align-items-center">
+            <div class="col-lg-3 justify-content-center d-flex">
+              <p class="fw-bold fs-3 info">${{property.ListPrice}}</p>
+            </div>
+            <div class="col-lg-6 justify-content-center d-flex">
               <span class="badge lable fs-6">{{property.TransactionType}}</span>
               <h6 class="">{{property.UnparsedAddress}}</h6>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 justify-content-center d-flex">
               <p class="fw-bold info">MLS# <span class="fw-bold text-dark pro-text">{{property.ListingKey}}</span></p>
              </div>
-            <div class="col-lg-3 text-end">
-              <p class="fw-bold info">${{property.ListPrice}}</p>
-            </div>
           </div>
-          <div class="row">
+          <div class="row justify-content-around">
             <div class="col-md-3" *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
               <div class="border rounded p-3 text-center bg-light">
                <span><img class="bed" alt=""></span> {{property.BedroomsTotal}}
@@ -53,11 +53,6 @@
                 <span><img class="area" alt=""></span>{{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}
               </div>
             </div>
-            <!-- <div class="col-md-3 mt-lg-0 mt-3">
-              <div class="border rounded p-3 text-center bg-light">
-                <i class="fa-solid fa-car info"></i> 2 Car Garage
-              </div>
-            </div> -->
           </div>
           </div>
           <div class="row mt-4">
