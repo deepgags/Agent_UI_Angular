@@ -27,6 +27,7 @@ export class BrokerageTypeService {
                   this.brokerageTypes.push(new BrokerageTypeModel(
                     brokeragetype.brokeragetypeid,
                     brokeragetype.name,
+                    brokeragetype.alternatename,
                     brokeragetype.logopath,
                     brokeragetype.isapproved,
                     brokeragetype.isdefault))

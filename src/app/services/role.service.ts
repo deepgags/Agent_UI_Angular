@@ -23,8 +23,6 @@ export class RoleService {
             {
                 data.data.forEach((role: any) => {
                     this.roles.push(new RoleModel(
-                            data.message,
-                            data.status,
                             role.roleid,
                             role.name,
                             role.isapproved,

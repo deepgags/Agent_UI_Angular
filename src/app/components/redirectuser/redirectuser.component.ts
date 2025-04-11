@@ -34,6 +34,7 @@ export class RedirectUserComponent implements OnInit {
     }
     
     ngOnInit() {
+     
       let savedUserInfo = this.storageService.getLoggedUserFromUserInfo();
       if(savedUserInfo.customerId == "")
       {
@@ -43,11 +44,11 @@ export class RedirectUserComponent implements OnInit {
             this.customerService.customerExistWithSiteUrl(currentUrl)
             .subscribe({
               next: (response) => {
-                if (response && response.length > 0 && response[0].customerId!="") {
-                  this.storageService.saveUserInfo(JSON.stringify(response[0]));
+                if (response && response.customerId!="") {
+                  this.storageService.saveUserInfo(JSON.stringify(response));
                 }
                 this.loadTemplateStyles();
-                this.redirectUser(response[0]);
+                this.redirectUser(response);
               },
               error: () => {
                 this.router.navigateByUrl("/register");

@@ -37,6 +37,7 @@ export class PropertyModel{
     PublicRemarksExtra?: string
     PurchaseContractDate?: string
     TaxLegalDescription?: string
+    IsFeatureListing: boolean = false;
 
     constructor() {
         this.TotalRecords = 10;

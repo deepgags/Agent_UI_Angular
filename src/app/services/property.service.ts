@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 import { PropertyModel } from '../models/PropertyModel';
 import { RequestPropertyModel } from '../models/RequestPropertyModel';
 import { catchError, map, Observable, throwError } from 'rxjs';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,12 @@ export class PropertyService {
   query = signal<string>("");
   private Apiurl:string ="";
 
- constructor(private http: HttpClient) {
+ constructor(private http: HttpClient, private storageService: StorageService,) {
     this.Apiurl = environment.propertyApiUrl + environment.propertySearchUrl;
   }
 
   searchProperties(propertyParams:any): Observable<PropertyModel[]> {
+    const officesName = this.storageService.getLoggedUserFromUserInfo().brokerage?.AlternateName.split(',');
     const { page, pageSize, address, property_type, property_subtype, bedrooms, bathrooms, property_for, min_price, max_price, sqFt } = propertyParams;
     return this.http.get<PropertyModel[]>(`${this.Apiurl}?page=${page}&pageSize=${pageSize}&address=${address}&property_type=${property_type}&property_subtype=${property_subtype}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}&max_price=${max_price}&min_area=${sqFt}`)
           .pipe(map((result: any) => {
@@ -61,6 +63,7 @@ export class PropertyService {
                   TotalRecords: result.total,
                   ListOfficeName: result.ListOfficeName,
                   ListingContractDate: result.ListingContractDate,
+                  IsFeatureListing : property.ListOfficeName && officesName?.includes(property.ListOfficeName)
               }});
             }
             return [];
@@ -116,6 +119,7 @@ export class PropertyService {
                     ListingContractDate: property.ListingContractDate,
                     PurchaseContractDate: property.PurchaseContractDate,
                     TaxLegalDescription: property.TaxLegalDescription,
+                    IsFeatureListing : false
                    }
                 return propertyModel;
               }

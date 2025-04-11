@@ -16,6 +16,8 @@ import { BehaviorSubject } from 'rxjs';
 import { StorageService } from '../../../services/storage.service';
 import {MatIconModule} from '@angular/material/icon';
 import { HighlightSearch } from '../../../Pipes/highlight';
+import { MatDialog } from '@angular/material/dialog';
+import { InteresteduserComponent } from '../../../components/dialogs/interesteduser/interesteduser.component';
 
 @Component({
   selector: 'app-search-page',
@@ -47,6 +49,7 @@ export class SearchPageComponent implements OnInit {
   };
  
   constructor(
+    private _interestedUserDialog: MatDialog,
     private route: ActivatedRoute,
     private propertyService: PropertyService,
     public loadingService: LoadingService,
@@ -73,7 +76,37 @@ export class SearchPageComponent implements OnInit {
     });
   }
 
-  selectProperty(propertyId:string, mlsId:string):void{
+  openDialog(property : PropertyModel) {
+         const userDialog = this._interestedUserDialog.open(InteresteduserComponent,
+             {
+                width      : '50%',
+                height     : 'auto',
+                disableClose : true,
+                autoFocus : false,
+                restoreFocus : false,
+                hasBackdrop: true,
+                data       :  property
+             }
+          )
+
+          userDialog.afterClosed().subscribe(result => {
+            this.redirectToDetail(property);
+          });
+        }
+
+  selectProperty(property : PropertyModel) : void{
+    if(property.IsFeatureListing)
+    {
+       this.openDialog(property);
+    }
+    else
+    {
+        this.redirectToDetail(property);
+    }
+  }
+
+  redirectToDetail(property : PropertyModel): void
+  {
     const userInfo = this.storageService.getLoggedUserFromUserInfo();
     const propertyUrl = userInfo.templateId == "0b69c6031f111d63bc2c975dd2837e38" ? '/t1/propertydetail' : '/t2/propertydetail';
     this.router.navigate(
@@ -89,35 +122,15 @@ export class SearchPageComponent implements OnInit {
           max_price: this.selectedFilters['max_price'], 
           property_status: this.selectedFilters['property_status'], 
           sqFt: this.selectedFilters['sqFt'],
-          propertyId: propertyId,
-          mlsId: mlsId
+          propertyId: property._id,
+          mlsId: property.ListingKey
         },
         queryParamsHandling: 'replace'
       }
-    );
-    // if(userInfo.templateId == "0b69c6031f111d63bc2c975dd2837e38")
-    // {
-    //   this.router.navigate(['/t1/propertydetail'], {
-    //     queryParams: {
-    //       propertyId,
-    //       mlsId
-    //     }
-    //   });
-    // }
-    // if(userInfo.templateId == "0b69c6031f111d63bc2c975dd2837e39")
-    // {
-    //   this.router.navigate(['/t2/propertydetail'], {
-    //     queryParams: {
-    //       propertyId,
-    //       mlsId
-    //     }
-    //   });
-    // }
-   
+    );  
   }
 
   searchProperties = (selectedFilters: any, event?:PageEvent) => {
-    debugger;
     this.pageIndex = event?.pageIndex ?? this.pageIndex;
     this.pageSize = event?.pageSize ?? this.pageSize;
 
@@ -146,7 +159,6 @@ export class SearchPageComponent implements OnInit {
       },
       complete: () => {
         this.loadingSubject.next(false);
-       // this.loadingService.loadingOff();
       }
     })
    return event;

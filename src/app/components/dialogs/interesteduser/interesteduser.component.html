@@ -1,0 +1,39 @@
+<h1 mat-dialog-title style="color: gray !important;">Enter your detail</h1>
+<mat-dialog-content id="siteDialog">
+        <form [formGroup]="userForm" name="userForm" *ngIf="userForm">
+            <mat-form-field appearance="fill">
+              <mat-label class="info">First Name</mat-label>
+              <input formControlName="firstName" required matInput placeholder="First Name" />
+              <mat-error>First name is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label class="info">Email</mat-label>
+              <input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
+              @if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
+               <mat-error>Please enter a valid email address</mat-error>
+              }
+             @if (userForm.hasError('required', 'emailAddress')) {
+               <mat-error>Email is required</mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field appearance="fill">                
+              <mat-label class="info">Phone Number</mat-label>
+              <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
+              @if (userForm.hasError('pattern', 'phoneNumber')) {
+                <mat-error>Please enter a valid phone number</mat-error>
+               }
+               @if (userForm.hasError('required', 'phoneNumber')) {
+                <mat-error>Phone number is required</mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label class="info">Leave a comment</mat-label>
+              <textarea formControlName="comment" class="form-control" rows="4" matInput placeholder="Ex. Enter comment about this property"></textarea>
+              <mat-error>Comment is required</mat-error>
+            </mat-form-field>
+          </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="close()" class="btn btn-dark me-2 px-4 py-2 fw-semibold mt-5">Close</button>
+    <button class="btn btn-success me-2 px-4 py-2 fw-semibold mt-5" (click)="save()">Save</button>
+  </mat-dialog-actions>
