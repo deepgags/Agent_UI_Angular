@@ -396,6 +396,12 @@ footer {
     position: absolute;
     top: 9px;
   }
+
+  .text_bg2{
+    background-color: #002fd5;
+    position: absolute;
+    top: 50px;
+  }
   .info {
     color: #002FD5 !important;
   }
@@ -415,7 +421,7 @@ footer {
   }
 
   .location{
-    content:url("/t2/images/vector img/location.svg");
+    content:url("/public/images/vectorimg/star.png");
   } 
 
   .bed{
