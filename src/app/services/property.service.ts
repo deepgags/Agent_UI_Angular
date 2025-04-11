@@ -42,6 +42,7 @@ export class PropertyService {
                   Latitude: property.Latitude,
                   ListingKey: property.ListingKey,
                   ListPrice: property.ListPrice,
+                  ListPriceUnit: property.ListPriceUnit,
                   Longitude: property.Longitude,
                   LotSizeDimensions: property.LotSizeDimensions,
                   OriginalListPrice: property.OriginalListPrice,
@@ -61,8 +62,8 @@ export class PropertyService {
                   BuildingAreaTotal: property.BuildingAreaTotal,
                   BuildingAreaUnits: property.BuildingAreaUnits,
                   TotalRecords: result.total,
-                  ListOfficeName: result.ListOfficeName,
-                  ListingContractDate: result.ListingContractDate,
+                  ListOfficeName: property.ListOfficeName,
+                  ListingContractDate: property.ListingContractDate,
                   IsFeatureListing : property.ListOfficeName && officesName?.includes(property.ListOfficeName)
               }});
             }
@@ -95,6 +96,7 @@ export class PropertyService {
                     Latitude: property.Latitude,
                     ListingKey: property.ListingKey,
                     ListPrice: property.ListPrice,
+                    ListPriceUnit: property.ListPriceUnit,
                     Longitude: property.Longitude,
                     LotSizeDimensions: property.LotSizeDimensions,
                     OriginalListPrice: property.OriginalListPrice,

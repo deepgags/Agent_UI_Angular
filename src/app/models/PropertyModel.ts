@@ -6,6 +6,7 @@ export class PropertyModel{
     PublicRemarks: string | "" | undefined
     PrivateRemarks: string | "" | undefined
     ListPrice: string | "" | undefined
+    ListPriceUnit: string | "" | undefined
     OriginalListPrice: string | "" | undefined
     LotSizeDimensions: string | "" | undefined
     UnitNumber: string | "" | undefined
