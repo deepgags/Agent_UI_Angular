@@ -28,7 +28,7 @@
             </div>
           <div class="row card-body align-items-center">
             <div class="col-lg-3 justify-content-center d-flex">
-              <p class="fw-bold fs-3 info">${{property.ListPrice}}</p>
+              <p class="fw-bold fs-3 info">${{property.ListPrice}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
             </div>
             <div class="col-lg-6 justify-content-center d-flex">
               <span class="badge lable fs-6">{{property.TransactionType}}</span>
