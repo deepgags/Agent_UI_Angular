@@ -218,6 +218,8 @@ footer {
   color: rgb(217 217 217);
 }
 
+
+
 .tool {
   border-radius: 50px;
   cursor: pointer;
@@ -332,6 +334,15 @@ footer {
 }
 
 .search-container{
+  p{
+    font-size: 13px;
+  }
+
+  span{
+    font-size: 13px;
+  }
+
+
   .bg-badge{
     background-color: #002FD5;
     color: white;
