@@ -2,8 +2,8 @@
 	<div class="row py-2 align-items-center justify-content-center">
 		<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
 			<div class="">
-				<h2 class="mb-0">{{userData.name}}</h2>
-				<p class="text-center mb-0">SALES REPRESENTATIVE</p>
+				<h4 class="mb-0">{{userData.name}}</h4>
+				<p class="text-center mb-0 small">SALES REPRESENTATIVE</p>
 			</div>
 		</div>
 		<div class="col-12 col-lg-6 d-flex justify-content-center">
@@ -16,7 +16,7 @@
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold text-decoration-none" [href]="'tel:'+userData.phone">{{userData.phone}}</a>
+						<a class="text-dark fw-semibold small text-decoration-none" [href]="'tel:'+userData.phone">{{userData.phone}}</a>
 					</p>
 				</div>
 			</div>
@@ -26,7 +26,7 @@
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold text-decoration-none" [href]="'mailto:' + userData.email">{{userData.email}}</a>
+						<a class="text-dark fw-semibold small text-decoration-none" [href]="'mailto:' + userData.email">{{userData.email}}</a>
 					</p>
 				</div>
 			</div>
@@ -71,14 +71,10 @@
 						<a class="nav-link nav_content" href="#">Contact</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" href="#">Login | Signup</a>
-					</li>
-					<li class="nav-item">
 						<div class="d-flex align-items-center">
 							<img class="img-fluid" src="/t2/images/vector img/login.png" alt="">
 							<div class=""></div>
-							<a class="nav-link nav_content" href="#">Login | Signup</a>
-							<div class=""></div>
+							<a class="nav-link nav_content" href="/register">Login | Signup</a>
 						</div>
 					</li>
 				</ul>
