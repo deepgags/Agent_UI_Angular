@@ -10,7 +10,11 @@
     background: rgba(0, 0, 0, 0.7);
     z-index: 5;
   }
-  
+
+  span{
+    font-size: 14px !important;
+  }
+
   .spinner {
     border: 8px solid rgba(0, 0, 0, 0.1);
     border-left-color: #198754; /* Spinner color */
@@ -24,6 +28,9 @@
     to {
       transform: rotate(360deg);
     }
+  }
+  p{
+    font-size: 14px !important;
   }
 
   h2 {
