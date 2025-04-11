@@ -15,7 +15,6 @@
 
 <div class="container-fluid sec-3 search-container" >
 	<div class="container" *ngIf="propertiesList && propertiesList.length>0">
-		<h2 class="text-center">Filtered Properties</h2>
 		<mat-paginator 
 		class="py-3"
 			[length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
