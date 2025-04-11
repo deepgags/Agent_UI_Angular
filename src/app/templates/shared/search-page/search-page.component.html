@@ -30,7 +30,7 @@
 				<a class="text-decoration-none" (click)="selectProperty(property)">
 					<div class="card h-100 property-card border border-light-subtle">
 						<div class="image-container">
-							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url:''" class="card-img-top" alt="No property image to display">
+							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : '/images/NoPropertyImage.jpg'" class="card-img-top" alt="No property image to display">
 						</div>
 						<div class="card-body pt-1">
 							<div class="">

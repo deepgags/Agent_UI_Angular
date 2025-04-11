@@ -23,7 +23,8 @@
                         <img [src]="image.Media_url" class="img-fluid rounded fixed-height" alt="No Image" />
                       </div>
                     </ng-template>
-                  </ngb-carousel>                 
+                  </ngb-carousel>       
+                  <img class="img-fluid rounded no-image-fixed-height" *ngIf="property.Media ? property.Media.length == 0 : true" [src]="'/images/NoPropertyImage.jpg'" alt="No property image to display">          
             </div>
           <div class="row card-body align-items-center">
             <div class="col-lg-3 justify-content-center d-flex">

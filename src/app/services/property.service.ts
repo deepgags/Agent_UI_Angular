@@ -64,7 +64,7 @@ export class PropertyService {
                   TotalRecords: result.total,
                   ListOfficeName: property.ListOfficeName,
                   ListingContractDate: property.ListingContractDate,
-                  IsFeatureListing : true,//property.ListOfficeName && officesName?.includes(property.ListOfficeName)
+                  IsFeatureListing : property.ListOfficeName && officesName?.includes(property.ListOfficeName)
               }});
             }
             return [];
@@ -75,6 +75,7 @@ export class PropertyService {
     }
 
   getProperty(propertId:any, mlsId:any): Observable<PropertyModel> {
+    const officesName = this.storageService.getLoggedUserFromUserInfo().brokerage?.AlternateName.split(',');
       return this.http.get<PropertyModel>(`${environment.propertyApiUrl}/propertyinformation?id=${propertId}&mlsId=${mlsId}`)
             .pipe(map((result: any) => {
               if(result && result.data)
@@ -121,7 +122,7 @@ export class PropertyService {
                     ListingContractDate: property.ListingContractDate,
                     PurchaseContractDate: property.PurchaseContractDate,
                     TaxLegalDescription: property.TaxLegalDescription,
-                    IsFeatureListing : false
+                    IsFeatureListing : property.ListOfficeName && officesName?.includes(property.ListOfficeName)
                    }
                 return propertyModel;
               }
