@@ -30,14 +30,15 @@
 				<a class="text-decoration-none" (click)="selectProperty(property)">
 					<div class="card h-100 property-card border border-light-subtle">
 						<div class="image-container">
-							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : '/images/NoPropertyImage.jpg'" class="card-img-top" alt="No property image to display">
+							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : '/images/commercial_no_Image.jpg'" class="card-img-top" alt="No property image to display">
 						</div>
 						<div class="card-body pt-1">
-							<div class="">
-								<p class=" mb-1 fs-4 fw-semibold">$ {{property.ListPrice}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<p class="mb-1 fs-4 fw-semibold">$ {{property.ListPrice}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
+								<span class="fw-semibold">{{property.PropertyType}}</span>
 							</div>
 							<span class="badge text_bg rounded-pill">{{property.TransactionType}}</span>
-							<span class=" text_bg2 text-white location" style="width: 25px;"></span>
+							<span class="text_bg2 text-white" [ngClass]="{ 'location': property.IsFeatureListing }" style="width: 25px;"></span>
 							<p class="card-text  mb-1 d-flex py-1"><i class="fa-solid fa-location-dot info mt-1 me-1"></i> {{property.UnparsedAddress}}</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="" *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">

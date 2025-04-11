@@ -90,7 +90,10 @@ export class SearchPageComponent implements OnInit {
           )
 
           userDialog.afterClosed().subscribe(result => {
-            this.redirectToDetail(property);
+            if(result)
+            {
+               this.redirectToDetail(property);
+            }
           });
         }
 

@@ -63,8 +63,8 @@ ngOnInit(): void {
   this.getLocation();
 }
 
-close(){
-  this.dialogRef.close();
+close(isSubmit : boolean){
+  this.dialogRef.close(isSubmit);
 }
 
 save() {
@@ -80,7 +80,7 @@ save() {
       this.userModel.templateId = userInfo.templateId;
 
       this.storageService.saveUserInfo(JSON.stringify(this.userModel) , "InterestedUser");
-      this.close();
+      this.close(true);
 
   //   this.loadingSubject.next(true);
   //   this.interestedUserService.save(this.userModel).subscribe({
