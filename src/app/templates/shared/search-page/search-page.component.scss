@@ -96,3 +96,15 @@ div.mat-mdc-select-panel {
   border-radius: 7px;
   font-size: 13px !important;
 }
+
+@media (min-width: 2560px) {
+ .col_32{
+  width: 25%;
+ }
+}
+
+@media (min-width: 1920px) {
+  .col_32{
+   width: 25%;
+  }
+ }
