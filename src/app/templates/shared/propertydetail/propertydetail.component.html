@@ -17,14 +17,17 @@
           <h2 class="fw-semibold text-start mb-3">Property Information</h2>
           <div class="row card p-3">
             <div class="col-12">
-                  <ngb-carousel [pauseOnHover]="true" (slide)="1" [wrap]="true" class="">
+              <gallery *ngIf="property.Media ? property.Media.length > 0 : false" id="myGallery" counter thumbs thumbPosition="bottom" itemAutosize
+              loadingStrategy="preload"
+              loadingAttr="eager"></gallery>
+                  <!-- <ngb-carousel [pauseOnHover]="true" (slide)="1" [wrap]="true" class="">
                     <ng-template ngbSlide style="margin-bottom: 20px;" *ngFor="let image of property.Media">
                       <div class="wrapper text-center h-100">
                         <img [src]="image.Media_url" class="img-fluid rounded fixed-height" alt="No Image" />
                       </div>
                     </ng-template>
-                  </ngb-carousel>       
-                  <img class="img-fluid rounded no-image-fixed-height" *ngIf="property.Media ? property.Media.length == 0 : true" [src]="'/images/commercial_no_Image.jpg'" alt="No property image to display">          
+                  </ngb-carousel>-->
+                  <img class="img-fluid rounded no-image-fixed-height" *ngIf="property.Media ? property.Media.length == 0 : true" [src]="'/images/commercial_no_Image.jpg'" alt="No property image to display">
             </div>
           <div class="row card-body align-items-center">
             <div class="col-lg-3 justify-content-center d-flex">

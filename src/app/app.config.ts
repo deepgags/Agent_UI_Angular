@@ -5,11 +5,12 @@ import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AngularSvgIconModule, provideAngularSvgIcon } from 'angular-svg-icon';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),provideHttpClient(withFetch()),
     AngularSvgIconModule,
-        provideAngularSvgIcon(),
+    provideAnimations(), provideAngularSvgIcon(),
      provideRouter(routes),
       provideClientHydration(withEventReplay())]
 };

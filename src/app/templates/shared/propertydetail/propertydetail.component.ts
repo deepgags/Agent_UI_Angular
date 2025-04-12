@@ -2,7 +2,7 @@ import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PropertyModel } from '../../../models/PropertyModel';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PropertyService } from '../../../services/property.service';
 import { MatButtonModule} from '@angular/material/button';
@@ -18,13 +18,32 @@ import { Title } from '@angular/platform-browser';
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { StorageService } from '../../../services/storage.service';
 
+import {
+  GalleryModule,
+  GalleryItem,
+  ImageItem,
+  ImageSize,
+  ThumbnailsPosition,
+  Gallery,
+  GalleryConfig,
+  GalleryComponent,
+  GalleryRef,
+} from 'ng-gallery';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
+import { provideAnimations } from '@angular/platform-browser/animations';
+// import { LightboxModule, Lightbox } from 'ng-gallery/lightbox';
+
+
 @Component({
   selector: 'app-propertydetail',
   imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, SearchComponent,
     MatFormFieldModule, MatInputModule,
     GoogleMapsModule,
-    RouterModule],
-  providers: [NgbCarouselConfig],
+    RouterModule , GalleryModule,
+    ],
+  providers: [provideAnimations(), NgbCarouselConfig],
   templateUrl: './propertydetail.component.html',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./propertydetail.component.scss'],
@@ -32,7 +51,7 @@ import { StorageService } from '../../../services/storage.service';
 })
 export class PropertydetailComponent implements OnInit {
 
-  property: PropertyModel;
+  property: PropertyModel | undefined;
   Latitude: number= 0;
   Longitude: number= 0;
   private loadingSubject = new BehaviorSubject<boolean>(false);
@@ -42,6 +61,8 @@ export class PropertydetailComponent implements OnInit {
   userModel: InterestedUserModel = new InterestedUserModel();
 
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
+  galleryConfig$: Observable<GalleryConfig>;
+  galleryRef: GalleryRef | undefined;
   zoom = 14;
   center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Cananda
 
@@ -49,8 +70,8 @@ export class PropertydetailComponent implements OnInit {
     propertyId: '',
     mlsId: ''
   };
-
   constructor(     
+    breakpointObserver: BreakpointObserver,
      private route: ActivatedRoute,
      private propertyService: PropertyService,
      private interestdUserService: InterestedUserService,
@@ -59,13 +80,34 @@ export class PropertydetailComponent implements OnInit {
      private titleService : Title,
      private location: Location,
      private router: Router,
-     private fb: FormBuilder
+     private fb: FormBuilder,
+     private gallery: Gallery
   ) {
-    this.property = new PropertyModel(); 
     this.titleService.setTitle("Property Detail")
+    
+    this.galleryConfig$ = breakpointObserver.observe([
+      Breakpoints.HandsetPortrait
+    ]).pipe(
+      map(res => {
+        if (res.matches) {
+          return {
+            thumbPosition: ThumbnailsPosition.Top,
+            thumbWidth: 80,
+            thumbHeight: 80
+          };
+        }
+        return {
+          thumbPosition: ThumbnailsPosition.Left,
+          thumbWidth: 120,
+          thumbHeight: 90
+        };
+      })
+    );
   }
 
   ngOnInit(): void {
+    this.galleryRef = this.gallery.ref('myGallery');
+
     this.route.queryParams.subscribe(params => {
       if (Object.keys(params).length > 0) {
         this.selectedFilters = {
@@ -111,11 +153,21 @@ export class PropertydetailComponent implements OnInit {
         this.property = response;
          this.center.lat = this.property.Latitude;
          this.center.lng = this.property.Longitude;
-        const parser = new DOMParser();
+         this.property.Media?.forEach(x=>
+         {
+          if (this.galleryRef) {
+            this.galleryRef.add(new ImageItem(
+              {
+                  src : x.Media_url,
+                  thumb : x.Media_url
+              }));
+          }
+        });
+        //const parser = new DOMParser();
         // this is an SVG string of a house icon, but feel free to use whatever SVG icon you'd like
-        const svgString = `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FF5733" stroke="#FFFFFF" viewBox="0 0 24 24">
-                          <path fill-rule="evenodd" d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z" clip-rule="evenodd"/>
-                          </svg>`;
+        // const svgString = `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FF5733" stroke="#FFFFFF" viewBox="0 0 24 24">
+        //                   <path fill-rule="evenodd" d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z" clip-rule="evenodd"/>
+        //                   </svg>`;
       },
       error: (err) => {
         this.notificationService.showNotification("Error occurred while getting property information");

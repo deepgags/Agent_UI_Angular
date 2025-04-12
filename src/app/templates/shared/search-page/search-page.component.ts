@@ -29,7 +29,7 @@ import { InteresteduserComponent } from '../../../components/dialogs/interested-
   standalone: true
 })
 export class SearchPageComponent implements OnInit {
-  propertiesList: PropertyModel[] = [];
+  propertiesList: PropertyModel[] | undefined;
   pageEvent: PageEvent | undefined;
   pageIndex:number = 0;
   pageSize:number = 12;
