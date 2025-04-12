@@ -41,13 +41,13 @@
 							<span class="badge text_bg rounded-pill">{{property.TransactionType}}</span>
 							<span class="text_bg2 text-white" [ngClass]="{ 'location': property.IsFeatureListing }" style="width: 25px;"></span>
 							<p class="card-text  mb-1 d-flex py-1"><i class="fa-solid fa-location-dot info mt-1 me-1"></i> {{property.UnparsedAddress}}</p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="" *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
-									<p class="card-text "><span><img class="bed" alt=""></span>{{property.BedroomsTotal}}</p>
+							<div class="d-flex align-items-center">
+								<div class="me-3" *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
+									<p class="card-text "><span><img class="bed" alt=""></span> {{property.BedroomsTotal}}</p>
 								</div>
-								<div class="" *ngIf="property.BathroomsTotalInteger && property.BathroomsTotalInteger > 0">
+								<div class="me-3" *ngIf="property.BathroomsTotalInteger && property.BathroomsTotalInteger > 0">
 									<p class="card-text ">
-										<span><img class="shower" alt=""></span>{{property.BathroomsTotalInteger}}
+										<span><img class="shower" alt=""></span> {{property.BathroomsTotalInteger}}
 									</p>
 								</div>
 								<div class="" *ngIf="property.BuildingAreaTotal && property.BuildingAreaTotal > 0">
