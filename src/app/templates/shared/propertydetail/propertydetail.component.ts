@@ -35,7 +35,6 @@ import { map } from 'rxjs/operators';
 import { provideAnimations } from '@angular/platform-browser/animations';
 // import { LightboxModule, Lightbox } from 'ng-gallery/lightbox';
 
-
 @Component({
   selector: 'app-propertydetail',
   imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, SearchComponent,
@@ -71,7 +70,7 @@ export class PropertydetailComponent implements OnInit {
     mlsId: ''
   };
   constructor(     
-    breakpointObserver: BreakpointObserver,
+     breakpointObserver: BreakpointObserver,
      private route: ActivatedRoute,
      private propertyService: PropertyService,
      private interestdUserService: InterestedUserService,
