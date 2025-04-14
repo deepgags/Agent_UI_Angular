@@ -11,14 +11,22 @@
     z-index: 5;
   }
 
-  #map{
 
-    .map-container{
-      height: 214px !important;
-      width: 406px !important;
+  #map {
+    .map-container {
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 16 / 9;
       border-radius: 7px !important;
+  
+      // Optional: ensure the map doesn't exceed a certain size on larger screens
+      @media (min-width: 768px) {
+        max-width: 406px;
+        height: 214px !important;
+      }
     }
   }
+  
 
   span{
     font-size: 14px !important;
