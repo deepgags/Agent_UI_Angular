@@ -15,6 +15,7 @@ import { NotificationService } from '../../services/notification.service';
 import { Title } from '@angular/platform-browser';
 import { LoadingService } from '../../services/loading.service';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { RoleModel } from '../../models/RoleModel';
 
 @Component({
   selector: 'app-register',
@@ -138,6 +139,8 @@ export class RegisterComponent implements OnInit {
       {
         this.customerModel.profileImage = this.profileImageSource;
         this.customerModel.logoImage = this.logoImageSource;
+        this.customerModel.brokerage = new BrokerageTypeModel("","","","",true,true);
+        this.customerModel.role = new RoleModel("","",true,true);
         this.sharedDataService.changeData(this.customerModel);
         this.router.navigateByUrl('template');
       }

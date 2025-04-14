@@ -10,7 +10,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),provideHttpClient(withFetch()),
     AngularSvgIconModule,
-    provideAnimations(), provideAngularSvgIcon(),
+    provideAnimations(), 
+    provideAngularSvgIcon(),
      provideRouter(routes),
       provideClientHydration(withEventReplay())]
 };

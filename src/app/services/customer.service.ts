@@ -66,6 +66,36 @@ export class CustomerService {
         }));
   }
 
+  templatePreviewAvaiable(templateId:string): Observable<CustomerModel> {
+
+    return this.http.get<CustomerModel>(this.Apiurl + '/customerByTemplateForPreview?templateid=' + templateId)
+        .pipe(map((result: any) => {
+          if(result && result.data && result.data.length > 0)
+          {
+            const x = result.data[0];
+            const customer = new CustomerModel(
+            x.customerid,
+            x.firstname,
+            x.lastname,
+            x.emailaddress,
+            x.businessname,
+            x.phonenumber,
+            x.isapproved,
+            x.roleid,
+            x.templateid,
+            x.brokeragetypeid,
+            x.siteurl)
+            
+            return customer;
+          }
+          return this.customers[0];
+    }),
+        catchError(error => {
+          console.error('Error fetching customers:', error);
+          return throwError(() => error);
+        }));
+  }
+
   getCustomers(emailAddress : string): Observable<CustomerModel> {
 
     return this.http.get<CustomerModel>(this.Apiurl + '/login?emailAddress=' + emailAddress)
