@@ -44,17 +44,17 @@
           <div class="row justify-content-around">
             <div class="col-md-3" *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
               <div class="border rounded p-3 text-center bg-light">
-               <span><img class="bed" alt=""></span> {{property.BedroomsTotal}}
+               <span class="fw-semibold">Bed:</span> {{property.BedroomsTotal}}
               </div>
             </div>
             <div class="col-md-3 mt-lg-0 mt-3"  *ngIf="property.BathroomsTotalInteger && property.BathroomsTotalInteger > 0">
               <div class="border rounded p-3 text-center bg-light">
-                <span><img class="shower" alt=""></span>{{property.BathroomsTotalInteger}}
+                <span class="fw-semibold">Bath:</span> {{property.BathroomsTotalInteger}}
               </div>
             </div>
             <div class="col-md-3 mt-lg-0 mt-3" *ngIf="property.BuildingAreaTotal && property.BuildingAreaTotal > 0">
               <div class="border rounded p-3 text-center bg-light">
-                <span><img class="area" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}
+                <span class="fw-semibold">Area:</span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}
               </div>
             </div>
           </div>
@@ -222,53 +222,60 @@
                 </div>
                
             </div>
+          </div>
+          <div class="row mt-5 align-items-center">
+            <div class="col-lg-4 col-12">
+            <h5 class=" info">Building Features</h5>
+            <ul class="list-group">
+              <li class="list-group-item">Year Built: 2018</li>
+              <li class="list-group-item">Building Name: AquaView Residences</li>
+              <li class="list-group-item">Floors in Building: 36</li>
+              <li class="list-group-item">Elevators: 3</li>
+              <li class="list-group-item">Security: 24/7 Concierge</li>
+            </ul>
+          </div>
 
-            <div class="row mt-5">
-              <div class="col-8">
-                <div class="timeline">
-                  <div class="timeline-item">
-                    <div class="timeline-icon bg-primary text-white">
-                      <i class="bi bi-chat-dots"></i>
-                    </div>
-                    <div class="timeline-content shadow-sm rounded">
-                      <h5>Remarks</h5>
-                      <p>{{property.PublicRemarksExtra ? property.PublicRemarksExtra : "No remarks"}}</p>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-icon bg-success text-white">
-                      <i class="bi bi-chat-left-dots"></i>
-                    </div>
-                    <div class="timeline-content shadow-sm rounded">
-                      <h5>Private Remarks</h5>
-                      <p>{{property.PrivateRemarks}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="ratio ratio-16x9 mt-3">
-                  <google-map [center]="{lat:property.Latitude, lng:property.Longitude}" [zoom]="zoom" height="200px" width="100%">
-                    <map-marker id="mapMarkerSmall"
-                      #mapMarkerSmall="mapMarker"
-                      [position]="{lat:property.Latitude, lng:property.Longitude}"
-                      [label]="property.ListOfficeName"></map-marker>
-                      <map-info-window #mapMarkerSmall>
-                        <div>
-                          <h5>{{property.ListingKey}}</h5>
-                          <p><b>Address:</b> {{property.UnparsedAddress}}</p>
-                          <p><b>Cross Street:</b> {{property.CrossStreet}}</p>
-                          <p><b>City:</b> {{property.City}}</p>
-                          <p><b>Price:</b> ${{property.ListPrice}}</p>
-                          <p><b>Property Type:</b> {{property.PropertySubType}}</p>
-                          <p><b>Property Use:</b> {{property.TransactionType}}</p>
-                        </div>
-                      </map-info-window>
-					        </google-map>
-                </div> 
-              </div>
+          <div class="col-lg-4 col-12">
+            <h5 class=" info">Amenities</h5>
+            <ul class="list-group">
+              <li class="list-group-item">Fitness Centre</li>
+              <li class="list-group-item">Indoor Pool & Sauna</li>
+              <li class="list-group-item">Party Room</li>
+              <li class="list-group-item">Visitor Parking</li>
+              <li class="list-group-item">Rooftop Terrace</li>
+            </ul>
           </div>
-          </div>
+           <div class="col-lg-4 col-12">
+
+<div id="map" >
+  <google-map
+    [center]="{lat:property.Latitude, lng:property.Longitude }"
+    [zoom]="zoom"
+    style="width:100%; height:100%;"
+  >
+    <map-marker
+      id="mapMarkerSmall"
+      #mapMarkerSmall="mapMarker"
+      [position]="{ lat: property.Latitude, lng: property.Longitude }"
+      [label]="property.ListOfficeName"
+    ></map-marker>
+    
+    <map-info-window #mapMarkerSmall>
+      <div>
+        <h5>{{ property.ListingKey }}</h5>
+        <p><b>Address:</b> {{ property.UnparsedAddress }}</p>
+        <p><b>Cross Street:</b> {{ property.CrossStreet }}</p>
+        <p><b>City:</b> {{ property.City }}</p>
+        <p><b>Price:</b> ${{ property.ListPrice }}</p>
+        <p><b>Property Type:</b> {{ property.PropertySubType }}</p>
+        <p><b>Property Use:</b> {{ property.TransactionType }}</p>
+      </div>
+    </map-info-window>
+  </google-map>
+</div>
+</div>
+
+        </div>
           <!-- <div class="row mt-5 ">
             <div class="col">
                 <div class="card shadow-sm border-0 rounded-4">

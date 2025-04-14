@@ -11,6 +11,15 @@
     z-index: 5;
   }
 
+  #map{
+
+    .map-container{
+      height: 214px !important;
+      width: 406px !important;
+      border-radius: 7px !important;
+    }
+  }
+
   span{
     font-size: 14px !important;
   }
