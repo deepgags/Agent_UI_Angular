@@ -72,7 +72,7 @@
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
                   <p>{{property.PublicRemarks}}</p>
-                  <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
+                  <!-- <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
                     <div class="col">
                       <div class="card h-100 border border-2 shadow-sm">
                         <div class="card-body ">
@@ -105,31 +105,53 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row mt-5">
+                  </div> -->
+                 
+                  <div class="row mt-5 ">
                     <div class="col">
-                      <div class="timeline">
-                        <div class="timeline-item">
-                          <div class="timeline-icon bg-primary text-white">
-                            <i class="bi bi-chat-dots"></i>
+                        <div class="card shadow-sm border-0 rounded-4">
+                          <div class="card-header head-bg text-white rounded-top-4">
+                            <h5 class="">Property Details</h5>
                           </div>
-                          <div class="timeline-content shadow-sm rounded">
-                            <h5>Remarks</h5>
-                            <p>{{property.PublicRemarksExtra ? property.PublicRemarksExtra : "No remarks"}}</p>
+                          <div class="card-body">
+                            <div class="d-flex justify-content-between py-2 border-bottom">
+                              <span class="fw-bold">Cross Street:</span>
+                              <span>{{property.CrossStreet}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between py-2 border-bottom">
+                              <span class="fw-bold">List Contract Date:</span>
+                              <span>{{property.ListingContractDate ? (property.ListingContractDate | date) : "No Date"}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between py-2 border-bottom">
+                              <span class="fw-bold">Purchase Contract Date:</span>
+                              <span>{{property.PurchaseContractDate ? (property.PurchaseContractDate | date) : "No Date"}}</span>
+                            </div>
+                            <div class="d-flex justify-content-between py-2">
+                              <span class="fw-bold">List Office Name:</span>
+                              <span>{{property.ListOfficeName}}</span>
+                            </div>
                           </div>
                         </div>
-                        <div class="timeline-item">
-                          <div class="timeline-icon bg-success text-white">
-                            <i class="bi bi-chat-left-dots"></i>
-                          </div>
-                          <div class="timeline-content shadow-sm rounded">
-                            <h5>Private Remarks</h5>
-                            <p>{{property.PrivateRemarks}}</p>
-                          </div>
-                        </div>
-                      </div>
                     </div>
-                </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col">
+                      <ul class="list-group">
+                        <li class="list-group-item">Status: Sale</li>
+                        <li class="list-group-item">Type: Condo Apartment</li>
+                        <li class="list-group-item">Style: Apartment</li>
+                        <li class="list-group-item">Community: Harbourfront - Downtown Toronto</li>
+                      </ul>
+                    </div>
+                    <div class="col">
+                      <ul class="list-group">
+                        <li class="list-group-item">Bedrooms: 1 + Den</li>
+                        <li class="list-group-item">Bathrooms: 1 (4-piece)</li>
+                        <li class="list-group-item">Kitchens: 1 (Open Concept with Island)</li>
+                        <li class="list-group-item">Rooms: 4</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                   <div class="ratio ratio-16x9">
@@ -198,6 +220,33 @@
                     </form>
                   </div>
                 </div>
+               
+            </div>
+
+            <div class="row mt-5">
+              <div class="col-8">
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-icon bg-primary text-white">
+                      <i class="bi bi-chat-dots"></i>
+                    </div>
+                    <div class="timeline-content shadow-sm rounded">
+                      <h5>Remarks</h5>
+                      <p>{{property.PublicRemarksExtra ? property.PublicRemarksExtra : "No remarks"}}</p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-icon bg-success text-white">
+                      <i class="bi bi-chat-left-dots"></i>
+                    </div>
+                    <div class="timeline-content shadow-sm rounded">
+                      <h5>Private Remarks</h5>
+                      <p>{{property.PrivateRemarks}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
                 <div class="ratio ratio-16x9 mt-3">
                   <google-map [center]="{lat:property.Latitude, lng:property.Longitude}" [zoom]="zoom" height="200px" width="100%">
                     <map-marker id="mapMarkerSmall"
@@ -217,9 +266,10 @@
                       </map-info-window>
 					        </google-map>
                 </div> 
-            </div>
+              </div>
           </div>
-          <div class="row mt-5 ">
+          </div>
+          <!-- <div class="row mt-5 ">
             <div class="col">
                 <div class="card shadow-sm border-0 rounded-4">
                   <div class="card-header head-bg text-white rounded-top-4">
@@ -245,7 +295,7 @@
                   </div>
                 </div>
             </div>
-          </div>
+          </div> -->
           <div class="container mt-5">
             <div class="row">
               <div class="col">
