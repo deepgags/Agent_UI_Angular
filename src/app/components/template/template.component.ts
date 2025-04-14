@@ -75,6 +75,7 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     
     ngOnInit() { 
+      debugger;
       const observer = new ResizeObserver(entries => {
         this.zone.run(() => {})
         // const width = entries[0].contentRect.width;
@@ -87,12 +88,13 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
       // });
   
       observer.observe(this.host.nativeElement);    
+      //this.getTemplates();
+      // this.sharedDataService.CustomerData.subscribe(data => {
+      //   debugger;
+      //   this.customerModel = data;
+       
+      // });
       this.getTemplates();
-      this.sharedDataService.CustomerData.subscribe(data => {
-        this.customerModel = data;
-        this.getTemplates();
-        this.setGalleryImages();
-      });
     //  this.customerModel = this.sharedDataService.CustomerData;
     }
 
@@ -102,7 +104,7 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngAfterViewInit()
     {
-      requestAnimationFrame(() => this.titleService.setTitle("Templates"));
+      //requestAnimationFrame(() => this.titleService.setTitle("Templates"));
       
       // this.sharedDataService.CustomerData.subscribe(data => {
       //   debugger;
@@ -117,6 +119,7 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
           next: (response) => {
             if (response && response.length > 0) {
                this.templatesSubject.next(response);
+               this.setGalleryImages();
             }
           },
           error: () => {
@@ -143,6 +146,9 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
                     }));
               }})
           })
+          requestAnimationFrame(() => {
+            // Add logic here if needed, or remove this call if unnecessary
+          });
       });
     }
 

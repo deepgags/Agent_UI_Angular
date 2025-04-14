@@ -64,3 +64,16 @@ if (isMainModule(import.meta.url)) {
  * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
  */
 export const reqHandler = createNodeRequestHandler(app);
+
+global['requestAnimationFrame'] = function(callback: FrameRequestCallback) {
+  let lastTime = 0;
+  const currTime = new Date().getTime();
+  const timeToCall = Math.max(0, 16 - (currTime - lastTime));
+  const id = setTimeout(() => { callback(currTime + timeToCall); }, timeToCall);
+  lastTime = currTime + timeToCall;
+  return id as unknown as number;
+};
+
+global['cancelAnimationFrame'] = function(id) {
+  clearTimeout(id);
+};
