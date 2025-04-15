@@ -65,19 +65,17 @@
             <div class="col">
               <mat-form-field appearance="fill">                
                 <mat-label>Phone Number</mat-label>
-                <input type="text" formControlName="phoneNumber" matInput placeholder="Phone Number" />                
-                <!-- @if (customerForm.hasError('required', 'phoneNumber')) {
-                  <mat-error>Phone number is required</mat-error>
-                } -->
+                <input type="text" formControlName="phoneNumber" matInput placeholder="123-456-1234" />                
               </mat-form-field>
             </div>
             <div class="col">
               <mat-form-field appearance="fill">                
                 <mat-label>Cell Number</mat-label>
-                <input type="text" formControlName="cellNumber" required matInput placeholder="Cell Number" />                
+                <input type="text" formControlName="cellNumber" required matInput placeholder="123-456-1234" />                
                 @if (customerForm.hasError('required', 'cellNumber')) {
                   <mat-error>Cell number is required</mat-error>
                 }
+                <mat-error *ngIf="customerForm.value.cellNumber">Please enter valid cell number</mat-error>
               </mat-form-field>
             </div>
           </div> 
