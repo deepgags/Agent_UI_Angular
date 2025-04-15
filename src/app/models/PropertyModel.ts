@@ -59,6 +59,8 @@ export type MediaModel = {
     Media_status: string | "",
     Media_type: string | "",
     Media_url: string | "",
+    Media_category: string | "",
+    ImageSize_description: string | "",
     Modification_Timestamp: string | "",
     _id: string | "",
   }

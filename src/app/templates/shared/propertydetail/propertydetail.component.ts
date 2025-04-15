@@ -152,21 +152,27 @@ export class PropertydetailComponent implements OnInit {
         this.property = response;
          this.center.lat = this.property.Latitude;
          this.center.lng = this.property.Longitude;
-         this.property.Media?.forEach(x=>
-         {
-          if (this.galleryRef) {
-            this.galleryRef.add(new ImageItem(
-              {
-                  src : x.Media_url,
-                  thumb : x.Media_url
-              }));
-          }
-        });
-        //const parser = new DOMParser();
-        // this is an SVG string of a house icon, but feel free to use whatever SVG icon you'd like
-        // const svgString = `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FF5733" stroke="#FFFFFF" viewBox="0 0 24 24">
-        //                   <path fill-rule="evenodd" d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z" clip-rule="evenodd"/>
-        //                   </svg>`;
+         if (this.galleryRef && this.property.Media) {
+
+          const largeImages = this.property.Media.filter(x => x.ImageSize_description.includes('Large'));
+          const thumbImages = this.property.Media.filter(x => !x.ImageSize_description.includes('Large'));
+          
+          this.property.Media.forEach(x=>
+          {
+              this.galleryRef?.add(new ImageItem(
+                {
+                    src : x.ImageSize_description.includes('Large')? x.Media_url : '',
+                    thumb : !x.ImageSize_description.includes('Large')? x.Media_url : '',
+                }));
+          });
+          // thumbImages.forEach(x=>
+          //   {
+          //     this.galleryRef?.add(new ImageItem(
+          //       {
+          //           thumb : x.Media_url
+          //       }));
+          //   });
+       }
       },
       error: (err) => {
         this.notificationService.showNotification("Error occurred while getting property information");

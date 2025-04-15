@@ -15,14 +15,14 @@
 
 <div class="container-fluid sec-3 search-container" >
 	<div class="" *ngIf="propertiesList && propertiesList.length>0">
-	<mat-paginator class="py-3"
+      	<mat-paginator class="py-3"
 			[length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
 			[pageIndex]="pageIndex"
 			(page)="pageEvent = searchProperties(selectedFilters, $event)"
 			[pageSize]="pageSize"
 			[pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
 			aria-label="Select page">
-		  </mat-paginator>
+		</mat-paginator>
 
 		  <div class="row g-4 mb-5">
 			<div class="col-lg-4 col_32 col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of propertiesList">
@@ -58,6 +58,15 @@
 					</a>
 			</div>
 		</div>
+
+		<mat-paginator class="py-3"
+			[length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
+			[pageIndex]="pageIndex"
+			(page)="pageEvent = searchProperties(selectedFilters, $event)"
+			[pageSize]="pageSize"
+			[pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+			aria-label="Select page">
+		</mat-paginator>
 	</div>
 		<h6 *ngIf="propertiesList && propertiesList.length==0">No properties found for selected criteria.</h6>
 </div>
