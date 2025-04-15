@@ -17,9 +17,10 @@ export class BrokerageTypeService {
     this.Apiurl = environment.agentApiUrl + environment.brokerageTypeUrl;
   }
 
-  getBrokerageTypes(name:string=''): Observable<BrokerageTypeModel[]> {
+  getBrokerageTypes(name:string='', isDefault = null): Observable<BrokerageTypeModel[]> {
     
-        return this.http.get<BrokerageTypeModel[]>(this.Apiurl + '?name=' + name)
+        const defaultQuery = isDefault != null ? '&isDefault=' + isDefault : "";
+        return this.http.get<BrokerageTypeModel[]>(this.Apiurl + '?name=' + name + defaultQuery)
             .pipe(map((result: any) => {
               if(result && result.data && result.data.length > 0)
               {

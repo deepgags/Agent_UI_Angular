@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
   logoCroppedImage = '';
   logoImageSource: string = '';
   showSVG: boolean = false;
+  showLogo: boolean = false;
 
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -61,7 +62,7 @@ export class RegisterComponent implements OnInit {
     this.profileCroppedImage = event;
   }
 
-  logoImageCropped(event: any, test:any) {
+  logoImageCropped(event: any) {
     this.logoCroppedImage = event;
   }
 
@@ -98,6 +99,7 @@ export class RegisterComponent implements OnInit {
       this.customerForm.valueChanges.subscribe(
         (data) => {
           if (JSON.stringify(data) !== JSON.stringify({})) {
+            this.showLogo = data.brokerageType.Name == 'Other'
             this.customerModel.businessName = data.businessName;
             this.customerModel.brokerageTypeId = data.brokerageType.BrokerageTypeId;
             this.customerModel.firstName = data.firstName;
