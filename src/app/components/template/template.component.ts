@@ -21,7 +21,6 @@ import { StorageService } from '../../services/storage.service';
 import { TemplateService } from '../../services/template.service';
 import { TemplatesiteComponent } from '../dialogs/templatesite/templatesite.component';
 
-
 @Component({
   selector: 'app-template',
   imports: [ CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule,
@@ -31,7 +30,7 @@ import { TemplatesiteComponent } from '../dialogs/templatesite/templatesite.comp
   styleUrl: './template.component.scss'
 })
 
-export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TemplateComponent implements OnInit {
   isBrowser: boolean = false;
   templateForm!: FormGroup;
   customerModel: CustomerModel = new CustomerModel();
@@ -43,8 +42,6 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     breakpointObserver: BreakpointObserver,
-    private host: ElementRef,
-    private zone: NgZone,
     private gallery: Gallery,
     private _siteDialog: MatDialog,
     private customerService: CustomerService,
@@ -57,6 +54,8 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     @Inject(PLATFORM_ID) platformId: Object
   ) {
+      this.titleService.setTitle('Templates');
+
       this.isBrowser = isPlatformBrowser(platformId);
       this.galleryConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
@@ -78,39 +77,11 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnInit() {
-      // const observer = new ResizeObserver(entries => {
-      //   this.zone.run(() => {})
-      //   // const width = entries[0].contentRect.width;
-      //   // console.log(width);
-      // });
-      // this.observer = new ResizeObserver(entries => {
-      //   this.zone.run(() => {
-      //     this.width = entries[0].contentRect.width;
-      //   });
-      // });
-
-      // observer.observe(this.host.nativeElement);
-      this.getTemplates();
       this.sharedDataService.CustomerData.subscribe(data => {
         this.customerModel = data;
         this.getTemplates();
         this.setGalleryImages();
       });
-    //  this.customerModel = this.sharedDataService.CustomerData;
-    }
-
-    ngOnDestroy() {
-      //this.observer.unobserve(this.host.nativeElement);
-    }
-
-    ngAfterViewInit()
-    {
-      // requestAnimationFrame(() => this.titleService.setTitle("Templates"));
-
-      // this.sharedDataService.CustomerData.subscribe(data => {
-      //   debugger;
-      //   this.customerModel = data;
-      // });
     }
 
     getTemplates()
