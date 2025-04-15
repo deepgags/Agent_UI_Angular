@@ -1,25 +1,26 @@
-import { Component, OnInit, AfterViewInit, ElementRef, NgZone, OnDestroy } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, Inject, NgZone, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CustomerModel } from '../../models/CustomerModel';
-import { CommonModule } from '@angular/common';
-import { TemplateModel } from '../../models/TemplateModel';
-import { TemplateService } from '../../services/template.service';
+import { Title } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TemplatesiteComponent } from '../dialogs/templatesite/templatesite.component';
+import { Gallery, GalleryConfig, GalleryModule, GalleryRef, ImageItem, ThumbnailsPosition } from 'ng-gallery';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { CustomerModel } from '../../models/CustomerModel';
+import { TemplateModel } from '../../models/TemplateModel';
+import { CustomerService } from '../../services/customer.service';
+import { LoadingService } from '../../services/loading.service';
 import { NotificationService } from '../../services/notification.service';
 import { SharedDataService } from '../../services/shareddata.service';
-import { Title } from '@angular/platform-browser';
-import { LoadingService } from '../../services/loading.service';
-import { BehaviorSubject, map, Observable } from 'rxjs';
-import { Gallery, GalleryConfig, GalleryModule, GalleryRef, ImageItem, ThumbnailsPosition } from 'ng-gallery';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Router } from '@angular/router';
-import { CustomerService } from '../../services/customer.service';
 import { StorageService } from '../../services/storage.service';
+import { TemplateService } from '../../services/template.service';
+import { TemplatesiteComponent } from '../dialogs/templatesite/templatesite.component';
+
 
 @Component({
   selector: 'app-template',
@@ -31,7 +32,7 @@ import { StorageService } from '../../services/storage.service';
 })
 
 export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
-
+  isBrowser: boolean = false;
   templateForm!: FormGroup;
   customerModel: CustomerModel = new CustomerModel();
   private templatesSubject = new BehaviorSubject<TemplateModel[]>([]);
@@ -39,10 +40,10 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
 
   galleryConfig$: Observable<GalleryConfig> | undefined;
   galleryRef: GalleryRef | undefined;
-  
+
   constructor(
     breakpointObserver: BreakpointObserver,
-    private host: ElementRef, 
+    private host: ElementRef,
     private zone: NgZone,
     private gallery: Gallery,
     private _siteDialog: MatDialog,
@@ -53,8 +54,10 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
     private titleService : Title,
     private loadingService: LoadingService,
     private sharedDataService: SharedDataService,
-    private router: Router) {
-      
+    private router: Router,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+      this.isBrowser = isPlatformBrowser(platformId);
       this.galleryConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
       ]).pipe(
@@ -73,20 +76,20 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
           };
         }));
     }
-    
-    ngOnInit() { 
-      const observer = new ResizeObserver(entries => {
-        this.zone.run(() => {})
-        // const width = entries[0].contentRect.width;
-        // console.log(width);
-      });
+
+    ngOnInit() {
+      // const observer = new ResizeObserver(entries => {
+      //   this.zone.run(() => {})
+      //   // const width = entries[0].contentRect.width;
+      //   // console.log(width);
+      // });
       // this.observer = new ResizeObserver(entries => {
       //   this.zone.run(() => {
       //     this.width = entries[0].contentRect.width;
       //   });
       // });
-  
-      observer.observe(this.host.nativeElement);    
+
+      // observer.observe(this.host.nativeElement);
       this.getTemplates();
       this.sharedDataService.CustomerData.subscribe(data => {
         this.customerModel = data;
@@ -102,8 +105,8 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngAfterViewInit()
     {
-      requestAnimationFrame(() => this.titleService.setTitle("Templates"));
-      
+      // requestAnimationFrame(() => this.titleService.setTitle("Templates"));
+
       // this.sharedDataService.CustomerData.subscribe(data => {
       //   debugger;
       //   this.customerModel = data;
@@ -167,10 +170,10 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           this.customerModel.templateId = template.TemplateId;
         }
-    
+
         this.templates$.subscribe(x=> x.forEach( item => {
           if(template.TemplateId!=item.TemplateId)
-            { 
+            {
               item.IsSelected = false
             }
         }));
@@ -197,12 +200,12 @@ export class TemplateComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     })
     }
-    
+
     save() {
       if (this.customerModel.templateId!="")
       {
         this.openDialog();
-      } 
+      }
       else
       {
         this.notificationService.showNotification("Please select template")
