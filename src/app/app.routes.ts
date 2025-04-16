@@ -12,6 +12,8 @@ import { ThankyouComponent } from './components/thankyou/thankyou.component';
 import { RedirectUserComponent } from './components/redirectuser/redirectuser.component';
 import { PropertydetailComponent } from './templates/shared/propertydetail/propertydetail.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { MapComponent } from './templates/shared/map/map.component';
+import { AboutComponent } from './templates/shared/about/about.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -21,6 +23,8 @@ export const routes: Routes = [
     { path: 'template', component:  TemplateComponent},
     { path: 'home', component:  HomeComponent},
     { path: 'thanks', component:  ThankyouComponent},
+    { path: 'map', component:  MapComponent},
+    { path: 'about', component:  AboutComponent},
     { path: 'notfound', component:  NotfoundComponent},
     {
         path: 't1',
