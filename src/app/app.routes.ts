@@ -14,6 +14,7 @@ import { PropertydetailComponent } from './templates/shared/propertydetail/prope
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { MapComponent } from './templates/shared/map/map.component';
 import { AboutComponent } from './templates/shared/about/about.component';
+import { BuyerComponent } from './templates/shared/buyer/buyer.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -24,6 +25,7 @@ export const routes: Routes = [
     { path: 'home', component:  HomeComponent},
     { path: 'thanks', component:  ThankyouComponent},
     { path: 'map', component:  MapComponent},
+    { path: 'buyer', component:  BuyerComponent},
     { path: 'about', component:  AboutComponent},
     { path: 'notfound', component:  NotfoundComponent},
     {
