@@ -5,8 +5,8 @@
       <div class="col-lg-12">
         <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-5">
           <div class="col" *ngFor="let template of templates$ | async">
-            <div *ngIf="isBrowser">
-              <gallery *ngIf="template.Images ? template.Images.length > 0 : false" id={{template.TemplateId}} thumbs thumbPosition="bottom" itemAutosize loadingStrategy="preload" loadingAttr="lazy" [autoplay]="isBrowser"></gallery>
+            <div>
+              <gallery *ngIf="template.Images ? template.Images.length > 0 : false" id={{template.TemplateId}} thumbs thumbPosition="bottom" itemAutosize loadingStrategy="preload" loadingAttr="lazy"></gallery>
             </div>
             <div class="text-center">
               <footer class="footer">

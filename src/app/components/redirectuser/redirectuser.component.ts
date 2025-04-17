@@ -23,7 +23,6 @@ export class RedirectUserComponent implements OnInit {
   private cssFile: string = "";
   
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
     private customerService: CustomerService,
     private titleService : Title,
     private storageService: StorageService,
@@ -34,12 +33,12 @@ export class RedirectUserComponent implements OnInit {
     }
     
     ngOnInit() {
-     
+     debugger;
       let savedUserInfo = this.storageService.getLoggedUserFromUserInfo();
       if(savedUserInfo.customerId == "")
       {
-          var isBrowser = isPlatformBrowser(this.platformId);
-          if (isBrowser) {
+          // var isBrowser = isPlatformBrowser(this.platformId);
+          //if (isBrowser) {
             var currentUrl = window.location.host;
             this.customerService.customerExistWithSiteUrl(currentUrl)
             .subscribe({
@@ -55,7 +54,8 @@ export class RedirectUserComponent implements OnInit {
               },
               complete:() => {
               }
-          })}
+          })
+        //}
           return;
       }
       else{
