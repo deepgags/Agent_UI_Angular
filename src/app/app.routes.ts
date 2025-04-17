@@ -12,6 +12,12 @@ import { ThankyouComponent } from './components/thankyou/thankyou.component';
 import { RedirectUserComponent } from './components/redirectuser/redirectuser.component';
 import { PropertydetailComponent } from './templates/shared/propertydetail/propertydetail.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { MapComponent } from './templates/shared/map/map.component';
+import { AboutComponent } from './templates/shared/about/about.component';
+import { BuyerComponent } from './templates/shared/buyer/buyer.component';
+import { ContactComponent } from './templates/shared/contact/contact.component';
+import { CalculatorComponent } from './templates/shared/calculator/calculator.component';
+import { SellerComponent } from './templates/shared/seller/seller.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -21,6 +27,12 @@ export const routes: Routes = [
     { path: 'template', component:  TemplateComponent},
     { path: 'home', component:  HomeComponent},
     { path: 'thanks', component:  ThankyouComponent},
+    { path: 'map', component:  MapComponent},
+    { path: 'buyer', component:  BuyerComponent},
+    { path: 'contact', component:  ContactComponent},
+    { path: 'calculator', component:  CalculatorComponent},
+    { path: 'seller', component:  SellerComponent},
+    { path: 'about', component:  AboutComponent},
     { path: 'notfound', component:  NotfoundComponent},
     {
         path: 't1',
