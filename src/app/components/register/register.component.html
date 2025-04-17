@@ -16,7 +16,7 @@
                 <mat-error>Brokerage is required</mat-error>
             </mat-form-field>
             </div>
-          <div class="col" style="height: 80px;">
+          <div class="col" style="height: 80px;" *ngIf="!showLogo">
            <svg-icon *ngIf="showSVG == true" src="{{logoImageSource}}"></svg-icon>
               <img *ngIf="showSVG == false" style="object-fit: contain;
                width: 100%;
