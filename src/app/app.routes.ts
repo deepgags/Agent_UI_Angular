@@ -18,6 +18,7 @@ import { BuyerComponent } from './templates/shared/buyer/buyer.component';
 import { ContactComponent } from './templates/shared/contact/contact.component';
 import { CalculatorComponent } from './templates/shared/calculator/calculator.component';
 import { SellerComponent } from './templates/shared/seller/seller.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -33,6 +34,7 @@ export const routes: Routes = [
     { path: 'calculator', component:  CalculatorComponent},
     { path: 'seller', component:  SellerComponent},
     { path: 'about', component:  AboutComponent},
+    { path: 'payemnt', component:  PaymentComponent},
     { path: 'notfound', component:  NotfoundComponent},
     {
         path: 't1',

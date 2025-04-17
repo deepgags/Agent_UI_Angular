@@ -66,7 +66,7 @@ export class TemplatesiteComponent implements OnInit {
           complete: () => {
             this.dialogRef.close();
             this.loadingService.loadingOff();
-            this.router.navigateByUrl("thanks")
+            this.router.navigateByUrl("payment")
           }
      })  
      
