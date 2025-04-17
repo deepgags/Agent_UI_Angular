@@ -34,7 +34,7 @@ export const routes: Routes = [
     { path: 'calculator', component:  CalculatorComponent},
     { path: 'seller', component:  SellerComponent},
     { path: 'about', component:  AboutComponent},
-    { path: 'payemnt', component:  PaymentComponent},
+    { path: 'payment', component:  PaymentComponent},
     { path: 'notfound', component:  NotfoundComponent},
     {
         path: 't1',
