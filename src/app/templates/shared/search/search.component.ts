@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
     private activatedRoute: ActivatedRoute,) {
   }
 
-  searchProperties = () => {
+  searchProperties = (searchByMap:boolean = false) => {
     const filtersWithValue = Object.fromEntries(
       Object.entries(this.filters)
         .map((x)=>{ return stringiFy(x) })

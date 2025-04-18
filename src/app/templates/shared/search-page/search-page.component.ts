@@ -34,7 +34,6 @@ export class SearchPageComponent implements OnInit {
   pageIndex:number = 1;
   pageSize:number = 12;
   private loadingSubject = new BehaviorSubject<boolean>(false);
-  
   loading$ = this.loadingSubject.asObservable();
  
   selectedFilters: any = {
