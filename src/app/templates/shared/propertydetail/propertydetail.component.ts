@@ -153,7 +153,7 @@ export class PropertydetailComponent implements OnInit {
          this.center.lat = this.property.Latitude;
          this.center.lng = this.property.Longitude;
          if (this.galleryRef && this.property.Media) {
-          let medias =  this.property.Media.filter(x => x.ImageSize_description.toLowerCase()=='large');
+          let medias =  this.property.Media.filter(x => x.ImageSize_description.toLowerCase()=='largestnowatermark' || x.ImageSize_description.toLowerCase()=='large');
           medias.forEach(x=>
           {
             this.galleryRef?.add(
