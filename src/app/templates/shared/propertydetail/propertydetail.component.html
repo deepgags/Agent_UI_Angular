@@ -17,7 +17,7 @@
           <h2 class="fw-semibold text-start mb-3">Property Information</h2>
           <div class="row card p-3">
             <div class="col-12">
-              <gallery id="propertyGallery" counter thumbs thumbPosition="bottom" itemAutosize
+              <gallery *ngIf="property.Media && property.Media.length > 0" id="propertyGallery" counter thumbs thumbPosition="bottom" itemAutosize
                  loadingStrategy="preload"  loadingAttr="eager" >
               </gallery>
                 <img class="img-fluid rounded no-image-fixed-height" *ngIf="property.Media ? property.Media.length == 0 : true" [src]="'/images/commercial_no_Image.jpg'" alt="No property image to display">
