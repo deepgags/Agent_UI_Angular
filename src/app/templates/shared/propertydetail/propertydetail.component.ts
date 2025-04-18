@@ -105,7 +105,7 @@ export class PropertydetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.galleryRef = this.gallery.ref('myGallery');
+    this.galleryRef = this.gallery.ref('propertyGallery');
 
     this.route.queryParams.subscribe(params => {
       if (Object.keys(params).length > 0) {
