@@ -153,25 +153,17 @@ export class PropertydetailComponent implements OnInit {
          this.center.lat = this.property.Latitude;
          this.center.lng = this.property.Longitude;
          if (this.galleryRef && this.property.Media) {
-
-          const largeImages = this.property.Media.filter(x => x.ImageSize_description.includes('Large'));
-          const thumbImages = this.property.Media.filter(x => !x.ImageSize_description.includes('Large'));
-          
-          this.property.Media.forEach(x=>
+          let medias =  this.property.Media.filter(x => x.ImageSize_description.toLowerCase()=='large');
+          medias.forEach(x=>
           {
-              this.galleryRef?.add(new ImageItem(
-                {
-                    src : x.ImageSize_description.includes('Large')? x.Media_url : '',
-                    thumb : !x.ImageSize_description.includes('Large')? x.Media_url : '',
-                }));
+            this.galleryRef?.add(
+              new ImageItem(
+                   {
+                    src : x.Media_url,
+                    thumb : x.Media_url,
+                  })
+            )
           });
-          // thumbImages.forEach(x=>
-          //   {
-          //     this.galleryRef?.add(new ImageItem(
-          //       {
-          //           thumb : x.Media_url
-          //       }));
-          //   });
        }
       },
       error: (err) => {

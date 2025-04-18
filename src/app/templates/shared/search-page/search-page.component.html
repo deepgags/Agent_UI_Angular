@@ -17,7 +17,7 @@
 	<div class="" *ngIf="propertiesList && propertiesList.length>0">
       	<mat-paginator class="py-3"
 			[length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
-			[pageIndex]="pageIndex"
+			[pageIndex]="pageIndex-1"
 			(page)="pageEvent = searchProperties(selectedFilters, $event)"
 			[pageSize]="pageSize"
 			[pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
@@ -61,7 +61,7 @@
 
 		<mat-paginator class="py-3"
 			[length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
-			[pageIndex]="pageIndex"
+			[pageIndex]="pageIndex-1"
 			(page)="pageEvent = searchProperties(selectedFilters, $event)"
 			[pageSize]="pageSize"
 			[pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"

@@ -55,12 +55,22 @@ export class PropertyModel{
     }
 }
 
-export type MediaModel = {
-    Media_status: string | "",
-    Media_type: string | "",
-    Media_url: string | "",
-    Media_category: string | "",
-    ImageSize_description: string | "",
-    Modification_Timestamp: string | "",
-    _id: string | "",
+export class MediaModel {
+    Media_key: string
+    Media_status: string
+    Media_type: string
+    Media_url: string
+    Media_category: string
+    ImageSize_description: string
+    Modification_Timestamp: string
+
+    constructor() {
+       this.Media_key = "";
+       this.Media_status = "";
+       this.Media_type = "";
+       this.Media_url = "";
+       this.Media_category = "";
+       this.ImageSize_description = "";
+       this.Modification_Timestamp = "";
+    }
   }

@@ -21,7 +21,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 const serverConfig: ApplicationConfig = {
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor1, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor1, multi: true },
     provideHttpClient(withFetch()),
     provideAnimations(),
     Title,

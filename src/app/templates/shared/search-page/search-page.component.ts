@@ -31,7 +31,7 @@ import { InteresteduserComponent } from '../../../components/dialogs/interested-
 export class SearchPageComponent implements OnInit {
   propertiesList: PropertyModel[] | undefined;
   pageEvent: PageEvent | undefined;
-  pageIndex:number = 0;
+  pageIndex:number = 1;
   pageSize:number = 12;
   private loadingSubject = new BehaviorSubject<boolean>(false);
   
@@ -63,7 +63,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pageIndex = 0;
+    this.pageIndex = 1;
     this.pageSize = 12;
     this.route.queryParams.subscribe(params => {
       if (Object.keys(params).length > 0) {
@@ -134,7 +134,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   searchProperties = (selectedFilters: any, event?:PageEvent) => {
-    this.pageIndex = event?.pageIndex ?? this.pageIndex;
+    this.pageIndex = event?event.pageIndex + 1: this.pageIndex;
     this.pageSize = event?.pageSize ?? this.pageSize;
 
     const params = {
