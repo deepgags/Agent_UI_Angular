@@ -5,6 +5,7 @@ import { bathTypes, bedTypes, maxPrices, minPrices, propertyTypes, sqFitTypes, s
 import { stringiFy } from '../../../consts/Utility';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
+import { url } from 'inspector';
 
 @Component({
   selector: 'app-search',
@@ -17,6 +18,8 @@ import { MatSliderModule } from '@angular/material/slider';
 export class SearchComponent implements OnInit {
   
   @Input('onSearch') onSearch: Function = () => { };
+
+  @Input('showMapSearch') showMapSearch = true;
 
   @Input('filters') filters:any = {
     address: '',
@@ -48,7 +51,7 @@ export class SearchComponent implements OnInit {
       Object.entries(this.filters)
         .map((x)=>{ return stringiFy(x) })
     );
-    
+
     filtersWithValue["searchByMap"] = searchByMap;
 
     this.router.navigate(
