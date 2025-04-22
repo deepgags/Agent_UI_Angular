@@ -26,9 +26,7 @@ p{
 
 }
 
-.nav_bg{
-    background-color: #002FD5;
-}
+
 .nav_content{
     color: white;
 }
@@ -279,6 +277,49 @@ p{
 .search-container{
   .info {
     color: #dc3646 !important;
+  }
+  p{
+    font-size: 13px;
+  }
+
+  .bg-client {
+    background-color: rgb(255 136 148);
+}
+.blockquote-footer{
+  color: white;
+}
+  .text_bg {
+    background-color: #dc3646;
+    position: absolute;
+    top: 9px;
+}
+.nav-link {
+  color:#dc3646;
+}
+
+.text_bg2{
+  position: absolute;
+  top: 10px;
+  left: 372px;
+}
+  .location{
+    content:url("/public/images/vectorimg/location.svg");
+  }
+
+  .bed{
+    content:url("/t3/images/vector img/bed.svg");
+   } 
+
+  .shower{
+    content:url("/t3/images/vector img/shower.svg");
+    } 
+
+  .area{
+    content:url("/t3/images/vector img/area.svg");
+    } 
+
+  span{
+    font-size: 13px;
   }
 
   .head-bg{
