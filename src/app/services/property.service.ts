@@ -58,7 +58,9 @@ export class PropertyService {
                   TransactionType: property.TransactionType,
                   UnitNumber: property.UnitNumber,
                   UnparsedAddress: property.UnparsedAddress,
-                  Media: property.Media.filter((x:any)=>x.Media_type && x.Media_status=="Active" && x.Media_category && x.Media_category.includes('Photo') && x.ImageSize_description && x.ImageSize_description.includes('Large')),
+                  Media: property.Media.filter((x:any)=>x.Media_type && x.Media_status=="Active" && x.Media_category 
+                  && x.Media_category.includes('Photo') && x.ImageSize_description
+                  && (x.ImageSize_description == 'LargestNoWatermark' || x.ImageSize_description == 'Large')),
                   BuildingAreaTotal: property.BuildingAreaTotal,
                   BuildingAreaUnits: property.BuildingAreaUnits,
                   TotalRecords: result.total,
@@ -113,7 +115,9 @@ export class PropertyService {
                     TransactionType: property.TransactionType,
                     UnitNumber: property.UnitNumber,
                     UnparsedAddress: property.UnparsedAddress,
-                    Media: property.Media.filter((x:any)=>x.Media_type && x.Media_category && x.Media_category.includes('Photo')),
+                    Media: property.Media.filter((x:any)=>x.Media_type && x.Media_status=="Active" && x.Media_category 
+                    && x.Media_category.includes('Photo') && x.ImageSize_description
+                    && (x.ImageSize_description =='LargestNoWatermark' || x.ImageSize_description == 'Large')),
                     BuildingAreaTotal: property.BuildingAreaTotal,
                     BuildingAreaUnits: property.BuildingAreaUnits,
                     TotalRecords: result.total,

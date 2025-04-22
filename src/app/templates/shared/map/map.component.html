@@ -16,44 +16,85 @@
 
 <div class="container-fluid">
   <div class="row vh-100">
-    <div class="col-lg-6 col-12 overflow-auto p-4" style="height: 100vh; background: #f8f9fa;">
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-
+    <div class="col-lg-6 col-12 overflow-auto p-4" style="height: 100vh; background: #f8f9fa;" *ngIf="propertiesList && propertiesList.length>0">
+      <mat-paginator class="py-3"
+      [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
+      [pageIndex]="pageIndex-1"
+      (page)="pageEvent = searchProperties(selectedFilters, $event)"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+      aria-label="Select page">
+     </mat-paginator>
+      <div class="row row-cols-1 row-cols-md-2 g-4" >
+        <div class="col" *ngFor="let property of propertiesList">
           <div class="card h-100 border-0 shadow-lg rounded-3" style="overflow: hidden;">
             <div class="position-relative">
-              <img src="/prop.jpg" class="card-img-top img-fluid" alt="Listing">
+              <div class="image-container">
+                <img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : '/images/commercial_no_Image.jpg'" class="card-img-top img-fluid" alt="No property image to display">
+              </div>
               <div class="position-absolute bottom-0 start-0  text-white p-2 rounded-end">
-                <span class="badge text-white" style="background-color: rgb(255 104 0);">For Sale</span>
+                <span class="badge text-white" style="background-color: rgb(255 104 0);">{{property.TransactionType}}</span>
               </div>
               <div class="position-absolute bottom-0 end-0  text-white p-2 rounded-start">
                 <span class="badge bg-dark">11 Km away</span>
               </div>
             </div>
             <div class="card-body p-2">
-              <h5 class="card-title">$749,000</h5>
+              <p class="mb-1 fs-4 fw-semibold">$ {{property.ListPrice}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
               <div class="text-muted small mb-2">
-                <span>3 bed · 2 bath</span>
-                <span>1000–1199 sqft · 11–15 Years</span>
+                <span>{{property.BedroomsTotal}} bed · {{property.BathroomsTotalInteger}} bath</span>
+                <p class="card-text">{{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
               </div>
-              <p class=" text-muted small">7-20 Mendelssohn Street, Toronto, ON</p>
+              <p class=" text-muted small">{{property.UnparsedAddress}}</p>
               <hr>
               <p class=" text-muted small mb-0">
-                <i class="bi bi-card-heading small"></i> MLS® E12079488 · CENTURY 21 LANDUNION
+                <i class="bi bi-card-heading small"></i> MLS® {{property.ListingKey}} · {{property.ListOfficeName}}
               </p>
             </div>
           </div>
         </div>
       </div>
-      </div>
-
-
-    <div class="col-lg-6 col-12 p-0 position-sticky top-0" style="height: 100vh; z-index: 1;">
-      <div style="height: 100%; pointer-events: none;">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109552.20487213056!2d75.77427137817908!3d30.90046639297969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a837462345a7d%3A0x681102348ec60610!2sLudhiana%2C%20Punjab!5e0!3m2!1sen!2sin!4v1744613713577!5m2!1sen!2sin"
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <mat-paginator class="py-3"
+      [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
+      [pageIndex]="pageIndex-1"
+      (page)="pageEvent = searchProperties(selectedFilters, $event)"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+      aria-label="Select page"></mat-paginator>
+    </div>
+    <div class="col-lg-6 col-12 p-0 position-sticky top-0" style="height: 100vh;" *ngIf="propertiesList && propertiesList.length>0">
+      <div style="height: 100%;">
+        <google-map mapId="propertyList" draggable="true"
+        [center]="{lat:propertiesList[0].Latitude, lng:propertiesList[0].Longitude}" [zoom]="zoom" 
+        height="90%" width="100%">
+        @for (property of propertiesList; track property) {
+          <map-advanced-marker id="{{property.ListingKey}}"
+            #marker="mapAdvancedMarker"
+            [content] = buildContent(property)
+            [position]="{ lat: property.Latitude, lng: property.Longitude }"
+            [title]="property.PropertyUse"            
+            (gmp-click)="openInfoWindow(marker, infoWindow, this)">
+          <map-info-window #infoWindow="mapInfoWindow">
+            <div>
+              <h5>{{property.ListingKey}}</h5>
+              <p><b>Address:</b> {{property.UnparsedAddress}}</p>
+              <p><b>Cross Street:</b> {{property.CrossStreet}}</p>
+              <p><b>City:</b> {{property.City}}</p>
+              <p><b>Price:</b> ${{property.ListPrice}}</p>
+              <p><b>Property Type:</b> {{property.PropertySubType}}</p>
+              <p><b>Property Use:</b> {{property.TransactionType}}</p>
+            </div>
+          </map-info-window>
+          </map-advanced-marker>
+        }
+          <!-- <map-marker id="mapMarkerLarge"
+            #mapMarker="mapMarker"
+            [position]="{lat:property.Latitude, lng:property.Longitude}"
+            [label]="property.ListOfficeName"
+            [title]="property.PropertyUse"
+            (mapClick)="openInfoWindow(property, mapMarker)"></map-marker>
+           -->
+        </google-map>
       </div>
     </div>
 

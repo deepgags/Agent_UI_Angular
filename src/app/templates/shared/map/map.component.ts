@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,10 +16,11 @@ import { NotificationService } from '../../../services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
 import { stringiFy } from '../../../consts/Utility';
+import { GoogleMapsModule, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 @Component({
   selector: 'app-map',
-  imports: [FormsModule, CommonModule, MatIconModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule],
+  imports: [FormsModule, CommonModule, MatIconModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule, GoogleMapsModule],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -30,10 +31,15 @@ export class MapComponent implements OnInit{
 
   propertiesList: PropertyModel[] | undefined;
   pageEvent: PageEvent | undefined;
-  pageIndex:number = 1;
-  pageSize:number = 12;
+  pageIndex: number = 1;
+  pageSize: number = 12;
   private loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
+
+  Latitude: number= 0;
+  Longitude: number= 0;
+  zoom = 16;
+  @ViewChild(MapInfoWindow, {static: false} ) infoWindow: MapInfoWindow | undefined;
 
   selectedFilters: any = {
     address: '',
@@ -44,6 +50,7 @@ export class MapComponent implements OnInit{
     max_price: '',
     property_status: '',
     sqFt: '',
+    distance: '20',
   };
 
   constructor( 
@@ -61,6 +68,7 @@ export class MapComponent implements OnInit{
   ngOnInit(): void {
     this.pageIndex = 1;
     this.pageSize = 12;
+    this.getLocation();
     this.route.queryParams.subscribe(params => {
       if (Object.keys(params).length > 0) {
         this.selectedFilters = {
@@ -71,6 +79,21 @@ export class MapComponent implements OnInit{
       }
     });
   }
+
+  getLocation(): void{
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position)=>{
+          const longitude = position.coords.longitude;
+          const latitude = position.coords.latitude;
+          this.Latitude = latitude; 
+          this.Longitude = longitude;
+          console.log("Long: " + longitude + " Lat: " + latitude);
+        });
+    } else {
+       console.log("No support for geolocation")
+    }
+  }
+
   openDialog(property : PropertyModel) {
            const userDialog = this._interestedUserDialog.open(InteresteduserComponent,
                {
@@ -90,8 +113,83 @@ export class MapComponent implements OnInit{
                  this.redirectToDetail(property);
               }
             });
-          }
+  }
+
+  openInfoWindow(marker: any, infoWindow: MapInfoWindow, markerView:any) {
+    infoWindow.open(marker);
+    //this.toggleHighlight(markerView)
+  }
+
+  // toggleHighlight(markerView:any) {
+  //   debugger;
+  //   if (markerView.content.classList.contains("highlight")) {
+  //     markerView.content.classList.remove("highlight");
+  //     markerView.zIndex = null;
+  //   } else {
+  //     markerView.content.classList.add("highlight");
+  //     markerView.zIndex = 1;
+  //   }
+  // }
+
+  getRandomColor() {
+    let n = (Math.random() * 0xfffff * 1000000).toString(16);
+    return '#' + n.slice(0, 6);
+  }
   
+  buildContent(property:PropertyModel) {
+    
+    const content = document.createElement("div");
+    let propertyIcon = "home";
+    switch(property.PropertyType)
+    {
+      case "Residential Freehold":
+        propertyIcon = "home"
+        break;
+      case "Residential Condo & Other":
+        propertyIcon = "home"
+         break;
+      case "Commercial":
+        propertyIcon = "building"
+        break;
+      default:
+        propertyIcon = "home"
+        break;
+    }
+  
+    content.classList.add("property");
+    content.style.backgroundColor = this.getRandomColor();
+
+    content.innerHTML = `
+      <div class="icon">
+          <i aria-hidden="true" class="fa fa-icon fa-${propertyIcon}" title="${property.PropertyType}"></i>
+          <span class="fa-sr-only">${propertyIcon}</span>
+      </div>
+      <div class="details">
+          <div class="price">${property.ListPrice}</div>
+          <div class="address">${property.UnparsedAddress}</div>
+          <div class="features">
+          <div>
+              <i aria-hidden="true" class="fa fa-bed fa-lg bed" title="bedroom"></i>
+              <span class="fa-sr-only">bedroom</span>
+              <span>${property.BedroomsTotal}</span>
+          </div>
+          <div>
+              <i aria-hidden="true" class="fa fa-bath fa-lg bath" title="bathroom"></i>
+              <span class="fa-sr-only">bathroom</span>
+              <span>${property.BathroomsTotalInteger}</span>
+          </div>
+          <div>
+              <i aria-hidden="true" class="fa fa-ruler fa-lg size" title="size"></i>
+              <span class="fa-sr-only">size</span>
+              <span>${property.BuildingAreaTotal} {property.BuildingAreaUnits} <sup>2</sup></span>
+          </div>
+          </div>
+      </div>
+      `;
+    return content;
+  }
+  
+
   selectProperty(property : PropertyModel) : void{
       if(property.IsFeatureListing)
       {
@@ -144,6 +242,9 @@ export class MapComponent implements OnInit{
         min_price: stringiFy(selectedFilters.min_price),
         max_price: stringiFy(selectedFilters.max_price),
         sqFt: stringiFy(selectedFilters.sqFt),
+        distance: stringiFy(selectedFilters.distance),
+        latitude: this.Latitude,
+        longitude: this.Longitude,
       }
   
       this.loadingService.loadingOn();

@@ -45,6 +45,7 @@ export class SearchPageComponent implements OnInit {
     max_price: '',
     property_status: '',
     sqFt: '',
+    distance: '20',
   };
  
   constructor(
@@ -148,6 +149,7 @@ export class SearchPageComponent implements OnInit {
       min_price: stringiFy(selectedFilters.min_price),
       max_price: stringiFy(selectedFilters.max_price),
       sqFt: stringiFy(selectedFilters.sqFt),
+      distance: stringiFy(selectedFilters.distance),
     }
 
     this.loadingService.loadingOn();

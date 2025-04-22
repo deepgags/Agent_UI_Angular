@@ -21,7 +21,9 @@ export class T2HomeComponent implements OnInit {
   
   searchProperties = (selectedFilters: any, searchByMap:boolean = false) => {
     const { address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } = selectedFilters;
-    this.router.navigate(['/t2', !searchByMap ? 'map' :'search'], {
+    
+    searchByMap = selectedFilters['searchByMap'] || searchByMap;
+    this.router.navigate(['/t2', searchByMap ? 'map' :'search'], {
       queryParams: {
         address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt
       }

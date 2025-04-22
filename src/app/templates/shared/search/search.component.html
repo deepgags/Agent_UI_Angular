@@ -58,7 +58,15 @@
             <div class="modal-body">
                 <form>
                     <div class="row g-4">
-
+                        <div class="col-md-6">
+                            <label for="area" class="form-label text-dark fw-semibold">Distance</label>
+                            <mat-slider [min] = "1" [max] = "100" [step] = "1" [discrete] = "" [showTickMarks]="true">
+                                <input matSliderThumb value="5" />
+                              </mat-slider>
+                            <!-- <mat-slider showTickMarks>
+                                <input matSliderThumb>
+                            </mat-slider> -->
+                        </div>
                         <div class="col-md-6">
                             <label for="area" class="form-label text-dark fw-semibold">Area (Sq Ft)</label>
                             <select id="area" class="form-select shadow-sm">

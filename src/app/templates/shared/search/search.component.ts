@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { bathTypes, bedTypes, maxPrices, minPrices, propertyTypes, sqFitTypes, statusTypes, storyTypes } from '../../../consts/DefaultTypes';
 import { stringiFy } from '../../../consts/Utility';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-search',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, MatSliderModule],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -26,6 +27,7 @@ export class SearchComponent implements OnInit {
     max_price: '',
     property_status: '',
     sqFt: '',
+    distance: '20',
   };
 
   propertyTypesDropDown = propertyTypes;
@@ -47,6 +49,8 @@ export class SearchComponent implements OnInit {
         .map((x)=>{ return stringiFy(x) })
     );
     
+    filtersWithValue["searchByMap"] = searchByMap;
+
     this.router.navigate(
       [], 
       {
@@ -59,7 +63,8 @@ export class SearchComponent implements OnInit {
           min_price: filtersWithValue['min_price'], 
           max_price: filtersWithValue['max_price'], 
           property_status: filtersWithValue['property_status'], 
-          sqFt: filtersWithValue['sqFt']
+          sqFt: filtersWithValue['sqFt'],
+          distance: filtersWithValue['distance']
         },
         queryParamsHandling: 'replace'
       }
@@ -80,6 +85,29 @@ export class SearchComponent implements OnInit {
       max_price: '',
       property_status: '',
       sqFt: '',
+      distance: '20',
     };
+  }
+
+  resetMoreFilters() : void {
+    this.filters = {
+      address: this.filters.address,
+      property_type: this.filters.property_type,
+      bedrooms: this.filters.bedrooms,
+      bathrooms: this.filters.bathrooms,
+      min_price: this.filters.min_price,
+      max_price: this.filters.max_price,
+      property_status: this.filters.property_status,
+      sqFt: this.filters.sqFt,
+      distance: '20',
+    };
+  }
+
+  formatLabel(value: number): string {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'mile';
+    }
+
+    return `${value}`;
   }
 }

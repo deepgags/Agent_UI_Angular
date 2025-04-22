@@ -149,12 +149,11 @@ export class PropertydetailComponent implements OnInit {
     this.loadingSubject.next(true);
     this.propertyService.getProperty(this.selectedFilters.propertyId, this.selectedFilters.mlsId).subscribe({
       next: (response) => {
-        this.property = response;
+         this.property = response;
          this.center.lat = this.property.Latitude;
          this.center.lng = this.property.Longitude;
          if (this.galleryRef && this.property.Media) {
-          let medias =  this.property.Media.filter(x => x.ImageSize_description.toLowerCase()=='largestnowatermark' || x.ImageSize_description.toLowerCase()=='large');
-          medias.forEach(x=>
+          this.property?.Media?.forEach(x=>
           {
             this.galleryRef?.add(
               new ImageItem(
