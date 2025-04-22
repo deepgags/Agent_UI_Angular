@@ -33,7 +33,6 @@ export class RedirectUserComponent implements OnInit {
     }
     
     ngOnInit() {
-     debugger;
       let savedUserInfo = this.storageService.getLoggedUserFromUserInfo();
       if(savedUserInfo.customerId == "")
       {

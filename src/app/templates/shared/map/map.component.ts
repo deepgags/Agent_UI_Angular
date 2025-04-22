@@ -38,7 +38,7 @@ export class MapComponent implements OnInit{
 
   Latitude: number= 0;
   Longitude: number= 0;
-  zoom = 16;
+  zoom = 6;
   @ViewChild(MapInfoWindow, {static: false} ) infoWindow: MapInfoWindow | undefined;
 
   selectedFilters: any = {
@@ -121,7 +121,6 @@ export class MapComponent implements OnInit{
   }
 
   // toggleHighlight(markerView:any) {
-  //   debugger;
   //   if (markerView.content.classList.contains("highlight")) {
   //     markerView.content.classList.remove("highlight");
   //     markerView.zIndex = null;
