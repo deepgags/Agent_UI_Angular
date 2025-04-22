@@ -1,46 +1,278 @@
-<div class="container-fluid fotter-bg">
+<div class="container-fluid ">
 	<div class="container">
-
-		<footer class="py-5">
-			<div class="row justify-content-center align-items-center  border-bottom pb-3 mb-3 ">
-				<div class="col-lg-2 col-12 d-flex justify-content-center mb-3 mb-lg-0">
-					<img src="t1/images/footer.png" alt="">
-				</div>
-				<div class="col-lg-6 col-12  mb-3 mb-lg-0">
-
-					<p class="fs-3 fw-semibold text-center">Address</p>
-
-					<p class=" text-center small">
-						HomeLife/Miracle Realty Ltd., Brokerage <br>
-						470 Chrysler Dr # 20 , Brampton, L6S 0C1
-					</p>
-				</div>
-				<div class="col-lg-2 col-12 mb-3 mb-lg-0 footer-contact">
-					<p class="fs-3 fw-semibold text-center"> Contact</p>
-					<div class=" d-flex justify-content-center">
-						<div class="">
-							<img src="t1/images/vector img/call2.png" alt="" />
-						</div>
-						<div class="ms-2">
-							<p>
-								<a class="text-white fw-semibold small text-decoration-none pop" href="tel:+4733378901">+47 333 78 901</a>
-							</p>
-						</div>
-					</div>
-					<div class="d-flex justify-content-center">
-						<div class="">
-							<img src="t1/images/vector img/mail2.png" alt="" />
-						</div>
-						<div class="ms-2">
-							<p>
-								<a class="text-white fw-semibold small text-decoration-none pop" href="mailto:someone@example.com">demo&#64;cc.com
-								</a>
-							</p>
-						</div>
-					</div>
-				</div>
+		<div class="row justify-content-center">
+			<p class="text fw-semibold text-danger pt-3">Search Your Dream Home</p>
+			<div class="col-12 bg-white p-4 mb-5">
+				<app-search [onSearch]="searchProperties" />
 			</div>
-			<p class="text-center text-white small">Copyright 2021 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information shown. The information provided herein must only be used by consumers that have a bona fide interest in the purchase, sale or lease of real estate and may not be used for any commercial purpose or any other purpose.</p>
-		</footer>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container py-lg-5 p-lg-0 p-4">
+	<p class="text text-center mb-0 fw-semibold">
+		Find Properties in These Cities
+	</p>
+
+	<div class="row pt-lg-5 p-lg-0 p-4">
+		<div class="col-lg-6 col-12 mb-lg-0 mb-3">
+			<a class="text-decoration-none" href="./featured.html">
+				<img class="w-100" src="t3/images/Group 2.png" alt="" />
+			</a>
+		</div>
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+			<img class="w-100" src="t3/images/Group 5.png" alt="">
+		</div>
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+			<img class="w-100" src="t3/images/Group 3.png" alt="">
+		</div>
+
+	</div>
+	<div class="row pt-3 ">
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+			<img class="w-100" src="t3/images/Group 3.png" alt="">
+		</div>
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+			<img class="w-100" src="t3/images/Group 5.png" alt="">
+		</div>
+
+		<div class="col-lg-6 col-12 mb-lg-0 mb-3">
+			<a class="text-decoration-none" href="./featured.html">
+				<img class="w-100" src="t3/images/Group 2.png" alt="" />
+			</a>
+		</div>
+
+
+	</div>
+</div>
+
+<div class="container-fluid sec-3 py-5">
+	<div class="container bg-white">
+		<div class="row p-lg-4 p-3 ">
+			<p class="text mb-0 fw-semibold">
+				"Enjoy a clear and simple home-buying experience"
+			</p>
+			<div class="col">
+				<p class="estate text-center">Real Estate Specialist Name</p>
+				<p class="text-center fw-semibold">
+					I believe every client has the right to be treated fairly,
+					honestly and with integrity. My aim is to educate and prepare my
+					clients to insure that they are always in a position to make
+					informed decisions.Every engagement is an opportunity to create a
+					lasting impression and a forever client. Acharya is a well serving
+					in real estate with the reputation of providing quality services
+					and keeping excellent relations with the clients. My intend to
+					provide our clients with the best personalized real estate
+					experience from beginning to end. I enjoy sharing my expertise by
+					giving you the scoop on the local real estate market. My aim is to
+					guide & prepare our clients to ensure that they are always in a
+					position to make informed decision. I put our client’s interest
+					above everything. I am professionally trained and licensed
+					realtors who work for seeking to experience satisfaction and feel
+					good emotionss.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="container-fluid sec-3">
+	<div class="container py-lg-5 p-lg-0 p-4">
+		<p class="text text-center mb-0 fw-semibold">Featured Properties</p>
+
+		<div class="row pt-5">
+			<div class="col d-flex justify-content-center mb-lg-0 mb-3">
+				<a class="text-decoration-none" href="./featured.html">
+					<div class="card" style="width: 18rem">
+						<img src="t3/images/property-img-1.png" class="card-img-top" alt="..." />
+						<div class="card-body pb-0">
+							<h5 class="card-title fw-semibold">North Dillard Street</h5>
+							<p class="card-text pro-text">
+								<span><img src="t3/images/vector img/location.svg" alt="" /></span>
+								4330 Bell Shoals Rd
+							</p>
+							<div class="d-flex justify-content-between">
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/bed.svg" alt="" /></span>
+										4
+									</p>
+								</div>
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/shower.svg" alt="" /></span>
+										2
+									</p>
+								</div>
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/area.svg" alt="" /></span>
+										400 sqft
+									</p>
+								</div>
+							</div>
+							<div class="pt-3">
+								<p class="fw-bold" style="color: #DC1B2E">
+									Price:
+									<span class="fw-bold text-dark pro-text">$5000</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col d-flex justify-content-center mb-lg-0 mb-3">
+				<a class="text-decoration-none" href="./featured.html">
+					<div class="card" style="width: 18rem">
+						<img src="t3/images/property-img-2.png" class="card-img-top" alt="..." />
+						<div class="card-body pb-0">
+							<h5 class="card-title fw-semibold">North Dillard Street</h5>
+							<p class="card-text pro-text">
+								<span><img src="t3/images/vector img/location.svg" alt="" /></span>
+								4330 Bell Shoals Rd
+							</p>
+							<div class="d-flex justify-content-between">
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/bed.svg" alt="" /></span>
+										4
+									</p>
+								</div>
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/shower.svg" alt="" /></span>
+										2
+									</p>
+								</div>
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/area.svg" alt="" /></span>
+										400 sqft
+									</p>
+								</div>
+							</div>
+							<div class="pt-3">
+								<p class="fw-bold" style="color: #DC1B2E">
+									Price:
+									<span class="fw-bold text-dark pro-text">$5000</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col d-flex justify-content-center mb-lg-0 mb-3">
+				<a class="text-decoration-none" href="./featured.html">
+					<div class="card" style="width: 18rem">
+						<img src="t3/images/property-img-3.png" class="card-img-top" alt="..." />
+						<div class="card-body pb-0">
+							<h5 class="card-title fw-semibold">North Dillard Street</h5>
+							<p class="card-text pro-text">
+								<span><img src="t3/images/vector img/location.svg" alt="" /></span>
+								4330 Bell Shoals Rd
+							</p>
+							<div class="d-flex justify-content-between">
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/bed.svg" alt="" /></span>
+										4
+									</p>
+								</div>
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/shower.svg" alt="" /></span>
+										2
+									</p>
+								</div>
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/area.svg" alt="" /></span>
+										400 sqft
+									</p>
+								</div>
+							</div>
+							<div class="pt-3">
+								<p class="fw-bold" style="color: #DC1B2E">
+									Price:
+									<span class="fw-bold text-dark pro-text">$5000</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col d-flex justify-content-center mb-lg-0 mb-3">
+				<a class="text-decoration-none" href="./featured.html">
+					<div class="card" style="width: 18rem">
+						<img src="t3/images/property-img-4.png" class="card-img-top" alt="..." />
+						<div class="card-body pb-0">
+							<h5 class="card-title fw-semibold">North Dillard Street</h5>
+							<p class="card-text pro-text">
+								<span><img src="t3/images/vector img/location.svg" alt="" /></span>
+								4330 Bell Shoals Rd
+							</p>
+							<div class="d-flex justify-content-between">
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/bed.svg" alt="" /></span>
+										4
+									</p>
+								</div>
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/shower.svg" alt="" /></span>
+										2
+									</p>
+								</div>
+								<div class="">
+									<p class="card-text pro-text">
+										<span><img src="t3/images/vector img/area.svg" alt="" /></span>
+										400 sqft
+									</p>
+								</div>
+							</div>
+							<div class="pt-3">
+								<p class="fw-bold" style="color: #DC1B2E">
+									Price:
+									<span class="fw-bold text-dark pro-text">$5000</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container-fluid sec-4">
+	<div class="container">
+		<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
+			<div class="col-lg-8 col-12">
+				<p class="worth">
+					WHAT’S YOUR HOME <br />
+					REALLY WORTH?
+				</p>
+				<p class="text-white">
+					Type your address below to find out how much your <br />
+					property is worth.
+				</p>
+			</div>
+			<div class="col-lg-4 col-12">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control email" placeholder="Email address.." aria-label="Username"
+						aria-describedby="basic-addon1" />
+				</div>
+				<button type="button" class="btn btn-light w-100 submit fw-semibold">
+					Submit
+				</button>
+			</div>
+		</div>
 	</div>
 </div>

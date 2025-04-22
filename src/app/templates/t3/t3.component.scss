@@ -14,6 +14,7 @@ p{
   font-size: 14px;
 }
 
+
 .bannner {
   background-image: url('/t3/images/banner.jpg');
   background-size: cover;
@@ -266,16 +267,46 @@ p{
   font-size: 14px;
 }
 
-h5{
-  color: #22614B;
-}
-
 .sign-wid{
   width: 247px;
 }
 
 .text-pink{
   color:#DC1B2E;
+}
+
+
+.search-container{
+  .info {
+    color: #dc3646 !important;
+  }
+
+  .head-bg{
+    background-color: #dc3646;
+    color: white !important;
+  }
+
+  .search_btn {
+    color: white;
+    background-color: #dc3646 !important;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: #a72d3a !important;
+      color: white;
+    }
+  }
+}
+
+:host ::ng-deep {
+  app-search-page{
+      .search-container{
+        @extend .search-container;
+      }
+  }
+      .search-container{
+        @extend .search-container;
+      }
 }
 
   @media screen and (max-width:600px)
