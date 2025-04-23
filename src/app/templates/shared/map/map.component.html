@@ -62,20 +62,20 @@
       [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
       aria-label="Select page"></mat-paginator>
     </div>
-    <div class="col-lg-6 col-12 p-0 position-sticky top-0" style="height: 100vh;" *ngIf="propertiesList && propertiesList.length>0">
-      <div style="height: 100%;">
-        <google-map mapId="propertyList" draggable="true"
-        [center]="{lat:propertiesList[0].Latitude, lng:propertiesList[0].Longitude}" [zoom]="zoom" 
+    <div class="col-lg-6 col-12 p-0 position-sticky top-0" style="height: 100vh;">
+      <div style="height: 90%;">
+        <div #mapComponent id="mapComponent" style="height: 100%;"></div>
+        <!-- <google-map id="mapComponent" mapId="mapComponent" draggable="true" #mapComponent 
+        [center]="{lat:propertiesList[0].Latitude, lng:propertiesList[0].Longitude}" [zoom]="zoom" [disableDefaultUI]="false" [gestureHandling]="'none'"
         height="90%" width="100%">
-        @for (property of propertiesList; track property) {
-          <map-advanced-marker id="{{property.ListingKey}}"
+        @for (property of markers; track property) { -->
+          <!-- <map-advanced-marker id="mapAdvancedMarker"
             #marker="mapAdvancedMarker"
-            [content] = buildContent(property)
-            [position]="{ lat: property.Latitude, lng: property.Longitude }"
-            [title]="property.PropertyUse"            
-            (gmp-click)="openInfoWindow(marker, infoWindow, this)">
-          <map-info-window #infoWindow="mapInfoWindow">
-            <div>
+             
+            (gmp-click)="openInfoWindow(marker, infoWindow, this)"> -->
+            <!-- [position]="{ lat: property.position.lat, lng: property.position.lng }"  -->
+          <!-- <map-info-window #infoWindow="mapInfoWindow"> -->
+            <!-- <div>
               <h5>{{property.ListingKey}}</h5>
               <p><b>Address:</b> {{property.UnparsedAddress}}</p>
               <p><b>Cross Street:</b> {{property.CrossStreet}}</p>
@@ -83,10 +83,9 @@
               <p><b>Price:</b> ${{property.ListPrice}}</p>
               <p><b>Property Type:</b> {{property.PropertySubType}}</p>
               <p><b>Property Use:</b> {{property.TransactionType}}</p>
-            </div>
-          </map-info-window>
-          </map-advanced-marker>
-        }
+            </div> -->
+          <!-- </map-info-window>
+      </map-advanced-marker> -->
           <!-- <map-marker id="mapMarkerLarge"
             #mapMarker="mapMarker"
             [position]="{lat:property.Latitude, lng:property.Longitude}"
@@ -94,10 +93,8 @@
             [title]="property.PropertyUse"
             (mapClick)="openInfoWindow(property, mapMarker)"></map-marker>
            -->
-        </google-map>
+        <!-- </google-map> -->
       </div>
     </div>
-
-
     </div>
   </div>
