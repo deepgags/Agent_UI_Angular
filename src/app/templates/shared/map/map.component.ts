@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,7 +27,7 @@ import { GoogleMapsModule, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true
 })
-export class MapComponent implements OnInit{
+export class MapComponent implements OnInit, AfterViewInit{
 
   propertiesList: PropertyModel[] | undefined;
   pageEvent: PageEvent | undefined;
@@ -38,8 +38,12 @@ export class MapComponent implements OnInit{
 
   Latitude: number= 0;
   Longitude: number= 0;
-  zoom = 6;
+  zoom = 12;
   @ViewChild(MapInfoWindow, {static: false} ) infoWindow: MapInfoWindow | undefined;
+  @ViewChild('mapComponent') mapComponent!: ElementRef<HTMLDivElement>;
+  map!: google.maps.Map;
+
+  markers = [{ position: { lat: 56.1304, lng: 106.3468 }, property: new PropertyModel() }] // Center of Canada
 
   selectedFilters: any = {
     address: '',
@@ -65,6 +69,30 @@ export class MapComponent implements OnInit{
       this.titleService.setTitle("Properties on map");
   }
 
+  ngAfterViewInit():void{
+    this.initMap()
+  }
+
+  initMap() {
+    if(this.mapComponent)
+    {
+      this.map = new google.maps.Map(this.mapComponent.nativeElement, {
+        center: { lat: 0, lng: 0 },
+        zoom: 15,
+        mapTypeControl: true,
+        mapId: 'properties',
+        disableDefaultUI: false,
+        heading: 90,
+        tilt: 45,
+        zoomControl: true,
+        streetViewControl: true, 
+        fullscreenControl: true,
+        clickableIcons: true,
+        gestureHandling: 'greedy',
+      });
+    }
+  }
+
   ngOnInit(): void {
     this.pageIndex = 1;
     this.pageSize = 12;
@@ -78,6 +106,23 @@ export class MapComponent implements OnInit{
         this.searchProperties(params);
       }
     });
+  }
+
+  async renderMarkers(){
+    const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as { AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement });
+    
+    this.markers.forEach(marker => {
+      new AdvancedMarkerElement({
+        map: this.map,
+        content: this.buildContent(marker.property),
+        position:  { lat: marker.position.lat, lng: marker.position.lng },
+        title: marker.property.PropertyType,
+      });
+    })
+  
+      // AdvancedMarkerElement.addListener("click", () => {
+         //this.toggleHighlight(AdvancedMarkerElement, property);
+      // });
   }
 
   getLocation(): void{
@@ -224,6 +269,22 @@ export class MapComponent implements OnInit{
         }
       );  
     }
+
+  onMapReady(map: google.maps.Map) {
+      this.map = map;
+      //this.zoomToFitMarkers();
+  }
+
+  zoomToFitMarkers() {
+      const bounds = new google.maps.LatLngBounds();
+      this.markers.forEach(marker => {
+        bounds.extend(marker.position);
+      });
+      if (this.markers.length > 0) {
+        this.map?.setCenter(bounds.getCenter())
+        this.map?.fitBounds(bounds)
+      }
+    }
   
   searchProperties = (selectedFilters: any, event?:PageEvent) => {
       this.pageIndex = event?event.pageIndex + 1: this.pageIndex;
@@ -249,8 +310,17 @@ export class MapComponent implements OnInit{
       this.loadingService.loadingOn();
       this.loadingSubject.next(true);
       this.propertyService.searchProperties(params).subscribe({
-        next: (response) => {
+        next: async (response) => {
           this.propertiesList = response;
+          this.markers = [];
+          this.propertiesList.forEach(x=>
+          {
+            this.markers.push({ position: { lat: x.Latitude, lng: x.Longitude }, property: x });
+          })
+        
+        this.initMap();
+        await this.renderMarkers();
+        this.zoomToFitMarkers();
         },
         error: (err) => {
           this.notificationService.showNotification("Error occurred while getting properties");

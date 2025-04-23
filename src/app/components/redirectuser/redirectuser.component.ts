@@ -28,6 +28,7 @@ export class RedirectUserComponent implements OnInit {
     private storageService: StorageService,
     @Inject(DOCUMENT) private document: Document,
     private renderer2: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router) {
      this.titleService.setTitle("Redirecting...")
     }
@@ -36,8 +37,8 @@ export class RedirectUserComponent implements OnInit {
       let savedUserInfo = this.storageService.getLoggedUserFromUserInfo();
       if(savedUserInfo.customerId == "")
       {
-          // var isBrowser = isPlatformBrowser(this.platformId);
-          //if (isBrowser) {
+          var isBrowser = isPlatformBrowser(this.platformId);
+          if (isBrowser) {
             var currentUrl = window.location.host;
             this.customerService.customerExistWithSiteUrl(currentUrl)
             .subscribe({
@@ -54,7 +55,7 @@ export class RedirectUserComponent implements OnInit {
               complete:() => {
               }
           })
-        //}
+        }
           return;
       }
       else{
