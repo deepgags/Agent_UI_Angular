@@ -98,10 +98,10 @@ export class SearchComponent implements OnInit {
       property_type: this.filters.property_type,
       bedrooms: this.filters.bedrooms,
       bathrooms: this.filters.bathrooms,
-      min_price: this.filters.min_price,
-      max_price: this.filters.max_price,
+      min_price: '',
+      max_price: '',
       property_status: this.filters.property_status,
-      sqFt: this.filters.sqFt,
+      sqFt: '',
       distance: '20',
     };
   }
