@@ -10,6 +10,35 @@
     background: rgba(0, 0, 0, 0.7);
     z-index: 5;
   }
+  span{
+    font-size: 13px;
+  }
+
+  p{
+    font-size: 13px;
+  }
+  .location{
+    content:url("/public/images/vectorimg/location.svg");
+  }
+
+  .bed{
+    content:url("/t3/images/vector img/bed.svg");
+
+
+   } 
+
+  .shower{
+    content:url("/t3/images/vector img/shower.svg");
+
+
+    } 
+
+  .area{
+    content:url("/t3/images/vector img/area.svg");
+
+
+    } 
+
   
   .spinner {
     border: 8px solid rgba(0, 0, 0, 0.1);
@@ -203,4 +232,51 @@
 
 .property:not(.highlight):has(.fa-shop)::after {
   border-top: 9px solid var(--shop-color);
+}
+
+.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
+  border: none;
+  padding: 10px !important;
+
+}
+
+.mat-mdc-paginator .mat-mdc-select {
+  padding:0px 7px !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+  border: none;
+  padding: 10px !important;
+}
+
+.mdc-text-field--outlined .mdc-notched-outline {
+ border: 1px #dee2e6 solid;
+ border-radius: 6px;
+}
+
+.mdc-list-item__primary-text{
+  font-size: 13px !important;
+}
+
+.mat-mdc-tootip-surface{
+  font-size: 13px !important;
+
+}
+
+.mat-mdc-tooltip-panel-above .mat-mdc-tooltip::before{
+  background-color: rgb(234, 234, 234) !important;
+  border-radius: 7px;
+  font-size: 13px !important;
+}
+div.mat-mdc-select-panel {
+  background-color: white !important;
+}
+.mat-mdc-paginator-page-size-label {
+  font-size: 14px;
+}
+.mat-mdc-paginator-range-label {
+  font-size: 13px;
+}
+div.mat-mdc-select-panel .mat-mdc-option:hover {
+  background-color: #ececec;
 }
