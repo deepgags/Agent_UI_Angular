@@ -74,7 +74,7 @@
              
             (gmp-click)="openInfoWindow(marker, infoWindow, this)"> -->
             <!-- [position]="{ lat: property.position.lat, lng: property.position.lng }"  -->
-          <!-- <map-info-window #infoWindow="mapInfoWindow"> -->
+          <!-- <div #infoWindow id="infoWindow"> -->
             <!-- <div>
               <h5>{{property.ListingKey}}</h5>
               <p><b>Address:</b> {{property.UnparsedAddress}}</p>
@@ -84,8 +84,7 @@
               <p><b>Property Type:</b> {{property.PropertySubType}}</p>
               <p><b>Property Use:</b> {{property.TransactionType}}</p>
             </div> -->
-          <!-- </map-info-window>
-      </map-advanced-marker> -->
+          <!-- </div> -->
           <!-- <map-marker id="mapMarkerLarge"
             #mapMarker="mapMarker"
             [position]="{lat:property.Latitude, lng:property.Longitude}"
