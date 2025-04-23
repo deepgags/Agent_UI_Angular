@@ -15,7 +15,7 @@
 
 <div class="container-fluid sec-3 search-container" >
 	<div class="" *ngIf="propertiesList && propertiesList.length>0">
-      	<mat-paginator class="py-3"
+      	<mat-paginator class="pb-3"
 			[length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
 			[pageIndex]="pageIndex-1"
 			(page)="pageEvent = searchProperties(selectedFilters, $event)"
@@ -24,7 +24,7 @@
 			aria-label="Select page">
 		</mat-paginator>
 
-		  <div class="row g-4 mb-5">
+		  <div class="row g-4">
 			<div class="col-lg-4 col_32 col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of propertiesList">
 				<a class="text-decoration-none" (click)="selectProperty(property)">
 					<div class="card h-100 property-card border border-light-subtle">

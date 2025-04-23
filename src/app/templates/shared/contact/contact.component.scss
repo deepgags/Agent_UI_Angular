@@ -3,3 +3,8 @@
 p,h1,h3,input,button{
     font-family: "Raleway", sans-serif;
 }
+.btn-check:checked + .btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check) + .btn:active {
+    color: #000000;
+    background-color: #dbdbdb;
+    border-color: #22614B;
+}
