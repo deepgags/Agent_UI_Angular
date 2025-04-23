@@ -39,8 +39,8 @@ export class MapComponent implements OnInit, AfterViewInit{
   Latitude: number= 0;
   Longitude: number= 0;
   zoom = 12;
-  @ViewChild(MapInfoWindow, {static: false} ) infoWindow: MapInfoWindow | undefined;
   @ViewChild('mapComponent') mapComponent!: ElementRef<HTMLDivElement>;
+  @ViewChild('infoWindow') infoWindow!: ElementRef<MapInfoWindow>;
   map!: google.maps.Map;
 
   markers = [{ position: { lat: 56.1304, lng: 106.3468 }, property: new PropertyModel() }] // Center of Canada
@@ -108,21 +108,22 @@ export class MapComponent implements OnInit, AfterViewInit{
     });
   }
 
-  async renderMarkers(){
-    const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as { AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement });
-    
-    this.markers.forEach(marker => {
-      new AdvancedMarkerElement({
-        map: this.map,
-        content: this.buildContent(marker.property),
-        position:  { lat: marker.position.lat, lng: marker.position.lng },
-        title: marker.property.PropertyType,
-      });
-    })
-  
-      // AdvancedMarkerElement.addListener("click", () => {
-         //this.toggleHighlight(AdvancedMarkerElement, property);
-      // });
+  async renderMarker(property : PropertyModel) {
+    if(property.Latitude && property.Longitude)
+    {
+      const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as { AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement });
+      debugger;
+      const markerELement= new AdvancedMarkerElement({
+          map: this.map,
+          content: this.buildContent(property),
+          position:  {lat: property.Latitude, lng: property.Longitude },
+          title: property.PropertyType,
+        });
+      
+      markerELement.addListener("gmp-click", async () => {
+        await this.openInfoWindow(markerELement, property);
+     });
+    }
   }
 
   getLocation(): void{
@@ -160,8 +161,16 @@ export class MapComponent implements OnInit, AfterViewInit{
             });
   }
 
-  openInfoWindow(marker: any, infoWindow: MapInfoWindow, markerView:any) {
-    infoWindow.open(marker);
+  async openInfoWindow(marker: any, property : PropertyModel) {
+    const { InfoWindow } = await (google.maps.importLibrary("maps") as unknown as { InfoWindow: typeof google.maps.InfoWindow });
+    const window = new InfoWindow({ 
+      content: 
+      "<div><h5>" + property.ListingKey + "</h5><p><b>Address : </b>" + property.UnparsedAddress+"<p><b>Cross Street : </b>" + property.CrossStreet +
+      +"<p><b>City : </b>" + property.City + "<p><b>City : </b>" + property.City + "<p><b>Price : </b>" + property.ListPrice + "<p><b>Property Type : </b>" + property.PropertyType
+      +"<p><b>Property Use : </b>" + property.TransactionType, 
+      position:marker.position, 
+      disableAutoPan: true });
+    window.open({map: this.map, anchor: marker});
     //this.toggleHighlight(markerView)
   }
 
@@ -232,7 +241,6 @@ export class MapComponent implements OnInit, AfterViewInit{
       `;
     return content;
   }
-  
 
   selectProperty(property : PropertyModel) : void{
       if(property.IsFeatureListing)
@@ -269,11 +277,6 @@ export class MapComponent implements OnInit, AfterViewInit{
         }
       );  
     }
-
-  onMapReady(map: google.maps.Map) {
-      this.map = map;
-      //this.zoomToFitMarkers();
-  }
 
   zoomToFitMarkers() {
       const bounds = new google.maps.LatLngBounds();
@@ -313,13 +316,14 @@ export class MapComponent implements OnInit, AfterViewInit{
         next: async (response) => {
           this.propertiesList = response;
           this.markers = [];
-          this.propertiesList.forEach(x=>
+          this.propertiesList.forEach(async (x)=>
           {
             this.markers.push({ position: { lat: x.Latitude, lng: x.Longitude }, property: x });
+            await this.renderMarker(x);
           })
         
         this.initMap();
-        await this.renderMarkers();
+        
         this.zoomToFitMarkers();
         },
         error: (err) => {
