@@ -33,36 +33,44 @@
         </div>
       </div>
   
-        <div class="col-lg-5 col-12 shadow-lg bg-white p-4 rounded ">
-        <form>
-          <div class="row g-3">
-            <div class="col-md-6">
-              <input type="text" class="form-control" placeholder="Username" required>
+        <div class="col-lg-5 col-12 shadow-lg bg-white p-4 rounded search-container">
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Username" required>
+              </div>
+              <div class="col-md-6">
+                <input type="number" class="form-control" placeholder="Your Number" required>
+              </div>
             </div>
-            <div class="col-md-6">
-              <input type="number" class="form-control" placeholder="Your Number" required>
+          
+            <div class="mt-3">
+              <input type="email" class="form-control" placeholder="Your Email" required>
             </div>
-          </div>
-  
-          <div class="mt-3">
-            <input type="email" class="form-control" placeholder="Your Email" required>
-          </div>
-  
-          <div class="form-floating mt-3">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">Tell us about desired property</label>
-          </div>
-  
-          <p class="mt-4 mb-2 fw-semibold text-muted">I am</p>
-          <div class="d-flex flex-wrap gap-2">
-            <button class="btn search_btn rounded-pill" type="button">Seller</button>
-            <button class="btn search_btn rounded-pill" type="button">Buyer</button>
-            <button class="btn search_btn rounded-pill" type="button">Renter</button>
-            <button class="btn search_btn rounded-pill" type="button">Buyer & Seller</button>
-          </div>
-  
-          <button type="submit" class="btn search_btn w-100 fw-bold mt-4 rounded-pill">Submit</button>
-        </form>
+          
+            <div class="form-floating mt-3">
+              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+              <label for="floatingTextarea2">Tell us about desired property</label>
+            </div>
+          
+            <p class="mt-4 mb-2 fw-semibold text-muted">I am</p>
+            <div class="d-flex flex-wrap gap-2">
+              <input type="radio" class="btn-check radio_btn" name="userType" id="seller" value="Seller"checked required>
+              <label class="btn  rounded-pill" for="seller">Seller</label>
+          
+              <input type="radio" class="btn-check" name="userType" id="buyer" value="Buyer"  required>
+              <label class="btn  rounded-pill" for="buyer">Buyer</label>
+          
+              <input type="radio" class="btn-check" name="userType" id="renter" value="Renter" required>
+              <label class="btn  rounded-pill" for="renter">Renter</label>
+          
+              <input type="radio" class="btn-check" name="userType" id="buyerSeller" value="Buyer & Seller" required>
+              <label class="btn  rounded-pill" for="buyerSeller">Buyer & Seller</label>
+            </div>
+          
+            <button type="submit" class="btn search_btn w-100 fw-bold mt-4 rounded-pill">Submit</button>
+          </form>
+          
       </div>
   
     </div>
