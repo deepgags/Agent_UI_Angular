@@ -21,6 +21,7 @@ import { CalculatorComponent } from './templates/shared/calculator/calculator.co
 import { SellerComponent } from './templates/shared/seller/seller.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { T3Component } from './templates/t3/t3.component';
+import { SellerdetailComponent } from './templates/shared/sellerdetail/sellerdetail.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -45,6 +46,7 @@ export const routes: Routes = [
             { path: 'contact', component:  ContactComponent},
             { path: 'calculator', component:  CalculatorComponent},
             { path: 'seller', component:  SellerComponent},
+            { path: 'sellerdetails', component: SellerdetailComponent},
             { path: 'about', component:  AboutComponent},
             { path: 'payment', component:  PaymentComponent},
         ]
@@ -62,6 +64,7 @@ export const routes: Routes = [
             { path: 'contact', component:  ContactComponent},
             { path: 'calculator', component:  CalculatorComponent},
             { path: 'seller', component:  SellerComponent},
+            { path: 'sellerdetails', component: SellerdetailComponent},
             { path: 'about', component:  AboutComponent},
             { path: 'payment', component:  PaymentComponent},        
         ]
@@ -79,6 +82,7 @@ export const routes: Routes = [
             { path: 'contact', component:  ContactComponent},
             { path: 'calculator', component:  CalculatorComponent},
             { path: 'seller', component:  SellerComponent},
+            { path: 'sellerdetails', component: SellerdetailComponent},
             { path: 'about', component:  AboutComponent},
             { path: 'payment', component:  PaymentComponent},        
         ]
