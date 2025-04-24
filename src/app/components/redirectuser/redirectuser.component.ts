@@ -46,7 +46,7 @@ export class RedirectUserComponent implements OnInit {
                 if (response && response.customerId!="") {
                   this.storageService.saveUserInfo(JSON.stringify(response));
                 }
-                this.loadTemplateStyles();
+                //this.loadTemplateStyles();
                 this.redirectUser(response);
               },
               error: () => {
@@ -59,7 +59,7 @@ export class RedirectUserComponent implements OnInit {
           return;
       }
       else{
-      this.loadTemplateStyles();
+      //this.loadTemplateStyles();
       this.redirectUser(savedUserInfo);
       }
   }
@@ -74,15 +74,15 @@ export class RedirectUserComponent implements OnInit {
           break;
       }
     
-    this.style = this.renderer2.createElement('link') as HTMLLinkElement;
+    //this.style = this.renderer2.createElement('link') as HTMLLinkElement;
 
     // Set type of the link item and path to the css file
-    this.renderer2.setProperty(this.style, 'rel', 'stylesheet');
-    this.renderer2.setProperty(this.style, 'href', this.cssFile);
-    this.renderer2.setProperty(this.style, 'id', "themeCSS");
+    // this.renderer2.setProperty(this.style, 'rel', 'stylesheet');
+    // this.renderer2.setProperty(this.style, 'href', this.cssFile);
+    // this.renderer2.setProperty(this.style, 'id', "themeCSS");
 
     // Add the style to the head section
-    this.renderer2.appendChild(this.document.head, this.style);
+    //this.renderer2.appendChild(this.document.head, this.style);
   }
 
   redirectUser(userInfo:CustomerModel)

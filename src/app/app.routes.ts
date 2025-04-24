@@ -33,7 +33,7 @@ export const routes: Routes = [
     { path: 'template', component:  TemplateComponent},
     { path: 'home', component:  HomeComponent},
     { path: 'thanks', component:  ThankyouComponent},
-    
+    { path: 'payment', component:  PaymentComponent},
     { path: 'notfound', component:  NotfoundComponent},
     {
         path: 't1',
@@ -52,7 +52,6 @@ export const routes: Routes = [
             { path: 'sellerdetails2', component: Sellerdetail2Component},
             { path: 'sellerdetails3', component: Sellerdetail3Component},
             { path: 'about', component:  AboutComponent},
-            { path: 'payment', component:  PaymentComponent},
         ]
     },
     {
@@ -72,7 +71,6 @@ export const routes: Routes = [
             { path: 'sellerdetails2', component: Sellerdetail2Component},
             { path: 'sellerdetails3', component: Sellerdetail3Component},
             { path: 'about', component:  AboutComponent},
-            { path: 'payment', component:  PaymentComponent},        
         ]
     },
     {
@@ -92,7 +90,6 @@ export const routes: Routes = [
             { path: 'sellerdetails2', component: Sellerdetail2Component},
             { path: 'sellerdetails3', component: Sellerdetail3Component},
             { path: 'about', component:  AboutComponent},
-            { path: 'payment', component:  PaymentComponent},        
         ]
     },
     // { path: 't2', component: T0002Component },

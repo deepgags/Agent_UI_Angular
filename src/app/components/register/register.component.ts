@@ -136,14 +136,13 @@ export class RegisterComponent implements OnInit {
     }
 
     save() {
-      this.router.navigateByUrl('/template');
       const {valid} = this.customerForm;
       if (valid)
       {
         this.customerModel.profileImage = this.profileImageSource;
         this.customerModel.logoImage = this.logoImageSource;
         this.router.navigateByUrl('/template');
-       // this.sharedDataService.changeData(this.customerModel);
+        this.sharedDataService.changeData(this.customerModel);
       }
   }
 }
