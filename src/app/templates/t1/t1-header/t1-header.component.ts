@@ -3,10 +3,11 @@ import { StorageService } from '../../../services/storage.service';
 import { CustomerModel } from '../../../models/CustomerModel';
 import { CommonModule } from '@angular/common';
 import { PhoneSearch } from '../../../Pipes/phoneSearch';
+import { UpperCase } from '../../../Pipes/upper';
 
 @Component({
   selector: 'app-t1-header',
-  imports: [CommonModule, PhoneSearch],
+  imports: [CommonModule, PhoneSearch, UpperCase],
   templateUrl: './t1-header.component.html',
   styleUrls: ['./t1-header.component.scss', '../t1.component.scss']
 })
