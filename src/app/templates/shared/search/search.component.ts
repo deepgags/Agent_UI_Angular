@@ -6,6 +6,7 @@ import { stringiFy } from '../../../consts/Utility';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
 import { url } from 'inspector';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-search',
@@ -43,8 +44,9 @@ export class SearchComponent implements OnInit {
   sqFtTypesDropDown = sqFitTypes;
 
   constructor(private router: Router,
-    private activatedRoute: ActivatedRoute,) {
-  }
+    private activatedRoute: ActivatedRoute,
+    private storageService: StorageService,) {
+ }
 
   searchProperties = (searchByMap:boolean = false) => {
     const filtersWithValue = Object.fromEntries(
@@ -53,26 +55,56 @@ export class SearchComponent implements OnInit {
     );
 
     filtersWithValue["searchByMap"] = searchByMap;
+    const filters = 
+    {
+        address: filtersWithValue['address'], 
+        property_type: filtersWithValue['property_type'],
+        bedrooms: filtersWithValue['bedrooms'],
+        bathrooms: filtersWithValue['bathrooms'], 
+        min_price: filtersWithValue['min_price'], 
+        max_price: filtersWithValue['max_price'], 
+        property_status: filtersWithValue['property_status'], 
+        sqFt: filtersWithValue['sqFt'],
+        distance: filtersWithValue['distance']
+    }
 
-    this.router.navigate(
-      [], 
-      {
-        relativeTo: this.activatedRoute,
-        queryParams: {
-          address: filtersWithValue['address'], 
-          property_type: filtersWithValue['property_type'],
-          bedrooms: filtersWithValue['bedrooms'],
-          bathrooms: filtersWithValue['bathrooms'], 
-          min_price: filtersWithValue['min_price'], 
-          max_price: filtersWithValue['max_price'], 
-          property_status: filtersWithValue['property_status'], 
-          sqFt: filtersWithValue['sqFt'],
-          distance: filtersWithValue['distance']
-        },
-        queryParamsHandling: 'replace'
+    if(searchByMap)
+    {
+      const userInfo = this.storageService.getLoggedUserFromUserInfo();
+      let navigationUrl ;
+      switch (userInfo.templateId) {
+        case '0b69c6031f111d63bc2c975dd2837e38': 
+          navigationUrl = "t1/map";
+          break;
+        case '0b69c6031f111d63bc2c975dd2837e39': 
+        navigationUrl = "t2/map";   
+          break;
+        case '0b69c6031f111d63bc2c975dd2837e40': 
+          navigationUrl = "t3/map";   
+          break;
+        case "0b69c6031f111d63bc2c975dd2837e41":
+          navigationUrl = "t4/map";   
+          break;
       }
-    );
-    this.onSearch(filtersWithValue);
+      this.router.navigate(
+        [navigationUrl], 
+        {
+          queryParams: filters,
+          queryParamsHandling: 'replace'
+        }
+      );
+    }
+    else{
+      this.router.navigate(
+        [], 
+        {
+          relativeTo:  this.activatedRoute,
+          queryParams: filters,
+          queryParamsHandling: 'replace'
+        }
+      );
+      this.onSearch(filtersWithValue);
+    }
   }
 
   ngOnInit(): void {
