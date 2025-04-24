@@ -65,34 +65,6 @@
     <div class="col-lg-6 col-12 p-0 position-sticky top-0" style="height: 100vh;">
       <div style="height: 90%;">
         <div #mapComponent id="mapComponent" style="height: 100%;"></div>
-        <!-- <google-map id="mapComponent" mapId="mapComponent" draggable="true" #mapComponent 
-        [center]="{lat:propertiesList[0].Latitude, lng:propertiesList[0].Longitude}" [zoom]="zoom" [disableDefaultUI]="false" [gestureHandling]="'none'"
-        height="90%" width="100%">
-        @for (property of markers; track property) { -->
-          <!-- <map-advanced-marker id="mapAdvancedMarker"
-            #marker="mapAdvancedMarker"
-             
-            (gmp-click)="openInfoWindow(marker, infoWindow, this)"> -->
-            <!-- [position]="{ lat: property.position.lat, lng: property.position.lng }"  -->
-          <!-- <div #infoWindow id="infoWindow"> -->
-            <!-- <div>
-              <h5>{{property.ListingKey}}</h5>
-              <p><b>Address:</b> {{property.UnparsedAddress}}</p>
-              <p><b>Cross Street:</b> {{property.CrossStreet}}</p>
-              <p><b>City:</b> {{property.City}}</p>
-              <p><b>Price:</b> ${{property.ListPrice}}</p>
-              <p><b>Property Type:</b> {{property.PropertySubType}}</p>
-              <p><b>Property Use:</b> {{property.TransactionType}}</p>
-            </div> -->
-          <!-- </div> -->
-          <!-- <map-marker id="mapMarkerLarge"
-            #mapMarker="mapMarker"
-            [position]="{lat:property.Latitude, lng:property.Longitude}"
-            [label]="property.ListOfficeName"
-            [title]="property.PropertyUse"
-            (mapClick)="openInfoWindow(property, mapMarker)"></map-marker>
-           -->
-        <!-- </google-map> -->
       </div>
     </div>
     </div>

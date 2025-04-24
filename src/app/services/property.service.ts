@@ -12,9 +12,9 @@ import { StorageService } from './storage.service';
 
 export class PropertyService {
   query = signal<string>("");
-  private Apiurl:string ="";
+  private Apiurl:string = "";
 
- constructor(private http: HttpClient, private storageService: StorageService,) {
+  constructor(private http: HttpClient, private storageService: StorageService,) {
     this.Apiurl = environment.propertyApiUrl + environment.propertySearchUrl;
   }
 

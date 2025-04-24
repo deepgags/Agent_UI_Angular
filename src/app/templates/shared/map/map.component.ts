@@ -16,7 +16,8 @@ import { NotificationService } from '../../../services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
 import { stringiFy } from '../../../consts/Utility';
-import { GoogleMapsModule, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { DefaultRenderer, MarkerClusterer } from "@googlemaps/markerclusterer";
 
 @Component({
   selector: 'app-map',
@@ -38,9 +39,10 @@ export class MapComponent implements OnInit, AfterViewInit{
 
   Latitude: number= 0;
   Longitude: number= 0;
-  zoom = 12;
+  zoom = 15;
   @ViewChild('mapComponent') mapComponent!: ElementRef<HTMLDivElement>;
-  @ViewChild('infoWindow') infoWindow!: ElementRef<MapInfoWindow>;
+  // @ViewChild('infoWindow') infoWindow!: ElementRef<MapInfoWindow>;
+  previousInfoWindow: google.maps.InfoWindow | null = null;
   map!: google.maps.Map;
 
   markers = [{ position: { lat: 56.1304, lng: 106.3468 }, property: new PropertyModel() }] // Center of Canada
@@ -85,7 +87,7 @@ export class MapComponent implements OnInit, AfterViewInit{
         heading: 90,
         tilt: 45,
         zoomControl: true,
-        streetViewControl: true, 
+        streetViewControl: false, 
         fullscreenControl: true,
         clickableIcons: true,
         gestureHandling: 'greedy',
@@ -112,12 +114,13 @@ export class MapComponent implements OnInit, AfterViewInit{
     if(property.Latitude && property.Longitude)
     {
       const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as { AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement });
-      debugger;
+      
       const markerELement= new AdvancedMarkerElement({
           map: this.map,
           content: this.buildContent(property),
           position:  {lat: property.Latitude, lng: property.Longitude },
           title: property.PropertyType,
+          zIndex: google.maps.Marker.MAX_ZINDEX
         });
       
       markerELement.addListener("gmp-click", async () => {
@@ -162,15 +165,20 @@ export class MapComponent implements OnInit, AfterViewInit{
   }
 
   async openInfoWindow(marker: any, property : PropertyModel) {
+    if (this.previousInfoWindow) {
+      this.previousInfoWindow.close();
+    }
+
     const { InfoWindow } = await (google.maps.importLibrary("maps") as unknown as { InfoWindow: typeof google.maps.InfoWindow });
-    const window = new InfoWindow({ 
+    const informationwindow = new InfoWindow({ 
       content: 
       "<div><h5>" + property.ListingKey + "</h5><p><b>Address : </b>" + property.UnparsedAddress+"<p><b>Cross Street : </b>" + property.CrossStreet +
       +"<p><b>City : </b>" + property.City + "<p><b>City : </b>" + property.City + "<p><b>Price : </b>" + property.ListPrice + "<p><b>Property Type : </b>" + property.PropertyType
       +"<p><b>Property Use : </b>" + property.TransactionType, 
-      position:marker.position, 
+      position : this.map.getCenter(), 
       disableAutoPan: true });
-    window.open({map: this.map, anchor: marker});
+      informationwindow.open({map: this.map, shouldFocus: true});
+      this.previousInfoWindow = informationwindow;
     //this.toggleHighlight(markerView)
   }
 
@@ -276,13 +284,19 @@ export class MapComponent implements OnInit, AfterViewInit{
           queryParamsHandling: 'replace'
         }
       );  
-    }
+  }
 
-  zoomToFitMarkers() {
+  zoomToFitMarkers(markers: { position: { lat: number; lng: number }; property: PropertyModel }[] = []): void {
       const bounds = new google.maps.LatLngBounds();
+      // if(markers.length > 0)
+      // {
+      //   this.markers = markers;
+      // }
+      
       this.markers.forEach(marker => {
         bounds.extend(marker.position);
       });
+      
       if (this.markers.length > 0) {
         this.map?.setCenter(bounds.getCenter())
         this.map?.fitBounds(bounds)
@@ -316,14 +330,27 @@ export class MapComponent implements OnInit, AfterViewInit{
         next: async (response) => {
           this.propertiesList = response;
           this.markers = [];
+          
+          this.initMap();
           this.propertiesList.forEach(async (x)=>
           {
             this.markers.push({ position: { lat: x.Latitude, lng: x.Longitude }, property: x });
             await this.renderMarker(x);
           })
-        
-        this.initMap();
-        
+        const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as { AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement });
+
+        const markerClusterer = new MarkerClusterer({
+          map: this.map,
+          renderer: new DefaultRenderer(),
+          markers: this.markers.map(x => new AdvancedMarkerElement({ position: x.position, content: this.buildContent(x.property) })),
+        });
+
+      //   markerClusterer.addListener("click", (e:any) => {
+      //     debugger;
+      //     const data = e;
+      //     this.zoomToFitMarkers(e.markers.map((x:any) => ({ position: { lat: x.position.lat, lng: x.position.lng }, property: x.property })));
+      //  });
+
         this.zoomToFitMarkers();
         },
         error: (err) => {
