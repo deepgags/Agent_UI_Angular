@@ -2,10 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SearchComponent } from '../../shared/search/search.component';
 import { Title } from '@angular/platform-browser';
+import { FeaturedPropertiesComponent } from '../../shared/featured-properties/featured-properties.component';
 
 @Component({
   selector: 'app-t2-home',
-  imports: [RouterModule, SearchComponent],
+  imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent],
   templateUrl: './t2-home.component.html',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./t2-home.component.scss','../t2.component.scss']

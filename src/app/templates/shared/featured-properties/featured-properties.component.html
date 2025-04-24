@@ -1,0 +1,39 @@
+<div class="container-fluid sec-3 search-container">
+	<div class="" *ngIf="properties$ | async as properties">
+		  <div class="row g-4">
+			<div class="col-lg-4 col_32 col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of properties$ | async">
+				<a class="text-decoration-none" (click)="redirectToDetail(property)">
+					<div class="card h-100 property-card border border-light-subtle">
+						<div class="image-container">
+							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : '/images/commercial_no_Image.jpg'" class="card-img-top" alt="No property image to display">
+						</div>
+						<div class="card-body pt-1">
+							<div class="d-flex justify-content-between align-items-center">
+								<p class="mb-1 fs-4 fw-semibold">$ {{property.ListPrice}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
+								<span class="fw-semibold">{{property.PropertyType}}</span>
+							</div>
+							<span class="badge text_bg rounded-pill">{{property.TransactionType}}</span>
+							<span class="text_bg2 text-white" style="width: 25px;"></span>
+							<p class="card-text  mb-1 d-flex py-1"><i class="fa-solid fa-location-dot info mt-1 me-1"></i> {{property.UnparsedAddress}}</p>
+							<div class="d-flex align-items-center">
+								<div class="me-3" *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
+									<p class="card-text "><span><img class="bed" alt=""></span> {{property.BedroomsTotal}}</p>
+								</div>
+								<div class="me-3" *ngIf="property.BathroomsTotalInteger && property.BathroomsTotalInteger > 0">
+									<p class="card-text ">
+										<span><img class="shower" alt=""></span> {{property.BathroomsTotalInteger}}
+									</p>
+								</div>
+								<div class="" *ngIf="property.BuildingAreaTotal && property.BuildingAreaTotal > 0">
+									<p class="card-text "><span><img class="area" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
+								</div>
+							</div>
+							<p class="info  pt-2 mb-0 fw-semibold">MLS® {{property.ListingKey}} <span>{{property.ListOfficeName}}</span></p>
+						</div>
+					</div>
+					</a>
+			</div>
+		</div>
+        <h2 *ngIf="properties.length == 0">No properties found</h2>
+	</div>
+</div>

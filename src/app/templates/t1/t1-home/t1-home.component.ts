@@ -3,10 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SearchComponent } from '../../shared/search/search.component';
 import { Title } from '@angular/platform-browser';
+import { FeaturedPropertiesComponent } from '../../shared/featured-properties/featured-properties.component';
 
 @Component({
   selector: 'app-t1-home',
-  imports: [RouterModule, SearchComponent],
+  imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent],
   templateUrl: './t1-home.component.html',
   styleUrls: ['./t1-home.component.scss','../t1.component.scss']
 })
