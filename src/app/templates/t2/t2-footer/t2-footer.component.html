@@ -7,23 +7,20 @@
 					<img src="/t2/images/footer.png" alt="">
 				</div>
 				<div class="col-lg-6 col-12  mb-3 mb-lg-0">
-
-					<p class="fs-3 fw-semibold text-center">Address</p>
-
-					<p class="small text-center">
-						HomeLife/Miracle Realty Ltd., Brokerage <br>
-						470 Chrysler Dr # 20 , Brampton, L6S 0C1
+					<p class="fs-3 fw-semibold text-center" *ngIf="customer?.address">Address</p>
+					<p class=" text-center small">
+						{{customer?.address}}
 					</p>
 				</div>
 				<div class="col-lg-2 col-12 mb-3 mb-lg-0 footer-contact">
-					<p class="fs-3 fw-semibold text-center"> Contact</p>
-					<div class=" d-flex justify-content-center">
+					<p class="fs-3 fw-semibold text-center">Contact</p>
+					<div class=" d-flex justify-content-center" *ngIf="customer?.phoneNumber">
 						<div class="">
 							<img src="/t2/images/vector img/call2.png" alt="" />
 						</div>
 						<div class="ms-2">
 							<p>
-								<a class="text-white small fw-semibold text-decoration-none pop" href="tel:+4733378901">+47 333 78 901</a>
+								<a class="text-white fw-semibold small text-decoration-none pop" href="tel:{{customer?.phoneNumber}}">{{customer?.phoneNumber | phone}}</a>
 							</p>
 						</div>
 					</div>
@@ -33,7 +30,7 @@
 						</div>
 						<div class="ms-2">
 							<p>
-								<a class="text-white small fw-semibold text-decoration-none pop" href="mailto:someone@example.com">demo&#64;cc.com
+								<a class="text-white fw-semibold small text-decoration-none pop" href="mailto:{{customer?.emailAddress}}">{{customer?.emailAddress}}
 								</a>
 							</p>
 						</div>
