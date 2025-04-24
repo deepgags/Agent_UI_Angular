@@ -2,14 +2,14 @@
 	<div class="row py-2 align-items-center justify-content-center">
 		<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
 			<div class="">
-				<h4 class="mb-0">{{userData.name}}</h4>
-				<p class="text-center mb-0">SALES REPRESENTATIVE</p>
+				<h4 class="mb-0">{{customer?.firstName}} {{customer?.lastName}}</h4>
+				<p class="text-center mb-0">{{customer?.role?.RoleName}}</p>
 			</div>
 		</div>
 
 		<div class="col-12 col-lg-5 d-flex justify-content-center">
-			<a href="/t2/home">
-			 <img src="/t2/images/brokerage.png" alt="" />
+			<a href="/t2">
+				<img [src]="customer?.logoImage?customer?.logoImage:'/images/Nologo.png'" alt="" height="66px"/>
 		    </a>
 		</div>
 
@@ -20,7 +20,7 @@
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold text-decoration-none pop" [href]="'tel:'+userData.phone">{{userData.phone}}</a>
+						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{customer?.phoneNumber | phone}}'">{{customer?.phoneNumber | phone}}</a>
 					</p>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold text-decoration-none pop" [href]="'mailto:' + userData.email">{{userData.email}}</a>
+						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +customer?.emailAddress">{{customer?.emailAddress}}</a>
 					</p>
 				</div>
 			</div>
