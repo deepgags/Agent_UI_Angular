@@ -22,6 +22,8 @@ import { SellerComponent } from './templates/shared/seller/seller.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { T3Component } from './templates/t3/t3.component';
 import { SellerdetailComponent } from './templates/shared/sellerdetail/sellerdetail.component';
+import { Sellerdetail2Component } from './templates/shared/sellerdetail2/sellerdetail2.component';
+import { Sellerdetail3Component } from './templates/shared/sellerdetail3/sellerdetail3.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -47,6 +49,8 @@ export const routes: Routes = [
             { path: 'calculator', component:  CalculatorComponent},
             { path: 'seller', component:  SellerComponent},
             { path: 'sellerdetails', component: SellerdetailComponent},
+            { path: 'sellerdetails2', component: Sellerdetail2Component},
+            { path: 'sellerdetails3', component: Sellerdetail3Component},
             { path: 'about', component:  AboutComponent},
             { path: 'payment', component:  PaymentComponent},
         ]
@@ -65,6 +69,8 @@ export const routes: Routes = [
             { path: 'calculator', component:  CalculatorComponent},
             { path: 'seller', component:  SellerComponent},
             { path: 'sellerdetails', component: SellerdetailComponent},
+            { path: 'sellerdetails2', component: Sellerdetail2Component},
+            { path: 'sellerdetails3', component: Sellerdetail3Component},
             { path: 'about', component:  AboutComponent},
             { path: 'payment', component:  PaymentComponent},        
         ]
@@ -83,6 +89,8 @@ export const routes: Routes = [
             { path: 'calculator', component:  CalculatorComponent},
             { path: 'seller', component:  SellerComponent},
             { path: 'sellerdetails', component: SellerdetailComponent},
+            { path: 'sellerdetails2', component: Sellerdetail2Component},
+            { path: 'sellerdetails3', component: Sellerdetail3Component},
             { path: 'about', component:  AboutComponent},
             { path: 'payment', component:  PaymentComponent},        
         ]
