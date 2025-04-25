@@ -243,20 +243,20 @@
 
             <div class="card shadow border-0 rounded-3" >
               <div class="row align-items-center p-3">
-                <div class="col-3">
+                <div class="col-4">
                   <div class="">
                     <img *ngIf="customer?.profileImage" [src]="customer?.profileImage?customer?.profileImage:'/images/Nologo.png'" alt="" height="66px"/>
 				            <img *ngIf="customer?.profileImagePath" [src]="customer?.profileImagePath?customer?.profileImagePath:'/images/Nologo.png'" alt="" height="66px"/>
                   </div>
                 </div>
-                <div class="col-9">
+                <div class="col-8">
                   <div class="card-body">
                     <h6 class="text-muted mb-0">PRESENTED BY</h6>
                     <h5 class="card-title info mt-1">{{customer?.firstName}} {{customer?.lastName}}</h5>
                     <p class="card-text mb-2 text-secondary small">{{customer?.role?.RoleName | upper}}</p>
                     <div class="text-muted small">
-                      <p class="mb-1"><i class="bi bi-envelope me-1"></i>Email: {{customer?.emailAddress}}</p>
-                      <p class="mb-0"><i class="bi bi-telephone me-1"></i> Call: {{customer?.cellNumber | phone}}</p>
+                      <p class="mb-1">Email: {{customer?.emailAddress}}</p>
+                      <p class="mb-0"> Call: {{customer?.cellNumber | phone}}</p>
                     </div>
                   </div>
                 </div>

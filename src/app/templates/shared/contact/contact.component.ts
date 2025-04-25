@@ -12,9 +12,9 @@ import { UpperCase } from '../../../Pipes/upper';
 
 @Component({
   selector: 'app-contact',
-  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, SearchComponent,
+  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule,
     MatFormFieldModule, MatInputModule,
-    RouterModule ,PhoneSearch, UpperCase
+    RouterModule 
     ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
