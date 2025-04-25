@@ -33,6 +33,9 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { CustomerModel } from '../../../models/CustomerModel';
+import { PhoneSearch } from '../../../Pipes/phoneSearch';
+import { UpperCase } from '../../../Pipes/upper';
 // import { LightboxModule, Lightbox } from 'ng-gallery/lightbox';
 
 @Component({
@@ -40,7 +43,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
   imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, SearchComponent,
     MatFormFieldModule, MatInputModule,
     GoogleMapsModule,
-    RouterModule , GalleryModule,
+    RouterModule , GalleryModule, PhoneSearch, UpperCase
     ],
   providers: [provideAnimations(), NgbCarouselConfig],
   templateUrl: './propertydetail.component.html',
@@ -51,6 +54,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 export class PropertydetailComponent implements OnInit {
 
   property: PropertyModel | undefined;
+  customer: CustomerModel | undefined;
   Latitude: number= 0;
   Longitude: number= 0;
   private loadingSubject = new BehaviorSubject<boolean>(false);
@@ -136,6 +140,7 @@ export class PropertydetailComponent implements OnInit {
       });
 
     this.getLocation();
+    this.customer = this.storageService.getLoggedUserFromUserInfo();
   }
 
   openInfoWindow(property : PropertyModel, marker: MapMarker): void {
