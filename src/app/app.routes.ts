@@ -24,6 +24,7 @@ import { T3Component } from './templates/t3/t3.component';
 import { SellerdetailComponent } from './templates/shared/sellerdetail/sellerdetail.component';
 import { Sellerdetail2Component } from './templates/shared/sellerdetail2/sellerdetail2.component';
 import { Sellerdetail3Component } from './templates/shared/sellerdetail3/sellerdetail3.component';
+import { FeaturedListingsComponent } from './templates/shared/featured-listings/featured-listings.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -42,6 +43,7 @@ export const routes: Routes = [
             { path: '', redirectTo: '/t1/home', pathMatch: 'full' },
             { path: 'home', component:  T1HomeComponent},
             { path: 'search', component:  SearchPageComponent},
+            { path: 'featuredlistings', component:  FeaturedListingsComponent},
             { path: 'propertydetail', component:  PropertydetailComponent},
             { path: 'map', component:  MapComponent},
             { path: 'buyer', component:  BuyerComponent},
@@ -61,6 +63,7 @@ export const routes: Routes = [
             { path: '', redirectTo: '/t2/home', pathMatch: 'full' },
             { path: 'home', component:  T2HomeComponent},
             { path: 'search', component:  SearchPageComponent} ,
+            { path: 'featuredlistings', component:  FeaturedListingsComponent},
             { path: 'propertydetail', component:  PropertydetailComponent},   
             { path: 'map', component:  MapComponent},
             { path: 'buyer', component:  BuyerComponent},
@@ -79,7 +82,8 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: '/t3/home', pathMatch: 'full' },
             { path: 'home', component:  T3HomeComponent},
-            { path: 'search', component:  SearchPageComponent} ,
+            { path: 'search', component:  SearchPageComponent},
+            { path: 'featuredlistings', component:  FeaturedListingsComponent},
             { path: 'propertydetail', component:  PropertydetailComponent},   
             { path: 'map', component:  MapComponent},
             { path: 'buyer', component:  BuyerComponent},

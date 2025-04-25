@@ -1,0 +1,110 @@
+.loading-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 5;
+  }
+  
+  .spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #198754; /* Spinner color */
+    border-radius: 50%;
+    width: 100px; /* Spinner size */
+    height: 100px; /* Spinner size */
+    animation: spin 1s linear infinite; /* Spin animation */
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .text{
+    font-size: 35px;
+    text-align: center;
+}
+
+.image-container {
+  height: 270px;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pro-text{
+  font-size: 13px;
+}
+.card-container {
+  perspective: 1000px;
+}
+
+div.mat-mdc-select-panel {
+  background-color: white !important;
+}
+
+
+.property-card {
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.property-card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
+  border: none;
+  padding: 10px !important;
+
+}
+
+.mat-mdc-paginator .mat-mdc-select {
+  padding:0px 7px !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+  border: none;
+  padding: 10px !important;
+}
+
+.mdc-text-field--outlined .mdc-notched-outline {
+ border: 1px #dee2e6 solid;
+ border-radius: 6px;
+}
+
+.mdc-list-item__primary-text{
+  font-size: 13px !important;
+}
+
+.mat-mdc-tootip-surface{
+  font-size: 13px !important;
+
+}
+
+.mat-mdc-tooltip-panel-above .mat-mdc-tooltip::before{
+  background-color: rgb(234, 234, 234) !important;
+  border-radius: 7px;
+  font-size: 13px !important;
+}
+
+@media (min-width: 2560px) {
+ .col_32{
+  width: 25%;
+ }
+}
+
+@media (min-width: 1920px) {
+  .col_32{
+   width: 25%;
+  }
+ }
