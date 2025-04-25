@@ -4,25 +4,25 @@
     </div>
     
     <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.property_type" class="form-select">
+        <select [(ngModel)]="filters.property_type" class="form-select custom-select">
             <option *ngFor="let property of propertyTypesDropDown" [value]="property.value">{{property.label}}</option>
         </select>
     </div>
     
     <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.bedrooms" class="form-select">
+		<select [(ngModel)]="filters.bedrooms" class="form-select custom-select">
             <option *ngFor="let beds of bedTypesDropDown" [value]="beds.value">{{beds.label}}</option>
         </select>
     </div>
     
     <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.bathrooms" class="form-select">
+        <select [(ngModel)]="filters.bathrooms" class="form-select custom-select">
             <option *ngFor="let bath of bathTypesDropDown" [value]="bath.value">{{bath.label}}</option>
         </select>
     </div>
     
     <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.property_status" class="form-select">
+        <select [(ngModel)]="filters.property_status" class="form-select custom-select">
             <option *ngFor="let status of statusTypesDropDown" [value]="status.value">{{status.label}}</option>
         </select>
     </div>

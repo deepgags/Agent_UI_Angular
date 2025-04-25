@@ -413,6 +413,11 @@ h5{
     top: 9px;
   }
 
+  .search-bar:focus-visible {
+    border-color: #71ffcd;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+}
   
   .text_bg2{
     position: absolute;
@@ -457,6 +462,20 @@ h5{
   .area{
     content:url("/t2/images/vector img/area.png");
     } 
+
+   .search-bar:focus-visible {
+    border-color: #71ffcd !important;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25) !important;
+}
+
+.custom-select:focus {
+  border-color: red !important;
+  outline: none !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25) !important;
+}
+
+
 
   .drop {
     border-radius: 0px;

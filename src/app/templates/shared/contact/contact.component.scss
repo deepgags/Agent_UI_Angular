@@ -6,6 +6,16 @@ p,h1,h3,input,button{
 .btn-check:checked + .btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check) + .btn:active {
     color: #000000;
     // background-color: #dbdbdb;
-    border-color: #22614B;
+    border-color: #000000;
 }
 
+.mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after {
+    margin-left: 1px;
+    margin-right: 0;
+    content: "*";
+    color: red;
+}
+.search-container[_ngcontent-ng-c978161180] span[_ngcontent-ng-c978161180], [_nghost-ng-c978161180] .search-container span {
+    font-size: 13px;
+    color: red;
+}
