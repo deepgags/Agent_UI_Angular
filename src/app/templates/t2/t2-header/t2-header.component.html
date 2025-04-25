@@ -8,9 +8,10 @@
 		</div>
 
 		<div class="col-12 col-lg-5 d-flex justify-content-center">
-			<a href="/t2">
-				<img *ngIf="customer?.logoImage" [src]="customer?.logoImage?customer?.logoImage:'/images/Nologo.png'" alt="" height="66px"/>
-				<img *ngIf="customer?.logoImagePath" [src]="customer?.logoImagePath?customer?.logoImagePath:'/images/Nologo.png'" alt="" height="66px"/>
+			<a href="/t2" *ngIf="customer && customer.customerId!=''">
+			  <svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
+              <img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+			  <img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 		    </a>
 		</div>
 

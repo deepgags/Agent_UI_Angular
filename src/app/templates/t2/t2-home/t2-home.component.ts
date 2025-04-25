@@ -3,6 +3,8 @@ import { Router, RouterModule } from '@angular/router';
 import { SearchComponent } from '../../shared/search/search.component';
 import { Title } from '@angular/platform-browser';
 import { FeaturedPropertiesComponent } from '../../shared/featured-properties/featured-properties.component';
+import { CustomerModel } from '../../../models/CustomerModel';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-t2-home',
@@ -12,12 +14,18 @@ import { FeaturedPropertiesComponent } from '../../shared/featured-properties/fe
   styleUrls: ['./t2-home.component.scss','../t2.component.scss']
 })
 export class T2HomeComponent implements OnInit {
+  customer: CustomerModel | undefined;
+
   constructor(private router: Router,
-    private titleService : Title
-  ) { }
+    private titleService : Title,
+    private storageService: StorageService
+  ) { 
+
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle("Home")
+    this.customer = this.storageService.getLoggedUserFromUserInfo();
   }
   
   searchProperties = (selectedFilters: any, searchByMap:boolean = false) => {

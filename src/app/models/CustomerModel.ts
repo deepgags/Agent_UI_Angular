@@ -25,7 +25,7 @@ export class CustomerModel {
     role: RoleModel | undefined ;
     
     constructor(customerId: string = "", firstname: string = "",
-        lastname: string = "", emailAddress: string = "", businessName: string = "", phoneNumber: string = "",
+        lastname: string = "", emailAddress: string = "", businessName: string = "", phoneNumber: string = "", cellNumber: string = "",
         isApproved: boolean = false, roleId: string = "", templateId: string = "", brokerageTypeId: string = ""
         , siteUrl: string="", logoImage: string="", logoImagePath: string="", profileImage: string="", profileImagePath: string="") {
 
@@ -35,6 +35,7 @@ export class CustomerModel {
       this.emailAddress = emailAddress;
       this.businessName = businessName;
       this.phoneNumber = phoneNumber;
+      this.cellNumber = cellNumber;
       this.isApproved = isApproved;
       this.roleId =  roleId;
       this.templateId = templateId;

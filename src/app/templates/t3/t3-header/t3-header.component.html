@@ -1,7 +1,6 @@
 <div class="container">
 	<div class="row py-2 align-items-center justify-content-center">
-	  <div
-		class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
+	  <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
 	  <div class="">
 		<h4 class="mb-0">{{customer?.firstName}} {{customer?.lastName}}</h4>
 		<p class="text-center small mb-0">{{customer?.role?.RoleName | upper}}</p>
@@ -32,10 +31,11 @@
 	  </div>
 	  <div
 		class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-	 	 <a href="/t3">
-			<img *ngIf="customer?.logoImage" [src]="customer?.logoImage?customer?.logoImage:'/images/Nologo.png'" alt="" height="66px"/>
-			<img *ngIf="customer?.logoImagePath" [src]="customer?.logoImagePath?customer?.logoImagePath:'/images/Nologo.png'" alt="" height="66px"/>
-	  </a>
+		<a href="/t3" *ngIf="customer && customer.customerId!=''">
+			<svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
+			<img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+			<img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+		  </a>
 	  </div>
 	</div>
   </div>

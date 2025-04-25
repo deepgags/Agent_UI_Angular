@@ -4,6 +4,8 @@ import { Router, RouterModule } from '@angular/router';
 import { SearchComponent } from '../../shared/search/search.component';
 import { Title } from '@angular/platform-browser';
 import { FeaturedPropertiesComponent } from '../../shared/featured-properties/featured-properties.component';
+import { StorageService } from '../../../services/storage.service';
+import { CustomerModel } from '../../../models/CustomerModel';
 
 @Component({
   selector: 'app-t1-home',
@@ -12,13 +14,16 @@ import { FeaturedPropertiesComponent } from '../../shared/featured-properties/fe
   styleUrls: ['./t1-home.component.scss','../t1.component.scss']
 })
 export class T1HomeComponent implements OnInit  {
+  customer: CustomerModel | undefined;
 
   constructor(private router: Router,
-    private titleService : Title   
+    private titleService : Title,
+    private storageService: StorageService
   ) { }
 
   ngOnInit(): void {
     this.titleService.setTitle("Home")
+    this.customer = this.storageService.getLoggedUserFromUserInfo();
   }
 
   searchProperties = (selectedFilters: any, searchByMap:boolean = false) => {

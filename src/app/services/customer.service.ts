@@ -45,6 +45,7 @@ export class CustomerService {
             x.emailaddress,
             x.businessname,
             x.phonenumber,
+            x.cellnumber,
             x.isapproved,
             x.roleid,
             x.templateid,

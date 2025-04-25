@@ -4,15 +4,18 @@ import { CustomerModel } from '../../../models/CustomerModel';
 import { CommonModule } from '@angular/common';
 import { PhoneSearch } from '../../../Pipes/phoneSearch';
 import { UpperCase } from '../../../Pipes/upper';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-t2-header',
-  imports: [CommonModule, PhoneSearch, UpperCase],
+  imports: [CommonModule, AngularSvgIconModule, PhoneSearch, UpperCase],
   templateUrl: './t2-header.component.html',
   styleUrls: ['./t2-header.component.scss', '../t2.component.scss']
 })
 export class T2HeaderComponent implements OnInit  {
   customer: CustomerModel | undefined;
+  showSVG: boolean = false;
+  showLogo: boolean = false;
  
   constructor(private storageService: StorageService) {
 
@@ -20,5 +23,6 @@ export class T2HeaderComponent implements OnInit  {
 
   ngOnInit(): void {
     this.customer = this.storageService.getLoggedUserFromUserInfo();
+    this.showSVG = typeof this.customer.logoImagePath === 'string' && this.customer.logoImagePath.endsWith('.svg');
   }
 }
