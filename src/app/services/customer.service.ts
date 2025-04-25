@@ -49,7 +49,11 @@ export class CustomerService {
             x.roleid,
             x.templateid,
             x.brokeragetypeid,
-            x.siteurl)
+            x.siteurl,
+            x.logoimage,
+            x.logoimagepath,
+            x.profileimage,
+            x.profileimagepath)
             
             customer.brokerage = new BrokerageTypeModel(x.brokerages.brokeragetypeid,
               x.brokerages.name, x.brokerages.alternatename,x.brokerages.logopath,x.brokerages.isapproved,x.brokerages.isdefault);

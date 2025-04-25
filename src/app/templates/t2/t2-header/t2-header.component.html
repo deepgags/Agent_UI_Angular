@@ -9,7 +9,8 @@
 
 		<div class="col-12 col-lg-5 d-flex justify-content-center">
 			<a href="/t2">
-				<img [src]="customer?.logoImage?customer?.logoImage:'/images/Nologo.png'" alt="" height="66px"/>
+				<img *ngIf="customer?.logoImage" [src]="customer?.logoImage?customer?.logoImage:'/images/Nologo.png'" alt="" height="66px"/>
+				<img *ngIf="customer?.logoImagePath" [src]="customer?.logoImagePath?customer?.logoImagePath:'/images/Nologo.png'" alt="" height="66px"/>
 		    </a>
 		</div>
 

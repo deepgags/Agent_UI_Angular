@@ -27,7 +27,7 @@ export class CustomerModel {
     constructor(customerId: string = "", firstname: string = "",
         lastname: string = "", emailAddress: string = "", businessName: string = "", phoneNumber: string = "",
         isApproved: boolean = false, roleId: string = "", templateId: string = "", brokerageTypeId: string = ""
-        , siteUrl: string="" ) {
+        , siteUrl: string="", logoImage: string="", logoImagePath: string="", profileImage: string="", profileImagePath: string="") {
 
       this.customerId = customerId;
       this.firstName = firstname;
@@ -40,6 +40,10 @@ export class CustomerModel {
       this.templateId = templateId;
       this.brokerageTypeId = brokerageTypeId;
       this.siteUrl = siteUrl;
+      this.logoImage = logoImage;
+      this.logoImagePath = logoImagePath;
+      this.profileImage = profileImage;
+      this.profileImagePath = profileImagePath;
     }
 
     getFullName(): string {

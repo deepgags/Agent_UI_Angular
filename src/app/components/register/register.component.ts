@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
   profileImageSource: string = '';
   logoCroppedImage = '';
   logoImageSource: string = '';
+  logoImagePath: string = '';
   showSVG: boolean = false;
   showLogo: boolean = false;
 
@@ -131,7 +132,7 @@ export class RegisterComponent implements OnInit {
     }
 
     brokerageChange(selectedBrokerage:any):void{
-      this.logoImageSource = selectedBrokerage.LogoPath;
+      this.logoImagePath = selectedBrokerage.LogoPath;
       this.showSVG = selectedBrokerage.isSVGLogo();
     }
 
@@ -141,8 +142,14 @@ export class RegisterComponent implements OnInit {
       {
         this.customerModel.profileImage = this.profileImageSource;
         this.customerModel.logoImage = this.logoImageSource;
+        this.customerModel.logoImagePath = this.logoImagePath;
         this.router.navigateByUrl('/template');
         this.sharedDataService.changeData(this.customerModel);
       }
+  }
+
+  redirectToLogin()
+  {
+    this.router.navigateByUrl('login');
   }
 }
