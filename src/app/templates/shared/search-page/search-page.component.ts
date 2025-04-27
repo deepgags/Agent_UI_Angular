@@ -95,7 +95,7 @@ export class SearchPageComponent implements OnInit {
                this.redirectToDetail(property);
             }
           });
-        }
+  }
 
   selectProperty(property : PropertyModel) : void{
     if(property.IsFeatureListing)

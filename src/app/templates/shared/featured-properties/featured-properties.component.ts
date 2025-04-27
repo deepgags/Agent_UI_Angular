@@ -9,6 +9,8 @@ import { NotificationService } from '../../../services/notification.service';
 import { StorageService } from '../../../services/storage.service';
 import { stringiFy } from '../../../consts/Utility';
 import { BehaviorSubject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
 
 @Component({
   selector: 'app-featured-properties',
@@ -28,6 +30,7 @@ export class FeaturedPropertiesComponent implements OnInit {
   pageSize:number = 6;
 
   constructor(
+    private _interestedUserDialog: MatDialog,
     private propertyService: PropertyService,
     private notificationService: NotificationService,
     private storageService: StorageService,
@@ -39,6 +42,38 @@ export class FeaturedPropertiesComponent implements OnInit {
   ngOnInit(): void {
     this.searchProperties();
   }
+
+  selectProperty(property : PropertyModel) : void{
+    if(property.IsFeatureListing)
+    {
+       this.openDialog(property);
+    }
+    else
+    {
+        this.redirectToDetail(property);
+    }
+  }
+
+  openDialog(property : PropertyModel) {
+           const userDialog = this._interestedUserDialog.open(InteresteduserComponent,
+               {
+                  width      : '50%',
+                  height     : 'auto',
+                  disableClose : true,
+                  autoFocus : false,
+                  restoreFocus : false,
+                  hasBackdrop: true,
+                  data       :  property
+               }
+            )
+  
+            userDialog.afterClosed().subscribe(result => {
+              if(result)
+              {
+                 this.redirectToDetail(property);
+              }
+            });
+    }
 
   redirectToDetail(property : PropertyModel): void
   {

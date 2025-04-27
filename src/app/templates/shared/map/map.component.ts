@@ -346,7 +346,6 @@ export class MapComponent implements OnInit, AfterViewInit{
         });
 
       //   markerClusterer.addListener("click", (e:any) => {
-      //     debugger;
       //     const data = e;
       //     this.zoomToFitMarkers(e.markers.map((x:any) => ({ position: { lat: x.position.lat, lng: x.position.lng }, property: x.property })));
       //  });

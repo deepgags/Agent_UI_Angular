@@ -2,7 +2,7 @@
 	<div class="" *ngIf="properties$ | async as properties">
 		  <div class="row g-4">
 			<div class="col-lg-4  col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of properties$ | async">
-				<a class="text-decoration-none" (click)="redirectToDetail(property)">
+				<a class="text-decoration-none" (click)="selectProperty(property)">
 					<div class="card h-100 property-card border border-light-subtle">
 						<div class="image-container">
 							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : '/images/commercial_no_Image.jpg'" class="card-img-top" alt="No property image to display">
@@ -13,7 +13,7 @@
 								<span class="fw-semibold">{{property.PropertyType}}</span>
 							</div>
 							<span class="badge text_bg rounded-pill">{{property.TransactionType}}</span>
-							<span class="text_bg2 text-white" style="width: 25px;"></span>
+							<span class="text_bg2 text-white" [ngClass]="{ 'location': property.IsFeatureListing }" style="width: 25px;"></span>
 							<p class="card-text  mb-1 d-flex py-1"><i class="fa-solid fa-location-dot info mt-1 me-1"></i> {{property.UnparsedAddress}}</p>
 							<div class="d-flex align-items-center">
 								<div class="me-3" *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
