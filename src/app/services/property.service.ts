@@ -25,7 +25,7 @@ export class PropertyService {
     return this.http.get<PropertyModel[]>(`${this.Apiurl}?page=${page}&pageSize=${pageSize}&address=${address}
       &property_type=${property_type}&property_subtype=${property_subtype}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
-      &max_price=${max_price}&min_area=${sqFt}&brokerageType=${brokerageType}`)
+      &max_price=${max_price}&min_area=${sqFt}&brokerageType=${brokerageType?brokerageType:''}`)
           .pipe(map((result: any) => {
             if(result && result.data && result.data.length > 0)
             {
