@@ -240,7 +240,7 @@ p{
 
 .search-container{
   .info {
-    color: #dc3646 !important;
+    color: $info !important;
   }
   p{
     font-size: 13px;
@@ -253,12 +253,12 @@ p{
   color: white;
 }
   .text_bg {
-    background-color: #dc3646;
+    background-color: $info;
     position: absolute;
     top: 9px;
 }
 .nav-link {
-  color:#dc3646;
+  color:$info;
 }
 
 .text_bg2{
@@ -287,26 +287,25 @@ p{
   }
 
   .head-bg{
-    background-color: #dc3646;
+    background-color: $info;
     color: white !important;
   }
 
   .custom-select:focus {
-    border-color: #dc3646 !important;
+    border-color: $info !important;
     outline: none !important;
     box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25) !important;
   }
   .search-bar:focus-visible {
-    border-color: #dc3646;
+    border-color: $info;
     outline: 0;
     box-shadow: 0 0 0 .25rem rgba(253, 13, 13, 0.25);
 }
 
 
-
   .search_btn {
     color: white;
-    background-color: #dc3646 !important;
+    background-color: $info !important;
     border-radius: 10px;
 
     &:hover {
