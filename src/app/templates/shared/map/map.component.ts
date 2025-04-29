@@ -18,6 +18,7 @@ import { InteresteduserComponent } from '../../../components/dialogs/interested-
 import { stringiFy } from '../../../consts/Utility';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { DefaultRenderer, MarkerClusterer } from "@googlemaps/markerclusterer";
+import { sortTypes } from '../../../consts/DefaultTypes';
 
 @Component({
   selector: 'app-map',
@@ -57,7 +58,10 @@ export class MapComponent implements OnInit, AfterViewInit{
     property_status: '',
     sqFt: '',
     distance: '20',
+    sort: 'Most'
   };
+
+  sortDropDown = sortTypes;
 
   constructor( 
     private _interestedUserDialog: MatDialog,
@@ -306,6 +310,8 @@ export class MapComponent implements OnInit, AfterViewInit{
   searchProperties = (selectedFilters: any, event?:PageEvent) => {
       this.pageIndex = event?event.pageIndex + 1: this.pageIndex;
       this.pageSize = event?.pageSize ?? this.pageSize;
+
+      const sort = selectedFilters.sort && selectedFilters.sort != '' ? selectedFilters.sort : "most";
   
       const params = {
         page: this.pageIndex,
@@ -322,6 +328,7 @@ export class MapComponent implements OnInit, AfterViewInit{
         distance: stringiFy(selectedFilters.distance),
         latitude: this.Latitude,
         longitude: this.Longitude,
+        sort: sort
       }
   
       this.loadingService.loadingOn();

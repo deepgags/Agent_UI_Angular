@@ -18,6 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { HighlightSearch } from '../../../Pipes/highlight';
 import { MatDialog } from '@angular/material/dialog';
 import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
+import { sortTypes } from '../../../consts/DefaultTypes';
 
 @Component({
   selector: 'app-search-page',
@@ -46,7 +47,10 @@ export class SearchPageComponent implements OnInit {
     property_status: '',
     sqFt: '',
     distance: '20',
+    sort: 'Most'
   };
+
+  sortDropDown = sortTypes;
  
   constructor(
     private _interestedUserDialog: MatDialog,
@@ -71,6 +75,7 @@ export class SearchPageComponent implements OnInit {
           ...this.selectedFilters,
           ...params
         };
+        
         this.searchProperties(params);
       }
     });
@@ -137,6 +142,8 @@ export class SearchPageComponent implements OnInit {
     this.pageIndex = event?event.pageIndex + 1: this.pageIndex;
     this.pageSize = event?.pageSize ?? this.pageSize;
 
+    const sort = selectedFilters.sort && selectedFilters.sort != '' ? selectedFilters.sort : "most";
+
     const params = {
       page: this.pageIndex,
       pageSize: this.pageSize,
@@ -150,6 +157,7 @@ export class SearchPageComponent implements OnInit {
       max_price: stringiFy(selectedFilters.max_price),
       sqFt: stringiFy(selectedFilters.sqFt),
       distance: stringiFy(selectedFilters.distance),
+      sort: sort
     }
 
     this.loadingService.loadingOn();

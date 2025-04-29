@@ -7,6 +7,20 @@ export const propertyTypes = [
   { label: "Residential Freehold", text: "Residential Freehold",  value: "Residential Freehold" },
 ];
 
+export const sortTypes = [
+  { label: "Sort Type", text: "",  value: ""},
+  { label: "Most Recent", text: "Most",  value: "Most"},
+  { label: "Oldest", text: "Oldest",  value: "Oldest"},
+  { label: "Price(Low-High)", text: "Price(Low-High)",  value: "PriceLow" },
+  { label: "Price(High-Low)", text: "Price(High-Low)",  value: "PriceHigh" },
+  { label: "Bedrooms(Low-High)", text: "Bedrooms(Low-High)",  value: "BedroomLow" },
+  { label: "Bedrooms(High-Low)", text: "Bedrooms(High-Low)",  value: "BedroomHigh" },
+  { label: "Bathrooms(Low-High)", text: "Bathrooms(Low-High)",  value: "BathroomLow" },
+  { label: "Bathrooms(High-Low)", text: "Bathrooms(High-Low)",  value: "BathroomHigh" },
+  { label: "Square Feet(Low-High)", text: "SquareFeet(Low-High)",  value: "SquareFeetLow" },
+  { label: "Square Feet(High-Low)", text: "SquareFeet(High-Low)",  value: "SquareFeetHigh" },
+];
+
 export const storyTypes = [
   { label: "Story Type", value: "", text: "Any" },
   { label: "Detached", value: "Detached", text: "Detached" },

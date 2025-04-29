@@ -15,15 +15,24 @@
 
 <div class="container-fluid sec-3 search-container" >
 	<div class="" *ngIf="propertiesList && propertiesList.length>0">
-      	<mat-paginator class="pb-3"
-			[length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
-			[pageIndex]="pageIndex-1"
-			(page)="pageEvent = searchProperties(selectedFilters, $event)"
-			[pageSize]="pageSize"
-			[pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
-			aria-label="Select page">
-		</mat-paginator>
-
+		<div class="row">
+			<div class="col-12 col-lg-4 p-0 mb-3 mb-lg-0"></div>
+		<div class="col-12 col-lg-2 p-0 mb-3 mb-lg-0">
+			<select [(ngModel)]="selectedFilters.sort" class="form-select custom-select">
+				<option *ngFor="let sort of sortDropDown" [value]="sort.value">{{sort.label}}</option>
+			</select>
+		</div>
+		<div class="col-12 col-lg-6 p-0 mb-3 mb-lg-0">
+			<mat-paginator class="pb-3"
+				[length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
+				[pageIndex]="pageIndex-1"
+				(page)="pageEvent = searchProperties(selectedFilters, $event)"
+				[pageSize]="pageSize"
+				[pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+				aria-label="Select page">
+			</mat-paginator>
+	    </div>
+		</div>
 		  <div class="row g-4">
 			<div class="col-lg-4 col_32 col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of propertiesList">
 				<a class="text-decoration-none" (click)="selectProperty(property)">

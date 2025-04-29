@@ -16,6 +16,9 @@
 <div class="container-fluid mt-3 search-container">
   <div class="row vh-100">
     <div class="col-lg-6 col-12 overflow-auto px-4" style="height: 100vh; background: #f8f9fa;" *ngIf="propertiesList && propertiesList.length>0">
+      <select [(ngModel)]="selectedFilters.sort" class="form-select custom-select">
+				<option *ngFor="let sort of sortDropDown" [value]="sort.value">{{sort.label}}</option>
+			</select>
       <mat-paginator class="pb-3"
       [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
       [pageIndex]="pageIndex-1"
@@ -26,7 +29,7 @@
      </mat-paginator>
       <div class="row row-cols-1 row-cols-md-2 g-4" >
         <div class="col" *ngFor="let property of propertiesList">
-          <div class="card h-100 border-0 shadow-lg rounded-3" style="overflow: hidden;">
+          <div class="card h-100 border-0 shadow-lg rounded-3" style="overflow: hidden;" (click)="selectProperty(property)">
             <div class="position-relative">
               <div class="image-container">
                 <img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : '/images/commercial_no_Image.jpg'" class="card-img-top img-fluid" alt="No property image to display">
@@ -34,9 +37,9 @@
               <div class="position-absolute bottom-0 start-0  text-white p-2 rounded-end">
                 <span class="badge text-white" style="background-color: rgb(255 104 0);">{{property.TransactionType}}</span>
               </div>
-              <div class="position-absolute bottom-0 end-0  text-white p-2 rounded-start">
+              <!-- <div class="position-absolute bottom-0 end-0  text-white p-2 rounded-start">
                 <span class="badge bg-dark">11 Km away</span>
-              </div>
+              </div> -->
             </div>
             <div class="card-body p-2">
               <p class="mb-1 fs-4 fw-semibold">$ {{property.ListPrice}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
