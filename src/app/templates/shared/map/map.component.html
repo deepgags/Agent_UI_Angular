@@ -36,6 +36,7 @@
               </div>
               <div class="position-absolute bottom-0 start-0  text-white p-2 rounded-end">
                 <span class="badge text-white" style="background-color: rgb(255 104 0);">{{property.TransactionType}}</span>
+                <span class="text_bg4 text-white" [ngClass]="{ 'location': property.IsFeatureListing }" style="width: 25px;"></span>
               </div>
               <!-- <div class="position-absolute bottom-0 end-0  text-white p-2 rounded-start">
                 <span class="badge bg-dark">11 Km away</span>
