@@ -25,6 +25,8 @@ import { SellerdetailComponent } from './templates/shared/sellerdetail/sellerdet
 import { Sellerdetail2Component } from './templates/shared/sellerdetail2/sellerdetail2.component';
 import { Sellerdetail3Component } from './templates/shared/sellerdetail3/sellerdetail3.component';
 import { FeaturedListingsComponent } from './templates/shared/featured-listings/featured-listings.component';
+import { T4HomeComponent } from './templates/t4/t4-home/t4-home.component';
+import { T4Component } from './templates/t4/t4.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -82,6 +84,26 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: '/t3/home', pathMatch: 'full' },
             { path: 'home', component:  T3HomeComponent},
+            { path: 'search', component:  SearchPageComponent},
+            { path: 'featuredlistings', component:  FeaturedListingsComponent},
+            { path: 'propertydetail', component:  PropertydetailComponent},   
+            { path: 'map', component:  MapComponent},
+            { path: 'buyer', component:  BuyerComponent},
+            { path: 'contact', component:  ContactComponent},
+            { path: 'calculator', component:  CalculatorComponent},
+            { path: 'seller', component:  SellerComponent},
+            { path: 'sellerdetails', component: SellerdetailComponent},
+            { path: 'sellerdetails2', component: Sellerdetail2Component},
+            { path: 'sellerdetails3', component: Sellerdetail3Component},
+            { path: 'about', component:  AboutComponent},
+        ]
+    },
+    {
+        path: 't4',
+        component: T4Component,
+        children: [
+            { path: '', redirectTo: '/t4/home', pathMatch: 'full' },
+            { path: 'home', component:  T4HomeComponent},
             { path: 'search', component:  SearchPageComponent},
             { path: 'featuredlistings', component:  FeaturedListingsComponent},
             { path: 'propertydetail', component:  PropertydetailComponent},   
