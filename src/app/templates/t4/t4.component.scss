@@ -74,6 +74,9 @@ p{
     color: $info;
 }
 
+.city_card{
+  cursor: pointer;
+}
 
 .pro_card {
   position: relative;
@@ -232,7 +235,7 @@ p{
   }
 
   .bg-client {
-    background-color: rgb(255 136 148);
+    background-color:rgb(178 227 223) ;
 }
 .blockquote-footer{
   color: white;
