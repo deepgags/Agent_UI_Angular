@@ -196,22 +196,7 @@ p{
   font-weight: 600;
   background-color: #F9F9F9;
 }
-.btn-outline-success {
-  --bs-btn-color: #22614b;
-  --bs-btn-border-color: #22614b;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #22614b;
-  --bs-btn-hover-border-color: #22614b;
-  --bs-btn-focus-shadow-rgb: 25, 135, 84;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #22614b;
-  --bs-btn-active-border-color: #22614b;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #22614b;
-  --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: #22614b;
-  --bs-gradient: none;
-}
+
 .cus-widht{
   width: 289px !important;
 }
@@ -281,6 +266,11 @@ p{
   .area{
     content:url("/t3/images/vector img/area.svg");
     } 
+    
+.text{
+  font-size: 35px;
+  text-align: center;
+}
 
   span{
     font-size: 13px;
@@ -309,7 +299,7 @@ p{
     border-radius: 10px;
 
     &:hover {
-      background-color: #a72d3a !important;
+      background-color: #177e76 !important;
       color: white;
     }
   }

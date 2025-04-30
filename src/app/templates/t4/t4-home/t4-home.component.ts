@@ -5,25 +5,41 @@ import { Title } from '@angular/platform-browser';
 import { FeaturedPropertiesComponent } from '../../shared/featured-properties/featured-properties.component';
 import { StorageService } from '../../../services/storage.service';
 import { CustomerModel } from '../../../models/CustomerModel';
+import { CommonModule } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-t4-home',
-  imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent],
+  imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, CommonModule, NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule],
   templateUrl: './t4-home.component.html',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./t4-home.component.scss','../t4.component.scss']
 })
 export class T4HomeComponent implements OnInit {
   customer: CustomerModel | undefined;
+  userForm!: FormGroup;
 
   constructor(private router: Router,
+    private fb: FormBuilder,
     private titleService : Title,
     private storageService: StorageService
   ) { }
+  
 
   ngOnInit(): void {
     this.titleService.setTitle("Home")
     this.customer = this.storageService.getLoggedUserFromUserInfo();
+    
+   this.userForm = this.fb.group({
+    firstName: new FormControl('', Validators.required),
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
+    emailAddress: new FormControl('', [Validators.required, Validators.email]),
+    comment: new FormControl('', Validators.required),
+  });
   }
   
   searchProperties = (selectedFilters: any, searchByMap:boolean = false) => {

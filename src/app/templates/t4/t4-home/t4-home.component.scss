@@ -28,3 +28,12 @@ $info: #1EA69A;
     color: $info !important;
   }
   
+  .btn_outline{
+    border: $info 1px solid !important;
+    color: $info;
+  }
+  .btn_outline:hover{
+    border: $info 1px solid !important;
+    background-color: $info;
+    color: white;
+  }
