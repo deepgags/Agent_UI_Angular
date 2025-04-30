@@ -1,14 +1,30 @@
 $info: #1EA69A;
 
-
 .image-label {
-    bottom: 10px;
-    left: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 4px 8px;
-    border-radius: 4px;
-  }
-  
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5); /* optional: background for readability */
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  width: 230px;
+  text-align: center;
+}
+.image-label2 {
+  bottom: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5); /* optional: background for readability */
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  width: 230px;
+  text-align: center;
+}
+
   .background-container {
     position: relative;
     width: 100%;
@@ -24,9 +40,6 @@ $info: #1EA69A;
     width: 350px;
   }
 
-  .search-text{
-    color: $info !important;
-  }
   
   .btn_outline{
     border: $info 1px solid !important;
@@ -37,3 +50,7 @@ $info: #1EA69A;
     background-color: $info;
     color: white;
   }
+  .menu_img{
+    background-image: url('/t4/images/menu.png');
+    background-size: cover;
+}

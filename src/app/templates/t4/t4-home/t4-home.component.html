@@ -86,10 +86,10 @@
 	</div>
   </div>
 
-	<div class="container-fluid  pt-2 search-container">
+	<div class="container-fluid menu_img pt-2 search-container">
 	<div class="container">
 		<div class="row justify-content-center">
-			<p class="text fw-semibold search-text pt-3">Search Your Dream Home</p>
+			<p class="text fw-semibold pt-3">Search Your Dream Home</p>
 			<div class="col-12 bg-white p-4 mb-5">
 				<app-search [onSearch]="searchProperties" />
 			</div>
@@ -98,60 +98,58 @@
 </div>
 
 
-
-<div class="container ">
+<div class="container py-lg-5 p-lg-0 p-4">
 	<p class="text text-center mb-0 fw-semibold">
-		Find Properties in These Cities
+	  Find Properties in These Cities
 	</p>
-
+	<p class="text-center fw-normal">
+	  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	</p>
 	<div class="row pt-lg-5 p-lg-0 p-4">
-		
-		<div class="col-lg-6 col-12 mb-lg-0 mb-3">
-			<div class=" position-relative pro_card" (click)="searchProperties({address:'Toronto'})">
-			  <img class="w-100" src="t3/images/Group 2.png" alt="" />
-			  <p class="image-label position-absolute text-white m-0 fs-3">Toronto</p>
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3 pro_card position-relative">
+			<div class=""  (click)="searchProperties({address:'Toronto'})">
+				<img class="w-100" src="/t4/images/group1.png" alt="" />
+				<p class="image-label  fs-3">Toronto</p>
 			</div>
 		  </div>
 		  
-		  
-		  <div class="col-lg-3 col-12 mb-lg-0 mb-3">
-			<div class="position-relative pro_card" (click)="searchProperties({address:'Milton'})">
-			  <img class="w-100" src="t3/images/Group 5.png" alt="">
-			  <p class="image-label position-absolute text-white m-0 fs-3">Milton</p>
-			</div>
-		  </div>
-		  
-		  <div class="col-lg-3 col-12 mb-lg-0 mb-3">
-			<div class="position-relative pro_card" (click)="searchProperties({address:'Brampton'})">
-			  <img class="w-100" src="t3/images/Group 3.png" alt="">
-			  <p class="image-label position-absolute text-white m-0 fs-3">Brampton</p>
-			</div>
-		  </div>
-	</div>
-	<div class="row pt-4 ">
-		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-			<div class="position-relative pro_card" (click)="searchProperties({address:'Mississauga'})">
-			  <img class="w-100" src="/t2/images/Group 4.png" alt="">
-			  <p class="image-label position-absolute text-white m-0 fs-3">Mississauga</p>
-			</div>
-		  </div>
-		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-			<div class="position-relative pro_card" (click)="searchProperties({address:'Ottawa'})">
-			  <img class="w-100" src="t3/images/Group 5.png" alt="">
-			  <p class="image-label position-absolute text-white m-0 fs-3">Ottawa</p>
-			</div>
-		  </div>
+	  <div class="col-lg-3 col-12  position-relative">
+		<div class="mb-3" (click)="searchProperties({address:'Milton'})">
+		<img class="w-100" src="/t4/images/g2.png" alt="">
+				<p class="image-label2  fs-3">Milton</p>
 
-		<div class="col-lg-6 col-12 mb-lg-0 mb-3">
-			<div class=" position-relative pro_card" (click)="searchProperties({address:'Calgary'})">
-			  <img class="w-100" src="t3/images/Group 2.png" alt="" />
-			  <p class="image-label position-absolute text-white m-0 fs-3">Calgary</p>
-			</div>
-		  </div>
+		</div>
 
+		<div class="" (click)="searchProperties({address:'Brampton'})">
+		<img class="w-100" src="/t4/images/g2.png" alt="">
+				<p class="image-label  fs-3">Brampton</p>
+
+		</div>
+
+	  </div>
+	  <div class="col-lg-3 col-12 mb-lg-0 mb-3 pro_card position-relative">
+		<div class=""  (click)="searchProperties({address:'Ottawa'})">
+			<img class="w-100" src="/t4/images/group1.png" alt="" />
+			<p class="image-label  fs-3">Ottawa</p>
+		</div>
+	  </div>
+	  
+  <div class="col-lg-3 col-12  position-relative">
+	<div class="mb-3" (click)="searchProperties({address:'Mississauga'})">
+	<img class="w-100" src="/t4/images/g2.png" alt="">
+			<p class="image-label2  fs-3">Mississauga</p>
 
 	</div>
-</div>
+
+	<div class="" (click)="searchProperties({address:'Calgary'})">
+	<img class="w-100" src="/t4/images/g2.png" alt="">
+			<p class="image-label  fs-3">Calgary</p>
+
+	</div>
+  </div>
+	  
+	</div>
+  </div>
 
 <div class="container-fluid sec-3 py-5">
 	<div class="container bg-white">
