@@ -102,5 +102,11 @@
     width: 30%; 
     border: 1px solid #ddd;
   }
+  @media (max-width: 575.98px) {
+    li,span,p{
+      font-size: 12px !important;
+    }
+  }
+  
   
   
