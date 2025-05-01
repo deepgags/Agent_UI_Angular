@@ -52,15 +52,15 @@
 							<p class="card-text  mb-1 d-flex py-1"><i class="fa-solid fa-location-dot info mt-1 me-1"></i> {{property.UnparsedAddress}}</p>
 							<div class="d-flex align-items-center">
 								<div class="me-3" *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
-									<p class="card-text "><span><img class="bed" alt=""></span> {{property.BedroomsTotal}}</p>
+									<p class="card-text "><span class="info fw-semibold">Bed ·</span> {{property.BedroomsTotal}}</p>
 								</div>
 								<div class="me-3" *ngIf="property.BathroomsTotalInteger && property.BathroomsTotalInteger > 0">
 									<p class="card-text ">
-										<span><img class="shower" alt=""></span> {{property.BathroomsTotalInteger}}
+										<span class="info fw-semibold">Bath ·</span> {{property.BathroomsTotalInteger}}
 									</p>
 								</div>
 								<div class="" *ngIf="property.BuildingAreaTotal && property.BuildingAreaTotal > 0">
-									<p class="card-text "><span><img class="area" alt=""></span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
+									<p class="card-text "><span class="info fw-semibold">Area ·</span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
 								</div>
 							</div>
 							<p class="info  pt-2 mb-0 fw-semibold">MLS® {{property.ListingKey}} <span>{{property.ListOfficeName}}</span></p>
