@@ -35,6 +35,7 @@
 			<svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
 			<img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 			<img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+			<button type="button" (click)="updateProfile()">Update Profile</button>
 		  </a>
 	  </div>
 	</div>

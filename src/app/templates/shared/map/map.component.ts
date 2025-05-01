@@ -306,6 +306,11 @@ export class MapComponent implements OnInit, AfterViewInit{
         this.map?.fitBounds(bounds)
       }
     }
+
+  sortChange(sort:any):void{
+      this.selectedFilters.sort = sort;
+      this.searchProperties(this.selectedFilters);
+  }
   
   searchProperties = (selectedFilters: any, event?:PageEvent) => {
       this.pageIndex = event?event.pageIndex + 1: this.pageIndex;

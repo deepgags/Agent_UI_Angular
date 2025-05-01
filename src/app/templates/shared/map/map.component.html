@@ -28,7 +28,7 @@
          </mat-paginator>
         </div> 
         <div class="col-4">
-          <select [(ngModel)]="selectedFilters.sort" class="form-select custom-select">
+          <select (ngModelChange)="sortChange($event)" [(ngModel)]="selectedFilters.sort" class="form-select custom-select">
             <option *ngFor="let sort of sortDropDown" [value]="sort.value">{{sort.label}}</option>
           </select>
         </div>
@@ -50,7 +50,7 @@
               </div> -->
             </div>
             <div class="card-body p-2">
-              <p class="mb-1 fs-4 fw-semibold">$ {{property.ListPrice}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
+              <p class="mb-1 fs-4 fw-semibold">{{property.ListPrice | currency:'USD'}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
               <div class="text-muted  mb-2">
                 <span>{{property.BedroomsTotal}} bed · {{property.BathroomsTotalInteger}} bath</span>
                 <p class="card-text"><span class="me-2 "><img class="area" alt=""></span>{{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>

@@ -48,6 +48,7 @@ export class CustomerService {
             x.lastname,
             x.emailaddress,
             x.businessname,
+            x.address,
             x.phonenumber,
             x.cellnumber,
             x.isapproved,

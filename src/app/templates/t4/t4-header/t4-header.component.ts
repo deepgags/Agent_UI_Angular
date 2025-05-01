@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { PhoneSearch } from '../../../Pipes/phoneSearch';
 import { UpperCase } from '../../../Pipes/upper';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-t4-header',
@@ -17,12 +18,19 @@ export class T4HeaderComponent implements OnInit  {
   showSVG: boolean = false;
   showLogo: boolean = false;
  
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService,
+    private router: Router
+  ) {
 
    }
 
   ngOnInit(): void {
     this.customer = this.storageService.getLoggedUserFromUserInfo();
     this.showSVG = typeof this.customer.logoImagePath === 'string' && this.customer.logoImagePath.endsWith('.svg');
+  }
+
+  updateProfile()
+  {
+    this.router.navigateByUrl("profile");
   }
 }

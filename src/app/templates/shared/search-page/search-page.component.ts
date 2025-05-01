@@ -138,6 +138,11 @@ export class SearchPageComponent implements OnInit {
     );  
   }
 
+  sortChange(sort:any):void{
+    this.selectedFilters.sort = sort;
+    this.searchProperties(this.selectedFilters);
+  }
+
   searchProperties = (selectedFilters: any, event?:PageEvent) => {
     this.pageIndex = event?event.pageIndex + 1: this.pageIndex;
     this.pageSize = event?.pageSize ?? this.pageSize;

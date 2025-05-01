@@ -10,7 +10,7 @@
 				<app-search [filters]="selectedFilters" [onSearch]="searchProperties" class="search-container" />
 			</div>
 			<div class="col-2">
-				<select [(ngModel)]="selectedFilters.sort" class="form-select custom-select">
+				<select (ngModelChange)="sortChange($event)" [(ngModel)]="selectedFilters.sort" class="form-select custom-select">
 					<option *ngFor="let sort of sortDropDown" [value]="sort.value">{{sort.label}}</option>
 				</select>
 			</div>
@@ -44,7 +44,7 @@
 						</div>
 						<div class="card-body pt-1">
 							<div class="d-flex justify-content-between align-items-center">
-								<p class="mb-1 fs-4 fw-semibold">$ {{property.ListPrice}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
+								<p class="mb-1 fs-4 fw-semibold">{{property.ListPrice | currency:'USD'}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
 								<span class="fw-semibold">{{property.PropertyType}}</span>
 							</div>
 							<span class="badge text_bg rounded-pill">{{property.TransactionType}}</span>
