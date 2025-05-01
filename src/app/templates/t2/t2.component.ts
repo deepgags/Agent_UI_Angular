@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, Renderer2 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { T2FooterComponent } from './t2-footer/t2-footer.component';
 import { T2HeaderComponent } from './t2-header/t2-header.component';
@@ -11,12 +11,27 @@ import { UserModel } from '../../models/UserModel';
   styleUrl: './t2.component.scss',
 })
 export class T2Component {
-  // @Input() userInfo = new UserModel();
-  userData = {
-    name: 'James Doe',
-    phone: '+47 333 78 901',
-    email: 'john@doe.doe',
-    heroBanner: 't2/images/brokerage.png',
-    template: 't2'
+ 
+  constructor( private renderer: Renderer2, private el: ElementRef) {
+    this.renderer.setStyle(
+      this.el.nativeElement,
+      '--primary-color',
+      '#002FD5'
+    );
+    this.renderer.setStyle(
+      this.el.nativeElement,
+      '--secondary-color',
+      '#FFFFFF'
+    );
+    this.renderer.setStyle(
+      this.el.nativeElement,
+      '--third-color',
+      '#000000'
+    );
+    this.renderer.setStyle(
+      this.el.nativeElement,
+      '--fourth-color',
+      '#222222'
+    );
   }
 }

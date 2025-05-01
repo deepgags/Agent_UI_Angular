@@ -1,6 +1,13 @@
 import { BrokerageTypeModel } from "./BrokerageTypeModel";
 import { RoleModel } from "./RoleModel";
 
+export class ThemeColorModel {
+  primary: string = ""
+  secondary: string = ""
+  third: string = ""
+  fourth: string = ""
+}
+
 export class CustomerModel {
     customerId: string = "";
     brokerageTypeId: string = "";
@@ -20,6 +27,7 @@ export class CustomerModel {
     profileImage: string = "";
     profileImagePath: string = "";
     templateId: string = "";
+    themecolor: string = "";
     isApproved: boolean = false;
     brokerage: BrokerageTypeModel | undefined ;
     role: RoleModel | undefined ;

@@ -33,4 +33,9 @@ export class T2HeaderComponent implements OnInit  {
   {
     this.router.navigateByUrl("profile");
   }
+
+  redirecToTemplate()
+  {
+    this.router.navigateByUrl("usertemplate");
+  }
 }

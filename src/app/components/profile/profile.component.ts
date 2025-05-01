@@ -89,23 +89,6 @@ export class ProfileComponent {
               next: (response) => {
                 if (response && response.customerId!="") {
                   this.customerModel = response;
-
-                  
-                  // this.customerForm = this.fb.group({
-                  //   businessName: new FormControl(this.customerModel.businessName, Validators.required),
-                  //   brokerageType: new FormControl("", Validators.required),
-                  //   firstName: new FormControl(this.customerModel.firstName, Validators.required),
-                  //   lastName: new FormControl(this.customerModel.lastName, Validators.required),
-                  //   phoneNumber: new FormControl(this.customerModel.phoneNumber),//, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
-                  //   cellNumber: new FormControl(this.customerModel.cellNumber,[Validators.required, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
-                  //   emailAddress: new FormControl(this.customerModel.emailAddress, [Validators.required, Validators.email]),
-                  //   address: new FormControl(this.customerModel.address),
-                  //   logoImage: new FormControl(this.customerModel.logoImage),
-                  //   logoImagePath: new FormControl(this.customerModel.logoImagePath),
-                  //   profileImage: new FormControl(this.customerModel.profileImage),
-                  //   profileImagePath: new FormControl(this.customerModel.profileImagePath),
-                  // });
-
                   this.getBrokerageTypes();
                 }
               },
