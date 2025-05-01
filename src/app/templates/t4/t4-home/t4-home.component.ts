@@ -11,10 +11,12 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { PhoneSearch } from '../../../Pipes/phoneSearch';
+
 
 @Component({
   selector: 'app-t4-home',
-  imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, CommonModule, NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule],
+  imports: [RouterModule, SearchComponent,PhoneSearch, FeaturedPropertiesComponent, CommonModule, NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule],
   templateUrl: './t4-home.component.html',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./t4-home.component.scss','../t4.component.scss']
