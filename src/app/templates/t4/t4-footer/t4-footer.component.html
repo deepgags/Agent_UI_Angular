@@ -4,7 +4,11 @@
 		<footer class="py-5">
 			<div class="row justify-content-center align-items-center  border-bottom pb-3 mb-3 ">
 				<div class="col-lg-2 col-12 d-flex justify-content-center mb-3 mb-lg-0">
-					<img src="t1/images/footer.png" alt="">
+					<a href="/t4" *ngIf="customer && customer.customerId!=''">
+						<svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
+						<img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+						<img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+					</a>
 				</div>
 				<div class="col-lg-6 col-12  mb-3 mb-lg-0">
 					<p class="fs-3 fw-semibold text-center" *ngIf="customer?.address">Address</p>
