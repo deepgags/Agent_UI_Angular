@@ -17,7 +17,7 @@
   <div class="row vh-100">
     <div class="col-lg-6 col-12 overflow-auto px-4" style="height: 100vh; background: #f8f9fa;" *ngIf="propertiesList && propertiesList.length>0">
       <div class="row align-items-center">
-        <div class="col-8 mt-2">
+        <div class="col-9 mt-2">
           <mat-paginator class="pb-3"
           [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
           [pageIndex]="pageIndex-1"
@@ -27,7 +27,7 @@
           aria-label="Select page">
          </mat-paginator>
         </div> 
-        <div class="col-4">
+        <div class="col-3">
           <select (ngModelChange)="sortChange($event)" [(ngModel)]="selectedFilters.sort" class="form-select custom-select">
             <option *ngFor="let sort of sortDropDown" [value]="sort.value">{{sort.label}}</option>
           </select>
