@@ -66,7 +66,60 @@
 		  <p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions.</p>
 		  <p class="fw-semibold">
 			Every engagement is an opportunity to create a lasting impression and a forever client. Acharya is a well serving in real estate with the reputation of providing quality services and keeping excellent relations with the clients. </p>
-			<button type="button" class="btn search_btn">Get in Touch</button>
+			
+				<!-- Button trigger modal -->
+<button type="button" class="btn search_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	Get in Touch
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title info fs-5" id="exampleModalLabel">Get in Touch</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<div class="">
+				<div class="card-body">
+				  <form [formGroup]="userForm" name="userForm" >
+					<mat-form-field appearance="fill">
+					  <mat-label class="info">First Name</mat-label>
+					  <input formControlName="firstName" required matInput placeholder="First Name" />
+					  <mat-error>First name is required</mat-error>
+					</mat-form-field>
+					<mat-form-field appearance="fill">
+					  <mat-label class="info">Email</mat-label>
+					  <input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
+					  @if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
+					   <mat-error>Please enter a valid email address</mat-error>
+					  }
+					 @if (userForm.hasError('required', 'emailAddress')) {
+					   <mat-error>Email is required</mat-error>
+					  }
+					</mat-form-field>
+					<mat-form-field appearance="fill">                
+					  <mat-label class="info">Phone Number</mat-label>
+					  <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
+					  @if (userForm.hasError('pattern', 'phoneNumber')) {
+						<mat-error>Please enter a valid phone number</mat-error>
+					   }
+					   @if (userForm.hasError('required', 'phoneNumber')) {
+						<mat-error>Phone number is required</mat-error>
+					  }
+					</mat-form-field>
+				  </form>
+				</div>
+			  </div> 
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		  <button type="button" class="btn search_btn">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 			<button type="button" class="btn btn_outline ms-4"> <span><img src="./style/images/vector img/call.svg" alt=""></span> +1 444 555 666</button>
 		</div>
 		<div class="col-lg-6 col-12 mt-lg-0 mt-5  d-flex justify-content-lg-end justify-content-center">
