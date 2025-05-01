@@ -27,6 +27,7 @@ import { Sellerdetail3Component } from './templates/shared/sellerdetail3/sellerd
 import { FeaturedListingsComponent } from './templates/shared/featured-listings/featured-listings.component';
 import { T4HomeComponent } from './templates/t4/t4-home/t4-home.component';
 import { T4Component } from './templates/t4/t4.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -38,6 +39,7 @@ export const routes: Routes = [
     { path: 'thanks', component:  ThankyouComponent},
     { path: 'payment', component:  PaymentComponent},
     { path: 'notfound', component:  NotfoundComponent},
+    { path: 'profile', component:  ProfileComponent},
     {
         path: 't1',
         component: T1Component,
