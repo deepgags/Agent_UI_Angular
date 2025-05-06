@@ -1,0 +1,39 @@
+.nav-tabs-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #212529;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.nav-tabs .nav-link {
+  color: white;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #858585;
+  color: white;
+}
+
+.account-dropdown {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.top-padding {
+  padding-top: 80px;
+}
+
+.dropdown-item:active {
+  color: var(--bs-dropdown-link-active-color);
+  text-decoration: none;
+  background-color: #858585;
+}

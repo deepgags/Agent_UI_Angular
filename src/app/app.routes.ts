@@ -29,6 +29,10 @@ import { T4HomeComponent } from './templates/t4/t4-home/t4-home.component';
 import { T4Component } from './templates/t4/t4.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UsertemplateComponent } from './components/usertemplate/usertemplate.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AloginComponent } from './components/alogin/alogin.component';
+import { ForgotComponent } from './components/forgot/forgot.component';
+import { ChangeComponent } from './components/change/change.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -41,6 +45,10 @@ export const routes: Routes = [
     { path: 'payment', component:  PaymentComponent},
     { path: 'notfound', component:  NotfoundComponent},
     { path: 'profile', component:  ProfileComponent},
+    { path: 'userAdmin', component:  AdminComponent},
+    { path: 'alogin', component:  AloginComponent},
+    { path: 'forgot', component:  ForgotComponent},
+    { path: 'changePass', component:  ChangeComponent},
     { path: 'usertemplate', component:  UsertemplateComponent},
     {
         path: 't1',

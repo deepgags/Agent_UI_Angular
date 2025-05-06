@@ -1,0 +1,55 @@
+<div class="top-padding">
+
+  <div class="nav-tabs-container">
+    <div class="container position-relative">
+      <ul class="nav nav-tabs justify-content-center border-0" id="adminTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard" type="button" role="tab">Profile</button>
+        </li>
+        <li class="nav-item ms-2" role="presentation">
+          <button class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab">Users</button>
+        </li>
+        <li class="nav-item ms-2" role="presentation">
+          <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab">Profile</button>
+        </li>
+        <li class="nav-item ms-2" role="presentation">
+          <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports" type="button" role="tab">Template</button>
+        </li>
+      </ul>
+  
+      <ul class="nav account-dropdown">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" role="button">
+            Account
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Login</a></li>
+            <li><a class="dropdown-item" href="#">Forgot Password</a></li>
+            <li><a class="dropdown-item" href="#">Change Password</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+
+  <div class="container mt-4 tab-content" id="adminTabContent">
+    <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
+<app-profile/>
+    </div>
+    <div class="tab-pane fade" id="users" role="tabpanel">
+      <h2>Users</h2>
+      <p>Manage users here.</p>
+    </div>
+    <div class="tab-pane fade" id="settings" role="tabpanel">
+      <h2>Settings</h2>
+      <p>Change your settings.</p>
+    </div>
+    <div class="tab-pane fade" id="reports" role="tabpanel">
+      <h2>Reports</h2>
+      <p>View your reports.</p>
+    </div>
+  </div>
+</div>
+
+

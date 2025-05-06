@@ -1,0 +1,22 @@
+.login-container {
+  height: 100vh;
+  background: linear-gradient(to bottom, #eaf4ff, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.icon-circle {
+  background-color: #f8f9fa;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
