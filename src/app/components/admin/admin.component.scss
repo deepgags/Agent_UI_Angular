@@ -7,11 +7,19 @@
   z-index: 1000;
   padding: 10px 0;
 }
-
-.nav-tabs .nav-link {
-  color: white;
+.login-container {
+  background: linear-gradient(to bottom, #eaf4ff, #ffffff);
 }
 
+
+.nav-tabs .nav-link {
+  color: #fff;
+  transition: all 0.3s;
+}
+.nav-tabs .nav-link:hover {
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
 .nav-tabs .nav-link.active {
   background-color: #858585;
   color: white;

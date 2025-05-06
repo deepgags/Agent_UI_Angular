@@ -60,7 +60,7 @@ $fourth-color: var(--fourth-color);
 
     .search_btn {
       color: $secondary-color;
-      background-color: $primary-color;
+      background-color: $primary-color !important;
       border-radius: 10px;
 
       &:hover {
