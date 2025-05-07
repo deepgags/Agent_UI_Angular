@@ -33,6 +33,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AloginComponent } from './components/alogin/alogin.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { ChangeComponent } from './components/change/change.component';
+import { T5Component } from './templates/t5/t5.component';
+import { T5HomeComponent } from './templates/t5/t5-home/t5-home.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -130,5 +132,25 @@ export const routes: Routes = [
             { path: 'about', component:  AboutComponent},
         ]
     },
+    {
+        path: 't5',
+        component: T5Component,
+        children: [
+            { path: '', redirectTo: '/t5/home', pathMatch: 'full' },
+            { path: 'home', component:  T5HomeComponent},
+            { path: 'search', component:  SearchPageComponent},
+            { path: 'featuredlistings', component:  FeaturedListingsComponent},
+            { path: 'propertydetail', component:  PropertydetailComponent},   
+            { path: 'map', component:  MapComponent},
+            { path: 'buyer', component:  BuyerComponent},
+            { path: 'contact', component:  ContactComponent},
+            { path: 'calculator', component:  CalculatorComponent},
+            { path: 'seller', component:  SellerComponent},
+            { path: 'sellerdetails', component: SellerdetailComponent},
+            { path: 'sellerdetails2', component: Sellerdetail2Component},
+            { path: 'sellerdetails3', component: Sellerdetail3Component},
+            { path: 'about', component:  AboutComponent},
+        ]
+    }
     // { path: 't2', component: T0002Component },
 ];

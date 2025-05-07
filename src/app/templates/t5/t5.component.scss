@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  --primary-color: #002FD5;
+  --primary-color: #E86822;
   --secondary-color: White;
   --third-color: #222222;
   --fourth-color: red;
@@ -49,10 +49,6 @@ $fourth-color: var(--fourth-color);
   width: 100%;
 }
 
-.menu_img {
-  background-image: url("/t2/images/menu.png");
-  background-size: cover;
-}
 
 :host-context(.t2-template) {
   app-search {
@@ -64,7 +60,7 @@ $fourth-color: var(--fourth-color);
       border-radius: 10px;
 
       &:hover {
-        background-color: #092daf;
+        background-color: #E86822;
         color: $secondary-color;
       }
     }
@@ -430,15 +426,15 @@ footer {
   }
 
   .bed{
-    content:url("/t2/images/vector img/bed.svg");
+    content:url("/t5/images/vector img/bed.svg");
   } 
 
   .shower{
-    content:url("/t2/images/vector img/shower.svg");
+    content:url("/t5/images/vector img/shower.svg");
   }
 
   .area{
-    content:url("/t2/images/vector img/area.svg");
+    content:url("/t5/images/vector img/area.svg");
   } 
 
 //   .search-bar:focus-visible {
@@ -453,11 +449,11 @@ footer {
   
     .search_btn {
       color: $secondary-color;
-      background-color: $primary-color !important;
+      background-color: $primary-color;
       border-radius: 10px;
 
       &:hover {
-        background-color: #092daf;
+        background-color: #E86822;
         color: $secondary-color;
       }
     }
