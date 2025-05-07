@@ -1,0 +1,121 @@
+<div class="top-padding login-container">
+
+	<div class="nav-tabs-container py-2 bg-dark">
+		<div class="container d-flex align-items-center justify-content-between position-relative">
+
+			<!-- Logo -->
+			<div class="logo me-4">
+				<a class="text-decoration-none"
+					href="#">
+					<!-- <img src="logo.png" alt="Logo" height="40"> -->
+					<h2 class="text-white">logo</h2>
+				</a>
+			</div>
+
+			<!-- Tabs -->
+			<ul class="nav nav-tabs border-0 mx-auto"
+				id="adminTab"
+				role="tablist">
+				<li class="nav-item"
+					role="presentation">
+					<button class="nav-link active"
+						id="dashboard-tab"
+						data-bs-toggle="tab"
+						data-bs-target="#dashboard"
+						type="button"
+						role="tab">Profile</button>
+				</li>
+				<li class="nav-item ms-2"
+					role="presentation">
+					<button class="nav-link"
+						id="users-tab"
+						data-bs-toggle="tab"
+						data-bs-target="#users"
+						type="button"
+						role="tab">Users</button>
+				</li>
+				<li class="nav-item ms-2"
+					role="presentation">
+					<button class="nav-link"
+						id="settings-tab"
+						data-bs-toggle="tab"
+						data-bs-target="#settings"
+						type="button"
+						role="tab">Profile</button>
+				</li>
+				<li class="nav-item ms-2"
+					role="presentation">
+					<button class="nav-link"
+						id="reports-tab"
+						data-bs-toggle="tab"
+						data-bs-target="#reports"
+						type="button"
+						role="tab">Templates</button>
+				</li>
+			</ul>
+
+			<!-- Account Dropdown -->
+			<!-- <ul class="nav account-dropdown">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" role="button">
+            Account
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="/alogin">Login</a></li>
+            <li><a class="dropdown-item" href="/forgot">Forgot Password</a></li>
+            <li><a class="dropdown-item" href="/changePass">Change Password</a></li>
+          </ul>
+        </li>
+      </ul> -->
+			<div class="dropdown">
+				<div class="btn d-flex align-items-center gap-2 w-100"
+					style="cursor: pointer;">
+					<img src="/images/profile.png"
+						alt="User"
+						class="rounded-circle"
+						width="50"
+						height="50">
+					<div class="text-start flex-grow-1">
+						<span class="fw-bold d-block text-white">Hi, User Agent</span>
+					</div>
+					<i class="bi bi-chevron-down text-white"></i>
+				</div>
+				<ul class="dropdown-menu w-100">
+					<li><a class="dropdown-item"
+							href="/alogin">Login</a></li>
+					<li><a class="dropdown-item"
+							href="/forgot">Forgot Password</a></li>
+					<li><a class="dropdown-item"
+							href="/changePass">Change Password</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mt-4 tab-content"
+		id="adminTabContent">
+		<div class="tab-pane fade show active"
+			id="dashboard"
+			role="tabpanel">
+			<app-profile />
+		</div>
+		<div class="tab-pane fade"
+			id="users"
+			role="tabpanel">
+			<h2>Users</h2>
+			<p>Manage users here.</p>
+		</div>
+		<div class="tab-pane fade"
+			id="settings"
+			role="tabpanel">
+			<h2>Settings</h2>
+			<p>Change your settings.</p>
+		</div>
+		<div class="tab-pane fade"
+			id="reports"
+			role="tabpanel">
+			<!-- <app-template /> -->
+		</div>
+	</div>
+</div>
