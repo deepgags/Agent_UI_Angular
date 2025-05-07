@@ -56,6 +56,13 @@ $info: #1EA69A;
     background-image: url('/t5/images/menu.png');
     background-size: cover;
 }
+
+.btn-orange{
+  color: #ffffff;
+  background-color: #E86822;
+  border-radius: 0px;
+}
+
 .man{
   left: 246px;
     bottom: 0px;
@@ -64,12 +71,6 @@ $info: #1EA69A;
 .man2{
   right: 246px;
   bottom: 0px;
-}
-
-.btn-orange{
-  color: #ffffff;
-  background-color: #E86822;
-  border-radius: 0px;
 }
 
 .man-card{
@@ -86,4 +87,33 @@ $info: #1EA69A;
   background-color: #00000066;
   backdrop-filter: blur(2px);
   border: 1px solid #FFFFFF;
+}
+
+@media (max-width: 767px) {
+  .man{
+    left: 60px;
+    bottom: 400px;
+  }
+
+  .man-card{
+    bottom: 40px;
+    left: 50px;
+    background-color: #00000066;
+    backdrop-filter: blur(2px);
+    border: 1px solid #FFFFFF;
+  }
+  
+  
+  .man2{
+    right: 78px;
+    bottom: 0px;
+  }
+  .man-card2{
+    bottom: 40px;
+    right: 85px;
+    background-color: #00000066;
+    backdrop-filter: blur(2px);
+    border: 1px solid #FFFFFF;
+  }
+
 }

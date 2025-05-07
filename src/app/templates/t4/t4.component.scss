@@ -269,7 +269,13 @@ p{
   .area{
     content:url("/t4/images/vector img/area.svg");
     } 
-    
+    @media (max-width: 767px) {
+      .text_bg2{
+        position: absolute;
+        top: 10px;
+        left: 320px;
+      }
+    }
 .text{
   font-size: 35px;
   color: white;

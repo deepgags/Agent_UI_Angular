@@ -462,7 +462,13 @@ h5{
   .area{
     content:url("/t2/images/vectorimg/area.png");
     } 
-
+    @media (max-width: 767px) {
+      .text_bg2{
+        position: absolute;
+        top: 10px;
+        left: 292px;
+      }
+    }
    .search-bar:focus-visible {
     border-color: #71ffcd !important;
     outline: 0;

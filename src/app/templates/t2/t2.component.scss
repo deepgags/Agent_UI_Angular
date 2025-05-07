@@ -440,7 +440,13 @@ footer {
   .area{
     content:url("/t2/images/vector img/area.svg");
   } 
-
+  @media (max-width: 767px) {
+    .text_bg2{
+      position: absolute;
+      top: 10px;
+      left: 292px;
+    }
+  }
 //   .search-bar:focus-visible {
 //     border-color: #86b7fe;
 //     outline: 0;
