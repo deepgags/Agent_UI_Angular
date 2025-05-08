@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-$info: #00C1CF;
+$info: #1EA69A;
 
 
 *{
@@ -14,9 +14,6 @@ p{
   font-size: 14px;
 }
 
-.nav_bg {
-  background-color: $info !important;
-}
 
 .bannner {
   background-size: cover;
@@ -155,6 +152,9 @@ p{
     border-radius:10px ;
     color: $info;
   }
+.sub{
+  background-color: #22614B;
+}
   .fotter-bg{
     background-color: #222222;
   }
@@ -259,15 +259,15 @@ p{
   }
 
   .bed{
-    content:url("/t5/images/vector img/bed.svg");
+    content:url("/t4/images/vector img/bed.svg");
    } 
 
   .shower{
-    content:url("/t5/images/vector img/shower.svg");
+    content:url("/t4/images/vector img/shower.svg");
     } 
 
   .area{
-    content:url("/t5/images/vector img/area.svg");
+    content:url("/t4/images/vector img/area.svg");
     } 
     @media (max-width: 767px) {
       .text_bg2{
@@ -309,7 +309,7 @@ p{
     border-radius: 10px;
 
     &:hover {
-      background-color: #bc5720 !important;
+      background-color: #177e76 !important;
       color: white;
     }
   }

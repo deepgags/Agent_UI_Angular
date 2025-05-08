@@ -1,0 +1,56 @@
+$info: #1EA69A;
+
+.image-label {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  width: 230px;
+  text-align: center;
+}
+.image-label2 {
+  bottom: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  width: 230px;
+  text-align: center;
+}
+
+  .background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/t4/images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .overlay-image {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    width: 350px;
+  }
+
+  
+  .btn_outline{
+    border: $info 1px solid !important;
+    color: $info;
+  }
+  .btn_outline:hover{
+    border: $info 1px solid !important;
+    background-color: $info;
+    color: white;
+  }
+  .menu_img{
+    background-image: url('/t4/images/menu.png');
+    background-size: cover;
+}
