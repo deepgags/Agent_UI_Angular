@@ -2,9 +2,9 @@
 	<div class="container pt-5 search-container">
 
 		<div class="row justify-content-around align-items-center">
-			<div class="container-fluid pt-5 search-container">
+			<div class="container-fluid search-container">
 				<div class="">
-					<div class="row justify-content-center">
+					<div class="row  pt-5 mt-5 justify-content-center">
 						<p class="text fs-1 text-white fw-semibold pt-3">Search Your Dream Home</p>
 						<div class="col-12 bg-white p-4 mb-5">
 							<app-search [onSearch]="searchProperties" />
@@ -16,6 +16,160 @@
 	  </div>
   </div>
 
+  <div class="container-fluid sec-3 py-5">
+	<h3 class="fw-bold text-center">Our Team</h3>
+	<div class="container p-5">
+	  <div class="row">
+		<div class="col">
+			 <div class="card border-0 shadow p-0" style="max-width: 540px;">
+		  <div class="row g-0 justify-content-around">
+			<div class="col-md-6">
+				<!-- <img [src]="customer?.profileImage" alt="No profile image"
+				class="img-fluid w-100"> -->
+				<img class="rounded-start" src="t6/images/team1.png" alt="">
+			</div>
+			<div class="col-md-6">
+			  <div class="card-body">
+				<h5 class="card-title mb-3 fw-bold">Person Name</h5>
+				<p class="card-text fw-semibold mb-3">SALES REPRESENTATIVE</p>
+				<p class="card-text text-muted mb-3"> Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.</p>
+				<div class="mb-3">
+				  <div class=" d-flex mb-2">
+					<div class="">
+					  <img src="t6/images/vector img/Call.svg" alt="" />
+					</div>
+					<div class="ms-2">
+					  <p>
+						<a
+						  class="text-dark fw-semibold text-decoration-none"
+						  href="tel:+4733378901"
+						  >+47 333 78 901</a>
+					  </p>
+					</div>
+				  </div>
+				  <div class="d-flex">
+					<div class="">
+					  <img src="t6/images/vector img/Mail.svg" alt="" />
+					</div>
+					<div class="ms-2">
+					  <p>
+						<a
+						  class="text-dark fw-semibold text-decoration-none"
+						  href="mailto:someoneexample.com"
+						  >democc.com
+						</a>
+					  </p>
+					</div>
+				  </div>
+				</div>
+				<div class="d-flex gap-3 fs-4">
+					<a href="#" class="text-decoration-none info">
+					  <i class="fa-brands fa-x-twitter"></i>
+					</a>
+					<a href="#" class="text-decoration-none info">
+					  <i class="fa-brands fa-facebook"></i>
+					</a>
+					<a href="#" class="text-decoration-none info">
+					  <i class="fa-brands fa-instagram"></i>
+					</a>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		</div>
+		<div class="col mt-5 mt-lg-0">
+			 <div class="card border-0 shadow p-0" style="max-width: 540px;">
+		  <div class="row g-0 justify-content-around">
+			<div class="col-md-6">
+				<img class="rounded-start" src="t6/images/team1.png" alt="broker">
+			</div>
+			<div class="col-md-6">
+				<div class="card-body">
+					<h5 class="card-title mb-3 fw-bold">Person Name</h5>
+					<p class="card-text fw-semibold mb-3">SALES REPRESENTATIVE</p>
+					<p class="card-text text-muted mb-3"> Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.</p>
+					<div class="mb-3">
+					  <div class=" d-flex mb-2">
+						<div class="">
+						  <img src="t6/images/vector img/Call.svg" alt="" />
+						</div>
+						<div class="ms-2">
+						  <p>
+							<a
+							  class="text-dark fw-semibold text-decoration-none"
+							  href="tel:+4733378901"
+							  >+47 333 78 901</a>
+						  </p>
+						</div>
+					  </div>
+					  <div class="d-flex">
+						<div class="">
+						  <img src="t6/images/vector img/Mail.svg" alt="" />
+						</div>
+						<div class="ms-2">
+						  <p>
+							<a
+							  class="text-dark fw-semibold text-decoration-none"
+							  href="mailto:someoneexample.com"
+							  >democc.com
+							</a>
+						  </p>
+						</div>
+					  </div>
+					</div>
+					<div class="d-flex gap-3 fs-4">
+						<a href="#" class="text-decoration-none info">
+						  <i class="fa-brands fa-x-twitter"></i>
+						</a>
+						<a href="#" class="text-decoration-none info">
+						  <i class="fa-brands fa-facebook"></i>
+						</a>
+						<a href="#" class="text-decoration-none info">
+						  <i class="fa-brands fa-instagram"></i>
+						</a>
+					  </div>
+				  </div>
+			</div>
+		  </div>
+		</div>
+		</div>
+	 
+	  </div>
+	</div>
+   </div>
+
+
+
+  <div class="container text-center py-5">
+	<p class="text text-center fw-semibold">Find Properties in These Cities</p>
+	<div class="row">
+		<div class="col p-0">
+		  <div class="image-container" (click)="searchProperties({address:'Toronto'})">
+			<img src="./t6/images/p1.png" alt="">
+			<div class="image-label">Toronto</div>
+		  </div>
+		</div>
+		<div class="col p-0">
+		  <div class="image-container" (click)="searchProperties({address:'Milton'})">
+			<img src="./t6/images/p2.png" alt="">
+			<div class="image-label">Milton</div>
+		  </div>
+		</div>
+		<div class="col p-0">
+		  <div class="image-container" (click)="searchProperties({address:'Brampton'})">
+			<img src="./t6/images/p3.png" alt="">
+			<div class="image-label">Brampton</div>
+		  </div>
+		</div>
+		<div class="col p-0">
+		  <div class="image-container" (click)="searchProperties({address:'Mississauga'})">
+			<img src="./t6/images/p4.png" alt="">
+			<div class="image-label">Mississauga</div>
+		  </div>
+		</div>
+	  </div>	  
+  </div>
 
   <div class="container-fluid sec-3 py-5">
 	<div class="container ">
@@ -24,7 +178,7 @@
 				"Enjoy a clear and simple home-buying experience"
 			</p>
 			<div class="col">
-				<p class=" text-center">Real Estate Specialist Name</p>
+				<p class="estate text-center">Real Estate Specialist Name</p>
 				<p class="text-center fw-semibold">
 					I believe every client has the right to be treated fairly,
 					honestly and with integrity. My aim is to educate and prepare my
@@ -48,64 +202,9 @@
 </div>
 
 
-
-<div class="container py-lg-5 p-lg-0 p-4">
-	<div class="row align-items-center justify-content-around">
-	  <div class="col-lg-4 col-12">
-		<h1 class="fs-2 fw-semibold">
-		  Find Properties in These Cities
-		</h1>
-	  <a class="btn btn-orange" href="#">View More</a>
-	  </div>
-	  
-	  <div class="col-lg-6 col-12 mt-3 mt-lg-0">
-		<div class="row row-cols-2">
-		  <div class="col mb-3">
-			<div class="position-relative" (click)="searchProperties({address:'Toronto'})">
-				<img src="./t5/images/prop-1.png" alt="prop" class="img-fluid">
-				<div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
-				 <p class="fs-5 mb-0">Toronto</p>
-				</div>
-			  </div>
-		  </div>
-		  <div class="col mb-3">
-			<div class="position-relative" (click)="searchProperties({address:'Milton'})">
-			  <img src="./t5/images/prop-2.png" alt="prop" class="img-fluid">
-			  <div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
-				<p class="fs-5 mb-0">Milton</p>
-			  </div>
-			</div>
-		  </div>
-		  <div class="col">
-			<div class="position-relative" (click)="searchProperties({address:'Brampton'})">
-			  <img src="./t5/images/prop-3.png" alt="prop" class="img-fluid">
-			  <div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
-				<p class="fs-5 mb-0">Brampton</p>
-			  </div>
-			</div>
-		  </div>
-		  <div class="col">
-			<div class="position-relative" (click)="searchProperties({address:'Ottawa'})">
-			  <img src="./t5/images/prop-4.png" alt="prop" class="img-fluid">
-			  <div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
-				<p class="fs-5 mb-0">Ottawa</p>
-			  </div>
-			</div>
-		  </div>
-		  
-		</div>
-		
-	  </div>
-	</div>
-  
-  </div>
-
-
-
-
 <div class="container-fluid sec-3">
 	<div class="container pb-5">
-		<p class="text text-center mb-0 fw-semibold">Featured Properties</p>
+		<p class="text text-center mb-4 fw-semibold ">Featured Properties</p>
 		<app-featured-properties />
 	</div>
 </div>
@@ -116,14 +215,9 @@
 	<div class="container">
 		<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
 			<div class="col-lg-8 col-12">
-				<p class="worth">
-					WHAT’S YOUR HOME <br />
-					REALLY WORTH?
-				</p>
-				<p class="text-white">
-					Type your address below to find out how much your <br />
-					property is worth.
-				</p>
+				<div class="">
+					<img class="img-fluid" src="t6/images/contact-img.png" alt="">
+				  </div>
 			</div>
 			<div class="col-lg-4 col-12">
 				<div class="card shadow">
