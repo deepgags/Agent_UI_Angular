@@ -1,29 +1,9 @@
 $info: #B37DF7;
 
-.image-label {
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  position: absolute;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: white;
-  width: 230px;
-  text-align: center;
+.top-padding{
+    padding-top: 100px;
 }
-.image-label2 {
-  bottom: 240px;
-  left: 50%;
-  transform: translateX(-50%);
-  position: absolute;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: white;
-  width: 230px;
-  text-align: center;
-}
+
 
   .background-container {
     position: relative;
@@ -50,10 +30,6 @@ $info: #B37DF7;
     background-color: $info;
     color: white;
   }
-  .menu_img{
-    background-image: url('/t4/images/menu.png');
-    background-size: cover;
-}
 .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
   color: #B37DF7 !important;
 }
