@@ -1,166 +1,162 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
+import { stringiFy } from '../../../consts/Utility';
 import { PropertyModel } from '../../../models/PropertyModel';
 import { RequestPropertyModel } from '../../../models/RequestPropertyModel';
-import { PropertyService } from '../../../services/property.service';
-import { SearchComponent } from '../search/search.component';
-import { Title } from '@angular/platform-browser';
+import { HighlightSearch } from '../../../pipes/highlight';
 import { LoadingService } from '../../../services/loading.service';
 import { NotificationService } from '../../../services/notification.service';
-import { stringiFy } from '../../../consts/Utility';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator'
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { BehaviorSubject } from 'rxjs';
+import { PropertyService } from '../../../services/property.service';
 import { StorageService } from '../../../services/storage.service';
-import {MatIconModule} from '@angular/material/icon';
-import { HighlightSearch } from '../../../Pipes/highlight';
-import { MatDialog } from '@angular/material/dialog';
-import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
-  selector: 'app-featured-listings',
-  imports: [FormsModule, CommonModule, MatIconModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule],
-  templateUrl: './featured-listings.component.html',
-  styleUrl: './featured-listings.component.scss',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true
+	selector: 'app-featured-listings',
+	imports: [FormsModule, CommonModule, MatIconModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule],
+	templateUrl: './featured-listings.component.html',
+	styleUrl: './featured-listings.component.scss',
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
-export class FeaturedListingsComponent implements OnInit  {
-  propertiesList: PropertyModel[] | undefined;
-  pageEvent: PageEvent | undefined;
-  pageIndex: number = 1;
-  pageSize: number = 12;
-  private loadingSubject = new BehaviorSubject<boolean>(false);
-  loading$ = this.loadingSubject.asObservable();
- 
-  selectedFilters: any = {
-    address: '',
-    property_type: '',
-    bedrooms: '0',
-    bathrooms: '0',
-    min_price: '',
-    max_price: '',
-    property_status: '',
-    sqFt: '',
-    distance: '20',
-  };
- 
-  constructor(
-    private _interestedUserDialog: MatDialog,
-    private route: ActivatedRoute,
-    private propertyService: PropertyService,
-    public loadingService: LoadingService,
-    private notificationService: NotificationService,
-    private storageService: StorageService,
-    private titleService : Title,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.titleService.setTitle("Search Properties");
-  }
+export class FeaturedListingsComponent implements OnInit {
+	propertiesList: PropertyModel[] | undefined;
+	pageEvent: PageEvent | undefined;
+	pageIndex: number = 1;
+	pageSize: number = 12;
+	private loadingSubject = new BehaviorSubject<boolean>(false);
+	loading$ = this.loadingSubject.asObservable();
 
-  ngOnInit(): void {
-    this.pageIndex = 1;
-    this.pageSize = 12;
-    this.searchProperties({});
-  }
+	selectedFilters: any = {
+		address: '',
+		property_type: '',
+		bedrooms: '0',
+		bathrooms: '0',
+		min_price: '',
+		max_price: '',
+		property_status: '',
+		sqFt: '',
+		distance: '20',
+	};
 
-  openDialog(property : PropertyModel) {
-         const userDialog = this._interestedUserDialog.open(InteresteduserComponent,
-             {
-                width      : '50%',
-                height     : 'auto',
-                disableClose : true,
-                autoFocus : false,
-                restoreFocus : false,
-                hasBackdrop: true,
-                data       :  property
-             }
-          )
+	constructor(
+		private _interestedUserDialog: MatDialog,
+		private route: ActivatedRoute,
+		private propertyService: PropertyService,
+		public loadingService: LoadingService,
+		private notificationService: NotificationService,
+		private storageService: StorageService,
+		private titleService: Title,
+		private router: Router,
+		private activatedRoute: ActivatedRoute
+	) {
+		this.titleService.setTitle("Search Properties");
+	}
 
-          userDialog.afterClosed().subscribe(result => {
-            if(result)
-            {
-               this.redirectToDetail(property);
-            }
-          });
-        }
+	ngOnInit(): void {
+		this.pageIndex = 1;
+		this.pageSize = 12;
+		this.searchProperties({});
+	}
 
-  selectProperty(property : PropertyModel) : void{
-    if(property.IsFeatureListing)
-    {
-       this.openDialog(property);
-    }
-    else
-    {
-        this.redirectToDetail(property);
-    }
-  }
+	openDialog(property: PropertyModel) {
+		const userDialog = this._interestedUserDialog.open(InteresteduserComponent,
+			{
+				width: '50%',
+				height: 'auto',
+				disableClose: true,
+				autoFocus: false,
+				restoreFocus: false,
+				hasBackdrop: true,
+				data: property
+			}
+		)
 
-  redirectToDetail(property : PropertyModel): void
-  {
-    const userInfo = this.storageService.getLoggedUserFromUserInfo();
-    const propertyUrl = userInfo.templateId == "0b69c6031f111d63bc2c975dd2837e38" ? '/t1/propertydetail' : '/t2/propertydetail';
-    this.router.navigate(
-      [propertyUrl], 
-      {
-        relativeTo: this.activatedRoute,
-        queryParams: {
-          address: this.selectedFilters['address'], 
-          property_type: this.selectedFilters['property_type'],
-          bedrooms: this.selectedFilters['bedrooms'],
-          bathrooms: this.selectedFilters['bathrooms'], 
-          min_price: this.selectedFilters['min_price'], 
-          max_price: this.selectedFilters['max_price'], 
-          property_status: this.selectedFilters['property_status'], 
-          sqFt: this.selectedFilters['sqFt'],
-          propertyId: property._id,
-          mlsId: property.ListingKey
-        },
-        queryParamsHandling: 'replace'
-      }
-    );  
-  }
+		userDialog.afterClosed().subscribe(result => {
+			if (result) {
+				this.redirectToDetail(property);
+			}
+		});
+	}
 
-  searchProperties = (selectedFilters: any, event?:PageEvent) => {
-    this.pageIndex = event?event.pageIndex + 1: this.pageIndex;
-    this.pageSize = event?.pageSize ?? this.pageSize;
+	selectProperty(property: PropertyModel): void {
+		if (property.IsFeatureListing) {
+			this.openDialog(property);
+		}
+		else {
+			this.redirectToDetail(property);
+		}
+	}
 
-    const userInfo = this.storageService.getLoggedUserFromUserInfo();
+	redirectToDetail(property: PropertyModel): void {
+		const userInfo = this.storageService.getLoggedUserFromUserInfo();
+		const propertyUrl = ""  //userInfo.templateId == "0b69c6031f111d63bc2c975dd2837e38" ? '/t1/propertydetail' : '/t2/propertydetail';
+		this.router.navigate(
+			[propertyUrl],
+			{
+				relativeTo: this.activatedRoute,
+				queryParams: {
+					address: this.selectedFilters['address'],
+					property_type: this.selectedFilters['property_type'],
+					bedrooms: this.selectedFilters['bedrooms'],
+					bathrooms: this.selectedFilters['bathrooms'],
+					min_price: this.selectedFilters['min_price'],
+					max_price: this.selectedFilters['max_price'],
+					property_status: this.selectedFilters['property_status'],
+					sqFt: this.selectedFilters['sqFt'],
+					propertyId: property._id,
+					mlsId: property.ListingKey
+				},
+				queryParamsHandling: 'replace'
+			}
+		);
+	}
 
-    const params = {
-      page: this.pageIndex,
-      pageSize: this.pageSize,
-      address: stringiFy(selectedFilters.address),
-      property_type: stringiFy(selectedFilters.property_type),
-      property_subtype: stringiFy(selectedFilters.property_subtype),
-      bedrooms: stringiFy(selectedFilters.bedrooms),
-      bathrooms: stringiFy(selectedFilters.bathrooms),
-      property_for: stringiFy(selectedFilters.property_status),
-      min_price: stringiFy(selectedFilters.min_price),
-      max_price: stringiFy(selectedFilters.max_price),
-      sqFt: stringiFy(selectedFilters.sqFt),
-      distance: stringiFy(selectedFilters.distance),
-      brokerageType: userInfo.brokerage?.AlternateName,
-      propertyFeedType: 'IDX'
-    }
+	searchProperties = (selectedFilters: any, event?: PageEvent) => {
+		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;
+		this.pageSize = event?.pageSize ?? this.pageSize;
 
-    this.loadingService.loadingOn();
-    this.loadingSubject.next(true);
-    this.propertyService.searchProperties(params).subscribe({
-      next: (response) => {
-        this.propertiesList = response;
-      },
-      error: (err) => {
-        this.notificationService.showNotification("Error occurred while getting properties");
-      },
-      complete: () => {
-        this.loadingSubject.next(false);
-      }
-    })
-   return event;
-  }
+		const userInfo = this.storageService.getLoggedUserFromUserInfo();
+
+		const params = {
+			page: this.pageIndex,
+			pageSize: this.pageSize,
+			address: stringiFy(selectedFilters.address),
+			property_type: stringiFy(selectedFilters.property_type),
+			property_subtype: stringiFy(selectedFilters.property_subtype),
+			bedrooms: stringiFy(selectedFilters.bedrooms),
+			bathrooms: stringiFy(selectedFilters.bathrooms),
+			property_for: stringiFy(selectedFilters.property_status),
+			min_price: stringiFy(selectedFilters.min_price),
+			max_price: stringiFy(selectedFilters.max_price),
+			sqFt: stringiFy(selectedFilters.sqFt),
+			distance: stringiFy(selectedFilters.distance),
+			brokerageType: userInfo?.brokerage?.alternateName,
+			propertyFeedType: 'IDX'
+		}
+
+		this.loadingService.loadingOn();
+		this.loadingSubject.next(true);
+		this.propertyService.searchProperties(params).subscribe({
+			next: (response) => {
+				this.propertiesList = response;
+			},
+			error: (err) => {
+				this.notificationService.showNotification("Error occurred while getting properties");
+			},
+			complete: () => {
+				this.loadingSubject.next(false);
+			}
+		})
+		return event;
+	}
 }

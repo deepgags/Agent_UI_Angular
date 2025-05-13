@@ -27,6 +27,7 @@
     "@googlemaps/markerclusterer": "^2.5.3",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@popperjs/core": "^2.11.8",
+    "@primeng/themes": "^19.1.2",
     "@types/crypto-js": "^4.2.2",
     "@types/jquery": "^3.5.32",
     "angular-svg-icon": "^19.1.1",
@@ -41,9 +42,9 @@
     "localstorage-polyfill": "^1.0.1",
     "mdbootstrap": "^4.20.0",
     "ng-gallery": "^12.0.0-beta.4",
-    "ngx-color-palette": "^0.0.16",
     "ngx-smart-cropper": "^1.1.9",
     "npm": "^11.3.0",
+    "primeng": "^19.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

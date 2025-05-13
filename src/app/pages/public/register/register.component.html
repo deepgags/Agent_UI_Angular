@@ -1,0 +1,222 @@
+<div class="container-fluid">
+	<div class="row  vh-100 justify-content-between">
+		<div class="col-lg-6 d-none d-lg-block p-0  position-sticky top-0"
+			style="height: 100vh; z-index: 1;">
+			<img class="img-fluid vh-100 w-100"
+				src="/images/login-img.jpg"
+				alt="Login Image"
+				style="object-fit: cover;">
+		</div>
+		<div class="col-lg-6 col-12 p-4 rounded overflow-auto"
+			style="height: 100vh;">
+			<form [formGroup]="customerForm"
+				name="brokerageForm"
+				class="w-100"
+				(ngSubmit)="register()"
+			>
+				<h4 class="mb-3">Sign Up</h4>
+				<div class="row mt-3">
+					<div class="col">
+						<mat-form-field appearance="fill">
+							<mat-label>My Brokerage</mat-label>
+							<mat-select (selectionChange)="brokerageChange($event.value)"
+								required
+								name="brokerageType"
+								formControlName="brokerageType">
+								<mat-option *ngFor="let brokerageType of brokerageTypes"
+									[value]="brokerageType._id">{{brokerageType.name}}</mat-option>
+							</mat-select>
+							<mat-error>Brokerage is required</mat-error>
+						</mat-form-field>
+					</div>
+					<div class="col"
+						style="height: 80px;">
+						<img [src]="logoImagePath ? logoImagePath : '/logo/NoImage.jpg'" style="object-fit: contain; width: 100%; height: 100%;"/>
+						<!-- <img
+							[src]="logoImageSource ? logoImageSource : '/logo/NoImage.jpg'"
+							style="object-fit: contain;
+							width: 100%;
+							height: 100%; background-color:hsla(150,0%,50%,0.40);"
+							alt="No brokerage logo" /> -->
+					</div>
+				</div>
+				<mat-form-field appearance="fill">
+					<mat-label>Business Name</mat-label>
+					<input formControlName="businessName"
+						class="form-control"
+						required
+						matInput
+						placeholder="Business Name" />
+					<mat-error>Business name is required</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Brokerage Address</mat-label>
+					<input type="text"
+						formControlName="address"
+						matInput
+						placeholder="Brokerage Address" />
+				</mat-form-field>
+				<div class="row ">
+					<div class="col">
+						<mat-form-field appearance="fill">
+							<mat-label>First Name</mat-label>
+							<input formControlName="firstName"
+								required
+								matInput
+								placeholder="First Name" />
+							<mat-error>First name is required</mat-error>
+						</mat-form-field>
+					</div>
+					<div class="col">
+						<mat-form-field appearance="fill">
+							<mat-label>Last Name</mat-label>
+							<input formControlName="lastName"
+								required
+								matInput
+								placeholder="Last Name" />
+							<mat-error>Last name is required</mat-error>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<mat-form-field appearance="fill">
+							<mat-label>Email</mat-label>
+							<input class="w-100"
+								type="email"
+								formControlName="emailAddress"
+								required
+								email
+								matInput
+								placeholder="Ex. pat@example.com" />
+							@if (customerForm.hasError('email', 'emailAddress') && !customerForm.hasError('required', 'emailAddress')) {
+							<mat-error>Please enter a valid email address</mat-error>
+							}
+							@if (customerForm.hasError('required', 'emailAddress')) {
+							<mat-error>Email is required</mat-error>
+							}
+						</mat-form-field>
+					</div>
+					<div class="col">
+						<mat-form-field appearance="fill">
+							<mat-label>Phone Number</mat-label>
+							<input type="text"
+								formControlName="phoneNumber"
+								matInput
+								placeholder="123-456-1234" />
+						</mat-form-field>
+					</div>
+					<div class="col">
+						<mat-form-field appearance="fill">
+							<mat-label>Cell Number</mat-label>
+							<input type="text"
+								formControlName="cellNumber"
+								required
+								matInput
+								placeholder="123-456-1234" />
+							@if (customerForm.hasError('required', 'cellNumber')) {
+							<mat-error>Cell number is required</mat-error>
+							}
+							<mat-error *ngIf="customerForm.value.cellNumber">Please enter valid cell number</mat-error>
+						</mat-form-field>
+					</div>
+				</div>
+				<mat-form-field appearance="fill">
+					<mat-label>Password</mat-label>
+					<input type="password"
+						formControlName="password"
+						required
+						matInput
+						placeholder="Password"
+						pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$" />
+					@if (customerForm.hasError('required', 'password')) {
+					<mat-error>Password is required</mat-error>
+					}
+					<mat-error *ngIf="customerForm.value.password">Password must be a combination of lower-case, upper-case, numbers and at least 9 characters long</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Confirm Password</mat-label>
+					<input type="password"
+						formControlName="confirmPassword"
+						required
+						matInput
+						placeholder="Confirm Password"
+						pattern="{{customerForm.value.password}}" />
+					@if (customerForm.hasError('required', 'confirmPassword')) {
+					<mat-error>Confirm password is required</mat-error>
+					}
+					<mat-error *ngIf="customerForm.value.confirmPassword">Passwords do not match.</mat-error>
+				</mat-form-field>
+
+				<div class="upload-container p-3">
+					<div class="upload-info">
+						<label class="form-label fw-semibold">Upload logo</label>
+						<input type="file"
+							(change)="onFileChange($event)"
+							data-cropper="#logoImageCropper"
+							class="form-control upload-btn w-100"
+							id="logoImageUpload"
+							accept="image/*">
+					</div>
+				</div>
+				<div id="LogoCropContainer"
+					class="mt-3">
+					<div class="row"
+						style="margin-top: 15px;">
+						<label *ngIf="logoImageSource">Logo Preview</label>
+						<div class="text-center col-md-8">
+							<ngx-smart-cropper id="logoImageCropper"
+								[imageType]="'webp'"
+								[cropX]="0"
+								[cropY]="0"
+								[cropWidth]="435"
+								[cropHeight]="170"
+								[theme]="'mixed'"
+								[imageSource]="logoImageSource"
+								(ngOnChanges)="onLogoImageCrop($event)">
+							</ngx-smart-cropper>
+						</div>
+					</div>
+				</div>
+
+				<div class="upload-container p-3">
+					<div class="upload-info">
+						<label class="form-label fw-semibold">Upload profile image</label>
+						<input type="file"
+							(change)="onFileChange($event)"
+							data-cropper="#profileImageCropper"
+							class="form-control upload-btn w-100"
+							id="profileImageUpload"
+							accept="image/*">
+					</div>
+				</div>
+				<div id="ProfileCropContainer"
+					class="mt-3">
+					<div class="row"
+						style="margin-top: 15px;">
+						<label *ngIf="profileImageSource">Profile Preview</label>
+						<div class="text-center col-md-8">
+							<ngx-smart-cropper id="profileImageCropper"
+								[imageType]="'webp'"
+								[cropX]="0"
+								[cropY]="0"
+								[cropWidth]="435"
+								[cropHeight]="170"
+								[theme]="'mixed'"
+								[imageSource]="profileImageSource"
+								(imageCroppedEvent)="onProfileImageCrop($event)" />
+						</div>
+					</div>
+				</div>
+
+				<button type="submit"
+					id="btnSaveCustomer"
+					class="btn btn-success w-100 mt-3">Submit</button>
+			</form>
+			<div class="text-center mt-2">
+				<span>Already have an account? </span><a (click)="redirectToLogin()"
+					class="btn text-decoration-none text-success fw-bold">Login</a>
+			</div>
+		</div>
+	</div>
+</div>

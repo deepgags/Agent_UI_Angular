@@ -3,7 +3,6 @@
 	  <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
 	  <div class="">
 		<h4 class="mb-0">{{customer?.firstName}} {{customer?.lastName}}</h4>
-		<p class="text-center small mb-0">{{customer?.role?.RoleName | upper}}</p>
 	</div>
 	  </div>
 	  <div
@@ -31,7 +30,7 @@
 	  </div>
 	  <div
 		class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end align-items-center">
-		<a href="/t5" *ngIf="customer && customer.customerId!=''">
+		<a href="/t5" *ngIf="customer">
 			<svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
 			<img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 			<img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
@@ -52,7 +51,7 @@
 				<li><a class="dropdown-item text-danger" href="#">Log Out</a></li>
 			</ul>
 		</div>
-		
+
 	  </div>
 	</div>
   </div>
@@ -100,7 +99,7 @@
 									<div class="">|</div>
 									<div class="">
 										<a class="nav-link nav_content" href="/register">Signup</a>
-	
+
 									</div>
 								</div>
 							</div>

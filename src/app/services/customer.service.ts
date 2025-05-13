@@ -1,171 +1,99 @@
-import { Injectable, signal } from '@angular/core';
-import { CustomerModel } from '../models/CustomerModel';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
-import { StorageService } from './storage.service';
+import { Injectable, signal } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { BrokerageTypeModel } from '../models/BrokerageTypeModel';
-import { RoleModel } from '../models/RoleModel';
+import { environment } from '../environments/environment';
+import { CustomerModel } from '../models/CustomerModel';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 
 export class CustomerService {
-  private customers: CustomerModel[] = [];
-  private authToken: string = "";
-  query = signal<string>("");
-  private Apiurl:string ="";
 
- constructor(private http: HttpClient, private storageService: StorageService) {
-    this.Apiurl = environment.agentApiUrl + environment.customerUrl;
-  }
+	private customers: CustomerModel[] = [];
+	query = signal<string>("");
+	private baseUrl: string = environment.agentApiUrl;
 
-  login(userInfo:CustomerModel): Observable<any> {
-    let content = {emailAddress: userInfo.emailAddress, password: userInfo.password};
-    return this.http.post(this.Apiurl + '/login', content);
-  }
+	constructor(private http: HttpClient) { }
 
-  save(customer : CustomerModel) {
-    return this.http.post(this.Apiurl + '/save', customer);
-  }
+	register(params: CustomerModel): Observable<any> {
+		return this.http.post(`${this.baseUrl}/customer/register`, params);
+	}
 
-  update(customer : CustomerModel) {
-    return this.http.put(this.Apiurl + '/update', customer);
-  }
+	verifyEmail(params: { emailAddress: string, authCode: string }): Observable<any> {
+		return this.http.post(`${this.baseUrl}/customer/register`, params);
+	}
 
-  customerExistWithSiteUrl(siteUrl:string): Observable<CustomerModel> {
+	login(params: { emailAddress: string, password: string }): Observable<any> {
+		return this.http.post(`${this.baseUrl}/customer/login`, params);
+	}
 
-    return this.http.get<CustomerModel>(this.Apiurl + '/siteExist?siteUrl=' + siteUrl)
-        .pipe(map((result: any) => {
-          if(result && result.data)
-          {
-            const x = result.data;
-            const customer = new CustomerModel(
-            x.customerid,
-            x.firstname,
-            x.lastname,
-            x.emailaddress,
-            x.businessname,
-            x.address,
-            x.phonenumber,
-            x.cellnumber,
-            x.isapproved,
-            x.roleid,
-            x.templateid,
-            x.brokeragetypeid,
-            x.siteurl,
-            x.logoimage,
-            x.logoimagepath,
-            x.profileimage,
-            x.profileimagepath)
-            
-            customer.brokerage = new BrokerageTypeModel(x.brokerages.brokeragetypeid,
-              x.brokerages.name, x.brokerages.alternatename,x.brokerages.logopath,x.brokerages.isapproved,x.brokerages.isdefault);
+	save(customer: CustomerModel) {
+		return this.http.post(this.baseUrl + '/save', customer);
+	}
 
-            customer.role=new RoleModel(x.roles.roleid,x.roles.name,x.roles.isapproved,x.roles.isdefault);
+	update(params: any) {
+		return this.http.patch(this.baseUrl + '/customer/update', params);
+	}
 
-            return customer;
-          }
-          return this.customers[0];
-    }),
-        catchError(error => {
-          console.error('Error fetching customers:', error);
-          return throwError(() => error);
-        }));
-  }
+	saveWebsiteSettings(settings: any) {
+		return this.http.post(this.baseUrl + '/customer/website-settings', settings);
+	}
 
-  getCustomer(customerId:string): Observable<CustomerModel> {
+	// customerExistWithSiteUrl(siteUrl: string): Observable<CustomerModel> {
+	// 	return this.http.get<CustomerModel>(this.baseUrl + '/siteExist?siteUrl=' + siteUrl)
+	// 		.pipe(map((result: any) => {
+	// 			if (result && result.data) {
+	// 				const customer: CustomerModel = result.data
+	// 				return customer;
+	// 			}
+	// 			return this.customers[0];
+	// 		}),
+	// 			catchError(error => {
+	// 				console.error('Error fetching customers:', error);
+	// 				return throwError(() => error);
+	// 			}));
+	// }
 
-    return this.http.get<CustomerModel>(this.Apiurl + '/getCustomers?id=' + customerId)
-        .pipe(map((result: any) => {
-          if(result && result.data  && result.data.length > 0)
-          {
-            const x = result.data[0];
-            const customer = new CustomerModel(
-            x.customerid,
-            x.firstname,
-            x.lastname,
-            x.emailaddress,
-            x.businessname,
-            x.address,
-            x.phonenumber,
-            x.cellnumber,
-            x.isapproved,
-            x.roleid,
-            x.templateid,
-            x.brokeragetypeid,
-            x.siteurl,
-            x.logoimage,
-            x.logoimagepath,
-            x.profileimage,
-            x.profileimagepath)
-            
-            customer.brokerage = new BrokerageTypeModel(x.brokerages.brokeragetypeid,
-              x.brokerages.name, x.brokerages.alternatename,x.brokerages.logopath,x.brokerages.isapproved,x.brokerages.isdefault);
+	getCustomer() {
+		return this.http.get(`${this.baseUrl}/customer/profile`)
+	}
 
-            customer.role=new RoleModel(x.roles.roleid,x.roles.name,x.roles.isapproved,x.roles.isdefault);
+	templatePreviewAvailable(templateId: string): Observable<CustomerModel> {
+		return this.http.get<CustomerModel>(this.baseUrl + '/customerByTemplateForPreview?templateid=' + templateId)
+			.pipe(map((result: any) => {
+				if (result && result.data && result.data.length > 0) {
+					const customer: CustomerModel = result.data[0]
+					return customer;
+				}
+				return this.customers[0];
+			}),
+				catchError(error => {
+					console.error('Error fetching customers:', error);
+					return throwError(() => error);
+				}));
+	}
 
-            return customer;
-          }
-          return this.customers[0];
-    }),
-        catchError(error => {
-          console.error('Error fetching customers:', error);
-          return throwError(() => error);
-        }));
-  }
+	getCustomers(emailAddress: string): Observable<CustomerModel> {
+		return this.http.get<CustomerModel>(this.baseUrl + '/login?emailAddress=' + emailAddress)
+			.pipe(map((result: any) => {
+				if (result && result.data) {
+					return result.data;
+				}
+			}),
+				catchError(error => {
+					console.error('Error fetching customers:', error);
+					return throwError(() => error);
+				})
+			)
+	}
 
-  templatePreviewAvaiable(templateId:string): Observable<CustomerModel> {
-
-    return this.http.get<CustomerModel>(this.Apiurl + '/customerByTemplateForPreview?templateid=' + templateId)
-        .pipe(map((result: any) => {
-          if(result && result.data && result.data.length > 0)
-          {
-            const x = result.data[0];
-            const customer = new CustomerModel(
-            x.customerid,
-            x.firstname,
-            x.lastname,
-            x.emailaddress,
-            x.address,
-            x.businessname,
-            x.phonenumber,
-            x.isapproved,
-            x.roleid,
-            x.templateid,
-            x.brokeragetypeid,
-            x.siteurl)
-            
-            return customer;
-          }
-          return this.customers[0];
-    }),
-        catchError(error => {
-          console.error('Error fetching customers:', error);
-          return throwError(() => error);
-        }));
-  }
-
-  getCustomers(emailAddress : string): Observable<CustomerModel> {
-
-    return this.http.get<CustomerModel>(this.Apiurl + '/login?emailAddress=' + emailAddress)
-    .pipe(map((result: any) => {
-        if(result && result.data)
-        {
-          const loginData = result.data;
-            return new CustomerModel(loginData.customerid, loginData.firstname, loginData.lastname,
-              loginData.emailaddress, loginData.businessname, loginData.address, loginData.phonenumber, loginData.isapproved,
-              loginData.roleid, loginData.templateid, loginData.brokeragetypeid, loginData.siteurl)
-        }
-          return {} as CustomerModel;
-      }),
-      catchError(error => {
-        console.error('Error fetching customers:', error);
-        return throwError(() => error);
-      })
-    )
-  }
+	logout() {
+		localStorage.removeItem('token');
+		localStorage.removeItem('user');
+		sessionStorage.removeItem('token');
+		sessionStorage.removeItem('user');
+	}
 
 }

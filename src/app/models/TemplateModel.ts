@@ -1,10 +1,11 @@
 export class TemplateModel {
-    TemplateId: string = "";
-    TemplateName: string = "";
-    Description: string = "";
-    Data: string = "";
-    Images: string[] = [];
-    IsApproved: boolean = false;
-    IsDefault: boolean = false;
-    IsSelected: boolean = false;
-  }
+	_id: string = "";
+	name: string = "";
+	templateKey: string = "";
+	description: string = "";
+	data: string = "";
+	images: string[] | any = [];
+	isApproved: boolean = false;
+	isDefault: boolean = false;
+	isSelected: boolean = false;
+}

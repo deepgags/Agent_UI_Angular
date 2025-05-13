@@ -1,46 +1,22 @@
-import { inject, Injectable, resource, signal } from '@angular/core';
-import { BrokerageTypeModel } from '../models/BrokerageTypeModel';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
+import { inject, Injectable, resource, signal } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
+import { environment } from '../environments/environment';
+import { BrokerageTypeModel } from '../models/BrokerageTypeModel';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 
 export class BrokerageTypeService {
-  private brokerageTypes: BrokerageTypeModel[] = [];
-  query = signal<string>("");
-  private Apiurl:string ="";
+	private brokerageTypes: BrokerageTypeModel[] = [];
+	query = signal<string>("");
+	private baseUrl: string = environment.agentApiUrl;
 
- constructor(private http: HttpClient) {
-    this.Apiurl = environment.agentApiUrl + environment.brokerageTypeUrl;
-  }
+	constructor(private http: HttpClient) {
 
-  getBrokerageTypes(name:string='', isDefault = null): Observable<BrokerageTypeModel[]> {
-    
-        const defaultQuery = isDefault != null ? '&isDefault=' + isDefault : "";
-        return this.http.get<BrokerageTypeModel[]>(this.Apiurl + '?name=' + name + defaultQuery)
-            .pipe(map((result: any) => {
-              if(result && result.data && result.data.length > 0)
-              {
-                result.data.forEach((brokeragetype:any) => {
-                  this.brokerageTypes.push(new BrokerageTypeModel(
-                    brokeragetype.brokeragetypeid,
-                    brokeragetype.name,
-                    brokeragetype.alternatename,
-                    brokeragetype.logopath,
-                    brokeragetype.isapproved,
-                    brokeragetype.isdefault))
-                })
-              }
-
-              return this.brokerageTypes;
-            }),
-              catchError(error => {
-                console.error('Error fetching brokerage types:', error);
-                return throwError(() => error);
-              })
-            );
-      }
-    }
+	}
+	getBrokerageTypes(): Observable<BrokerageTypeModel[]> {
+		return this.http.get<BrokerageTypeModel[]>(`${this.baseUrl}/brokerages`);
+	}
+}

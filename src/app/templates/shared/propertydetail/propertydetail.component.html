@@ -347,9 +347,9 @@
                 <div class="">
                   <img *ngIf="customer?.profileImage"
                     [src]="customer?.profileImage?customer?.profileImage:'/images/Nologo.png'" alt="" height="135px" />
-                  <img *ngIf="customer?.profileImagePath"
+                  <!-- <img *ngIf="customer?.profileImagePath"
                     [src]="customer?.profileImagePath?customer?.profileImagePath:'/images/Nologo.png'" alt=""
-                    height="135px" />
+                    height="135px" /> -->
                 </div>
               </div>
 
@@ -357,7 +357,7 @@
                 <div class="card-body">
                   <h6 class="text-muted mb-0">PRESENTED BY</h6>
                   <h5 class="card-title info mt-1">{{customer?.firstName}} {{customer?.lastName}}</h5>
-                  <p class="card-text mb-2 text-secondary small">{{customer?.role?.RoleName | upper}}</p>
+                  <p class="card-text mb-2 text-secondary small">{{customer?.role | upper}}</p>
                   <div class="text-muted small">
                     <p class="mb-1">Email: {{customer?.emailAddress}}</p>
                     <p class="mb-0"> Call: {{customer?.cellNumber | phone}}</p>
