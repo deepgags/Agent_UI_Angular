@@ -1,5 +1,3 @@
-$info: #B37DF7;
-
 .top-padding{
     padding-top: 100px;
 }
@@ -19,17 +17,79 @@ $info: #B37DF7;
     right: 20px;
     width: 350px;
   }
-
-  
-  .btn_outline{
-    border: $info 1px solid !important;
-    color: $info;
-  }
-  .btn_outline:hover{
-    border: $info 1px solid !important;
-    background-color: $info;
-    color: white;
-  }
-.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
-  color: #B37DF7 !important;
+.image-container {
+  position: relative;
+  cursor: pointer;
 }
+
+.image-text {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
+  color: #A62F03 !important;
+}
+.text-2{
+    color:#A62F03 ;
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
