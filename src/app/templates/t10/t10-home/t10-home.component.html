@@ -1,40 +1,14 @@
 <div class="background-container">
 	<div class="container pt-2 search-container">
-	<div class="top-padding">
-		<div class="row justify-content-center">
-			<p class="text fw-semibold pt-3">Search Your Dream Home</p>
-			<p class="text-white text-center">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and extraordinary services to our worldwide clients.</p>
-			<div class="col-12 bg-white p-4 mb-5">
-				<app-search [onSearch]="searchProperties" />
-			</div>
-		</div>
-	</div>
-</div>
-  </div>
-
-  <div class="container-fluid sec-3 p-5 search-container">
-
-	<div class="container">
-	  <div class="row justify-content-center align-items-center">
-		<div class="col-lg-6 col-12 mt-lg-0 mt-5  d-flex justify-content-lg-start justify-content-center">
-		  <div class="">
-
-	<div class="position-relative d-inline-block">
-		<img class="img-fluid" src="./t9/images/profile-bg.png" alt="profile-bg">
-	  
-		<img [src]="customer?.profileImage" alt="No profile image"
-			 class="position-absolute top-50 start-50 translate-middle" 
-			 style="width: 260px; height: 367px;">
-	  </div>
-		  </div>
-		</div>
+		<div class="container">
+	  <div class="row justify-content-center align-items-center top-padding">
 		<div class="col-lg-6 col-12">
-		  <p class="fs-2 mb-0 fw-semibold ">
+		  <p class="fs-2 mb-0 fw-semibold text-white">
 			Hi, I’m Person Name
 		  </p>
 		  <p class="fs-4 info">Sales Representative</p>
-		  <p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions.</p>
-		  <p class="fw-semibold">
+		  <p class="fw-semibold  text-white">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions.</p>
+		  <p class="fw-semibold text-white">
 			Every engagement is an opportunity to create a lasting impression and a forever client. Acharya is a well serving in real estate with the reputation of providing quality services and keeping excellent relations with the clients. </p>
 			
 				<!-- Button trigger modal -->
@@ -93,50 +67,169 @@
 				<a class="btn btn_outline ms-4  text-decoration-none pop" [href]="'tel:{{customer?.phoneNumber | phone}}'">{{customer?.phoneNumber | phone}}</a>
 		
 		</div>
+			<div class="col-lg-6 col-12 mt-lg-0 mt-5  d-flex justify-content-lg-start justify-content-center">
+		  <div class="">
+				<img [src]="customer?.profileImage" alt="No profile image" class="overlay-image">
+		  </div>
+		</div>
 	  </div>
 	</div>
+</div>
   </div>
 
-	
-<div class="container  p-lg-0 p-4">
-		<p class="text text-center py-3 fw-semibold">Find Properties in These Cities</p>
-		<p class="text-center fw-normal"></p>
-		<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-			<div class="col">
-			  <div class="pro_card" (click)="searchProperties({address:'Toronto'})">
-				<div class="content text-center">
-				  <img class="img-fluid rounded mb-2" src="/t2/images/Group 2.png" alt="">
-				  <p class="pro-card-text">Toronto</p>
+	<div class="container-fluid sec-3">
+		<div class="container">
+			<div class="row justify-content-center">
+				<p class="text fw-semibold py-3">Search Your Dream Home</p>
+				<div class="col-12 bg-white p-4 mb-5">
+					<app-search [onSearch]="searchProperties" />
 				</div>
-			  </div>
 			</div>
-			<div class="col">
-			  <div class="pro_card" (click)="searchProperties({address:'Milton'})">
-				<div class="content text-center">
-				  <img class="img-fluid rounded mb-2" src="/t2/images/Group 3.png" alt="">
-				  <p class="pro-card-text">Milton</p>
-				</div>
-			  </div>
-			</div>
-			<div class="col">
-			  <div class="pro_card" (click)="searchProperties({address:'Brampton'})">
-				<div class="content text-center">
-				  <img class="img-fluid rounded mb-2" src="/t2/images/Group 4.png" alt="">
-				  <p class="pro-card-text">Brampton</p>
-				</div>
-			  </div>
-			</div>
-			<div class="col">
-			  <div class="pro_card" (click)="searchProperties({address:'Mississauga'})">
-				<div class="content text-center">
-				  <img class="img-fluid rounded mb-2" src="/t2/images/Group 5.png" alt="">
-				  <p class="pro-card-text">Mississauga</p>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		  
+		</div>
 	</div>
+
+	   <div class="container">
+        <div class="py-5">
+          <h2 class="text-center">Find Properties in These Cities</h2>
+        </div>
+        <div class="row">
+          <div class="col-12 col-lg-4">
+            <a class="text-decoration-none" href="#">
+
+              <div class="card mb-3" >
+     <div class="row g-0">
+       <div class="col-md-4">
+         <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+       </div>
+       <div class="col-md-8">
+         <div class="card-body">
+           <h5 class="card-title">Toronto</h5>
+           <p class="card-text">50 Properties</p>
+         </div>
+       </div>
+     </div>
+         </div>
+            </a>
+          </div>
+          <div class="col-12 col-lg-4">
+            <a class="text-decoration-none" href="#">
+
+              <div class="card mb-3" >
+     <div class="row g-0">
+       <div class="col-md-4">
+         <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+       </div>
+       <div class="col-md-8">
+         <div class="card-body">
+           <h5 class="card-title">Toronto</h5>
+           <p class="card-text">50 Properties</p>
+         </div>
+       </div>
+     </div>
+         </div>
+            </a>
+          </div>
+          <div class="col-12 col-lg-4">
+            <a class="text-decoration-none" href="#">
+
+              <div class="card mb-3" >
+     <div class="row g-0">
+       <div class="col-md-4">
+         <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+       </div>
+       <div class="col-md-8">
+         <div class="card-body">
+           <h5 class="card-title">Toronto</h5>
+           <p class="card-text">50 Properties</p>
+         </div>
+       </div>
+     </div>
+         </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-lg-4">
+            <a class="text-decoration-none" href="#">
+
+              <div class="card mb-3" >
+     <div class="row g-0">
+       <div class="col-md-4">
+         <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+       </div>
+       <div class="col-md-8">
+         <div class="card-body">
+           <h5 class="card-title">Toronto</h5>
+           <p class="card-text">50 Properties</p>
+         </div>
+       </div>
+     </div>
+         </div>
+            </a>
+          </div>
+          <div class="col-12 col-lg-4">
+            <a class="text-decoration-none" href="#">
+
+              <div class="card mb-3" >
+     <div class="row g-0">
+       <div class="col-md-4">
+         <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+       </div>
+       <div class="col-md-8">
+         <div class="card-body">
+           <h5 class="card-title">Toronto</h5>
+           <p class="card-text">50 Properties</p>
+         </div>
+       </div>
+     </div>
+         </div>
+            </a>
+          </div>
+          <div class="col-12 col-lg-4">
+            <a class="text-decoration-none" href="#">
+
+              <div class="card mb-3" >
+     <div class="row g-0">
+       <div class="col-md-4">
+         <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+       </div>
+       <div class="col-md-8">
+         <div class="card-body">
+           <h5 class="card-title">Toronto</h5>
+           <p class="card-text">50 Properties</p>
+         </div>
+       </div>
+     </div>
+         </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+	        <div class="container py-lg-5 p-lg-0 p-4">
+        <div class="row py-5 align-items-center justify-content-around">
+          <div class="col-lg-5 col-12">
+            <h1 class="display-6 fw-semibold">
+              "Enjoy a clear and simple home-buying experience"
+            </h1>
+            <p class="text-2">Real Estate Specialist Name</p>
+            <p class=" fw-normal">
+              I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions. Every engagement is an opportunity to create a lasting impression and a forever client.         
+            </p>
+       
+          </div>
+          
+          <div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
+            <div class="">
+              <img class="img-fluid rounded-3" src="./t10/images/pro3.png" alt="">
+              <img class="img-fluid rounded-3 pro-3 hide_mobile" src="./t10/images/pro2.png" alt="">
+            </div>
+        </div>
+      
+      </div>
+    </div>
+
 
 <div class="container-fluid sec-3 py-5">
 	<div class="container bg-white">
