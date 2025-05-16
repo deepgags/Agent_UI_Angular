@@ -3,7 +3,7 @@
 		  <div class="row g-4">
 			<div class="col-lg-4  col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of properties$ | async">
 				<a class="text-decoration-none" (click)="selectProperty(property)">
-					<div class="card h-100 property-card border border-light-subtle">
+					<div class="card shadow-sm h-100 property-card border border-light-subtle">
 						<div class="image-container">
 							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : '/images/commercial_no_Image.jpg'" class="card-img-top" alt="No property image to display">
 						</div>

@@ -66,13 +66,16 @@
 					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 				</div>
 				<div class="offcanvas-body">
-						<a href="/t10" *ngIf="customer && customer.customerId!=''">
+				
+					<ul class="navbar-nav flex-grow-1 pe-3 home_nav">
+						<li class="nav-item">		
+							<a href="/t10" *ngIf="customer && customer.customerId!=''">
 			<svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
 			<img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 			<img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 			<!-- <button type="button" (click)="updateProfile()">Update Profile</button> -->
 		  </a>
-					<ul class="navbar-nav flex-grow-1 pe-3 home_nav">
+		</li>
 						<li class="nav-item">
 							<a class="nav-link nav_content" href="/t10/about">About</a>
 						</li>
