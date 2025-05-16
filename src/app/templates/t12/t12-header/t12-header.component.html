@@ -10,7 +10,7 @@
 		class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
 		<div class="d-flex justify-content-center">
 		  <div class="">
-			<img src="t11/images/vector img/call.svg" alt="" />
+			<img src="t12/images/vector img/call.svg" alt="" />
 		  </div>
 		  <div class="ms-2">
 			<p class="mb-0">
@@ -20,7 +20,7 @@
 		</div>
 		<div class="d-flex justify-content-center ms-3">
 		  <div class="">
-			<img src="t11/images/vector img/email.svg" alt="" />
+			<img src="t12/images/vector img/email.svg" alt="" />
 		  </div>
 		  <div class="ms-2">
 			<p class="mb-0">
@@ -69,7 +69,7 @@
 				
 					<ul class="navbar-nav flex-grow-1 pe-3 home_nav">
 						<li class="nav-item">		
-							<a href="/t11" *ngIf="customer && customer.customerId!=''">
+							<a href="/t12" *ngIf="customer && customer.customerId!=''">
 			<svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
 			<img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 			<img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
@@ -77,37 +77,22 @@
 		  </a>
 		</li>
 						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t11/about">About</a>
+							<a class="nav-link nav_content" href="/t12/about">About</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t11/seller">Seller</a>
+							<a class="nav-link nav_content" href="/t12/seller">Seller</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t11/buyer">Buyer</a>
+							<a class="nav-link nav_content" href="/t12/buyer">Buyer</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t11/featuredlistings">Featured Listings</a>
+							<a class="nav-link nav_content" href="/t12/featuredlistings">Featured Listings</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t11/calculator">Calculators</a>
+							<a class="nav-link nav_content" href="/t12/calculator">Calculators</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t11/contact">Contact</a>
-						</li>
-						<li class="nav-item">
-							<div class="d-flex align-items-center">
-								<img class="logo" src="t4/images/vector img/login.png" alt="">
-								<div class="d-flex align-items-center justify-content-center">
-									<div class="">
-										<a class="nav-link nav_content" href="/login">Login </a>
-									</div>
-									<div class="">|</div>
-									<div class="">
-										<a class="nav-link nav_content" href="/register">Signup</a>
-	
-									</div>
-								</div>
-							</div>
+							<a class="nav-link nav_content" href="/t12/contact">Contact</a>
 						</li>
 					</ul>
 				</div>
