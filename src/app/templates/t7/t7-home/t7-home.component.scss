@@ -20,6 +20,13 @@ $info: #B37DF7;
     width: 350px;
   }
 
+  .menu-bg {
+    backdrop-filter: blur(2px);
+    background-color: #FFFFFF33;
+    border: 1px solid #b9b9b9;
+    border-radius: 10px;
+}
+
   
   .btn_outline{
     border: $info 1px solid !important;
