@@ -95,51 +95,51 @@ export class TemplateComponent implements OnInit {
 	// }
 
 	openDialog() {
-		this._siteDialog.open(TemplatesiteComponent,
-			{
-				width: '50%',
-				height: 'auto',
-				disableClose: true,
-				autoFocus: false,
-				restoreFocus: false,
-				hasBackdrop: true,
-				data: this.customerModel
-			}
-		)
+		// this._siteDialog.open(TemplatesiteComponent,
+		// 	{
+		// 		width: '50%',
+		// 		height: 'auto',
+		// 		disableClose: true,
+		// 		autoFocus: false,
+		// 		restoreFocus: false,
+		// 		hasBackdrop: true,
+		// 		data: this.customerModel
+		// 	}
+		// )
 	}
 
 	selectTemplate(template: TemplateModel, sender: any) {
-		template.isSelected = !template.isSelected;
-		if (template.isSelected) {
-			// this.customerModel.templateId = template._id;
-		}
+		// template.isSelected = !template.isSelected;
+		// if (template.isSelected) {
+		// 	// this.customerModel.templateId = template._id;
+		// }
 
-		this.templates$.subscribe(x => x.forEach(item => {
-			if (template._id != item._id) {
-				item.isSelected = false
-			}
-		}));
+		// this.templates$.subscribe(x => x.forEach(item => {
+		// 	if (template._id != item._id) {
+		// 		item.isSelected = false
+		// 	}
+		// }));
 	}
 
 	previewTemplate(template: TemplateModel, sender: any) {
-		this.loadingService.loadingOn();
-		this.customerService.templatePreviewAvailable(template._id)
-			.subscribe({
-				next: (response) => {
-					if (response && response._id != "") {
-						this.storageService.saveUserInfo(JSON.stringify(response));
-						this.router.navigate([]).then(result => { window.open('loading', '_blank'); });
-						return;
-					}
-					this.notificationService.showNotification('No data exist for template preview')
-				},
-				error: () => {
-					this.notificationService.showNotification('Error occurred exist while template preview')
-				},
-				complete: () => {
-					this.loadingService.loadingOff()
-				}
-			})
+		// this.loadingService.loadingOn();
+		// this.customerService.templatePreviewAvailable(template._id)
+		// 	.subscribe({
+		// 		next: (response) => {
+		// 			if (response && response._id != "") {
+		// 				this.storageService.saveUserInfo(JSON.stringify(response));
+		// 				this.router.navigate([]).then(result => { window.open('loading', '_blank'); });
+		// 				return;
+		// 			}
+		// 			this.notificationService.showNotification('No data exist for template preview')
+		// 		},
+		// 		error: () => {
+		// 			this.notificationService.showNotification('Error occurred exist while template preview')
+		// 		},
+		// 		complete: () => {
+		// 			this.loadingService.loadingOff()
+		// 		}
+		// 	})
 	}
 
 	save() {

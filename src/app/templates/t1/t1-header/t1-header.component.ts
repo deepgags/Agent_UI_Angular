@@ -1,31 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { CustomerModel } from '../../../models/CustomerModel';
+import { SiteConfig } from '../../../app.component';
 import { PhoneSearch } from '../../../pipes/phoneSearch';
-import { UpperCase } from '../../../pipes/upper';
-import { StorageService } from '../../../services/storage.service';
+
 
 @Component({
 	selector: 'app-t1-header',
-	imports: [CommonModule, AngularSvgIconModule, PhoneSearch, UpperCase],
+	imports: [CommonModule, AngularSvgIconModule, PhoneSearch, RouterModule],
 	templateUrl: './t1-header.component.html',
 	styleUrls: ['./t1-header.component.scss', '../t1.component.scss']
 })
 export class T1HeaderComponent implements OnInit {
-	customer?: CustomerModel | null;
-	showSVG: boolean = false;
-	showLogo: boolean = false;
-
-	constructor(private storageService: StorageService,
-		private router: Router,
-	) {
-
-	}
+	@Input('siteConfig') siteConfig: SiteConfig | null = null;
+	constructor(private router: Router) { }
 
 	ngOnInit(): void {
-		this.customer = this.storageService.getLoggedUserFromUserInfo();
+
 	}
 
 	updateProfile() {

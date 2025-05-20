@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { SiteConfig } from '../../../app.component';
 import { CustomerModel } from '../../../models/CustomerModel';
 import { PhoneSearch } from '../../../pipes/phoneSearch';
 import { StorageService } from '../../../services/storage.service';
@@ -13,17 +14,13 @@ import { StorageService } from '../../../services/storage.service';
 	styleUrls: ['./t1-footer.component.scss', '../t1.component.scss'],
 })
 export class T1FooterComponent implements OnInit {
+	@Input('siteConfig') siteConfig: SiteConfig | null = null;
 
-	customer?: CustomerModel | null;
-	showSVG: boolean = false;
-	showLogo: boolean = false;
-
-	constructor(private storageService: StorageService) {
+	constructor() {
 
 	}
 
 	ngOnInit(): void {
-		this.customer = this.storageService.getLoggedUserFromUserInfo();
 	}
 
 }

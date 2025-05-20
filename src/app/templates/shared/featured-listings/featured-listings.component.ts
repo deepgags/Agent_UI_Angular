@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core'; // Added OnDestroy
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,16 +7,18 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs'; // Added Subscription
+import { SiteConfig } from '../../../app.component'; // Import SiteConfig
 import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
 import { stringiFy } from '../../../consts/Utility';
 import { PropertyModel } from '../../../models/PropertyModel';
-import { RequestPropertyModel } from '../../../models/RequestPropertyModel';
-import { HighlightSearch } from '../../../pipes/highlight';
+import { SiteConfigService } from '../../../services/site-config.service'; // Import SiteConfigService
+// import { RequestPropertyModel } from '../../../models/RequestPropertyModel'; // Not used in current snippet
+// import { HighlightSearch } from '../../../pipes/highlight'; // Not used in current snippet
 import { LoadingService } from '../../../services/loading.service';
 import { NotificationService } from '../../../services/notification.service';
 import { PropertyService } from '../../../services/property.service';
-import { StorageService } from '../../../services/storage.service';
+// import { StorageService } from '../../../services/storage.service'; // Not used in current snippet
 import { SearchComponent } from '../search/search.component';
 
 @Component({
@@ -28,13 +30,15 @@ import { SearchComponent } from '../search/search.component';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true
 })
-export class FeaturedListingsComponent implements OnInit {
+export class FeaturedListingsComponent implements OnInit, OnDestroy {
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
 	pageSize: number = 12;
 	private loadingSubject = new BehaviorSubject<boolean>(false);
 	loading$ = this.loadingSubject.asObservable();
+	private siteConfigSubscription: Subscription | undefined;
+	private currentTemplateId: string | null = null;
 
 	selectedFilters: any = {
 		address: '',
@@ -50,22 +54,34 @@ export class FeaturedListingsComponent implements OnInit {
 
 	constructor(
 		private _interestedUserDialog: MatDialog,
-		private route: ActivatedRoute,
+		// private route: ActivatedRoute, // Replaced by activatedRoute
 		private propertyService: PropertyService,
 		public loadingService: LoadingService,
 		private notificationService: NotificationService,
-		private storageService: StorageService,
+		// private storageService: StorageService, // Not directly used in snippet
 		private titleService: Title,
 		private router: Router,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		private siteConfigService: SiteConfigService // Inject SiteConfigService
 	) {
 		this.titleService.setTitle("Search Properties");
 	}
 
 	ngOnInit(): void {
+		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe(config => {
+			if (config && config.templateId) {
+				this.currentTemplateId = config.templateId;
+			}
+		});
 		this.pageIndex = 1;
 		this.pageSize = 12;
 		this.searchProperties({});
+	}
+
+	ngOnDestroy(): void {
+		if (this.siteConfigSubscription) {
+			this.siteConfigSubscription.unsubscribe();
+		}
 	}
 
 	openDialog(property: PropertyModel) {
@@ -89,7 +105,7 @@ export class FeaturedListingsComponent implements OnInit {
 	}
 
 	selectProperty(property: PropertyModel): void {
-		if (property.IsFeatureListing) {
+		if (property.IsFeatureListing) { // Assuming IsFeatureListing is a boolean property
 			this.openDialog(property);
 		}
 		else {
@@ -98,12 +114,18 @@ export class FeaturedListingsComponent implements OnInit {
 	}
 
 	redirectToDetail(property: PropertyModel): void {
-		const userInfo = this.storageService.getLoggedUserFromUserInfo();
-		const propertyUrl = ""  //userInfo.templateId == "0b69c6031f111d63bc2c975dd2837e38" ? '/t1/propertydetail' : '/t2/propertydetail';
+		if (!this.currentTemplateId) {
+			console.error("Template ID not available to redirect to property detail.");
+			this.notificationService.showNotification("Cannot determine page context. Please try again.");
+			return;
+		}
+
+		const propertyDetailPath = `/${this.currentTemplateId}/propertydetail`;
+
 		this.router.navigate(
-			[propertyUrl],
+			[propertyDetailPath], // Use the fully constructed path from root
 			{
-				relativeTo: this.activatedRoute,
+				// relativeTo: this.activatedRoute, // Not needed if path is absolute from root
 				queryParams: {
 					address: this.selectedFilters['address'],
 					property_type: this.selectedFilters['property_type'],
@@ -116,7 +138,7 @@ export class FeaturedListingsComponent implements OnInit {
 					propertyId: property._id,
 					mlsId: property.ListingKey
 				},
-				queryParamsHandling: 'replace'
+				queryParamsHandling: 'merge' // Consider 'merge' or 'preserve' based on desired behavior
 			}
 		);
 	}
@@ -125,7 +147,7 @@ export class FeaturedListingsComponent implements OnInit {
 		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;
 		this.pageSize = event?.pageSize ?? this.pageSize;
 
-		const userInfo = this.storageService.getLoggedUserFromUserInfo();
+		const userInfo: any = {};
 
 		const params = {
 			page: this.pageIndex,

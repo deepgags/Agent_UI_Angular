@@ -19,7 +19,7 @@ export class PropertyService {
 	}
 
 	searchProperties(propertyParams: any): Observable<PropertyModel[]> {
-		const alternateNames = this.storageService.getLoggedUserFromUserInfo()?.brokerage?.alternateName;
+		const alternateNames = "";
 		const officesName = alternateNames?.split(',');
 		const { page, pageSize, address, property_type, property_subtype,
 			bedrooms, bathrooms, property_for, min_price, max_price,
@@ -71,7 +71,7 @@ export class PropertyService {
 							TotalRecords: result.total,
 							ListOfficeName: property.ListOfficeName,
 							ListingContractDate: property.ListingContractDate,
-							IsFeatureListing: property.ListOfficeName && officesName?.some(x => property.ListOfficeName.toLowerCase().includes(x))
+							IsFeatureListing: property.ListOfficeName && officesName?.some((x: any) => property.ListOfficeName.toLowerCase().includes(x))
 						}
 					});
 				}
@@ -83,7 +83,7 @@ export class PropertyService {
 	}
 
 	getProperty(propertId: any, mlsId: any): Observable<PropertyModel> {
-		const officesName = this.storageService.getLoggedUserFromUserInfo()?.brokerage?.alternateName.split(',');
+		const officesName = "";
 		return this.http.get<PropertyModel>(`${environment.propertyApiUrl}/propertyinformation?id=${propertId}&mlsId=${mlsId}`)
 			.pipe(map((result: any) => {
 				if (result && result.data) {

@@ -121,7 +121,7 @@ export class PropertydetailComponent implements OnInit {
 			}
 		});
 
-		const interestedUserInfo = this.storageService.getInterestedUser();
+		const interestedUserInfo: any = "";
 		this.userForm = this.fb.group({
 			firstName: new FormControl(interestedUserInfo.firstName, Validators.required),
 			phoneNumber: new FormControl(interestedUserInfo.phoneNumber, [Validators.required, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
@@ -140,7 +140,7 @@ export class PropertydetailComponent implements OnInit {
 			});
 
 		this.getLocation();
-		this.customer = this.storageService.getLoggedUserFromUserInfo();
+
 	}
 
 	openInfoWindow(property: PropertyModel, marker: MapMarker): void {

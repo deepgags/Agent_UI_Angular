@@ -69,29 +69,13 @@ export class SearchComponent implements OnInit {
 		}
 
 		if (searchByMap) {
-			const userInfo = this.storageService.getLoggedUserFromUserInfo();
-			let navigationUrl;
-			//   switch (userInfo.templateId) {
-			//     case '0b69c6031f111d63bc2c975dd2837e38':
-			//       navigationUrl = "t1/map";
-			//       break;
-			//     case '0b69c6031f111d63bc2c975dd2837e39':
-			//     navigationUrl = "t2/map";
-			//       break;
-			//     case '0b69c6031f111d63bc2c975dd2837e40':
-			//       navigationUrl = "t3/map";
-			//       break;
-			//     case "0b69c6031f111d63bc2c975dd2837e41":
-			//       navigationUrl = "t4/map";
-			//       break;
-			//   }
-			this.router.navigate(
-				[navigationUrl],
-				{
-					queryParams: filters,
-					queryParamsHandling: 'replace'
-				}
-			);
+			// this.router.navigate(
+			// 	[navigationUrl],
+			// 	{
+			// 		queryParams: filters,
+			// 		queryParamsHandling: 'replace'
+			// 	}
+			// );
 		}
 		else {
 			this.router.navigate(

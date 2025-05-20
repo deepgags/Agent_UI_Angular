@@ -1,20 +1,20 @@
 <div class="container">
-	<div class="row py-2 align-items-center justify-content-center">
+	<div class="py-2 row align-items-center justify-content-center">
 		<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-			<a href="/t1" *ngIf="customer">
-				<svg-icon *ngIf="showSVG == true" src="{{customer.logoImage}}"></svg-icon>
-				<img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
-				<!-- <img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" /> -->
+			<a routerLink="/" *ngIf="siteConfig">
+				<img [src]="siteConfig.logoUrl ? siteConfig.logoUrl : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 			</a>
 		</div>
-		<div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
+		<div class="py-4 col-12 col-lg-6 d-flex py-lg-0 justify-content-center">
 			<div class="d-flex justify-content-center">
 				<div class="">
 					<img src="t1/images/vector img/call.png" alt="" />
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{customer?.phoneNumber | phone}}'">{{customer?.phoneNumber | phone}}</a>
+						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{siteConfig.phone | phone}}'">
+							{{siteConfig?.phone | phone}}
+						</a>
 					</p>
 				</div>
 			</div>
@@ -24,16 +24,14 @@
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +customer?.emailAddress">{{customer?.emailAddress}}</a>
+						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +siteConfig?.email">{{siteConfig?.email}}</a>
 					</p>
 				</div>
 			</div>
 		</div>
 		<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
 			<div class="">
-				<h4 class="mb-0">{{customer?.firstName}} {{customer?.lastName}}</h4>
-				<p class="text-center small mb-0">{{customer?.role | upper}}</p>
-				<button type="button" (click)="updateProfile()">Update Profile</button>
+				<h4 class="mb-0">{{siteConfig?.name}}</h4>
 			</div>
 		</div>
 	</div>
@@ -42,7 +40,7 @@
 <nav class="navbar navbar-expand-lg nav_bg" aria-label="Offcanvas navbar large">
 	<div class="container-fluid">
 		<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
-			<span class=""><i class="fa-solid fa-bars text-white"></i></span>
+			<span class=""><i class="text-white fa-solid fa-bars"></i></span>
 		</button>
 		<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
 			<div class="offcanvas-header">
@@ -54,37 +52,22 @@
 			<div class="offcanvas-body">
 				<ul class="navbar-nav flex-grow-1 pe-3 home_nav">
 					<li class="nav-item">
-						<a class="nav-link nav_content" href="/t1/about">About</a>
+						<a class="nav-link nav_content" [routerLink]="['about']">About</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" href="/t1/seller">Seller</a>
+						<a class="nav-link nav_content" [routerLink]="['seller']">Seller</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" href="/t1/buyer">Buyer</a>
+						<a class="nav-link nav_content" [routerLink]="['buyer']">Buyer</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" href="/t1/featuredlistings">Featured Listings</a>
+						<a class="nav-link nav_content" [routerLink]="['featured-listings']">Featured Listings</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" href="/t1/calculator">Calculators</a>
+						<a class="nav-link nav_content" [routerLink]="['calculator']">Calculators</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" href="/t1/contact">Contact</a>
-					</li>
-					<li class="nav-item">
-						<div class="d-flex align-items-center">
-							<img class="logo " src="t1/images/vector img/login.png" alt="">
-							<div class="d-flex align-items-center justify-content-center">
-								<div class="">
-									<a class="nav-link nav_content" href="/login">Login </a>
-								</div>
-								<div class="">|</div>
-								<div class="">
-									<a class="nav-link nav_content" href="/register">Signup</a>
-
-								</div>
-							</div>
-						</div>
+						<a class="nav-link nav_content" [routerLink]="['contact']">Contact</a>
 					</li>
 				</ul>
 			</div>

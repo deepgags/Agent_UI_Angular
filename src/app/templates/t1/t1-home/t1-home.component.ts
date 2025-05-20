@@ -9,21 +9,21 @@ import { SearchComponent } from '../../shared/search/search.component';
 
 @Component({
 	selector: 'app-t1-home',
+	standalone: true,
 	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent],
 	templateUrl: './t1-home.component.html',
-	styleUrls: ['./t1-home.component.scss', '../t1.component.scss']
+	styleUrls: ['./t1-home.component.scss', '../t1.component.scss'],
+	providers: [Title, StorageService]
 })
 export class T1HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 
 	constructor(private router: Router,
 		private titleService: Title,
-		private storageService: StorageService
 	) { }
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home")
-		this.customer = this.storageService.getLoggedUserFromUserInfo();
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

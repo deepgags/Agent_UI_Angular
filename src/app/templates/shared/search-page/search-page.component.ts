@@ -111,7 +111,7 @@ export class SearchPageComponent implements OnInit {
 	}
 
 	redirectToDetail(property: PropertyModel): void {
-		const userInfo = this.storageService.getLoggedUserFromUserInfo();
+
 		const propertyUrl = "" //userInfo.templateId == "0b69c6031f111d63bc2c975dd2837e38" ? '/t1/propertydetail' : '/t2/propertydetail';
 		this.router.navigate(
 			[propertyUrl],
