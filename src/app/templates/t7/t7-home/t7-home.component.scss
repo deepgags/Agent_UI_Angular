@@ -40,3 +40,12 @@ $info: #B37DF7;
 .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
   color: #B37DF7 !important;
 }
+
+.mob_pic{
+  top: 50%;
+}
+@media (max-width: 768px) {
+  .mob_pic {
+    top: 41% !important;
+  } 
+}

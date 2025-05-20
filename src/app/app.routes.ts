@@ -48,6 +48,8 @@ import { T11HomeComponent } from './templates/t11/t11-home/t11-home.component';
 import { T11Component } from './templates/t11/t11.component';
 import { T12Component } from './templates/t12/t12.component';
 import { T12HomeComponent } from './templates/t12/t12-home/t12-home.component';
+import { T10Component } from './templates/t10/t10.component';
+import { T10HomeComponent } from './templates/t10/t10-home/t10-home.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/loading', pathMatch: 'full' },
@@ -238,6 +240,26 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: '/t9/home', pathMatch: 'full' },
             { path: 'home', component: T9HomeComponent },
+            { path: 'search', component: SearchPageComponent },
+            { path: 'featuredlistings', component: FeaturedListingsComponent },
+            { path: 'propertydetail', component: PropertydetailComponent },
+            { path: 'map', component: MapComponent },
+            { path: 'buyer', component: BuyerComponent },
+            { path: 'contact', component: ContactComponent },
+            { path: 'calculator', component: CalculatorComponent },
+            { path: 'seller', component: SellerComponent },
+            { path: 'sellerdetails', component: SellerdetailComponent },
+            { path: 'sellerdetails2', component: Sellerdetail2Component },
+            { path: 'sellerdetails3', component: Sellerdetail3Component },
+            { path: 'about', component: AboutComponent },
+        ]
+    },
+    {
+        path: 't10',
+        component: T10Component,
+        children: [
+            { path: '', redirectTo: '/t10/home', pathMatch: 'full' },
+            { path: 'home', component: T10HomeComponent },
             { path: 'search', component: SearchPageComponent },
             { path: 'featuredlistings', component: FeaturedListingsComponent },
             { path: 'propertydetail', component: PropertydetailComponent },

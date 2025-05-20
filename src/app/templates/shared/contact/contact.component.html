@@ -8,36 +8,31 @@
   </div>
 
   <section class="container-fluid py-5 bg-light search-container">
-    <div class="row py-5 justify-content-around align-items-center">
+   
+    <div class="row py-0 py-lg-5 justify-content-around align-items-center">
   
-        <div class="col-lg-5 col-12 mb-4 mb-lg-0">
-        <div>
-          <h1 class="fw-bold info">Get In Touch</h1>
-          <p class="text-muted">
-            Your way to better real estate software starts here. For 35 years, we’ve proudly delivered the gold standard in real estate software to businesses of all shapes, sizes, and structures, and we’d be honored to partner with your organization today.
-          </p>
-          <div class="pt-4">
-            <h4 class="mb-3 info">Follow Us</h4>
-            <div class="d-flex gap-3 fs-4">
-              <a href="#" class="text-decoration-none info">
-                <i class="fa-brands fa-x-twitter"></i>
-              </a>
-              <a href="#" class="text-decoration-none info">
-                <i class="fa-brands fa-facebook"></i>
-              </a>
-              <a href="#" class="text-decoration-none info">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            </div>
-          </div>
+  <div class="col-lg-5 col-12 mb-4 mb-lg-0 order-2 order-lg-1">
+    <div>
+      <h1 class="fw-bold info">Get In Touch</h1>
+      <p class="text-muted">
+        Your way to better real estate software starts here. For 35 years, we’ve proudly delivered the gold standard in real estate software to businesses of all shapes, sizes, and structures, and we’d be honored to partner with your organization today.
+      </p>
+      <div class="pt-4">
+        <h4 class="mb-3 info">Follow Us</h4>
+        <div class="d-flex gap-3 fs-4">
+          <a href="#" class="text-decoration-none info"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="text-decoration-none info"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" class="text-decoration-none info"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
-  
-      <div class="col-lg-4 col-12 mt-4 mt-lg-0">
-        <div class="card shadow">
-          <div class="card-body">
-            <h5 class="card-title info">Ask About this Home</h5>
-            <form [formGroup]="userForm" name="userForm" >
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-12 mb-4 mt-lg-0 order-1 order-lg-2">
+    <div class="card shadow">
+      <div class="card-body">
+        <h5 class="card-title info">Ask About this Home</h5>
+        <form [formGroup]="userForm" name="userForm" >
               <mat-form-field appearance="fill">
                 <mat-label class="info">First Name</mat-label>
                 <input formControlName="firstName" required matInput placeholder="First Name" />
@@ -84,11 +79,11 @@
               </div>
               <button class="btn search_btn w-100 fw-bold">Save</button>
             </form>
-          </div>
-        </div>
-       
+      </div>
     </div>
-  
-    </div>
+  </div>
+
+</div>
+
   </section>
   

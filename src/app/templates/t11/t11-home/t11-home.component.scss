@@ -23,13 +23,11 @@ $info:#95c41f;
   cursor: pointer;
 }
 
-.menu-bg {
-    backdrop-filter: blur(2px);
-    background-color: #FFFFFF33;
-    border: 1px solid #b9b9b9;
-    border-radius: 10px;
+@media (max-width: 768px) {
+  .mob_pic {
+    top: 41% !important;
+  } 
 }
-
 .image-text {
   position: absolute;
   bottom: 10px;
@@ -65,3 +63,8 @@ $info:#95c41f;
     font-weight: 600;
   }
 
+@media (max-width: 768px) {
+  .prop-img  {
+    width: 100%;
+  } 
+}
