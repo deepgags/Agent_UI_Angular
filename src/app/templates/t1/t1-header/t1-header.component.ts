@@ -14,13 +14,8 @@ import { PhoneSearch } from '../../../pipes/phoneSearch';
 })
 export class T1HeaderComponent implements OnInit {
 	@Input('siteConfig') siteConfig: SiteConfig | null = null;
-	constructor(private router: Router) { }
 
-	ngOnInit(): void {
+	constructor() { }
 
-	}
-
-	updateProfile() {
-		this.router.navigateByUrl("profile");
-	}
+	ngOnInit(): void { }
 }

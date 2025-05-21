@@ -4,27 +4,25 @@
 		<footer class="py-5">
 			<div class="row justify-content-center align-items-center  border-bottom pb-3 mb-3 ">
 				<div class="col-lg-2 col-12 d-flex justify-content-center mb-3 mb-lg-0">
-					<a href="/t2" *ngIf="customer && customer.customerId!=''">
-						<svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
-						<img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
-						<img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+					<a routerLink="/" *ngIf="siteConfig">
+						<img [src]="siteConfig.logoUrl ? siteConfig.logoUrl : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 					</a>
 				</div>
 				<div class="col-lg-6 col-12  mb-3 mb-lg-0">
-					<p class="fs-3 fw-semibold text-center" *ngIf="customer?.address">Address</p>
+					<p class="fs-3 fw-semibold text-center" *ngIf="siteConfig?.address">Address</p>
 					<p class=" text-center small">
-						{{customer?.address}}
+						{{siteConfig?.address}}
 					</p>
 				</div>
 				<div class="col-lg-2 col-12 mb-3 mb-lg-0 footer-contact">
 					<p class="fs-3 fw-semibold text-center">Contact</p>
-					<div class=" d-flex justify-content-center" *ngIf="customer?.phoneNumber">
+					<div class=" d-flex justify-content-center" *ngIf="siteConfig?.phone">
 						<div class="">
 							<img src="/t2/images/vector img/call2.png" alt="" />
 						</div>
 						<div class="ms-2">
 							<p>
-								<a class="text-white fw-semibold small text-decoration-none pop" href="tel:{{customer?.phoneNumber | phone}}">{{customer?.phoneNumber | phone}}</a>
+								<a class="text-white fw-semibold small text-decoration-none pop" href="tel:{{siteConfig?.phone | phone}}">{{siteConfig?.phone | phone}}</a>
 							</p>
 						</div>
 					</div>
@@ -34,7 +32,7 @@
 						</div>
 						<div class="ms-2">
 							<p>
-								<a class="text-white fw-semibold small text-decoration-none pop" href="mailto:{{customer?.emailAddress}}">{{customer?.emailAddress}}
+								<a class="text-white fw-semibold small text-decoration-none pop" href="mailto:{{siteConfig?.email}}">{{siteConfig?.email}}
 								</a>
 							</p>
 						</div>

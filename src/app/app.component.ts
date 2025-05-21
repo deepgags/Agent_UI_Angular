@@ -43,16 +43,16 @@ export class AppComponent implements OnInit {
 		private siteConfigService: SiteConfigService,
 		private route: ActivatedRoute
 	) {
-		console.log("called...")
-		console.log(this.route)
-		this.route.url.subscribe(urlSegments => {
-			let currentUrl = urlSegments.join('/');
-			console.log(currentUrl);
-		});
+		// console.log("called...")
+		// console.log(this.route)
+		// this.route.url.subscribe(urlSegments => {
+		// 	let currentUrl = urlSegments.join('/');
+		// 	console.log(currentUrl);
+		// });
 	}
 
 	ngOnInit() {
-		this.loadSiteConfiguration();
+		// this.loadSiteConfiguration();
 	}
 
 	private loadSiteConfiguration(): void {

@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common'; // Import CommonModule for async pipe
-import { Component, Input, OnDestroy, OnInit } from '@angular/core'; // Added OnInit, OnDestroy
+import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Subscription } from 'rxjs'; // Import Subscription
-import { SiteConfig } from '../../app.component'; // Import SiteConfig interface
-import { UserModel } from '../../models/UserModel';
-import { SiteConfigService } from '../../services/site-config.service'; // Import SiteConfigService
+import { Subscription } from 'rxjs';
+import { SiteConfig } from '../../app.component';
+import { SiteConfigService } from '../../services/site-config.service';
 import { T1FooterComponent } from './t1-footer/t1-footer.component';
 import { T1HeaderComponent } from './t1-header/t1-header.component';
 

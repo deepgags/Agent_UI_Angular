@@ -2,17 +2,14 @@
 	<div class="py-2 row align-items-center justify-content-center">
 		<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
 			<div class="">
-				<h4 class="mb-0">{{customer?.firstName}} {{customer?.lastName}}</h4>
-				<p class="mb-0 text-center">{{customer?.role?.RoleName | upper}}</p>
+				<h4 class="mb-0">{{siteConfig?.name}}</h4>
 			</div>
 		</div>
 
 		<div class="col-12 col-lg-5 d-flex justify-content-center">
-			<a href="/t2" *ngIf="customer && customer.customerId!=''">
-			  <svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
-              <img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
-			  <img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
-		    </a>
+			<a routerLink="/" *ngIf="siteConfig">
+				<img [src]="siteConfig.logoUrl ? siteConfig.logoUrl : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+			</a>
 		</div>
 
 		<div class="py-4 col-12 col-lg-4 d-flex py-lg-0 justify-content-center justify-content-lg-end">
@@ -22,7 +19,7 @@
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{customer?.phoneNumber | phone}}'">{{customer?.phoneNumber | phone}}</a>
+						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{siteConfig?.phone | phone}}'">{{siteConfig?.phone | phone}}</a>
 					</p>
 				</div>
 			</div>
@@ -32,9 +29,7 @@
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +customer?.emailAddress">{{customer?.emailAddress}}</a>
-						<button type="button" (click)="updateProfile()">Update Profile</button>
-						<button type="button" (click)="redirecToTemplate()">templates</button>
+						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +siteConfig?.email">{{siteConfig?.email}}</a>
 					</p>
 				</div>
 			</div>

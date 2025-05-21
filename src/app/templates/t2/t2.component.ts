@@ -1,37 +1,36 @@
-import { Component, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { SiteConfig } from '../../app.component';
+import { SiteConfigService } from '../../services/site-config.service';
 import { T2FooterComponent } from './t2-footer/t2-footer.component';
 import { T2HeaderComponent } from './t2-header/t2-header.component';
-import { UserModel } from '../../models/UserModel';
+
 
 @Component({
-  selector: 'app-t2',
-  imports: [T2HeaderComponent, T2FooterComponent, RouterModule],
-  templateUrl: './t2.component.html',
-  styleUrl: './t2.component.scss',
+	selector: 'app-t2',
+	imports: [T2HeaderComponent, T2FooterComponent, RouterModule],
+	templateUrl: './t2.component.html',
+	styleUrl: './t2.component.scss',
 })
 export class T2Component {
- 
-  constructor( private renderer: Renderer2, private el: ElementRef) {
-    this.renderer.setStyle(
-      this.el.nativeElement,
-      '--primary-color',
-      '#002FD5'
-    );
-    this.renderer.setStyle(
-      this.el.nativeElement,
-      '--secondary-color',
-      '#FFFFFF'
-    );
-    this.renderer.setStyle(
-      this.el.nativeElement,
-      '--third-color',
-      '#000000'
-    );
-    this.renderer.setStyle(
-      this.el.nativeElement,
-      '--fourth-color',
-      '#222222'
-    );
-  }
+
+	public siteConfig: SiteConfig | null = null;
+	private siteConfigSubscription: Subscription | undefined;
+
+	constructor(private siteConfigService: SiteConfigService) { }
+
+	ngOnInit(): void {
+		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe(config => {
+			if (config) {
+				this.siteConfig = config;
+			}
+		});
+	}
+
+	ngOnDestroy(): void {
+		if (this.siteConfigSubscription) {
+			this.siteConfigSubscription.unsubscribe();
+		}
+	}
 }
