@@ -1,34 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { CustomerModel } from '../../../models/CustomerModel';
+import { SiteConfig } from '../../../app.component';
 import { PhoneSearch } from '../../../pipes/phoneSearch';
-import { StorageService } from '../../../services/storage.service';
+
 
 @Component({
 	selector: 'app-t5-header',
-	imports: [CommonModule, AngularSvgIconModule, PhoneSearch],
+	imports: [CommonModule, AngularSvgIconModule, PhoneSearch, RouterModule],
 	templateUrl: './t5-header.component.html',
 	styleUrls: ['./t5-header.component.scss', '../t5.component.scss']
 })
 export class T5HeaderComponent implements OnInit {
-	customer!: CustomerModel | null;
-	showSVG: boolean = false;
-	showLogo: boolean = false;
+	@Input('siteConfig') siteConfig: SiteConfig | null = null;
 
-	constructor(private storageService: StorageService,
-		private router: Router
-	) {
+	constructor() { }
 
-	}
-
-	ngOnInit(): void {
-		this.customer = this.storageService.getLoggedUserFromUserInfo();
-		this.showSVG = typeof this.customer?.logoImagePath === 'string' && this.customer.logoImagePath.endsWith('.svg');
-	}
-
-	updateProfile() {
-		this.router.navigateByUrl("profile");
-	}
+	ngOnInit(): void { }
 }

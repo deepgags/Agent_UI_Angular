@@ -34,6 +34,8 @@ import { T3Component } from './templates/t3/t3.component';
 import { T3HomeComponent } from './templates/t3/t3-home/t3-home.component';
 import { T4Component } from './templates/t4/t4.component';
 import { T4HomeComponent } from './templates/t4/t4-home/t4-home.component';
+import { T5Component } from './templates/t5/t5.component';
+import { T5HomeComponent } from './templates/t5/t5-home/t5-home.component';
 // import { T2HomeComponent } from './templates/t2/t2-home/t2-home.component';
 // import { T2Component } from './templates/t2/t2.component';
 // import { T3HomeComponent } from './templates/t3/t3-home/t3-home.component';
@@ -148,26 +150,26 @@ export const routes: Routes = [
 			{ path: 'about', component: AboutComponent },
 		]
 	},
-	// {
-	// 	path: 't5',
-	// 	component: T5Component,
-	// 	children: [
-	// 		{ path: '', redirectTo: '/t5/home', pathMatch: 'full' },
-	// 		{ path: 'home', component: T5HomeComponent },
-	// 		{ path: 'search', component: SearchPageComponent },
-	// 		{ path: 'featuredlistings', component: FeaturedListingsComponent },
-	// 		{ path: 'propertydetail', component: PropertydetailComponent },
-	// 		{ path: 'map', component: MapComponent },
-	// 		{ path: 'buyer', component: BuyerComponent },
-	// 		{ path: 'contact', component: ContactComponent },
-	// 		{ path: 'calculator', component: CalculatorComponent },
-	// 		{ path: 'seller', component: SellerComponent },
-	// 		{ path: 'sellerdetails', component: SellerdetailComponent },
-	// 		{ path: 'sellerdetails2', component: Sellerdetail2Component },
-	// 		{ path: 'sellerdetails3', component: Sellerdetail3Component },
-	// 		{ path: 'about', component: AboutComponent },
-	// 	]
-	// },
+	{
+		path: 't5',
+		component: T5Component,
+		children: [
+			{ path: '', redirectTo: '/t5/home', pathMatch: 'full' },
+			{ path: 'home', component: T5HomeComponent },
+			{ path: 'search', component: SearchPageComponent },
+			{ path: 'featuredlistings', component: FeaturedListingsComponent },
+			{ path: 'propertydetail', component: PropertydetailComponent },
+			{ path: 'map', component: MapComponent },
+			{ path: 'buyer', component: BuyerComponent },
+			{ path: 'contact', component: ContactComponent },
+			{ path: 'calculator', component: CalculatorComponent },
+			{ path: 'seller', component: SellerComponent },
+			{ path: 'sellerdetails', component: SellerdetailComponent },
+			{ path: 'sellerdetails2', component: Sellerdetail2Component },
+			{ path: 'sellerdetails3', component: Sellerdetail3Component },
+			{ path: 'about', component: AboutComponent },
+		]
+	},
 	// {
 	// 	path: 't6',
 	// 	component: T5Component,
