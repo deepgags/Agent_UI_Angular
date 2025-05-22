@@ -54,3 +54,12 @@ $info: #1EA69A;
     background-image: url('/t4/images/menu.png');
     background-size: cover;
 }
+
+.mob_pic{
+  top: 50%;
+}
+@media (max-width: 768px) {
+  .mob_pic {
+    top: 41% !important;
+  } 
+}

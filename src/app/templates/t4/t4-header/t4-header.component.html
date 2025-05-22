@@ -2,8 +2,7 @@
 	<div class="row py-2 align-items-center justify-content-center">
 	  <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
 	  <div class="">
-		<h4 class="mb-0">{{customer?.firstName}} {{customer?.lastName}}</h4>
-		<p class="text-center small mb-0">{{customer?.role?.RoleName | upper}}</p>
+						<h4 class="mb-0">{{siteConfig?.name}}</h4>
 	</div>
 	  </div>
 	  <div
@@ -14,7 +13,9 @@
 		  </div>
 		  <div class="ms-2">
 			<p class="mb-0">
-				<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{customer?.phoneNumber | phone}}'">{{customer?.phoneNumber | phone}}</a>
+		<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{siteConfig.phone | phone}}'">
+							{{siteConfig?.phone | phone}}
+						</a>
 			</p>
 		  </div>
 		</div>
@@ -24,19 +25,16 @@
 		  </div>
 		  <div class="ms-2">
 			<p class="mb-0">
-				<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +customer?.emailAddress">{{customer?.emailAddress}}</a>
+			<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +siteConfig?.email">{{siteConfig?.email}}</a>
 			</p>
 		  </div>
 		</div>
 	  </div>
 	  <div
 		class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-		<a href="/t4" *ngIf="customer && customer.customerId!=''">
-			<svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
-			<img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
-			<img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
-			<!-- <button type="button" (click)="updateProfile()">Update Profile</button> -->
-		  </a>
+		<a routerLink="/" *ngIf="siteConfig">
+				<img [src]="siteConfig.logoUrl ? siteConfig.logoUrl : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+			</a>
 		  <div class="dropdown">
 			<div class="btn d-flex align-items-center gap-2 w-100" style="cursor: pointer;">
 				<img src="/images/profile.png" alt="User" class="rounded-circle" width="50" height="50">

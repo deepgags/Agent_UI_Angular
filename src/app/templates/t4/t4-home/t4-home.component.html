@@ -9,7 +9,7 @@
 			</div>
 		  </div>
 		  <div class="col-12 col-lg-4 ">
-			<div class="card shadow">
+			<!-- <div class="card shadow">
 				<div class="card-body">
 				  <h5 class="card-title info">Ask About this Home</h5>
 				  <form [formGroup]="userForm" name="userForm" >
@@ -46,7 +46,7 @@
 					<button class="btn search_btn w-100 fw-bold">Save</button>
 				  </form>
 				</div>
-			  </div>           
+			  </div>            -->
 		  </div>
 
 		
@@ -81,7 +81,7 @@
 		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
-			<div class="">
+			<!-- <div class="">
 				<div class="card-body">
 				  <form [formGroup]="userForm" name="userForm" >
 					<mat-form-field appearance="fill">
@@ -111,7 +111,7 @@
 					</mat-form-field>
 				  </form>
 				</div>
-			  </div> 
+			  </div>  -->
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -120,17 +120,19 @@
 	  </div>
 	</div>
   </div>
-				<a class="btn btn_outline ms-4  text-decoration-none pop" [href]="'tel:{{customer?.phoneNumber | phone}}'">{{customer?.phoneNumber | phone}}</a>
+					<!-- <a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{siteConfig.phone | phone}}'">
+							{{siteConfig?.phone | phone}}
+						</a> -->
 		
 		</div>
-		<div class="col-lg-6 col-12 mt-lg-0 mt-5  d-flex justify-content-lg-end justify-content-center">
+		<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-end justify-content-center">
 		  <div class="">
 
 	<div class="position-relative d-inline-block">
 		<img class="img-fluid" src="/t4/images/profile-bg.png" alt="profile-bg">
 	  
 		<img [src]="customer?.profileImage" alt="No profile image"
-			 class="position-absolute top-50 start-50 translate-middle" 
+			 class="position-absolute  start-50 translate-middle mob_pic" 
 			 style="width: 260px; height: 367px;">
 	  </div>
 	  
