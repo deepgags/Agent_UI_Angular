@@ -1,0 +1,200 @@
+<div class="background-container">
+	<div class="container">
+		<div class="row justify-content-center align-items-center top-padding">
+			<div class="col-12 col-lg-6 ">
+				<div class="">
+					<h2 class="text-white display-3 fw-semibold">Find Your <br> Dream Home</h2>
+					<p class="text-white">We are recognized for exceeding client expectations and delivering great results through dedication, ease of process, and extraordinary services to our worldwide clients.</p>
+				</div>
+			</div>
+			<div class="col-lg-6 col-12 ">
+				<div class="">
+					<img [src]="customer?.profileImage" alt="No profile image" class="overlay-image">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid sec-3 p-5 search-container">
+<div class="container pt-2 search-container">
+		<div class="row justify-content-center">
+			<p class="text fw-semibold pt-3">Search Your Dream Home</p>
+			<div class="col-12 bg-white p-4 mb-5">
+				<app-search [onSearch]="searchProperties" />
+			</div>
+		</div>
+</div>
+</div>
+<div class="container py-lg-5 p-lg-0 p-4">
+        <div class="row align-items-center justify-content-around">
+          <div class="col-lg-5 col-12">
+            <h2 class=" fw-semibold">
+              "Enjoy a clear and simple <br> home-buying experience"
+            </h2>
+            <p class="text-2">Real Estate Specialist Name</p>
+            <p class=" fw-normal">	
+              I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions. Every engagement is an opportunity to create a lasting impression and a forever client.         
+            </p>
+       
+          </div>
+          
+          <div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
+            <div class="">
+              <img class="w-100 rounded" src="t8/images/real-state.png" alt="">
+            </div>
+        </div>
+      
+      </div>
+    </div>
+
+
+<!-- <div class="container-fluid sec-3 py-5">
+	<div class="container bg-white">
+		<div class="row p-lg-4 p-3 ">
+			<p class="text mb-0 fw-semibold">
+				"Enjoy a clear and simple home-buying experience"
+			</p>
+			<div class="col">
+				<p class="estate text-center">Real Estate Specialist Name</p>
+				<p class="text-center fw-semibold">
+					I believe every client has the right to be treated fairly,
+					honestly and with integrity. My aim is to educate and prepare my
+					clients to insure that they are always in a position to make
+					informed decisions.Every engagement is an opportunity to create a
+					lasting impression and a forever client. Acharya is a well serving
+					in real estate with the reputation of providing quality services
+					and keeping excellent relations with the clients. My intend to
+					provide our clients with the best personalized real estate
+					experience from beginning to end. I enjoy sharing my expertise by
+					giving you the scoop on the local real estate market. My aim is to
+					guide & prepare our clients to ensure that they are always in a
+					position to make informed decision. I put our client’s interest
+					above everything. I am professionally trained and licensed
+					realtors who work for seeking to experience satisfaction and feel
+					good emotionss.
+				</p>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+
+<div class="container-fluid">
+	<div class="container pb-5">
+		<p class="text text-center py-3 fw-semibold">Featured Properties</p>
+		<app-featured-properties />
+	</div>
+</div>
+
+ <div class="container-fluid ">
+
+        <div class="container py-lg-5 p-lg-0 p-4">
+          <p class="text text-center py-3 fw-semibold">
+            Find Properties in These Cities
+          </p>
+
+          <div class="row">
+            <div class="col-lg-6 col-12">
+  <div class="image-container w-100" (click)="searchProperties({address:'Toronto'})">
+    <img class="w-100" src="t8/images/pro1.png" alt="">
+    <div class="image-text">Toronto</div>
+  </div>
+</div>
+
+            <div class="col-lg-3 col-12 mt-lg-0 mt-3">
+				<div class="image-container w-100"(click)="searchProperties({address:'Milton'})">
+					<img class="w-100" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Milton</div>
+				</div>
+            </div>
+            <div class="col-lg-3 col-12 mt-lg-0 mt-3">
+				<div class="image-container w-100"(click)="searchProperties({address:'Brampton'})">
+					<img class="w-100" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Brampton</div>
+
+				</div>
+            </div>
+        </div>
+        <div class="row mt-3">
+         
+          <div class="col-lg-3 col-12 mt-lg-0 mt-3">
+			<div class="image-container w-100"(click)="searchProperties({address:'Mississaugas'})">
+				<img class="w-100" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Mississaugas</div>
+
+			</div>
+          </div>
+          <div class="col-lg-3 col-12 mt-lg-0 mt-3">
+			<div class="image-container w-100"(click)="searchProperties({address:'Montreal'})">
+				<img class="w-100" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Montreal</div>
+
+			</div>
+          </div>
+          <div class="col-lg-6 col-12 mt-lg-0 mt-3">
+			<div class="image-container w-100"(click)="searchProperties({address:'Ottawa'})">
+				<img class="w-100" src="t8/images/pro1.png" alt="">
+    <div class="image-text">Ottawa</div>
+
+			</div>
+          </div>
+      </div>
+    </div>
+      </div>
+
+<div class="container-fluid sec-3">
+	<div class="">
+		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
+			<div class="col-lg-6 col-12">
+				<div class="">
+					<img class="img-fluid" src="./t7/images/contact-img.png" alt="">
+				</div>
+			</div>
+			<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-4">
+				<div class="card shadow">
+					<!-- <div class="card-body">
+						<h5 class="card-title info">Lets Get In Touch</h5>
+						<form [formGroup]="userForm" name="userForm">
+							<mat-form-field appearance="fill">
+								<mat-label class="info">First Name</mat-label>
+								<input formControlName="firstName" required matInput placeholder="First Name" />
+								<mat-error>First name is required</mat-error>
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Email</mat-label>
+								<input class="w-100" type="email" formControlName="emailAddress" required email matInput
+									placeholder="Ex. pat@example.com" />
+								@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required',
+								'emailAddress')) {
+								<mat-error>Please enter a valid email address</mat-error>
+								}
+								@if (userForm.hasError('required', 'emailAddress')) {
+								<mat-error>Email is required</mat-error>
+								}
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Phone Number</mat-label>
+								<input type="tel" formControlName="phoneNumber" matInput
+									placeholder="Ex. 123-456-1234" />
+								@if (userForm.hasError('pattern', 'phoneNumber')) {
+								<mat-error>Please enter a valid phone number</mat-error>
+								}
+								@if (userForm.hasError('required', 'phoneNumber')) {
+								<mat-error>Phone number is required</mat-error>
+								}
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Leave a comment</mat-label>
+								<textarea formControlName="comment" class="form-control" rows="4" matInput
+									placeholder="Ex. Enter comment about this property"></textarea>
+								<mat-error>Comment is required</mat-error>
+							</mat-form-field>
+							<button class="btn search_btn w-100 fw-bold">Save</button>
+						</form>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
