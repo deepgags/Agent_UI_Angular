@@ -1,10 +1,10 @@
 <div class="background-container">
-	<div class="container pt-5 search-container">
+	<div class="container search-container">
 
 		<div class="row justify-content-around align-items-center">
 			<div class="container-fluid search-container">
-				<div class="">
-					<div class="row  pt-5 mt-5 justify-content-center">
+				<div class="top-padding1">
+					<div class="row justify-content-center">
 						<p class="text fs-1 text-white fw-semibold pt-3">Search Your Dream Home</p>
 						<div class="col-12 bg-white p-4 mb-5">
 							<app-search [onSearch]="searchProperties" />
@@ -20,13 +20,12 @@
 	<h3 class="fw-semibold text-center">Our Team</h3>
 	<div class="container p-5">
 	  <div class="row">
-		<div class="col">
+		<div class="col-lg-6 col-12">
 			 <div class="card border-0 shadow p-0" style="max-width: 540px;">
 		  <div class="row g-0 justify-content-around">
-			<div class="col-md-6">
-				<!-- <img [src]="customer?.profileImage" alt="No profile image"
-				class="img-fluid w-100"> -->
-				<img class="rounded-start" src="t6/images/team1.png" alt="">
+			<div class="col-md-6 d-flex justify-content-center align-items-center">
+  <img [src]="customer?.profileImage" alt="No profile image"
+       class="mob_pic w-75 h-100">
 			</div>
 			<div class="col-md-6">
 			  <div class="card-body">
@@ -78,11 +77,12 @@
 		  </div>
 		</div>
 		</div>
-		<div class="col mt-5 mt-lg-0">
+		<div class="col-lg-6 col-12 mt-5 mt-lg-0">
 			 <div class="card border-0 shadow p-0" style="max-width: 540px;">
 		  <div class="row g-0 justify-content-around">
-			<div class="col-md-6">
-				<img class="rounded-start" src="t6/images/team1.png" alt="broker">
+		<div class="col-md-6 d-flex justify-content-center align-items-center">
+  <img [src]="customer?.profileImage" alt="No profile image"
+       class="mob_pic w-75 h-100">
 			</div>
 			<div class="col-md-6">
 				<div class="card-body">
@@ -144,25 +144,25 @@
   <div class="container text-center py-5">
 	<p class="text text-center fw-semibold">Find Properties in These Cities</p>
 	<div class="row">
-		<div class="col p-0">
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
 		  <div class="image-container" (click)="searchProperties({address:'Toronto'})">
 			<img src="./t6/images/p1.png" alt="">
 			<div class="image-label">Toronto</div>
 		  </div>
 		</div>
-		<div class="col p-0">
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
 		  <div class="image-container" (click)="searchProperties({address:'Milton'})">
 			<img src="./t6/images/p2.png" alt="">
 			<div class="image-label">Milton</div>
 		  </div>
 		</div>
-		<div class="col p-0">
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
 		  <div class="image-container" (click)="searchProperties({address:'Brampton'})">
 			<img src="./t6/images/p3.png" alt="">
 			<div class="image-label">Brampton</div>
 		  </div>
 		</div>
-		<div class="col p-0">
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
 		  <div class="image-container" (click)="searchProperties({address:'Mississauga'})">
 			<img src="./t6/images/p4.png" alt="">
 			<div class="image-label">Mississauga</div>
@@ -219,8 +219,8 @@
 					<img class="img-fluid" src="t6/images/contact-img.png" alt="">
 				  </div>
 			</div>
-			<div class="col-lg-4 col-12">
-				<div class="card shadow">
+			<div class="col-lg-4 col-12 mt-lg-0 mt-3">
+				<!-- <div class="card shadow">
 					<div class="card-body">
 					  <h5 class="card-title info">Lets Get In Touch</h5>
 					  <form [formGroup]="userForm" name="userForm" >
@@ -257,7 +257,7 @@
 						<button class="btn search_btn w-100 fw-bold">Save</button>
 					  </form>
 					</div>
-				  </div>
+				  </div> -->
 			</div>
 		</div>
 	</div>
