@@ -30,19 +30,19 @@ import { T1HomeComponent } from './templates/t1/t1-home/t1-home.component';
 import { T1Component } from './templates/t1/t1.component';
 import { T2HomeComponent } from './templates/t2/t2-home/t2-home.component';
 import { T2Component } from './templates/t2/t2.component';
-import { T3Component } from './templates/t3/t3.component';
 import { T3HomeComponent } from './templates/t3/t3-home/t3-home.component';
-import { T4Component } from './templates/t4/t4.component';
+import { T3Component } from './templates/t3/t3.component';
 import { T4HomeComponent } from './templates/t4/t4-home/t4-home.component';
-import { T5Component } from './templates/t5/t5.component';
+import { T4Component } from './templates/t4/t4.component';
 import { T5HomeComponent } from './templates/t5/t5-home/t5-home.component';
-import { T6Component } from './templates/t6/t6.component';
+import { T5Component } from './templates/t5/t5.component';
 import { T6HomeComponent } from './templates/t6/t6-home/t6-home.component';
-import { T7Component } from './templates/t7/t7.component';
+import { T6Component } from './templates/t6/t6.component';
 import { T7HomeComponent } from './templates/t7/t7-home/t7-home.component';
+import { T7Component } from './templates/t7/t7.component';
 
 export const routes: Routes = [
-	{ path: '', redirectTo: '/templates', pathMatch: 'full' },
+	{ path: '', redirectTo: '/loading', pathMatch: 'full' },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'forgot-password', component: ForgotComponent },
