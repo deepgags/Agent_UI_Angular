@@ -10,7 +10,6 @@ import { WebsiteSettingsComponent } from './pages/private/website-settings/websi
 import { ForgotComponent } from './pages/public/forgot/forgot.component';
 import { NotFoundComponent } from './pages/public/not-found/not-found.component';
 import { VerifyEmailComponent } from './pages/public/verify-email/verify-email.component';
-
 import { LoginComponent } from './pages/public/login/login.component';
 import { RegisterComponent } from './pages/public/register/register.component';
 import { TemplatesComponent } from './pages/public/templates/templates.component';
