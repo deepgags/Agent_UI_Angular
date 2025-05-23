@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SiteConfig } from '../../app.component';
+import { SiteConfig } from '../../models/SiteConfig';
 import { SiteConfigService } from '../../services/site-config.service';
 import { T1FooterComponent } from './t1-footer/t1-footer.component';
 import { T1HeaderComponent } from './t1-header/t1-header.component';

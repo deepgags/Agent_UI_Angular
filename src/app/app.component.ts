@@ -1,25 +1,14 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http'; // Added HttpClient & HttpClientModule
+import { CommonModule, DOCUMENT, Location } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { Pages } from './enums/pages';
 import { environment } from './environments/environment.development';
+import { SiteConfig } from './models/SiteConfig';
 import { LoadingService } from './services/loading.service';
-import { SiteConfigService } from './services/site-config.service'; // Import SiteConfigService
 
-export interface SiteConfig {
-	templateId: string;
-	name: string;
-	phone: string;
-	email: string;
-	address: string;
-	primaryColor?: string;
-	secondaryColor?: string;
-	logoUrl?: string;
-	domain?: string; // Added domain to the interface
-	// Add other properties your API might return
-	[key: string]: any; // Allow other dynamic properties
-}
+
 
 @Component({
 	selector: 'app-root',
@@ -34,55 +23,37 @@ export interface SiteConfig {
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-
+	currentPath:string = ""
 	constructor(
 		public loadingService: LoadingService,
 		private router: Router,
 		private http: HttpClient,
 		@Inject(DOCUMENT) private document: Document,
-		private siteConfigService: SiteConfigService,
-		private route: ActivatedRoute
-	) {
-		// console.log("called...")
-		// console.log(this.route)
-		// this.route.url.subscribe(urlSegments => {
-		// 	let currentUrl = urlSegments.join('/');
-		// 	console.log(currentUrl);
-		// });
-	}
+		private location: Location
+	) {}
 
 	ngOnInit() {
-		// this.loadSiteConfiguration();
+		this.currentPath = this.location.path()
+		this.loadSiteConfiguration();
 	}
 
 	private loadSiteConfiguration(): void {
-		debugger
 		const hostname = this.document.location.hostname;
-		const apiUrl = `${environment.agentApiUrl}/customer/web`; // API endpoint
-
-		// Check if config already exists in SiteConfigService (e.g., from localStorage)
-		// const existingConfig = this.siteConfigService.getConfigForDomain(hostname);
-		// if (existingConfig && existingConfig.templateId) {
-		// 	this.router.navigate([`/${existingConfig.templateId}`]).catch(navError => console.error('Failed to navigate to cached template', navError));
-		// 	return; // Config found, no need to fetch
-		// }
-
+		const apiUrl = `${environment.agentApiUrl}/customer/web`;
 		this.loadingService.loadingOn();
-
-		this.http.get<SiteConfig>(apiUrl, { params: { domain: hostname } })
+		this.http.get(apiUrl, { params: { domain: hostname } })
 			.subscribe({
 				next: (response: any) => {
-					debugger
-					const config: SiteConfig = response.data; // Cast to SiteConfig type
+					const config: SiteConfig = response.data;
 					this.loadingService.loadingOff();
 					if (config && config.templateId) {
-						this.siteConfigService.setConfig(config, hostname);
-						// Store the fetched config
-						// Navigate to the route corresponding to the templateId
-						this.router.navigate([`/${config.templateId}`]).catch(navError => console.error(`Failed to navigate to template ${config.templateId}`, navError));
+						if (this.currentPath === Pages.LOADING) {
+							this.router.navigate([`/${config.templateId}`]);
+						} else {
+							this.router.navigate([this.currentPath]);
+						}
 					} else {
-						// console.warn('Template ID not found in response or config is null, navigating to default.');
-						// this.router.navigate(['/default']).catch(navError => console.error('Failed to navigate to default template for missing ID', navError));
+						this.router.navigate(['/default']);
 					}
 				},
 				error: (error: any) => { // Add type for error

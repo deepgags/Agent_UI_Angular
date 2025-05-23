@@ -1,12 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { SiteConfig } from '../../../app.component';
-import { CustomerModel } from '../../../models/CustomerModel';
 import { PhoneSearch } from '../../../pipes/phoneSearch';
-import { UpperCase } from '../../../pipes/upper';
-import { StorageService } from '../../../services/storage.service';
+import { SiteConfig } from '../../../models/SiteConfig';
 
 @Component({
 	selector: 'app-t3-header',

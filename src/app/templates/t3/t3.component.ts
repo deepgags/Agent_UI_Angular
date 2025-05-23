@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SiteConfig } from '../../app.component';
+import { SiteConfig } from '../../models/SiteConfig';
 import { SiteConfigService } from '../../services/site-config.service';
 import { T3FooterComponent } from './t3-footer/t3-footer.component';
 import { T3HeaderComponent } from './t3-header/t3-header.component';

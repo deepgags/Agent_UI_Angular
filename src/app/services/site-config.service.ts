@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { SiteConfig } from '../app.component'; // Assuming SiteConfig is exported from app.component or a models file
+import { BehaviorSubject, Observable } from 'rxjs';
+import { SiteConfig } from '../models/SiteConfig';
 
 const SITE_CONFIG_STORAGE_KEY = 'siteConfig';
 

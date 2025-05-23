@@ -8,7 +8,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs'; // Added Subscription
-import { SiteConfig } from '../../../app.component'; // Import SiteConfig
 import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
 import { stringiFy } from '../../../consts/Utility';
 import { PropertyModel } from '../../../models/PropertyModel';
