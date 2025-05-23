@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { SiteConfig } from '../../../app.component';
+import { SiteConfig } from '../../../models/SiteConfig';
 import { PhoneSearch } from '../../../pipes/phoneSearch';
 
 

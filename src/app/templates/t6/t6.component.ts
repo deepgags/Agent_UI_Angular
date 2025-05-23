@@ -2,10 +2,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SiteConfig } from '../../app.component';
 import { SiteConfigService } from '../../services/site-config.service';
 import { T6FooterComponent } from './t6-footer/t6-footer.component';
 import { T6HeaderComponent } from './t6-header/t6-header.component';
+import { SiteConfig } from '../../models/SiteConfig';
 
 @Component({
 	selector: 'app-t6',

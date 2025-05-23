@@ -2,7 +2,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SiteConfig } from '../../app.component';
+import { SiteConfig } from '../../models/SiteConfig';
 import { SiteConfigService } from '../../services/site-config.service';
 import { T8FooterComponent } from './t8-footer/t8-footer.component';
 import { T8HeaderComponent } from './t8-header/t8-header.component';

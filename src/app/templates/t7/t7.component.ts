@@ -2,10 +2,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SiteConfig } from '../../app.component';
 import { SiteConfigService } from '../../services/site-config.service';
 import { T7FooterComponent } from './t7-footer/t7-footer.component';
 import { T7HeaderComponent } from './t7-header/t7-header.component';
+import { SiteConfig } from '../../models/SiteConfig';
 
 @Component({
 	selector: 'app-t7',
