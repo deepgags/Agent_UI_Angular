@@ -1,47 +1,14 @@
 <div class="container">
 	<div class="row py-2 align-items-center justify-content-center">
-	  <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-	  <div class="">
-		<!-- <h4 class="mb-0">{{customer?.firstName}} {{customer?.lastName}}</h4>
-		<p class="text-center small mb-0">{{customer?.role?. | upper}}</p> -->
-	</div>
-	  </div>
-	  <div
-		class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
-		<div class="d-flex justify-content-center">
-		  <div class="">
-			<img src="t7/images/vector img/call.svg" alt="" />
-		  </div>
-		  <div class="ms-2">
-			<p class="mb-0">
-				<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{customer?.phoneNumber | phone}}'">{{customer?.phoneNumber | phone}}</a>
-			</p>
-		  </div>
-		</div>
-		<div class="d-flex justify-content-center ms-3">
-		  <div class="">
-			<img src="./t7/images/vector img/email.svg" alt="" />
-		  </div>
-		  <div class="ms-2">
-			<p class="mb-0">
-				<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +customer?.emailAddress">{{customer?.emailAddress}}</a>
-			</p>
-		  </div>
-		</div>
-	  </div>
-	  <div
-		class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-		<a href="/t7" *ngIf="customer">
-			<svg-icon *ngIf="showSVG == true" src="{{customer.logoImagePath}}"></svg-icon>
-			<img *ngIf="showSVG == false" [src]="customer.logoImage?customer.logoImage:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
-			<img *ngIf="showSVG == false" [src]="customer.logoImagePath?customer.logoImagePath:'/images/Nologo.png'" alt="No brokerage logo" height="66px" />
-			<!-- <button type="button" (click)="updateProfile()">Update Profile</button> -->
-		  </a>
+		  <div class="col-12 col-lg-3 d-flex justify-content-center  align-items-center">
+			<a routerLink="/" *ngIf="siteConfig">
+				<img [src]="siteConfig.logoUrl ? siteConfig.logoUrl : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+			</a>
 		  <div class="dropdown">
 			<div class="btn d-flex align-items-center gap-2 w-100" style="cursor: pointer;">
 				<img src="/images/profile.png" alt="User" class="rounded-circle" width="50" height="50">
 				<div class="text-start flex-grow-1">
-					<span class="fw-bold text-dark d-block">Hi, </span>
+					<span class="fw-bold text-dark d-block">User</span>
 				</div>
 				<i class="bi bi-chevron-down text-muted"></i>
 			</div>
@@ -52,7 +19,38 @@
 				<li><a class="dropdown-item text-danger" href="#">Log Out</a></li>
 			</ul>
 		</div>
+		
+	  </div>
+	 
+	  <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
+		<div class="d-flex justify-content-center">
+		  <div class="">
+			<img src="t7/images/vector img/call.svg" alt="" />
+		  </div>
+		  <div class="ms-2">
+			<p class="mb-0">
+				<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{siteConfig.phone | phone}}'">
+							{{siteConfig?.phone | phone}}
+						</a>
+			</p>
+		  </div>
+		</div>
+		<div class="d-flex justify-content-center ms-3">
+		  <div class="">
+			<img src="t7/images/vector img/email.svg" alt="" />
+		  </div>
+		  <div class="ms-2">
+			<p class="mb-0">
+					<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +siteConfig?.email">{{siteConfig?.email}}</a>
+			</p>
+		  </div>
+		</div>
+	  </div>
+	   <div class="col-12 col-lg-3 d-flex justify-content-center ">
+	  <div class="">
+						<h4 class="mb-0">{{siteConfig?.name}}</h4>
 
+	</div>
 	  </div>
 	</div>
   </div>
@@ -73,38 +71,23 @@
 				<div class="offcanvas-body">
 					<ul class="navbar-nav flex-grow-1 pe-3 home_nav">
 						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t7/about">About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t7/seller">Seller</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t7/buyer">Buyer</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t7/featuredlistings">Featured Listings</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t7/calculator">Calculators</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t7/contact">Contact</a>
-						</li>
-						<li class="nav-item">
-							<div class="d-flex align-items-center">
-								<img class="logo" src="t4/images/vector img/login.png" alt="">
-								<div class="d-flex align-items-center justify-content-center">
-									<div class="">
-										<a class="nav-link nav_content" href="/login">Login </a>
-									</div>
-									<div class="">|</div>
-									<div class="">
-										<a class="nav-link nav_content" href="/register">Signup</a>
-
-									</div>
-								</div>
-							</div>
-						</li>
+						<a class="nav-link nav_content" [routerLink]="['about']">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['seller']">Seller</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['buyer']">Buyer</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['featured-listings']">Featured Listings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['calculator']">Calculators</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['contact']">Contact</a>
+					</li>
 					</ul>
 				</div>
 			</div>
