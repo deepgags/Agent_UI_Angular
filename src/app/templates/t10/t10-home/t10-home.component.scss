@@ -1,0 +1,71 @@
+$info:#FF385C;
+
+.top-padding{
+    padding-top: 111px;
+}
+
+  .background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/t10/images/banner.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .overlay-image {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    width: 350px;
+  }
+.image-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.image-text {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.pro-3{
+  position: absolute;
+    right: 310px;
+    top: 1724px;
+}
+ .btn_outline{
+    border: $info 1px solid !important;
+    background-color: white;
+    color: $info;
+  }
+  .btn_outline:hover{
+    border: $info 1px solid !important;
+    background-color: $info;
+    color: white;
+  }
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
+  color: $info !important;
+}
+.text-2{
+    color:$info ;
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+@media (max-width: 768px) {
+.pro-3 {
+    position: absolute;
+    right: 106px;
+    top: 4826px;
+}
+.prop-img{
+  width: 100%;
+}
+}
+
+
