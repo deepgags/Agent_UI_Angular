@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
 	ngOnInit() {
 		this.currentPath = this.location.path()
-		this.loadSiteConfiguration();
+		// this.loadSiteConfiguration();
 	}
 
 	private loadSiteConfiguration(): void {

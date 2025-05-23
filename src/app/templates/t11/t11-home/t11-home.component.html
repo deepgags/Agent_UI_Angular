@@ -1,0 +1,287 @@
+<div class="background-container">
+	<div class="container pt-2 search-container">
+	<div class="top-padding">
+		<div class="row justify-content-center">
+			<p class="text fw-semibold pt-3">Search Your Dream Home</p>
+			<p class="text-white ">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and extraordinary services to our worldwide clients.</p>
+			<div class="col-12 menu-bg p-4 mb-5">
+				<app-search [onSearch]="searchProperties" />
+			</div>
+		</div>
+	</div>
+</div>
+  </div>
+
+
+  <div class="container sec-31 p-3 mt-5 rounded-4">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-6 col-12">
+            <p class="fs-2 mb-0 fw-semibold">
+              Hi, I’m Person Name
+            </p>
+            <p class="text-2">Sales Representative</p>
+            <p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions.</p>
+            <p class="fw-semibold">
+              Every engagement is an opportunity to create a lasting impression and a forever client. Acharya is a well serving in real estate with the reputation of providing quality services and keeping excellent relations with the clients. </p>
+             				<!-- Button trigger modal -->
+<button type="button" class="btn search_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	Get in Touch
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title info fs-5" id="exampleModalLabel">Get in Touch</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<div class="">
+				<!-- <div class="card-body">
+				  <form [formGroup]="userForm" name="userForm" >
+					<mat-form-field appearance="fill">
+					  <mat-label class="info">First Name</mat-label>
+					  <input formControlName="firstName" required matInput placeholder="First Name" />
+					  <mat-error>First name is required</mat-error>
+					</mat-form-field>
+					<mat-form-field appearance="fill">
+					  <mat-label class="info">Email</mat-label>
+					  <input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
+					  @if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
+					   <mat-error>Please enter a valid email address</mat-error>
+					  }
+					 @if (userForm.hasError('required', 'emailAddress')) {
+					   <mat-error>Email is required</mat-error>
+					  }
+					</mat-form-field>
+					<mat-form-field appearance="fill">                
+					  <mat-label class="info">Phone Number</mat-label>
+					  <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
+					  @if (userForm.hasError('pattern', 'phoneNumber')) {
+						<mat-error>Please enter a valid phone number</mat-error>
+					   }
+					   @if (userForm.hasError('required', 'phoneNumber')) {
+						<mat-error>Phone number is required</mat-error>
+					  }
+					</mat-form-field>
+				  </form>
+				</div> -->
+			  </div> 
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		  <button type="button" class="btn search_btn">Send</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+				<!-- <a class="btn btn_outline ms-4  text-decoration-none pop" [href]="'tel:{{customer?.phoneNumber | phone}}'">{{customer?.phoneNumber | phone}}</a> -->
+          </div>
+          <div class="col-lg-6 col-12 mt-lg-0 mt-5   d-flex justify-content-lg-end justify-content-center">
+            <div class="">
+        	<img [src]="customer?.profileImage" alt="No profile image"
+			 class="" 
+			 >
+            </div>
+          </div>
+        </div>
+      </div>
+
+	   <div class="container">
+        <div class="py-5">
+          <h2 class="text-center">Find Properties in These Cities</h2>
+        </div>
+        <div class="row">
+          <div class="col-12 col-lg-4">
+           <div class="card mb-3" (click)="searchProperties({address:'Toronto'})">
+  <div class="row g-0">
+    <div class="col-md-5">
+      <div>
+        <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start " alt="...">
+      </div>
+    </div>
+    <div class="col-md-7 d-flex align-items-center justify-content-center">
+      <div class="card-body text-center">
+        <h4 class="card-title m-0">Toronto</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+          </div>
+		  <div class="col-12 col-lg-4">
+                 <div class="card mb-3" (click)="searchProperties({address:'Brampton'})">
+  <div class="row g-0">
+    <div class="col-md-5">
+      <div>
+        <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+      </div>
+    </div>
+    <div class="col-md-7 d-flex align-items-center justify-content-center">
+      <div class="card-body text-center">
+        <h4 class="card-title m-0">Brampton</h4>
+      </div>
+    </div>
+  </div>
+</div>
+          </div>
+		  <div class="col-12 col-lg-4">
+                  <div class="card mb-3" (click)="searchProperties({address:'Milton'})">
+  <div class="row g-0">
+    <div class="col-md-5">
+      <div>
+        <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+      </div>
+    </div>
+    <div class="col-md-7 d-flex align-items-center justify-content-center">
+      <div class="card-body text-center">
+        <h4 class="card-title m-0">Milton</h4>
+      </div>
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
+
+         <div class="row">
+          <div class="col-12 col-lg-4">
+                    <div class="card mb-3" (click)="searchProperties({address:'Mississauga'})">
+  <div class="row g-0">
+    <div class="col-md-5">
+      <div>
+        <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+      </div>
+    </div>
+    <div class="col-md-7 d-flex align-items-center justify-content-center">
+      <div class="card-body text-center">
+        <h4 class="card-title m-0">Mississauga</h4>
+      </div>
+    </div>
+  </div>
+</div>
+          </div>
+		  <div class="col-12 col-lg-4">
+                  <div class="card mb-3" (click)="searchProperties({address:'Montreal'})">
+  <div class="row g-0">
+    <div class="col-md-5">
+      <div>
+        <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+      </div>
+    </div>
+    <div class="col-md-7 d-flex align-items-center justify-content-center">
+      <div class="card-body text-center">
+        <h4 class="card-title m-0">Montreal</h4>
+      </div>
+    </div>
+  </div>
+</div>
+          </div>
+		  <div class="col-12 col-lg-4">
+                      <div class="card mb-3" (click)="searchProperties({address:'Ottawa'})">
+  <div class="row g-0">
+    <div class="col-md-5">
+      <div>
+        <img src="./t10/images/pro1.png" class="img-fluid prop-img rounded-start" alt="...">
+      </div>
+    </div>
+    <div class="col-md-7 d-flex align-items-center justify-content-center">
+      <div class="card-body text-center">
+        <h4 class="card-title m-0">Ottawa</h4>
+      </div>
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
+      </div>
+
+	        <div class="container py-lg-5 p-lg-0 p-4">
+        <div class="row py-5 align-items-center justify-content-around">
+          <div class="col-lg-5 col-12">
+            <h1 class="display-6 fw-semibold">
+              "Enjoy a clear and simple home-buying experience"
+            </h1>
+            <p class="text-2">Real Estate Specialist Name</p>
+            <p class=" fw-normal">
+              I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions. Every engagement is an opportunity to create a lasting impression and a forever client.         
+            </p>
+       
+          </div>
+          
+          <div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
+            <div class="">
+              <img class="img-fluid rounded-3" src="./t10/images/pro3.png" alt="">
+            </div>
+        </div>
+      
+      </div>
+    </div>
+
+
+
+<div class="container-fluid">
+	<div class="container pb-5">
+		<p class="text text-center py-3 fw-semibold">Featured Properties</p>
+		<app-featured-properties />
+	</div>
+</div>
+
+
+
+<div class="container-fluid sec-3">
+	<div class="">
+		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
+				<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-4">
+				<!-- <div class="card shadow">
+					<div class="card-body">
+						<h5 class="card-title info">Lets Get In Touch</h5>
+						<form [formGroup]="userForm" name="userForm">
+							<mat-form-field appearance="fill">
+								<mat-label class="info">First Name</mat-label>
+								<input formControlName="firstName" required matInput placeholder="First Name" />
+								<mat-error>First name is required</mat-error>
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Email</mat-label>
+								<input class="w-100" type="email" formControlName="emailAddress" required email matInput
+									placeholder="Ex. pat@example.com" />
+								@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required',
+								'emailAddress')) {
+								<mat-error>Please enter a valid email address</mat-error>
+								}
+								@if (userForm.hasError('required', 'emailAddress')) {
+								<mat-error>Email is required</mat-error>
+								}
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Phone Number</mat-label>
+								<input type="tel" formControlName="phoneNumber" matInput
+									placeholder="Ex. 123-456-1234" />
+								@if (userForm.hasError('pattern', 'phoneNumber')) {
+								<mat-error>Please enter a valid phone number</mat-error>
+								}
+								@if (userForm.hasError('required', 'phoneNumber')) {
+								<mat-error>Phone number is required</mat-error>
+								}
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Leave a comment</mat-label>
+								<textarea formControlName="comment" class="form-control" rows="4" matInput
+									placeholder="Ex. Enter comment about this property"></textarea>
+								<mat-error>Comment is required</mat-error>
+							</mat-form-field>
+							<button class="btn search_btn w-100 fw-bold">Save</button>
+						</form>
+					</div>
+				</div> -->
+			</div>
+			<div class="col-lg-6 col-12 d-flex justify-content-end">
+				<div class="">
+					<img class="img-fluid rounded-3" src="t11/images/contact-img.png" alt="">
+				</div>
+			</div>
+		
+		</div>
+	</div>
+</div>
