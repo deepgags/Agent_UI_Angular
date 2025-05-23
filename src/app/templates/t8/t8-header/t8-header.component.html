@@ -2,8 +2,8 @@
 	<div class="row py-2 align-items-center justify-content-center">
 	  <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
 	  <div class="">
-		<h4 class="mb-0">{{customer?.firstName}} {{customer?.lastName}}</h4>
-		<p class="text-center small mb-0">{{customer?.role?.RoleName | upper}}</p>
+				<h4 class="mb-0">{{siteConfig?.name}}</h4>
+
 	</div>
 	  </div>
 	  <div
@@ -14,7 +14,9 @@
 		  </div>
 		  <div class="ms-2">
 			<p class="mb-0">
-				<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{customer?.phoneNumber | phone}}'">{{customer?.phoneNumber | phone}}</a>
+				<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{siteConfig.phone | phone}}'">
+							{{siteConfig?.phone | phone}}
+						</a>
 			</p>
 		  </div>
 		</div>
@@ -24,7 +26,7 @@
 		  </div>
 		  <div class="ms-2">
 			<p class="mb-0">
-				<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +customer?.emailAddress">{{customer?.emailAddress}}</a>
+				<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +siteConfig?.email">{{siteConfig?.email}}</a>
 			</p>
 		  </div>
 		</div>
