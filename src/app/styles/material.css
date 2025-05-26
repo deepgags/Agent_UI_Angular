@@ -1,52 +1,51 @@
 mat-form-field {
-    width: 100%;
-  }
-  
-  .mat-mdc-dialog-surface{
-    background: white !important;
-  }
-  
-  .mdc-text-field--filled:not(.mdc-text-field--disabled)
-  {
-    background-color: white !important;
-  }
-  
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) ,.mdc-text-field__input , .mdc-text-field__input::placeholder
-  {
-    color: black !important;
-  }
+	width: 100%;
+}
 
-   .mdc-text-field__input::placeholder
-  {
-    color: gray !important;
-  }
+.mat-mdc-dialog-surface {
+	background: white !important;
+}
 
-  .mat-mdc-form-field-error
-  {
-    color: #ba1a1a !important;
-  }
-  .mat-mdc-form-field
-  {
-    display: inline !important;
-  }
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+	background-color: white !important;
+}
 
-  .mat-mdc-simple-snack-bar
-  {
-    background-color: #198754 !important;
-    color: white !important;
-  }
+.mdc-text-field--filled:not(.mdc-text-field--disabled),
+.mdc-text-field__input,
+.mdc-text-field__input::placeholder {
+	color: black !important;
+}
 
-  .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label
-  {
-    color: #198754 !important;
-  }
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label
-  {
-    color: #198754 !important;
-  }
- 
-  .mdc-line-ripple--active::after
-  {
-    border-bottom-color: #198754 !important;
-    color:black !important;
-  }
+.mdc-text-field__input::placeholder {
+	color: gray !important;
+}
+
+.mat-mdc-form-field-error {
+	color: #ba1a1a !important;
+}
+
+.mat-mdc-form-field {
+	display: inline !important;
+}
+
+.mat-mdc-simple-snack-bar {
+	background-color: #198754 !important;
+	color: white !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
+	color: #198754 !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {
+	color: #198754 !important;
+}
+
+.mdc-line-ripple--active::after {
+	border-bottom-color: #198754 !important;
+	color: black !important;
+}
+
+.mat-mdc-select-panel-above .mat-mdc-select-panel {
+	background-color: white !important;
+}

@@ -16,7 +16,7 @@
       </p>
     </div>
 
-	<form formControlName="verifyEmailForm" (ngSubmit)="submitVerificationCode()">
+	<form [formGroup]="verifyEmailForm" (ngSubmit)="submitVerificationCode()">
 		<!-- Code Input -->
 		<div class="input-group mb-3 bg-light rounded">
 		  <span class="input-group-text bg-transparent border-0">

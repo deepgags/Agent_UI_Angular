@@ -29,7 +29,7 @@
 						</div>
 
 						<div class="col-md-6 d-flex justify-content-center">
-							<img [src]="logoImagePath ? logoImagePath : '/logo/NoImage.jpg'"
+							<img [src]="logoImage ? logoImage : '/logo/NoImage.jpg'"
 								class="w-50 h-50 object-fit-contain bg-light border rounded" />
 						</div>
 					</div>
@@ -180,7 +180,7 @@
 									[cropHeight]="170"
 									[theme]="'mixed'"
 									[imageSource]="logoImageSource"
-									(ngOnChanges)="logoImageCropped($event)">
+									(imageCroppedEvent)="logoImageCropped($event)">
 								</ngx-smart-cropper>
 							</div>
 						</div>
@@ -225,10 +225,21 @@
 						<div class="col-md-6">
 							<mat-form-field appearance="fill"
 								class="w-100">
-								<mat-label>Template ID</mat-label>
+								<mat-label>Template</mat-label>
 								<input formControlName="templateId"
 									matInput
 									placeholder="Template ID" />
+
+								<mat-select
+									required
+									name="brokerageType"
+									formControlName="templateId" style="background-color: #fff;">
+									<mat-option *ngFor="let template of templates"
+										[value]="template.templateKey">
+										{{template.name}} - {{template.description}}
+									</mat-option>
+								</mat-select>
+								<mat-error>Template is required</mat-error>
 							</mat-form-field>
 						</div>
 						<div class="col-md-6">
@@ -247,15 +258,6 @@
 								<input formControlName="secondaryColor"
 									matInput
 									placeholder="Secondary Color" />
-							</mat-form-field>
-						</div>
-						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
-								<mat-label>Logo URL</mat-label>
-								<input formControlName="logoUrl"
-									matInput
-									placeholder="Logo URL" />
 							</mat-form-field>
 						</div>
 						<div class="col-md-6">

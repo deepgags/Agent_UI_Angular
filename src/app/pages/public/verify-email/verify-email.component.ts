@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pages } from '../../../enums/pages';
@@ -9,11 +9,11 @@ import { NotificationService } from '../../../services/notification.service';
 
 @Component({
 	selector: 'app-verify-email',
-	imports: [],
+	imports: [ReactiveFormsModule],
 	templateUrl: './verify-email.component.html',
 	styleUrl: './verify-email.component.scss'
 })
-export class VerifyEmailComponent {
+export class VerifyEmailComponent  implements OnInit {
 	email: string = '';
 
 	verifyEmailForm: FormGroup
@@ -26,20 +26,18 @@ export class VerifyEmailComponent {
 		private notificationService: NotificationService,
 	) {
 		this.titleService.setTitle("Verify your account")
-
 		this.verifyEmailForm = new FormGroup({
-			email: new FormGroup(this.email, [Validators.required, Validators.email]),
-			authCode: new FormGroup('', [Validators.required]),
+			email: new FormControl('', [Validators.required, Validators.email]),
+			authCode: new FormControl('', [Validators.required]),
 		});
+	}
 
+	ngOnInit(): void {
 		this.activatedRoute.queryParams.subscribe(params => {
-			console.log(params)
 			this.email = params['email'] || '';
-			if (this.email) {
-				this.verifyEmailForm.patchValue({
-					email: this.email
-				});
-			}
+			this.verifyEmailForm.patchValue({
+				email: this.email
+			});
 		});
 	}
 

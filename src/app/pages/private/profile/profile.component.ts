@@ -15,6 +15,7 @@ import { BrokerageTypeService } from '../../../services/brokerage.service';
 import { CustomerService } from '../../../services/customer.service';
 import { LoadingService } from '../../../services/loading.service';
 import { NotificationService } from '../../../services/notification.service';
+import { TemplateService } from '../../../services/template.service';
 
 @Component({
 	selector: 'app-profile',
@@ -28,12 +29,13 @@ export class ProfileComponent {
 	agentForm!: FormGroup;
 	agentData!: CustomerModel;
 	brokerageTypes: BrokerageTypeModel[] = [];
+	templates: any[] = [];
 
 	profileCroppedImage = '';
 	profileImageSource: string = '';
 	logoCroppedImage = '';
 	logoImageSource: string = '';
-	logoImagePath?: string = '';
+	logoImage?: string = '';
 
 	constructor(
 		private fb: FormBuilder,
@@ -42,7 +44,9 @@ export class ProfileComponent {
 		private brokerageTypeService: BrokerageTypeService,
 		private notificationService: NotificationService,
 		private loadingService: LoadingService,
-		private titleService: Title) {
+		private titleService: Title,
+		private templateService: TemplateService,
+	) {
 		this.titleService.setTitle("Profile")
 	}
 
@@ -87,6 +91,7 @@ export class ProfileComponent {
 		});
 
 		this.getBrokerageTypes();
+		this.getTemplates();
 	}
 
 	getProfile() {
@@ -94,28 +99,47 @@ export class ProfileComponent {
 			.subscribe({
 				next: (response: any) => {
 					if (response.status) {
-						this.agentData = response.data;
+						this.agentData = response.data.customer;
+						const { businessName, firstName, lastName, emailAddress, phoneNumber, cellNumber, brokerageTypeId, websiteSettings } = response.data;
 
-						this.profileImageSource = this.agentData.profileImage;
-						this.logoImagePath = this.agentData.logoImage ?? "";
+						const { templateId, primaryColor, secondaryColor, logoUrl, contactInfo: { address: websiteAddress, email: websiteEmail, phone: websitePhone }, socialLinks: { facebook, instagram, linkedin, twitter, youtube }, profileImage, siteUrl } = websiteSettings
 
+						this.profileImageSource = profileImage;
 						this.agentForm.patchValue({
-							businessName: this.agentData.businessName,
-							firstName: this.agentData.firstName,
-							lastName: this.agentData.lastName,
-							address: this.agentData.address,
-							emailAddress: this.agentData.emailAddress,
-							phoneNumber: this.agentData.phoneNumber,
-							cellNumber: this.agentData.cellNumber,
-							brokerageType: this.agentData.brokerageTypeId,
-							siteUrl: this.agentData.siteUrl
+							businessName: businessName,
+							firstName: firstName,
+							lastName: lastName,
+							address: websiteAddress,
+							emailAddress: emailAddress,
+							phoneNumber: phoneNumber,
+							cellNumber: cellNumber,
+							brokerageType: brokerageTypeId,
+							siteUrl: siteUrl,
 						});
+
+						if (response.data.websiteSettings) {
+								this.logoImage = logoUrl;
+								this.agentForm.patchValue({
+									templateId: templateId,
+									primaryColor: primaryColor,
+									secondaryColor: secondaryColor,
+									logoUrl: logoUrl,
+									facebook: facebook,
+									twitter: twitter,
+									instagram: instagram,
+									linkedin: linkedin,
+									youtube: youtube,
+									websiteEmail: websiteEmail,
+									websitePhone: websitePhone,
+									websiteAddress: websiteAddress
+								});
+						}
 
 						this.emailAddress?.disable();
 						this.phoneNumber?.disable();
 						this.cellNumber?.disable();
 
-						this.logoImagePath = this.agentData.logoImage ?? "";
+						this.logoImage = this.agentData.logoImage ?? "";
 					}
 
 				},
@@ -126,6 +150,8 @@ export class ProfileComponent {
 				}
 			})
 	}
+
+
 
 	getBrokerageTypes() {
 		this.loadingService.loadingOn();
@@ -142,14 +168,27 @@ export class ProfileComponent {
 	}
 
 	brokerageChange(selectedBrokerage: any): void {
-		this.logoImagePath = selectedBrokerage.LogoPath;
+		this.logoImage = selectedBrokerage.LogoPath;
+	}
+
+	getTemplates() {
+		this.templateService.getTemplates().subscribe({
+			next: (response: any) => {
+				if (response.data && response.data.length > 0) {
+					this.templates = response.data;
+				}
+			},
+			error: (error) => {
+				this.notificationService.showNotification("Error occurred while getting templates");
+			},
+		});
 	}
 
 	save() {
 		const { valid } = this.agentForm;
 		if (valid) {
-			this.agentData.profileImage = this.profileImageSource;
-			this.agentData.logoImage = this.logoImageSource;
+			// this.profileImage = this.profileImageSource ?? "";
+			// this.logoImage = this.logoImageSource ?? "";
 			// this.agentData.logoImagePath = this.logoImagePath;
 			this.loadingService.loadingOn();
 			const { businessName,
@@ -157,7 +196,19 @@ export class ProfileComponent {
 				lastName,
 				address,
 				brokerageTypeId,
-				siteUrl } = this.agentForm.value;
+				siteUrl,
+				templateId,
+				primaryColor,
+				secondaryColor,
+				facebook,
+				twitter,
+				instagram,
+				linkedin,
+				youtube,
+				websiteEmail,
+				websitePhone,
+				websiteAddress
+		 } = this.agentForm.value;
 
 			const params = {
 				businessName: businessName,
@@ -165,7 +216,26 @@ export class ProfileComponent {
 				lastName: lastName,
 				address: address,
 				brokerageTypeId: brokerageTypeId,
-				siteUrl: siteUrl
+				websiteSettings: {
+					siteUrl: siteUrl,
+					templateId,
+					primaryColor,
+					secondaryColor,
+					socialLinks: {
+						facebook,
+						twitter,
+						instagram,
+						linkedin,
+						youtube,
+					},
+					contactInfo: {
+						email: websiteEmail,
+						phone: websitePhone,
+						address: websiteAddress
+					},
+					profileImage: this.profileCroppedImage,
+					logoImage: this.logoCroppedImage
+				}
 			}
 			this.customerService.update(params).subscribe({
 				next: (v) => {
@@ -180,53 +250,6 @@ export class ProfileComponent {
 				}
 			});
 		}
-
-		// Save Website Settings
-		const {
-			templateId,
-			primaryColor,
-			secondaryColor,
-			logoUrl,
-			facebook,
-			twitter,
-			instagram,
-			linkedin,
-			youtube,
-			websiteEmail,
-			websitePhone,
-			websiteAddress
-		} = this.agentForm.value;
-
-		const websiteSettings = {
-			templateId,
-			primaryColor,
-			secondaryColor,
-			logoUrl,
-			socialLinks: {
-				facebook,
-				twitter,
-				instagram,
-				linkedin,
-				youtube,
-			},
-			contactInfo: {
-				email: websiteEmail,
-				phone: websitePhone,
-				address: websiteAddress
-			}
-		};
-
-		this.customerService.saveWebsiteSettings(websiteSettings).subscribe({
-			next: () => {
-				this.notificationService.showNotification("Website settings saved successfully");
-			},
-			error: () => {
-				this.notificationService.showNotification("Failed to save website settings");
-			},
-			complete: () => {
-				this.loadingService.loadingOff();
-			}
-		});
 	}
 
 	logout() {
@@ -258,6 +281,7 @@ export class ProfileComponent {
 	}
 
 	logoImageCropped(event: any) {
+		debugger
 		this.logoCroppedImage = event;
 	}
 }

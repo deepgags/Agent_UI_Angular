@@ -24,7 +24,7 @@ import { SiteConfigService } from './services/site-config.service';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-	currentPath:string = ""
+	currentPath: string = ""
 	constructor(
 		public loadingService: LoadingService,
 		private router: Router,
@@ -32,26 +32,34 @@ export class AppComponent implements OnInit {
 		@Inject(DOCUMENT) private document: Document,
 		private location: Location,
 		private siteConfigService: SiteConfigService,
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.currentPath = this.location.path()
-		this.loadSiteConfiguration();
+		if (this.currentPath != Pages.REGISTER
+			&& this.currentPath != Pages.LOGIN
+			&& this.currentPath != Pages.VERIFY_EMAIL
+			&& this.currentPath.indexOf(Pages.VERIFY_EMAIL) > 0
+			&& this.currentPath != Pages.PROFILE
+			|| (this.currentPath == '/' || this.currentPath === Pages.LOADING)
+		) {
+			this.loadSiteConfiguration();
+		}
 	}
 
 	private loadSiteConfiguration(): void {
 		const hostname = this.document.location.hostname;
 		const apiUrl = `${environment.agentApiUrl}/customer/web`;
 		this.loadingService.loadingOn();
-		this.http.get(apiUrl, { params: { domain: hostname } })
+		this.http.get(apiUrl)
 			.subscribe({
 				next: (response: any) => {
-					const config: SiteConfig = response.data;
+					const config: any = response.data;
 					this.loadingService.loadingOff();
-					if (config && config.templateId) {
+					if (config && config.websiteSettings && config.websiteSettings.templateId) {
 						this.siteConfigService.setConfig(config, hostname);
 						if (this.currentPath === Pages.LOADING) {
-							this.router.navigate([`/${config.templateId}`]);
+							this.router.navigate([`/${config.websiteSettings.templateId}`]);
 						} else {
 							this.router.navigate([this.currentPath]);
 						}
@@ -59,12 +67,10 @@ export class AppComponent implements OnInit {
 						this.router.navigate(['/default']);
 					}
 				},
-				error: (error: any) => { // Add type for error
+				error: (error: any) => {
 					console.error('Failed to load site configuration:', error);
 					this.loadingService.loadingOff();
-					// Navigate to a default template or show an error page
-					this.router.navigate(['/default']).catch((navError: any) => console.error('Failed to navigate to default template on error', navError));
-					// No need to return of(null) here as it's a void subscribe callback
+					this.router.navigate(['/default']);
 				}
 			});
 	}
