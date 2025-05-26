@@ -448,19 +448,19 @@ h5{
   }
 
   .location{
-    content:url("/images/vectorimg/star.png");
+    content:url("/images/vector/star.png");
   }
   
   .bed{
-    content:url("/t1/images/vectorimg/bed.png");
+    content:url("../../../../public/t1/images/vector/bed.png");
    } 
 
   .shower{
-    content:url("/t1/images/vectorimg/shower.png");
+    content:url("../../../../public/t1/images/vector/shower.png");
     } 
 
   .area{
-    content:url("/t2/images/vectorimg/area.png");
+    content:url("/t2/images/vector/area.png");
     } 
     @media (max-width: 767px) {
       .text_bg2{
