@@ -7,6 +7,7 @@ import { Pages } from './enums/pages';
 import { environment } from './environments/environment.development';
 import { SiteConfig } from './models/SiteConfig';
 import { LoadingService } from './services/loading.service';
+import { SiteConfigService } from './services/site-config.service';
 
 
 
@@ -29,7 +30,8 @@ export class AppComponent implements OnInit {
 		private router: Router,
 		private http: HttpClient,
 		@Inject(DOCUMENT) private document: Document,
-		private location: Location
+		private location: Location,
+		private siteConfigService: SiteConfigService,
 	) {}
 
 	ngOnInit() {
@@ -47,6 +49,7 @@ export class AppComponent implements OnInit {
 					const config: SiteConfig = response.data;
 					this.loadingService.loadingOff();
 					if (config && config.templateId) {
+						this.siteConfigService.setConfig(config, hostname);
 						if (this.currentPath === Pages.LOADING) {
 							this.router.navigate([`/${config.templateId}`]);
 						} else {
