@@ -24,6 +24,9 @@ $info: #E86822;
   width: 230px;
   text-align: center;
 }
+  .info{
+    columns: $info !important;
+  }
 
   .background-container {
     position: relative;

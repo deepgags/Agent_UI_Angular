@@ -47,6 +47,8 @@ import { T11Component } from './templates/t11/t11.component';
 import { T11HomeComponent } from './templates/t11/t11-home/t11-home.component';
 import { T12Component } from './templates/t12/t12.component';
 import { T12HomeComponent } from './templates/t12/t12-home/t12-home.component';
+import { T10Component } from './templates/t10/t10.component';
+import { T10HomeComponent } from './templates/t10/t10-home/t10-home.component';
 
 
 export const routes: Routes = [
@@ -251,11 +253,11 @@ export const routes: Routes = [
 		]
 	},
 	{
-		path: 't11',
-		component: T11Component,
+		path: 't10',
+		component: T10Component,
 		children: [
-			{ path: '', redirectTo: '/t11/home', pathMatch: 'full' },
-			{ path: 'home', component: T11HomeComponent },
+			{ path: '', redirectTo: '/t10/home', pathMatch: 'full' },
+			{ path: 'home', component: T10HomeComponent },
 			{ path: 'search', component: SearchPageComponent },
 			{ path: 'featuredlistings', component: FeaturedListingsComponent },
 			{ path: 'propertydetail', component: PropertydetailComponent },
