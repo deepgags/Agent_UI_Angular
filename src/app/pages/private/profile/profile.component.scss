@@ -1,15 +1,109 @@
-div.mat-mdc-select-panel {
-  width: 100%;
-  max-height: 275px;
-  outline: 0;
-  overflow: auto;
-  padding: 8px 0;
-  border-radius: 4px;
+mat-form-field {
+    width: 100%;
+  }
+  
+  .mat-mdc-dialog-surface{
+    background: white !important;
+  }
+  
+  .mdc-text-field--filled:not(.mdc-text-field--disabled)
+  {
+    background-color: white !important;
+    color: #198754 !important;
+  }
+  
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) ,.mdc-text-field__input , .mdc-text-field__input::placeholder
+  {
+    color: #198754 !important;
+  }
+
+
+::ng-deep .mat-mdc-select-panel {
+  background-color: #e4efea !important;
+
+}
+.mat-mdc-form-field-subscript-wrapper {
   box-sizing: border-box;
-  position: static;
-  background-color: red !important;
+  width: 100%;
+  margin-bottom: 15px !important;
+  position: relative;
 }
 
-div.mat-mdc-select-panel {
-  background-color: white !important;
+
+   .mdc-text-field__input::placeholder
+  {
+    color: gray !important;
+  }
+
+  .mat-mdc-form-field-error
+  {
+    color: #ba1a1a !important;
+    font-size: 13px !important;
+  }
+  .mat-mdc-form-field
+  {
+    display: inline !important;
+  }
+
+  .mat-mdc-simple-snack-bar
+  {
+    background-color: #FF5A00 !important;
+    color: white !important;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label
+  {
+    color: #198754 !important;
+  }
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label
+  {
+    color: #198754 !important;
+  }
+ 
+  .mdc-line-ripple--active::after
+  {
+    border-bottom-color: #198754 !important;
+    color:black !important;
+  }
+
+.upload-container {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    // box-shadow: 0px 0px 10px #198754;
+    max-width: 500px;
+}
+.upload-preview {
+    width: 215%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 15px;
+    border: 1px solid #ddd;
+}
+.upload-info {
+    flex-grow: 1;
+}
+.upload-btn {
+    width: 50%;
+}
+#cropContainer {
+    display: none;
+    text-align: center;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+#cropImage {
+    max-width: 100%;
+    border-radius: 5px;
+}
+.crop-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
