@@ -71,7 +71,7 @@ export class PropertyService {
 							TotalRecords: result.total,
 							ListOfficeName: property.ListOfficeName,
 							ListingContractDate: property.ListingContractDate,
-							IsFeatureListing: property.ListOfficeName && officesName?.some((x: any) => property.ListOfficeName.toLowerCase().includes(x))
+							IsFeatureListing: property.ListOfficeName && property.ListOfficeName.toLowerCase().indexOf('homelife') > -1 ? true : false,
 						}
 					});
 				}
