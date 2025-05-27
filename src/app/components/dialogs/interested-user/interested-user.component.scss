@@ -1,0 +1,45 @@
+
+mat-form-field.full-width {
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+mat-form-field:hover {
+  transform: scale(1.02);
+}
+
+input, textarea {
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: black;
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+mat-label {
+  font-weight: bold;
+  color: #555;
+}
+
+mat-error {
+  color: #d9534f;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    padding: 16px;
+  }
+  mat-form-field.full-width {
+    width: 100%;
+  }
+}
