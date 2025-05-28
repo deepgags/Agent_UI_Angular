@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -9,8 +9,10 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ImageCropperComponent } from 'ngx-smart-cropper';
+import { TemplateSelectionDialogComponent } from '../../../components/template-selection-dialog/template-selection-dialog.component';
 import { BrokerageTypeModel } from '../../../models/BrokerageTypeModel';
 import { CustomerModel } from '../../../models/CustomerModel';
+import { TemplateModel } from '../../../models/TemplateModel';
 import { BrokerageTypeService } from '../../../services/brokerage.service';
 import { CustomerService } from '../../../services/customer.service';
 import { LoadingService } from '../../../services/loading.service';
@@ -36,6 +38,7 @@ export class ProfileComponent {
 	logoCroppedImage = '';
 	logoImageSource: string = '';
 	logoImage?: string = '';
+	readonly dialog = inject(MatDialog);
 
 	constructor(
 		private fb: FormBuilder,
@@ -118,21 +121,21 @@ export class ProfileComponent {
 						});
 
 						if (response.data.websiteSettings) {
-								this.logoImage = logoUrl;
-								this.agentForm.patchValue({
-									templateId: templateId,
-									primaryColor: primaryColor,
-									secondaryColor: secondaryColor,
-									logoUrl: logoUrl,
-									facebook: facebook,
-									twitter: twitter,
-									instagram: instagram,
-									linkedin: linkedin,
-									youtube: youtube,
-									websiteEmail: websiteEmail,
-									websitePhone: websitePhone,
-									websiteAddress: websiteAddress
-								});
+							this.logoImage = logoUrl;
+							this.agentForm.patchValue({
+								templateId: templateId,
+								primaryColor: primaryColor,
+								secondaryColor: secondaryColor,
+								logoUrl: logoUrl,
+								facebook: facebook,
+								twitter: twitter,
+								instagram: instagram,
+								linkedin: linkedin,
+								youtube: youtube,
+								websiteEmail: websiteEmail,
+								websitePhone: websitePhone,
+								websiteAddress: websiteAddress
+							});
 						}
 
 						this.emailAddress?.disable();
@@ -208,7 +211,7 @@ export class ProfileComponent {
 				websiteEmail,
 				websitePhone,
 				websiteAddress
-		 } = this.agentForm.value;
+			} = this.agentForm.value;
 
 			const params = {
 				businessName: businessName,
@@ -283,5 +286,26 @@ export class ProfileComponent {
 	logoImageCropped(event: any) {
 		debugger
 		this.logoCroppedImage = event;
+	}
+
+	openTemplateDialog() {
+		let dialogRef = this.dialog.open(TemplateSelectionDialogComponent, {
+			maxHeight: '90vh',
+			maxWidth: '90vw',
+			width: '90vw',
+			height: '90vh',
+			data: {
+				templates: this.templates
+			}
+		});
+
+		dialogRef.afterClosed().subscribe((selectedTemplate: TemplateModel) => {
+			if (selectedTemplate) {
+				this.agentForm.patchValue({
+					templateId: selectedTemplate.templateKey,
+				});
+			}
+		});
+
 	}
 }

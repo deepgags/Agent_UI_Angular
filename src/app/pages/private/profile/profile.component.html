@@ -1,7 +1,7 @@
 <!-- <app-t1-header /> -->
 <div class="container-fluid py-3">
 	<div class="row justify-content-center">
-		<div class="col-lg-6 col-md-6">
+		<div class="col-lg-8 col-md-8">
 			<div class="card shadow rounded-4 p-4">
 				<form [formGroup]="agentForm"
 					name="brokerageForm"
@@ -222,24 +222,25 @@
 					<div class="row g-3 mt-4">
 						<h4 class="mb-3">Website Settings</h4>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
-								<mat-label>Template</mat-label>
-								<input formControlName="templateId"
-									matInput
-									placeholder="Template ID" />
-
-								<mat-select
-									required
-									name="brokerageType"
-									formControlName="templateId" style="background-color: #fff;">
-									<mat-option *ngFor="let template of templates"
-										[value]="template.templateKey">
-										{{template.name}} - {{template.description}}
-									</mat-option>
-								</mat-select>
-								<mat-error>Template is required</mat-error>
-							</mat-form-field>
+							<div class="d-flex gap-2 justify-content-between align-items-center">
+								<mat-form-field appearance="fill"
+									class="w-100">
+									<mat-label>Template</mat-label>
+									<input formControlName="templateId"
+									matInput placeholder="Template ID" />
+									<mat-select
+										required
+										name="templateId"
+										formControlName="templateId" readonly>
+										<mat-option *ngFor="let template of templates"
+											[value]="template.templateKey">
+											{{template.name}} - {{template.description}}
+										</mat-option>
+									</mat-select>
+									<mat-error>Template is required</mat-error>
+								</mat-form-field>
+								<button type="button" class="btn btn-success btn-sm me-2" (click)="openTemplateDialog()">Select Template</button>
+							</div>
 						</div>
 						<div class="col-md-6">
 							<mat-form-field appearance="fill"
@@ -334,9 +335,9 @@
 					</div>
 
 					<div>
-						<button type="submit" class="btn btn-success mt-4 me-2"> Save </button>
+						<button type="submit" class="btn btn-primary mt-4 me-2"> Save </button>
 
-						<button type="button" class="btn btn-success mt-4" (click)="logout()"> Logout </button>
+						<button type="button" class="btn btn-danger mt-4" (click)="logout()"> Logout </button>
 					</div>
 				</form>
 			</div>
