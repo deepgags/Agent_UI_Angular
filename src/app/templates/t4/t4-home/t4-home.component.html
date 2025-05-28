@@ -28,7 +28,7 @@
 					   <mat-error>Email is required</mat-error>
 					  }
 					</mat-form-field>
-					<mat-form-field appearance="fill">                
+					<mat-form-field appearance="fill">
 					  <mat-label class="info">Phone Number</mat-label>
 					  <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
 					  @if (userForm.hasError('pattern', 'phoneNumber')) {
@@ -46,10 +46,10 @@
 					<button class="btn search_btn w-100 fw-bold">Save</button>
 				  </form>
 				</div>
-			  </div>           
+			  </div>
 		  </div>
 
-		
+
 		</div>
 	  </div>
   </div>
@@ -66,12 +66,12 @@
 		  <p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions.</p>
 		  <p class="fw-semibold">
 			Every engagement is an opportunity to create a lasting impression and a forever client. Acharya is a well serving in real estate with the reputation of providing quality services and keeping excellent relations with the clients. </p>
-			
+
 				<!-- Button trigger modal -->
 <button type="button" class="btn search_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
 	Get in Touch
   </button>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
@@ -99,7 +99,7 @@
 					   <mat-error>Email is required</mat-error>
 					  }
 					</mat-form-field>
-					<mat-form-field appearance="fill">                
+					<mat-form-field appearance="fill">
 					  <mat-label class="info">Phone Number</mat-label>
 					  <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
 					  @if (userForm.hasError('pattern', 'phoneNumber')) {
@@ -111,7 +111,7 @@
 					</mat-form-field>
 				  </form>
 				</div>
-			  </div> 
+			  </div>
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -120,22 +120,22 @@
 	  </div>
 	</div>
   </div>
-					<!-- <a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{siteConfig.phone | phone}}'">
-							{{siteConfig?.phone | phone}}
+					<!-- <a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}'">
+							{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}
 						</a> -->
-		
+
 		</div>
 		<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-end justify-content-center">
 		  <div class="">
 
 	<div class="position-relative d-inline-block">
 		<img class="img-fluid" src="/t4/images/profile-bg.png" alt="profile-bg">
-	  
+
 		<img [src]="customer?.profileImage" alt="No profile image"
-			 class="position-absolute  start-50 translate-middle mob_pic" 
+			 class="position-absolute  start-50 translate-middle mob_pic"
 			 style="width: 260px; height: 367px;">
 	  </div>
-	  
+
 		  </div>
 		</div>
 	  </div>
@@ -165,7 +165,7 @@
 				<p class="image-label  fs-3">Toronto</p>
 			</div>
 		  </div>
-		  
+
 	  <div class="col-lg-3 col-12   position-relative">
 		<div class="mb-3 city_card " (click)="searchProperties({address:'Milton'})">
 		<img class="w-100" src="/t4/images/g2.png" alt="">
@@ -185,7 +185,7 @@
 			<p class="image-label  fs-3">Ottawa</p>
 		</div>
 	  </div>
-	  
+
   <div class="col-lg-3 col-12   position-relative">
 	<div class="mb-3 city_card" (click)="searchProperties({address:'Mississauga'})">
 	<img class="w-100" src="/t4/images/g2.png" alt="">
@@ -199,7 +199,7 @@
 
 	</div>
   </div>
-	  
+
 	</div>
   </div>
 

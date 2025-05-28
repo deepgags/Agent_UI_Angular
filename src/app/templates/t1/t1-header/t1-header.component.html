@@ -2,7 +2,7 @@
 	<div class="py-2 row align-items-center justify-content-center">
 		<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
 			<a routerLink="/" *ngIf="siteConfig">
-				<img [src]="siteConfig.logoUrl ? siteConfig.logoUrl : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+				<img [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 			</a>
 		</div>
 		<div class="py-4 col-12 col-lg-6 d-flex py-lg-0 justify-content-center">
@@ -12,8 +12,8 @@
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{siteConfig.phone | phone}}'">
-							{{siteConfig?.phone | phone}}
+						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}'">
+							{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}
 						</a>
 					</p>
 				</div>
@@ -24,14 +24,14 @@
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +siteConfig?.email">{{siteConfig?.email}}</a>
+						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +siteConfig?.websiteSettings?.contactInfo?.email">{{siteConfig?.websiteSettings?.contactInfo?.email}}</a>
 					</p>
 				</div>
 			</div>
 		</div>
 		<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
 			<div class="">
-				<h4 class="mb-0">{{siteConfig?.name}}</h4>
+				<h4 class="mb-0">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h4>
 			</div>
 		</div>
 	</div>

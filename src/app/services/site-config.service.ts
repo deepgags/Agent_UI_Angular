@@ -23,7 +23,7 @@ export class SiteConfigService {
 					const config = JSON.parse(storedConfig) as SiteConfig;
 					// Basic validation: ensure it has a templateId and matches the current domain if domain was stored
 					// More robust validation might be needed depending on your SiteConfig structure
-					if (config && config.templateId) {
+					if (config && config.websiteSettings.templateId) {
 						// If you store the domain with the config, you can validate it here:
 						// if (config.domain === window.location.hostname) {
 						//   this.currentConfigSubject.next(config);
@@ -56,7 +56,7 @@ export class SiteConfigService {
 	getConfigForDomain(domain: string): SiteConfig | null {
 		const currentConfig = this.currentConfigSubject.getValue();
 		// Check if the loaded/current config is for the requested domain
-		if (currentConfig && currentConfig.domain === domain) {
+		if (currentConfig && currentConfig.websiteSettings.siteUrl === domain) {
 			return currentConfig;
 		}
 		// If not, try to load from storage again (might be redundant if constructor already did)
@@ -64,7 +64,7 @@ export class SiteConfigService {
 		// but for now, we assume AppComponent handles the fetching.
 		this.loadConfigFromStorage(); // re-check storage
 		const freshConfig = this.currentConfigSubject.getValue();
-		if (freshConfig && freshConfig.domain === domain) {
+		if (freshConfig && freshConfig.websiteSettings.siteUrl === domain) {
 			return freshConfig;
 		}
 		return null;

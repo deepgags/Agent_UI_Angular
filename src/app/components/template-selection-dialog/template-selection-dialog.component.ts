@@ -24,7 +24,6 @@ export class TemplateSelectionDialogComponent {
 	selectedTemplate: string = '';
 
 	ngOnInit(): void {
-		console.log(this.data)
 		this.templates = this.data.templates
 	}
 

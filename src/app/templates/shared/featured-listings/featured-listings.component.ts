@@ -68,8 +68,8 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe(config => {
-			if (config && config.templateId) {
-				this.currentTemplateId = config.templateId;
+			if (config && config.websiteSettings.templateId) {
+				this.currentTemplateId = config.websiteSettings.templateId;
 			}
 		});
 		this.pageIndex = 1;

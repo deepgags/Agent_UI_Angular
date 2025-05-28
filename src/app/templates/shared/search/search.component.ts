@@ -78,7 +78,6 @@ export class SearchComponent implements OnInit {
 			);
 		}
 		else {
-			console.log('searching with filters', filters);
 			this.router.navigate(
 				[],
 				{

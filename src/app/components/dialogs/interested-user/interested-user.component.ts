@@ -103,7 +103,6 @@ export class InteresteduserComponent implements OnInit {
 				const latitude = position.coords.latitude;
 				this.Latitude = latitude;
 				this.Longitude = longitude;
-				console.log("Long: " + longitude + " Lat: " + latitude);
 			});
 		} else {
 			console.log("No support for geolocation")

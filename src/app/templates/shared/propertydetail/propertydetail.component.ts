@@ -169,7 +169,7 @@ export class PropertydetailComponent implements OnInit {
 				}
 			},
 			error: (err) => {
-				this.notificationService.showNotification("Error occurred while getting property information");
+				// this.notificationService.showNotification("Error occurred while getting property information");
 				this.loadingSubject.next(false);
 			},
 			complete: () => {
@@ -198,10 +198,8 @@ export class PropertydetailComponent implements OnInit {
 				const latitude = position.coords.latitude;
 				this.Latitude = latitude;
 				this.Longitude = longitude;
-				console.log("Long: " + longitude + " Lat: " + latitude);
 			});
 		} else {
-			console.log("No support for geolocation")
 		}
 	}
 

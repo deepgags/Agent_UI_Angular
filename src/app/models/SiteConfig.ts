@@ -1,12 +1,32 @@
 export interface SiteConfig {
-	templateId: string;
-	name: string;
-	phone: string;
-	email: string;
-	address: string;
-	primaryColor?: string;
-	secondaryColor?: string;
-	logoUrl?: string;
-	domain?: string;
-	[key: string]: any; // Allow other dynamic properties
+	firstName: string;
+	lastName: string;
+	// templateId: string;
+	// phone: string;
+	// email: string;
+	// address: string;
+	// primaryColor?: string;
+	// secondaryColor?: string;
+	// logoUrl?: string;
+	// domain?: string;
+	websiteSettings: {
+		contactInfo: {
+			email: string;
+			phone: string;
+			address: string;
+		},
+		socialLinks: {
+			facebook: string;
+			twitter: string;
+			instagram: string;
+			linkedin: string;
+			youtube: string;
+		},
+		faviconUrl: string;
+		siteUrl: string;
+		templateId: string;
+		primaryColor: string;
+		secondaryColor: string;
+		logoImage: string;
+	}; // Allow other dynamic properties
 }
