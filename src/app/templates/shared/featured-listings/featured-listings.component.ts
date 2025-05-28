@@ -172,7 +172,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 				this.propertiesList = response;
 			},
 			error: (err) => {
-				this.notificationService.showNotification("Error occurred while getting properties");
+				// this.notificationService.showNotification("Error occurred while getting properties");
 			},
 			complete: () => {
 				this.loadingSubject.next(false);

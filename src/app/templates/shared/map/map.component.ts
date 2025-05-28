@@ -355,7 +355,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 				this.zoomToFitMarkers();
 			},
 			error: (err) => {
-				this.notificationService.showNotification("Error occurred while getting properties");
+				// this.notificationService.showNotification("Error occurred while getting properties");
 			},
 			complete: () => {
 				this.loadingSubject.next(false);

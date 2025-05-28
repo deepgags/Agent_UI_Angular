@@ -150,6 +150,7 @@ export class PropertydetailComponent implements OnInit {
 	}
 
 	getPropertyInformation(): void {
+		debugger
 		this.loadingSubject.next(true);
 		this.propertyService.getProperty(this.selectedFilters.propertyId, this.selectedFilters.mlsId).subscribe({
 			next: (response) => {

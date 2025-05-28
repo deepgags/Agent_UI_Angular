@@ -120,7 +120,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 				this.propertiesSubject.next(response);
 			},
 			error: (err) => {
-				this.notificationService.showNotification("Error occurred while getting properties");
+				// this.notificationService.showNotification("Error occurred while getting properties");
 			},
 			complete: () => {
 			}
