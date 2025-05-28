@@ -36,8 +36,8 @@
 		<a routerLink="/" *ngIf="siteConfig">
 				<img [src]="siteConfig.logoUrl ? siteConfig.logoUrl : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 			</a>
-		
-		
+
+
 	  </div>
 	</div>
   </div>
@@ -57,40 +57,25 @@
 				</div>
 				<div class="offcanvas-body">
 					<ul class="navbar-nav flex-grow-1 pe-3 home_nav">
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t8/about">About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t8/seller">Seller</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t8/buyer">Buyer</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t8/featuredlistings">Featured Listings</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t8/calculator">Calculators</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav_content" href="/t8/contact">Contact</a>
-						</li>
-						<li class="nav-item">
-							<div class="d-flex align-items-center">
-								<img class="logo" src="t4/images/vector img/login.png" alt="">
-								<div class="d-flex align-items-center justify-content-center">
-									<div class="">
-										<a class="nav-link nav_content" href="/login">Login </a>
-									</div>
-									<div class="">|</div>
-									<div class="">
-										<a class="nav-link nav_content" href="/register">Signup</a>
-	
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['about']">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['seller']">Seller</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['buyer']">Buyer</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['featured-listings']">Featured Listings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['calculator']">Calculators</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link nav_content" [routerLink]="['contact']">Contact</a>
+					</li>
+				</ul>
 				</div>
 			</div>
 		</div>
