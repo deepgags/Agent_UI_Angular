@@ -3,21 +3,15 @@
 	<div class="row justify-content-center">
 		<div class="col-lg-8 col-md-8">
 			<div class="card shadow rounded-4 p-4">
-				<form [formGroup]="agentForm"
-					name="brokerageForm"
-					class="w-100"
-					(ngSubmit)="save()">
+				<form [formGroup]="agentForm" name="brokerageForm" class="w-100" (ngSubmit)="save()">
 					<h3 class="mb-4 text-center">Update Profile</h3>
 					<div class="row g-3 align-items-center">
 						<div class="col-md-6">
 							<!-- <label class="form-label">My Brokerage</label> -->
-							<mat-form-field appearance="fill"
-								class="w-100 ">
+							<mat-form-field appearance="fill" class="w-100 ">
 								<mat-label>My Brokerage</mat-label>
-								<mat-select (selectionChange)="brokerageChange($event.value)"
-									required
-									name="brokerageType"
-									formControlName="brokerageType">
+								<mat-select (selectionChange)="brokerageChange($event.value)" required
+									name="brokerageType" formControlName="brokerageType">
 									<mat-option *ngFor="let brokerageType of brokerageTypes"
 										[value]="brokerageType._id">
 										{{brokerageType.name}}
@@ -32,11 +26,16 @@
 								class="w-50 h-50 object-fit-contain bg-light border rounded" />
 						</div>
 					</div>
-
-					<div class="row">
-						<div class="col">
-							<div class="mt-3">
-								<mat-form-field appearance="fill"
+					<div class="row mt-3">
+						<div class="col-lg-6 col-12">
+							<div class="">
+								<div class="input-grou w-100">
+									<label class="label">Business Name</label>
+									<input formControlName="businessName" required matInput placeholder="Business Name" class="input" type="email"><div>
+									<mat-error>Business name is required</mat-error>
+									</div>
+								</div>
+								<!-- <mat-form-field appearance="fill"
 									class="w-100">
 									<mat-label>Business Name</mat-label>
 									<input formControlName="businessName"
@@ -45,141 +44,140 @@
 										matInput
 										placeholder="Business Name" />
 									<mat-error>Business name is required</mat-error>
-								</mat-form-field>
+								</mat-form-field> -->
 							</div>
 						</div>
-						<div class="col">
-							<div class="mt-3">
-								<mat-form-field appearance="fill"
-									class="w-100">
+						<div class="col-lg-6 col-12">
+							<div class="input-grou w-100">
+									<label class="label">Brokerage Address</label>
+									<input formControlName="address" required matInput placeholder="Brokerage Address" class="input" type="email"><div>
+									</div>
+								</div>
+							<!-- <div class="mt-3">
+								<mat-form-field appearance="fill" class="w-100">
 									<mat-label>Brokerage Address</mat-label>
-									<input type="text"
-										formControlName="address"
-										matInput
+									<input type="text" formControlName="address" matInput
 										placeholder="Brokerage Address" />
 								</mat-form-field>
-							</div>
+							</div> -->
 						</div>
 					</div>
 
 					<div class="row g-3 mt-3">
-						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+						<div class="col-lg-6 col-12">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>First Name</mat-label>
-								<input formControlName="firstName"
-									required
-									matInput
-									placeholder="First Name" />
+								<input formControlName="firstName" required matInput placeholder="First Name" />
 								<mat-error>First name is required</mat-error>
-							</mat-form-field>
+							</mat-form-field> -->
+							<div class="input-grou w-100">
+									<label class="label">First Name</label>
+									<input formControlName="firstName" required matInput placeholder="First Name" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
-						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+						<div class="col-lg-6 col-12">
+							<div class="input-grou w-100">
+									<label class="label">Last Name</label>
+									<input formControlName="lastName" required matInput placeholder="Last Name" class="input" type="email"><div>
+									</div>
+								</div>
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Last Name</mat-label>
-								<input formControlName="lastName"
-									required
-									matInput
-									placeholder="Last Name" />
+								<input formControlName="lastName" required matInput placeholder="Last Name" />
 								<mat-error>Last name is required</mat-error>
-							</mat-form-field>
+							</mat-form-field> -->
+							
 						</div>
 					</div>
 
 					<div class="row g-3 mt-3">
-						<div class="col-md-4">
-							<mat-form-field appearance="fill"
-								class="w-100">
+						<div class="col-lg-6 col-12">
+							<div class="input-grou w-100">
+									<label class="label">Email</label>
+									<input formControlName="emailAddress" required matInput placeholder="Email" class="input" type="email"><div>
+									</div>
+								</div>
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Email</mat-label>
-								<input type="email"
-									formControlName="emailAddress"
-									required
-									email
-									matInput
+								<input type="email" formControlName="emailAddress" required email matInput
 									placeholder="Ex. pat@example.com" />
-								@if (agentForm.hasError('email', 'emailAddress') && !agentForm.hasError('required', 'emailAddress')) {
+								@if (agentForm.hasError('email', 'emailAddress') && !agentForm.hasError('required',
+								'emailAddress')) {
 								<mat-error>Please enter a valid email address</mat-error>
 								}
 								@if (agentForm.hasError('required', 'emailAddress')) {
 								<mat-error>Email is required</mat-error>
 								}
-							</mat-form-field>
+							</mat-form-field> -->
 						</div>
-						<div class="col-md-4">
-							<mat-form-field appearance="fill"
-								class="w-100">
+						<div class="col-lg-6 col-12">
+							<div class="input-grou w-100">
+									<label class="label">Phone Number</label>
+									<input formControlName="phoneNumber" required matInput placeholder="Phone Number" class="input" type="email"><div>
+									</div>
+								</div>
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Phone Number</mat-label>
-								<input type="text"
-									formControlName="phoneNumber"
-									matInput
-									placeholder="123-456-1234" />
-							</mat-form-field>
+								<input type="text" formControlName="phoneNumber" matInput placeholder="123-456-1234" />
+							</mat-form-field> -->
 						</div>
-						<div class="col-md-4">
-							<mat-form-field appearance="fill"
-								class="w-100">
+						
+					</div>
+
+					<div class="row g-3 mt-3">
+						<div class="col-lg-6 col-12">
+							<div class="input-grou w-100">
+									<label class="label">Website URL</label>
+									<input formControlName="siteUrl" required matInput placeholder="Website URL" class="input" type="email"><div>
+									</div>
+								</div>
+							<!-- <mat-form-field appearance="fill" class="w-100">
+								<mat-label>Website URL</mat-label>
+								<input type="url" formControlName="siteUrl" required matInput
+									placeholder="example.com" />
+								@if (agentForm.hasError('email', 'siteUrl') && !agentForm.hasError('required', 'siteUrl')) {
+                	<mat-error>Please enter a valid email address</mat-error>
+                }
+								@if (agentForm.hasError('required', 'siteUrl')) {
+								<mat-error>Website URL is required</mat-error>
+								}
+							</mat-form-field> -->
+						</div>
+						<div class="col-lg-6 col-12">
+							<div class="input-grou w-100">
+									<label class="label">Cell Number</label>
+									<input formControlName="cellNumber" required matInput placeholder="Cell Number" class="input" type="email"><div>
+									</div>
+								</div>
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Cell Number</mat-label>
-								<input type="text"
-									formControlName="cellNumber"
-									required
-									matInput
+								<input type="text" formControlName="cellNumber" required matInput
 									placeholder="123-456-1234" />
 								@if (agentForm.hasError('required', 'cellNumber')) {
 								<mat-error>Cell number is required</mat-error>
 								}
 								<mat-error *ngIf="agentForm.value.cellNumber">Please enter valid cell number</mat-error>
-							</mat-form-field>
-						</div>
-					</div>
-
-					<div class="row g-3 mt-3">
-						<div class="col-md-4">
-							<mat-form-field appearance="fill"
-								class="w-100">
-								<mat-label>Website URL</mat-label>
-								<input type="url"
-									formControlName="siteUrl"
-									required
-									matInput
-									placeholder="example.com" />
-								<!-- @if (agentForm.hasError('email', 'siteUrl') && !agentForm.hasError('required', 'siteUrl')) {
-                	<mat-error>Please enter a valid email address</mat-error>
-                } -->
-								@if (agentForm.hasError('required', 'siteUrl')) {
-										<mat-error>Website URL is required</mat-error>
-								}
-							</mat-form-field>
+							</mat-form-field> -->
 						</div>
 					</div>
 
 					<!-- Logo Upload -->
 					<div class="mt-4">
 						<label class="form-label fw-semibold">Upload logo</label>
-						<input type="file"
-							(change)="onFileChange($event)"
-							data-cropper="#logoImageCropper"
-							class="form-control"
-							id="logoImageUpload"
-							accept="image/*" />
+						<input type="file" (change)="onFileChange($event)" data-cropper="#logoImageCropper"
+							class="form-control" id="logoImageUpload" accept="image/*" />
 					</div>
 
-					<div id="LogoCropContainer"
-						class="mt-3">
+					<div id="LogoCropContainer" class="mt-3">
 						<div class="row">
 							<div class="col-12">
 								<label *ngIf="logoImageSource">Logo Preview</label>
 							</div>
 							<div class="col-md-8 mx-auto text-center">
-								<ngx-smart-cropper id="logoImageCropper"
-									[imageType]="'webp'"
-									[cropX]="0"
-									[cropY]="0"
-									[cropWidth]="435"
-									[cropHeight]="170"
-									[theme]="'mixed'"
-									[imageSource]="logoImageSource"
-									(imageCroppedEvent)="logoImageCropped($event)">
+								<ngx-smart-cropper id="logoImageCropper" [imageType]="'webp'" [cropX]="0" [cropY]="0"
+									[cropWidth]="435" [cropHeight]="170" [theme]="'mixed'"
+									[imageSource]="logoImageSource" (imageCroppedEvent)="logoImageCropped($event)">
 								</ngx-smart-cropper>
 							</div>
 						</div>
@@ -189,28 +187,18 @@
 					<div class="row"></div>
 					<div class="mt-4">
 						<label class="form-label fw-semibold">Upload profile image</label>
-						<input type="file"
-							(change)="onFileChange($event)"
-							data-cropper="#profileImageCropper"
-							class="form-control"
-							id="profileImageUpload"
-							accept="image/*" />
+						<input type="file" (change)="onFileChange($event)" data-cropper="#profileImageCropper"
+							class="form-control" id="profileImageUpload" accept="image/*" />
 					</div>
 
-					<div id="ProfileCropContainer"
-						class="mt-3">
+					<div id="ProfileCropContainer" class="mt-3">
 						<div class="row">
 							<div class="col-12">
 								<label *ngIf="profileImageSource">Profile Preview</label>
 							</div>
 							<div class="col-md-8 mx-auto text-center">
-								<ngx-smart-cropper id="profileImageCropper"
-									[imageType]="'webp'"
-									[cropX]="0"
-									[cropY]="0"
-									[cropWidth]="435"
-									[cropHeight]="170"
-									[theme]="'mixed'"
+								<ngx-smart-cropper id="profileImageCropper" [imageType]="'webp'" [cropX]="0" [cropY]="0"
+									[cropWidth]="435" [cropHeight]="170" [theme]="'mixed'"
 									[imageSource]="profileImageSource"
 									(imageCroppedEvent)="profileImageCropped($event)">
 								</ngx-smart-cropper>
@@ -223,119 +211,134 @@
 						<h4 class="mb-3">Website Settings</h4>
 						<div class="col-md-6">
 							<div class="d-flex gap-2 justify-content-between align-items-center">
-								<mat-form-field appearance="fill"
-									class="w-100">
+								<mat-form-field appearance="fill" class="w-100">
 									<mat-label>Template</mat-label>
-									<input formControlName="templateId"
-									matInput placeholder="Template ID" />
-									<mat-select
-										required
-										name="templateId"
-										formControlName="templateId" readonly>
-										<mat-option *ngFor="let template of templates"
-											[value]="template.templateKey">
+									<input formControlName="templateId" matInput placeholder="Template ID" />
+									<mat-select required name="templateId" formControlName="templateId" readonly>
+										<mat-option *ngFor="let template of templates" [value]="template.templateKey">
 											{{template.name}} - {{template.description}}
 										</mat-option>
 									</mat-select>
 									<mat-error>Template is required</mat-error>
 								</mat-form-field>
-								<button type="button" class="btn btn-success btn-sm me-2" (click)="openTemplateDialog()">Select Template</button>
+								<button type="button" class="btn btn-success btn-sm me-2"
+									(click)="openTemplateDialog()">Select Template</button>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Primary Color</mat-label>
-								<input formControlName="primaryColor"
-									matInput
-									placeholder="Primary Color" />
-							</mat-form-field>
+								<input formControlName="primaryColor" matInput placeholder="Primary Color" />
+							</mat-form-field> -->
+							<div class="input-grou w-100">
+									<label class="label">Primary Color</label>
+									<input formControlName="primaryColor" required matInput placeholder="Primary Color" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Secondary Color</mat-label>
-								<input formControlName="secondaryColor"
-									matInput
-									placeholder="Secondary Color" />
-							</mat-form-field>
+								<input formControlName="secondaryColor" matInput placeholder="Secondary Color" />
+							</mat-form-field> -->
+							<div class="input-grou w-100">
+									<label class="label">Secondary Color</label>
+									<input formControlName="secondaryColor" required matInput placeholder="Secondary Color" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Facebook</mat-label>
-								<input formControlName="facebook"
-									matInput
-									placeholder="Facebook" />
-							</mat-form-field>
+								<input formControlName="facebook" matInput placeholder="Facebook" />
+							</mat-form-field> -->
+								<div class="input-grou w-100">
+									<label class="label">Facebook</label>
+									<input formControlName="facebook" required matInput placeholder="Facebook" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Twitter</mat-label>
-								<input formControlName="twitter"
-									matInput
-									placeholder="Twitter" />
-							</mat-form-field>
+								<input formControlName="twitter" matInput placeholder="Twitter" />
+							</mat-form-field> -->
+							<div class="input-grou w-100">
+									<label class="label">Twitter</label>
+									<input formControlName="twitter" required matInput placeholder="Twitter" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Instagram</mat-label>
-								<input formControlName="instagram"
-									matInput
-									placeholder="Instagram" />
-							</mat-form-field>
+								<input formControlName="instagram" matInput placeholder="Instagram" />
+							</mat-form-field> -->
+							<div class="input-grou w-100">
+									<label class="label">Instagram</label>
+									<input formControlName="instagram" required matInput placeholder="Instagram" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>LinkedIn</mat-label>
-								<input formControlName="linkedin"
-									matInput
-									placeholder="LinkedIn" />
-							</mat-form-field>
+								<input formControlName="linkedin" matInput placeholder="LinkedIn" />
+							</mat-form-field> -->
+							<div class="input-grou w-100">
+									<label class="label">LinkedIn</label>
+									<input formControlName="linkedIn" required matInput placeholder="LinkedIn" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>YouTube</mat-label>
-								<input formControlName="youtube"
-									matInput
-									placeholder="YouTube" />
-							</mat-form-field>
+								<input formControlName="youtube" matInput placeholder="YouTube" />
+							</mat-form-field> -->
+							<div class="input-grou w-100">
+									<label class="label">YouTube</label>
+									<input formControlName="youtube" required matInput placeholder="YouTube" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Email</mat-label>
-								<input formControlName="websiteEmail"
-									matInput
-									placeholder="Email" />
-							</mat-form-field>
+								<input formControlName="websiteEmail" matInput placeholder="Email" />
+							</mat-form-field> -->
+							<div class="input-grou w-100">
+									<label class="label">Email</label>
+									<input formControlName="websiteEmail" required matInput placeholder="Email" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Phone</mat-label>
-								<input formControlName="websitePhone"
-									matInput
-									placeholder="Phone" />
-							</mat-form-field>
+								<input formControlName="websitePhone" matInput placeholder="Phone" />
+							</mat-form-field> -->
+							<div class="input-grou w-100">
+									<label class="label">Phone</label>
+									<input formControlName="websitePhone" required matInput placeholder="Phone" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
 						<div class="col-md-6">
-							<mat-form-field appearance="fill"
-								class="w-100">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Address</mat-label>
-								<input formControlName="websiteAddress"
-									matInput
-									placeholder="Address" />
-							</mat-form-field>
+								<input formControlName="websiteAddress" matInput placeholder="Address" />
+							</mat-form-field> -->
+							<div class="input-grou w-100">
+									<label class="label">Address</label>
+									<input formControlName="websiteAddress" required matInput placeholder="Address" class="input" type="email"><div>
+									</div>
+								</div>
 						</div>
 					</div>
 
 					<div>
-						<button type="submit" class="btn btn-primary mt-4 me-2"> Save </button>
+						<button type="submit" class="btn btn-success mt-4 me-2"> Save </button>
 
 						<button type="button" class="btn btn-danger mt-4" (click)="logout()"> Logout </button>
 					</div>
