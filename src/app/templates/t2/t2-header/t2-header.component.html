@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="col-12 col-lg-5 d-flex justify-content-center">
-			<a routerLink="/" *ngIf="siteConfig">
+			<a [routerLink]="['home']" *ngIf="siteConfig">
 				<img [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 			</a>
 		</div>

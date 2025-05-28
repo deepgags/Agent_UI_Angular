@@ -4,7 +4,7 @@
 		<footer class="py-5">
 			<div class="pb-3 mb-3 row justify-content-center align-items-center border-bottom ">
 				<div class="mb-3 col-lg-2 col-12 d-flex justify-content-center mb-lg-0">
-					<a routerLink="/" *ngIf="siteConfig">
+					<a [routerLink]="['home']" *ngIf="siteConfig">
 						<img [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 					</a>
 				</div>
