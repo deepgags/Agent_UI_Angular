@@ -3,7 +3,6 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { url } from 'inspector';
 import { bathTypes, bedTypes, maxPrices, minPrices, propertyTypes, sqFitTypes, statusTypes, storyTypes } from '../../../consts/DefaultTypes';
 import { stringiFy } from '../../../consts/Utility';
 import { StorageService } from '../../../services/storage.service';
@@ -49,6 +48,8 @@ export class SearchComponent implements OnInit {
 	}
 
 	searchProperties = (searchByMap: boolean = false) => {
+		const currentUrl = this.router.url.split('/')[1];
+
 		const filtersWithValue = Object.fromEntries(
 			Object.entries(this.filters)
 				.map((x) => { return stringiFy(x) })
@@ -67,17 +68,17 @@ export class SearchComponent implements OnInit {
 			sqFt: filtersWithValue['sqFt'],
 			distance: filtersWithValue['distance']
 		}
-
 		if (searchByMap) {
-			// this.router.navigate(
-			// 	[navigationUrl],
-			// 	{
-			// 		queryParams: filters,
-			// 		queryParamsHandling: 'replace'
-			// 	}
-			// );
+			this.router.navigate(
+				[`${currentUrl}/map`],
+				{
+					queryParams: filters,
+					queryParamsHandling: 'replace'
+				}
+			);
 		}
 		else {
+			console.log('searching with filters', filters);
 			this.router.navigate(
 				[],
 				{
