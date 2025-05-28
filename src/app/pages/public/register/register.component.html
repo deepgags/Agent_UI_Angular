@@ -103,8 +103,12 @@
 							<input type="text"
 								formControlName="phoneNumber"
 								matInput
-								placeholder="123-456-1234" />
+								placeholder="123-456-1234" required/>
 						</mat-form-field>
+						@if (customerForm.hasError('required', 'cellNumber')) {
+							<mat-error>Phone number is required</mat-error>
+							}
+							<mat-error *ngIf="customerForm.value.phoneNumber">Please enter valid Phone number</mat-error>
 					</div>
 					<div class="col">
 						<mat-form-field appearance="fill">

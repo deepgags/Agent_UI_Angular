@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
 			brokerageType: new FormControl("", Validators.required),
 			firstName: new FormControl('', Validators.required),
 			lastName: new FormControl('', Validators.required),
-			phoneNumber: new FormControl(''),//, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
+			phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
 			cellNumber: new FormControl('', [Validators.required, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
 			emailAddress: new FormControl('', [Validators.required, Validators.email]),
 			address: new FormControl(''),
@@ -146,6 +146,8 @@ export class RegisterComponent implements OnInit {
 					this.notificationService.showNotification(error.error.message);
 				}
 			});
+		} else {
+			this.notificationService.showNotification("One or more required fields are missing or invalid.");
 		}
 	}
 
