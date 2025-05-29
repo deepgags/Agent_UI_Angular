@@ -1,6 +1,6 @@
-import { CommonModule, DOCUMENT, Location } from "@angular/common";
+import { CommonModule, DOCUMENT, isPlatformBrowser, Location } from "@angular/common";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Inject, OnInit, PLATFORM_ID } from "@angular/core";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { ActivatedRoute, Router, RouterOutlet } from "@angular/router";
 import { Pages } from "./enums/pages";
@@ -23,25 +23,31 @@ import { SiteConfigService } from "./services/site-config.service";
 export class AppComponent implements OnInit {
 	currentPath: string = "";
 	queryParams: any = {};
+	isBrowser: boolean = false;
 	constructor(
 		public loadingService: LoadingService,
 		private router: Router,
 		private http: HttpClient,
 		@Inject(DOCUMENT) private document: Document,
 		private location: Location,
-		private siteConfigService: SiteConfigService
-	) {}
+		private siteConfigService: SiteConfigService,
+		@Inject(PLATFORM_ID) platformId: Object
+	) {
+		this.isBrowser = isPlatformBrowser(platformId);
+	}
 
 	ngOnInit() {
-		const queryStr = window.location.search;
-		if (queryStr) {
-			const urlParams = new URLSearchParams(queryStr);
-			for (const [key, value] of urlParams) {
-				this.queryParams[key] = value;
+		if (this.isBrowser) {
+			const queryStr = window.location.search;
+			if (queryStr) {
+				const urlParams = new URLSearchParams(queryStr);
+				for (const [key, value] of urlParams) {
+					this.queryParams[key] = value;
+				}
 			}
+			this.currentPath = this.location.path().split("?")[0];
+			this.loadSiteConfiguration();
 		}
-		this.currentPath = this.location.path().split("?")[0];
-		this.loadSiteConfiguration();
 	}
 
 	private loadSiteConfiguration(): void {
