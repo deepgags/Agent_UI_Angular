@@ -12,7 +12,7 @@ export class SiteConfigService {
 	public currentConfig$: Observable<SiteConfig | null> = this.currentConfigSubject.asObservable();
 
 	constructor() {
-		this.loadConfigFromStorage();
+		// this.loadConfigFromStorage();
 	}
 
 	private loadConfigFromStorage(): void {
@@ -44,13 +44,13 @@ export class SiteConfigService {
 		// Optionally, add the domain to the config object before storing
 		const configToStore = { ...config, domain };
 		this.currentConfigSubject.next(configToStore);
-		if (typeof localStorage !== 'undefined') {
-			try {
-				localStorage.setItem(SITE_CONFIG_STORAGE_KEY, JSON.stringify(configToStore));
-			} catch (e) {
-				console.error('Error saving site config to localStorage', e);
-			}
-		}
+		// if (typeof localStorage !== 'undefined') {
+		// 	try {
+		// 		localStorage.setItem(SITE_CONFIG_STORAGE_KEY, JSON.stringify(configToStore));
+		// 	} catch (e) {
+		// 		console.error('Error saving site config to localStorage', e);
+		// 	}
+		// }
 	}
 
 	getConfigForDomain(domain: string): SiteConfig | null {
