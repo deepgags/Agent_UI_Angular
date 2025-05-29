@@ -8,7 +8,7 @@
 					<div class="row g-3 align-items-center">
 						<div class="col-md-6">
 							<!-- <label class="form-label">My Brokerage</label> -->
-							<mat-form-field appearance="fill" class="w-100 ">
+							<!-- <mat-form-field appearance="fill" class="w-100 ">
 								<mat-label>My Brokerage</mat-label>
 								<mat-select (selectionChange)="brokerageChange($event.value)" required
 									name="brokerageType" formControlName="brokerageType">
@@ -18,8 +18,18 @@
 									</mat-option>
 								</mat-select>
 								<mat-error>Brokerage is required</mat-error>
-							</mat-form-field>
-						</div>
+							</mat-form-field> -->
+					<div class="">
+  <label class="label" for="dropdown">Select option</label>
+  <select class="input form-select" id="dropdown" name="dropdown">
+    <option selected disabled>Choose an option</option>
+    <option value="1">Option One</option>
+    <option value="2">Option Two</option>
+    <option value="3">Option Three</option>
+  </select>
+  <div></div>
+</div>
+</div>
 
 						<div class="col-md-6 d-flex justify-content-center">
 							<img [src]="logoImage ? logoImage : '/logo/NoImage.jpg'"
@@ -211,7 +221,7 @@
 						<h4 class="mb-3">Website Settings</h4>
 						<div class="col-md-6">
 							<div class="d-flex gap-2 justify-content-between align-items-center">
-								<mat-form-field appearance="fill" class="w-100">
+								<!-- <mat-form-field appearance="fill" class="w-100">
 									<mat-label>Template</mat-label>
 									<input formControlName="templateId" matInput placeholder="Template ID" />
 									<mat-select required name="templateId" formControlName="templateId" readonly>
@@ -220,9 +230,26 @@
 										</mat-option>
 									</mat-select>
 									<mat-error>Template is required</mat-error>
-								</mat-form-field>
-								<button type="button" class="btn btn-success btn-sm me-2"
+								</mat-form-field> -->
+								<div class="w-75">
+															<div class="">
+  <label class="label" for="dropdown">Select option</label>
+  <select class="input form-select" id="dropdown" name="dropdown">
+    <option selected disabled>Choose an option</option>
+    <option value="1">Option One</option>
+    <option value="2">Option Two</option>
+    <option value="3">Option Three</option>
+  </select>
+  <div>
+  </div>
+</div>
+								</div>
+								<div class="">
+<button type="button" class="btn btn-success  btn-sm me-2"
 									(click)="openTemplateDialog()">Select Template</button>
+								</div>
+			
+								
 							</div>
 						</div>
 						<div class="col-md-6">
