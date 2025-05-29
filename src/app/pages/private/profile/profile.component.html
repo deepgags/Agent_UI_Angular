@@ -19,17 +19,18 @@
 								</mat-select>
 								<mat-error>Brokerage is required</mat-error>
 							</mat-form-field> -->
-					<div class="">
-  <label class="label" for="dropdown">Select option</label>
-  <select class="input form-select" id="dropdown" name="dropdown">
-    <option selected disabled>Choose an option</option>
-    <option value="1">Option One</option>
-    <option value="2">Option Two</option>
-    <option value="3">Option Three</option>
-  </select>
-  <div></div>
-</div>
-</div>
+							<div class="">
+								<label class="label" for="dropdown">My Brokerage</label>
+								<select class="input form-select" required name="brokerageType"
+									formControlName="brokerageType" id="dropdown" name="dropdown">
+									<!-- <option selected disabled>Choose an option</option> -->
+									<option *ngFor="let brokerageType of brokerageTypes" [value]="brokerageType._id">
+										{{brokerageType.name}}</option>
+								</select>
+								<div>
+								</div>
+							</div>
+						</div>
 
 						<div class="col-md-6 d-flex justify-content-center">
 							<img [src]="logoImage ? logoImage : '/logo/NoImage.jpg'"
@@ -41,8 +42,10 @@
 							<div class="">
 								<div class="input-grou w-100">
 									<label class="label">Business Name</label>
-									<input formControlName="businessName" required matInput placeholder="Business Name" class="input" type="email"><div>
-									<mat-error>Business name is required</mat-error>
+									<input formControlName="businessName" required matInput placeholder="Business Name"
+										class="input" type="email">
+									<div>
+										<mat-error>Business name is required</mat-error>
 									</div>
 								</div>
 								<!-- <mat-form-field appearance="fill"
@@ -59,10 +62,12 @@
 						</div>
 						<div class="col-lg-6 col-12">
 							<div class="input-grou w-100">
-									<label class="label">Brokerage Address</label>
-									<input formControlName="address" required matInput placeholder="Brokerage Address" class="input" type="email"><div>
-									</div>
+								<label class="label">Brokerage Address</label>
+								<input formControlName="address" required matInput placeholder="Brokerage Address"
+									class="input" type="email">
+								<div>
 								</div>
+							</div>
 							<!-- <div class="mt-3">
 								<mat-form-field appearance="fill" class="w-100">
 									<mat-label>Brokerage Address</mat-label>
@@ -81,33 +86,39 @@
 								<mat-error>First name is required</mat-error>
 							</mat-form-field> -->
 							<div class="input-grou w-100">
-									<label class="label">First Name</label>
-									<input formControlName="firstName" required matInput placeholder="First Name" class="input" type="email"><div>
-									</div>
+								<label class="label">First Name</label>
+								<input formControlName="firstName" required matInput placeholder="First Name"
+									class="input" type="email">
+								<div>
 								</div>
+							</div>
 						</div>
 						<div class="col-lg-6 col-12">
 							<div class="input-grou w-100">
-									<label class="label">Last Name</label>
-									<input formControlName="lastName" required matInput placeholder="Last Name" class="input" type="email"><div>
-									</div>
+								<label class="label">Last Name</label>
+								<input formControlName="lastName" required matInput placeholder="Last Name"
+									class="input" type="email">
+								<div>
 								</div>
+							</div>
 							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Last Name</mat-label>
 								<input formControlName="lastName" required matInput placeholder="Last Name" />
 								<mat-error>Last name is required</mat-error>
 							</mat-form-field> -->
-							
+
 						</div>
 					</div>
 
 					<div class="row g-3 mt-3">
 						<div class="col-lg-6 col-12">
 							<div class="input-grou w-100">
-									<label class="label">Email</label>
-									<input formControlName="emailAddress" required matInput placeholder="Email" class="input" type="email"><div>
-									</div>
+								<label class="label">Email</label>
+								<input formControlName="emailAddress" required matInput placeholder="Email"
+									class="input" type="email">
+								<div>
 								</div>
+							</div>
 							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Email</mat-label>
 								<input type="email" formControlName="emailAddress" required email matInput
@@ -123,25 +134,29 @@
 						</div>
 						<div class="col-lg-6 col-12">
 							<div class="input-grou w-100">
-									<label class="label">Phone Number</label>
-									<input formControlName="phoneNumber" required matInput placeholder="Phone Number" class="input" type="email"><div>
-									</div>
+								<label class="label">Phone Number</label>
+								<input formControlName="phoneNumber" required matInput placeholder="Phone Number"
+									class="input" type="email">
+								<div>
 								</div>
+							</div>
 							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Phone Number</mat-label>
 								<input type="text" formControlName="phoneNumber" matInput placeholder="123-456-1234" />
 							</mat-form-field> -->
 						</div>
-						
+
 					</div>
 
 					<div class="row g-3 mt-3">
 						<div class="col-lg-6 col-12">
 							<div class="input-grou w-100">
-									<label class="label">Website URL</label>
-									<input formControlName="siteUrl" required matInput placeholder="Website URL" class="input" type="email"><div>
-									</div>
+								<label class="label">Website URL</label>
+								<input formControlName="siteUrl" required matInput placeholder="Website URL"
+									class="input" type="email">
+								<div>
 								</div>
+							</div>
 							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Website URL</mat-label>
 								<input type="url" formControlName="siteUrl" required matInput
@@ -156,10 +171,12 @@
 						</div>
 						<div class="col-lg-6 col-12">
 							<div class="input-grou w-100">
-									<label class="label">Cell Number</label>
-									<input formControlName="cellNumber" required matInput placeholder="Cell Number" class="input" type="email"><div>
-									</div>
+								<label class="label">Cell Number</label>
+								<input formControlName="cellNumber" required matInput placeholder="Cell Number"
+									class="input" type="email">
+								<div>
 								</div>
+							</div>
 							<!-- <mat-form-field appearance="fill" class="w-100">
 								<mat-label>Cell Number</mat-label>
 								<input type="text" formControlName="cellNumber" required matInput
@@ -217,11 +234,10 @@
 					</div>
 
 					<!-- Website Settings Section -->
-					<div class="row g-3 mt-4">
-						<h4 class="mb-3">Website Settings</h4>
-						<div class="col-md-6">
-							<div class="d-flex gap-2 justify-content-between align-items-center">
-								<!-- <mat-form-field appearance="fill" class="w-100">
+					<h4 class="py-4">Website Settings</h4>
+					<div class="row g-3 align-items-center mt-3">
+						<div class="col-md-8 mt-0">
+							<!-- <mat-form-field appearance="fill" class="w-100">
 									<mat-label>Template</mat-label>
 									<input formControlName="templateId" matInput placeholder="Template ID" />
 									<mat-select required name="templateId" formControlName="templateId" readonly>
@@ -231,138 +247,177 @@
 									</mat-select>
 									<mat-error>Template is required</mat-error>
 								</mat-form-field> -->
-								<div class="w-75">
-															<div class="">
-  <label class="label" for="dropdown">Select option</label>
-  <select class="input form-select" id="dropdown" name="dropdown">
-    <option selected disabled>Choose an option</option>
-    <option value="1">Option One</option>
-    <option value="2">Option Two</option>
-    <option value="3">Option Three</option>
-  </select>
-  <div>
-  </div>
-</div>
+							<div class="">
+								<!-- <label class="label" for="dropdown">Template</label> -->
+								<select class="input form-select" required name="brokerageType"
+									formControlName="templateId" matInput placeholder="Template ID" id="dropdown"
+									name="dropdown">
+									<!-- <option selected disabled>Choose an option</option> -->
+									<option *ngFor="let template of templates" [value]="template.templateKey">
+										{{template.name}} - {{template.description}}</option>
+								</select>
+								<div>
 								</div>
-								<div class="">
-<button type="button" class="btn btn-success  btn-sm me-2"
+							</div>
+						
+
+
+						</div>
+						<div class="col-4 mt-0">
+
+							<div class="">
+								<button type="button" class="btn btn-success w-75"
 									(click)="openTemplateDialog()">Select Template</button>
+							</div>
+						</div>
+					</div>
+					<div class="row mt-3">
+
+						<div class="col-md-6">
+							<!-- <mat-form-field appearance="fill" class="w-100">
+									<mat-label>Primary Color</mat-label>
+									<input formControlName="primaryColor" matInput placeholder="Primary Color" />
+								</mat-form-field> -->
+							<div class="input-grou w-100">
+								<label class="label">Primary Color</label>
+								<input formControlName="primaryColor" required matInput placeholder="Primary Color"
+									class="input" type="email">
+								<div>
 								</div>
-			
-								
 							</div>
 						</div>
 						<div class="col-md-6">
 							<!-- <mat-form-field appearance="fill" class="w-100">
-								<mat-label>Primary Color</mat-label>
-								<input formControlName="primaryColor" matInput placeholder="Primary Color" />
-							</mat-form-field> -->
+									<mat-label>Secondary Color</mat-label>
+									<input formControlName="secondaryColor" matInput placeholder="Secondary Color" />
+								</mat-form-field> -->
 							<div class="input-grou w-100">
-									<label class="label">Primary Color</label>
-									<input formControlName="primaryColor" required matInput placeholder="Primary Color" class="input" type="email"><div>
-									</div>
+								<label class="label">Secondary Color</label>
+								<input formControlName="secondaryColor" required matInput placeholder="Secondary Color"
+									class="input" type="email">
+								<div>
 								</div>
-						</div>
-						<div class="col-md-6">
-							<!-- <mat-form-field appearance="fill" class="w-100">
-								<mat-label>Secondary Color</mat-label>
-								<input formControlName="secondaryColor" matInput placeholder="Secondary Color" />
-							</mat-form-field> -->
-							<div class="input-grou w-100">
-									<label class="label">Secondary Color</label>
-									<input formControlName="secondaryColor" required matInput placeholder="Secondary Color" class="input" type="email"><div>
-									</div>
-								</div>
-						</div>
-						<div class="col-md-6">
-							<!-- <mat-form-field appearance="fill" class="w-100">
-								<mat-label>Facebook</mat-label>
-								<input formControlName="facebook" matInput placeholder="Facebook" />
-							</mat-form-field> -->
-								<div class="input-grou w-100">
-									<label class="label">Facebook</label>
-									<input formControlName="facebook" required matInput placeholder="Facebook" class="input" type="email"><div>
-									</div>
-								</div>
-						</div>
-						<div class="col-md-6">
-							<!-- <mat-form-field appearance="fill" class="w-100">
-								<mat-label>Twitter</mat-label>
-								<input formControlName="twitter" matInput placeholder="Twitter" />
-							</mat-form-field> -->
-							<div class="input-grou w-100">
-									<label class="label">Twitter</label>
-									<input formControlName="twitter" required matInput placeholder="Twitter" class="input" type="email"><div>
-									</div>
-								</div>
-						</div>
-						<div class="col-md-6">
-							<!-- <mat-form-field appearance="fill" class="w-100">
-								<mat-label>Instagram</mat-label>
-								<input formControlName="instagram" matInput placeholder="Instagram" />
-							</mat-form-field> -->
-							<div class="input-grou w-100">
-									<label class="label">Instagram</label>
-									<input formControlName="instagram" required matInput placeholder="Instagram" class="input" type="email"><div>
-									</div>
-								</div>
-						</div>
-						<div class="col-md-6">
-							<!-- <mat-form-field appearance="fill" class="w-100">
-								<mat-label>LinkedIn</mat-label>
-								<input formControlName="linkedin" matInput placeholder="LinkedIn" />
-							</mat-form-field> -->
-							<div class="input-grou w-100">
-									<label class="label">LinkedIn</label>
-									<input formControlName="linkedIn" required matInput placeholder="LinkedIn" class="input" type="email"><div>
-									</div>
-								</div>
-						</div>
-						<div class="col-md-6">
-							<!-- <mat-form-field appearance="fill" class="w-100">
-								<mat-label>YouTube</mat-label>
-								<input formControlName="youtube" matInput placeholder="YouTube" />
-							</mat-form-field> -->
-							<div class="input-grou w-100">
-									<label class="label">YouTube</label>
-									<input formControlName="youtube" required matInput placeholder="YouTube" class="input" type="email"><div>
-									</div>
-								</div>
-						</div>
-						<div class="col-md-6">
-							<!-- <mat-form-field appearance="fill" class="w-100">
-								<mat-label>Email</mat-label>
-								<input formControlName="websiteEmail" matInput placeholder="Email" />
-							</mat-form-field> -->
-							<div class="input-grou w-100">
-									<label class="label">Email</label>
-									<input formControlName="websiteEmail" required matInput placeholder="Email" class="input" type="email"><div>
-									</div>
-								</div>
-						</div>
-						<div class="col-md-6">
-							<!-- <mat-form-field appearance="fill" class="w-100">
-								<mat-label>Phone</mat-label>
-								<input formControlName="websitePhone" matInput placeholder="Phone" />
-							</mat-form-field> -->
-							<div class="input-grou w-100">
-									<label class="label">Phone</label>
-									<input formControlName="websitePhone" required matInput placeholder="Phone" class="input" type="email"><div>
-									</div>
-								</div>
-						</div>
-						<div class="col-md-6">
-							<!-- <mat-form-field appearance="fill" class="w-100">
-								<mat-label>Address</mat-label>
-								<input formControlName="websiteAddress" matInput placeholder="Address" />
-							</mat-form-field> -->
-							<div class="input-grou w-100">
-									<label class="label">Address</label>
-									<input formControlName="websiteAddress" required matInput placeholder="Address" class="input" type="email"><div>
-									</div>
-								</div>
+							</div>
 						</div>
 					</div>
+					<div class="row mt-3">
+
+						<div class="col-md-6">
+							<!-- <mat-form-field appearance="fill" class="w-100">
+									<mat-label>Facebook</mat-label>
+									<input formControlName="facebook" matInput placeholder="Facebook" />
+								</mat-form-field> -->
+							<div class="input-grou w-100">
+								<label class="label">Facebook</label>
+								<input formControlName="facebook" required matInput placeholder="Facebook" class="input"
+									type="email">
+								<div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<!-- <mat-form-field appearance="fill" class="w-100">
+									<mat-label>Twitter</mat-label>
+									<input formControlName="twitter" matInput placeholder="Twitter" />
+								</mat-form-field> -->
+							<div class="input-grou w-100">
+								<label class="label">Twitter</label>
+								<input formControlName="twitter" required matInput placeholder="Twitter" class="input"
+									type="email">
+								<div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row mt-3">
+
+						<div class="col-md-6">
+							<!-- <mat-form-field appearance="fill" class="w-100">
+									<mat-label>Instagram</mat-label>
+									<input formControlName="instagram" matInput placeholder="Instagram" />
+								</mat-form-field> -->
+							<div class="input-grou w-100">
+								<label class="label">Instagram</label>
+								<input formControlName="instagram" required matInput placeholder="Instagram" class="input"
+									type="email">
+								<div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<!-- <mat-form-field appearance="fill" class="w-100">
+									<mat-label>LinkedIn</mat-label>
+									<input formControlName="linkedin" matInput placeholder="LinkedIn" />
+								</mat-form-field> -->
+							<div class="input-grou w-100">
+								<label class="label">LinkedIn</label>
+								<input formControlName="linkedIn" required matInput placeholder="LinkedIn" class="input"
+									type="email">
+								<div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row mt-3">
+
+						<div class="col-md-6">
+							<!-- <mat-form-field appearance="fill" class="w-100">
+									<mat-label>YouTube</mat-label>
+									<input formControlName="youtube" matInput placeholder="YouTube" />
+								</mat-form-field> -->
+							<div class="input-grou w-100">
+								<label class="label">YouTube</label>
+								<input formControlName="youtube" required matInput placeholder="YouTube" class="input"
+									type="email">
+								<div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<!-- <mat-form-field appearance="fill" class="w-100">
+									<mat-label>Email</mat-label>
+									<input formControlName="websiteEmail" matInput placeholder="Email" />
+								</mat-form-field> -->
+							<div class="input-grou w-100">
+								<label class="label">Email</label>
+								<input formControlName="websiteEmail" required matInput placeholder="Email" class="input"
+									type="email">
+								<div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+
+						<div class="col-md-6">
+							<!-- <mat-form-field appearance="fill" class="w-100">
+									<mat-label>Phone</mat-label>
+									<input formControlName="websitePhone" matInput placeholder="Phone" />
+								</mat-form-field> -->
+							<div class="input-grou w-100">
+								<label class="label">Phone</label>
+								<input formControlName="websitePhone" required matInput placeholder="Phone" class="input"
+									type="email">
+								<div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<!-- <mat-form-field appearance="fill" class="w-100">
+									<mat-label>Address</mat-label>
+									<input formControlName="websiteAddress" matInput placeholder="Address" />
+								</mat-form-field> -->
+							<div class="input-grou w-100">
+								<label class="label">Address</label>
+								<input formControlName="websiteAddress" required matInput placeholder="Address"
+									class="input" type="email">
+								<div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 
 					<div>
 						<button type="submit" class="btn btn-success mt-4 me-2"> Save </button>
