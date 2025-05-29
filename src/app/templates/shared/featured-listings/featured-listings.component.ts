@@ -119,10 +119,9 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 			return;
 		}
 
-		const propertyDetailPath = `/${this.currentTemplateId}/propertydetail`;
 
 		this.router.navigate(
-			[propertyDetailPath], // Use the fully constructed path from root
+			[`/${this.currentTemplateId}`, 'property-detail'],
 			{
 				// relativeTo: this.activatedRoute, // Not needed if path is absolute from root
 				queryParams: {

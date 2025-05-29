@@ -73,9 +73,9 @@ export class FeaturedPropertiesComponent implements OnInit {
 	}
 
 	redirectToDetail(property: PropertyModel): void {
-		const propertyUrl = "" //userInfo.templateId == "0b69c6031f111d63bc2c975dd2837e38" ? '/t1/propertydetail' : '/t2/propertydetail';
+		const currentTemplate = this.router.url.split('/')[1];
 		this.router.navigate(
-			[propertyUrl],
+			[`/${currentTemplate}`, 'property-detail'],
 			{
 				relativeTo: this.activatedRoute,
 				queryParams: {

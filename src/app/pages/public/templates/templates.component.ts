@@ -54,7 +54,6 @@ export class TemplatesComponent {
 	}
 
 	previewTemplate(template: TemplateModel) {
-		debugger
 		const url = this.router.serializeUrl(
 			this.router.createUrlTree(['/', template.templateKey])
 		);
