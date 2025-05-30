@@ -1,0 +1,37 @@
+<div class="d-flex flex-column h-100">
+	<div class="flex-fill p-4 overflow-auto bg-white">
+		<div
+			class="d-flex justify-content-center align-items-center bg-light rounded border border-2 border-dashed position-relative"
+			style="min-height: 400px">
+			<image-cropper
+				[imageChangedEvent]="imageChangedEvent"
+				[maintainAspectRatio]="maintainRatio"
+				[aspectRatio]="1 / 1"
+				[format]="fileFormat"
+				(imageCropped)="imageCropped($event)"
+				output="base64"
+				[imageURL]="image"
+				[imageQuality]="80"></image-cropper>
+		</div>
+	</div>
+
+	<div class="p-3 border-top bg-light">
+		<div class="d-flex justify-content-end gap-2">
+			<!-- <button
+				type="button"
+				class="btn btn-outline-secondary px-4"
+				(click)="cancelImageSelection()">
+				<i class="fas fa-times me-2"></i>
+				Cancel
+			</button> -->
+			<button
+				type="button"
+				class="btn btn-secondary px-4"
+				(click)="confirmImage()"
+				[disabled]="!croppedImage">
+				<i class="fas fa-check me-2"></i>
+				Save
+			</button>
+		</div>
+	</div>
+</div>

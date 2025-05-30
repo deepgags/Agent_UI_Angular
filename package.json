@@ -43,6 +43,7 @@
 		"localstorage-polyfill": "^1.0.1",
 		"mdbootstrap": "^4.20.0",
 		"ng-gallery": "^12.0.0-beta.4",
+		"ngx-image-cropper": "^9.1.5",
 		"ngx-smart-cropper": "^1.1.9",
 		"npm": "^11.3.0",
 		"primeng": "^19.1.2",

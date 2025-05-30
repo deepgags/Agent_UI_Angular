@@ -1,6 +1,5 @@
 import { BrokerageTypeModel } from "./BrokerageTypeModel";
 
-
 export interface CustomerModel {
 	_id?: string;
 	brokerageTypeId: string;
@@ -18,4 +17,5 @@ export interface CustomerModel {
 	logoImage?: string;
 	profileImage: string;
 	brokerage?: BrokerageTypeModel | undefined;
+	websiteSettings: any;
 }

@@ -5,15 +5,14 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
-import { ImageCropperComponent } from "ngx-smart-cropper";
-import { FloatLabelModule } from "primeng/floatlabel";
+import { DialogService } from "primeng/dynamicdialog";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { PasswordModule } from "primeng/password";
 import { SelectModule } from "primeng/select";
+import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
 import { Pages } from "../../../enums/pages";
 import { BrokerageTypeModel } from "../../../models/BrokerageTypeModel";
-import { CustomerModel } from "../../../models/CustomerModel";
 import { BrokerageTypeService } from "../../../services/brokerage.service";
 import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
@@ -26,52 +25,22 @@ import { NotificationService } from "../../../services/notification.service";
 		FormsModule,
 		ReactiveFormsModule,
 		MatDialogModule,
-		ImageCropperComponent,
 		InputMaskModule,
 		SelectModule,
-		FloatLabelModule,
 		InputTextModule,
 		PasswordModule,
 	],
 	templateUrl: "./register.component.html",
 	styleUrl: "./register.component.scss",
+	providers: [DialogService],
 })
 export class RegisterComponent implements OnInit {
 	customerForm!: FormGroup;
 
 	brokerageTypes: BrokerageTypeModel[] = [];
 
-	croppedProfileImage = "";
-	profileImageSource: any;
-	logoCroppedImage = "";
-	logoImageSource: string = "";
-	logoImagePath: string = "";
-	showSVG: boolean = false;
-
-	onFileChange(event: Event): void {
-		const input = event.target as HTMLInputElement;
-		if (!input.files || input.files.length === 0) return;
-		const file = input.files[0];
-		if (file) {
-			const reader = new FileReader();
-			reader.onload = (e: any) => {
-				if (input?.id == "profileImageUpload") {
-					this.profileImageSource = e.target.result;
-				} else {
-					this.logoImageSource = e.target.result;
-				}
-			};
-			reader.readAsDataURL(file);
-		}
-	}
-
-	onProfileImageCrop(event: any) {
-		this.croppedProfileImage = event;
-	}
-
-	onLogoImageCrop(event: any) {
-		this.logoCroppedImage = event;
-	}
+	newSelectedProfileImage: any;
+	newSelectedLogoImage: string = "";
 
 	constructor(
 		private fb: FormBuilder,
@@ -80,9 +49,42 @@ export class RegisterComponent implements OnInit {
 		private notificationService: NotificationService,
 		private loadingService: LoadingService,
 		private titleService: Title,
-		private customerService: CustomerService
+		private customerService: CustomerService,
+		public dialogService: DialogService
 	) {
 		this.titleService.setTitle("Register");
+	}
+
+	get brokerageType() {
+		return this.customerForm.get("brokerageType");
+	}
+
+	get businessName() {
+		return this.customerForm.get("businessName");
+	}
+
+	get firstName() {
+		return this.customerForm.get("firstName");
+	}
+
+	get lastName() {
+		return this.customerForm.get("lastName");
+	}
+
+	get phoneNumber() {
+		return this.customerForm.get("phoneNumber");
+	}
+
+	get emailAddress() {
+		return this.customerForm.get("emailAddress");
+	}
+
+	get password() {
+		return this.customerForm.get("password");
+	}
+
+	get confirmPassword() {
+		return this.customerForm.get("confirmPassword");
 	}
 
 	ngOnInit() {
@@ -92,15 +94,11 @@ export class RegisterComponent implements OnInit {
 			firstName: new FormControl("", Validators.required),
 			lastName: new FormControl("", Validators.required),
 			phoneNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
-			cellNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			// cellNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			address: new FormControl(""),
 			password: new FormControl("", [Validators.required, Validators.pattern("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$")]),
 			confirmPassword: new FormControl("", Validators.required),
-			logoImage: new FormControl(""),
-			logoImagePath: new FormControl(""),
-			profileImage: new FormControl(""),
-			profileImagePath: new FormControl(""),
 		});
 
 		this.getBrokerageTypes();
@@ -123,7 +121,41 @@ export class RegisterComponent implements OnInit {
 
 	brokerageChange(selectedBrokerageId: string): void {
 		const selectedBrokerage = this.brokerageTypes.filter((brokerage: BrokerageTypeModel) => brokerage._id == selectedBrokerageId)[0];
-		this.logoImagePath = selectedBrokerage.logoPath;
+		this.newSelectedLogoImage = selectedBrokerage.logoPath;
+	}
+
+	onProfileImageChange(event: Event): void {
+		const ref = this.dialogService.open(ImageDialogComponent, {
+			header: "Adjust Profile Image",
+			height: "80%",
+			width: "80%",
+			closable: false,
+			closeOnEscape: false,
+			focusOnShow: false,
+			data: {
+				imageChangedEvent: event,
+			},
+		});
+		ref.onClose.subscribe((croppedImage: string | null) => {
+			this.newSelectedProfileImage = croppedImage;
+		});
+	}
+
+	onLogoImageChange(event: Event): void {
+		const ref = this.dialogService.open(ImageDialogComponent, {
+			header: "Adjust Logo Image",
+			height: "80%",
+			width: "80%",
+			closable: false,
+			closeOnEscape: false,
+			focusOnShow: false,
+			data: {
+				imageChangedEvent: event,
+			},
+		});
+		ref.onClose.subscribe((croppedImage: string) => {
+			this.newSelectedLogoImage = croppedImage;
+		});
 	}
 
 	register() {
@@ -134,13 +166,13 @@ export class RegisterComponent implements OnInit {
 				firstName,
 				lastName,
 				phoneNumber,
-				cellNumber,
+				// cellNumber,
 				emailAddress,
 				address,
 				password,
 				confirmPassword,
 			} = this.customerForm.value;
-			const params: CustomerModel = {
+			const params: any = {
 				brokerageTypeId: brokerageType,
 				businessName: businessName,
 				address: address,
@@ -148,11 +180,11 @@ export class RegisterComponent implements OnInit {
 				lastName: lastName,
 				emailAddress: emailAddress,
 				phoneNumber: phoneNumber,
-				cellNumber: cellNumber,
+				// cellNumber: cellNumber,
 				password: password,
 				confirmPassword: confirmPassword,
-				profileImage: this.croppedProfileImage,
-				logoImage: this.logoImageSource,
+				profileImage: this.newSelectedProfileImage,
+				logoImage: this.newSelectedLogoImage,
 				// logoImagePath: this.logoImagePath,
 			};
 
@@ -168,6 +200,7 @@ export class RegisterComponent implements OnInit {
 				},
 			});
 		} else {
+			this.customerForm.markAllAsTouched();
 			this.notificationService.showNotification("One or more required fields are missing or invalid.");
 		}
 	}

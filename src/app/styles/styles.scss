@@ -13,3 +13,11 @@
 .p-select {
 	font-size: 13px !important;
 }
+
+.error {
+	color: red !important;
+	font-size: 13px !important;
+	&::before {
+		content: "* ";
+	}
+}

@@ -28,18 +28,30 @@
 							[options]="brokerageTypes"
 							optionLabel="name"
 							optionValue="_id"
-							placeholder="Select a Brokerage"
+							placeholder="Select a Brokerage *"
 							styleClass="w-100"
 							(onChange)="brokerageChange($event.value)" />
+
+						<span
+							class="error"
+							*ngIf="brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)">
+							<span *ngIf="brokerageType?.errors?.['required']">Brokerage Type is required</span>
+						</span>
 					</div>
 					<div class="mb-3">
 						<input
 							type="text"
 							pInputText
 							formControlName="businessName"
-							placeholder="Business Name"
+							placeholder="Business Name *"
 							class="form-control"
 							id="businessName" />
+
+						<span
+							class="error"
+							*ngIf="businessName?.invalid && (businessName?.dirty || businessName?.touched)">
+							<span *ngIf="businessName?.errors?.['required']">Business Name is required</span>
+						</span>
 					</div>
 					<div class="mb-3">
 						<input
@@ -62,9 +74,15 @@
 									type="text"
 									pInputText
 									formControlName="firstName"
-									placeholder="Enter first name"
+									placeholder="Enter first name *"
 									class="form-control"
-									id="firstName" />
+									id="firstName"
+									required />
+								<span
+									class="error"
+									*ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+									<span *ngIf="firstName?.errors?.['required']">First Name is required</span>
+								</span>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -73,9 +91,15 @@
 									type="text"
 									pInputText
 									formControlName="lastName"
-									placeholder="Enter last name"
+									placeholder="Enter last name *"
 									class="form-control"
-									id="lastName" />
+									id="lastName"
+									required />
+								<span
+									class="error"
+									*ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+									<span *ngIf="lastName?.errors?.['required']">Last Name is required</span>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -84,35 +108,56 @@
 				<!-- Contact Information Section -->
 				<div class="mb-3">
 					<h6 class="text-muted mb-3 border-bottom pb-1">Contact Information</h6>
-					<div class="mb-3">
+					<!-- <div class="mb-3">
 						<input
 							type="email"
 							pInputText
 							formControlName="emailAddress"
 							placeholder="Enter email address"
-							class="form-control"
-							id="emailAddress"
-							required />
-					</div>
+						class="form-control"
+						id="emailAddress"
+						required />
+						<span
+						class="error"
+						*ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)">
+						<span *ngIf="emailAddress?.errors?.['required']">Email Address is required</span>
+						<span *ngIf="emailAddress?.errors?.['email']">Enter a valid email address</span>
+						</span>
+					</div> -->
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<p-inputmask
-									mask="999-999-9999"
-									formControlName="phoneNumber"
-									styleClass="form-control"
-									placeholder="Phone Number"
-									id="phoneNumber" />
+								<input
+									type="email"
+									pInputText
+									formControlName="emailAddress"
+									placeholder="Enter email address *"
+									class="form-control"
+									id="emailAddress"
+									required />
+								<span
+									class="error"
+									*ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)">
+									<span *ngIf="emailAddress?.errors?.['required']">Email Address is required</span>
+									<span *ngIf="emailAddress?.errors?.['email']">Enter a valid email address</span>
+								</span>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="mb-3">
 								<p-inputmask
 									mask="999-999-9999"
-									formControlName="cellNumber"
+									formControlName="phoneNumber"
 									styleClass="form-control"
-									placeholder="Cell Number"
-									id="cellNumber" />
+									placeholder="Phone Number *"
+									id="phoneNumber"
+									required />
+								<span
+									class="error"
+									*ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)">
+									<span *ngIf="phoneNumber?.errors?.['required']">Phone Number is required</span>
+									<span *ngIf="phoneNumber?.errors?.['pattern']">Enter a valid phone number</span>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -128,12 +173,20 @@
 									formControlName="password"
 									[feedback]="true"
 									[toggleMask]="true"
-									placeholder="Enter password"
+									placeholder="Enter password *"
 									styleClass="w-100"
 									inputId="password"
 									inputStyleClass="form-control"
 									id="password"
 									required />
+								<span
+									class="error"
+									*ngIf="password?.invalid && (password?.dirty || password?.touched)">
+									<span *ngIf="password?.errors?.['required']">Password is required</span>
+									<span *ngIf="password?.errors?.['pattern']">
+										Password must be at least 8 characters long and include uppercase, lowercase, and a number.
+									</span>
+								</span>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -142,12 +195,17 @@
 									formControlName="confirmPassword"
 									[feedback]="false"
 									[toggleMask]="true"
-									placeholder="Confirm password"
+									placeholder="Confirm password *"
 									styleClass="w-100"
 									inputId="confirmPassword"
 									inputStyleClass="form-control"
 									id="confirmPassword"
 									required />
+								<span
+									class="error"
+									*ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)">
+									<span *ngIf="confirmPassword?.errors?.['required']">Confirm Password is required</span>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -162,31 +220,10 @@
 								<label class="form-label fw-semibold d-block">Company Logo</label>
 								<input
 									type="file"
-									(change)="onFileChange($event)"
-									data-cropper="#logoImageCropper"
+									(change)="onLogoImageChange($event)"
 									class="form-control upload-btn w-100"
 									id="logoImageUpload"
 									accept="image/*" />
-								<div
-									*ngIf="logoImageSource"
-									id="LogoCropContainer"
-									class="mt-3">
-									<div class="row justify-content-center mt-3">
-										<label class="text-center mb-2">Logo Preview</label>
-										<div class="text-center">
-											<ngx-smart-cropper
-												id="logoImageCropper"
-												[imageType]="'webp'"
-												[cropX]="0"
-												[cropY]="0"
-												[cropWidth]="435"
-												[cropHeight]="170"
-												[theme]="'mixed'"
-												[imageSource]="logoImageSource"
-												(imageCroppedEvent)="onLogoImageCrop($event)"></ngx-smart-cropper>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -194,31 +231,10 @@
 								<label class="form-label fw-semibold d-block">Profile Picture</label>
 								<input
 									type="file"
-									(change)="onFileChange($event)"
-									data-cropper="#profileImageCropper"
+									(change)="onProfileImageChange($event)"
 									class="form-control upload-btn w-100"
 									id="profileImageUpload"
 									accept="image/*" />
-								<div
-									*ngIf="profileImageSource"
-									id="ProfileCropContainer"
-									class="mt-3">
-									<div class="row justify-content-center mt-3">
-										<label class="text-center mb-2">Profile Preview</label>
-										<div class="text-center">
-											<ngx-smart-cropper
-												id="profileImageCropper"
-												[imageType]="'webp'"
-												[cropX]="0"
-												[cropY]="0"
-												[cropWidth]="435"
-												[cropHeight]="170"
-												[theme]="'mixed'"
-												[imageSource]="profileImageSource"
-												(imageCroppedEvent)="onProfileImageCrop($event)" />
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>

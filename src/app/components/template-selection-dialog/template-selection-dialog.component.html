@@ -1,28 +1,70 @@
-<div class="container-fluid p-4">
-	<h5 class="">Select Template</h5>
-    <div class="container overflow-auto">
-		<div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 g-5">
-			<div class="col"
-				*ngFor="let template of templates">
-				<div>
-					<app-gallery [images]="template.images"/>
-				</div>
-				<div class="text-center">
-					<footer class="footer">
-						<button [ngClass]="template.isSelected ? 'btn btn-success border border-success green' : 'btn btn-primary'"
-							(click)="selectTemplate(template)"
-							class="me-2 mt-4">
-							{{ template.isSelected ? "Selected" : "Select" }}
-							<i class="bi bi-check"></i>
-						</button>
-					</footer>
+<div class="container-fluid p-2">
+	<!-- Enhanced Header -->
+	<div class="header-section border-bottom mb-4">
+		<div class="d-flex align-items-center justify-content-between p-3">
+			<div>
+				<h4 class="mb-1 fw-bold text-dark">Select Template</h4>
+				<p class="mb-0 text-muted small">Choose a design template for your website</p>
+			</div>
+			<div class="template-count">
+				<span class="badge bg-light text-dark border px-3 py-2">
+					<i class="fas fa-th-large me-2"></i>
+					{{ templates.length || 0 }} Templates
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main Content -->
+	<div class="container overflow-auto">
+		<div class="row g-4">
+			<div
+				class="col-12 col-md-6 col-lg-6 col-xl-4"
+				*ngFor="let template of templates; let i = index">
+				<div
+					class="template-card card h-100 shadow-sm border-0"
+					[class.selected]="template.isSelected">
+					<div class="template-preview position-relative">
+						<div class="gallery-container">
+							<app-gallery [images]="template.images" />
+						</div>
+					</div>
+
+					<div class="card-body">
+						<div class="template-header mb-2">
+							<h6 class="card-title fw-semibold">
+								{{ template.name }}
+							</h6>
+						</div>
+
+						<p class="card-text text-muted small mb-2">
+							{{ template.description }}
+						</p>
+
+						<!-- Action Button -->
+						<div class="d-grid">
+							<button
+								class="btn btn-success btn-sm"
+								(click)="selectTemplate(template)">
+								Select Template
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-        <!-- <div class="row py-5">
-            <div class="col-lg-12">
-            </div>
-        </div> -->
-    </div>
-    <!-- <h2 *ngIf="templates.length == 0">No templates found</h2> -->
+
+		<!-- Empty State -->
+		<div
+			class="empty-state text-center py-5"
+			*ngIf="!templates || templates.length === 0">
+			<div class="empty-icon mb-3">
+				<i
+					class="fas fa-th-large text-muted"
+					style="font-size: 4rem; opacity: 0.3"></i>
+			</div>
+			<h4 class="text-muted mb-2">No Templates Available</h4>
+			<p class="text-muted">There are currently no templates to display.</p>
+		</div>
+	</div>
 </div>
