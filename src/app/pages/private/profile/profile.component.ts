@@ -98,8 +98,32 @@ export class ProfileComponent {
 	get phoneNumber() {
 		return this.agentForm.get("phoneNumber");
 	}
+
+	get businessName() {
+		return this.agentForm.get("businessName");
+	}
+
+	get brokerageType() {
+		return this.agentForm.get("brokerageType");
+	}
+
+	get firstName() {
+		return this.agentForm.get("firstName");
+	}
+
+	get lastName() {
+		return this.agentForm.get("lastName");
+	}
+
+	get siteUrl() {
+		return this.agentForm.get("siteUrl");
+	}
+
+	get templateId() {
+		return this.agentForm.get("templateId");
+	}
 	// get cellNumber() {
-	// 	return this.agentForm.get("cellNumber");
+	// return this.agentForm.get("cellNumber");
 	// }
 
 	ngOnInit() {
@@ -108,17 +132,19 @@ export class ProfileComponent {
 			brokerageType: new FormControl("", Validators.required),
 			firstName: new FormControl("", Validators.required),
 			lastName: new FormControl("", Validators.required),
-			phoneNumber: new FormControl(""), //, Validators.pattern('^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$')]),
-			// cellNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			phoneNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			address: new FormControl(""),
 			logoImage: new FormControl(""),
 			logoImagePath: new FormControl(""),
 			profileImage: new FormControl(""),
 			profileImagePath: new FormControl(""),
-			siteUrl: new FormControl(""),
+			siteUrl: new FormControl("", [
+				Validators.required,
+				// Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?"),
+			]),
 			// Website Settings Form Controls
-			templateId: new FormControl(""),
+			templateId: new FormControl("", Validators.required),
 			primaryColor: new FormControl(""),
 			secondaryColor: new FormControl(""),
 			logoUrl: new FormControl(""),
@@ -316,6 +342,9 @@ export class ProfileComponent {
 					this.loadingService.loadingOff();
 				},
 			});
+		} else {
+			this.agentForm.markAllAsTouched();
+			this.notificationService.showNotification("One or more required fields are missing or invalid.");
 		}
 	}
 

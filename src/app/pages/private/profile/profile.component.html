@@ -72,6 +72,11 @@
 													styleClass="w-100"
 													(onChange)="brokerageChange($event.value)"
 													id="dropdown" />
+												<span
+													class="error"
+													*ngIf="brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)">
+													<span *ngIf="brokerageType?.errors?.['required']">Brokerage Type is required</span>
+												</span>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -97,6 +102,11 @@
 													class="form-control"
 													id="businessName"
 													required />
+												<span
+													class="error"
+													*ngIf="businessName?.invalid && (businessName?.dirty || businessName?.touched)">
+													<span *ngIf="businessName?.errors?.['required']">Business Name is required</span>
+												</span>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -129,6 +139,11 @@
 													class="form-control"
 													id="firstName"
 													required />
+												<span
+													class="error"
+													*ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+													<span *ngIf="firstName?.errors?.['required']">First Name is required</span>
+												</span>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -141,6 +156,11 @@
 													class="form-control"
 													id="lastName"
 													required />
+												<span
+													class="error"
+													*ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+													<span *ngIf="lastName?.errors?.['required']">Last Name is required</span>
+												</span>
 											</div>
 										</div>
 									</div>
@@ -162,20 +182,32 @@
 													class="form-control"
 													id="emailAddress"
 													required />
+												<span
+													class="error"
+													*ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)">
+													<span *ngIf="emailAddress?.errors?.['required']">Email Address is required</span>
+													<span *ngIf="emailAddress?.errors?.['email']">Enter a valid email address</span>
+												</span>
 											</div>
 										</div>
-										
-											<div class="col-md-4">
-												<div class="mb-3">
-													<p-inputmask
-														mask="999-999-9999"
-														formControlName="phoneNumber"
-														styleClass="form-control"
-														placeholder="Phone Number"
-														id="phoneNumber" />
-												</div>
+
+										<div class="col-md-4">
+											<div class="mb-3">
+												<p-inputmask
+													mask="999-999-9999"
+													formControlName="phoneNumber"
+													styleClass="form-control"
+													placeholder="Phone Number"
+													id="phoneNumber" />
+												<span
+													class="error"
+													*ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)">
+													<span *ngIf="phoneNumber?.errors?.['required']">Phone Number is required</span>
+													<span *ngIf="phoneNumber?.errors?.['pattern']">Enter a valid phone number</span>
+												</span>
 											</div>
-											<!-- <div class="col-md-4">
+										</div>
+										<!-- <div class="col-md-4">
 												<div class="mb-3">
 													<p-inputmask
 														mask="999-999-9999"
@@ -185,19 +217,24 @@
 														id="cellNumber" />
 												</div>
 											</div> -->
-											<div class="col-md-4">
-												<div class="mb-3">
-													<input
-														type="url"
-														pInputText
-														formControlName="siteUrl"
-														placeholder="Website URL"
-														class="form-control"
-														id="siteUrl"
-														required />
-												</div>
+										<div class="col-md-4">
+											<div class="mb-3">
+												<input
+													type="url"
+													pInputText
+													formControlName="siteUrl"
+													placeholder="Website URL"
+													class="form-control"
+													id="siteUrl"
+													required />
+												<span
+													class="error"
+													*ngIf="siteUrl?.invalid && (siteUrl?.dirty || siteUrl?.touched)">
+													<span *ngIf="siteUrl?.errors?.['required']">Website URL is required</span>
+													<span *ngIf="siteUrl?.errors?.['pattern']">Enter a valid website URL</span>
+												</span>
 											</div>
-										
+										</div>
 									</div>
 								</div>
 
@@ -224,7 +261,9 @@
 										</div> -->
 										<div class="col-md-12">
 											<div class="upload-container p-3 border rounded bg-light">
-												<label class="form-label fw-semibold d-block" style="font-size: 14px;">
+												<label
+													class="form-label fw-semibold d-block"
+													style="font-size: 14px">
 													<i class="fas fa-user-circle me-2"></i>
 													Profile Picture
 												</label>
@@ -272,6 +311,11 @@
 													{{ template.name }} - {{ template.description }}
 												</ng-template>
 											</p-select>
+											<span
+												class="error"
+												*ngIf="templateId?.invalid && (templateId?.dirty || templateId?.touched)">
+												<span *ngIf="templateId?.errors?.['required']">Template is required</span>
+											</span>
 										</div>
 										<div class="col-md-4">
 											<button
@@ -458,7 +502,7 @@ id="secondaryColor" /> -->
 			</div>
 		</div>
 	</div>
-<!-- 
+	<!--
 	<div class="bg-white shadow border-top">
 		<div class="container-fluid">
 			<div class="row">
