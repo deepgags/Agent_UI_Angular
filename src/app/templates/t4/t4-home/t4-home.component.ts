@@ -12,6 +12,8 @@ import { SearchComponent } from "../../shared/search/search.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { SiteConfigService } from "../../../services/site-config.service";
+import { SiteConfig } from "../../../models/SiteConfig";
 
 @Component({
 	selector: "app-t4-home",
@@ -35,8 +37,12 @@ import { MatInputModule } from "@angular/material/input";
 export class T4HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	userForm!: FormGroup;
-
-	constructor(private router: Router, private fb: FormBuilder, private titleService: Title) {}
+	siteConfigSubscription: any;
+	siteConfig: SiteConfig | undefined;
+	
+	constructor(private router: Router, private fb: FormBuilder, private titleService: Title,
+		private siteConfigService: SiteConfigService
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -45,6 +51,11 @@ export class T4HomeComponent implements OnInit {
 			phoneNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			comment: new FormControl("", Validators.required),
+		});
+				this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
+			if (config) {
+				this.siteConfig = config;
+			}
 		});
 	}
 
