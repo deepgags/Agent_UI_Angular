@@ -24,7 +24,7 @@
 									<i class="fas fa-user text-white"></i>
 								</div>
 								<span
-									class="text-muted"
+									class="text-muted fw-semibold"
 									*ngIf="agentData?.firstName">
 									Hello, {{ agentData.firstName }}!
 								</span>
@@ -47,9 +47,9 @@
 	<div class="flex-grow-1 bg-light overflow-auto">
 		<div class="container-fluid py-4">
 			<div class="row justify-content-center">
-				<div class="col-12">
-					<div class="card shadow-sm border-0">
-						<div class="card-body p-4">
+				<div class="col-12 d-flex justify-content-center">
+					<div class="card w-75 shadow-sm border-0">
+						<div class="card-body p-4 d-flex justify-content-center">
 							<form
 								[formGroup]="agentForm"
 								name="brokerageForm"
@@ -60,7 +60,7 @@
 										<i class="fas fa-building text-muted me-2"></i>
 										Business Information
 									</h6>
-									<div class="row">
+									<div class="row mt-4">
 										<div class="col-md-6">
 											<div class="mb-3">
 												<p-select
@@ -86,7 +86,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="row">
+									<div class="row mt-4">
 										<div class="col-md-6">
 											<div class="mb-3">
 												<input
@@ -151,8 +151,8 @@
 										<i class="fas fa-phone text-muted me-2"></i>
 										Contact Information
 									</h6>
-									<div class="row">
-										<div class="col-md-12">
+									<div class="row mt-4">
+										<div class="col-md-4">
 											<div class="mb-3">
 												<input
 													type="email"
@@ -164,40 +164,40 @@
 													required />
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-4">
-											<div class="mb-3">
-												<p-inputmask
-													mask="999-999-9999"
-													formControlName="phoneNumber"
-													styleClass="form-control"
-													placeholder="Phone Number"
-													id="phoneNumber" />
+										
+											<div class="col-md-4">
+												<div class="mb-3">
+													<p-inputmask
+														mask="999-999-9999"
+														formControlName="phoneNumber"
+														styleClass="form-control"
+														placeholder="Phone Number"
+														id="phoneNumber" />
+												</div>
 											</div>
-										</div>
-										<!-- <div class="col-md-4">
-											<div class="mb-3">
-												<p-inputmask
-													mask="999-999-9999"
-													formControlName="cellNumber"
-													styleClass="form-control"
-													placeholder="Cell Number"
-													id="cellNumber" />
+											<!-- <div class="col-md-4">
+												<div class="mb-3">
+													<p-inputmask
+														mask="999-999-9999"
+														formControlName="cellNumber"
+														styleClass="form-control"
+														placeholder="Cell Number"
+														id="cellNumber" />
+												</div>
+											</div> -->
+											<div class="col-md-4">
+												<div class="mb-3">
+													<input
+														type="url"
+														pInputText
+														formControlName="siteUrl"
+														placeholder="Website URL"
+														class="form-control"
+														id="siteUrl"
+														required />
+												</div>
 											</div>
-										</div> -->
-										<div class="col-md-4">
-											<div class="mb-3">
-												<input
-													type="url"
-													pInputText
-													formControlName="siteUrl"
-													placeholder="Website URL"
-													class="form-control"
-													id="siteUrl"
-													required />
-											</div>
-										</div>
+										
 									</div>
 								</div>
 
@@ -224,7 +224,7 @@
 										</div> -->
 										<div class="col-md-12">
 											<div class="upload-container p-3 border rounded bg-light">
-												<label class="form-label fw-semibold d-block">
+												<label class="form-label fw-semibold d-block" style="font-size: 14px;">
 													<i class="fas fa-user-circle me-2"></i>
 													Profile Picture
 												</label>
@@ -440,6 +440,17 @@ id="secondaryColor" /> -->
 										</div>
 									</div>
 								</div>
+								<div class="d-flex justify-content-end align-items-center">
+									<div class="d-flex align-items-center">
+										<button
+											type="submit"
+											class="btn btn-success px-4"
+											(click)="save()">
+											<i class="fas fa-save me-2"></i>
+											Save Changes
+										</button>
+									</div>
+								</div>
 							</form>
 						</div>
 					</div>
@@ -447,7 +458,7 @@ id="secondaryColor" /> -->
 			</div>
 		</div>
 	</div>
-
+<!-- 
 	<div class="bg-white shadow border-top">
 		<div class="container-fluid">
 			<div class="row">
@@ -468,5 +479,5 @@ id="secondaryColor" /> -->
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
