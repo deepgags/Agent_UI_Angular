@@ -1,33 +1,33 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
-import { sortTypes } from '../../../consts/DefaultTypes';
-import { stringiFy } from '../../../consts/Utility';
-import { PropertyModel } from '../../../models/PropertyModel';
-import { RequestPropertyModel } from '../../../models/RequestPropertyModel';
-import { HighlightSearch } from '../../../pipes/highlight';
-import { LoadingService } from '../../../services/loading.service';
-import { NotificationService } from '../../../services/notification.service';
-import { PropertyService } from '../../../services/property.service';
-import { StorageService } from '../../../services/storage.service';
-import { SearchComponent } from '../search/search.component';
+import { CommonModule } from "@angular/common";
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { Title } from "@angular/platform-browser";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
+import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+import { sortTypes } from "../../../consts/DefaultTypes";
+import { stringiFy } from "../../../consts/Utility";
+import { PropertyModel } from "../../../models/PropertyModel";
+import { RequestPropertyModel } from "../../../models/RequestPropertyModel";
+import { HighlightSearch } from "../../../pipes/highlight";
+import { LoadingService } from "../../../services/loading.service";
+import { NotificationService } from "../../../services/notification.service";
+import { PropertyService } from "../../../services/property.service";
+import { StorageService } from "../../../services/storage.service";
+import { SearchComponent } from "../search/search.component";
 
 @Component({
-	selector: 'app-search-page',
+	selector: "app-search-page",
 	imports: [FormsModule, CommonModule, MatIconModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule],
-	templateUrl: './search-page.component.html',
-	styleUrls: ['./search-page.component.scss'],
+	templateUrl: "./search-page.component.html",
+	styleUrls: ["./search-page.component.scss"],
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true
+	standalone: true,
 })
 export class SearchPageComponent implements OnInit {
 	propertiesList: PropertyModel[] | undefined;
@@ -38,16 +38,16 @@ export class SearchPageComponent implements OnInit {
 	loading$ = this.loadingSubject.asObservable();
 
 	selectedFilters: any = {
-		address: '',
-		property_type: '',
-		bedrooms: '0',
-		bathrooms: '0',
-		min_price: '',
-		max_price: '',
-		property_status: '',
-		sqFt: '',
-		distance: '20',
-		sort: 'Most'
+		address: "",
+		property_type: "",
+		bedrooms: "0",
+		bathrooms: "0",
+		min_price: "",
+		max_price: "",
+		property_status: "",
+		sqFt: "",
+		distance: "20",
+		sort: "Most",
 	};
 
 	sortDropDown = sortTypes;
@@ -69,11 +69,11 @@ export class SearchPageComponent implements OnInit {
 	ngOnInit(): void {
 		this.pageIndex = 1;
 		this.pageSize = 12;
-		this.route.queryParams.subscribe(params => {
+		this.route.queryParams.subscribe((params) => {
 			if (Object.keys(params).length > 0) {
 				this.selectedFilters = {
 					...this.selectedFilters,
-					...params
+					...params,
 				};
 
 				this.searchProperties(params);
@@ -82,19 +82,17 @@ export class SearchPageComponent implements OnInit {
 	}
 
 	openDialog(property: PropertyModel) {
-		const userDialog = this._interestedUserDialog.open(InteresteduserComponent,
-			{
-				width: '50%',
-				height: 'auto',
-				disableClose: true,
-				autoFocus: false,
-				restoreFocus: false,
-				hasBackdrop: true,
-				data: property
-			}
-		)
+		const userDialog = this._interestedUserDialog.open(InteresteduserComponent, {
+			width: "50%",
+			height: "auto",
+			disableClose: true,
+			autoFocus: false,
+			restoreFocus: false,
+			hasBackdrop: true,
+			data: property,
+		});
 
-		userDialog.afterClosed().subscribe(result => {
+		userDialog.afterClosed().subscribe((result) => {
 			if (result) {
 				this.redirectToDetail(property);
 			}
@@ -104,34 +102,29 @@ export class SearchPageComponent implements OnInit {
 	selectProperty(property: PropertyModel): void {
 		if (property.IsFeatureListing) {
 			this.openDialog(property);
-		}
-		else {
+		} else {
 			this.redirectToDetail(property);
 		}
 	}
 
 	redirectToDetail(property: PropertyModel): void {
-		const currentTemplate = this.router.url.split('/')[1];
-		this.router.navigate(
-			[`${currentTemplate}`, 'property-detail'],
-			{
-				relativeTo: this.activatedRoute,
-				queryParams: {
-					address: this.selectedFilters['address'],
-					property_type: this.selectedFilters['property_type'],
-					bedrooms: this.selectedFilters['bedrooms'],
-					bathrooms: this.selectedFilters['bathrooms'],
-					min_price: this.selectedFilters['min_price'],
-					max_price: this.selectedFilters['max_price'],
-					property_status: this.selectedFilters['property_status'],
-					sqFt: this.selectedFilters['sqFt'],
-					propertyId: property._id,
-					mlsId: property.ListingKey
-				},
-				queryParamsHandling: 'replace'
+		const currentTemplate = this.router.url.split("/")[1];
+		this.router.navigate([`/${currentTemplate}`, "property-detail"], {
+			relativeTo: this.activatedRoute,
+			queryParams: {
+				address: this.selectedFilters["address"],
+				property_type: this.selectedFilters["property_type"],
+				bedrooms: this.selectedFilters["bedrooms"],
+				bathrooms: this.selectedFilters["bathrooms"],
+				min_price: this.selectedFilters["min_price"],
+				max_price: this.selectedFilters["max_price"],
+				property_status: this.selectedFilters["property_status"],
+				sqFt: this.selectedFilters["sqFt"],
+				propertyId: property._id,
+				mlsId: property.ListingKey,
 			},
-
-		);
+			queryParamsHandling: "replace",
+		});
 	}
 
 	sortChange(sort: any): void {
@@ -143,7 +136,7 @@ export class SearchPageComponent implements OnInit {
 		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;
 		this.pageSize = event?.pageSize ?? this.pageSize;
 
-		const sort = selectedFilters.sort && selectedFilters.sort != '' ? selectedFilters.sort : "most";
+		const sort = selectedFilters.sort && selectedFilters.sort != "" ? selectedFilters.sort : "most";
 
 		const params = {
 			page: this.pageIndex,
@@ -158,8 +151,8 @@ export class SearchPageComponent implements OnInit {
 			max_price: stringiFy(selectedFilters.max_price),
 			sqFt: stringiFy(selectedFilters.sqFt),
 			distance: stringiFy(selectedFilters.distance),
-			sort: sort
-		}
+			sort: sort,
+		};
 
 		this.loadingService.loadingOn();
 		this.loadingSubject.next(true);
@@ -172,8 +165,8 @@ export class SearchPageComponent implements OnInit {
 			},
 			complete: () => {
 				this.loadingSubject.next(false);
-			}
-		})
+			},
+		});
 		return event;
-	}
+	};
 }
