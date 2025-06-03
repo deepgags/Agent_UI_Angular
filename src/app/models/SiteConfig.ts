@@ -14,19 +14,20 @@ export interface SiteConfig {
 			email: string;
 			phone: string;
 			address: string;
-		},
+		};
 		socialLinks: {
 			facebook: string;
 			twitter: string;
 			instagram: string;
 			linkedin: string;
 			youtube: string;
-		},
+		};
 		faviconUrl: string;
 		siteUrl: string;
 		templateId: string;
 		primaryColor: string;
 		secondaryColor: string;
+		profileImage: string;
 		logoImage: string;
 	}; // Allow other dynamic properties
 }

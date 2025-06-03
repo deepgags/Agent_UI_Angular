@@ -1,21 +1,19 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { CommonModule, DOCUMENT, isPlatformBrowser } from "@angular/common";
+import { Component, Inject, OnInit, PLATFORM_ID, Renderer2 } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { CustomerModel } from '../../models/CustomerModel';
-import { CustomerService } from '../../services/customer.service';
-import { NotificationService } from '../../services/notification.service';
-import { StorageService } from '../../services/storage.service';
+import { CustomerModel } from "../../models/CustomerModel";
+import { CustomerService } from "../../services/customer.service";
+import { NotificationService } from "../../services/notification.service";
+import { StorageService } from "../../services/storage.service";
 
 @Component({
-	selector: 'app-redirectuser',
+	selector: "app-redirectuser",
 	imports: [CommonModule],
-	templateUrl: './redirectuser.component.html',
-	styleUrl: './redirectuser.component.scss'
+	templateUrl: "./redirectuser.component.html",
+	styleUrl: "./redirectuser.component.scss",
 })
-
 export class RedirectUserComponent implements OnInit {
-
 	customerModel!: CustomerModel;
 	private style: HTMLLinkElement | null = null;
 	private cssFile: string = "";
@@ -27,8 +25,9 @@ export class RedirectUserComponent implements OnInit {
 		@Inject(DOCUMENT) private document: Document,
 		private renderer2: Renderer2,
 		@Inject(PLATFORM_ID) private platformId: Object,
-		private router: Router) {
-		this.titleService.setTitle("Redirecting...")
+		private router: Router
+	) {
+		this.titleService.setTitle("Redirecting...");
 	}
 
 	ngOnInit() {
@@ -70,14 +69,11 @@ export class RedirectUserComponent implements OnInit {
 		// 		//this.cssFile = `BlueTemplate.css`;
 		// 		break;
 		// }
-
 		//this.style = this.renderer2.createElement('link') as HTMLLinkElement;
-
 		// Set type of the link item and path to the css file
 		// this.renderer2.setProperty(this.style, 'rel', 'stylesheet');
 		// this.renderer2.setProperty(this.style, 'href', this.cssFile);
 		// this.renderer2.setProperty(this.style, 'id', "themeCSS");
-
 		// Add the style to the head section
 		//this.renderer2.appendChild(this.document.head, this.style);
 	}
@@ -101,8 +97,7 @@ export class RedirectUserComponent implements OnInit {
 			// 	default:
 			// 		this.router.navigateByUrl("/t1");
 			// }
-		}
-		else {
+		} else {
 			this.router.navigateByUrl("/");
 		}
 	}

@@ -1,35 +1,42 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { Title } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { Router } from '@angular/router';
-import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject } from 'rxjs';
-import { CustomerModel } from '../../models/CustomerModel';
-import { TemplateModel } from '../../models/TemplateModel';
-import { CustomerService } from '../../services/customer.service';
-import { LoadingService } from '../../services/loading.service';
-import { NotificationService } from '../../services/notification.service';
-import { SharedDataService } from '../../services/shareddata.service';
-import { StorageService } from '../../services/storage.service';
-import { TemplateService } from '../../services/template.service';
-import { TemplatesiteComponent } from '../dialogs/templatesite/templatesite.component';
-import { GalleryComponent } from '../gallery/gallery.component';
+import { BreakpointObserver } from "@angular/cdk/layout";
+import { CommonModule, isPlatformBrowser } from "@angular/common";
+import { Component, Inject, OnInit, PLATFORM_ID } from "@angular/core";
+import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { Title } from "@angular/platform-browser";
+import { provideAnimations } from "@angular/platform-browser/animations";
+import { Router } from "@angular/router";
+import { NgbCarouselConfig, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { BehaviorSubject } from "rxjs";
+import { CustomerModel } from "../../models/CustomerModel";
+import { TemplateModel } from "../../models/TemplateModel";
+import { CustomerService } from "../../services/customer.service";
+import { LoadingService } from "../../services/loading.service";
+import { NotificationService } from "../../services/notification.service";
+import { SharedDataService } from "../../services/shareddata.service";
+import { StorageService } from "../../services/storage.service";
+import { TemplateService } from "../../services/template.service";
+import { TemplatesiteComponent } from "../dialogs/templatesite/templatesite.component";
+import { GalleryComponent } from "../gallery/gallery.component";
 
 @Component({
-	selector: 'app-template',
-	imports: [CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule,
-		MatInputModule, NgbModule, GalleryComponent],
+	selector: "app-template",
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatDialogModule,
+		MatFormFieldModule,
+		MatInputModule,
+		NgbModule,
+		GalleryComponent,
+	],
 	providers: [provideAnimations(), NgbCarouselConfig],
-	templateUrl: './template.component.html',
-	styleUrl: './template.component.scss'
+	templateUrl: "./template.component.html",
+	styleUrl: "./template.component.scss",
 })
-
 export class TemplateComponent implements OnInit {
 	isBrowser: boolean = false;
 	templateForm!: FormGroup;
@@ -50,12 +57,12 @@ export class TemplateComponent implements OnInit {
 		private router: Router,
 		@Inject(PLATFORM_ID) platformId: Object
 	) {
-		this.titleService.setTitle('Templates');
+		this.titleService.setTitle("Templates");
 		this.isBrowser = isPlatformBrowser(platformId);
 	}
 
 	ngOnInit() {
-		this.sharedDataService.CustomerData.subscribe(data => {
+		this.sharedDataService.CustomerData.subscribe((data) => {
 			this.customerModel = data;
 			this.getTemplates();
 			// this.setGalleryImages();
@@ -73,7 +80,9 @@ export class TemplateComponent implements OnInit {
 			error: (error) => {
 				this.notificationService.showNotification("Error occurred while getting templates");
 			},
-			complete: () => { this.loadingService.loadingOff() }
+			complete: () => {
+				this.loadingService.loadingOff();
+			},
 		});
 	}
 
@@ -113,7 +122,6 @@ export class TemplateComponent implements OnInit {
 		// if (template.isSelected) {
 		// 	// this.customerModel.templateId = template._id;
 		// }
-
 		// this.templates$.subscribe(x => x.forEach(item => {
 		// 	if (template._id != item._id) {
 		// 		item.isSelected = false
