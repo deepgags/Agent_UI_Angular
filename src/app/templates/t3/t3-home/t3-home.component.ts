@@ -5,6 +5,8 @@ import { CustomerModel } from "../../../models/CustomerModel";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { SiteConfigService } from "../../../services/site-config.service";
+import { SiteConfig } from "../../../models/SiteConfig";
 
 @Component({
 	selector: "app-t3-home",
@@ -15,11 +17,19 @@ import { SearchComponent } from "../../shared/search/search.component";
 })
 export class T3HomeComponent implements OnInit {
 	customer: CustomerModel | undefined;
+		siteConfig: SiteConfig | undefined;
+	siteConfigSubscription: any;
+	
 
-	constructor(private router: Router, private titleService: Title, private storageService: StorageService) {}
+	constructor(private router: Router, private titleService: Title, private storageService: StorageService,private siteConfigService: SiteConfigService) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
+		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
+			if (config) {
+				this.siteConfig = config;
+			}
+		});
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

@@ -4,7 +4,7 @@
 		<div class="row justify-content-around align-items-center">
 		  <div class="col-12 col-lg-6 ">
 			<div class="">
-				<img class="position-absolute man " src="/t5/images/man.png" alt="">
+				<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image position-absolute man">
 				<div class="card position-absolute  man-card " style="width: 18rem;">
 				  <div class="card-body">
 					<h5 class="card-head text-white mb-0">PERSON NAME</h5>
@@ -45,7 +45,7 @@
 		  <div class="col-12 col-lg-4 ">
 			<div class="">
 
-				<img class="position-absolute man2 " src="/t5/images/man2.png" alt="">
+				<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image position-absolute man2">
 				<div class="card position-absolute  man-card2 " style="width: 18rem;">
 				  <div class="card-body">
 					<h5 class="card-head text-white mb-0">PERSON NAME</h5>

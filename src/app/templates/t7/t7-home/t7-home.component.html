@@ -18,7 +18,7 @@
 	  <div class="row justify-content-center align-items-center">
 		<div class="col-lg-6 col-12">
 		  <p class="fs-2 mb-0 fw-semibold ">
-			Hi, I’m Person Name
+			Hi, I’m {{siteConfig?.firstName}} {{siteConfig?.lastName}}
 		  </p>
 		  <p class="fs-4 info">Sales Representative</p>
 		  <p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions.</p>
@@ -86,10 +86,8 @@
 
 	<div class="position-relative d-inline-block">
 		<img class="img-fluid" src="./t7/images/profile-bg.png" alt="profile-bg">
-
-		<img [src]="customer?.profileImage" alt="No profile image"
-			 class="position-absolute top-50 start-50 translate-middle mob_pic"
-			 style="width: 260px; height: 367px;">
+<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image"  class="overlay-image position-absolute top-50 start-50 translate-middle mob_pic"
+			 style="width: 460px; height: 367px;">
 	  </div>
 		  </div>
 		</div>

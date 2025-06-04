@@ -24,12 +24,11 @@
 			 <div class="card border-0 shadow p-0" style="max-width: 540px;">
 		  <div class="row g-0 justify-content-around">
 			<div class="col-md-6 d-flex justify-content-center align-items-center">
-  			<img [src]="customer?.profileImage" alt="No profile image"
-      		 class="mob_pic w-75 h-100">
+  				<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image">
 			</div>
 			<div class="col-md-6">
 			  <div class="card-body">
-				<h5 class="card-title mb-3 fw-semibold">Person Name</h5>
+				<h5 class="card-title mb-3 fw-semibold">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h5>
 				<p class="card-text fw-semibold mb-3">SALES REPRESENTATIVE</p>
 				<p class="card-text text-muted mb-3"> Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.</p>
 				<div class="mb-3">
@@ -81,12 +80,11 @@
 			 <div class="card border-0 shadow p-0" style="max-width: 540px;">
 		  <div class="row g-0 justify-content-around">
 		<div class="col-md-6 d-flex justify-content-center align-items-center">
-  		<img [src]="customer?.profileImage" alt="No profile image"
-       				class="mob_pic w-75 h-100">
+  			<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image">
 			</div>
 			<div class="col-md-6">
 				<div class="card-body">
-					<h5 class="card-title mb-3 fw-semibold">Person Name</h5>
+					<h5 class="card-title mb-3 fw-semibold">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h5>
 					<p class="card-text fw-semibold mb-3">SALES REPRESENTATIVE</p>
 					<p class="card-text text-muted mb-3"> Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit.</p>
 					<div class="mb-3">
