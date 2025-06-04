@@ -1,5 +1,5 @@
 <div class="background-container">
-	<img [src]="customer?.profileImage" alt="No profile image" class="overlay-image">
+	<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image">
   </div>
 	<div class="container p-lg-0 p-4">
 		<div class="pt-lg-5 p-lg-0 p-4">

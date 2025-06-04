@@ -3,139 +3,83 @@
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-:root {
-  --primary-color: #002FD5;
-  --secondary-color: White;
-  --third-color: #222222;
-  --fourth-color: red;
+$info: #002FD5;
+
+
+*{
+    font-family: "Raleway", serif ;
+}
+p{
+  font-size: 14px;
 }
 
-$primary-color: var(--primary-color);
-$secondary-color: var(--secondary-color);
-$third-color: var(--third-color);
-$fourth-color: var(--fourth-color);
 
-* {
-  font-family: "Raleway", serif;
+.bannner {
+  background-size: cover;
+  height: 100vh;
 }
 
 .pop{
   font-family: "Poppins", serif;
+
 }
 
-.nav_bg {
-  background-color: $primary-color;
-}
 
-.nav_content {
-  color: $secondary-color;
+.nav_content{
+  color: white;
   font-size: 14px;
 }
 
-.hero_img {
-  background-image: url("/t2/images/HomelifeKalra.png");
-  background-repeat: no-repeat, repeat;
+.hero_img{
+    background-image: url("/t1/images/HomelifeKalra.png");
+    background-repeat: no-repeat, repeat;
 }
 
-.home_nav {
-  align-items: center;
-  justify-content: center;
-  gap: 46px;
-  font-weight: 600;
+.home_nav{
+    align-items: center;
+    justify-content: center;
+    gap: 46px;
+    font-weight: 600;
 }
 
-.banner {
+
+.banner{
   height: 100%;
   width: 100%;
 }
 
-.menu_img {
-  background-image: url("/t2/images/menu.png");
-  background-size: cover;
+// .menu_img{
+//     background-image: url(./images/menu.png);
+//     background-size: cover;
+// }
+
+.search_btn{
+    color: white;
+    background-color: $info;
+    border-radius: 10px;
 }
 
-:host-context(.t2-template) {
-  app-search {
-    display: block;
 
-    .search_btn {
-      color: $secondary-color;
-      background-color: $primary-color !important;
-      border-radius: 10px;
-
-      &:hover {
-        background-color: #092daf;
-        color: $secondary-color;
-      }
-    }
-
-    .drop {
-      border-radius: 0px;
-      color: $third-color;
-
-      &:hover,
-      &:active,
-      &:focus-visible {
-        background-color: $primary-color;
-        border-color: $primary-color;
-      }
-    }
-  }
+.text{
+    font-size: 35px;
+    text-align: center;
 }
 
-.drop {
-  border-radius: 0px;
-  color: $third-color;
+
+.estate{
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-size: 35px;
+    color: $info;
 }
 
-.drop:hover {
-  background-color: $primary-color;
-  border-color: $primary-color;
-}
-
-.drop:first-child:active {
-  background-color: $primary-color;
-  border-color: $primary-color;
-}
-
-.drop:focus-visible {
-  background-color: $primary-color;
-  border-color: $primary-color;
-}
-
-.dropdown-item:active {
-  color: $secondary-color;
-  text-decoration: none;
-  background-color: $primary-color;
-}
-
-.dropdown-item.active,
-.dropdown-item:active {
-  color: $secondary-color;
-  text-decoration: none;
-  background-color: $primary-color;
-}
-
-.text {
-  font-size: 35px;
-  text-align: center;
-}
-
-.estate {
-  font-family: "Patua One", serif;
-  font-weight: 400;
-  font-size: 35px;
-  color: $primary-color;
-}
-
-.estate-border {
-  border: 2px solid $primary-color;
-  border-radius: 10px;
+.city_card{
+  cursor: pointer;
 }
 
 .pro_card {
   position: relative;
-  color:  $secondary-color;
+  color: #fff;
   transition: 0.5s;
   cursor: pointer;
 }
@@ -143,93 +87,87 @@ $fourth-color: var(--fourth-color);
 .pro_card:hover {
   transform: translateY(-20px);
 }
-
-.pro-card-text {
+.pro-card-text{
   top: 265px;
   font-weight: 600;
   font-size: 30px;
   position: absolute;
 }
-
 .pro_card .content {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+  .sec-3{
+    background-color: #F9F9F9;
+  }
 
-.pro-text {
-  font-family: "Roboto", serif;
+  .pro-text{
+    font-family: "Roboto", serif;
+  }
+
+  .sec-4{
+    background-color: $info;
+  }
+
+  .worth{
+    font-size:40px;
+    font-weight: 600;
+    color: white;
+    line-height: 45px;
+  }
+
+  .email{
+    font-family: "Poppins", serif;
+    border-radius: 10px;
+    background-color: #22614b00;
+    color: white;
+  }
+
+  .email::placeholder{
+    color: white;
+  }
+
+  .req{
+    font-family: "Poppins", serif;
+    border-radius: 0px;
+    background-color: #22614b00;
+    color: white;
+  }
+
+  .req::placeholder{
+    color:#A1A1A1A1;
+  }
+   label{
+    color:#A1A1A1A1;
+  }
+  .baner-text{
+    top: 280px;
+    left:748px;
+
+  }
+
+  .submit{
+    border-radius:10px ;
+    color: $info;
+  }
+.sub{
+  background-color: #002FD5;
 }
+  .fotter-bg{
+    background-color: #222222;
+  }
+  footer{
+    color: white ;
+  }
 
-.sec-4 {
-  background-color: $primary-color;
-}
-
-.worth {
-  font-size: 40px;
-  font-weight: 600;
-  color: $secondary-color;
-  line-height: 45px;
-}
-
-// .email {
-//   font-family: "Poppins", serif;
-//   border-radius: 10px;
-//   background-color: #22614b00;
-//   color: $secondary-color;
-// }
-
-// .email::placeholder {
-//   color: $secondary-color;
-// }
-
-// .req {
-//   font-family: "Poppins", serif;
-//   border-radius: 0px;
-//   background-color: #22614b00;
-//   color: $secondary-color;
-// }
-
-// .req::placeholder {
-//   color: #A1A1A1A1;
-// }
-
-// label {
-//   color: #A1A1A1A1;
-// }
-
-.baner-text {
-  top: 280px;
-  left: 748px;
-}
-
-.submit {
-  border-radius: 10px;
-  color: $primary-color;
-}
-
-.sub {
-  background-color: $primary-color;
-}
-
-.footer-bg {
-  background-color: $third-color;
-}
-
-footer {
-  color: $secondary-color;
-}
-
-// .nav-link:focus,
-// .nav-link:hover {
-//   color: rgb(217 217 217);
-// }
+ 
 
 .tool {
   border-radius: 50px;
   cursor: pointer;
   border: 0;
-  background-color: $secondary-color;
+  background-color: white;
   box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -237,257 +175,193 @@ footer {
   transition: all 0.5s ease;
 }
 
-// .tool:hover {
-//   letter-spacing: 3px;
-//   font-weight: 600;
-//   background-color: hsl(161.31deg 56.13% 30.26%);
-//   color: hsl(0, 0%, 100%);
-// }
-
-// .tool:active {
-//   letter-spacing: 3px;
-//   background-color: hsl(161.31deg 56.13% 30.26%);
-//   color: hsl(0, 0%, 100%);
-//   transform: translateY(10px);
-//   transition: 100ms;
-// }
-
-// .featured-bg {
-//   background-color: #F9F9F9;
-// }
-
-// .featured-bg1 {
-//   font-weight: 600;
-//   background-color: #F9F9F9;
-// }
-
-.btn-outline-success {
-  --bs-btn-color: $primary-color;
-  --bs-btn-border-color: $primary-color;
-  --bs-btn-hover-color: $secondary-color;
-  --bs-btn-hover-bg:  $primary-color;
-  --bs-btn-hover-border-color: $primary-color;
-  --bs-btn-focus-shadow-rgb: 25, 135, 84;
-  --bs-btn-active-color: $secondary-color;
-  --bs-btn-active-bg: $primary-color;
-  --bs-btn-active-border-color: $primary-color;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: $primary-color;
-  --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: $primary-color;
-  --bs-gradient: none;
+.tool:hover {
+  letter-spacing: 3px;
+  font-weight: 600;
+  background-color: hsl(161.31deg 56.13% 30.26%);
+  color: hsl(0, 0%, 100%);
 }
 
-.cus-widht {
+.tool:active {
+  letter-spacing: 3px;
+  background-color: hsl(161.31deg 56.13% 30.26%);
+  color: hsl(0, 0%, 100%);
+  transform: translateY(10px);
+  transition: 100ms;
+}
+
+.featured-bg{
+  background-color: #F9F9F9;
+}
+
+.featured-bg1{
+  font-weight: 600;
+  background-color: #F9F9F9;
+}
+
+.cus-widht{
   width: 289px !important;
 }
 
-.top-padding {
+.top-padding{
   padding-top: 230px;
 }
 
-.login-bg {
-  background-image: url("/t2/images/login-bg.png");
-  background-size: cover;
-}
+  // .login-bg{
+  //   background-image: url("./images/login-bg.png");
+  //   background-size: cover;
+  // }
 
-.sign {
+.sign{
   font-size: 14px;
 }
 
-.sign-wid {
+.sign-wid{
   width: 247px;
 }
 
-@media screen and (max-width:600px) {
-  .cus-widht {
-    width: 187px !important;
-  }
-  .lable {
-    background-color: $primary-color;
-    position: absolute;
-    top: 1252px;
-    left: 45px;
+.text-pink{
+  color:$info;
 }
-  .text {
-    font-size: 26px;
-  }
 
-  .estate {
-    font-family: "Patua One", serif;
-    font-weight: 400;
-    font-size: 26px;
-    color: $primary-color;
-  }
-
-  p {
-    font-size: 12px;
-  }
-
-  .worth {
-    font-size: 30px;
-    font-weight: 600;
-    color: $secondary-color;
-    line-height: 45px;
-  }
-
-  .footer-contact {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
 
 .search-container{
+  .info {
+    color: $info !important;
+  }
   p{
     font-size: 13px;
   }
 
-  span{
-    font-size: 13px;
-  }
-
-  .bg-badge{
-    background-color: $primary-color;
-    color: $secondary-color;
-  }
-
-  .timeline {
-    position: relative;
-    margin: 2rem 0;
-  }
-  
-  .timeline-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-  
-  .timeline-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-right: 1rem;
-  }
-  
-  // .timeline-content {
-  //   background: #f8f9fa;
-  //   padding: 1rem;
-  //   border-radius: 10px;
-  //   flex-grow: 1;
-  //   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  // }
-
-// .card_col{
-//   background-color: #a5b9ff;
-
-// }
-  .lable{
-    background-color: $primary-color;
-    position: absolute;
-    top: 355px;
-    left: 49px;
+  .bg-client {
+    background-color:rgb(0 47 213 / 28%);
 }
-  .text_bg{
-    background-color: $primary-color;
+
+.blockquote-footer{
+  color: white;
+}
+  .text_bg {
+    background-color: $info;
     position: absolute;
     top: 9px;
-  }
+}
+.nav-link {
+  color:$info;
+}
 
-  .text_bg2{
-    position: absolute;
-    top: 10px;
-    left: 372px;
-  }
-  .info {
-    color: $primary-color !important;
-  }
-
-  // .bg-client{
-  //   background-color: #cfe2ff;
-  // }
-  .head-bg{
-    background-color: $primary-color;
-    color: $secondary-color;
-  }
-
-  .card_hover {
-    cursor: pointer !important;
-    box-shadow: #809cff 0px 2px 30px -10px;
-    transition: transform 250ms !important;
-    &:hover{
-        box-shadow: $primary-color 0px 10px 15px -3px, $primary-color 0px 4px 6px -2px !important;
-        transform: translateY(-18px) !important;
-    }
-  }
-
+.text_bg2{
+  position: absolute;
+  top: 10px;
+  left: 372px;
+}
   .location{
     content:url("/images/vectorimg/star.png");
   }
 
   .bed{
     content:url("/t2/images/vector img/bed.svg");
-  } 
+   } 
 
   .shower{
     content:url("/t2/images/vector img/shower.svg");
-  }
+    } 
 
   .area{
     content:url("/t2/images/vector img/area.svg");
-  } 
-  @media (max-width: 767px) {
-    .text_bg2{
-      position: absolute;
-      top: 10px;
-      left: 292px;
+    } 
+    @media (max-width: 767px) {
+      .text_bg2{
+        position: absolute;
+        top: 10px;
+        left: 320px;
+      }
+    }
+.text{
+  font-size: 35px;
+  color: white;
+  text-align: center;
+}
+
+  span{
+    font-size: 13px;
+  }
+
+  .head-bg{
+    background-color: $info;
+    color: white !important;
+  }
+
+  .custom-select:focus {
+    border-color: $info !important;
+    outline: none !important;
+    box-shadow: 0 0 0 0.2rem rgb(68 153 146 / 22%) !important;
+  }
+  .search-bar:focus-visible {
+    border-color: $info;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgb(68 153 146 / 22%);
+}
+
+
+  .search_btn {
+    color: white;
+    background-color: $info !important;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: #002FD5 !important;
+      color: white;
     }
   }
-//   .search-bar:focus-visible {
-//     border-color: #86b7fe;
-//     outline: 0;
-//     box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
-// }
-
-  // .mat-mdc-select-panel{
-  //   background-color: rgb(225, 225, 225) !important;
-  // }
-  
-    .search_btn {
-      color: $secondary-color;
-      background-color: $primary-color !important;
-      border-radius: 10px;
-
-      &:hover {
-        background-color: #092daf;
-        color: $secondary-color;
-      }
-    }
-    
-    .drop {
-      border-radius: 0px;
-      color: black;
-
-      &:hover,
-      &:active,
-      &:focus-visible {
-        background-color: $primary-color;
-        border-color: $primary-color;
-      }
-}
 }
 
 :host ::ng-deep {
-   app-search-page{
+  app-search-page{
       .search-container{
         @extend .search-container;
       }
- }
+  }
       .search-container{
         @extend .search-container;
       }
+}
+
+  @media screen and (max-width:600px)
+   {
+    .cus-widht{
+      width: 187px !important;
+    }
+    .text{
+      font-size: 26px;
+    }
+
+    .estate{
+      font-family: "Patua One", serif;
+      font-weight: 400;
+      font-size: 26px;
+      color: $info;
+    }
+    // .bannner{
+    //   background-image: url('./images/mobile-banner.jpg');
+    //   height: 100%;
+    //   width: 100%;
+    // }
+
+    p{
+      font-size: 12px;
+    }
+
+    .worth {
+      font-size: 30px;
+      font-weight: 600;
+      color: white;
+      line-height: 45px;
+  }
+.footer-contact{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
   }
