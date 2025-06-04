@@ -1,6 +1,6 @@
 <div>
 	<div class="background-container">
-		<img [src]="customer?.profileImage" alt="No profile image" class="overlay-image">
+		<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image">
 	  </div>
 
 	<div class="container-fluid menu_img">

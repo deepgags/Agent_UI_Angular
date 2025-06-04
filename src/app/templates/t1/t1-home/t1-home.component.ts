@@ -1,26 +1,35 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router, RouterModule } from "@angular/router";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { SiteConfigService } from "../../../services/site-config.service";
+import { SiteConfig } from "../../../models/SiteConfig";
 
 @Component({
 	selector: "app-t1-home",
-	standalone: true,
 	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent],
 	templateUrl: "./t1-home.component.html",
+	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./t1-home.component.scss", "../t1.component.scss"],
-	providers: [Title, StorageService],
 })
 export class T1HomeComponent implements OnInit {
-	customer!: CustomerModel | null;
+	customer: CustomerModel | undefined;
+		siteConfig: SiteConfig | undefined;
+	siteConfigSubscription: any;
+	
 
-	constructor(private router: Router, private titleService: Title) {}
+	constructor(private router: Router, private titleService: Title, private storageService: StorageService,private siteConfigService: SiteConfigService) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
+		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
+			if (config) {
+				this.siteConfig = config;
+			}
+		});
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
