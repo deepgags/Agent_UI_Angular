@@ -1,95 +1,111 @@
 <div class="container-fluid p-0 search-container">
-    <div class="position-relative">
-      <img class="banner w-100" src="/images/banner3.png" alt="Banner Image">
-      <div class="position-absolute top-50 start-50 translate-middle text-center">
-        <h1 class="text-white fw-bold baner-text">Seller</h1>
-      </div>
-    </div>
-  </div>
+	<div class="position-relative">
+		<img
+			class="banner w-100"
+			src="/images/banner3.png"
+			alt="Banner Image" />
+		<div class="position-absolute top-50 start-50 translate-middle text-center">
+			<h1 class="text-white fw-bold baner-text">Seller</h1>
+		</div>
+	</div>
+</div>
 
 <section class="bg-light py-5 text-center search-container">
-  <div class="container">
-    <h1 class="display-5 fw-bold info">Thinking of Selling?</h1>
-    <p class="lead text-muted">Let us guide you through a smooth and profitable experience.</p>
-  </div>
+	<div class="container">
+		<h1 class="display-5 fw-bold info">Thinking of Selling?</h1>
+		<p class="lead text-muted">Let us guide you through a smooth and profitable experience.</p>
+	</div>
 </section>
 
 <div class="container py-5 search-container">
-  <div class="row g-4">
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100 border shadow-sm bg-white">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title info">Selling your House</h5>
-          <p class="card-text text-muted">
-            A Listing Agreement sets the foundation. It outlines our working terms and gets your home on the market.
-          </p>
-          <!-- <a href="/" class="btn search_btn btn-sm mt-auto">Detail</a> -->
-           <!-- <a routerLink="/sellerdetails" class="nav-link nav_content">Detail</a> -->
-						<a class="btn search_btn btn-sm mt-auto" [routerLink]="['/sellerdetails']">Detail</a>
-        </div>
-      </div>
-    </div>
+	<div class="row g-4">
+		<div class="col-md-6 col-lg-4">
+			<div class="card h-100 border shadow-sm bg-white">
+				<div class="card-body d-flex flex-column">
+					<h5 class="card-title info">Selling your House</h5>
+					<p class="card-text text-muted">
+						A Listing Agreement sets the foundation. It outlines our working terms and gets your home on the market.
+					</p>
+					<!-- <a href="/" class="btn search_btn btn-sm mt-auto">Detail</a> -->
+					<!-- <a routerLink="/sellerdetails" class="nav-link nav_content">Detail</a> -->
+					<button
+						class="btn search_btn btn-sm mt-auto"
+						(click)="goToSellerDetail()">
+						Detail
+					</button>
+				</div>
+			</div>
+		</div>
 
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100 border shadow-sm bg-white">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title info">Renovating for Resale</h5>
-          <p class="card-text text-muted">
-            Strategic updates can increase buyer interest and value. We help you choose wisely.
-          </p>
-          <a href="#" class="btn search_btn btn-sm mt-auto">Detail</a>
-        </div>
-      </div>
-    </div>
+		<div class="col-md-6 col-lg-4">
+			<div class="card h-100 border shadow-sm bg-white">
+				<div class="card-body d-flex flex-column">
+					<h5 class="card-title info">Renovating for Resale</h5>
+					<p class="card-text text-muted">Strategic updates can increase buyer interest and value. We help you choose wisely.</p>
+					<button
+						href="#"
+						class="btn search_btn btn-sm mt-auto"
+						(click)="goToReSellDetail()">
+						Detail
+					</button>
+				</div>
+			</div>
+		</div>
 
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100 border shadow-sm bg-white">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title info">Common Selling Mistakes</h5>
-          <p class="card-text text-muted">
-            Avoid pricing errors and poor timing. Our data-backed strategy maximizes your returns.
-          </p>
-          <a href="#" class="btn search_btn btn-sm mt-auto">Detail</a>
-        </div>
-      </div>
-    </div>
-  </div>
+		<div class="col-md-6 col-lg-4">
+			<div class="card h-100 border shadow-sm bg-white">
+				<div class="card-body d-flex flex-column">
+					<h5 class="card-title info">Common Selling Mistakes</h5>
+					<p class="card-text text-muted">
+						Avoid pricing errors and poor timing. Our data-backed strategy maximizes your returns.
+					</p>
+					<button
+						class="btn search_btn btn-sm mt-auto"
+						(click)="goToSellerCommonSellingMistake()">
+						Detail
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <section class="bg-white py-5 border-top search-container">
-  <div class="container">
-    <h2 class="text-center mb-4 info">Your 4-Step Selling Plan</h2>
-    <div class="row text-center text-muted">
-      <div class="col-md-3">
-        <div class="mb-3 fs-1 info"><i class="bi bi-house-check"></i></div>
-        <h6>1. Home Evaluation</h6>
-        <p>Get the right price range.</p>
-      </div>
-      <div class="col-md-3">
-        <div class="mb-3 fs-1 info"><i class="bi bi-pencil-square"></i></div>
-        <h6>2. Listing Setup</h6>
-        <p>Photos, descriptions, and strategy.</p>
-      </div>
-      <div class="col-md-3">
-        <div class="mb-3 fs-1 info"><i class="bi bi-megaphone"></i></div>
-        <h6>3. Market Exposure</h6>
-        <p>Let’s reach the right audience.</p>
-      </div>
-      <div class="col-md-3">
-        <div class="mb-3 fs-1 info"><i class="bi bi-currency-dollar"></i></div>
-        <h6>4. Close the Sale</h6>
-        <p>Negotiation, paperwork, success.</p>
-      </div>
-    </div>
-  </div>
+	<div class="container">
+		<h2 class="text-center mb-4 info">Your 4-Step Selling Plan</h2>
+		<div class="row text-center text-muted">
+			<div class="col-md-3">
+				<div class="mb-3 fs-1 info"><i class="bi bi-house-check"></i></div>
+				<h6>1. Home Evaluation</h6>
+				<p>Get the right price range.</p>
+			</div>
+			<div class="col-md-3">
+				<div class="mb-3 fs-1 info"><i class="bi bi-pencil-square"></i></div>
+				<h6>2. Listing Setup</h6>
+				<p>Photos, descriptions, and strategy.</p>
+			</div>
+			<div class="col-md-3">
+				<div class="mb-3 fs-1 info"><i class="bi bi-megaphone"></i></div>
+				<h6>3. Market Exposure</h6>
+				<p>Let’s reach the right audience.</p>
+			</div>
+			<div class="col-md-3">
+				<div class="mb-3 fs-1 info"><i class="bi bi-currency-dollar"></i></div>
+				<h6>4. Close the Sale</h6>
+				<p>Negotiation, paperwork, success.</p>
+			</div>
+		</div>
+	</div>
 </section>
 
-<section class=" text-center py-5 search-container">
-  <div class="container-fluid p-3 bg-client">
-    <h3 class="fw-bold info">Start with a Free Home Evaluation</h3>
-    <p class="text-muted mb-3">Know your home’s worth. No obligation, just clarity.</p>
-    <a href="#" class="btn search_btn btn-lg">Get My Estimate</a>
-  </div>
+<section class="text-center py-5 search-container">
+	<div class="container-fluid p-3 bg-client">
+		<h3 class="fw-bold info">Start with a Free Home Evaluation</h3>
+		<p class="text-muted mb-3">Know your home’s worth. No obligation, just clarity.</p>
+		<a
+			href="#"
+			class="btn search_btn btn-lg">
+			Get My Estimate
+		</a>
+	</div>
 </section>
-
-  
