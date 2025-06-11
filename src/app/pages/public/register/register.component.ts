@@ -10,6 +10,7 @@ import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { PasswordModule } from "primeng/password";
 import { SelectModule } from "primeng/select";
+import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
 import { Pages } from "../../../enums/pages";
 import { BrokerageTypeModel } from "../../../models/BrokerageTypeModel";
@@ -39,7 +40,8 @@ export class RegisterComponent implements OnInit {
 
 	brokerageTypes: BrokerageTypeModel[] = [];
 
-	newSelectedProfileImage: any;
+	newSelectedProfileImage: BehaviorSubject<string>;
+	newSelectedProfileImageObservable: Observable<string>;
 	newSelectedLogoImage: string = "";
 
 	constructor(
@@ -53,6 +55,8 @@ export class RegisterComponent implements OnInit {
 		public dialogService: DialogService
 	) {
 		this.titleService.setTitle("Register");
+		this.newSelectedProfileImage = new BehaviorSubject("");
+		this.newSelectedProfileImageObservable = this.newSelectedProfileImage.asObservable();
 	}
 
 	get brokerageType() {
@@ -136,27 +140,27 @@ export class RegisterComponent implements OnInit {
 				imageChangedEvent: event,
 			},
 		});
-		ref.onClose.subscribe((croppedImage: string | null) => {
-			this.newSelectedProfileImage = croppedImage;
+		ref.onClose.subscribe((croppedImage: string) => {
+			this.newSelectedProfileImage.next(croppedImage);
 		});
 	}
 
-	onLogoImageChange(event: Event): void {
-		const ref = this.dialogService.open(ImageDialogComponent, {
-			header: "Adjust Logo Image",
-			height: "80%",
-			width: "80%",
-			closable: false,
-			closeOnEscape: false,
-			focusOnShow: false,
-			data: {
-				imageChangedEvent: event,
-			},
-		});
-		ref.onClose.subscribe((croppedImage: string) => {
-			this.newSelectedLogoImage = croppedImage;
-		});
-	}
+	// onLogoImageChange(event: Event): void {
+	// 	const ref = this.dialogService.open(ImageDialogComponent, {
+	// 		header: "Adjust Logo Image",
+	// 		height: "80%",
+	// 		width: "80%",
+	// 		closable: false,
+	// 		closeOnEscape: false,
+	// 		focusOnShow: false,
+	// 		data: {
+	// 			imageChangedEvent: event,
+	// 		},
+	// 	});
+	// 	ref.onClose.subscribe((croppedImage: string) => {
+	// 		this.newSelectedLogoImage = croppedImage;
+	// 	});
+	// }
 
 	register() {
 		if (this.customerForm.valid) {

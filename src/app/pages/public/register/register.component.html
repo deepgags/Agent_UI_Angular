@@ -215,7 +215,7 @@
 				<div class="mb-3">
 					<h6 class="text-muted mb-3 border-bottom pb-1">Upload Images</h6>
 					<div class="row">
-						<div class="col-md-6">
+						<!-- <div class="col-md-6">
 							<div class="upload-container p-3 border rounded mb-3 mb-md-0">
 								<label class="form-label fw-semibold lable_font d-block me-3">Company Logo</label>
 								<input
@@ -225,8 +225,8 @@
 									id="logoImageUpload"
 									accept="image/*" />
 							</div>
-						</div>
-						<div class="col-md-6">
+						</div> -->
+						<div class="col-md-12">
 							<div class="upload-container p-3 border rounded">
 								<label class="form-label fw-semibold lable_font me-3 d-block">Profile Picture</label>
 								<input
@@ -235,6 +235,17 @@
 									class="form-control upload-btn w-50 lable_font"
 									id="profileImageUpload"
 									accept="image/*" />
+								<div
+									class="mt-3 p-2 border rounded bg-white shadow-sm"
+									*ngIf="newSelectedProfileImageObservable | async as newSelectedProfileImage">
+									<div class="text-center">
+										<h6 class="text-dark fw-bold mb-2">Preview</h6>
+										<img
+											[src]="newSelectedProfileImage"
+											class="rounded border image-preview"
+											alt="Profile Picture Preview" />
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

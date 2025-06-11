@@ -1,5 +1,5 @@
-import { CommonModule } from "@angular/common";
-import { ChangeDetectorRef, Component, inject, NgZone } from "@angular/core";
+import { CommonModule, isPlatformBrowser } from "@angular/common";
+import { ChangeDetectorRef, Component, Inject, inject, NgZone, PLATFORM_ID } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { Title } from "@angular/platform-browser";
@@ -12,6 +12,7 @@ import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { MenuModule } from "primeng/menu";
 import { SelectModule } from "primeng/select";
+import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
 import { TemplateSelectionDialogComponent } from "../../../components/template-selection-dialog/template-selection-dialog.component";
 import { BrokerageTypeModel } from "../../../models/BrokerageTypeModel";
@@ -51,7 +52,8 @@ export class ProfileComponent {
 	existingProfileImage = "";
 	existingLogoImage = "";
 
-	newSelectedProfileImage: any;
+	newSelectedProfileImage: BehaviorSubject<string>;
+	newSelectedProfileImageObservable: Observable<string>;
 	newSelectedLogoImage: string = "";
 
 	readonly dialog = inject(MatDialog);
@@ -67,8 +69,7 @@ export class ProfileComponent {
 		private titleService: Title,
 		private templateService: TemplateService,
 		public dialogService: DialogService,
-		private cdRef: ChangeDetectorRef,
-		private zone: NgZone
+		@Inject(PLATFORM_ID) private platformId: Object
 	) {
 		this.titleService.setTitle("Profile");
 		this.items = [
@@ -90,6 +91,9 @@ export class ProfileComponent {
 				],
 			},
 		];
+
+		this.newSelectedProfileImage = new BehaviorSubject("");
+		this.newSelectedProfileImageObservable = this.newSelectedProfileImage.asObservable();
 	}
 
 	get emailAddress() {
@@ -122,9 +126,6 @@ export class ProfileComponent {
 	get templateId() {
 		return this.agentForm.get("templateId");
 	}
-	// get cellNumber() {
-	// return this.agentForm.get("cellNumber");
-	// }
 
 	ngOnInit() {
 		this.agentForm = this.fb.group({
@@ -190,6 +191,7 @@ export class ProfileComponent {
 						siteUrl,
 					} = websiteSettings;
 					this.existingProfileImage = profileImage;
+					this.newSelectedProfileImage.next(profileImage);
 					this.existingLogoImage = brokerage.logoPath;
 
 					this.agentForm.patchValue({
@@ -328,7 +330,7 @@ export class ProfileComponent {
 						phone: websitePhone,
 						address: websiteAddress,
 					},
-					profileImage: this.newSelectedProfileImage ? this.newSelectedProfileImage : this.existingProfileImage,
+					profileImage: this.newSelectedProfileImage.value ? this.newSelectedProfileImage.value : this.existingProfileImage,
 					logoImage: this.newSelectedLogoImage ? this.newSelectedLogoImage : this.existingLogoImage,
 				},
 			};
@@ -354,27 +356,22 @@ export class ProfileComponent {
 	}
 
 	onProfileImageChange(event: Event): void {
-		const ref = this.dialogService.open(ImageDialogComponent, {
-			header: "Adjust Profile Image",
-			height: "80%",
-			width: "80%",
-			closable: false,
-			closeOnEscape: false,
-			focusOnShow: false, // Keep this
-			data: {
-				imageChangedEvent: event,
-			},
-		});
-		ref.onClose.subscribe((croppedImage: string | null) => {
-			this.newSelectedProfileImage = null;
-			this.cdRef.detectChanges();
-			this.zone.run(() => {});
-
-			setTimeout(() => {
-				this.newSelectedProfileImage = croppedImage;
-				this.zone.run(() => {});
-			}, 10);
-		});
+		if (isPlatformBrowser(this.platformId)) {
+			const ref = this.dialogService.open(ImageDialogComponent, {
+				header: "Adjust Profile Image",
+				height: "80%",
+				width: "80%",
+				closable: false,
+				closeOnEscape: false,
+				focusOnShow: false,
+				data: {
+					imageChangedEvent: event,
+				},
+			});
+			ref.onClose.subscribe((croppedImage: string) => {
+				this.newSelectedProfileImage.next(croppedImage);
+			});
+		}
 	}
 
 	onLogoImageChange(event: Event): void {

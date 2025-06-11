@@ -274,17 +274,17 @@
 													id="profileImageUpload"
 													accept="image/*" />
 
-												<!-- <div
+												<div
 													class="mt-3 p-2 border rounded bg-white shadow-sm"
-													*ngIf="newSelectedProfileImage">
+													*ngIf="newSelectedProfileImageObservable | async as newSelectedProfileImage">
 													<div class="text-center">
 														<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
 														<img
 															[src]="newSelectedProfileImage"
-															class="rounded border"
+															class="rounded border image-preview"
 															alt="Profile Picture Preview" />
 													</div>
-												</div> -->
+												</div>
 											</div>
 										</div>
 									</div>
