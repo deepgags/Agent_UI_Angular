@@ -187,7 +187,7 @@ export class RegisterComponent implements OnInit {
 				// cellNumber: cellNumber,
 				password: password,
 				confirmPassword: confirmPassword,
-				profileImage: this.newSelectedProfileImage,
+				profileImage: this.newSelectedProfileImage.value,
 				logoImage: this.newSelectedLogoImage,
 				// logoImagePath: this.logoImagePath,
 			};
