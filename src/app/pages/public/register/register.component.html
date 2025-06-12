@@ -23,6 +23,7 @@
 				<div class="mb-3">
 					<h6 class="text-muted mb-3 border-bottom pb-1">Business Information</h6>
 					<div class="mb-3">
+					<p-iftalabel>
 						<p-select
 							formControlName="brokerageType"
 							[options]="brokerageTypes"
@@ -31,7 +32,8 @@
 							placeholder="Select a Brokerage *"
 							styleClass="w-100"
 							(onChange)="brokerageChange($event.value)" />
-
+					<label for="brokerageTypes">Brokerage Type</label>
+					</p-iftalabel>
 						<span
 							class="error"
 							*ngIf="brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)">
@@ -39,6 +41,8 @@
 						</span>
 					</div>
 					<div class="mb-3">
+					<p-iftalabel>
+
 						<input
 							type="text"
 							pInputText
@@ -46,7 +50,8 @@
 							placeholder="Business Name *"
 							class="form-control"
 							id="businessName" />
-
+		<label for="businessName">Business Name</label>
+												</p-iftalabel>
 						<span
 							class="error"
 							*ngIf="businessName?.invalid && (businessName?.dirty || businessName?.touched)">
@@ -54,6 +59,8 @@
 						</span>
 					</div>
 					<div class="mb-3">
+					<p-iftalabel>
+
 						<input
 							type="text"
 							pInputText
@@ -61,6 +68,8 @@
 							placeholder="Enter brokerage address"
 							class="form-control"
 							id="address" />
+								<label for="Brokerage Address">Brokerage Address</label>
+					</p-iftalabel>
 					</div>
 				</div>
 
@@ -70,6 +79,8 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
+					<p-iftalabel>
+
 								<input
 									type="text"
 									pInputText
@@ -78,6 +89,8 @@
 									class="form-control"
 									id="firstName"
 									required />
+									<label for="firstName">First Name</label>
+					</p-iftalabel>
 								<span
 									class="error"
 									*ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
@@ -87,7 +100,9 @@
 						</div>
 						<div class="col-md-6">
 							<div class="mb-3">
-								<input
+								<p-iftalabel>
+
+									<input
 									type="text"
 									pInputText
 									formControlName="lastName"
@@ -95,6 +110,8 @@
 									class="form-control"
 									id="lastName"
 									required />
+									<label for="lastName">Last Name</label>
+								</p-iftalabel>
 								<span
 									class="error"
 									*ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
@@ -127,7 +144,9 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<input
+								<p-iftalabel>
+
+									<input
 									type="email"
 									pInputText
 									formControlName="emailAddress"
@@ -135,6 +154,9 @@
 									class="form-control"
 									id="emailAddress"
 									required />
+								<label for="emailAddress">Email Address</label>
+
+								</p-iftalabel>
 								<span
 									class="error"
 									*ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)">
@@ -145,13 +167,18 @@
 						</div>
 						<div class="col-md-6">
 							<div class="mb-3">
-								<p-inputmask
+								<p-iftalabel>
+
+									<p-inputmask
 									mask="999-999-9999"
 									formControlName="phoneNumber"
 									styleClass="form-control"
 									placeholder="Phone Number *"
 									id="phoneNumber"
 									required />
+								<label for="phoneNumber">Phone Number</label>
+
+								</p-iftalabel>
 								<span
 									class="error"
 									*ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)">
@@ -169,7 +196,9 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<p-password
+								<p-iftalabel>
+
+									<p-password
 									formControlName="password"
 									[feedback]="true"
 									[toggleMask]="true"
@@ -179,7 +208,10 @@
 									inputStyleClass="form-control"
 									id="password"
 									required />
-								<span
+									<label for="password">Password</label>
+
+								</p-iftalabel>
+									<span
 									class="error"
 									*ngIf="password?.invalid && (password?.dirty || password?.touched)">
 									<span *ngIf="password?.errors?.['required']">Password is required</span>
@@ -191,7 +223,8 @@
 						</div>
 						<div class="col-md-6">
 							<div class="mb-3">
-								<p-password
+								<p-iftalabel>
+									<p-password
 									formControlName="confirmPassword"
 									[feedback]="false"
 									[toggleMask]="true"
@@ -201,6 +234,9 @@
 									inputStyleClass="form-control"
 									id="confirmPassword"
 									required />
+									<label for="confirmPassword">Confirm Password</label>
+
+								</p-iftalabel>
 								<span
 									class="error"
 									*ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)">

@@ -18,6 +18,7 @@ import { BrokerageTypeService } from "../../../services/brokerage.service";
 import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
+import { IftaLabelModule } from "primeng/iftalabel";
 @Component({
 	selector: "app-register",
 	imports: [
@@ -30,6 +31,7 @@ import { NotificationService } from "../../../services/notification.service";
 		SelectModule,
 		InputTextModule,
 		PasswordModule,
+		IftaLabelModule,
 	],
 	templateUrl: "./register.component.html",
 	styleUrl: "./register.component.scss",
