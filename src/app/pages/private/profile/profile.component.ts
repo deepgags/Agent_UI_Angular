@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from "@angular/common";
-import { ChangeDetectorRef, Component, Inject, inject, NgZone, PLATFORM_ID } from "@angular/core";
+import { Component, Inject, inject, PLATFORM_ID } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { Title } from "@angular/platform-browser";
@@ -8,6 +8,7 @@ import { AngularSvgIconModule } from "angular-svg-icon";
 import { MenuItem } from "primeng/api";
 import { ColorPickerModule } from "primeng/colorpicker";
 import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
+import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { MenuModule } from "primeng/menu";
@@ -23,7 +24,6 @@ import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { TemplateService } from "../../../services/template.service";
-
 @Component({
 	selector: "app-profile",
 	imports: [
@@ -38,6 +38,7 @@ import { TemplateService } from "../../../services/template.service";
 		ColorPickerModule,
 		MenuModule,
 		DynamicDialogModule,
+		IftaLabelModule,
 	],
 	templateUrl: "./profile.component.html",
 	styleUrl: "./profile.component.scss",
