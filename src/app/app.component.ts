@@ -1,8 +1,8 @@
 import { CommonModule, DOCUMENT, isPlatformBrowser, Location } from "@angular/common";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { ChangeDetectionStrategy, Component, Inject, OnInit, PLATFORM_ID } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Component, Inject, PLATFORM_ID } from "@angular/core";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { ActivatedRoute, Router, RouterOutlet } from "@angular/router";
+import { Router, RouterOutlet } from "@angular/router";
 import { Pages } from "./enums/pages";
 import { environment } from "./environments/environment.development";
 import { LoadingService } from "./services/loading.service";
@@ -10,17 +10,11 @@ import { SiteConfigService } from "./services/site-config.service";
 
 @Component({
 	selector: "app-root",
-	imports: [
-		RouterOutlet,
-		CommonModule,
-		MatProgressSpinnerModule,
-		HttpClientModule, // Added HttpClientModule for standalone component
-	],
+	imports: [RouterOutlet, CommonModule, MatProgressSpinnerModule],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.scss",
-	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 	currentPath: string = "";
 	queryParams: any = {};
 	isBrowser: boolean = false;
@@ -36,7 +30,7 @@ export class AppComponent implements OnInit {
 		this.isBrowser = isPlatformBrowser(platformId);
 	}
 
-	ngOnInit() {
+	ngAfterViewInit() {
 		if (this.isBrowser) {
 			const queryStr = window.location.search;
 			if (queryStr) {
