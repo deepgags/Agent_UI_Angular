@@ -63,6 +63,12 @@ export class AppComponent {
 				const config: any = response.data;
 				this.loadingService.loadingOff();
 				this.redirectToTemplate(config);
+				if (config.websiteSettings.primaryColor) {
+					document.documentElement.style.setProperty("--primary-color", config.websiteSettings.primaryColor);
+				}
+				if (config.websiteSettings.secondaryColor) {
+					document.documentElement.style.setProperty("--secondary-color", config.websiteSettings.secondaryColor);
+				}
 			},
 			error: (error: any) => {
 				console.error("Failed to load site configuration:", error);

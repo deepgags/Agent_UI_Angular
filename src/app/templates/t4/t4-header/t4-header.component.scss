@@ -1,20 +1,19 @@
-$info: #1EA69A;
 .nav_bg {
-    background-color: $info;
+	background-color: var(--primary-color);
 }
 
-.logo{
-    width: 17px;
+.logo {
+	width: 17px;
 }
 .dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0; /* optional: remove any jump */
+	display: block;
+	margin-top: 0; /* optional: remove any jump */
 }
 .dropdown-menu {
-    margin-top: 0;
-    display: none;
-    margin-left: 65px;
+	margin-top: 0;
+	display: none;
+	margin-left: 65px;
 }
-a{
-    font-size:14px;
+a {
+	font-size: 14px;
 }

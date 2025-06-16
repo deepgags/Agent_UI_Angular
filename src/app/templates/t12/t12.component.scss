@@ -3,7 +3,9 @@
 // @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-$info: #06a788;
+:root {
+	--primary-color: #06a788;
+}
 
 * {
 	font-family: "Raleway", serif;
@@ -50,7 +52,7 @@ p {
 
 .search_btn {
 	color: white;
-	background-color: $info;
+	background-color: var(--primary-color);
 	border-radius: 10px;
 }
 
@@ -58,7 +60,7 @@ p {
 	font-family: "Patua One", serif;
 	font-weight: 400;
 	font-size: 35px;
-	color: $info;
+	color: var(--primary-color);
 }
 
 .city_card {
@@ -140,7 +142,7 @@ label {
 
 .submit {
 	border-radius: 10px;
-	color: $info;
+	color: var(--primary-color);
 }
 .sub {
 	background-color: #22614b;
@@ -206,12 +208,12 @@ footer {
 }
 
 .text-pink {
-	color: $info;
+	color: var(--primary-color);
 }
 
 .search-container {
 	.info {
-		color: $info !important;
+		color: var(--primary-color) !important;
 	}
 	p {
 		font-size: 13px;
@@ -224,12 +226,12 @@ footer {
 		color: white;
 	}
 	.text_bg {
-		background-color: $info;
+		background-color: var(--primary-color);
 		position: absolute;
 		top: 9px;
 	}
 	.nav-link {
-		color: $info;
+		color: var(--primary-color);
 	}
 
 	.text_bg2 {
@@ -270,24 +272,24 @@ footer {
 	}
 
 	.head-bg {
-		background-color: $info;
+		background-color: var(--primary-color);
 		color: white !important;
 	}
 
 	.custom-select:focus {
-		border-color: $info !important;
+		border-color: var(--primary-color) !important;
 		outline: none !important;
 		box-shadow: 0 0 0 0.2rem #03a98961 !important;
 	}
 	.search-bar:focus-visible {
-		border-color: $info;
+		border-color: var(--primary-color);
 		outline: 0;
 		box-shadow: 0 0 0 0.25rem #03a98961;
 	}
 
 	.search_btn {
 		color: white;
-		background-color: $info !important;
+		background-color: var(--primary-color) !important;
 		border-radius: 10px;
 
 		&:hover {
@@ -320,7 +322,7 @@ footer {
 		font-family: "Patua One", serif;
 		font-weight: 400;
 		font-size: 26px;
-		color: $info;
+		color: var(--primary-color);
 	}
 	// .bannner{
 	//   background-image: url('./images/mobile-banner.jpg');
