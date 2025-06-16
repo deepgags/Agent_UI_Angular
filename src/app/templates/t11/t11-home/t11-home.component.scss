@@ -34,6 +34,9 @@ $info:#95c41f;
   .mob_pic {
     top: 41% !important;
   } 
+  .top-padding{
+    padding-top: 0px;
+}
 }
 .image-text {
   position: absolute;
@@ -74,4 +77,16 @@ $info:#95c41f;
   .prop-img  {
     width: 100%;
   } 
+  .profile-img {
+    position: static !important;
+    top: auto !important;
+  }
+
+}
+
+
+.profile-img {
+  top: 786px;
+  position: absolute;
+  max-height: 400px;
 }

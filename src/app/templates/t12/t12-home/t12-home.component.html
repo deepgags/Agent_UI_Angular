@@ -11,77 +11,81 @@
 </div>
 </div>
 
-<div class="container sec-31 p-3 mt-5 rounded-4 search-container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-6 col-12">
-            <p class="fs-2 mb-0 fw-semibold">
-              Hi, I’m {{siteConfig?.firstName}} {{siteConfig?.lastName}}
-            </p>
-            <p class="text-2">Sales Representative</p>
-            <p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions.</p>
-            <p class="fw-semibold">
-              Every engagement is an opportunity to create a lasting impression and a forever client. Acharya is a well serving in real estate with the reputation of providing quality services and keeping excellent relations with the clients. </p>
-             				<!-- Button trigger modal -->
-<button type="button" class="btn search_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-	Get in Touch
-  </button>
+  <div class="container sec-31 p-3 mt-5 rounded-4 search-container">
+      <div class="container  rounded-4 p-4">
+  <div class="row justify-content-center align-items-center">
+    <!-- Text Section -->
+    <div class="col-lg-6 col-12">
+      <p class="fs-2 mb-0 fw-semibold">Hi, I’m {{siteConfig?.firstName}} {{siteConfig?.lastName}}</p>
+      <p class="text-success fw-bold fs-5">Sales Representative</p>
+      <p class="fw-semibold mb-0">
+        I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions.
+      </p>
+      <p class="fw-semibold">
+        Every engagement is an opportunity to create a lasting impression and a forever client. Acharya is well serving in real estate with the reputation of providing quality services and keeping excellent relations with the clients.
+      </p>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title info fs-5" id="exampleModalLabel">Get in Touch</h1>
-		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<div class="">
-				<div class="card-body">
-				  <form [formGroup]="userForm" name="userForm" >
-					<mat-form-field appearance="fill">
-					  <mat-label class="info">First Name</mat-label>
-					  <input formControlName="firstName" required matInput placeholder="First Name" />
-					  <mat-error>First name is required</mat-error>
-					</mat-form-field>
-					<mat-form-field appearance="fill">
-					  <mat-label class="info">Email</mat-label>
-					  <input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
-					  @if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
-					   <mat-error>Please enter a valid email address</mat-error>
-					  }
-					 @if (userForm.hasError('required', 'emailAddress')) {
-					   <mat-error>Email is required</mat-error>
-					  }
-					</mat-form-field>
-					<mat-form-field appearance="fill">
-					  <mat-label class="info">Phone Number</mat-label>
-					  <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
-					  @if (userForm.hasError('pattern', 'phoneNumber')) {
-						<mat-error>Please enter a valid phone number</mat-error>
-					   }
-					   @if (userForm.hasError('required', 'phoneNumber')) {
-						<mat-error>Phone number is required</mat-error>
-					  }
-					</mat-form-field>
-				  </form>
-				</div>
-			  </div>
-		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		  <button type="button" class="btn search_btn">Send</button>
-		</div>
-	  </div>
-	</div>
+      <!-- Get in Touch Button -->
+      <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Get in Touch
+      </button>
+      <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">Get in Touch</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userForm" name="userForm">
+          <mat-form-field appearance="fill" class="w-100 mb-3">
+            <mat-label class="text-success">First Name</mat-label>
+            <input formControlName="firstName" required matInput placeholder="First Name" />
+            <mat-error>First name is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="w-100 mb-3">
+            <mat-label class="text-success">Email</mat-label>
+            <input type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
+            <mat-error *ngIf="userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="userForm.hasError('required', 'emailAddress')">
+              Email is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label class="text-success">Phone Number</mat-label>
+            <input type="tel" formControlName="phoneNumber" matInput placeholder="Ex. 123-456-1234" />
+            <mat-error *ngIf="userForm.hasError('pattern', 'phoneNumber')">Please enter a valid phone number</mat-error>
+            <mat-error *ngIf="userForm.hasError('required', 'phoneNumber')">Phone number is required</mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Send</button>
+      </div>
+    </div>
   </div>
-				<!-- <a class="btn btn_outline ms-4  text-decoration-none pop" [href]="'tel:'+customer?.phoneNumber | phone">{{customer?.phoneNumber | phone}}</a> -->
-          </div>
-          <div class="col-lg-6 col-12 mt-lg-0 mt-5   d-flex justify-content-lg-end justify-content-center">
-            <div class="">
-        	<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="">
-            </div>
-          </div>
-        </div>
+</div>
+    </div>
+
+
+    <div class="col-lg-6 col-12 mt-lg-0 mt-5 d-flex justify-content-lg-end justify-content-center">
+      <img
+        [src]="siteConfig?.websiteSettings?.profileImage ? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'"
+        alt="No profile image"
+        class="profile-img"
+      />
+    </div>
+  </div>
+</div>
+
+
+
       </div>
 
 <div class="container py-lg-5 p-lg-0 p-4">
