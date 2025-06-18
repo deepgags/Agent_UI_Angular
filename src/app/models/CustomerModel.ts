@@ -18,4 +18,11 @@ export interface CustomerModel {
 	profileImage: string;
 	brokerage?: BrokerageTypeModel | undefined;
 	websiteSettings: any;
+	secondaryAgent?: {
+		firstName: string;
+		lastName: string;
+		websiteEmail: string;
+		websitePhone: string;
+		profileImage: string;
+	};
 }
