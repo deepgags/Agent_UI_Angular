@@ -51,12 +51,18 @@ export class ProfileComponent {
 	templates: any[] = [];
 
 	existingProfileImage = "";
-	existingLogoImage = "";
 
-	newSelectedProfileImage: BehaviorSubject<string>;
-	newSelectedProfileImageObservable: Observable<string>;
-	newSelectedLogoImage: BehaviorSubject<string>;
-	newSelectedLogoImageObservable: Observable<string>;
+	brokerageImage: BehaviorSubject<string>;
+	brokerageImageObservable: Observable<string>;
+
+	primaryAgentProfileImage: BehaviorSubject<string>;
+	primaryAgentProfileImageObservable: Observable<string>;
+
+	logoImage: BehaviorSubject<string>;
+	logoImageObservable: Observable<string>;
+
+	secondaryAgentProfileImage: BehaviorSubject<string>;
+	secondaryAgentProfileImageObservable: Observable<string>;
 
 	readonly dialog = inject(MatDialog);
 	items: MenuItem[] | undefined;
@@ -94,11 +100,17 @@ export class ProfileComponent {
 			},
 		];
 
-		this.newSelectedProfileImage = new BehaviorSubject("");
-		this.newSelectedProfileImageObservable = this.newSelectedProfileImage.asObservable();
+		this.brokerageImage = new BehaviorSubject("");
+		this.brokerageImageObservable = this.brokerageImage.asObservable();
 
-		this.newSelectedLogoImage = new BehaviorSubject("");
-		this.newSelectedLogoImageObservable = this.newSelectedLogoImage.asObservable();
+		this.logoImage = new BehaviorSubject("");
+		this.logoImageObservable = this.logoImage.asObservable();
+
+		this.primaryAgentProfileImage = new BehaviorSubject("");
+		this.primaryAgentProfileImageObservable = this.primaryAgentProfileImage.asObservable();
+
+		this.secondaryAgentProfileImage = new BehaviorSubject("");
+		this.secondaryAgentProfileImageObservable = this.secondaryAgentProfileImage.asObservable();
 	}
 
 	get emailAddress() {
@@ -153,7 +165,6 @@ export class ProfileComponent {
 			templateId: new FormControl("", Validators.required),
 			primaryColor: new FormControl(""),
 			secondaryColor: new FormControl(""),
-			logoUrl: new FormControl(""),
 			facebook: new FormControl(""),
 			twitter: new FormControl(""),
 			instagram: new FormControl(""),
@@ -162,6 +173,13 @@ export class ProfileComponent {
 			websiteEmail: new FormControl(""),
 			websitePhone: new FormControl(""),
 			websiteAddress: new FormControl(""),
+			secondaryAgent: this.fb.group({
+				firstName: new FormControl(""),
+				lastName: new FormControl(""),
+				websitePhone: new FormControl(""),
+				websiteEmail: new FormControl(""),
+				profileImage: new FormControl(""),
+			}),
 		});
 
 		this.getBrokerageTypes();
@@ -173,31 +191,24 @@ export class ProfileComponent {
 			next: (response: any) => {
 				if (response.status) {
 					this.agentData = response.data;
-					const {
-						businessName,
-						firstName,
-						lastName,
-						emailAddress,
-						phoneNumber,
-						cellNumber,
-						brokerageTypeId,
-						websiteSettings,
-						brokerage,
-					} = response.data;
+					const { businessName, firstName, lastName, emailAddress, phoneNumber, brokerageTypeId, websiteSettings, brokerage } =
+						response.data;
 
 					const {
 						templateId,
 						primaryColor,
 						secondaryColor,
-						logoUrl,
+						logoImage,
 						contactInfo: { address: websiteAddress, email: websiteEmail, phone: websitePhone },
 						socialLinks: { facebook, instagram, linkedin, twitter, youtube },
 						profileImage,
 						siteUrl,
 					} = websiteSettings;
+
 					this.existingProfileImage = profileImage;
-					this.newSelectedProfileImage.next(profileImage);
-					this.existingLogoImage = brokerage.logoPath;
+					this.brokerageImage.next(brokerage.logoPath);
+					this.primaryAgentProfileImage.next(profileImage);
+					this.logoImage.next(logoImage);
 
 					this.agentForm.patchValue({
 						businessName: businessName,
@@ -206,7 +217,6 @@ export class ProfileComponent {
 						address: websiteAddress,
 						emailAddress: emailAddress,
 						phoneNumber: phoneNumber,
-						// cellNumber: cellNumber,
 						brokerageType: brokerageTypeId,
 						siteUrl: siteUrl,
 					});
@@ -216,7 +226,6 @@ export class ProfileComponent {
 							templateId: templateId,
 							primaryColor: primaryColor,
 							secondaryColor: secondaryColor,
-							logoUrl: logoUrl,
 							facebook: facebook,
 							twitter: twitter,
 							instagram: instagram,
@@ -226,11 +235,16 @@ export class ProfileComponent {
 							websitePhone: websitePhone,
 							websiteAddress: websiteAddress,
 						});
+						if (response.data.secondaryAgent) {
+							this.agentForm.get("secondaryAgent")?.patchValue({
+								...response.data.secondaryAgent,
+							});
+							this.secondaryAgentProfileImage.next(response.data.secondaryAgent.profileImage);
+						}
 					}
 
 					this.emailAddress?.disable();
 					this.phoneNumber?.disable();
-					// this.cellNumber?.disable();
 				}
 			},
 			error: () => {
@@ -259,7 +273,7 @@ export class ProfileComponent {
 	brokerageChange(selectedBrokerage: any): void {
 		for (const brokerage of this.brokerageTypes) {
 			if (brokerage._id === selectedBrokerage) {
-				this.existingLogoImage = brokerage.logoPath;
+				this.brokerageImage.next(brokerage.logoPath);
 				break;
 			}
 		}
@@ -335,8 +349,13 @@ export class ProfileComponent {
 						phone: websitePhone,
 						address: websiteAddress,
 					},
-					profileImage: this.newSelectedProfileImage.value ? this.newSelectedProfileImage.value : this.existingProfileImage,
-					logoImage: this.newSelectedLogoImage.value ? this.newSelectedLogoImage.value : this.existingLogoImage,
+					profileImage: this.primaryAgentProfileImage.value ? this.primaryAgentProfileImage.value : this.existingProfileImage,
+					brokerageImage: this.brokerageImage,
+					logoImage: this.logoImage.value,
+				},
+				secondaryAgent: {
+					...this.agentForm.value.secondaryAgent,
+					profileImage: this.secondaryAgentProfileImage.value,
 				},
 			};
 			this.customerService.update(params).subscribe({
@@ -374,7 +393,7 @@ export class ProfileComponent {
 				},
 			});
 			ref.onClose.subscribe((croppedImage: string) => {
-				this.newSelectedProfileImage.next(croppedImage);
+				this.primaryAgentProfileImage.next(croppedImage);
 			});
 		}
 	}
@@ -392,9 +411,30 @@ export class ProfileComponent {
 		});
 		ref.onClose.subscribe((croppedImage: string) => {
 			if (croppedImage) {
-				this.newSelectedLogoImage.next(croppedImage);
+				this.logoImage.next(croppedImage);
 			}
 		});
+	}
+
+	onSecondaryProfileImageChange(event: Event): void {
+		if (isPlatformBrowser(this.platformId)) {
+			const ref = this.dialogService.open(ImageDialogComponent, {
+				header: "Adjust Profile Image",
+				height: "80%",
+				width: "80%",
+				closable: false,
+				closeOnEscape: false,
+				focusOnShow: false,
+				data: {
+					imageChangedEvent: event,
+				},
+			});
+			ref.onClose.subscribe((croppedImage: string) => {
+				if (croppedImage) {
+					this.secondaryAgentProfileImage.next(croppedImage);
+				}
+			});
+		}
 	}
 
 	openTemplateDialog() {
