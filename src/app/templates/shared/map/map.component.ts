@@ -1,64 +1,72 @@
-import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { GoogleMapsModule } from '@angular/google-maps';
-import { MatDialog } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { CommonModule } from "@angular/common";
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { GoogleMapsModule } from "@angular/google-maps";
+import { MatDialog } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { Title } from "@angular/platform-browser";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { DefaultRenderer, MarkerClusterer } from "@googlemaps/markerclusterer";
-import { BehaviorSubject } from 'rxjs';
-import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
-import { sortTypes } from '../../../consts/DefaultTypes';
-import { stringiFy } from '../../../consts/Utility';
-import { PropertyModel } from '../../../models/PropertyModel';
-import { LoadingService } from '../../../services/loading.service';
-import { NotificationService } from '../../../services/notification.service';
-import { PropertyService } from '../../../services/property.service';
-import { StorageService } from '../../../services/storage.service';
-import { SearchComponent } from '../search/search.component';
+import { BehaviorSubject } from "rxjs";
+import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+import { sortTypes } from "../../../consts/DefaultTypes";
+import { stringiFy } from "../../../consts/Utility";
+import { PropertyModel } from "../../../models/PropertyModel";
+import { LoadingService } from "../../../services/loading.service";
+import { NotificationService } from "../../../services/notification.service";
+import { PropertyService } from "../../../services/property.service";
+import { StorageService } from "../../../services/storage.service";
+import { SearchComponent } from "../search/search.component";
 
 @Component({
-	selector: 'app-map',
-	imports: [FormsModule, CommonModule, MatIconModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule, GoogleMapsModule],
-	templateUrl: './map.component.html',
-	styleUrl: './map.component.scss',
+	selector: "app-map",
+	imports: [
+		FormsModule,
+		CommonModule,
+		MatIconModule,
+		SearchComponent,
+		RouterModule,
+		MatPaginatorModule,
+		MatProgressSpinnerModule,
+		GoogleMapsModule,
+	],
+	templateUrl: "./map.component.html",
+	styleUrl: "./map.component.scss",
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true
+	standalone: true,
 })
 export class MapComponent implements OnInit, AfterViewInit {
-
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
-	pageSize: number = 12;
+	pageSize: number = 100;
 	private loadingSubject = new BehaviorSubject<boolean>(false);
 	loading$ = this.loadingSubject.asObservable();
 
 	Latitude: number = 0;
 	Longitude: number = 0;
 	zoom = 15;
-	@ViewChild('mapComponent') mapComponent!: ElementRef<HTMLDivElement>;
+	@ViewChild("mapComponent") mapComponent!: ElementRef<HTMLDivElement>;
 	// @ViewChild('infoWindow') infoWindow!: ElementRef<MapInfoWindow>;
 	previousInfoWindow: google.maps.InfoWindow | null = null;
 	map!: google.maps.Map;
 
-	markers = [{ position: { lat: 56.1304, lng: 106.3468 }, property: new PropertyModel() }] // Center of Canada
+	markers = [{ position: { lat: 56.1304, lng: 106.3468 }, property: new PropertyModel() }]; // Center of Canada
 
 	selectedFilters: any = {
-		address: '',
-		property_type: '',
-		bedrooms: '0',
-		bathrooms: '0',
-		min_price: '',
-		max_price: '',
-		property_status: '',
-		sqFt: '',
-		distance: '20',
-		sort: 'Most'
+		address: "",
+		property_type: "",
+		bedrooms: "0",
+		bathrooms: "0",
+		min_price: "",
+		max_price: "",
+		property_status: "",
+		sqFt: "",
+		distance: "20",
+		sort: "Most",
 	};
 
 	sortDropDown = sortTypes;
@@ -71,12 +79,13 @@ export class MapComponent implements OnInit, AfterViewInit {
 		private storageService: StorageService,
 		private titleService: Title,
 		private router: Router,
-		private route: ActivatedRoute) {
+		private route: ActivatedRoute
+	) {
 		this.titleService.setTitle("Properties on map");
 	}
 
 	ngAfterViewInit(): void {
-		this.initMap()
+		this.initMap();
 	}
 
 	initMap() {
@@ -85,7 +94,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 				center: { lat: 0, lng: 0 },
 				zoom: 15,
 				mapTypeControl: true,
-				mapId: 'properties',
+				mapId: "properties",
 				disableDefaultUI: false,
 				heading: 90,
 				tilt: 45,
@@ -93,20 +102,20 @@ export class MapComponent implements OnInit, AfterViewInit {
 				streetViewControl: false,
 				fullscreenControl: true,
 				clickableIcons: true,
-				gestureHandling: 'greedy',
+				gestureHandling: "greedy",
 			});
 		}
 	}
 
 	ngOnInit(): void {
-		this.pageIndex = 1;
-		this.pageSize = 12;
+		// this.pageIndex = 1;
+		// this.pageSize = 12;
 		this.getLocation();
-		this.route.queryParams.subscribe(params => {
+		this.route.queryParams.subscribe((params) => {
 			if (Object.keys(params).length > 0) {
 				this.selectedFilters = {
 					...this.selectedFilters,
-					...params
+					...params,
 				};
 				this.searchProperties(params);
 			}
@@ -115,14 +124,16 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 	async renderMarker(property: PropertyModel) {
 		if (property.Latitude && property.Longitude) {
-			const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as { AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement });
+			const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as {
+				AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement;
+			});
 
 			const markerELement = new AdvancedMarkerElement({
 				map: this.map,
 				content: this.buildContent(property),
 				position: { lat: property.Latitude, lng: property.Longitude },
 				title: property.PropertyType,
-				zIndex: google.maps.Marker.MAX_ZINDEX
+				zIndex: google.maps.Marker.MAX_ZINDEX,
 			});
 
 			markerELement.addListener("gmp-click", async () => {
@@ -144,19 +155,17 @@ export class MapComponent implements OnInit, AfterViewInit {
 	}
 
 	openDialog(property: PropertyModel) {
-		const userDialog = this._interestedUserDialog.open(InteresteduserComponent,
-			{
-				width: '50%',
-				height: 'auto',
-				disableClose: true,
-				autoFocus: false,
-				restoreFocus: false,
-				hasBackdrop: true,
-				data: property
-			}
-		)
+		const userDialog = this._interestedUserDialog.open(InteresteduserComponent, {
+			width: "50%",
+			height: "auto",
+			disableClose: true,
+			autoFocus: false,
+			restoreFocus: false,
+			hasBackdrop: true,
+			data: property,
+		});
 
-		userDialog.afterClosed().subscribe(result => {
+		userDialog.afterClosed().subscribe((result) => {
 			if (result) {
 				this.redirectToDetail(property);
 			}
@@ -171,11 +180,24 @@ export class MapComponent implements OnInit, AfterViewInit {
 		const { InfoWindow } = await (google.maps.importLibrary("maps") as unknown as { InfoWindow: typeof google.maps.InfoWindow });
 		const informationwindow = new InfoWindow({
 			content:
-				"<div><h5>" + property.ListingKey + "</h5><p><b>Address : </b>" + property.UnparsedAddress + "<p><b>Cross Street : </b>" + property.CrossStreet +
-				+"<p><b>City : </b>" + property.City + "<p><b>City : </b>" + property.City + "<p><b>Price : </b>" + property.ListPrice + "<p><b>Property Type : </b>" + property.PropertyType
-				+ "<p><b>Property Use : </b>" + property.TransactionType,
+				"<div><h5>" +
+				property.ListingKey +
+				"</h5><p><b>Address : </b>" +
+				property.UnparsedAddress +
+				"<p><b>Cross Street : </b>" +
+				property.CrossStreet +
+				+"<p><b>City : </b>" +
+				property.City +
+				"<p><b>City : </b>" +
+				property.City +
+				"<p><b>Price : </b>" +
+				property.ListPrice +
+				"<p><b>Property Type : </b>" +
+				property.PropertyType +
+				"<p><b>Property Use : </b>" +
+				property.TransactionType,
 			position: this.map.getCenter(),
-			disableAutoPan: true
+			disableAutoPan: true,
 		});
 		informationwindow.open({ map: this.map, shouldFocus: true });
 		this.previousInfoWindow = informationwindow;
@@ -194,25 +216,24 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 	getRandomColor() {
 		let n = (Math.random() * 0xfffff * 1000000).toString(16);
-		return '#' + n.slice(0, 6);
+		return "#" + n.slice(0, 6);
 	}
 
 	buildContent(property: PropertyModel) {
-
 		const content = document.createElement("div");
 		let propertyIcon = "home";
 		switch (property.PropertyType) {
 			case "Residential Freehold":
-				propertyIcon = "home"
+				propertyIcon = "home";
 				break;
 			case "Residential Condo & Other":
-				propertyIcon = "home"
+				propertyIcon = "home";
 				break;
 			case "Commercial":
-				propertyIcon = "building"
+				propertyIcon = "building";
 				break;
 			default:
-				propertyIcon = "home"
+				propertyIcon = "home";
 				break;
 		}
 
@@ -252,33 +273,29 @@ export class MapComponent implements OnInit, AfterViewInit {
 	selectProperty(property: PropertyModel): void {
 		if (property.IsFeatureListing) {
 			this.openDialog(property);
-		}
-		else {
+		} else {
 			this.redirectToDetail(property);
 		}
 	}
 
 	redirectToDetail(property: PropertyModel): void {
-		const currentTemplate = this.router.url.split('/')[1];
-		this.router.navigate(
-			[`/${currentTemplate}`, 'property-detail'],
-			{
-				relativeTo: this.route,
-				queryParams: {
-					address: this.selectedFilters['address'],
-					property_type: this.selectedFilters['property_type'],
-					bedrooms: this.selectedFilters['bedrooms'],
-					bathrooms: this.selectedFilters['bathrooms'],
-					min_price: this.selectedFilters['min_price'],
-					max_price: this.selectedFilters['max_price'],
-					property_status: this.selectedFilters['property_status'],
-					sqFt: this.selectedFilters['sqFt'],
-					propertyId: property._id,
-					mlsId: property.ListingKey
-				},
-				queryParamsHandling: 'replace'
-			}
-		);
+		const currentTemplate = this.router.url.split("/")[1];
+		this.router.navigate([`/${currentTemplate}`, "property-detail"], {
+			relativeTo: this.route,
+			queryParams: {
+				address: this.selectedFilters["address"],
+				property_type: this.selectedFilters["property_type"],
+				bedrooms: this.selectedFilters["bedrooms"],
+				bathrooms: this.selectedFilters["bathrooms"],
+				min_price: this.selectedFilters["min_price"],
+				max_price: this.selectedFilters["max_price"],
+				property_status: this.selectedFilters["property_status"],
+				sqFt: this.selectedFilters["sqFt"],
+				propertyId: property._id,
+				mlsId: property.ListingKey,
+			},
+			queryParamsHandling: "replace",
+		});
 	}
 
 	zoomToFitMarkers(markers: { position: { lat: number; lng: number }; property: PropertyModel }[] = []): void {
@@ -288,13 +305,13 @@ export class MapComponent implements OnInit, AfterViewInit {
 		//   this.markers = markers;
 		// }
 
-		this.markers.forEach(marker => {
+		this.markers.forEach((marker) => {
 			bounds.extend(marker.position);
 		});
 
 		if (this.markers.length > 0) {
-			this.map?.setCenter(bounds.getCenter())
-			this.map?.fitBounds(bounds)
+			this.map?.setCenter(bounds.getCenter());
+			this.map?.fitBounds(bounds);
 		}
 	}
 
@@ -307,7 +324,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;
 		this.pageSize = event?.pageSize ?? this.pageSize;
 
-		const sort = selectedFilters.sort && selectedFilters.sort != '' ? selectedFilters.sort : "most";
+		const sort = selectedFilters.sort && selectedFilters.sort != "" ? selectedFilters.sort : "most";
 
 		const params = {
 			page: this.pageIndex,
@@ -324,8 +341,8 @@ export class MapComponent implements OnInit, AfterViewInit {
 			distance: stringiFy(selectedFilters.distance),
 			latitude: this.Latitude,
 			longitude: this.Longitude,
-			sort: sort
-		}
+			sort: sort,
+		};
 
 		this.loadingService.loadingOn();
 		this.loadingSubject.next(true);
@@ -338,13 +355,17 @@ export class MapComponent implements OnInit, AfterViewInit {
 				this.propertiesList.forEach(async (x) => {
 					this.markers.push({ position: { lat: x.Latitude, lng: x.Longitude }, property: x });
 					await this.renderMarker(x);
-				})
-				const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as { AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement });
+				});
+				const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as {
+					AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement;
+				});
 
 				const markerClusterer = new MarkerClusterer({
 					map: this.map,
 					renderer: new DefaultRenderer(),
-					markers: this.markers.map(x => new AdvancedMarkerElement({ position: x.position, content: this.buildContent(x.property) })),
+					markers: this.markers.map(
+						(x) => new AdvancedMarkerElement({ position: x.position, content: this.buildContent(x.property) })
+					),
 				});
 
 				//   markerClusterer.addListener("click", (e:any) => {
@@ -359,8 +380,8 @@ export class MapComponent implements OnInit, AfterViewInit {
 			},
 			complete: () => {
 				this.loadingSubject.next(false);
-			}
-		})
+			},
+		});
 		return event;
-	}
+	};
 }

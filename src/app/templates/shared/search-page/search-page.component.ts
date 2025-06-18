@@ -33,7 +33,7 @@ export class SearchPageComponent implements OnInit {
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
-	pageSize: number = 12;
+	pageSize: number = 100;
 	private loadingSubject = new BehaviorSubject<boolean>(false);
 	loading$ = this.loadingSubject.asObservable();
 
@@ -67,8 +67,8 @@ export class SearchPageComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.pageIndex = 1;
-		this.pageSize = 12;
+		// this.pageIndex = 1;
+		// this.pageSize = 12;
 		this.route.queryParams.subscribe((params) => {
 			if (Object.keys(params).length > 0) {
 				this.selectedFilters = {
