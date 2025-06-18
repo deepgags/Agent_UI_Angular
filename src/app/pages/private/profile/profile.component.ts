@@ -55,7 +55,8 @@ export class ProfileComponent {
 
 	newSelectedProfileImage: BehaviorSubject<string>;
 	newSelectedProfileImageObservable: Observable<string>;
-	newSelectedLogoImage: string = "";
+	newSelectedLogoImage: BehaviorSubject<string>;
+	newSelectedLogoImageObservable: Observable<string>;
 
 	readonly dialog = inject(MatDialog);
 	items: MenuItem[] | undefined;
@@ -95,6 +96,9 @@ export class ProfileComponent {
 
 		this.newSelectedProfileImage = new BehaviorSubject("");
 		this.newSelectedProfileImageObservable = this.newSelectedProfileImage.asObservable();
+
+		this.newSelectedLogoImage = new BehaviorSubject("");
+		this.newSelectedLogoImageObservable = this.newSelectedLogoImage.asObservable();
 	}
 
 	get emailAddress() {
@@ -332,7 +336,7 @@ export class ProfileComponent {
 						address: websiteAddress,
 					},
 					profileImage: this.newSelectedProfileImage.value ? this.newSelectedProfileImage.value : this.existingProfileImage,
-					logoImage: this.newSelectedLogoImage ? this.newSelectedLogoImage : this.existingLogoImage,
+					logoImage: this.newSelectedLogoImage.value ? this.newSelectedLogoImage.value : this.existingLogoImage,
 				},
 			};
 			this.customerService.update(params).subscribe({
@@ -387,7 +391,9 @@ export class ProfileComponent {
 			},
 		});
 		ref.onClose.subscribe((croppedImage: string) => {
-			this.newSelectedLogoImage = croppedImage;
+			if (croppedImage) {
+				this.newSelectedLogoImage.next(croppedImage);
+			}
 		});
 	}
 
