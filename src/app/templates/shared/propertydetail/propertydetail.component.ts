@@ -18,9 +18,9 @@ import { SearchComponent } from "../search/search.component";
 
 import { Gallery, GalleryConfig, GalleryModule, GalleryRef, ImageItem, ThumbnailsPosition } from "ng-gallery";
 import { map } from "rxjs/operators";
+import { GalleryComponent } from "../../../components/gallery/gallery.component";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
-import { UpperCase } from "../../../pipes/upper";
 import { SiteConfigService } from "../../../services/site-config.service";
 // import { LightboxModule, Lightbox } from 'ng-gallery/lightbox';
 
@@ -39,6 +39,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		RouterModule,
 		GalleryModule,
 		PhoneSearch,
+		GalleryComponent,
 	],
 	providers: [provideAnimations(), NgbCarouselConfig],
 	templateUrl: "./propertydetail.component.html",
@@ -57,18 +58,22 @@ export class PropertydetailComponent implements OnInit {
 	userModel: InterestedUserModel = new InterestedUserModel();
 
 	@ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
-	galleryConfig$: Observable<GalleryConfig>;
-	galleryRef: GalleryRef | undefined;
 	zoom = 14;
 	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Cananda
+
+	galleryConfig$: Observable<GalleryConfig>;
+	galleryRef: GalleryRef | undefined;
 
 	selectedFilters: any = {
 		propertyId: "",
 		mlsId: "",
 	};
 
-	siteConfig: SiteConfig | undefined;
+	// siteConfig: SiteConfig | undefined;
 	private siteConfigSubscription: Subscription | undefined;
+
+	siteConfigBS: BehaviorSubject<any>;
+	siteConfigObservable: Observable<any>;
 
 	constructor(
 		breakpointObserver: BreakpointObserver,
@@ -82,6 +87,9 @@ export class PropertydetailComponent implements OnInit {
 		private siteConfigService: SiteConfigService
 	) {
 		this.titleService.setTitle("Property Detail");
+
+		this.siteConfigBS = new BehaviorSubject(null);
+		this.siteConfigObservable = this.siteConfigBS.asObservable();
 
 		this.galleryConfig$ = breakpointObserver.observe([Breakpoints.HandsetPortrait]).pipe(
 			map((res) => {
@@ -116,7 +124,8 @@ export class PropertydetailComponent implements OnInit {
 
 		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
 			if (config) {
-				this.siteConfig = config;
+				// this.siteConfig = config;
+				this.siteConfigBS.next(config);
 			}
 		});
 

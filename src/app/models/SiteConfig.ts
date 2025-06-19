@@ -29,5 +29,12 @@ export interface SiteConfig {
 		secondaryColor: string;
 		profileImage: string;
 		logoImage: string;
-	}; // Allow other dynamic properties
+	};
+	secondaryAgent?: {
+		firstName: string;
+		lastName: string;
+		websiteEmail: string;
+		websitePhone: string;
+		profileImage: string;
+	};
 }

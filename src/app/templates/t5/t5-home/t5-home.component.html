@@ -1,126 +1,132 @@
 <div class="background-container">
 	<div class="container pt-5 search-container">
-
 		<div class="row justify-content-around align-items-center">
-		  <div class="col-12 col-lg-6 ">
-			<div class="">
-				<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image position-absolute man">
-				<div class="card position-absolute  man-card " style="width: 18rem;">
-				  <div class="card-body">
-					<h5 class="card-head text-white mb-0">PERSON NAME</h5>
-					<p class="card-text text-white ">SALES REPRESENTATIVE</p>
-					<div class=" d-flex">
-					  <div class="">
-						<img src="./t5/images/vector img/call.svg" alt="" />
-					  </div>
-					  <div class="ms-2">
-						<p>
-						  <a
-							class="text-white fw-semibold text-decoration-none"
-							href="tel:+4733378901"
-							>+47 333 78 901</a
-						  >
-						</p>
-					  </div>
+			<div class="col-12 col-lg-6">
+				<div
+					class=""
+					*ngIf="siteConfig && siteConfig.secondaryAgent">
+					<img
+						[src]="siteConfig?.secondaryAgent?.profileImage ? siteConfig?.secondaryAgent?.profileImage : '/images/Nologo.png'"
+						alt="No profile image"
+						class="overlay-image position-absolute man" />
+					<div
+						class="card position-absolute man-card"
+						style="width: 18rem">
+						<div class="card-body">
+							<h5 class="card-head text-white mb-1">
+								{{ siteConfig?.secondaryAgent?.firstName }} {{ siteConfig?.secondaryAgent?.lastName }}
+							</h5>
+							<!-- <p class="card-text text-white">SALES REPRESENTATIVE</p> -->
+							<div class="d-flex">
+								<div class="">
+									<img
+										src="./t5/images/vector img/call.svg"
+										alt="" />
+								</div>
+								<div class="ms-2">
+									<p>
+										<a
+											class="text-white fw-semibold text-decoration-none"
+											[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
+											{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
+										</a>
+									</p>
+								</div>
+							</div>
+							<div class="d-flex">
+								<div class="">
+									<img
+										src="./t5/images/vector img/mail.svg"
+										alt="" />
+								</div>
+								<div class="ms-2 mt-1">
+									<p>
+										<a
+											class="text-white fw-semibold text-decoration-none"
+											[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
+											{{ siteConfig?.secondaryAgent?.websiteEmail }}
+										</a>
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="d-flex ">
-					  <div class="">
-						<img src="./t5/images/vector img/mail.svg" alt="" />
-					  </div>
-					  <div class="ms-2 mt-1">
-						<p>
-						  <a
-							class="text-white fw-semibold text-decoration-none"
-							href="mailto:someoneexample.com"
-							>democc.com
-						  </a>
-						</p>
-					  </div>
-					</div>
-				  </div>
 				</div>
-				  
-					  </div>
-		  </div>
-		  <div class="col-12 col-lg-4 ">
-			<div class="">
-
-				<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image position-absolute man2">
-				<div class="card position-absolute  man-card2 " style="width: 18rem;">
-				  <div class="card-body">
-					<h5 class="card-head text-white mb-0">PERSON NAME</h5>
-					<p class="card-text text-white ">SALES REPRESENTATIVE</p>
-					<div class=" d-flex">
-					  <div class="">
-						<img src="./t5/images/vector img/call.svg" alt="" />
-					  </div>
-					  <div class="ms-2">
-						<p>
-						  <a
-							class="text-white fw-semibold text-decoration-none"
-							href="tel:+4733378901"
-							>+47 333 78 901</a
-						  >
-						</p>
-					  </div>
+			</div>
+			<div class="col-12 col-lg-4">
+				<div class="">
+					<img
+						[src]="siteConfig?.websiteSettings?.profileImage ? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'"
+						alt="No profile image"
+						class="overlay-image position-absolute man2" />
+					<div
+						class="card position-absolute man-card2"
+						style="width: 18rem">
+						<div class="card-body">
+							<h5 class="card-head text-white mb-1">{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}</h5>
+							<!-- <p class="card-text text-white">SALES REPRESENTATIVE</p> -->
+							<div class="d-flex">
+								<div class="">
+									<img
+										src="./t5/images/vector img/call.svg"
+										alt="" />
+								</div>
+								<div class="ms-2">
+									<p>
+										<a
+											class="text-white fw-semibold text-decoration-none"
+											[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
+											{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+										</a>
+									</p>
+								</div>
+							</div>
+							<div class="d-flex">
+								<div class="">
+									<img
+										src="./t5/images/vector img/mail.svg"
+										alt="" />
+								</div>
+								<div class="ms-2 mt-1">
+									<p>
+										<a
+											class="text-white fw-semibold text-decoration-none"
+											[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+											{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+										</a>
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="d-flex ">
-					  <div class="">
-						<img src="./t5/images/vector img/mail.svg" alt="" />
-					  </div>
-					  <div class="ms-2 mt-1">
-						<p>
-						  <a
-							class="text-white fw-semibold text-decoration-none"
-							href="mailto:someoneexample.com"
-							>democc.com
-						  </a>
-						</p>
-					  </div>
-					</div>
-				  </div>
 				</div>
-				  
-			  </div>           
-		  </div>
-
-		
+			</div>
 		</div>
-	  </div>
-  </div>
+	</div>
+</div>
 
-
-  <div class="container-fluid sec-3 py-5">
-	<div class="container ">
-		<div class="row p-lg-4 p-3 ">
-			<p class="text mb-0 fw-semibold">
-				"Enjoy a clear and simple home-buying experience"
-			</p>
+<div class="container-fluid sec-3 py-5">
+	<div class="container">
+		<div class="row p-lg-4 p-3">
+			<p class="text mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
 			<div class="col">
 				<p class="estate text-center">Real Estate Specialist Name</p>
 				<p class="text-center fw-semibold">
-					I believe every client has the right to be treated fairly,
-					honestly and with integrity. My aim is to educate and prepare my
-					clients to insure that they are always in a position to make
-					informed decisions.Every engagement is an opportunity to create a
-					lasting impression and a forever client. Acharya is a well serving
-					in real estate with the reputation of providing quality services
-					and keeping excellent relations with the clients. My intend to
-					provide our clients with the best personalized real estate
-					experience from beginning to end. I enjoy sharing my expertise by
-					giving you the scoop on the local real estate market. My aim is to
-					guide & prepare our clients to ensure that they are always in a
-					position to make informed decision. I put our client’s interest
-					above everything. I am professionally trained and licensed
-					realtors who work for seeking to experience satisfaction and feel
-					good emotionss.
+					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare
+					my clients to insure that they are always in a position to make informed decisions.Every engagement is an opportunity to
+					create a lasting impression and a forever client. Acharya is a well serving in real estate with the reputation of
+					providing quality services and keeping excellent relations with the clients. My intend to provide our clients with the
+					best personalized real estate experience from beginning to end. I enjoy sharing my expertise by giving you the scoop on
+					the local real estate market. My aim is to guide & prepare our clients to ensure that they are always in a position to
+					make informed decision. I put our client’s interest above everything. I am professionally trained and licensed realtors
+					who work for seeking to experience satisfaction and feel good emotionss.
 				</p>
 			</div>
 		</div>
 	</div>
 </div>
 
-	<div class="container-fluid menu_img pt-2 search-container">
+<div class="container-fluid menu_img pt-2 search-container">
 	<div class="container">
 		<div class="row justify-content-center">
 			<p class="text fs-1 text-white fw-semibold pt-3">Search Your Dream Home</p>
@@ -131,60 +137,75 @@
 	</div>
 </div>
 
-
 <div class="container py-lg-5 p-lg-0 p-4">
 	<div class="row align-items-center justify-content-around">
-	  <div class="col-lg-4 col-12">
-		<h1 class="fs-2 fw-semibold">
-		  Find Properties in These Cities
-		</h1>
-	  <a class="btn btn-orange" href="#">View More</a>
-	  </div>
-	  
-	  <div class="col-lg-6 col-12 mt-3 mt-lg-0">
-		<div class="row row-cols-2">
-		  <div class="col mb-3">
-			<div class="position-relative" (click)="searchProperties({address:'Toronto'})">
-				<img src="./t5/images/prop-1.png" alt="prop" class="img-fluid">
-				<div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
-				 <p class="fs-5 mb-0">Toronto</p>
-				</div>
-			  </div>
-		  </div>
-		  <div class="col mb-3">
-			<div class="position-relative" (click)="searchProperties({address:'Milton'})">
-			  <img src="./t5/images/prop-2.png" alt="prop" class="img-fluid">
-			  <div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
-				<p class="fs-5 mb-0">Milton</p>
-			  </div>
-			</div>
-		  </div>
-		  <div class="col">
-			<div class="position-relative" (click)="searchProperties({address:'Brampton'})">
-			  <img src="./t5/images/prop-3.png" alt="prop" class="img-fluid">
-			  <div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
-				<p class="fs-5 mb-0">Brampton</p>
-			  </div>
-			</div>
-		  </div>
-		  <div class="col">
-			<div class="position-relative" (click)="searchProperties({address:'Ottawa'})">
-			  <img src="./t5/images/prop-4.png" alt="prop" class="img-fluid">
-			  <div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
-				<p class="fs-5 mb-0">Ottawa</p>
-			  </div>
-			</div>
-		  </div>
-		  
+		<div class="col-lg-4 col-12">
+			<h1 class="fs-2 fw-semibold">Find Properties in These Cities</h1>
+			<a
+				class="btn btn-orange"
+				href="#">
+				View More
+			</a>
 		</div>
-		
-	  </div>
+
+		<div class="col-lg-6 col-12 mt-3 mt-lg-0">
+			<div class="row row-cols-2">
+				<div class="col mb-3">
+					<div
+						class="position-relative"
+						(click)="searchProperties({ address: 'Toronto' })">
+						<img
+							src="./t5/images/prop-1.png"
+							alt="prop"
+							class="img-fluid" />
+						<div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
+							<p class="fs-5 mb-0">Toronto</p>
+						</div>
+					</div>
+				</div>
+				<div class="col mb-3">
+					<div
+						class="position-relative"
+						(click)="searchProperties({ address: 'Milton' })">
+						<img
+							src="./t5/images/prop-2.png"
+							alt="prop"
+							class="img-fluid" />
+						<div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
+							<p class="fs-5 mb-0">Milton</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div
+						class="position-relative"
+						(click)="searchProperties({ address: 'Brampton' })">
+						<img
+							src="./t5/images/prop-3.png"
+							alt="prop"
+							class="img-fluid" />
+						<div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
+							<p class="fs-5 mb-0">Brampton</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div
+						class="position-relative"
+						(click)="searchProperties({ address: 'Ottawa' })">
+						<img
+							src="./t5/images/prop-4.png"
+							alt="prop"
+							class="img-fluid" />
+						<div class="position-absolute bottom-0 start-0 w-100 bg-dark text-white text-center py-2">
+							<p class="fs-5 mb-0">Ottawa</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-  
-  </div>
-
-
-
+</div>
 
 <div class="container-fluid sec-3">
 	<div class="container pb-5">
@@ -193,60 +214,80 @@
 	</div>
 </div>
 
-
-
 <div class="container-fluid sec-4 search-container">
 	<div class="container">
 		<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
 			<div class="col-lg-8 col-12">
 				<h3 class="worth">
-					WHAT’S YOUR HOME <br />
+					WHAT’S YOUR HOME
+					<br />
 					REALLY WORTH?
 				</h3>
 				<p class="text-white">
-					Type your address below to find out how much your <br />
+					Type your address below to find out how much your
+					<br />
 					property is worth.
 				</p>
 			</div>
 			<div class="col-lg-4 col-12">
 				<div class="card shadow">
 					<div class="card-body">
-					  <h5 class="card-title info">Lets Get In Touch</h5>
-					  <form [formGroup]="userForm" name="userForm" >
-						<mat-form-field appearance="fill">
-						  <mat-label class="info">First Name</mat-label>
-						  <input formControlName="firstName" required matInput placeholder="First Name" />
-						  <mat-error>First name is required</mat-error>
-						</mat-form-field>
-						<mat-form-field appearance="fill">
-						  <mat-label class="info">Email</mat-label>
-						  <input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
-						  @if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
-						   <mat-error>Please enter a valid email address</mat-error>
-						  }
-						 @if (userForm.hasError('required', 'emailAddress')) {
-						   <mat-error>Email is required</mat-error>
-						  }
-						</mat-form-field>
-						<mat-form-field appearance="fill">                
-						  <mat-label class="info">Phone Number</mat-label>
-						  <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
-						  @if (userForm.hasError('pattern', 'phoneNumber')) {
-							<mat-error>Please enter a valid phone number</mat-error>
-						   }
-						   @if (userForm.hasError('required', 'phoneNumber')) {
-							<mat-error>Phone number is required</mat-error>
-						  }
-						</mat-form-field>
-						<mat-form-field appearance="fill">
-						  <mat-label class="info">Leave a comment</mat-label>
-						  <textarea formControlName="comment" class="form-control" rows="4" matInput placeholder="Ex. Enter comment about this property"></textarea>
-						  <mat-error>Comment is required</mat-error>
-						</mat-form-field>
-						<button class="btn search_btn w-100 fw-bold">Save</button>
-					  </form>
+						<h5 class="card-title info">Lets Get In Touch</h5>
+						<form
+							[formGroup]="userForm"
+							name="userForm">
+							<mat-form-field appearance="fill">
+								<mat-label class="info">First Name</mat-label>
+								<input
+									formControlName="firstName"
+									required
+									matInput
+									placeholder="First Name" />
+								<mat-error>First name is required</mat-error>
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Email</mat-label>
+								<input
+									class="w-100"
+									type="email"
+									formControlName="emailAddress"
+									required
+									email
+									matInput
+									placeholder="Ex. pat@example.com" />
+								@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
+								<mat-error>Please enter a valid email address</mat-error>
+								} @if (userForm.hasError('required', 'emailAddress')) {
+								<mat-error>Email is required</mat-error>
+								}
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Phone Number</mat-label>
+								<input
+									type="tel"
+									formControlName="phoneNumber"
+									matInput
+									placeholder="Ex. 123-456-1234" />
+								@if (userForm.hasError('pattern', 'phoneNumber')) {
+								<mat-error>Please enter a valid phone number</mat-error>
+								} @if (userForm.hasError('required', 'phoneNumber')) {
+								<mat-error>Phone number is required</mat-error>
+								}
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Leave a comment</mat-label>
+								<textarea
+									formControlName="comment"
+									class="form-control"
+									rows="4"
+									matInput
+									placeholder="Ex. Enter comment about this property"></textarea>
+								<mat-error>Comment is required</mat-error>
+							</mat-form-field>
+							<button class="btn search_btn w-100 fw-bold">Save</button>
+						</form>
 					</div>
-				  </div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -311,7 +311,7 @@ export class ProfileComponent {
 				firstName,
 				lastName,
 				address,
-				brokerageTypeId,
+				brokerageType,
 				siteUrl,
 				templateId,
 				primaryColor,
@@ -324,14 +324,14 @@ export class ProfileComponent {
 				websiteEmail,
 				websitePhone,
 				websiteAddress,
-			} = this.agentForm.value;
+			} = this.agentForm.getRawValue();
 
 			const params = {
 				businessName: businessName,
 				firstName: firstName,
 				lastName: lastName,
 				address: address,
-				brokerageTypeId: brokerageTypeId,
+				brokerageTypeId: brokerageType,
 				websiteSettings: {
 					siteUrl: siteUrl,
 					templateId,
@@ -350,7 +350,7 @@ export class ProfileComponent {
 						address: websiteAddress,
 					},
 					profileImage: this.primaryAgentProfileImage.value ? this.primaryAgentProfileImage.value : this.existingProfileImage,
-					brokerageImage: this.brokerageImage,
+					brokerageImage: this.brokerageImage.value,
 					logoImage: this.logoImage.value,
 				},
 				secondaryAgent: {

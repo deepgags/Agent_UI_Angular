@@ -13,6 +13,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { SiteConfig } from "../../../models/SiteConfig";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { SiteConfigService } from "../../../services/site-config.service";
 
 @Component({
@@ -29,6 +30,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		MatDialogModule,
 		MatFormFieldModule,
 		MatInputModule,
+		PhoneSearch,
 	],
 	templateUrl: "./t5-home.component.html",
 	styleUrls: ["./t5-home.component.scss", "../t5.component.scss"],
@@ -40,7 +42,12 @@ export class T5HomeComponent implements OnInit {
 	siteConfig: SiteConfig | undefined;
 	siteConfigSubscription: any;
 	// siteConfigService: any;
-	constructor(private router: Router, private fb: FormBuilder, private titleService: Title,private siteConfigService: SiteConfigService) {}
+	constructor(
+		private router: Router,
+		private fb: FormBuilder,
+		private titleService: Title,
+		private siteConfigService: SiteConfigService
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -50,7 +57,7 @@ export class T5HomeComponent implements OnInit {
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			comment: new FormControl("", Validators.required),
 		});
-	
+
 		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
 			if (config) {
 				this.siteConfig = config;
