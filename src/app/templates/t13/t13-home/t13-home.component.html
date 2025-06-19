@@ -1,0 +1,267 @@
+<div class="background-container">
+				<app-t13-header></app-t13-header>
+<div class="container pt-2 search-container">
+	<div class="top-padding">
+		<h1 class="display-1 text-white">Innovative Living <br> Spaces</h1>
+    <button type="button" class="btn btn-outline-light mt-5">View all apartments</button>
+	</div>
+  <div class="">
+					<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image">
+						<div class="card position-absolute  man-card " style="width: 15rem;">
+				  <div class="card-body">
+					<h5 class="card-head text-white">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h5>
+					<div class=" d-flex">
+					  <div class="">
+						<img src="./t12/images/vector img/call.svg" alt="" />
+					  </div>
+					  <div class="ms-2">
+						<p>
+						  <a
+							class="text-white fw-semibold text-decoration-none"
+							href="tel:+4733378901"
+							>+47 333 78 901</a
+						  >
+						</p>
+					  </div>
+					</div>
+					<div class="d-flex ">
+					  <div class="">
+						<img src="./t12/images/vector img/email.svg" alt="" />
+					  </div>
+					  <div class="ms-2 mt-1">
+						<p>
+						  <a
+							class="text-white fw-semibold text-decoration-none"
+							href="mailto:someoneexample.com"
+							>democc.com
+						  </a>
+						</p>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				</div>
+</div>
+</div>
+
+<div class="container-fluid search-container">
+  <div class="container py-4">
+    <div class="row justify-content-center">
+			<p class="text info fw-semibold pt-3">Search Your Dream Home</p>
+			<div class="col-12 bg-white p-4 mb-5">
+				<app-search [onSearch]="searchProperties" />
+			</div>
+		</div>
+  </div>
+</div>
+
+
+
+<div class="container py-lg-5 p-lg-0 p-4">
+        <div class="row align-items-center justify-content-around">
+          <div class="col-lg-5 col-12">
+            <h2 class=" fw-semibold">
+              "Enjoy a clear and simple <br> home-buying experience"
+            </h2>
+            <p class="text-2">Real Estate Specialist Name</p>
+            <p class=" fw-normal">
+              I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions. Every engagement is an opportunity to create a lasting impression and a forever client.
+            </p>
+
+          </div>
+
+          <div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
+            <div class="">
+              <img class="w-100 rounded" src="t8/images/real-state.png" alt="">
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+
+<div class="container py-5">
+  <div class="row align-items-center">
+    <!-- Left Column -->
+    <div class="col-lg-6">
+      <p class=" text-2 fw-semibold mb-2">Discover Your New Home</p>
+      <h1 class="display-6 fw-semibold">A Place to Live</h1>
+      <p class="text-muted fs-5">Group One is excited to present this exceptional property in the prestigious location of Los Angeles City. Designed by Lucy De Vito and built in the 2020 to a very high standard, this spectacular residence has been thoughtfully designed for family living in an uncluttered and special space.</p>
+      
+      <a href="#" class="btn btn-outline-warning mt-3 px-4 py-2">View Gallery</a>
+      
+      <div class="row mt-5">
+        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <i class="bi bi-award fs-3"></i>
+          <div class="fw-semibold">International Design Award</div>
+        </div>
+        <div class="col-md-6 text-center text-md-start">
+          <i class="bi bi-award fs-3"></i>
+          <div class="fw-semibold">Lux Life Magazine</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column (empty) -->
+    <div class="col-lg-6 d-flex justify-content-lg-end">
+       <div class="">
+              <img class="img-fluid rounded-3" src="./t10/images/pro3.png" alt="">
+              <img class="img-fluid rounded-3 pro-3 hide_mobile" src="./t10/images/pro2.png" alt="">
+            </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid search-container">
+	<div class="container pb-5">
+		<p class="text text-center py-3 fw-semibold">Featured Properties</p>
+		<app-featured-properties />
+	</div>
+</div>
+
+ <div class="container-fluid search-container">
+
+        <div class="container py-lg-5 p-lg-0 p-4">
+          <p class="text text-center py-3 fw-semibold">
+            Find Properties in These Cities
+          </p>
+
+     
+        <div class="row mt-3">
+
+          <div class="col-lg-3 col-12">
+			<!-- <div class="image-container w-100"(click)="searchProperties({address:'Mississaugas'})">
+				<img class="w-100" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Mississaugas</div>
+			</div> -->
+			<div class="position-relative text-white text-center sonoma-bg " (click)="searchProperties({address:'Mississaugas'})">
+  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+  <img class="w-100 " src="t8/images/pro2.png" alt="">
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <h2 class="fw-medium">Mississaugas</h2>
+  </div>
+</div>
+
+          </div>
+   <div class="col-lg-3 col-12">
+			<!-- <div class="image-container w-100"(click)="searchProperties({address:'Mississaugas'})">
+				<img class="w-100" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Mississaugas</div>
+			</div> -->
+			<div class="position-relative text-white text-center sonoma-bg " (click)="searchProperties({address:'Mississaugas'})">
+  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+  <img class="w-100 " src="t8/images/pro2.png" alt="">
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <h2 class="fw-medium">Mississaugas</h2>
+  </div>
+</div>
+
+          </div>
+		  <div class="col-lg-3 col-12">
+			<!-- <div class="image-container w-100"(click)="searchProperties({address:'Mississaugas'})">
+				<img class="w-100" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Mississaugas</div>
+			</div> -->
+			<div class="position-relative text-white text-center sonoma-bg " (click)="searchProperties({address:'Mississaugas'})">
+  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+  <img class="w-100 " src="t8/images/pro2.png" alt="">
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <h2 class="fw-medium">Mississaugas</h2>
+  </div>
+</div>
+
+          </div>
+		  <div class="col-lg-3 col-12">
+			<!-- <div class="image-container w-100"(click)="searchProperties({address:'Mississaugas'})">
+				<img class="w-100" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Mississaugas</div>
+			</div> -->
+			<div class="position-relative text-white text-center sonoma-bg " (click)="searchProperties({address:'Mississaugas'})">
+  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+  <img class="w-100 " src="t8/images/pro2.png" alt="">
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <h2 class="fw-medium">Mississaugas</h2>
+  </div>
+</div>
+
+          </div>
+      </div>
+    </div> 
+      </div>
+      
+
+<div class="container-fluid sec-3 search-container">
+	<div class="">
+		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
+			<!-- <div class="col-lg-6 col-12">
+				<div class="">
+					<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="">
+				</div>
+			</div> -->
+      <div class="col-lg-4 col-12">
+  <div class="card border-0 text-center p-4" style="background-color: #f9f5f1;">
+    <!-- <img src="agent-image.jpg" alt="Agent Image" class="img-fluid mb-3" /> -->
+    <img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="img-fluid mb-3">
+    <h5 class="fw-bold mb-0">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h5>
+    <p class="text-muted mb-3">Real Estate Agent</p>
+
+    <div class="mb-2">
+      <i class="bi bi-phone" style="font-size: 1.2rem;"></i>
+      <div class="text-dark">+44 6786 984956</div>
+    </div>
+    <div>
+      <i class="bi bi-envelope" style="font-size: 1.2rem;"></i>
+      <div class="text-dark">listagentexample.com</div>
+    </div>
+  </div>
+</div>
+
+			<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-4">
+				<div class="card shadow">
+					<div class="card-body">
+						<h5 class="card-title info">Lets Get In Touch</h5>
+						<form [formGroup]="userForm" name="userForm">
+							<mat-form-field appearance="fill">
+								<mat-label class="info">First Name</mat-label>
+								<input formControlName="firstName" required matInput placeholder="First Name" />
+								<mat-error>First name is required</mat-error>
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Email</mat-label>
+								<input class="w-100" type="email" formControlName="emailAddress" required email matInput
+									placeholder="Ex. pat@example.com" />
+								@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required',
+								'emailAddress')) {
+								<mat-error>Please enter a valid email address</mat-error>
+								}
+								@if (userForm.hasError('required', 'emailAddress')) {
+								<mat-error>Email is required</mat-error>
+								}
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Phone Number</mat-label>
+								<input type="tel" formControlName="phoneNumber" matInput
+									placeholder="Ex. 123-456-1234" />
+								@if (userForm.hasError('pattern', 'phoneNumber')) {
+								<mat-error>Please enter a valid phone number</mat-error>
+								}
+								@if (userForm.hasError('required', 'phoneNumber')) {
+								<mat-error>Phone number is required</mat-error>
+								}
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Leave a comment</mat-label>
+								<textarea formControlName="comment" class="form-control" rows="4" matInput
+									placeholder="Ex. Enter comment about this property"></textarea>
+								<mat-error>Comment is required</mat-error>
+							</mat-form-field>
+							<button class="btn search_btn w-100 fw-bold">Save</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
