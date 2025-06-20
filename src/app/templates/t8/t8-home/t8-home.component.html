@@ -1,24 +1,24 @@
 <div class="background-container">
 	<div class="container">
-		<div class="row justify-content-center align-items-center top-padding">
-			<div class="col-12 col-lg-6 ">
+		<div class=" top-padding">
+			<div class="">
 				<div class="">
 					<h2 class="text-white display-3 fw-semibold">Find Your <br> Dream Home</h2>
-					<p class="text-white">We are recognized for exceeding client expectations and delivering great results through dedication, ease of process, and extraordinary services to our worldwide clients.</p>
+					<p class="text-white">We are recognized for exceeding client expectations and delivering great results through <br> dedication, ease of process, and extraordinary services to our worldwide clients.</p>
 				</div>
 			</div>
-			<div class="col-lg-6 col-12 ">
-				<div class="">
+			<div class="">
+				<div class="first">
 					<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image">
 						<div class="card position-absolute  man-card " style="width: 15rem;">
 				  <div class="card-body">
 					<h5 class="card-head text-white">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h5>
 					<div class=" d-flex">
 					  <div class="">
-						<img src="./t5/images/vector img/call.svg" alt="" />
+						<img class="icon" src="./t5/images/vector img/call.svg" alt="" />
 					  </div>
 					  <div class="ms-2">
-						<p>
+						<p class="mb-lg-2 mb-0">
 						  <a
 							class="text-white fw-semibold text-decoration-none"
 							href="tel:+4733378901"
@@ -29,7 +29,44 @@
 					</div>
 					<div class="d-flex ">
 					  <div class="">
-						<img src="./t5/images/vector img/mail.svg" alt="" />
+						<img class="icon" src="./t5/images/vector img/mail.svg" alt="" />
+					  </div>
+					  <div class="ms-2 mt-1">
+						<p>
+						  <a
+							class="text-white fw-semibold text-decoration-none"
+							href="mailto:someoneexample.com"
+							>democc.com
+						  </a>
+						</p>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				</div>
+		
+		<div class="second">
+					<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="overlay-image2">
+						<div class="card position-absolute  man_card2 " style="width: 15rem;">
+				  <div class="card-body">
+					<h5 class="card-head text-white">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h5>
+					<div class=" d-flex">
+					  <div class="">
+						<img class="icon" src="./t5/images/vector img/call.svg" alt="" />
+					  </div>
+					  <div class="ms-2">
+						<p class="mb-lg-2 mb-0">
+						  <a
+							class="text-white fw-semibold text-decoration-none"
+							href="tel:+4733378901"
+							>+47 333 78 901</a
+						  >
+						</p>
+					  </div>
+					</div>
+					<div class="d-flex ">
+					  <div class="">
+						<img class="icon" src="./t5/images/vector img/mail.svg" alt="" />
 					  </div>
 					  <div class="ms-2 mt-1">
 						<p>
