@@ -39,7 +39,6 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		RouterModule,
 		GalleryModule,
 		PhoneSearch,
-		GalleryComponent,
 	],
 	providers: [provideAnimations(), NgbCarouselConfig],
 	templateUrl: "./propertydetail.component.html",

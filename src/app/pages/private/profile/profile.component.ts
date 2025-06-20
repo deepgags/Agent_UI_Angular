@@ -361,7 +361,7 @@ export class ProfileComponent {
 			this.customerService.update(params).subscribe({
 				next: (v) => {},
 				error: (e) => {
-					this.notificationService.showNotification("Something went wrong while updating information.");
+					this.notificationService.showNotification(e.error.message || "Something went wrong while updating information.");
 				},
 				complete: () => {
 					this.notificationService.showNotification("Profile updated successfully");
