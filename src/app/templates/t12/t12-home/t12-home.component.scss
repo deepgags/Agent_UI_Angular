@@ -76,8 +76,26 @@ $info:#06A788;
 
 }
 
+@media (max-width: 768px) {
+  .prop-img  {
+    width: 100%;
+  } 
+  .profile-img {
+    position: static !important;
+    top: auto !important;
+  }
+
+}
+@media screen and (min-width: 1920px) {
 .profile-img {
-  top: 786px;
+  top: 999px !important;
+  position: absolute;
+  max-height: 400px;
+}
+}
+
+.profile-img {
+  top: 824px;
   position: absolute;
   max-height: 400px;
 }

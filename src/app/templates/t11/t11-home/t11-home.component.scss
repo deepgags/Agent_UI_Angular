@@ -83,7 +83,13 @@ $info:#95c41f;
   }
 
 }
-
+@media screen and (min-width: 1920px) {
+.profile-img {
+  top: 999px !important;
+  position: absolute;
+  max-height: 400px;
+}
+}
 
 .profile-img {
   top: 824px;
