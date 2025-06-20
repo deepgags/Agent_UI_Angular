@@ -2,34 +2,59 @@
 	<div class="py-2 row align-items-center justify-content-center">
 		<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
 			<div class="">
-				<h4 class="mb-0">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h4>
+				<!-- <h4 class="mb-0">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h4> -->
+				<a
+					[routerLink]="['home']"
+					*ngIf="siteConfig">
+					<img
+						[src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'"
+						alt="{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}"
+						height="66px" />
+				</a>
 			</div>
 		</div>
 
 		<div class="col-12 col-lg-5 d-flex justify-content-center">
-			<a [routerLink]="['home']" *ngIf="siteConfig">
-				<img [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
+			<a
+				[routerLink]="['home']"
+				*ngIf="siteConfig">
+				<img
+					[src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+					alt="No brokerage logo"
+					height="66px" />
 			</a>
 		</div>
 
 		<div class="py-4 col-12 col-lg-4 d-flex py-lg-0 justify-content-center justify-content-lg-end">
 			<div class="d-flex justify-content-center">
 				<div class="">
-					<img src="/t2/images/vector img/call.png" alt="" />
+					<img
+						src="/t2/images/vector img/call.png"
+						alt="" />
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'tel:'+siteConfig?.websiteSettings?.contactInfo?.phone | phone">{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}</a>
+						<a
+							class="text-dark fw-semibold small text-decoration-none pop"
+							[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+							{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+						</a>
 					</p>
 				</div>
 			</div>
 			<div class="d-flex justify-content-center ms-3">
 				<div class="">
-					<img src="/t2/images/vector img/email.png" alt="" />
+					<img
+						src="/t2/images/vector img/email.png"
+						alt="" />
 				</div>
 				<div class="ms-2">
 					<p class="mb-0">
-						<a class="text-dark fw-semibold small text-decoration-none pop" [href]="'mailto:' +siteConfig?.websiteSettings?.contactInfo?.email">{{siteConfig?.websiteSettings?.contactInfo?.email}}</a>
+						<a
+							class="text-dark fw-semibold small text-decoration-none pop"
+							[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+							{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+						</a>
 					</p>
 				</div>
 			</div>
@@ -37,41 +62,85 @@
 	</div>
 </div>
 
-<nav class="navbar navbar-expand-lg nav_bg" aria-label="Offcanvas navbar large">
+<nav
+	class="navbar navbar-expand-lg nav_bg"
+	aria-label="Offcanvas navbar large">
 	<div class="container-fluid">
-		<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="offcanvas"
+			data-bs-target="#offcanvasNavbar2"
+			aria-controls="offcanvasNavbar2">
 			<span class=""><i class="text-white fa-solid fa-bars"></i></span>
 		</button>
-		<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+		<div
+			class="offcanvas offcanvas-end text-bg-dark"
+			tabindex="-1"
+			id="offcanvasNavbar2"
+			aria-labelledby="offcanvasNavbar2Label">
 			<div class="offcanvas-header">
-				<h5 class="offcanvas-title" id="offcanvasNavbar2Label">
+				<h5
+					class="offcanvas-title"
+					id="offcanvasNavbar2Label">
 					Brokers
 				</h5>
-				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				<button
+					type="button"
+					class="btn-close btn-close-white"
+					data-bs-dismiss="offcanvas"
+					aria-label="Close"></button>
 			</div>
 			<div class="offcanvas-body">
-			<ul class="navbar-nav flex-grow-1 pe-3 home_nav">
-				<li class="nav-item">
-							<a class="nav-link nav_content"
-								[routerLink]="['home']">Home</a>
-						</li>
+				<ul class="navbar-nav flex-grow-1 pe-3 home_nav">
 					<li class="nav-item">
-						<a class="nav-link nav_content" [routerLink]="['about']">About</a>
+						<a
+							class="nav-link nav_content"
+							[routerLink]="['home']">
+							Home
+						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" [routerLink]="['seller']">Seller</a>
+						<a
+							class="nav-link nav_content"
+							[routerLink]="['about']">
+							About
+						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" [routerLink]="['buyer']">Buyer</a>
+						<a
+							class="nav-link nav_content"
+							[routerLink]="['seller']">
+							Seller
+						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" [routerLink]="['featured-listings']">Featured Listings</a>
+						<a
+							class="nav-link nav_content"
+							[routerLink]="['buyer']">
+							Buyer
+						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" [routerLink]="['calculator']">Calculators</a>
+						<a
+							class="nav-link nav_content"
+							[routerLink]="['featured-listings']">
+							Featured Listings
+						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link nav_content" [routerLink]="['contact']">Contact</a>
+						<a
+							class="nav-link nav_content"
+							[routerLink]="['calculator']">
+							Calculators
+						</a>
+					</li>
+					<li class="nav-item">
+						<a
+							class="nav-link nav_content"
+							[routerLink]="['contact']">
+							Contact
+						</a>
 					</li>
 				</ul>
 			</div>

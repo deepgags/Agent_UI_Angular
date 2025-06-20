@@ -29,6 +29,7 @@ export interface SiteConfig {
 		secondaryColor: string;
 		profileImage: string;
 		logoImage: string;
+		brokerageImage: string;
 	};
 	secondaryAgent?: {
 		firstName: string;

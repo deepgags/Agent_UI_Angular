@@ -6,7 +6,7 @@
 					class=""
 					*ngIf="siteConfig && siteConfig.secondaryAgent">
 					<img
-						[src]="siteConfig?.secondaryAgent?.profileImage ? siteConfig?.secondaryAgent?.profileImage : '/images/Nologo.png'"
+						[src]="siteConfig.secondaryAgent.profileImage ? siteConfig.secondaryAgent.profileImage : '/images/Nologo.png'"
 						alt="No profile image"
 						class="overlay-image position-absolute man" />
 					<div
@@ -14,7 +14,7 @@
 						style="width: 18rem">
 						<div class="card-body">
 							<h5 class="card-head text-white mb-1">
-								{{ siteConfig?.secondaryAgent?.firstName }} {{ siteConfig?.secondaryAgent?.lastName }}
+								{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
 							</h5>
 							<!-- <p class="card-text text-white">SALES REPRESENTATIVE</p> -->
 							<div class="d-flex">
@@ -27,8 +27,8 @@
 									<p>
 										<a
 											class="text-white fw-semibold text-decoration-none"
-											[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
-											{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
+											[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+											{{ siteConfig.secondaryAgent.websitePhone | phone }}
 										</a>
 									</p>
 								</div>
@@ -43,8 +43,8 @@
 									<p>
 										<a
 											class="text-white fw-semibold text-decoration-none"
-											[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
-											{{ siteConfig?.secondaryAgent?.websiteEmail }}
+											[href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+											{{ siteConfig.secondaryAgent.websiteEmail }}
 										</a>
 									</p>
 								</div>
@@ -110,7 +110,7 @@
 		<div class="row p-lg-4 p-3">
 			<p class="text mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
 			<div class="col">
-				<p class="estate text-center">Real Estate Specialist Name</p>
+				<p class="estate text-center">Real Estate Specialist Name</p>
 				<p class="text-center fw-semibold">
 					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare
 					my clients to insure that they are always in a position to make informed decisions.Every engagement is an opportunity to
@@ -119,7 +119,7 @@
 					best personalized real estate experience from beginning to end. I enjoy sharing my expertise by giving you the scoop on
 					the local real estate market. My aim is to guide & prepare our clients to ensure that they are always in a position to
 					make informed decision. I put our client’s interest above everything. I am professionally trained and licensed realtors
-					who work for seeking to experience satisfaction and feel good emotionss.
+					who work for seeking to experience satisfaction and feel good emotions.
 				</p>
 			</div>
 		</div>
