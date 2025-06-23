@@ -30,7 +30,15 @@ export interface SiteConfig {
 		profileImage: string;
 		logoImage: string;
 		brokerageImage: string;
+
+	
 	};
+	
+	brokerage: {
+            name: string,
+            alternateName: string,
+            logoPath: string
+        },
 	secondaryAgent?: {
 		firstName: string;
 		lastName: string;

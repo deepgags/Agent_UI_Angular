@@ -1,23 +1,31 @@
-<div class="container">
+<div class="container search-container">
 	<div class="row py-2 align-items-center justify-content-center">
 		<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-			<div class="">
-				<!-- <h4 class="mb-0">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h4> -->
-				<a
+			<div class="d-flex align-items-center">
+				<div class="">
+					<a
 					[routerLink]="['home']"
 					*ngIf="siteConfig">
 					<img
 						[src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'"
-						alt="No brokerage logo"
+						[alt]="siteConfig.firstName + ' ' + siteConfig.lastName"
 						height="66px" />
 				</a>
+				</div>
+				<div class="ms-4">
+					<h5 class="fw-semibold info">
+							{{ siteConfig?.brokerage?.name}}
+
+					</h5>
+				</div>
+				
 			</div>
 		</div>
 		<div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
 			<div class="d-flex justify-content-center">
 				<div class="">
 					<img
-						src="t7/images/vector img/call.svg"
+						src="t5/images/vector img/call.svg"
 						alt="" />
 				</div>
 				<div class="ms-2">
@@ -33,7 +41,7 @@
 			<div class="d-flex justify-content-center ms-5">
 				<div class="">
 					<img
-						src="t7/images/vector img/email.svg"
+						src="t5/images/vector img/mail.svg"
 						alt="" />
 				</div>
 				<div class="ms-2">

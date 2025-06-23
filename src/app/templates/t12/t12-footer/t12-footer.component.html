@@ -1,12 +1,21 @@
 <div class="container-fluid fotter-bg">
 	<div class="container">
 
-		<footer class="py-5">
-			<div class="pb-3 mb-3 row justify-content-center align-items-center border-bottom ">
-				<div class="mb-3 col-lg-2 col-12 d-flex justify-content-center mb-lg-0">
-					<a [routerLink]="['home']" *ngIf="siteConfig">
+	<footer class="py-5">
+			<div class="row justify-content-center align-items-center  border-bottom pb-3 mb-3 ">
+				<div class="mb-3 col-lg-3 col-12 d-flex mb-lg-0">
+					<div class="d-flex align-items-center">
+						<div class="">
+							<a [routerLink]="['home']" *ngIf="siteConfig">
 						<img [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
 					</a>
+						</div>
+						<div class="">
+					<h5 class=" ms-4 text-white">{{ siteConfig?.brokerage?.name}}</h5>
+
+						</div>
+					</div>
+					
 				</div>
 				<div class="mb-3 col-lg-6 col-12 mb-lg-0">
 					<p class="text-center fs-3 fw-semibold" *ngIf="siteConfig?.websiteSettings?.contactInfo?.address">Address</p>
@@ -14,7 +23,7 @@
 						{{siteConfig?.websiteSettings?.contactInfo?.address}}
 					</p>
 				</div>
-				<div class="mb-3 col-lg-2 col-12 mb-lg-0 footer-contact">
+				<div class="mb-3 col-lg-3 col-12 mb-lg-0 footer-contact">
 					<p class="text-center fs-3 fw-semibold">Contact</p>
 					<div class=" d-flex justify-content-center" *ngIf="siteConfig?.websiteSettings?.contactInfo?.phone">
 						<div class="">

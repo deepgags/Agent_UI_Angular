@@ -120,12 +120,12 @@
 														styleClass="w-100"
 														(onChange)="brokerageChange($event.value)"
 														inputId="brokerageType" />
-													<label for="brokerageType">Brokerage</label>
+													<label for="brokerageType">Franchise</label>
 												</p-iftalabel>
 												<span
 													class="error"
 													*ngIf="brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)">
-													<span *ngIf="brokerageType?.errors?.['required']">Brokerage Type is required</span>
+													<span *ngIf="brokerageType?.errors?.['required']">Franchise Type is required</span>
 												</span>
 											</div>
 										</div>
@@ -139,7 +139,7 @@
 													class="img-thumbnail"
 													style="height: 66px; max-height: 120px; object-fit: contain"
 													height="66px" />
-												<small class="text-muted d-block mt-1">Brokerage Logo</small>
+												<small class="text-muted d-block mt-1">Franchise Logo</small>
 											</div>
 										</div>
 									</div>
@@ -155,12 +155,12 @@
 														class="form-control"
 														id="businessName"
 														required />
-													<label for="businessName">Business Name</label>
+													<label for="businessName">Brokerage Name</label>
 												</p-iftalabel>
 												<span
 													class="error"
 													*ngIf="businessName?.invalid && (businessName?.dirty || businessName?.touched)">
-													<span *ngIf="businessName?.errors?.['required']">Business Name is required</span>
+													<span *ngIf="businessName?.errors?.['required']">Brokerage Name is required</span>
 												</span>
 											</div>
 										</div>
