@@ -6,6 +6,7 @@ $info:#FF385C;
 
   .background-container {
     width: 100%;
+    position: relative;
     height: 100vh;
     background-image: url('/t10/images/banner.png');
     background-size: cover;
@@ -64,22 +65,22 @@ $info:#FF385C;
 
 
 
-.overlay-image {
+ .overlay-image {
     position: absolute;
-    top: 480px;
+    bottom:0px;
     right: 20px;
     width: 350px;
   }
 
-    .overlay-image2 {
+  .overlay-image2 {
     position: absolute;
-    top:480px;
+    bottom:0px;
     left: 20px;
     width: 350px;
   }
 
   .man-card{
-  top:684px;
+  bottom:0px;
   right: 70px;
   background-color: #00000066;
   backdrop-filter: blur(2px);
@@ -87,87 +88,61 @@ $info:#FF385C;
 }
 
 .man_card2{
-  top:684px;
+  bottom:0px;
   left: 70px;
   background-color: #00000066;
   backdrop-filter: blur(2px);
   border: 1px solid #FFFFFF;
 }
-@media screen and (min-width: 1920px) {
- .overlay-image {
-    position: absolute;
-    top: 659px;
-    right: 20px;
-    width: 345px;
-  }
-    .overlay-image2 {
-    position: absolute;
-    top:659px;
-    left: 20px;
-    width: 345px;
-  }
-    .man-card{
-  top:857px;
-  right: 70px;
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
-}
-
-.man_card2{
-  top:857px;
-  left: 70px;
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
-}
-}
-
 
 @media (max-width: 768px) {
   h5,a{
     font-size: 10px;
   }
-      .pro-3{
-        position: absolute;
-        right: 155px;
-        top: 4402px;
-        width: 228px;
-      }
   .icon{
     width: 10px;
   }
-.top-padding {
-    padding-top: 0px;
-}
+
+
   .overlay-image {
          position: absolute;
-        top: 675px;
+        bottom: 0px;
         left: 236px;
         width: 190px;
     }
     
 .man_card2{
-  width: auto !important; 
-  top:762px;
-  left: 6px;
+  width: auto !important;
+        bottom: 0px;
+  left: 5px;
+        height: 100px;
+
   background-color: #00000066;
   backdrop-filter: blur(2px);
   border: 1px solid #FFFFFF;
 }
 
-   .man-card{
-  width: auto !important;
-  top:762px;
-  right: 6px;
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
-}
+    
+  .man-card {
+        width: auto !important;
+        bottom: 0px;
+        right: 5px;
+        height: 100px;
+        background-color: rgba(0, 0, 0, 0.4);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        border: 1px solid #FFFFFF;
+    }
   .overlay-image2 {
     position: absolute;
-    top:675px;
+    bottom:0px;
     left: -42px;
     width: 190px;
   }
+  .pro-3{
+        position: absolute;
+        right: 155px;
+        top: 4402px;
+        width: 228px;
+      }
 }

@@ -39,22 +39,22 @@
   }
 
 
-    .overlay-image {
+  .overlay-image {
     position: absolute;
-    top: 345px;
+    bottom:0px;
     right: 20px;
     width: 350px;
   }
 
-    .overlay-image2 {
+  .overlay-image2 {
     position: absolute;
-    top:345px;
+    bottom:0px;
     left: 20px;
     width: 350px;
   }
 
   .man-card{
-  top:538px;
+  bottom:0px;
   right: 70px;
   background-color: #00000066;
   backdrop-filter: blur(2px);
@@ -62,42 +62,12 @@
 }
 
 .man_card2{
-  top:538px;
+  bottom:0px;
   left: 70px;
   background-color: #00000066;
   backdrop-filter: blur(2px);
   border: 1px solid #FFFFFF;
 }
-@media screen and (min-width: 1920px) {
- .overlay-image {
-    position: absolute;
-    top: 519px;
-    right: 20px;
-    width: 350px;
-  }
-    .overlay-image2 {
-    position: absolute;
-    top:519px;
-    left: 20px;
-    width: 350px;
-  }
-    .man-card{
-  top:717px;
-  right: 70px;
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
-}
-
-.man_card2{
-  top:717px;
-  left: 70px;
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
-}
-}
-
 
 @media (max-width: 768px) {
   h5,a{
@@ -110,31 +80,36 @@
 
   .overlay-image {
          position: absolute;
-        top: 408px;
+        bottom: 0px;
         left: 236px;
         width: 190px;
     }
     
 .man_card2{
   width: auto !important;
-  top:510px;
-  left: 0px;
+        bottom: 0px;
+  left: 5px;
+        height: 100px;
+
   background-color: #00000066;
   backdrop-filter: blur(2px);
   border: 1px solid #FFFFFF;
 }
 
-   .man-card{
-  width: auto !important;
-  top:510px;
-  right: 0px;
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
-}
+    
+  .man-card {
+        width: auto !important;
+        bottom: 0px;
+        right: 5px;
+        height: 100px;
+        background-color: rgba(0, 0, 0, 0.4);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        border: 1px solid #FFFFFF;
+    }
   .overlay-image2 {
     position: absolute;
-    top:408px;
+    bottom:0px;
     left: -42px;
     width: 190px;
   }
