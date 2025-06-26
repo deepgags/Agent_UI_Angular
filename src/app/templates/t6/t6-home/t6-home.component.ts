@@ -12,7 +12,9 @@ import { SearchComponent } from "../../shared/search/search.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { Subscription } from "rxjs";
 import { SiteConfig } from "../../../models/SiteConfig";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { SiteConfigService } from "../../../services/site-config.service";
 
 @Component({
@@ -29,6 +31,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		MatDialogModule,
 		MatFormFieldModule,
 		MatInputModule,
+		PhoneSearch,
 	],
 	templateUrl: "./t6-home.component.html",
 	styleUrls: ["./t6-home.component.scss", "../t6.component.scss"],
@@ -37,10 +40,15 @@ import { SiteConfigService } from "../../../services/site-config.service";
 export class T6HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	userForm!: FormGroup;
-	siteConfig: SiteConfig | undefined;
-	siteConfigSubscription: any;
+	public siteConfig: SiteConfig | null = null;
+	private siteConfigSubscription: Subscription | undefined;
 	// siteConfigService: any;
-	constructor(private router: Router, private fb: FormBuilder, private titleService: Title,private siteConfigService: SiteConfigService) {}
+	constructor(
+		private router: Router,
+		private fb: FormBuilder,
+		private titleService: Title,
+		private siteConfigService: SiteConfigService
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -50,12 +58,18 @@ export class T6HomeComponent implements OnInit {
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			comment: new FormControl("", Validators.required),
 		});
-	
+
 		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
 			if (config) {
 				this.siteConfig = config;
 			}
 		});
+	}
+
+	ngOnDestroy(): void {
+		if (this.siteConfigSubscription) {
+			this.siteConfigSubscription.unsubscribe();
+		}
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
