@@ -15,6 +15,8 @@ export interface SiteConfig {
 			phone: string;
 			address: string;
 		};
+		aboutText: string;
+		contactText: string;
 		socialLinks: {
 			facebook: string;
 			twitter: string;
@@ -30,15 +32,13 @@ export interface SiteConfig {
 		profileImage: string;
 		logoImage: string;
 		brokerageImage: string;
-
-	
 	};
-	
+
 	brokerage: {
-            name: string,
-            alternateName: string,
-            logoPath: string
-        },
+		name: string;
+		alternateName: string;
+		logoPath: string;
+	};
 	secondaryAgent?: {
 		firstName: string;
 		lastName: string;

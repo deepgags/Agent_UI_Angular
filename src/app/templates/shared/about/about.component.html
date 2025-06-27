@@ -1,162 +1,162 @@
 <div class="p-0 container-fluid ">
-    <div class="position-relative">
-      <img class="banner w-100" src="/images/banner3.png" alt="Banner Image">
-      <div class="text-center position-absolute top-50 start-50 translate-middle">
-        <h1 class="text-white fw-bold baner-text">About Us</h1>
-      </div>
-    </div>
-  </div>
+	<div class="position-relative">
+		<img class="banner w-100" src="/images/banner3.png" alt="Banner Image">
+		<div class="text-center position-absolute top-50 start-50 translate-middle">
+			<h1 class="text-white fw-bold baner-text">About Us</h1>
+		</div>
+	</div>
+</div>
 
-  <div class="container py-5 search-container">
-    <div class="py-3 row">
-      <div class="col-md-8">
-        <p class="fw-semibold">
-          I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions. Every engagement is an opportunity to create a lasting impression and a forever client. Ajay is a well serving in real estate with the reputation of providing quality services and keeping excellent relations with the clients. My intend to provide our clients with the best personalized real estate experience from beginning to end. I enjoy sharing my expertise by giving you the scoop on the local real estate market. My aim is to guide & prepare our clients to ensure that they are always in a position to make informed decision. I put our client’s interest above everything. I am professionally trained and licensed realtors who work for seeking to experience satisfaction and feel good emotions.
-        </p>
-      </div>
-      <div class="col-md-4">
-        <div class="border-0 shadow card rounded-3">
-         <div class="card shadow border-0 rounded-3">
-						<div class="row align-items-center p-3">
-							<div class="col-4">
-								<div class="">
-									<img
-										[src]="
+<div class="container py-5 search-container">
+	<div class="py-3 row">
+		<div class="col-md-8">
+			<p class="fw-semibold">
+				{{siteConfig?.websiteSettings?.aboutText || aboutText}}
+			</p>
+		</div>
+		<div class="col-md-4">
+			<div class="border-0 shadow card rounded-3">
+				<div class="card shadow border-0 rounded-3">
+					<div class="row align-items-center p-3">
+						<div class="col-4">
+							<div class="">
+								<img
+									[src]="
 											siteConfig?.websiteSettings?.profileImage
 												? siteConfig?.websiteSettings?.profileImage
 												: '/images/Nologo.png'
 										"
-										alt=""
-										height="120px" />
-								</div>
+									alt=""
+									height="120px" />
 							</div>
+						</div>
 
-							<div class="col-8">
-								<div class="card-body">
-									<h6 class="text-muted mb-0">PRESENTED BY</h6>
-									<h5 class="card-title info mt-1">{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}</h5>
-									<p class="card-text mb-2 text-secondary small">Agent</p>
-									<div class="text-muted small">
-										<p class="mb-1">Email: {{ siteConfig?.websiteSettings?.contactInfo?.email }}</p>
-										<p class="mb-0">Call: {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}</p>
-									</div>
+						<div class="col-8">
+							<div class="card-body">
+								<h6 class="text-muted mb-0">PRESENTED BY</h6>
+								<h5 class="card-title info mt-1">{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}</h5>
+								<p class="card-text mb-2 text-secondary small">Agent</p>
+								<div class="text-muted small">
+									<p class="mb-1">Email: {{ siteConfig?.websiteSettings?.contactInfo?.email }}</p>
+									<p class="mb-0">Call: {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}</p>
 								</div>
 							</div>
 						</div>
 					</div>
-        </div>
-      </div>
-    </div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <section class="py-5 bg-light">
-      <div class="container">
-        <h2 class="mb-5 text-center">Core Values</h2>
-        <div class="text-center row">
-          <div class="mb-4 col-md-3">
-            <div class="p-4 border rounded">
-              <div class="mb-3 fs-1 info">
-                <i class="fa-solid fa-medal"></i>
-              </div>
-              <h5 class="mb-2">10+ Years Experience</h5>
-            </div>
-          </div>
-          <div class="mb-4 col-md-3">
-            <div class="p-4 border rounded">
-              <div class="mb-3 fs-1 info">
-                <i class="fa-solid fa-handshake"></i>
-              </div>
-              <h5 class="mb-2">Client-Focused</h5>
-            </div>
-          </div>
-          <div class="mb-4 col-md-3">
-            <div class="p-4 border rounded">
-              <div class="mb-3 fs-1 info">
-                <i class="bi bi-geo-alt"></i>
-              </div>
-              <h5 class="mb-2">Local Experts</h5>
-            </div>
-          </div>
-          <div class="mb-4 col-md-3">
-            <div class="p-4 border rounded">
-              <div class="mb-3 fs-1 info">
-                <i class="bi bi-check-circle"></i>
-              </div>
-              <h5 class="mb-2">Integrity</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+	<section class="py-5 bg-light">
+		<div class="container">
+			<h2 class="mb-5 text-center">Core Values</h2>
+			<div class="text-center row">
+				<div class="mb-4 col-md-3">
+					<div class="p-4 border rounded">
+						<div class="mb-3 fs-1 info">
+							<i class="fa-solid fa-medal"></i>
+						</div>
+						<h5 class="mb-2">10+ Years Experience</h5>
+					</div>
+				</div>
+				<div class="mb-4 col-md-3">
+					<div class="p-4 border rounded">
+						<div class="mb-3 fs-1 info">
+							<i class="fa-solid fa-handshake"></i>
+						</div>
+						<h5 class="mb-2">Client-Focused</h5>
+					</div>
+				</div>
+				<div class="mb-4 col-md-3">
+					<div class="p-4 border rounded">
+						<div class="mb-3 fs-1 info">
+							<i class="bi bi-geo-alt"></i>
+						</div>
+						<h5 class="mb-2">Local Experts</h5>
+					</div>
+				</div>
+				<div class="mb-4 col-md-3">
+					<div class="p-4 border rounded">
+						<div class="mb-3 fs-1 info">
+							<i class="bi bi-check-circle"></i>
+						</div>
+						<h5 class="mb-2">Integrity</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <section class="py-5">
-      <div class="container">
-        <h2 class="mb-5 text-center">Why Choose Me?</h2>
-        <div class="text-center row">
-          <div class="mb-4 col-md-4">
-            <div class="p-4 border-0 shadow-sm card h-100">
-              <i class="mb-3 fa-solid fa-star fs-2 info"></i>
-              <h5>Proven Track Record</h5>
-              <p>Hundreds of successful deals and satisfied clients.</p>
-            </div>
-          </div>
-          <div class="mb-4 col-md-4">
-            <div class="p-4 border-0 shadow-sm card h-100">
-              <i class="mb-3 fa-solid fa-chart-line fs-2 info"></i>
-              <h5>Market Insights</h5>
-              <p>Providing data-driven guidance tailored to your goals.</p>
-            </div>
-          </div>
-          <div class="mb-4 col-md-4">
-            <div class="p-4 border-0 shadow-sm card h-100">
-              <i class="mb-3 fa-solid fa-heart fs-2 info"></i>
-              <h5>Client Commitment</h5>
-              <p>Every client is treated like family—your success is my priority.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+	<section class="py-5">
+		<div class="container">
+			<h2 class="mb-5 text-center">Why Choose Me?</h2>
+			<div class="text-center row">
+				<div class="mb-4 col-md-4">
+					<div class="p-4 border-0 shadow-sm card h-100">
+						<i class="mb-3 fa-solid fa-star fs-2 info"></i>
+						<h5>Proven Track Record</h5>
+						<p>Hundreds of successful deals and satisfied clients.</p>
+					</div>
+				</div>
+				<div class="mb-4 col-md-4">
+					<div class="p-4 border-0 shadow-sm card h-100">
+						<i class="mb-3 fa-solid fa-chart-line fs-2 info"></i>
+						<h5>Market Insights</h5>
+						<p>Providing data-driven guidance tailored to your goals.</p>
+					</div>
+				</div>
+				<div class="mb-4 col-md-4">
+					<div class="p-4 border-0 shadow-sm card h-100">
+						<i class="mb-3 fa-solid fa-heart fs-2 info"></i>
+						<h5>Client Commitment</h5>
+						<p>Every client is treated like family—your success is my priority.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <section class="py-5 bg-client">
-      <div class="container">
-        <h2 class="mb-4 text-center">What Clients Say</h2>
-        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-          <div class="text-center carousel-inner">
-            <div class="carousel-item active">
-              <blockquote class="blockquote">
-                <p>"Outstanding service and dedication. Couldn't have asked for more!"</p>
-                <footer class="blockquote-footer">Jane D.</footer>
-              </blockquote>
-            </div>
-            <div class="carousel-item">
-              <blockquote class="blockquote">
-                <p>"Acharya made our home buying journey smooth and enjoyable."</p>
-                <footer class="blockquote-footer">Mark & Lina</footer>
-              </blockquote>
-            </div>
-            <div class="carousel-item">
-              <blockquote class="blockquote">
-                <p>"Very responsive, knowledgeable, and truly puts clients first."</p>
-                <footer class="blockquote-footer">Samuel K.</footer>
-              </blockquote>
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-          </button>
-        </div>
-      </div>
-    </section>
+	<section class="py-5 bg-client">
+		<div class="container">
+			<h2 class="mb-4 text-center">What Clients Say</h2>
+			<div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+				<div class="text-center carousel-inner">
+					<div class="carousel-item active">
+						<blockquote class="blockquote">
+							<p>"Outstanding service and dedication. Couldn't have asked for more!"</p>
+							<footer class="blockquote-footer">Jane D.</footer>
+						</blockquote>
+					</div>
+					<div class="carousel-item">
+						<blockquote class="blockquote">
+							<p>"Acharya made our home buying journey smooth and enjoyable."</p>
+							<footer class="blockquote-footer">Mark & Lina</footer>
+						</blockquote>
+					</div>
+					<div class="carousel-item">
+						<blockquote class="blockquote">
+							<p>"Very responsive, knowledgeable, and truly puts clients first."</p>
+							<footer class="blockquote-footer">Samuel K.</footer>
+						</blockquote>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</button>
+			</div>
+		</div>
+	</section>
 
 
-    <section class="py-4 mt-5 text-white rounded bg-dark">
-      <div class="container text-center">
-        <h4 class="mb-2">Ready to make your move?</h4>
-        <p>Let's connect and turn your real estate dreams into reality.</p>
-        <a [routerLink]="['/t1/contact']" class="px-4 py-2 btn search_btn">Contact Me</a>
-      </div>
-    </section>
-  </div>
+	<section class="py-4 mt-5 text-white rounded bg-dark">
+		<div class="container text-center">
+			<h4 class="mb-2">Ready to make your move?</h4>
+			<p>Let's connect and turn your real estate dreams into reality.</p>
+			<a [routerLink]="['/t1/contact']" class="px-4 py-2 btn search_btn">Contact Me</a>
+		</div>
+	</section>
+</div>

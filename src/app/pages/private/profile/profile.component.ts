@@ -13,6 +13,7 @@ import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { MenuModule } from "primeng/menu";
 import { SelectModule } from "primeng/select";
+import { TextareaModule } from "primeng/textarea";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
 import { TemplateSelectionDialogComponent } from "../../../components/template-selection-dialog/template-selection-dialog.component";
@@ -39,6 +40,7 @@ import { TemplateService } from "../../../services/template.service";
 		MenuModule,
 		DynamicDialogModule,
 		IftaLabelModule,
+		TextareaModule,
 	],
 	templateUrl: "./profile.component.html",
 	styleUrl: "./profile.component.scss",
@@ -173,6 +175,8 @@ export class ProfileComponent {
 			websiteEmail: new FormControl(""),
 			websitePhone: new FormControl(""),
 			websiteAddress: new FormControl(""),
+			aboutText: new FormControl(""),
+			contactText: new FormControl(""),
 			secondaryAgent: this.fb.group({
 				firstName: new FormControl(""),
 				lastName: new FormControl(""),
@@ -234,6 +238,8 @@ export class ProfileComponent {
 							websiteEmail: websiteEmail,
 							websitePhone: websitePhone,
 							websiteAddress: websiteAddress,
+							aboutText: response.data.websiteSettings.aboutText || "",
+							contactText: response.data.websiteSettings.contactText || "",
 						});
 						if (response.data.secondaryAgent) {
 							this.agentForm.get("secondaryAgent")?.patchValue({
@@ -324,6 +330,8 @@ export class ProfileComponent {
 				websiteEmail,
 				websitePhone,
 				websiteAddress,
+				aboutText,
+				contactText,
 			} = this.agentForm.getRawValue();
 
 			const params = {
@@ -337,6 +345,8 @@ export class ProfileComponent {
 					templateId,
 					primaryColor,
 					secondaryColor,
+					aboutText: aboutText || "",
+					contactText: contactText || "",
 					socialLinks: {
 						facebook,
 						twitter,

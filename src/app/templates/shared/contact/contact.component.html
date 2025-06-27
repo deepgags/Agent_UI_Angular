@@ -1,94 +1,94 @@
 <div class="container-fluid p-0">
-    <div class="position-relative">
-      <img class="banner w-100" src="/images/banner3.png" alt="Banner Image">
-      <div class="position-absolute top-50 start-50 translate-middle text-center">
-        <h1 class="text-white fw-bold baner-text">Contact US</h1>
-      </div>
-    </div>
-  </div>
+	<div class="position-relative">
+		<img class="banner w-100" src="/images/banner3.png" alt="Banner Image">
+		<div class="position-absolute top-50 start-50 translate-middle text-center">
+			<h1 class="text-white fw-bold baner-text">Contact US</h1>
+		</div>
+	</div>
+</div>
 
-  <section class="container-fluid py-5 bg-light search-container">
-    <div class="row py-5 justify-content-around align-items-center">
-  
-        <div class="col-lg-5 col-12 mb-4 mb-lg-0">
-        <div>
-          <h1 class="fw-bold info">Get In Touch</h1>
-          <p class="text-muted">
-            Your way to better real estate software starts here. For 35 years, we’ve proudly delivered the gold standard in real estate software to businesses of all shapes, sizes, and structures, and we’d be honored to partner with your organization today.
-          </p>
-          <div class="pt-4">
-            <h4 class="mb-3 info">Follow Us</h4>
-            <div class="d-flex gap-3 fs-4">
-              <a href="#" class="text-decoration-none info">
-                <i class="fa-brands fa-x-twitter"></i>
-              </a>
-              <a href="#" class="text-decoration-none info">
-                <i class="fa-brands fa-facebook"></i>
-              </a>
-              <a href="#" class="text-decoration-none info">
-                <i class="fa-brands fa-instagram"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-lg-4 col-12 mt-4 mt-lg-0">
-        <div class="card shadow">
-          <div class="card-body">
-            <h5 class="card-title info">Ask About this Home</h5>
-            <form [formGroup]="userForm" name="userForm" >
-              <mat-form-field appearance="fill">
-                <mat-label class="info">First Name</mat-label>
-                <input formControlName="firstName" required matInput placeholder="First Name" />
-                <mat-error>First name is required</mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="fill">
-                <mat-label class="info">Email</mat-label>
-                <input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
-                @if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
-                 <mat-error>Please enter a valid email address</mat-error>
-                }
-               @if (userForm.hasError('required', 'emailAddress')) {
-                 <mat-error>Email is required</mat-error>
-                }
-              </mat-form-field>
-              <mat-form-field appearance="fill">                
-                <mat-label class="info">Phone Number</mat-label>
-                <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
-                @if (userForm.hasError('pattern', 'phoneNumber')) {
-                  <mat-error>Please enter a valid phone number</mat-error>
-                 }
-                 @if (userForm.hasError('required', 'phoneNumber')) {
-                  <mat-error>Phone number is required</mat-error>
-                }
-              </mat-form-field>
-              <mat-form-field appearance="fill">
-                <mat-label class="info">Leave a comment</mat-label>
-                <textarea formControlName="comment" class="form-control" rows="4" matInput placeholder="Ex. Enter comment about this property"></textarea>
-                <mat-error>Comment is required</mat-error>
-              </mat-form-field>
-              <p class="mb-0 fw-semibold">I am</p>
-              <div class="d-flex flex-wrap gap-2 py-3">
-                <input type="radio" class="btn-check radio_btn" name="userType" id="seller" value="Seller"checked required>
-                <label class="btn  rounded-pill" for="seller">Seller</label>
-            
-                <input type="radio" class="btn-check" name="userType" id="buyer" value="Buyer"  required>
-                <label class="btn  rounded-pill" for="buyer">Buyer</label>
-            
-                <input type="radio" class="btn-check" name="userType" id="renter" value="Renter" required>
-                <label class="btn  rounded-pill" for="renter">Renter</label>
-            
-                <input type="radio" class="btn-check" name="userType" id="buyerSeller" value="Buyer & Seller" required>
-                <label class="btn  rounded-pill" for="buyerSeller">Buyer & Seller</label>
-              </div>
-              <button class="btn search_btn w-100 fw-bold">Save</button>
-            </form>
-          </div>
-        </div>
-       
-    </div>
-  
-    </div>
-  </section>
-  
+<section class="container-fluid py-5 bg-light search-container">
+	<div class="row py-5 justify-content-around align-items-center">
+
+		<div class="col-lg-5 col-12 mb-4 mb-lg-0">
+			<div>
+				<h1 class="fw-bold info">Get In Touch</h1>
+				<p class="text-muted">
+					{{siteConfig?.websiteSettings?.contactText ? siteConfig?.websiteSettings?.contactText : contactText}}
+
+				</p>
+				<div class="pt-4">
+					<h4 class="mb-3 info">Follow Us</h4>
+					<div class="d-flex gap-3 fs-4">
+						<a href="#" class="text-decoration-none info">
+							<i class="fa-brands fa-x-twitter"></i>
+						</a>
+						<a href="#" class="text-decoration-none info">
+							<i class="fa-brands fa-facebook"></i>
+						</a>
+						<a href="#" class="text-decoration-none info">
+							<i class="fa-brands fa-instagram"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-4 col-12 mt-4 mt-lg-0">
+			<div class="card shadow">
+				<div class="card-body">
+					<h5 class="card-title info">Ask About this Home</h5>
+					<form [formGroup]="userForm" name="userForm">
+						<mat-form-field appearance="fill">
+							<mat-label class="info">First Name</mat-label>
+							<input formControlName="firstName" required matInput placeholder="First Name" />
+							<mat-error>First name is required</mat-error>
+						</mat-form-field>
+						<mat-form-field appearance="fill">
+							<mat-label class="info">Email</mat-label>
+							<input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
+							@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
+							<mat-error>Please enter a valid email address</mat-error>
+							}
+							@if (userForm.hasError('required', 'emailAddress')) {
+							<mat-error>Email is required</mat-error>
+							}
+						</mat-form-field>
+						<mat-form-field appearance="fill">
+							<mat-label class="info">Phone Number</mat-label>
+							<input type="tel" formControlName="phoneNumber" matInput placeholder="Ex. 123-456-1234" />
+							@if (userForm.hasError('pattern', 'phoneNumber')) {
+							<mat-error>Please enter a valid phone number</mat-error>
+							}
+							@if (userForm.hasError('required', 'phoneNumber')) {
+							<mat-error>Phone number is required</mat-error>
+							}
+						</mat-form-field>
+						<mat-form-field appearance="fill">
+							<mat-label class="info">Leave a comment</mat-label>
+							<textarea formControlName="comment" class="form-control" rows="4" matInput placeholder="Ex. Enter comment about this property"></textarea>
+							<mat-error>Comment is required</mat-error>
+						</mat-form-field>
+						<p class="mb-0 fw-semibold">I am</p>
+						<div class="d-flex flex-wrap gap-2 py-3">
+							<input type="radio" class="btn-check radio_btn" name="userType" id="seller" value="Seller" checked required>
+							<label class="btn  rounded-pill" for="seller">Seller</label>
+
+							<input type="radio" class="btn-check" name="userType" id="buyer" value="Buyer" required>
+							<label class="btn  rounded-pill" for="buyer">Buyer</label>
+
+							<input type="radio" class="btn-check" name="userType" id="renter" value="Renter" required>
+							<label class="btn  rounded-pill" for="renter">Renter</label>
+
+							<input type="radio" class="btn-check" name="userType" id="buyerSeller" value="Buyer & Seller" required>
+							<label class="btn  rounded-pill" for="buyerSeller">Buyer & Seller</label>
+						</div>
+						<button class="btn search_btn w-100 fw-bold">Save</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</section>
