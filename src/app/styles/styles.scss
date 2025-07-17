@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */ /* Add spacing below all p-editor fields in the profile page */
+
 @import url("https://fonts.googleapis.com/css2?family=Patua+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 .p-floatlabel label {
@@ -20,4 +21,15 @@
 	&::before {
 		content: "* ";
 	}
+}
+
+.profile-page p-editor {
+	display: block;
+	margin-bottom: 2rem;
+}
+p-editor.p-editor .p-editor-container {
+	height: 150px !important;
+}
+p-editor.p-editor .p-editor-container .ql-editor {
+	height: auto !important;
 }

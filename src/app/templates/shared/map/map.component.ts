@@ -13,6 +13,7 @@ import { BehaviorSubject } from "rxjs";
 import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
 import { sortTypes } from "../../../consts/DefaultTypes";
 import { stringiFy } from "../../../consts/Utility";
+import { environment } from "../../../environments/environment.development";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
@@ -39,6 +40,7 @@ import { SearchComponent } from "../search/search.component";
 	standalone: true,
 })
 export class MapComponent implements OnInit, AfterViewInit {
+	imageUrl = environment.imageUrl;
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;

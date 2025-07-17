@@ -1,5 +1,7 @@
-<p-menu #menu [model]="items" [popup]="true" />
-<div class="d-flex flex-column vh-100">
+<p-menu #menu
+	[model]="items"
+	[popup]="true"></p-menu>
+<div class="d-flex flex-column vh-100 profile-page">
 	<div class="bg-white shadow-sm border-bottom">
 		<div class="container-fluid">
 			<div class="row">
@@ -8,16 +10,24 @@
 						<div class="d-flex justify-content-between align-items-center">
 							<h4 class="mb-0">Profile & Settings</h4>
 							<div class="d-flex align-items-center">
-								<img *ngIf="existingProfileImage" [src]="existingProfileImage" class="rounded-circle me-2" style="width: 40px; height: 40px; object-fit: cover"
+								<img *ngIf="existingProfileImage"
+									[src]="existingProfileImage"
+									class="rounded-circle me-2"
+									style="width: 40px; height: 40px; object-fit: cover"
 									alt="Profile Picture" />
-								<div *ngIf="!existingProfileImage" class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2"
+								<div *ngIf="!existingProfileImage"
+									class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-2"
 									style="width: 40px; height: 40px">
 									<i class="fas fa-user text-white"></i>
 								</div>
-								<span class="text-muted fw-semibold" *ngIf="agentData?.firstName">
+								<span class="text-muted fw-semibold"
+									*ngIf="agentData?.firstName">
 									Hello, {{ agentData.firstName }}!
 								</span>
-								<button type="button" class="btn btn-outline-secondary btn-sm border-0 p-1 ms-2" title="Menu" style="width: 32px; height: 32px"
+								<button type="button"
+									class="btn btn-outline-secondary btn-sm border-0 p-1 ms-2"
+									title="Menu"
+									style="width: 32px; height: 32px"
 									(click)="menu.toggle($event)">
 									<i class="fas fa-ellipsis-v"></i>
 								</button>
@@ -35,7 +45,10 @@
 				<div class="col-12 d-flex justify-content-center">
 					<div class="card w-75 shadow-sm border-0">
 						<div class="card-body p-4 d-flex justify-content-center">
-							<form [formGroup]="agentForm" name="brokerageForm" class="w-100" (ngSubmit)="save()">
+							<form [formGroup]="agentForm"
+								name="brokerageForm"
+								class="w-100"
+								(ngSubmit)="save()">
 								<div class="mb-4">
 									<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
 										<i class="fas fa-address-book text-muted me-2"></i>
@@ -45,10 +58,14 @@
 										<div class="col-md-6">
 											<div class="mb-3">
 												<p-iftalabel>
-													<p-inputmask mask="999-999-9999" formControlName="phoneNumber" styleClass="form-control" inputId="phoneNumber" />
+													<p-inputmask mask="999-999-9999"
+														formControlName="phoneNumber"
+														styleClass="form-control"
+														inputId="phoneNumber"></p-inputmask>
 													<label for="phoneNumber">Phone Number</label>
 												</p-iftalabel>
-												<span class="error" *ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)">
+												<span class="error"
+													*ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)">
 													<span *ngIf="phoneNumber?.errors?.['required']">Phone Number is required</span>
 													<span *ngIf="phoneNumber?.errors?.['pattern']">Enter a valid phone number</span>
 												</span>
@@ -57,11 +74,17 @@
 										<div class="col-md-6">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="email" pInputText formControlName="emailAddress" placeholder="Personal Email" class="form-control"
-														id="emailAddress" required />
+													<input type="email"
+														pInputText
+														formControlName="emailAddress"
+														placeholder="Personal Email"
+														class="form-control"
+														id="emailAddress"
+														required />
 													<label for="emailAddress">Personal Email</label>
 												</p-iftalabel>
-												<span class="error" *ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)">
+												<span class="error"
+													*ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)">
 													<span *ngIf="emailAddress?.errors?.['required']">Email Address is required</span>
 													<span *ngIf="emailAddress?.errors?.['email']">Enter a valid email address</span>
 												</span>
@@ -79,19 +102,29 @@
 										<div class="col-md-6">
 											<div class="mb-3">
 												<p-iftalabel>
-													<p-select formControlName="brokerageType" [options]="brokerageTypes" optionLabel="name" optionValue="_id" styleClass="w-100"
-														(onChange)="brokerageChange($event.value)" inputId="brokerageType" />
+													<p-select formControlName="brokerageType"
+														[options]="brokerageTypes"
+														optionLabel="name"
+														optionValue="_id"
+														styleClass="w-100"
+														(onChange)="brokerageChange($event.value)"
+														inputId="brokerageType"></p-select>
 													<label for="brokerageType">Franchise</label>
 												</p-iftalabel>
-												<span class="error" *ngIf="brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)">
+												<span class="error"
+													*ngIf="brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)">
 													<span *ngIf="brokerageType?.errors?.['required']">Franchise Type is required</span>
 												</span>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<!-- *ngIf="primaryAgentProfileImageObservable | async as primaryAgentProfileImage" -->
-											<div class="text-center" *ngIf="brokerageImageObservable | async as brokerageImage">
-												<img [src]="brokerageImage" class="img-thumbnail" style="height: 66px; max-height: 120px; object-fit: contain" height="66px" />
+											<div class="text-center"
+												*ngIf="brokerageImageObservable | async as brokerageImage">
+												<img [src]="brokerageImage"
+													class="img-thumbnail"
+													style="height: 66px; max-height: 120px; object-fit: contain"
+													height="66px" />
 												<small class="text-muted d-block mt-1">Franchise Logo</small>
 											</div>
 										</div>
@@ -100,11 +133,17 @@
 										<div class="col-md-6">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="text" pInputText formControlName="businessName" placeholder="Business Name" class="form-control" id="businessName"
+													<input type="text"
+														pInputText
+														formControlName="businessName"
+														placeholder="Business Name"
+														class="form-control"
+														id="businessName"
 														required />
 													<label for="businessName">Brokerage Name</label>
 												</p-iftalabel>
-												<span class="error" *ngIf="businessName?.invalid && (businessName?.dirty || businessName?.touched)">
+												<span class="error"
+													*ngIf="businessName?.invalid && (businessName?.dirty || businessName?.touched)">
 													<span *ngIf="businessName?.errors?.['required']">Brokerage Name is required</span>
 												</span>
 											</div>
@@ -112,7 +151,12 @@
 										<div class="col-md-6">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="text" pInputText formControlName="address" placeholder="Brokerage Address" class="form-control" id="address" />
+													<input type="text"
+														pInputText
+														formControlName="address"
+														placeholder="Brokerage Address"
+														class="form-control"
+														id="address" />
 													<label for="address">Brokerage Address</label>
 												</p-iftalabel>
 											</div>
@@ -129,11 +173,17 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="text" pInputText formControlName="firstName" placeholder="First Name" class="form-control" id="firstName"
+													<input type="text"
+														pInputText
+														formControlName="firstName"
+														placeholder="First Name"
+														class="form-control"
+														id="firstName"
 														required />
 													<label for="firstName">First Name</label>
 												</p-iftalabel>
-												<span class="error" *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+												<span class="error"
+													*ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
 													<span *ngIf="firstName?.errors?.['required']">First Name is required</span>
 												</span>
 											</div>
@@ -141,10 +191,17 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="text" pInputText formControlName="lastName" placeholder="Last Name" class="form-control" id="lastName" required />
+													<input type="text"
+														pInputText
+														formControlName="lastName"
+														placeholder="Last Name"
+														class="form-control"
+														id="lastName"
+														required />
 													<label for="lastName">Last Name</label>
 												</p-iftalabel>
-												<span class="error" *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+												<span class="error"
+													*ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
 													<span *ngIf="lastName?.errors?.['required']">Last Name is required</span>
 												</span>
 											</div>
@@ -154,7 +211,11 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="email" pInputText formControlName="websiteEmail" placeholder="Website Email" class="form-control"
+													<input type="email"
+														pInputText
+														formControlName="websiteEmail"
+														placeholder="Website Email"
+														class="form-control"
 														id="websiteEmail" />
 													<label for="websiteEmail">Email (Displayed on Website)</label>
 												</p-iftalabel>
@@ -163,8 +224,11 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<p-iftalabel>
-													<p-inputmask mask="999-999-9999" formControlName="websitePhone" styleClass="form-control" placeholder="Website Phone"
-														id="websitePhone" />
+													<p-inputmask mask="999-999-9999"
+														formControlName="websitePhone"
+														styleClass="form-control"
+														placeholder="Website Phone"
+														id="websitePhone"></p-inputmask>
 													<label for="websitePhone">Phone (Displayed on Website)</label>
 												</p-iftalabel>
 											</div>
@@ -172,7 +236,12 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="text" pInputText formControlName="websiteAddress" placeholder="Address" class="form-control" id="websiteAddress" />
+													<input type="text"
+														pInputText
+														formControlName="websiteAddress"
+														placeholder="Address"
+														class="form-control"
+														id="websiteAddress" />
 													<label for="websiteAddress">Address (Displayed on Website)</label>
 												</p-iftalabel>
 											</div>
@@ -183,11 +252,15 @@
 											<div class="upload-container p-3 border rounded bg-light">
 												<div class="row">
 													<div class="col">
-														<label class="form-label fw-semibold d-block" style="font-size: 14px">
+														<label class="form-label fw-semibold d-block"
+															style="font-size: 14px">
 															<i class="fas fa-user-circle me-2"></i>
 															Profile Picture
 														</label>
-														<input type="file" (change)="onProfileImageChange($event)" class="form-control upload-btn w-100" id="profileImageUpload"
+														<input type="file"
+															(change)="onProfileImageChange($event)"
+															class="form-control upload-btn w-100"
+															id="profileImageUpload"
 															accept="image/*" />
 													</div>
 													<div class="col">
@@ -195,7 +268,9 @@
 															*ngIf="primaryAgentProfileImageObservable | async as primaryAgentProfileImage">
 															<div class="text-center">
 																<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
-																<img [src]="primaryAgentProfileImage" class="rounded border image-preview" alt="Profile Picture Preview" />
+																<img [src]="primaryAgentProfileImage"
+																	class="rounded border image-preview"
+																	alt="Profile Picture Preview" />
 															</div>
 														</div>
 													</div>
@@ -204,7 +279,8 @@
 										</div>
 									</div>
 								</div>
-								<div class="mb-4" formGroupName="secondaryAgent">
+								<div class="mb-4"
+									formGroupName="secondaryAgent">
 									<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
 										<i class="fas fa-user-tie text-muted me-2"></i>
 										Secondary Agent Information
@@ -213,7 +289,11 @@
 										<div class="col-md-6">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="text" pInputText formControlName="firstName" placeholder="First Name" class="form-control"
+													<input type="text"
+														pInputText
+														formControlName="firstName"
+														placeholder="First Name"
+														class="form-control"
 														id="secondaryFirstName" />
 													<label for="secondaryFirstName">First Name</label>
 												</p-iftalabel>
@@ -222,7 +302,12 @@
 										<div class="col-md-6">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="text" pInputText formControlName="lastName" placeholder="Last Name" class="form-control" id="secondaryLastName" />
+													<input type="text"
+														pInputText
+														formControlName="lastName"
+														placeholder="Last Name"
+														class="form-control"
+														id="secondaryLastName" />
 													<label for="secondaryLastName">Last Name</label>
 												</p-iftalabel>
 											</div>
@@ -232,8 +317,11 @@
 										<div class="col-md-6">
 											<div class="mb-3">
 												<p-iftalabel>
-													<p-inputmask mask="999-999-9999" formControlName="websitePhone" styleClass="form-control" placeholder="Website Phone"
-														id="secondaryWebsitePhone" />
+													<p-inputmask mask="999-999-9999"
+														formControlName="websitePhone"
+														styleClass="form-control"
+														placeholder="Website Phone"
+														id="secondaryWebsitePhone"></p-inputmask>
 													<label for="secondaryWebsitePhone">Phone (Displayed on Website)</label>
 												</p-iftalabel>
 											</div>
@@ -241,7 +329,11 @@
 										<div class="col-md-6">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="email" pInputText formControlName="websiteEmail" placeholder="Website Email" class="form-control"
+													<input type="email"
+														pInputText
+														formControlName="websiteEmail"
+														placeholder="Website Email"
+														class="form-control"
 														id="secondaryWebsiteEmail" />
 													<label for="secondaryWebsiteEmail">Website Email</label>
 												</p-iftalabel>
@@ -253,20 +345,27 @@
 											<div class="upload-container p-3 border rounded bg-light">
 												<div class="row">
 													<div class="col">
-														<label class="form-label fw-semibold d-block" style="font-size: 14px">
+														<label class="form-label fw-semibold d-block"
+															style="font-size: 14px">
 															<i class="fas fa-user-circle me-2"></i>
 															Profile Picture
 														</label>
-														<input type="file" (change)="onSecondaryProfileImageChange($event)" class="form-control upload-btn w-100"
-															id="secondaryProfileImageUpload" accept="image/*" />
+														<input type="file"
+															(change)="onSecondaryProfileImageChange($event)"
+															class="form-control upload-btn w-100"
+															id="secondaryProfileImageUpload"
+															accept="image/*" />
 													</div>
 													<div class="col">
-														<div class="mt-3 p-2 border rounded bg-white shadow-sm" *ngIf="
+														<div class="mt-3 p-2 border rounded bg-white shadow-sm"
+															*ngIf="
 																secondaryAgentProfileImageObservable | async as secondaryAgentProfileImage
 															">
 															<div class="text-center">
 																<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
-																<img [src]="secondaryAgentProfileImage" class="rounded border image-preview" alt="Profile Picture Preview" />
+																<img [src]="secondaryAgentProfileImage"
+																	class="rounded border image-preview"
+																	alt="Profile Picture Preview" />
 															</div>
 														</div>
 													</div>
@@ -284,10 +383,17 @@
 									<div class="row">
 										<div class="col-md-12 mb-3">
 											<p-iftalabel>
-												<input type="url" pInputText formControlName="siteUrl" placeholder="Website URL" class="form-control" id="siteUrl" required />
+												<input type="url"
+													pInputText
+													formControlName="siteUrl"
+													placeholder="Website URL"
+													class="form-control"
+													id="siteUrl"
+													required />
 												<label for="siteUrl">Website URL</label>
 											</p-iftalabel>
-											<span class="error" *ngIf="siteUrl?.invalid && (siteUrl?.dirty || siteUrl?.touched)">
+											<span class="error"
+												*ngIf="siteUrl?.invalid && (siteUrl?.dirty || siteUrl?.touched)">
 												<span *ngIf="siteUrl?.errors?.['required']">Website URL is required</span>
 												<span *ngIf="siteUrl?.errors?.['pattern']">Enter a valid website URL</span>
 											</span>
@@ -296,20 +402,28 @@
 									<div class="row align-items-center mb-3">
 										<div class="col-md-8">
 											<p-iftalabel>
-												<p-select formControlName="templateId" [options]="templates" optionLabel="name" optionValue="templateKey" styleClass="w-100"
+												<p-select formControlName="templateId"
+													[options]="templates"
+													optionLabel="name"
+													optionValue="templateKey"
+													styleClass="w-100"
 													inputId="templateId">
-													<ng-template pTemplate="item" let-template>
+													<ng-template pTemplate="item"
+														let-template>
 														{{ template.name }} - {{ template.description }}
 													</ng-template>
 												</p-select>
 												<label for="templateId">Website Template</label>
 											</p-iftalabel>
-											<span class="error" *ngIf="templateId?.invalid && (templateId?.dirty || templateId?.touched)">
+											<span class="error"
+												*ngIf="templateId?.invalid && (templateId?.dirty || templateId?.touched)">
 												<span *ngIf="templateId?.errors?.['required']">Template is required</span>
 											</span>
 										</div>
 										<div class="col-md-4">
-											<button type="button" class="btn btn-success w-100" (click)="openTemplateDialog()">
+											<button type="button"
+												class="btn btn-success w-100"
+												(click)="openTemplateDialog()">
 												<i class="fas fa-eye me-2"></i>
 												Select Template
 											</button>
@@ -319,11 +433,13 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="mb-3">
-												<label for="primaryColor" class="form-label fw-semibold d-block">
+												<label for="primaryColor"
+													class="form-label fw-semibold d-block">
 													<i class="fas fa-palette text-muted me-2"></i>
 													Primary Color
 												</label>
-												<p-colorpicker formControlName="primaryColor" inputId="primaryColor" />
+												<p-colorpicker formControlName="primaryColor"
+													inputId="primaryColor"></p-colorpicker>
 												<div class="d-inline-flex align-items-center ms-3">
 													<small class="text-muted">{{ agentForm.get("primaryColor")?.value }}</small>
 												</div>
@@ -331,46 +447,20 @@
 										</div>
 										<div class="col-md-6">
 											<div class="mb-3">
-												<label for="secondaryColor" class="form-label fw-semibold d-block">
+												<label for="secondaryColor"
+													class="form-label fw-semibold d-block">
 													<i class="fas fa-palette text-muted me-2"></i>
 													Secondary Color
 												</label>
-												<p-colorpicker formControlName="secondaryColor" inputId="secondaryColor" />
+												<p-colorpicker formControlName="secondaryColor"
+													inputId="secondaryColor"></p-colorpicker>
 												<div class="d-inline-flex align-items-center ms-3">
 													<small class="text-muted">{{ agentForm.get("secondaryColor")?.value }}</small>
 												</div>
 											</div>
 										</div>
 									</div>
-									<!-- About and Contact Text Areas -->
-									<div class="mb-4">
-										<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
-											<i class="fas fa-info-circle text-muted me-2"></i>
-											Website About & Contact Text
-										</h6>
-										<small class="text-muted d-block mb-3">
-											Add a description about your website and a contact message. This information will be displayed on your website's About and Contact
-											sections.
-										</small>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="mb-3">
-													<p-iftalabel>
-														<textarea pTextarea formControlName="aboutText" class="form-control" id="aboutText" rows="4"></textarea>
-														<label for="aboutText">About Text</label>
-													</p-iftalabel>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="mb-3">
-													<p-iftalabel>
-														<textarea pTextarea formControlName="contactText" class="form-control" id="contactText" rows="4"></textarea>
-														<label for="contactText">Contact Text</label>
-													</p-iftalabel>
-												</div>
-											</div>
-										</div>
-									</div>
+
 									<div class="row">
 										<div class="col-md-12">
 											<div class="upload-container p-3 border rounded mb-3 mb-md-0 bg-light">
@@ -380,14 +470,20 @@
 															<i class="fas fa-building me-2"></i>
 															Company Logo
 														</label>
-														<input type="file" (change)="onLogoImageChange($event)" class="form-control upload-btn w-100" id="logoImageUpload"
+														<input type="file"
+															(change)="onLogoImageChange($event)"
+															class="form-control upload-btn w-100"
+															id="logoImageUpload"
 															accept="image/*" />
 													</div>
 													<div class="col">
-														<div class="mt-3 p-2 border rounded bg-white shadow-sm" *ngIf="logoImageObservable | async as logoImage">
+														<div class="mt-3 p-2 border rounded bg-white shadow-sm"
+															*ngIf="logoImageObservable | async as logoImage">
 															<div class="text-center">
 																<h6 class="text-dark fw-bold mb-2">Logo Preview</h6>
-																<img [src]="logoImage" class="rounded border image-preview" alt="Logo Preview" />
+																<img [src]="logoImage"
+																	class="rounded border image-preview"
+																	alt="Logo Preview" />
 															</div>
 														</div>
 													</div>
@@ -395,6 +491,325 @@
 											</div>
 										</div>
 									</div>
+								</div>
+
+								<!-- About and Contact Text Areas -->
+								<div class="mb-4">
+									<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
+										<i class="fas fa-info-circle text-muted me-2"></i>
+										Website About & Contact Text
+									</h6>
+									<small class="text-muted d-block mb-3">
+										Add a description about your website and a contact message. This information will be displayed on your website's About and Contact
+										sections.
+									</small>
+									<div class="row mb-4 d-flex flex-column gap-4">
+										<div class="col-md-12 field">
+											<label for="aboutText"
+												class="form-label fw-semibold d-block mb-2">About Text</label>
+											<p-editor formControlName="aboutText"
+												id="aboutText">
+												<p-header>
+													<span class="ql-formats">
+														<select class="ql-header">
+															<option value="1">Heading</option>
+															<option value="2">Subheading</option>
+															<option selected>Normal</option>
+														</select>
+														<select class="ql-font">
+															<option selected>Sans Serif</option>
+															<option value="serif">Serif</option>
+															<option value="monospace">Monospace</option>
+														</select>
+													</span>
+													<span class="ql-formats">
+														<button class="ql-bold"
+															aria-label="Bold"></button>
+														<button class="ql-italic"
+															aria-label="Italic"></button>
+														<button class="ql-underline"
+															aria-label="Underline"></button>
+													</span>
+													<span class="ql-formats">
+														<select class="ql-color"></select>
+														<select class="ql-background"></select>
+													</span>
+													<span class="ql-formats">
+														<button class="ql-list"
+															value="ordered"
+															aria-label="Ordered List"></button>
+														<button class="ql-list"
+															value="bullet"
+															aria-label="Unordered List"></button>
+														<select class="ql-align">
+															<option selected></option>
+															<option value="center"></option>
+															<option value="right"></option>
+															<option value="justify"></option>
+														</select>
+													</span>
+												</p-header>
+											</p-editor>
+										</div>
+
+										<div class="col-md-12 field">
+											<label for="contactText"
+												class="form-label fw-semibold d-block mb-2">Contact Text</label>
+											<p-editor formControlName="contactText"
+												id="contactText">
+												<p-header>
+													<span class="ql-formats">
+														<select class="ql-header">
+															<option value="1">Heading</option>
+															<option value="2">Subheading</option>
+															<option selected>Normal</option>
+														</select>
+														<select class="ql-font">
+															<option selected>Sans Serif</option>
+															<option value="serif">Serif</option>
+															<option value="monospace">Monospace</option>
+														</select>
+													</span>
+													<span class="ql-formats">
+														<button class="ql-bold"
+															aria-label="Bold"></button>
+														<button class="ql-italic"
+															aria-label="Italic"></button>
+														<button class="ql-underline"
+															aria-label="Underline"></button>
+													</span>
+													<span class="ql-formats">
+														<select class="ql-color"></select>
+														<select class="ql-background"></select>
+													</span>
+													<span class="ql-formats">
+														<button class="ql-list"
+															value="ordered"
+															aria-label="Ordered List"></button>
+														<button class="ql-list"
+															value="bullet"
+															aria-label="Unordered List"></button>
+														<select class="ql-align">
+															<option selected></option>
+															<option value="center"></option>
+															<option value="right"></option>
+															<option value="justify"></option>
+														</select>
+													</span>
+												</p-header>
+											</p-editor>
+										</div>
+									</div>
+								</div>
+								<!-- Selling/Buying Info Text Areas -->
+								<div class="mb-4">
+									<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
+										<i class="fas fa-home text-muted me-2"></i>
+										Selling & Buying Information
+									</h6>
+									<small class="text-muted d-block mb-3">
+										Add content for sellers and buyers. These will be displayed on relevant sections of your website.
+									</small>
+
+									<div class="d-flex flex-column gap-4">
+										<div class="col-md-12 field">
+											<label for="sellingYourHouseText"
+												class="form-label fw-semibold d-block mb-2"> Selling Your House Text</label>
+											<p-editor formControlName="sellingYourHouseText"
+												id="sellingYourHouseText">
+												<p-header>
+													<span class="ql-formats">
+														<select class="ql-header">
+															<option value="1">Heading</option>
+															<option value="2">Subheading</option>
+															<option selected>Normal</option>
+														</select>
+														<select class="ql-font">
+															<option selected>Sans Serif</option>
+															<option value="serif">Serif</option>
+															<option value="monospace">Monospace</option>
+														</select>
+													</span>
+													<span class="ql-formats">
+														<button class="ql-bold"
+															aria-label="Bold"></button>
+														<button class="ql-italic"
+															aria-label="Italic"></button>
+														<button class="ql-underline"
+															aria-label="Underline"></button>
+													</span>
+													<span class="ql-formats">
+														<select class="ql-color"></select>
+														<select class="ql-background"></select>
+													</span>
+													<span class="ql-formats">
+														<button class="ql-list"
+															value="ordered"
+															aria-label="Ordered List"></button>
+														<button class="ql-list"
+															value="bullet"
+															aria-label="Unordered List"></button>
+														<select class="ql-align">
+															<option selected></option>
+															<option value="center"></option>
+															<option value="right"></option>
+															<option value="justify"></option>
+														</select>
+													</span>
+												</p-header>
+											</p-editor>
+										</div>
+
+										<div class="col-md-12 field">
+											<label for="renovatingForResellText"
+												class="form-label fw-semibold d-block mb-2">Renovating for Resell Text</label>
+											<p-editor formControlName="renovatingForResellText"
+												id="renovatingForResellText">
+												<p-header>
+													<span class="ql-formats">
+														<select class="ql-header">
+															<option value="1">Heading</option>
+															<option value="2">Subheading</option>
+															<option selected>Normal</option>
+														</select>
+														<select class="ql-font">
+															<option selected>Sans Serif</option>
+															<option value="serif">Serif</option>
+															<option value="monospace">Monospace</option>
+														</select>
+													</span>
+													<span class="ql-formats">
+														<button class="ql-bold"
+															aria-label="Bold"></button>
+														<button class="ql-italic"
+															aria-label="Italic"></button>
+														<button class="ql-underline"
+															aria-label="Underline"></button>
+													</span>
+													<span class="ql-formats">
+														<select class="ql-color"></select>
+														<select class="ql-background"></select>
+													</span>
+													<span class="ql-formats">
+														<button class="ql-list"
+															value="ordered"
+															aria-label="Ordered List"></button>
+														<button class="ql-list"
+															value="bullet"
+															aria-label="Unordered List"></button>
+														<select class="ql-align">
+															<option selected></option>
+															<option value="center"></option>
+															<option value="right"></option>
+															<option value="justify"></option>
+														</select>
+													</span>
+												</p-header>
+											</p-editor>
+										</div>
+
+
+										<div class="row">
+											<div class="col-md-12 field">
+												<label for="commonSellingMistakeText"
+													class="form-label fw-semibold d-block mb-2">Common Selling Mistake Text</label>
+												<p-editor formControlName="commonSellingMistakeText"
+													id="commonSellingMistakeText">
+													<p-header>
+														<span class="ql-formats">
+															<select class="ql-header">
+																<option value="1">Heading</option>
+																<option value="2">Subheading</option>
+																<option selected>Normal</option>
+															</select>
+															<select class="ql-font">
+																<option selected>Sans Serif</option>
+																<option value="serif">Serif</option>
+																<option value="monospace">Monospace</option>
+															</select>
+														</span>
+														<span class="ql-formats">
+															<button class="ql-bold"
+																aria-label="Bold"></button>
+															<button class="ql-italic"
+																aria-label="Italic"></button>
+															<button class="ql-underline"
+																aria-label="Underline"></button>
+														</span>
+														<span class="ql-formats">
+															<select class="ql-color"></select>
+															<select class="ql-background"></select>
+														</span>
+														<span class="ql-formats">
+															<button class="ql-list"
+																value="ordered"
+																aria-label="Ordered List"></button>
+															<button class="ql-list"
+																value="bullet"
+																aria-label="Unordered List"></button>
+															<select class="ql-align">
+																<option selected></option>
+																<option value="center"></option>
+																<option value="right"></option>
+																<option value="justify"></option>
+															</select>
+														</span>
+													</p-header>
+												</p-editor>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12 field">
+												<label for="buyerText"
+													class="form-label fw-semibold d-block mb-2">Buyer Text</label>
+												<p-editor formControlName="buyerText"
+													id="buyerText">
+													<p-header>
+														<span class="ql-formats">
+															<select class="ql-header">
+																<option value="1">Heading</option>
+																<option value="2">Subheading</option>
+																<option selected>Normal</option>
+															</select>
+															<select class="ql-font">
+																<option selected>Sans Serif</option>
+																<option value="serif">Serif</option>
+																<option value="monospace">Monospace</option>
+															</select>
+														</span>
+														<span class="ql-formats">
+															<button class="ql-bold"
+																aria-label="Bold"></button>
+															<button class="ql-italic"
+																aria-label="Italic"></button>
+															<button class="ql-underline"
+																aria-label="Underline"></button>
+														</span>
+														<span class="ql-formats">
+															<select class="ql-color"></select>
+															<select class="ql-background"></select>
+														</span>
+														<span class="ql-formats">
+															<button class="ql-list"
+																value="ordered"
+																aria-label="Ordered List"></button>
+															<button class="ql-list"
+																value="bullet"
+																aria-label="Unordered List"></button>
+															<select class="ql-align">
+																<option selected></option>
+																<option value="center"></option>
+																<option value="right"></option>
+																<option value="justify"></option>
+															</select>
+														</span>
+													</p-header>
+												</p-editor>
+											</div>
+										</div>
+									</div>
+
 								</div>
 
 								<div class="mb-4">
@@ -406,7 +821,12 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="url" pInputText formControlName="facebook" placeholder="Facebook URL" class="form-control" id="facebook" />
+													<input type="url"
+														pInputText
+														formControlName="facebook"
+														placeholder="Facebook URL"
+														class="form-control"
+														id="facebook" />
 													<label for="facebook">Facebook</label>
 												</p-iftalabel>
 											</div>
@@ -414,7 +834,11 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="url" pInputText formControlName="twitter" class="form-control" id="x" />
+													<input type="url"
+														pInputText
+														formControlName="twitter"
+														class="form-control"
+														id="x" />
 													<label for="x">X(Twitter)</label>
 												</p-iftalabel>
 											</div>
@@ -422,7 +846,12 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="url" pInputText formControlName="instagram" placeholder="Instagram URL" class="form-control" id="instagram" />
+													<input type="url"
+														pInputText
+														formControlName="instagram"
+														placeholder="Instagram URL"
+														class="form-control"
+														id="instagram" />
 													<label for="instagram">Instagram</label>
 												</p-iftalabel>
 											</div>
@@ -432,7 +861,12 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="url" pInputText formControlName="linkedin" placeholder="Linked In URL" class="form-control" id="linkedin" />
+													<input type="url"
+														pInputText
+														formControlName="linkedin"
+														placeholder="Linked In URL"
+														class="form-control"
+														id="linkedin" />
 													<label for="linkedin">Linkedin</label>
 												</p-iftalabel>
 											</div>
@@ -440,7 +874,12 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<p-iftalabel>
-													<input type="url" pInputText formControlName="youtube" placeholder="YouTube URL" class="form-control" id="youtube" />
+													<input type="url"
+														pInputText
+														formControlName="youtube"
+														placeholder="YouTube URL"
+														class="form-control"
+														id="youtube" />
 													<label for="youtube">Youtube</label>
 												</p-iftalabel>
 											</div>
@@ -450,7 +889,8 @@
 
 								<div class="d-flex justify-content-end align-items-center">
 									<div class="d-flex align-items-center">
-										<button type="submit" class="btn btn-success px-4">
+										<button type="submit"
+											class="btn btn-success px-4">
 											<i class="fas fa-save me-2"></i>
 											Save Changes
 										</button>

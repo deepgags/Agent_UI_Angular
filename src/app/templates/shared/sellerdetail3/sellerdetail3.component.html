@@ -1,41 +1,53 @@
 <div class="container-fluid p-0 search-container">
-  <div class="position-relative">
-    <img class="banner w-100" src="/images/banner3.png" alt="Banner Image">
-    <div class="position-absolute top-50 start-50 translate-middle text-center">
-      <h1 class="text-white fw-bold baner-text">Seller Details</h1>
-    </div>
-  </div>
+	<div class="position-relative">
+		<img class="banner w-100" src="/images/banner3.png" alt="Banner Image">
+		<div class="position-absolute top-50 start-50 translate-middle text-center">
+			<h1 class="text-white fw-bold baner-text">Seller Details</h1>
+		</div>
+	</div>
 </div>
 
-<div class="container pb-5 search-container">
-  <h2 class="my-5 mb-4 info">Common Home Selling Mistakes</h2>
-  <hr>
+<div class="container pb-5 search-container" *ngIf="!siteConfig?.websiteSettings?.commonSellingMistakeText">
+	<h2 class="my-5 mb-4 info">Common Home Selling Mistakes</h2>
+	<hr>
 
-  <h3 class="info">Incorrect Pricing</h3>
-  <p>Every seller wants to maximize their return, but overpricing is one of the most common mistakes. Listings get the most attention shortly after they hit the market. If your home is perceived as overpriced, it may be ignored, leading to later price cuts and a lower final sale price.</p>
+	<h3 class="info">Incorrect Pricing</h3>
+	<p>Every seller wants to maximize their return, but overpricing is one of the most common mistakes. Listings get the most attention shortly after they hit the market. If your
+		home is perceived as overpriced, it may be ignored, leading to later price cuts and a lower final sale price.</p>
 
-  <h3 class="info">Mistaking Re-finance Appraisals for Market Value</h3>
-  <p>Refinance appraisals are often higher than actual market value because lenders aim to encourage refinancing. Relying on them can mislead sellers. For an accurate valuation, ask your Realtor® for recent sales data in your area.</p>
+	<h3 class="info">Mistaking Re-finance Appraisals for Market Value</h3>
+	<p>Refinance appraisals are often higher than actual market value because lenders aim to encourage refinancing. Relying on them can mislead sellers. For an accurate valuation,
+		ask your Realtor® for recent sales data in your area.</p>
 
-  <h3 class="info">Failing to "Showcase"</h3>
-  <p>Appearance matters. Make necessary repairs, clean thoroughly, and declutter before showings. A tidy, well-maintained home helps buyers connect emotionally and envision living there.</p>
+	<h3 class="info">Failing to "Showcase"</h3>
+	<p>Appearance matters. Make necessary repairs, clean thoroughly, and declutter before showings. A tidy, well-maintained home helps buyers connect emotionally and envision
+		living there.</p>
 
-  <h3 class="info">Trying to "Hard Sell" While Showing</h3>
-  <p>Let buyers explore your home freely. Avoid pushy sales tactics. Instead, be warm, point out unique features, and answer questions calmly. This isn’t the time to negotiate — it’s the time to make a good impression.</p>
+	<h3 class="info">Trying to "Hard Sell" While Showing</h3>
+	<p>Let buyers explore your home freely. Avoid pushy sales tactics. Instead, be warm, point out unique features, and answer questions calmly. This isn’t the time to negotiate —
+		it’s the time to make a good impression.</p>
 
-  <h3 class="info">Trying to Sell to Lookers</h3>
-  <p>Not everyone who visits is ready to buy. Many lookers are months away from a purchase or may not yet be financially ready. A good Realtor® will pre-qualify leads and focus marketing on serious buyers.</p>
+	<h3 class="info">Trying to Sell to Lookers</h3>
+	<p>Not everyone who visits is ready to buy. Many lookers are months away from a purchase or may not yet be financially ready. A good Realtor® will pre-qualify leads and focus
+		marketing on serious buyers.</p>
 
-  <h3 class="info">Being Ignorant of Your Rights & Responsibilities</h3>
-  <p>Understand your real estate contract thoroughly. Know what you're legally responsible for, what “as is” means, and how zoning laws affect the sale. Overlooking these can cost you time and money.</p>
+	<h3 class="info">Being Ignorant of Your Rights & Responsibilities</h3>
+	<p>Understand your real estate contract thoroughly. Know what you're legally responsible for, what “as is” means, and how zoning laws affect the sale. Overlooking these can
+		cost you time and money.</p>
 
-  <h3 class="info">Signing a Contract with No Escape</h3>
-  <p>You should retain control over your agent relationship. If things aren’t working out, you should have the right to change agents. Avoid contracts that lock you in with no flexibility to make a change if needed.</p>
+	<h3 class="info">Signing a Contract with No Escape</h3>
+	<p>You should retain control over your agent relationship. If things aren’t working out, you should have the right to change agents. Avoid contracts that lock you in with no
+		flexibility to make a change if needed.</p>
 
-  <h3 class="info">Limited Marketing</h3>
-  <p>Open houses and classifieds rarely sell homes. Your Realtor® should utilize diverse marketing methods, including a strong online presence. Make sure they’re accessible during key business hours and committed to actively promoting your property.</p>
+	<h3 class="info">Limited Marketing</h3>
+	<p>Open houses and classifieds rarely sell homes. Your Realtor® should utilize diverse marketing methods, including a strong online presence. Make sure they’re accessible
+		during key business hours and committed to actively promoting your property.</p>
 
-  <h3 class="info">Choosing the Wrong Realtor®</h3>
-  <p>This could be your most important financial transaction. Choose a Realtor® who fits your needs. Interview multiple agents, check experience and ask about their marketing strategy. The right agent can help you get more value, faster and with less hassle.</p>
+	<h3 class="info">Choosing the Wrong Realtor®</h3>
+	<p>This could be your most important financial transaction. Choose a Realtor® who fits your needs. Interview multiple agents, check experience and ask about their marketing
+		strategy. The right agent can help you get more value, faster and with less hassle.</p>
 </div>
 
+<div *ngIf="siteConfig?.websiteSettings?.commonSellingMistakeText">
+	<p [innerHTML]="siteConfig?.websiteSettings?.commonSellingMistakeText"></p>
+</div>

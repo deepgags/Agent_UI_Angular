@@ -8,6 +8,7 @@ import { AngularSvgIconModule } from "angular-svg-icon";
 import { MenuItem } from "primeng/api";
 import { ColorPickerModule } from "primeng/colorpicker";
 import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
+import { EditorModule } from "primeng/editor";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
@@ -41,6 +42,7 @@ import { TemplateService } from "../../../services/template.service";
 		DynamicDialogModule,
 		IftaLabelModule,
 		TextareaModule,
+		EditorModule,
 	],
 	templateUrl: "./profile.component.html",
 	styleUrl: "./profile.component.scss",
@@ -177,6 +179,10 @@ export class ProfileComponent {
 			websiteAddress: new FormControl(""),
 			aboutText: new FormControl(""),
 			contactText: new FormControl(""),
+			sellingYourHouseText: new FormControl(""),
+			renovatingForResellText: new FormControl(""),
+			commonSellingMistakeText: new FormControl(""),
+			buyerText: new FormControl(""),
 			secondaryAgent: this.fb.group({
 				firstName: new FormControl(""),
 				lastName: new FormControl(""),
@@ -240,6 +246,10 @@ export class ProfileComponent {
 							websiteAddress: websiteAddress,
 							aboutText: response.data.websiteSettings.aboutText || "",
 							contactText: response.data.websiteSettings.contactText || "",
+							sellingYourHouseText: response.data.websiteSettings.sellingYourHouseText || "",
+							renovatingForResellText: response.data.websiteSettings.renovatingForResellText || "",
+							commonSellingMistakeText: response.data.websiteSettings.commonSellingMistakeText || "",
+							buyerText: response.data.websiteSettings.buyerText || "",
 						});
 						if (response.data.secondaryAgent) {
 							this.agentForm.get("secondaryAgent")?.patchValue({
@@ -345,8 +355,12 @@ export class ProfileComponent {
 					templateId,
 					primaryColor,
 					secondaryColor,
-					aboutText: aboutText || "",
-					contactText: contactText || "",
+					aboutText: this.agentForm.get("aboutText")?.value || "",
+					contactText: this.agentForm.get("contactText")?.value || "",
+					sellingYourHouseText: this.agentForm.get("sellingYourHouseText")?.value || "",
+					renovatingForResellText: this.agentForm.get("renovatingForResellText")?.value || "",
+					commonSellingMistakeText: this.agentForm.get("commonSellingMistakeText")?.value || "",
+					buyerText: this.agentForm.get("buyerText")?.value || "",
 					socialLinks: {
 						facebook,
 						twitter,

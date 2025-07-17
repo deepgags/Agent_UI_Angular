@@ -18,6 +18,7 @@ import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 // import { StorageService } from '../../../services/storage.service'; // Not used in current snippet
+import { environment } from "../../../environments/environment.development";
 import { SearchComponent } from "../search/search.component";
 
 @Component({
@@ -30,6 +31,8 @@ import { SearchComponent } from "../search/search.component";
 	standalone: true,
 })
 export class FeaturedListingsComponent implements OnInit, OnDestroy {
+	imageUrl = environment.imageUrl;
+
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;

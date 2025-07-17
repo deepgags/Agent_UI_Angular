@@ -19,6 +19,7 @@ import { SearchComponent } from "../search/search.component";
 import { Gallery, GalleryConfig, GalleryModule, GalleryRef, ImageItem, ThumbnailsPosition } from "ng-gallery";
 import { map } from "rxjs/operators";
 import { GalleryComponent } from "../../../components/gallery/gallery.component";
+import { environment } from "../../../environments/environment.development";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { SiteConfigService } from "../../../services/site-config.service";
@@ -47,6 +48,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 	standalone: true,
 })
 export class PropertydetailComponent implements OnInit {
+	imageUrl = environment.imageUrl;
 	property: PropertyModel | undefined;
 	Latitude: number = 0;
 	Longitude: number = 0;
@@ -178,8 +180,8 @@ export class PropertydetailComponent implements OnInit {
 					this.property?.Media?.forEach((x) => {
 						this.galleryRef?.add(
 							new ImageItem({
-								src: x.Media_url,
-								thumb: x.Media_url,
+								src: `${this.imageUrl}${x.Media_url}`,
+								thumb: `${this.imageUrl}${x.Media_url}`,
 							})
 						);
 					});

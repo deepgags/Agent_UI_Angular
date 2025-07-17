@@ -1,15 +1,16 @@
 <div class="container-fluid search-container">
 	<div class="" *ngIf="properties$ | async as properties">
-		  <div class="row g-4">
+		<div class="row g-4">
 			<div class="col-lg-4  col-md-6 col-sm-12 mb-lg-0 mb-3" *ngFor="let property of properties$ | async">
 				<a class="text-decoration-none" (click)="selectProperty(property)">
 					<div class="card h-100 property-card border border-light-subtle">
 						<div class="image-container">
-							<img [src]="property && property.Media && property.Media.length>0 ? property.Media[0].Media_url : '/images/commercial_no_Image.jpg'" class="card-img-top" alt="No property image to display">
+							<img [src]="property && property.Media && property.Media.length>0 ?
+							imageUrl + property.Media[0].Media_url : '/images/commercial_no_Image.jpg'" class="card-img-top" alt="No property image to display">
 						</div>
 						<div class="card-body pt-1">
 							<div class="d-flex justify-content-between align-items-center">
-								<p class="mb-1 fs-4 fw-semibold">{{property.ListPrice  | currency:'USD'}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
+								<p class="mb-1 fs-4 fw-semibold">{{property.ListPrice | currency:'USD'}}<span *ngIf="property.ListPriceUnit"> {{property.ListPriceUnit}}</span></p>
 								<span class="fw-semibold">{{property.PropertyType}}</span>
 							</div>
 							<span class="badge text_bg rounded-pill">{{property.TransactionType}}</span>
@@ -31,9 +32,9 @@
 							<p class="info  pt-2 mb-0 fw-semibold">MLS® {{property.ListingKey}} <span>{{property.ListOfficeName}}</span></p>
 						</div>
 					</div>
-					</a>
+				</a>
 			</div>
 		</div>
-        <h2 class="text-center mt-5" *ngIf="properties.length == 0">No properties found</h2>
+		<h2 class="text-center mt-5" *ngIf="properties.length == 0">No properties found</h2>
 	</div>
 </div>

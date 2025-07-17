@@ -1,29 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { InteresteduserComponent } from '../../../components/dialogs/interested-user/interested-user.component';
-import { stringiFy } from '../../../consts/Utility';
-import { PropertyModel } from '../../../models/PropertyModel';
-import { NotificationService } from '../../../services/notification.service';
-import { PropertyService } from '../../../services/property.service';
-import { StorageService } from '../../../services/storage.service';
+import { CommonModule } from "@angular/common";
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
+import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+import { stringiFy } from "../../../consts/Utility";
+import { environment } from "../../../environments/environment.development";
+import { PropertyModel } from "../../../models/PropertyModel";
+import { NotificationService } from "../../../services/notification.service";
+import { PropertyService } from "../../../services/property.service";
+import { StorageService } from "../../../services/storage.service";
 
 @Component({
-	selector: 'app-featured-properties',
+	selector: "app-featured-properties",
 	imports: [FormsModule, CommonModule, MatIconModule, RouterModule],
-	templateUrl: './featured-properties.component.html',
-	styleUrl: './featured-properties.component.scss',
+	templateUrl: "./featured-properties.component.html",
+	styleUrl: "./featured-properties.component.scss",
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: true
+	standalone: true,
 })
-
 export class FeaturedPropertiesComponent implements OnInit {
-	// properties: PropertyModel[] | undefined;
+	imageUrl = environment.imageUrl;
 	private propertiesSubject = new BehaviorSubject<PropertyModel[]>([]);
 	properties$ = this.propertiesSubject.asObservable();
 	pageIndex: number = 1;
@@ -36,8 +36,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 		private storageService: StorageService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute
-	) {
-	}
+	) {}
 
 	ngOnInit(): void {
 		this.searchProperties();
@@ -46,26 +45,23 @@ export class FeaturedPropertiesComponent implements OnInit {
 	selectProperty(property: PropertyModel): void {
 		if (property.IsFeatureListing) {
 			this.openDialog(property);
-		}
-		else {
+		} else {
 			this.redirectToDetail(property);
 		}
 	}
 
 	openDialog(property: PropertyModel) {
-		const userDialog = this._interestedUserDialog.open(InteresteduserComponent,
-			{
-				width: '50%',
-				height: 'auto',
-				disableClose: true,
-				autoFocus: false,
-				restoreFocus: false,
-				hasBackdrop: true,
-				data: property
-			}
-		)
+		const userDialog = this._interestedUserDialog.open(InteresteduserComponent, {
+			width: "50%",
+			height: "auto",
+			disableClose: true,
+			autoFocus: false,
+			restoreFocus: false,
+			hasBackdrop: true,
+			data: property,
+		});
 
-		userDialog.afterClosed().subscribe(result => {
+		userDialog.afterClosed().subscribe((result) => {
 			if (result) {
 				this.redirectToDetail(property);
 			}
@@ -73,26 +69,23 @@ export class FeaturedPropertiesComponent implements OnInit {
 	}
 
 	redirectToDetail(property: PropertyModel): void {
-		const currentTemplate = this.router.url.split('/')[1];
-		this.router.navigate(
-			[`/${currentTemplate}`, 'property-detail'],
-			{
-				relativeTo: this.activatedRoute,
-				queryParams: {
-					address: '',
-					property_type: '',
-					bedrooms: '',
-					bathrooms: '',
-					min_price: '',
-					max_price: '',
-					property_status: '',
-					sqFt: '',
-					propertyId: property._id,
-					mlsId: property.ListingKey
-				},
-				queryParamsHandling: 'replace'
-			}
-		);
+		const currentTemplate = this.router.url.split("/")[1];
+		this.router.navigate([`/${currentTemplate}`, "property-detail"], {
+			relativeTo: this.activatedRoute,
+			queryParams: {
+				address: "",
+				property_type: "",
+				bedrooms: "",
+				bathrooms: "",
+				min_price: "",
+				max_price: "",
+				property_status: "",
+				sqFt: "",
+				propertyId: property._id,
+				mlsId: property.ListingKey,
+			},
+			queryParamsHandling: "replace",
+		});
 	}
 
 	searchProperties = () => {
@@ -101,19 +94,19 @@ export class FeaturedPropertiesComponent implements OnInit {
 		const params = {
 			page: this.pageIndex,
 			pageSize: this.pageSize,
-			address: '',
-			property_type: '',
-			property_subtype: '',
-			bedrooms: '',
-			bathrooms: '',
-			property_for: '',
-			min_price: '',
-			max_price: '',
-			sqFt: '',
-			distance: '',
+			address: "",
+			property_type: "",
+			property_subtype: "",
+			bedrooms: "",
+			bathrooms: "",
+			property_for: "",
+			min_price: "",
+			max_price: "",
+			sqFt: "",
+			distance: "",
 			brokerageType: userInfo?.brokerage?.alternateName,
-			propertyFeedType: 'IDX'
-		}
+			propertyFeedType: "IDX",
+		};
 
 		this.propertyService.searchProperties(params).subscribe({
 			next: (response) => {
@@ -122,8 +115,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 			error: (err) => {
 				// this.notificationService.showNotification("Error occurred while getting properties");
 			},
-			complete: () => {
-			}
-		})
-	}
+			complete: () => {},
+		});
+	};
 }
