@@ -53,6 +53,8 @@ import { T13HomeComponent } from './templates/t13/t13-home/t13-home.component';
 import { T13Component } from './templates/t13/t13.component';
 import { T14Component } from './templates/t14/t14.component';
 import { T14HomeComponent } from './templates/t14/t14-home/t14-home.component';
+import { T15Component } from './templates/t15/t15.component';
+import { T15HomeComponent } from './templates/t15/t15-home/t15-home.component';
 
 
 export const routes: Routes = [
@@ -342,6 +344,26 @@ export const routes: Routes = [
 		children: [
 			{ path: '', redirectTo: '/t14/home', pathMatch: 'full' },
 			{ path: 'home', component: T14HomeComponent },
+			{ path: 'search', component: SearchPageComponent },
+			{ path: 'featured-listings', component: FeaturedListingsComponent },
+			{ path: 'property-detail', component: PropertyDetailComponent },
+			{ path: 'map', component: MapComponent },
+			{ path: 'buyer', component: BuyerComponent },
+			{ path: 'contact', component: ContactComponent },
+			{ path: 'calculator', component: CalculatorComponent },
+			{ path: 'seller', component: SellerComponent },
+			{ path: 'sellerdetails', component: SellerdetailComponent },
+			{ path: 'sellerdetails2', component: Sellerdetail2Component },
+			{ path: 'sellerdetails3', component: Sellerdetail3Component },
+			{ path: 'about', component: AboutComponent },
+		]
+	},
+	{
+		path: 't15',
+		component: T15Component,
+		children: [
+			{ path: '', redirectTo: '/t15/home', pathMatch: 'full' },
+			{ path: 'home', component: T15HomeComponent },
 			{ path: 'search', component: SearchPageComponent },
 			{ path: 'featured-listings', component: FeaturedListingsComponent },
 			{ path: 'property-detail', component: PropertyDetailComponent },

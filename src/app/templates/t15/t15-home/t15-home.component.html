@@ -52,52 +52,6 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="second">
-		<img
-			[src]="siteConfig?.secondaryAgent?.profileImage ? siteConfig?.secondaryAgent?.profileImage : '/images/Nologo.png'"
-			alt="No profile image"
-			class="overlay-image2" />
-		<div
-			class="card position-absolute man_card2"
-			style="width: 15rem">
-			<div class="card-body">
-				<h5 class="card-head text-white">{{ siteConfig?.secondaryAgent?.firstName }} {{ siteConfig?.secondaryAgent?.lastName }}</h5>
-				<div class="d-flex">
-					<div class="">
-						<img
-							src="./t5/images/vector img/call.svg"
-							alt="" />
-					</div>
-					<div class="ms-2">
-						<p>
-							<a
-								class="text-white fw-semibold text-decoration-none"
-								href="tel:+4733378901">
-								+47 333 78 901
-							</a>
-						</p>
-					</div>
-				</div>
-				<div class="d-flex">
-					<div class="">
-						<img
-							src="./t5/images/vector img/mail.svg"
-							alt="" />
-					</div>
-					<div class="ms-2 mt-1">
-						<p>
-							<a
-								class="text-white fw-semibold text-decoration-none"
-								href="mailto:someoneexample.com">
-								democc.com
-							</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 		</div>
 	</div>
 </div>
@@ -107,7 +61,7 @@
 			<p class="text fw-semibold pt-3">Search Your Dream Home</p>
 			<p class="text-white ">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and extraordinary services to our worldwide clients.</p>
 			<div class="col-12 menu-bg p-4 mb-5">
-				<app-search [onSearch]="searchProperties" />
+			<app-search [onSearch]="searchProperties" />
 			</div>
 		</div>
 </div>
@@ -122,15 +76,12 @@
             <p class=" fw-normal">
               I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions. Every engagement is an opportunity to create a lasting impression and a forever client.
             </p>
-
           </div>
-
           <div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
             <div class="">
               <img class="w-100 rounded" src="t8/images/real-state.png" alt="">
             </div>
         </div>
-
       </div>
     </div>
 
@@ -143,12 +94,19 @@
           </p>
 
           <div class="row">
-            <div class="col-lg-6 col-12">
-  <div class="image-container w-100" (click)="searchProperties({address:'Toronto'})">
-    <img class="w-100 rounded-3" src="t8/images/pro1.png" alt="">
-    <div class="image-text">Toronto</div>
-  </div>
-</div>
+       <div class="col-lg-3 col-12 mt-lg-0 mt-3">
+				<div class="image-container w-100"(click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Milton</div>
+				</div>
+            </div>
+
+			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+				<div class="image-container w-100"(click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Milton</div>
+				</div>
+            </div>
 
             <div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container w-100"(click)="searchProperties({address:'Milton'})">
@@ -164,30 +122,37 @@
 				</div>
             </div>
         </div>
-        <div class="row mt-3">
 
-          <div class="col-lg-3 col-12">
-			<div class="image-container w-100"(click)="searchProperties({address:'Mississaugas'})">
-				<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
-    <div class="image-text">Mississaugas</div>
+		<div class="row mt-3">
+       <div class="col-lg-3 col-12 mt-lg-0 mt-3">
+				<div class="image-container w-100"(click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Milton</div>
+				</div>
+            </div>
 
-			</div>
-          </div>
-          <div class="col-lg-3 col-12 mt-lg-0 mt-3">
-			<div class="image-container w-100"(click)="searchProperties({address:'Montreal'})">
-				<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
-    <div class="image-text">Montreal</div>
+			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+				<div class="image-container w-100"(click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Milton</div>
+				</div>
+            </div>
 
-			</div>
-          </div>
-          <div class="col-lg-6 col-12 mt-lg-0 mt-3">
-			<div class="image-container w-100"(click)="searchProperties({address:'Ottawa'})">
-				<img class="w-100 rounded-3" src="t8/images/pro1.png" alt="">
-    <div class="image-text">Ottawa</div>
+            <div class="col-lg-3 col-12 mt-lg-0 mt-3">
+				<div class="image-container w-100"(click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Milton</div>
+				</div>
+            </div>
+            <div class="col-lg-3 col-12 mt-lg-0 mt-3">
+				<div class="image-container w-100"(click)="searchProperties({address:'Brampton'})">
+					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+    <div class="image-text">Brampton</div>
 
-			</div>
-          </div>
-      </div>
+				</div>
+            </div>
+        </div>
+   
     </div>
       </div>
 
