@@ -1,0 +1,168 @@
+$info:#06A788;
+
+.top-padding{
+    padding-top: 111px;
+}
+
+  .background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/t15/images/Banner.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .overlay-image {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    width: 350px;
+  }
+
+.image-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.menu-bg {
+    backdrop-filter: blur(2px);
+    background-color: #FFFFFF33;
+    border: 1px solid #b9b9b9;
+    border-radius: 10px;
+}
+
+.image-text {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.pro-3{
+  position: absolute;
+    right: 310px;
+    top: 1724px;
+}
+
+ .btn_outline{
+    border: $info 1px solid !important;
+    background-color: white;
+    color: $info;
+  }
+  .btn_outline:hover{
+    border: $info 1px solid !important;
+    background-color: $info;
+    color: white;
+  }
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
+  color: $info !important;
+}
+.text-2{
+    color:$info ;
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+
+@media (max-width: 768px) {
+  .prop-img  {
+    width: 100%;
+  } 
+  .profile-img {
+    position: static !important;
+    top: auto !important;
+  }
+
+}
+
+.profile-img {
+  bottom: 0px;
+  position: absolute;
+  max-height: 400px;
+}
+ .overlay-image {
+    position: absolute;
+    bottom:0px;
+    right: 20px;
+    width: 350px;
+  }
+
+  .overlay-image2 {
+    position: absolute;
+    bottom:0px;
+    left: 20px;
+    width: 350px;
+  }
+
+  .man-card{
+  bottom:0px;
+  right: 70px;
+  background-color: #00000066;
+  backdrop-filter: blur(2px);
+  border: 1px solid #FFFFFF;
+}
+
+.man_card2{
+    bottom: 7px;
+    left: 109px;
+  background-color: #00000066;
+  backdrop-filter: blur(2px);
+  border: 1px solid #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  h5,a{
+    font-size: 10px;
+  }
+  .icon{
+    width: 10px;
+  }
+ .background-container {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    background-image: url('/t15/images/Banner.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .overlay-image {
+         position: absolute;
+        bottom: 0px;
+        left: 236px;
+        width: 190px;
+    }
+    
+.man_card2{
+  width: auto !important;
+        bottom: 0px;
+  left: 5px;
+        height: 100px;
+
+  background-color: #00000066;
+  backdrop-filter: blur(2px);
+  border: 1px solid #FFFFFF;
+}
+
+    
+  .man-card {
+        width: auto !important;
+        bottom: 0px;
+        right: 5px;
+        height: 100px;
+        background-color: rgba(0, 0, 0, 0.4);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        border: 1px solid #FFFFFF;
+    }
+  .overlay-image2 {
+    position: absolute;
+    bottom:0px;
+    left: -42px;
+    width: 190px;
+  }
+}
