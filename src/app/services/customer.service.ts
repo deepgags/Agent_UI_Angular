@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
-import { environment } from "../environments/environment";
+import { environment } from "../environments/environment.development";
 import { CustomerModel } from "../models/CustomerModel";
 
 @Injectable({

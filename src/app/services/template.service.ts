@@ -1,19 +1,16 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '../environments/environment';
-import { TemplateModel } from '../models/TemplateModel';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { environment } from "../environments/environment.development";
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: "root",
 })
-
 export class TemplateService {
-  private baseUrl: string = environment.agentApiUrl;
+	private baseUrl: string = environment.agentApiUrl;
 
-  constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
-  getTemplates() {
-    return this.http.get(`${this.baseUrl}/templates`);
-  }
+	getTemplates() {
+		return this.http.get(`${this.baseUrl}/templates`);
+	}
 }
