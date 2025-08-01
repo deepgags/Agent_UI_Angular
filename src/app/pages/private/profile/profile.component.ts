@@ -300,7 +300,7 @@ export class ProfileComponent {
 			next: (response: any) => {
 				if (response.data && response.data.length > 0) {
 					this.templates = response.data;
-
+					console.log(this.templates);
 					if (this.agentData && this.agentData.websiteSettings) {
 						const { templateId } = this.agentData.websiteSettings;
 						this.agentForm.patchValue({
@@ -479,5 +479,17 @@ export class ProfileComponent {
 				});
 			}
 		});
+	}
+
+	onTemplateChange(e: any) {
+		for (const template of this.templates) {
+			if (template.templateKey == e.value) {
+				this.agentForm.patchValue({
+					primaryColor: template.primaryColor,
+					secondaryColor: template.secondaryColor,
+				});
+				break;
+			}
+		}
 	}
 }
