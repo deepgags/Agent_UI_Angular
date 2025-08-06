@@ -42,6 +42,7 @@ export class SearchPageComponent implements OnInit {
 	selectedFilters: any = {
 		address: "",
 		property_type: "",
+		property_subtype: "",
 		bedrooms: "0",
 		bathrooms: "0",
 		min_price: "",

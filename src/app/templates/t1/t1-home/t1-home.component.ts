@@ -4,6 +4,7 @@ import { Router, RouterModule } from "@angular/router";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
+import { SearchService } from "../../../services/search.service";
 import { SiteConfigService } from "../../../services/site-config.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
@@ -20,7 +21,12 @@ export class T1HomeComponent implements OnInit {
 	siteConfig: SiteConfig | undefined;
 	siteConfigSubscription: any;
 
-	constructor(private router: Router, private titleService: Title, private siteConfigService: SiteConfigService) {}
+	constructor(
+		private router: Router,
+		private titleService: Title,
+		private siteConfigService: SiteConfigService,
+		private searchService: SearchService
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -32,13 +38,15 @@ export class T1HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		const { address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } = selectedFilters;
-
+		this.searchService.goToSearch(selectedFilters, searchByMap, "/t1");
+		/*
+		const { address, property_type, property_subtype, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } = selectedFilters;
 		searchByMap = selectedFilters["searchByMap"] || searchByMap;
-		this.router.navigate(["/t1", searchByMap ? "map" : "search"], {
+		this.router.navigate([, searchByMap ? "map" : "search"], {
 			queryParams: {
 				address,
 				property_type,
+				property_subtype,
 				bedrooms,
 				bathrooms,
 				min_price,
@@ -47,5 +55,6 @@ export class T1HomeComponent implements OnInit {
 				sqFt,
 			},
 		});
+		*/
 	};
 }

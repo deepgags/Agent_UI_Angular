@@ -10,11 +10,9 @@ import { StorageService } from "./storage.service";
 })
 export class PropertyService {
 	query = signal<string>("");
-	private Apiurl: string = "";
+	private Apiurl: string = `${environment.propertyApiUrl}/properties`;
 
-	constructor(private http: HttpClient) {
-		this.Apiurl = environment.propertyApiUrl + environment.propertySearchUrl;
-	}
+	constructor(private http: HttpClient) {}
 
 	searchProperties(propertyParams: any): Observable<PropertyModel[]> {
 		const alternateNames = "";
@@ -77,15 +75,7 @@ export class PropertyService {
 								TransactionType: property.TransactionType,
 								UnitNumber: property.UnitNumber,
 								UnparsedAddress: property.UnparsedAddress,
-								Media: property.Media.filter(
-									(x: any) =>
-										x.Media_type &&
-										x.Media_status == "Active" &&
-										x.Media_category &&
-										x.Media_category.includes("Photo") &&
-										x.ImageSize_description &&
-										(x.ImageSize_description == "LargestNoWatermark" || x.ImageSize_description == "Large")
-								),
+								Media: property.Media,
 								BuildingAreaTotal: property.BuildingAreaTotal,
 								BuildingAreaUnits: property.BuildingAreaUnits,
 								TotalRecords: result.total,
@@ -143,15 +133,7 @@ export class PropertyService {
 						TransactionType: property.TransactionType,
 						UnitNumber: property.UnitNumber,
 						UnparsedAddress: property.UnparsedAddress,
-						Media: property.Media.filter(
-							(x: any) =>
-								x.Media_type &&
-								x.Media_status == "Active" &&
-								x.Media_category &&
-								x.Media_category.includes("Photo") &&
-								x.ImageSize_description &&
-								(x.ImageSize_description == "LargestNoWatermark" || x.ImageSize_description == "Large")
-						),
+						Media: property.Media,
 						BuildingAreaTotal: property.BuildingAreaTotal,
 						BuildingAreaUnits: property.BuildingAreaUnits,
 						TotalRecords: result.total,

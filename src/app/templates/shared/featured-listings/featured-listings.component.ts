@@ -45,6 +45,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 	selectedFilters: any = {
 		address: "",
 		property_type: "",
+		property_subtype: "",
 		bedrooms: "0",
 		bathrooms: "0",
 		min_price: "",

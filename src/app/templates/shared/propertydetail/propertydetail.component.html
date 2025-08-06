@@ -1,13 +1,13 @@
 <div
-	class="loading-container flex-content-center"
-	*ngIf="loading$ | async">
+	 class="loading-container flex-content-center"
+	 *ngIf="loading$ | async">
 	<div class="spinner"></div>
 </div>
 <div *ngIf="siteConfigObservable | async as siteConfig">
-	<div class="container-fluid menu_img">
+	<!-- <div class="container-fluid menu_img">
 		<div class="container">
 			<div class="row justify-content-center">
-				<!-- <p class="text fw-semibold text-white  py-5">Search Your Dream Home</p> -->
+				<p class="text fw-semibold text-white  py-5">Search Your Dream Home</p>
 				<div class="col-12 bg-white pt-5 pb-4">
 					<app-search
 						[filters]="selectedFilters"
@@ -15,29 +15,29 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div
-		class="container-fluid search-container"
-		*ngIf="property">
+		 class="container-fluid search-container"
+		 *ngIf="property">
 		<div class="container py-3">
 			<h2 class="fw-semibold text-start mb-3">Property Information</h2>
 			<div class="row card p-3">
 				<div class="col-12">
 					<gallery
-						*ngIf="property.Media && property.Media.length > 0"
-						id="propertyGallery"
-						counter
-						thumbs
-						thumbPosition="bottom"
-						itemAutosize
-						loadingStrategy="preload"
-						loadingAttr="eager"></gallery>
+							 *ngIf="property.Media && property.Media.length > 0"
+							 id="propertyGallery"
+							 counter
+							 thumbs
+							 thumbPosition="bottom"
+							 itemAutosize
+							 loadingStrategy="preload"
+							 loadingAttr="eager"></gallery>
 					<!-- <app-gallery [images]="property.Media" /> -->
 					<img
-						class="img-fluid rounded no-image-fixed-height"
-						*ngIf="property.Media ? property.Media.length == 0 : true"
-						[src]="'/images/commercial_no_Image.jpg'"
-						alt="No property image to display" />
+						 class="img-fluid rounded no-image-fixed-height"
+						 *ngIf="property.Media ? property.Media.length == 0 : true"
+						 [src]="'/images/commercial_no_Image.jpg'"
+						 alt="No property image to display" />
 				</div>
 				<div class="row card-body align-items-center">
 					<div class="col-lg-3 justify-content-center d-flex">
@@ -61,24 +61,24 @@
 				</div>
 				<div class="row justify-content-around">
 					<div
-						class="col-md-3"
-						*ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
+						 class="col-md-3"
+						 *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
 						<div class="border rounded p-3 text-center bg-light">
 							<span class="fw-semibold">Bed:</span>
 							{{ property.BedroomsTotal }}
 						</div>
 					</div>
 					<div
-						class="col-md-3 mt-lg-0 mt-3"
-						*ngIf="property.BathroomsTotalInteger && property.BathroomsTotalInteger > 0">
+						 class="col-md-3 mt-lg-0 mt-3"
+						 *ngIf="property.BathroomsTotalInteger && property.BathroomsTotalInteger > 0">
 						<div class="border rounded p-3 text-center bg-light">
 							<span class="fw-semibold">Bath:</span>
 							{{ property.BathroomsTotalInteger }}
 						</div>
 					</div>
 					<div
-						class="col-md-3 mt-lg-0 mt-3"
-						*ngIf="property.BuildingAreaTotal && property.BuildingAreaTotal > 0">
+						 class="col-md-3 mt-lg-0 mt-3"
+						 *ngIf="property.BuildingAreaTotal && property.BuildingAreaTotal > 0">
 						<div class="border rounded p-3 text-center bg-light">
 							<span class="fw-semibold">Area:</span>
 							{{ property.BuildingAreaTotal }} {{ property.BuildingAreaUnits }}
@@ -96,14 +96,14 @@
 							class="nav-item"
 							role="presentation">
 							<button
-								class="nav-link active"
-								id="pills-home-tab"
-								data-bs-toggle="pill"
-								data-bs-target="#pills-home"
-								type="button"
-								role="tab"
-								aria-controls="pills-home"
-								aria-selected="true">
+									class="nav-link active"
+									id="pills-home-tab"
+									data-bs-toggle="pill"
+									data-bs-target="#pills-home"
+									type="button"
+									role="tab"
+									aria-controls="pills-home"
+									aria-selected="true">
 								Description
 							</button>
 						</li>
@@ -111,28 +111,28 @@
 							class="nav-item ms-lg-5"
 							role="presentation">
 							<button
-								class="nav-link"
-								id="pills-profile-tab"
-								data-bs-toggle="pill"
-								data-bs-target="#pills-profile"
-								type="button"
-								role="tab"
-								aria-controls="pills-profile"
-								aria-selected="false">
+									class="nav-link"
+									id="pills-profile-tab"
+									data-bs-toggle="pill"
+									data-bs-target="#pills-profile"
+									type="button"
+									role="tab"
+									aria-controls="pills-profile"
+									aria-selected="false">
 								<span><i class="fa-solid me-1 fa-location-dot"></i></span>
 								View on map
 							</button>
 						</li>
 					</ul>
 					<div
-						class="tab-content"
-						id="pills-tabContent">
+						 class="tab-content"
+						 id="pills-tabContent">
 						<div
-							class="tab-pane fade show active"
-							id="pills-home"
-							role="tabpanel"
-							aria-labelledby="pills-home-tab"
-							tabindex="0">
+							 class="tab-pane fade show active"
+							 id="pills-home"
+							 role="tabpanel"
+							 aria-labelledby="pills-home-tab"
+							 tabindex="0">
 							<p>{{ property.PublicRemarks }}</p>
 
 							<!-- <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
@@ -227,24 +227,24 @@
 							</div>
 						</div>
 						<div
-							class="tab-pane fade"
-							id="pills-profile"
-							role="tabpanel"
-							aria-labelledby="pills-profile-tab"
-							tabindex="0">
+							 class="tab-pane fade"
+							 id="pills-profile"
+							 role="tabpanel"
+							 aria-labelledby="pills-profile-tab"
+							 tabindex="0">
 							<div class="ratio ratio-16x9">
 								<google-map
-									[center]="{ lat: property.Latitude, lng: property.Longitude }"
-									[zoom]="zoom"
-									height="500px"
-									width="100%">
+											[center]="{ lat: property.Latitude, lng: property.Longitude }"
+											[zoom]="zoom"
+											height="500px"
+											width="100%">
 									<map-marker
-										id="mapMarkerLarge"
-										#mapMarker="mapMarker"
-										[position]="{ lat: property.Latitude, lng: property.Longitude }"
-										[label]="property.ListOfficeName"
-										[title]="property.PropertyUse"
-										(mapClick)="openInfoWindow(property, mapMarker)"></map-marker>
+												id="mapMarkerLarge"
+												#mapMarker="mapMarker"
+												[position]="{ lat: property.Latitude, lng: property.Longitude }"
+												[label]="property.ListOfficeName"
+												[title]="property.PropertyUse"
+												(mapClick)="openInfoWindow(property, mapMarker)"></map-marker>
 									<map-info-window #mapMarkerLarge>
 										<div>
 											<h5>{{ property.ListingKey }}</h5>
@@ -398,41 +398,41 @@
 							<p class="text-muted small">
 								Learn more by viewing our
 								<a
-									href="#"
-									class="text-decoration-none info fw-semibold">
+								   href="#"
+								   class="text-decoration-none info fw-semibold">
 									privacy policy
 								</a>
 								or
 								<a
-									href="#"
-									class="text-decoration-none info fw-semibold">
+								   href="#"
+								   class="text-decoration-none info fw-semibold">
 									contact us
 								</a>
 								.
 							</p>
 							<form
-								[formGroup]="userForm"
-								name="userForm"
-								*ngIf="userForm">
+								  [formGroup]="userForm"
+								  name="userForm"
+								  *ngIf="userForm">
 								<mat-form-field appearance="fill">
 									<mat-label class="info">First Name</mat-label>
 									<input
-										formControlName="firstName"
-										required
-										matInput
-										placeholder="First Name" />
+										   formControlName="firstName"
+										   required
+										   matInput
+										   placeholder="First Name" />
 									<mat-error>First name is required</mat-error>
 								</mat-form-field>
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Email</mat-label>
 									<input
-										class="w-100"
-										type="email"
-										formControlName="emailAddress"
-										required
-										email
-										matInput
-										placeholder="Ex. pat@example.com" />
+										   class="w-100"
+										   type="email"
+										   formControlName="emailAddress"
+										   required
+										   email
+										   matInput
+										   placeholder="Ex. pat@example.com" />
 									@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
 									<mat-error>Please enter a valid email address</mat-error>
 									} @if (userForm.hasError('required', 'emailAddress')) {
@@ -442,10 +442,10 @@
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Phone Number</mat-label>
 									<input
-										type="tel"
-										formControlName="phoneNumber"
-										matInput
-										placeholder="Ex. 123-456-1234" />
+										   type="tel"
+										   formControlName="phoneNumber"
+										   matInput
+										   placeholder="Ex. 123-456-1234" />
 									@if (userForm.hasError('pattern', 'phoneNumber')) {
 									<mat-error>Please enter a valid phone number</mat-error>
 									} @if (userForm.hasError('required', 'phoneNumber')) {
@@ -455,16 +455,16 @@
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Leave a comment</mat-label>
 									<textarea
-										formControlName="comment"
-										class="form-control"
-										rows="4"
-										matInput
-										placeholder="Ex. Enter comment about this property"></textarea>
+											  formControlName="comment"
+											  class="form-control"
+											  rows="4"
+											  matInput
+											  placeholder="Ex. Enter comment about this property"></textarea>
 									<mat-error>Comment is required</mat-error>
 								</mat-form-field>
 								<button
-									class="btn search_btn w-100 fw-bold"
-									(click)="save()">
+										class="btn search_btn w-100 fw-bold"
+										(click)="save()">
 									Save
 								</button>
 							</form>
@@ -476,13 +476,13 @@
 								<div class="col-4">
 									<div class="">
 										<img
-											[src]="
+											 [src]="
 												siteConfig?.websiteSettings?.profileImage
 													? siteConfig?.websiteSettings?.profileImage
 													: '/images/Nologo.png'
 											"
-											alt=""
-											height="120px" />
+											 alt=""
+											 height="120px" />
 									</div>
 								</div>
 
@@ -500,19 +500,19 @@
 							</div>
 						</div>
 						<div
-							class="card shadow border-0 rounded-3"
-							*ngIf="siteConfig?.secondaryAgent">
+							 class="card shadow border-0 rounded-3"
+							 *ngIf="siteConfig?.secondaryAgent">
 							<div class="row align-items-center p-3">
 								<div class="col-4">
 									<div class="">
 										<img
-											[src]="
+											 [src]="
 												siteConfig?.secondaryAgent?.profileImage
 													? siteConfig?.secondaryAgent?.profileImage
 													: '/images/Nologo.png'
 											"
-											alt=""
-											height="120px" />
+											 alt=""
+											 height="120px" />
 									</div>
 								</div>
 
@@ -533,17 +533,17 @@
 						</div>
 					</div>
 					<div
-						id="map"
-						class="">
+						 id="map"
+						 class="">
 						<google-map
-							[center]="{ lat: property.Latitude, lng: property.Longitude }"
-							[zoom]="zoom"
-							style="width: 100%; height: 100%">
+									[center]="{ lat: property.Latitude, lng: property.Longitude }"
+									[zoom]="zoom"
+									style="width: 100%; height: 100%">
 							<map-marker
-								id="mapMarkerSmall"
-								#mapMarkerSmall="mapMarker"
-								[position]="{ lat: property.Latitude, lng: property.Longitude }"
-								[label]="property.ListOfficeName"></map-marker>
+										id="mapMarkerSmall"
+										#mapMarkerSmall="mapMarker"
+										[position]="{ lat: property.Latitude, lng: property.Longitude }"
+										[label]="property.ListOfficeName"></map-marker>
 
 							<map-info-window #mapMarkerSmall>
 								<div>
@@ -580,9 +580,9 @@
 			</div>
 
 			<button
-				type="button"
-				(click)="back()"
-				class="btn w-25 mt-3 search_btn">
+					type="button"
+					(click)="back()"
+					class="btn w-25 mt-3 search_btn">
 				Back
 			</button>
 		</div>

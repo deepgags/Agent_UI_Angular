@@ -61,6 +61,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 	selectedFilters: any = {
 		address: "",
 		property_type: "",
+		property_subtype: "",
 		bedrooms: "0",
 		bathrooms: "0",
 		min_price: "",

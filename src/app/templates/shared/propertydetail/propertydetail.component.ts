@@ -14,13 +14,13 @@ import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { InterestedUserModel } from "../../../models/InterestedUserModel";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { PropertyService } from "../../../services/property.service";
-import { SearchComponent } from "../search/search.component";
+// import { SearchComponent } from "../search/search.component";
 
 import { Gallery, GalleryConfig, GalleryModule, GalleryRef, ImageItem, ThumbnailsPosition } from "ng-gallery";
 import { map } from "rxjs/operators";
-import { GalleryComponent } from "../../../components/gallery/gallery.component";
+// import { GalleryComponent } from "../../../components/gallery/gallery.component";
 import { environment } from "../../../environments/environment.development";
-import { SiteConfig } from "../../../models/SiteConfig";
+// import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { SiteConfigService } from "../../../services/site-config.service";
 // import { LightboxModule, Lightbox } from 'ng-gallery/lightbox';
@@ -33,7 +33,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		FormsModule,
 		ReactiveFormsModule,
 		MatDialogModule,
-		SearchComponent,
+		// SearchComponent,
 		MatFormFieldModule,
 		MatInputModule,
 		GoogleMapsModule,
@@ -177,6 +177,7 @@ export class PropertydetailComponent implements OnInit {
 				this.center.lat = this.property.Latitude;
 				this.center.lng = this.property.Longitude;
 				if (this.galleryRef && this.property.Media) {
+					debugger;
 					this.property?.Media?.forEach((x) => {
 						this.galleryRef?.add(
 							new ImageItem({

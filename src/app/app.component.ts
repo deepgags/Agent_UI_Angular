@@ -41,11 +41,11 @@ export class AppComponent {
 			}
 			this.currentPath = this.location.path().split("?")[0];
 			// if (
-			// 	(this.currentPath != Pages.REGISTER &&
-			// 		this.currentPath != Pages.LOGIN &&
-			// 		// this.currentPath != Pages.PROFILE &&
-			// 		this.currentPath != Pages.VERIFY_EMAIL &&
-			// 		this.currentPath.indexOf(Pages.VERIFY_EMAIL) > 0) ||
+			// 	this.currentPath != Pages.REGISTER &&
+			// 	this.currentPath != Pages.LOGIN &&
+			// 	this.currentPath != Pages.PROFILE &&
+			// 	this.currentPath != Pages.VERIFY_EMAIL &&
+			// 	this.currentPath.indexOf(Pages.VERIFY_EMAIL) > 0
 			// 	this.currentPath == "/" ||
 			// 	this.currentPath === Pages.LOADING
 			// ) {

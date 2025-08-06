@@ -40,8 +40,12 @@
 				<a class="text-decoration-none" (click)="selectProperty(property)">
 					<div class="card h-100 property-card border border-light-subtle">
 						<div class="image-container">
-							<img [src]="property && property.Media && property.Media.length>0 ? imageUrl + property.Media[0].Media_url : '/images/commercial_no_Image.jpg'"
-								 class="card-img-top" alt="No property image to display">
+							@if(property && property.Media && property.Media.length>0){
+							<img [src]="imageUrl + property.Media[0].Media_url" class="card-img-top" alt="No property image to display"
+								 onerror="this.src = '/images/commercial_no_Image.jpg'" />
+							} @else {
+							<img src="/images/commercial_no_Image.jpg" class="card-img-top" alt="No property image to display" />
+							}
 						</div>
 						<div class="card-body pt-1">
 							<div class="d-flex justify-content-between align-items-center">

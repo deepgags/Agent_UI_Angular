@@ -1,33 +1,39 @@
 <div class="row justify-content-around search-container align-items-center">
-    <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-        <input type="text" [(ngModel)]="filters.address" class="search-bar" placeholder="Location" />
-    </div>
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+		<input type="text" [(ngModel)]="filters.address" class="search-bar" placeholder="Location" />
+	</div>
 
-    <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.property_type" class="form-select custom-select">
-            <option *ngFor="let property of propertyTypesDropDown" [value]="property.value">{{property.label}}</option>
-        </select>
-    </div>
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+		<select [(ngModel)]="filters.property_type" class="form-select custom-select">
+			<option *ngFor="let property of propertyTypesDropDown" [value]="property.value">{{property.label}}</option>
+		</select>
+	</div>
 
-    <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+		<select [(ngModel)]="filters.property_subtype" class="form-select custom-select">
+			<option *ngFor="let type of propertySubTypesDropDown" [value]="type.value">{{type.label}}</option>
+		</select>
+	</div>
+
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
 		<select [(ngModel)]="filters.bedrooms" class="form-select custom-select">
-            <option *ngFor="let beds of bedTypesDropDown" [value]="beds.value">{{beds.label}}</option>
-        </select>
-    </div>
+			<option *ngFor="let beds of bedTypesDropDown" [value]="beds.value">{{beds.label}}</option>
+		</select>
+	</div>
 
-    <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.bathrooms" class="form-select custom-select">
-            <option *ngFor="let bath of bathTypesDropDown" [value]="bath.value">{{bath.label}}</option>
-        </select>
-    </div>
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+		<select [(ngModel)]="filters.bathrooms" class="form-select custom-select">
+			<option *ngFor="let bath of bathTypesDropDown" [value]="bath.value">{{bath.label}}</option>
+		</select>
+	</div>
 
-    <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-        <select [(ngModel)]="filters.property_status" class="form-select custom-select">
-            <option *ngFor="let status of statusTypesDropDown" [value]="status.value">{{status.label}}</option>
-        </select>
-    </div>
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+		<select [(ngModel)]="filters.property_status" class="form-select custom-select">
+			<option *ngFor="let status of statusTypesDropDown" [value]="status.value">{{status.label}}</option>
+		</select>
+	</div>
 
-    <!-- <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
+	<!-- <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
         <select [(ngModel)]="filters.min_price" class="form-select">
             <option *ngFor="let price of minPricesDropDown" [value]="price.value">{{price.label}}</option>
         </select>
@@ -39,32 +45,32 @@
         </select>
     </div> -->
 
-    <!-- <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
+	<!-- <div class="col-12 col-lg-1 p-0 mb-3 mb-lg-0">
         <select [(ngModel)]="filters.sqFt" class="form-select ">
             <option *ngFor="let area of sqFtTypesDropDown" [value]="area.value">{{area.label}}</option>
         </select>
     </div> -->
 
-    <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-    <span><i class="fa-solid fa-filter info fs-6 cursor" data-bs-toggle="modal" data-bs-target="#moreFilter"></i></span>
-  <!-- Modal -->
-  <div class="modal fade" id="moreFilter">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header head-bg text-white">
-                <h4 class="modal-title" id="exampleModalLabel">Search Filters</h4>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- <form> -->
-                    <div class="row g-4">
-                        <!-- <div class="col-md-6">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+		<span><i class="fa-solid fa-filter info fs-6 cursor" data-bs-toggle="modal" data-bs-target="#moreFilter"></i></span>
+		<!-- Modal -->
+		<div class="modal fade" id="moreFilter">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header head-bg text-white">
+						<h4 class="modal-title" id="exampleModalLabel">Search Filters</h4>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<!-- <form> -->
+						<div class="row g-4">
+							<!-- <div class="col-md-6">
                             <label for="area" class="form-label text-dark fw-semibold">Distance</label>
                             <mat-slider [min] = "1" [max] = "100" [step] = "1" [discrete] = "" [showTickMarks]="true">
                                 <input matSliderThumb value="5" />
                               </mat-slider>
                         </div> -->
-                        <!-- <div class="col-md-6">
+							<!-- <div class="col-md-6">
                             <label for="area" class="form-label text-dark fw-semibold">Area (Sq Ft)</label>
                             <select id="area" class="form-select shadow-sm">
                                 <option>500+</option>
@@ -103,23 +109,23 @@
                             </select>
                         </div> -->
 
-                        <div class="col-md-6">
-                                <select [(ngModel)]="filters.min_price" class="form-select">
-                                    <option *ngFor="let price of minPricesDropDown" [value]="price.value">{{price.label}}</option>
-                                </select>
-                        </div>
-                        <div class="col-md-6">
-                                <select [(ngModel)]="filters.max_price" class="form-select">
-                                    <option *ngFor="let price of maxPricesDropDown" [value]="price.value">{{price.label}}</option>
-                                </select>
-                        </div>
+							<div class="col-md-6">
+								<select [(ngModel)]="filters.min_price" class="form-select">
+									<option *ngFor="let price of minPricesDropDown" [value]="price.value">{{price.label}}</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<select [(ngModel)]="filters.max_price" class="form-select">
+									<option *ngFor="let price of maxPricesDropDown" [value]="price.value">{{price.label}}</option>
+								</select>
+							</div>
 
-                        <div class="col-md-6">
-                            <select [(ngModel)]="filters.sqFt" class="form-select">
-                                <option *ngFor="let area of sqFtTypesDropDown" [value]="area.value">{{area.label}}</option>
-                            </select>
-                        </div>
-                        <!-- <div class="col-md-6">
+							<div class="col-md-6">
+								<select [(ngModel)]="filters.sqFt" class="form-select">
+									<option *ngFor="let area of sqFtTypesDropDown" [value]="area.value">{{area.label}}</option>
+								</select>
+							</div>
+							<!-- <div class="col-md-6">
                             <label for="nearbyFacilities" class="form-label text-dark fw-semibold">Nearby Facilities</label>
                             <select id="nearbyFacilities" class="form-select shadow-sm">
                                 <option>School</option>
@@ -128,24 +134,24 @@
                                 <option>Public Transport</option>
                             </select>
                         </div> -->
-                    </div>
-                <!-- </form> -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm rounded-3 me-2" (click)="resetMoreFilters()">Reset</button>
-                <button type="button" class="btn btn-secondary rounded-3 btn-sm" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn search_btn btn-sm" data-bs-dismiss="modal" (click)="searchProperties()">Apply</button>
-            </div>
-        </div>
-    </div>
-</div>
-    </div>
+						</div>
+						<!-- </form> -->
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-sm rounded-3 me-2" (click)="resetMoreFilters()">Reset</button>
+						<button type="button" class="btn btn-secondary rounded-3 btn-sm" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn search_btn btn-sm" data-bs-dismiss="modal" (click)="searchProperties()">Apply</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="col-12 col-lg-auto">
-        <button type="button" class="btn btn-secondary btn-sm rounded-3 me-2" (click)="resetFilters()">Reset</button>
+	<div class="col-12 col-lg-auto">
+		<button type="button" class="btn btn-secondary btn-sm rounded-3 me-2" (click)="resetFilters()">Reset</button>
 
-        <button type="button" class="btn search_btn btn-sm me-2" (click)="searchProperties()">Search</button>
+		<button type="button" class="btn search_btn btn-sm me-2" (click)="searchProperties()">Search</button>
 
-        <button type="button" class="btn search_btn btn-sm" (click)="searchProperties(true)" *ngIf="showMapSearch==true">Map Search</button>
-    </div>
+		<button type="button" class="btn search_btn btn-sm" (click)="searchProperties(true)" *ngIf="showMapSearch==true">Map Search</button>
+	</div>
 </div>

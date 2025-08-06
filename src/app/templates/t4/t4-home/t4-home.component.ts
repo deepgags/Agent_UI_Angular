@@ -12,8 +12,9 @@ import { SearchComponent } from "../../shared/search/search.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { SiteConfigService } from "../../../services/site-config.service";
 import { SiteConfig } from "../../../models/SiteConfig";
+import { SearchService } from "../../../services/search.service";
+import { SiteConfigService } from "../../../services/site-config.service";
 
 @Component({
 	selector: "app-t4-home",
@@ -39,9 +40,12 @@ export class T4HomeComponent implements OnInit {
 	userForm!: FormGroup;
 	siteConfigSubscription: any;
 	siteConfig: SiteConfig | undefined;
-	
-	constructor(private router: Router, private fb: FormBuilder, private titleService: Title,
-		private siteConfigService: SiteConfigService
+
+	constructor(
+		private fb: FormBuilder,
+		private titleService: Title,
+		private siteConfigService: SiteConfigService,
+		private searchService: SearchService
 	) {}
 
 	ngOnInit(): void {
@@ -52,7 +56,7 @@ export class T4HomeComponent implements OnInit {
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			comment: new FormControl("", Validators.required),
 		});
-				this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
+		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
 			if (config) {
 				this.siteConfig = config;
 			}
@@ -60,20 +64,6 @@ export class T4HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		const { address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } = selectedFilters;
-
-		searchByMap = selectedFilters["searchByMap"] || searchByMap;
-		this.router.navigate(["/t4", searchByMap ? "map" : "search"], {
-			queryParams: {
-				address,
-				property_type,
-				bedrooms,
-				bathrooms,
-				min_price,
-				max_price,
-				property_status,
-				sqFt,
-			},
-		});
+		this.searchService.goToSearch(selectedFilters, searchByMap, "/t4");
 	};
 }

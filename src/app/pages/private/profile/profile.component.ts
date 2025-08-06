@@ -176,7 +176,7 @@ export class ProfileComponent {
 			youtube: new FormControl(""),
 			websiteEmail: new FormControl(""),
 			websitePhone: new FormControl(""),
-			websiteAddress: new FormControl(""),
+			// websiteAddress: new FormControl(""),
 			aboutText: new FormControl(""),
 			contactText: new FormControl(""),
 			sellingYourHouseText: new FormControl(""),
@@ -224,7 +224,7 @@ export class ProfileComponent {
 						businessName: businessName,
 						firstName: firstName,
 						lastName: lastName,
-						address: websiteAddress,
+						// address: websiteAddress,
 						emailAddress: emailAddress,
 						phoneNumber: phoneNumber,
 						brokerageType: brokerageTypeId,
@@ -243,7 +243,7 @@ export class ProfileComponent {
 							youtube: youtube,
 							websiteEmail: websiteEmail,
 							websitePhone: websitePhone,
-							websiteAddress: websiteAddress,
+							// websiteAddress: websiteAddress,
 							aboutText: response.data.websiteSettings.aboutText || "",
 							contactText: response.data.websiteSettings.contactText || "",
 							sellingYourHouseText: response.data.websiteSettings.sellingYourHouseText || "",
@@ -300,7 +300,6 @@ export class ProfileComponent {
 			next: (response: any) => {
 				if (response.data && response.data.length > 0) {
 					this.templates = response.data;
-					console.log(this.templates);
 					if (this.agentData && this.agentData.websiteSettings) {
 						const { templateId } = this.agentData.websiteSettings;
 						this.agentForm.patchValue({
@@ -339,7 +338,7 @@ export class ProfileComponent {
 				youtube,
 				websiteEmail,
 				websitePhone,
-				websiteAddress,
+				// websiteAddress,
 				aboutText,
 				contactText,
 			} = this.agentForm.getRawValue();
@@ -371,7 +370,7 @@ export class ProfileComponent {
 					contactInfo: {
 						email: websiteEmail,
 						phone: websitePhone,
-						address: websiteAddress,
+						// address: websiteAddress,
 					},
 					profileImage: this.primaryAgentProfileImage.value ? this.primaryAgentProfileImage.value : this.existingProfileImage,
 					brokerageImage: this.brokerageImage.value,

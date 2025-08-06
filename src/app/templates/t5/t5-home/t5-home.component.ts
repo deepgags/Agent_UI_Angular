@@ -14,6 +14,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
+import { SearchService } from "../../../services/search.service";
 import { SiteConfigService } from "../../../services/site-config.service";
 
 @Component({
@@ -43,10 +44,10 @@ export class T5HomeComponent implements OnInit {
 	siteConfigSubscription: any;
 	// siteConfigService: any;
 	constructor(
-		private router: Router,
 		private fb: FormBuilder,
 		private titleService: Title,
-		private siteConfigService: SiteConfigService
+		private siteConfigService: SiteConfigService,
+		private searchService: SearchService
 	) {}
 
 	ngOnInit(): void {
@@ -66,20 +67,6 @@ export class T5HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		const { address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } = selectedFilters;
-
-		searchByMap = selectedFilters["searchByMap"] || searchByMap;
-		this.router.navigate(["/t5", searchByMap ? "map" : "search"], {
-			queryParams: {
-				address,
-				property_type,
-				bedrooms,
-				bathrooms,
-				min_price,
-				max_price,
-				property_status,
-				sqFt,
-			},
-		});
+		this.searchService.goToSearch(selectedFilters, searchByMap, "/t5");
 	};
 }

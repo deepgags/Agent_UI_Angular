@@ -8,6 +8,7 @@ import {
 	bedTypes,
 	maxPrices,
 	minPrices,
+	propertySubTypes,
 	propertyTypes,
 	sqFitTypes,
 	statusTypes,
@@ -31,6 +32,7 @@ export class SearchComponent implements OnInit {
 	@Input("filters") filters: any = {
 		address: "",
 		property_type: "",
+		property_subtype: "",
 		bedrooms: "0",
 		bathrooms: "0",
 		min_price: "",
@@ -41,6 +43,7 @@ export class SearchComponent implements OnInit {
 	};
 
 	propertyTypesDropDown = propertyTypes;
+	propertySubTypesDropDown = propertySubTypes;
 	storyTypesDropDown = storyTypes;
 	bedTypesDropDown = bedTypes;
 	bathTypesDropDown = bathTypes;

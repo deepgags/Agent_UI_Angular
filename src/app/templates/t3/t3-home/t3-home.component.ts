@@ -2,11 +2,12 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router, RouterModule } from "@angular/router";
 import { CustomerModel } from "../../../models/CustomerModel";
+import { SiteConfig } from "../../../models/SiteConfig";
+import { SearchService } from "../../../services/search.service";
+import { SiteConfigService } from "../../../services/site-config.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
-import { SiteConfigService } from "../../../services/site-config.service";
-import { SiteConfig } from "../../../models/SiteConfig";
 
 @Component({
 	selector: "app-t3-home",
@@ -17,11 +18,10 @@ import { SiteConfig } from "../../../models/SiteConfig";
 })
 export class T3HomeComponent implements OnInit {
 	customer: CustomerModel | undefined;
-		siteConfig: SiteConfig | undefined;
+	siteConfig: SiteConfig | undefined;
 	siteConfigSubscription: any;
-	
 
-	constructor(private router: Router, private titleService: Title, private storageService: StorageService,private siteConfigService: SiteConfigService) {}
+	constructor(private titleService: Title, private siteConfigService: SiteConfigService, private searchService: SearchService) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -33,20 +33,6 @@ export class T3HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		const { address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } = selectedFilters;
-
-		searchByMap = selectedFilters["searchByMap"] || searchByMap;
-		this.router.navigate(["/t3", searchByMap ? "map" : "search"], {
-			queryParams: {
-				address,
-				property_type,
-				bedrooms,
-				bathrooms,
-				min_price,
-				max_price,
-				property_status,
-				sqFt,
-			},
-		});
+		this.searchService.goToSearch(selectedFilters, searchByMap, "/t3");
 	};
 }
