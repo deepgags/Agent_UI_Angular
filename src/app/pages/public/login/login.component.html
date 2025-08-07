@@ -21,25 +21,42 @@
 		<span class="input-group-text bg-transparent border-0">
 			<i class="fas fa-envelope text-muted"></i>
 		</span>
-		<input type="email" formControlName="email"
+
+		<input
+			type="email"
+			pInputText
+			formControlName="email"
+			placeholder="Email"
 			class="form-control border-0 bg-transparent"
-			placeholder="Email" required>
+			id="email"
+			required />
 		</div>
 
 		<!-- Password -->
 		<div class="input-group mb-2 bg-light rounded">
-		<span class="input-group-text bg-transparent border-0">
-			<i class="fas fa-lock text-muted"></i>
-		</span>
-		<input type="password"
-			formControlName="password"
-			class="form-control border-0 bg-transparent"
-			placeholder="Password"
-			id="passwordInput" required>
-		<span class="input-group-text bg-transparent border-0 toggle-password">
-			<i class="fas fa-eye-slash text-muted"
-				id="toggleIcon"></i>
-		</span>
+			<span class="input-group-text bg-transparent border-0">
+				<i class="fas fa-lock text-muted"></i>
+			</span>
+			<!-- <input type="password"
+				formControlName="password"
+				class="form-control border-0 bg-transparent"
+				placeholder="Password"
+				id="passwordInput" required> -->
+
+			<p-password
+				formControlName="password"
+				[feedback]="false"
+				[toggleMask]="true"
+				placeholder="Password"
+				inputId="password"
+				inputStyleClass="form-control border-0 bg-transparent w-[75%] flex-1"
+				id="password"
+				required />
+
+			<!-- <span class="input-group-text bg-transparent border-0 toggle-password">
+				<i class="fas fa-eye-slash text-muted"
+					id="toggleIcon"></i>
+			</span> -->
 		</div>
 
 		<!-- Forgot Password -->

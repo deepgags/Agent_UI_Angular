@@ -33,3 +33,12 @@ p-editor.p-editor .p-editor-container {
 p-editor.p-editor .p-editor-container .ql-editor {
 	height: auto !important;
 }
+
+app-login{
+	p-password{
+		width: 89%;
+	  .p-password{
+	  	display: initial;
+	  }
+	}
+}

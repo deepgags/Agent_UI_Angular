@@ -67,11 +67,11 @@ import { T19Component } from './templates/t19/t19.component';
 
 export const routes: Routes = [
 	{ path: '', redirectTo: '/loading', pathMatch: 'full' },
+	{ path: 'loading', component: RedirectUserComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'forgot-password', component: ForgotComponent },
 	{ path: 'templates', component: TemplatesComponent },
-	{ path: 'loading', component: RedirectUserComponent },
 	{ path: 'verify', component: VerifyEmailComponent },
 	{ path: 'thanks', component: ThankyouComponent },
 	{
