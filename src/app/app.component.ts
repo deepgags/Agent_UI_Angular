@@ -74,7 +74,7 @@ export class AppComponent {
 			error: (error: any) => {
 				console.error("Failed to load site configuration:", error);
 				this.loadingService.loadingOff();
-				this.router.navigate(["/default"]);
+				this.router.navigate(["/register"]);
 			},
 		});
 	}
