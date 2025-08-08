@@ -3,7 +3,6 @@ import { Injectable, signal } from "@angular/core";
 import { catchError, map, Observable, throwError } from "rxjs";
 import { environment } from "../environments/environment.development";
 import { PropertyModel } from "../models/PropertyModel";
-import { StorageService } from "./storage.service";
 
 @Injectable({
 	providedIn: "root",
@@ -46,16 +45,16 @@ export class PropertyService {
 						return result.data.map((property: any) => {
 							return {
 								_id: property._id,
-								BuildingName: property.BuildingName,
+								// BuildingName: property.BuildingName,
 								BathroomsTotalInteger: property.BathroomsTotalInteger,
 								BedroomsTotal: property.BedroomsTotal,
 								BrokerFaxNumber: property.BrokerFaxNumber,
 								BusinessName: property.BusinessName,
-								City: property.City,
-								CityRegion: property.CityRegion,
-								Country: property.Country,
-								CountyOrParish: property.CountyOrParish,
-								CrossStreet: property.CrossStreet,
+								// City: property.City,
+								// CityRegion: property.CityRegion,
+								// Country: property.Country,
+								// CountyOrParish: property.CountyOrParish,
+								// CrossStreet: property.CrossStreet,
 								Latitude: property.Latitude,
 								ListingKey: property.ListingKey,
 								ListPrice: property.ListPrice,
@@ -63,15 +62,15 @@ export class PropertyService {
 								Longitude: property.Longitude,
 								LotSizeDimensions: property.LotSizeDimensions,
 								OriginalListPrice: property.OriginalListPrice,
-								PrivateRemarks: property.PrivateRemarks,
+								// PrivateRemarks: property.PrivateRemarks,
 								PropertySubType: property.PropertySubType,
 								PropertyType: property.PropertyType,
-								PropertyUse: property.PropertyUse,
+								// PropertyUse: property.PropertyUse,
 								PublicRemarks: property.PublicRemarks,
-								StreetName: property.StreetName,
-								StreetNumber: property.StreetNumber,
-								StreetSuffix: property.StreetSuffix,
-								Town: property.Town,
+								// StreetName: property.StreetName,
+								// StreetNumber: property.StreetNumber,
+								// StreetSuffix: property.StreetSuffix,
+								// Town: property.Town,
 								TransactionType: property.TransactionType,
 								UnitNumber: property.UnitNumber,
 								UnparsedAddress: property.UnparsedAddress,
@@ -96,7 +95,7 @@ export class PropertyService {
 			);
 	}
 
-	getProperty(propertId: any, mlsId: any): Observable<PropertyModel> {
+	getPropertyDetails(propertId: any, mlsId: any): Observable<PropertyModel> {
 		const officesName = "";
 		return this.http.get<PropertyModel>(`${environment.propertyApiUrl}/propertyinformation?id=${propertId}&mlsId=${mlsId}`).pipe(
 			map((result: any) => {
@@ -104,32 +103,32 @@ export class PropertyService {
 					const property = result.data;
 					const propertyModel: PropertyModel = {
 						_id: property._id,
-						BuildingName: property.BuildingName,
+						// BuildingName: property.BuildingName,
 						BathroomsTotalInteger: property.BathroomsTotalInteger,
 						BedroomsTotal: property.BedroomsTotal,
-						BrokerFaxNumber: property.BrokerFaxNumber,
-						BusinessName: property.BusinessName,
-						City: property.City,
-						CityRegion: property.CityRegion,
-						Country: property.Country,
-						CountyOrParish: property.CountyOrParish,
-						CrossStreet: property.CrossStreet,
+						// BrokerFaxNumber: property.BrokerFaxNumber,
+						// BusinessName: property.BusinessName,
+						// City: property.City,
+						// CityRegion: property.CityRegion,
+						// Country: property.Country,
+						// CountyOrParish: property.CountyOrParish,
+						// CrossStreet: property.CrossStreet,
 						Latitude: property.Latitude,
 						ListingKey: property.ListingKey,
 						ListPrice: property.ListPrice,
 						ListPriceUnit: property.ListPriceUnit,
 						Longitude: property.Longitude,
-						LotSizeDimensions: property.LotSizeDimensions,
-						OriginalListPrice: property.OriginalListPrice,
-						PrivateRemarks: property.PrivateRemarks,
+						// LotSizeDimensions: property.LotSizeDimensions,
+						// OriginalListPrice: property.OriginalListPrice,
+						// PrivateRemarks: property.PrivateRemarks,
 						PropertySubType: property.PropertySubType,
 						PropertyType: property.PropertyType,
 						PropertyUse: property.PropertyUse,
-						PublicRemarks: property.PublicRemarks,
-						StreetName: property.StreetName,
-						StreetNumber: property.StreetNumber,
-						StreetSuffix: property.StreetSuffix,
-						Town: property.Town,
+						// PublicRemarks: property.PublicRemarks,
+						// StreetName: property.StreetName,
+						// StreetNumber: property.StreetNumber,
+						// StreetSuffix: property.StreetSuffix,
+						// Town: property.Town,
 						TransactionType: property.TransactionType,
 						UnitNumber: property.UnitNumber,
 						UnparsedAddress: property.UnparsedAddress,

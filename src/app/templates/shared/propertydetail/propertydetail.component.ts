@@ -171,7 +171,7 @@ export class PropertydetailComponent implements OnInit {
 
 	getPropertyInformation(): void {
 		this.loadingSubject.next(true);
-		this.propertyService.getProperty(this.selectedFilters.propertyId, this.selectedFilters.mlsId).subscribe({
+		this.propertyService.getPropertyDetails(this.selectedFilters.propertyId, this.selectedFilters.mlsId).subscribe({
 			next: (response) => {
 				this.property = response;
 				this.center.lat = this.property.Latitude;
