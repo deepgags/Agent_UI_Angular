@@ -14,7 +14,7 @@ export class PropertyModel {
 	CrossStreet?: string;
 	StreetSuffix?: string | "" | undefined;
 	StreetNumber?: string | "" | undefined;
-	PropertyUse?: string;
+	PropertyUse: string;
 	StreetName?: string | "" | undefined;
 	Town?: string | "" | undefined;
 	City?: string | "" | undefined;
@@ -33,7 +33,7 @@ export class PropertyModel {
 	_id: string | "";
 	BuildingAreaTotal?: number;
 	BuildingAreaUnits?: string;
-	ListOfficeName?: string;
+	ListOfficeName: string;
 	ListingContractDate?: string;
 	PublicRemarksExtra?: string;
 	PurchaseContractDate?: string;
