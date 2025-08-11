@@ -7,9 +7,10 @@
 	--primary-color: #b37df7;
 }
 
-* {
+p,h1,h2,h3,h4,h5,h6 {
 	font-family: "Raleway", serif;
 }
+
 p {
 	font-size: 14px;
 }
@@ -255,6 +256,7 @@ footer {
 	.area {
 		content: url("/t7/images/vector img/Area.svg");
 	}
+	
 	@media (max-width: 767px) {
 		.text_bg2 {
 			position: absolute;
