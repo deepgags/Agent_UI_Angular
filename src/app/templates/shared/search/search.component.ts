@@ -14,7 +14,8 @@ import {
 	statusTypes,
 	storyTypes,
 } from "../../../consts/DefaultTypes";
-import { StorageService } from "../../../services/storage.service";
+import { LoadingService } from "../../../services/loading.service";
+import { PropertyService } from "../../../services/property.service";
 
 @Component({
 	selector: "app-search",
@@ -42,8 +43,8 @@ export class SearchComponent implements OnInit {
 		distance: "20",
 	};
 
-	propertyTypesDropDown = propertyTypes;
-	propertySubTypesDropDown = propertySubTypes;
+	propertyTypesDropDown: any = [];
+	propertySubTypesDropDown: any = [];
 	storyTypesDropDown = storyTypes;
 	bedTypesDropDown = bedTypes;
 	bathTypesDropDown = bathTypes;
@@ -52,7 +53,12 @@ export class SearchComponent implements OnInit {
 	maxPricesDropDown = maxPrices;
 	sqFtTypesDropDown = sqFitTypes;
 
-	constructor(private router: Router, private activatedRoute: ActivatedRoute, private storageService: StorageService) {}
+	constructor(
+		private router: Router,
+		private activatedRoute: ActivatedRoute,
+		private propertyService: PropertyService,
+		public loadingService: LoadingService
+	) {}
 
 	searchProperties = (searchByMap: boolean = false) => {
 		const currentUrl = this.router.url.split("/")[1];
@@ -92,7 +98,9 @@ export class SearchComponent implements OnInit {
 		}
 	};
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.getPropertyTypeDropdowns();
+	}
 
 	resetFilters(): void {
 		this.filters = {
@@ -128,5 +136,16 @@ export class SearchComponent implements OnInit {
 		}
 
 		return `${value}`;
+	}
+
+	getPropertyTypeDropdowns() {
+		this.propertyService.getPropertyTypes().subscribe({
+			next: (response) => {
+				this.propertyTypesDropDown = response.propertyTypes;
+				this.propertySubTypesDropDown = response.propertySubTypes;
+			},
+			error: (err) => {},
+			complete: () => {},
+		});
 	}
 }

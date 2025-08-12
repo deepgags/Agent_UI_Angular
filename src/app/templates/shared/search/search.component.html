@@ -5,13 +5,15 @@
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
 		<select [(ngModel)]="filters.property_type" class="form-select custom-select">
-			<option *ngFor="let property of propertyTypesDropDown" [value]="property.value">{{property.label}}</option>
+			<option value="">Property type</option>
+			<option *ngFor="let property of propertyTypesDropDown" [value]="property.LookupValue">{{property.LookupValue}}</option>
 		</select>
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
 		<select [(ngModel)]="filters.property_subtype" class="form-select custom-select">
-			<option *ngFor="let type of propertySubTypesDropDown" [value]="type.value">{{type.label}}</option>
+			<option value="">Property Subtype</option>
+			<option *ngFor="let type of propertySubTypesDropDown" [value]="type.LookupValue">{{type.LookupValue}}</option>
 		</select>
 	</div>
 
@@ -45,7 +47,7 @@
 					<div class="modal-body">
 
 						<div class="row g-4">
-	
+
 							<div class="col-md-6">
 								<select [(ngModel)]="filters.min_price" class="form-select">
 									<option *ngFor="let price of minPricesDropDown" [value]="price.value">{{price.label}}</option>
@@ -75,11 +77,11 @@
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex align-items-center">
-	<button type="button" class="btn btn-secondary btn-sm rounded-3" (click)="resetFilters()">Reset</button>
+		<button type="button" class="btn btn-secondary btn-sm rounded-3" (click)="resetFilters()">Reset</button>
 
-	<button type="button" class="btn search_btn btn-sm" (click)="searchProperties()">Search</button>
+		<button type="button" class="btn search_btn btn-sm" (click)="searchProperties()">Search</button>
 
-	<button type="button" class="btn search_btn btn-sm" (click)="searchProperties(true)" *ngIf="showMapSearch==true">Map Search</button>
-</div>
+		<button type="button" class="btn search_btn btn-sm" (click)="searchProperties(true)" *ngIf="showMapSearch==true">Map Search</button>
+	</div>
 
 </div>

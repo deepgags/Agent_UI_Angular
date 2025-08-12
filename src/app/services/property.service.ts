@@ -9,7 +9,7 @@ import { PropertyModel } from "../models/PropertyModel";
 })
 export class PropertyService {
 	query = signal<string>("");
-	private Apiurl: string = `${environment.propertyApiUrl}/properties`;
+	private Apiurl: string = `${environment.propertyApiUrl}`;
 
 	constructor(private http: HttpClient) {}
 
@@ -146,6 +146,20 @@ export class PropertyService {
 					return propertyModel;
 				}
 				return {} as PropertyModel;
+			}),
+			catchError((error) => {
+				return throwError(() => error);
+			})
+		);
+	}
+
+	getPropertyTypes(): Observable<any> {
+		return this.http.get(`${environment.propertyApiUrl}/property-types`).pipe(
+			map((result: any) => {
+				if (result && result.data) {
+					return result.data;
+				}
+				return {};
 			}),
 			catchError((error) => {
 				return throwError(() => error);

@@ -104,7 +104,7 @@ export const storyTypes = [
 ];
 
 export const bedTypes = [
-	{ label: "Bedrooms", value: "0", text: "Any" },
+	{ label: "Beds", value: "0", text: "Any" },
 	{ label: "1+", value: "1", text: "1+" },
 	{ label: "2+", value: "2", text: "2+" },
 	{ label: "3+", value: "3", text: "3+" },
@@ -118,7 +118,7 @@ export const bedTypes = [
 ];
 
 export const bathTypes = [
-	{ label: "Bathrooms", value: "0", text: "Any" },
+	{ label: "Baths", value: "0", text: "Any" },
 	{ label: "1+", value: "1", text: "1+" },
 	{ label: "2+", value: "2", text: "2+" },
 	{ label: "3+", value: "3", text: "3+" },
@@ -132,7 +132,7 @@ export const bathTypes = [
 ];
 
 export const statusTypes = [
-	{ label: "Property Status", value: "", text: "Any" },
+	{ label: "Status", value: "", text: "Any" },
 	{ label: "For Sale", value: "For Sale", text: "For Sale" },
 	{ label: "For Lease", value: "For Lease", text: "For Lease" },
 	{ label: "For Sub-Lease", value: "For Sub-Lease", text: "For Sub-Lease" },
