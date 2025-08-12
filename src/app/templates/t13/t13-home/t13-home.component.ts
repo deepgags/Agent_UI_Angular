@@ -14,7 +14,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SiteConfigService } from "../../../services/site-config.service";
-import { T13HeaderComponent } from "../t13-header/t13-header.component";
 import { SearchService } from "../../../services/search.service";
 
 @Component({
@@ -28,7 +27,6 @@ import { SearchService } from "../../../services/search.service";
 		NgbModule,
 		FormsModule,
 		ReactiveFormsModule,
-		T13HeaderComponent,
 		MatDialogModule,
 		MatFormFieldModule,
 		MatInputModule,
