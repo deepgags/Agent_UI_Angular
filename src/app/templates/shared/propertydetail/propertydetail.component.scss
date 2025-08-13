@@ -15,6 +15,11 @@
     content:url("../../../../../public/images/profile.png");
   }
 
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link
+ {
+    background-color: #ebebeb;
+}
+
   #map {
     .map-container {
       width: 100% !important;
