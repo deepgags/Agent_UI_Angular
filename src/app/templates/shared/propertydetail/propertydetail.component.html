@@ -17,7 +17,7 @@
 		</div>
 	</div> -->
 	<div
-		 class="container-fluid search-container"
+		 class="container-fluid search-container bg-light"
 		 *ngIf="property">
 		<div class="container py-3">
 			<h2 class="fw-semibold text-start mb-3">Property Information</h2>
@@ -39,6 +39,7 @@
 						 [src]="'/images/commercial_no_Image.jpg'"
 						 alt="No property image to display" />
 				</div>
+				
 				<div class="row card-body align-items-center">
 					<div class="col-lg-3 justify-content-center d-flex">
 						<p class="fw-bold fs-3 info">
@@ -284,24 +285,22 @@
 						<div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        							<h5 class="info">Amenities</h5>
-      </button>
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><h5 class="info">Amenities</h5></button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
       <div class="accordion-body">
        <ul class="nav nav-pills mb-3" id="custom-tab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="tab-home" data-bs-toggle="pill" data-bs-target="#content-home" type="button" role="tab" aria-controls="content-home" aria-selected="true">MAP</button>
+    <button class="nav-link active" id="tab-home" data-bs-toggle="pill" data-bs-target="#content-home" type="button" role="tab" aria-controls="content-home" aria-selected="true"><span><i class="fa-solid fa-map-location me-1"></i></span> MAP</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="tab-profile" data-bs-toggle="pill" data-bs-target="#content-profile" type="button" role="tab" aria-controls="content-profile" aria-selected="false">SCHOOL</button>
+    <button class="nav-link" id="tab-profile" data-bs-toggle="pill" data-bs-target="#content-profile" type="button" role="tab" aria-controls="content-profile" aria-selected="false"><span><i class="fa-solid fa-school me-1"></i></span>SCHOOL</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="tab-contact" data-bs-toggle="pill" data-bs-target="#content-contact" type="button" role="tab" aria-controls="content-contact" aria-selected="false">LOACL AMENITIES</button>
+    <button class="nav-link" id="tab-contact" data-bs-toggle="pill" data-bs-target="#content-contact" type="button" role="tab" aria-controls="content-contact" aria-selected="false"><span><i class="fa-solid fa-map-pin me-1"></i></span>LOACL AMENITIES</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="tab-disabled" data-bs-toggle="pill" data-bs-target="#content-disabled" type="button" role="tab" aria-controls="content-disabled" aria-selected="false" >STREET VIEW</button>
+    <button class="nav-link" id="tab-disabled" data-bs-toggle="pill" data-bs-target="#content-disabled" type="button" role="tab" aria-controls="content-disabled" aria-selected="false" ><span><i class="fa-solid fa-street-view me-1"></i></span>STREET VIEW</button>
   </li>
 </ul>
 
@@ -377,14 +376,14 @@
 					</div>
 
 					<div class="row mt-lg-5 mt-3 ">
-						<ul class="nav nav-pills mb-3" id="score-tabs" role="tablist">
+						<ul class="nav nav-pills mb-3 " id="score-tabs" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="score-walk-tab" data-bs-toggle="pill" data-bs-target="#score-walk" type="button" role="tab" aria-controls="score-walk" aria-selected="true"><span><i class="fa-solid fa-person me-1"></i></span>Request a Showing</button>
+    <button class="nav-link rounded-4 active" id="score-walk-tab" data-bs-toggle="pill" data-bs-target="#score-walk" type="button" role="tab" aria-controls="score-walk" aria-selected="true"><span><i class="fa-solid fa-person me-1"></i></span>Request a Showing</button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="score-transit-tab" data-bs-toggle="pill" data-bs-target="#score-transit" type="button" role="tab" aria-controls="score-transit" aria-selected="false"><span><i class="fa-solid fa-clock-rotate-left me-1"></i></span>Property History
 </button>
-  </li>
+  </li>	
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="score-bike-tab" data-bs-toggle="pill" data-bs-target="#score-bike" type="button" role="tab" aria-controls="score-bike" aria-selected="false"><span><i class="fa-solid fa-house me-1"></i></span>Recent Sales in Area</button>
   </li>
@@ -395,7 +394,7 @@
 
 <div class="tab-content" id="score-tabs-content">
   <div class="tab-pane fade show active" id="score-walk" role="tabpanel" aria-labelledby="score-walk-tab" tabindex="0">	
-		<form class="border p-3" [formGroup]="userForm" name="userForm">
+		<form class="form-card bg-white" [formGroup]="userForm" name="userForm">
 						<mat-form-field appearance="fill">
 							<mat-label class="info">First Name</mat-label>
 							<input formControlName="firstName" required matInput placeholder="First Name" />
