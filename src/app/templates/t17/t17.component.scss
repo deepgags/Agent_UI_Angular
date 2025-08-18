@@ -7,7 +7,7 @@
 	--primary-color: #06a788;
 }
 
-* {
+p,h1,h2,h3,h4,h5,h6 {
 	font-family: "Raleway", serif;
 }
 p {
@@ -102,7 +102,7 @@ p {
 }
 
 .sec-4 {
-	background-image: url("/t10/images/form-bg.png");
+	background-color: #ffeade;
 }
 
 .worth {
@@ -207,6 +207,10 @@ footer {
 .sign-wid {
 	width: 247px;
 }
+.text {
+	font-size: 35px;
+	text-align: center;
+}
 
 .text-pink {
 	color: var(--primary-color);
@@ -293,10 +297,10 @@ footer {
 		background-color: var(--primary-color) !important;
 		border-radius: 10px;
 
-		&:hover {
-			background-color: #07725d !important;
-			color: white;
-		}
+		// &:hover {
+		// 	background-color: #07725d !important;
+		// 	color: white;
+		// }
 	}
 }
 

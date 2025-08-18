@@ -292,11 +292,10 @@ footer {
 		color: white;
 		background-color: var(--primary-color) !important;
 		border-radius: 10px;
-
-		&:hover {
-			background-color: #07725d !important;
-			color: white;
-		}
+.text {
+	font-size: 35px;
+	text-align: center;
+}
 	}
 }
 

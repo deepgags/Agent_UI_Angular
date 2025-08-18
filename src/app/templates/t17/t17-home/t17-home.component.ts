@@ -15,6 +15,7 @@ import { MatInputModule } from "@angular/material/input";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SiteConfigService } from "../../../services/site-config.service";
 import { SearchService } from "../../../services/search.service";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
 
 @Component({
 	selector: "app-t17-home",
@@ -30,6 +31,7 @@ import { SearchService } from "../../../services/search.service";
 		MatDialogModule,
 		MatFormFieldModule,
 		MatInputModule,
+		PhoneSearch,
 	],
 	templateUrl: "./t17-home.component.html",
 	styleUrls: ["./t17-home.component.scss", "../t17.component.scss"],

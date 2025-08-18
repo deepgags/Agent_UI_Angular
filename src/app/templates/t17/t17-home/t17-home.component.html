@@ -1,44 +1,12 @@
 <div class="background-container">
-	<div class="container">
-		<div class=" top-padding">
-			<div class="">
-				<div class="">
-					<h2 class="text-white display-3 fw-semibold">Find Your <br> Dream Home</h2>
-					<p class="text-white">We are recognized for exceeding client expectations and delivering great
-						results through <br> dedication, ease of process, and extraordinary services to our worldwide
-						clients.</p>
-				</div>
-			</div>
-			<div class="first">
-				<img [src]="siteConfig?.websiteSettings?.profileImage ? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'"
-					alt="No profile image" class="overlay-image" />
-				<div class="card position-absolute man-card" style="width: 15rem">
-					<div class="card-body">
-						<h5 class="card-head text-white">{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}</h5>
-						<div class="d-flex">
-							<div class="">
-								<img src="./t5/images/vector img/call.svg" alt="" />
-							</div>
-							<div class="ms-2">
-								<p>
-									<a class="text-white fw-semibold text-decoration-none" href="tel:+4733378901">
-										+47 333 78 901
-									</a>
-								</p>
-							</div>
-						</div>
-						<div class="d-flex">
-							<div class="">
-								<img src="./t5/images/vector img/mail.svg" alt="" />
-							</div>
-							<div class="ms-2 mt-1">
-								<p>
-									<a class="text-white fw-semibold text-decoration-none"
-										href="mailto:someoneexample.com">
-										democc.com
-									</a>
-								</p>
-							</div>
+	<div class="container search-container">
+		<div class="row justify-content-around align-items-center">
+			<div class="container-fluid search-container">
+				<div class="top-padding1">
+					<div class="row justify-content-center">
+						<p class="text fs-1 text-white fw-semibold pt-3">Search Your Dream Home</p>
+						<div class="col-12 bg-white p-4 mb-5">
+							<app-search [onSearch]="searchProperties" />
 						</div>
 					</div>
 				</div>
@@ -47,13 +15,166 @@
 	</div>
 </div>
 
-<div class="container pt-2 search-container">
-	<div class="row justify-content-center">
-		<p class="text fw-semibold pt-3">Search Your Dream Home</p>
-		<p class="text-white ">We are recognized for exceeding client expectations and delivering great results through
-			dedication,<br> ease of process, and extraordinary services to our worldwide clients.</p>
-		<div class="col-12 menu-bg p-4 mb-5">
-			<app-search [onSearch]="searchProperties" />
+<div class="container-fluid sec-3 py-5">
+	<h3 class="fw-semibold text-center">Our Team</h3>
+	<div class="container search-container p-5">
+		<div class="row">
+			<div class="col-lg-6 col-12">
+				<div
+					class="card border-0 shadow p-0"
+					style="max-width: 540px">
+					<div class="row g-0 justify-content-around">
+						<div class="col-md-6 d-flex justify-content-center align-items-center">
+							<img
+								[src]="
+									siteConfig?.secondaryAgent?.profileImage
+										? siteConfig?.secondaryAgent?.profileImage
+										: '/images/Nologo.png'
+								"
+								alt="No profile image"
+								class="overlay-image w-100" />
+						</div>
+						<div class="col-md-6">
+							<div class="card-body">
+								<h5 class="card-title mb-3 fw-semibold">
+									{{ siteConfig?.secondaryAgent?.firstName }} {{ siteConfig?.secondaryAgent?.lastName }}
+								</h5>
+								<p class="card-text fw-semibold mb-3">SALES REPRESENTATIVE</p>
+								<p class="card-text text-muted mb-3">
+									Lorem ipsum dolor sit amet,
+									<br />
+									consectetur adipiscing elit.
+								</p>
+								<div class="mb-3">
+									<div class="d-flex mb-2">
+										<div class="">
+																<i class="fa-solid fa-phone info"></i>
+
+										</div>
+										<div class="ms-2">
+											<p>
+												<a
+													class="text-dark fw-semibold text-decoration-none"
+													[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
+													{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
+												</a>
+											</p>
+										</div>
+									</div>
+									<div class="d-flex">
+										<div class="">
+															<i class="fa-solid fa-envelope info"></i>
+
+										</div>
+										<div class="ms-2">
+											<p>
+												<a
+													class="text-dark fw-semibold text-decoration-none"
+													[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
+													{{ siteConfig?.secondaryAgent?.websiteEmail }}
+												</a>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="d-flex gap-3 fs-4">
+									<a
+										href="#"
+										class="text-decoration-none info">
+										<i class="fa-brands fa-x-twitter"></i>
+									</a>
+									<a
+										href="#"
+										class="text-decoration-none info">
+										<i class="fa-brands fa-facebook"></i>
+									</a>
+									<a
+										href="#"
+										class="text-decoration-none info">
+										<i class="fa-brands fa-instagram"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-12 mt-5 mt-lg-0">
+				<div
+					class="card border-0 shadow p-0"
+					style="max-width: 540px">
+					<div class="row g-0 justify-content-around">
+						<div class="col-md-6 d-flex justify-content-center align-items-center">
+							<img
+								[src]="
+									siteConfig?.websiteSettings?.profileImage
+										? siteConfig?.websiteSettings?.profileImage
+										: '/images/Nologo.png'
+								"
+								alt="No profile image"
+								class="overlay-image w-100" />
+						</div>
+						<div class="col-md-6">
+							<div class="card-body">
+								<h5 class="card-title mb-3 fw-semibold">{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}</h5>
+								<p class="card-text fw-semibold mb-3">SALES REPRESENTATIVE</p>
+								<p class="card-text text-muted mb-3">
+									Lorem ipsum dolor sit amet,
+									<br />
+									consectetur adipiscing elit.
+								</p>
+								<div class="mb-3">
+									<div class="d-flex mb-2">
+										<div class="">
+											<i class="fa-solid fa-phone info"></i>
+										</div>
+										<div class="ms-2">
+											<p>
+												<a
+													class="text-dark fw-semibold text-decoration-none"
+													[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
+													{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+												</a>
+											</p>
+										</div>
+									</div>
+									<div class="d-flex">
+										<div class="">
+											<i class="fa-solid fa-envelope info"></i>
+										</div>
+										<div class="ms-2">
+											<p>
+												<a
+													class="text-dark fw-semibold text-decoration-none"
+													[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+													{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+												</a>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="d-flex gap-3 fs-4">
+									<a
+										href="#"
+										class="text-decoration-none info">
+										<i class="fa-brands fa-x-twitter"></i>
+									</a>
+									<a
+										href="#"
+										class="text-decoration-none info">
+										<i class="fa-brands fa-facebook"></i>
+									</a>
+									<a
+										href="#"
+										class="text-decoration-none info">
+										<i class="fa-brands fa-instagram"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -66,73 +187,52 @@
 	</div>
 </div>
 
-<div class="container-fluid search-container">
-	<div class="container py-lg-5 p-lg-0 p-4">
-		<p class="text text-center py-3 fw-semibold">
-			Find Properties in These Cities
-		</p>
-		<div class="row">
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Brampton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
-					<div class="image-text">Brampton</div>
-
-				</div>
+<div class="container text-center py-5">
+	<p class="text text-center fw-semibold">Find Properties in These Cities</p>
+	<div class="row">
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
+			<div
+				class="image-container"
+				(click)="searchProperties({ address: 'Toronto' })">
+				<img
+					src="./t6/images/p1.png"
+					alt="" />
+				<div class="image-label">Toronto</div>
 			</div>
 		</div>
-
-		<div class="row mt-3">
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Brampton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
-					<div class="image-text">Brampton</div>
-
-				</div>
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
+			<div
+				class="image-container"
+				(click)="searchProperties({ address: 'Milton' })">
+				<img
+					src="./t6/images/p2.png"
+					alt="" />
+				<div class="image-label">Milton</div>
 			</div>
 		</div>
-
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
+			<div
+				class="image-container"
+				(click)="searchProperties({ address: 'Brampton' })">
+				<img
+					src="./t6/images/p3.png"
+					alt="" />
+				<div class="image-label">Brampton</div>
+			</div>
+		</div>
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
+			<div
+				class="image-container"
+				(click)="searchProperties({ address: 'Mississauga' })">
+				<img
+					src="./t6/images/p4.png"
+					alt="" />
+				<div class="image-label">Mississauga</div>
+			</div>
+		</div>
 	</div>
 </div>
+
 
 <div class="container py-lg-5 p-lg-0 p-4 search-container">
 	<div class="row align-items-center justify-content-around">
@@ -155,57 +255,69 @@
 	</div>
 </div>
 
-<div class="container-fluid sec-3 search-container">
+<div class="container-fluid sec-4 search-container">
 	<div class="container">
-		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
-			<div class="col-12 mt-5 mt-lg-0 p-4">
-				<h4 class="card-title info text-center">Get a free consultation</h4>
+		<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
+			<div class="col-lg-8 col-12">
+				<div class="">
+					<img
+						class="img-fluid"
+						src="t6/images/contact-img.png"
+						alt="" />
+				</div>
+			</div>
+			<div class="col-lg-4 col-12 mt-lg-0 mt-3">
 				<div class="card shadow">
 					<div class="card-body">
-						<form [formGroup]="userForm" name="userForm">
-							<div class="row">
-								<div class="col">
-									<mat-form-field appearance="fill">
-										<mat-label class="info">First Name</mat-label>
-										<input formControlName="firstName" required matInput placeholder="First Name" />
-										<mat-error>First name is required</mat-error>
-									</mat-form-field>
-								</div>
-
-								<div class="col">
-									<mat-form-field appearance="fill">
-										<mat-label class="info">Email</mat-label>
-										<input class="w-100" type="email" formControlName="emailAddress" required email
-											matInput placeholder="Ex. pat@example.com" />
-										@if (userForm.hasError('email', 'emailAddress') &&
-										!userForm.hasError('required',
-										'emailAddress')) {
-										<mat-error>Please enter a valid email address</mat-error>
-										}
-										@if (userForm.hasError('required', 'emailAddress')) {
-										<mat-error>Email is required</mat-error>
-										}
-									</mat-form-field>
-								</div>
-								<div class="col">
-									<mat-form-field appearance="fill">
-										<mat-label class="info">Phone Number</mat-label>
-										<input type="tel" formControlName="phoneNumber" matInput
-											placeholder="Ex. 123-456-1234" />
-										@if (userForm.hasError('pattern', 'phoneNumber')) {
-										<mat-error>Please enter a valid phone number</mat-error>
-										}
-										@if (userForm.hasError('required', 'phoneNumber')) {
-										<mat-error>Phone number is required</mat-error>
-										}
-									</mat-form-field>
-								</div>
-
-							</div>
-
+						<h5 class="card-title info">Lets Get In Touch</h5>
+						<form
+							[formGroup]="userForm"
+							name="userForm">
+							<mat-form-field appearance="fill">
+								<mat-label class="info">First Name</mat-label>
+								<input
+									formControlName="firstName"
+									required
+									matInput
+									placeholder="First Name" />
+								<mat-error>First name is required</mat-error>
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Email</mat-label>
+								<input
+									class="w-100"
+									type="email"
+									formControlName="emailAddress"
+									required
+									email
+									matInput
+									placeholder="Ex. pat@example.com" />
+								@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
+								<mat-error>Please enter a valid email address</mat-error>
+								} @if (userForm.hasError('required', 'emailAddress')) {
+								<mat-error>Email is required</mat-error>
+								}
+							</mat-form-field>
+							<mat-form-field appearance="fill">
+								<mat-label class="info">Phone Number</mat-label>
+								<input
+									type="tel"
+									formControlName="phoneNumber"
+									matInput
+									placeholder="Ex. 123-456-1234" />
+								@if (userForm.hasError('pattern', 'phoneNumber')) {
+								<mat-error>Please enter a valid phone number</mat-error>
+								} @if (userForm.hasError('required', 'phoneNumber')) {
+								<mat-error>Phone number is required</mat-error>
+								}
+							</mat-form-field>
 							<mat-form-field appearance="fill">
 								<mat-label class="info">Leave a comment</mat-label>
-								<textarea formControlName="comment" class="form-control" rows="4" matInput
+								<textarea
+									formControlName="comment"
+									class="form-control"
+									rows="4"
+									matInput
 									placeholder="Ex. Enter comment about this property"></textarea>
 								<mat-error>Comment is required</mat-error>
 							</mat-form-field>
