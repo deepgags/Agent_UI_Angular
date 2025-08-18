@@ -18,7 +18,9 @@ import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 // import { StorageService } from '../../../services/storage.service'; // Not used in current snippet
+import { DialogService } from "primeng/dynamicdialog";
 import { environment } from "../../../environments/environment.development";
+import { PropertydetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
 @Component({
@@ -29,6 +31,7 @@ import { SearchComponent } from "../search/search.component";
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
+	providers: [DialogService],
 })
 export class FeaturedListingsComponent implements OnInit, OnDestroy {
 	imageUrl = environment.imageUrl;
@@ -61,9 +64,10 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 		public loadingService: LoadingService,
 		private notificationService: NotificationService,
 		private titleService: Title,
-		private router: Router,
+		// private router: Router,
 		// private activatedRoute: ActivatedRoute,
-		private siteConfigService: SiteConfigService
+		private siteConfigService: SiteConfigService,
+		private dialogService: DialogService
 	) {
 		this.titleService.setTitle("Search Properties");
 	}
@@ -119,21 +123,33 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 			return;
 		}
 
-		this.router.navigate([`/${this.currentTemplateId}`, "property-detail"], {
-			// relativeTo: this.activatedRoute, // Not needed if path is absolute from root
-			queryParams: {
-				address: this.selectedFilters["address"],
-				property_type: this.selectedFilters["property_type"],
-				bedrooms: this.selectedFilters["bedrooms"],
-				bathrooms: this.selectedFilters["bathrooms"],
-				min_price: this.selectedFilters["min_price"],
-				max_price: this.selectedFilters["max_price"],
-				property_status: this.selectedFilters["property_status"],
-				sqFt: this.selectedFilters["sqFt"],
+		// this.router.navigate([`/${this.currentTemplateId}`, "property-detail"], {
+		// 	// relativeTo: this.activatedRoute, // Not needed if path is absolute from root
+		// 	queryParams: {
+		// 		address: this.selectedFilters["address"],
+		// 		property_type: this.selectedFilters["property_type"],
+		// 		bedrooms: this.selectedFilters["bedrooms"],
+		// 		bathrooms: this.selectedFilters["bathrooms"],
+		// 		min_price: this.selectedFilters["min_price"],
+		// 		max_price: this.selectedFilters["max_price"],
+		// 		property_status: this.selectedFilters["property_status"],
+		// 		sqFt: this.selectedFilters["sqFt"],
+		// 		propertyId: property._id,
+		// 		mlsId: property.ListingKey,
+		// 	},
+		// 	queryParamsHandling: "merge", // Consider 'merge' or 'preserve' based on desired behavior
+		// });
+
+		this.dialogService.open(PropertydetailComponent, {
+			header: `Property Information`,
+			width: "90%",
+			maximizable: true,
+			closable: true,
+			modal: true,
+			data: {
 				propertyId: property._id,
 				mlsId: property.ListingKey,
 			},
-			queryParamsHandling: "merge", // Consider 'merge' or 'preserve' based on desired behavior
 		});
 	}
 

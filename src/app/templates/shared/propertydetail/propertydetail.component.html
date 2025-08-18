@@ -20,7 +20,7 @@
 		 class="container-fluid search-container bg-light"
 		 *ngIf="property">
 		<div class="container py-3">
-			<h2 class="fw-semibold text-start mb-3">Property Information</h2>
+			<!-- <h2 class="fw-semibold text-start mb-3">Property Information</h2> -->
 			<div class="row card p-3">
 				<div class="col-12">
 					<gallery
@@ -39,7 +39,7 @@
 						 [src]="'/images/commercial_no_Image.jpg'"
 						 alt="No property image to display" />
 				</div>
-				
+
 				<div class="row card-body align-items-center">
 					<div class="col-lg-3 justify-content-center d-flex">
 						<p class="fw-bold fs-3 info">
@@ -281,85 +281,97 @@
 					</div>
 
 					<div class="row mt-lg-5 mt-3 align-items-center">
-					<div class="col">
-						<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><h5 class="info">Amenities</h5></button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-       <ul class="nav nav-pills mb-3" id="custom-tab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="tab-home" data-bs-toggle="pill" data-bs-target="#content-home" type="button" role="tab" aria-controls="content-home" aria-selected="true"><span><i class="fa-solid fa-map-location me-1"></i></span> MAP</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="tab-profile" data-bs-toggle="pill" data-bs-target="#content-profile" type="button" role="tab" aria-controls="content-profile" aria-selected="false"><span><i class="fa-solid fa-school me-1"></i></span>SCHOOL</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="tab-contact" data-bs-toggle="pill" data-bs-target="#content-contact" type="button" role="tab" aria-controls="content-contact" aria-selected="false"><span><i class="fa-solid fa-map-pin me-1"></i></span>LOACL AMENITIES</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="tab-disabled" data-bs-toggle="pill" data-bs-target="#content-disabled" type="button" role="tab" aria-controls="content-disabled" aria-selected="false" ><span><i class="fa-solid fa-street-view me-1"></i></span>STREET VIEW</button>
-  </li>
-</ul>
+						<div class="col">
+							<div class="accordion" id="accordionExample">
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+												aria-controls="collapseOne">
+											<h5 class="info">Amenities</h5>
+										</button>
+									</h2>
+									<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+										<div class="accordion-body">
+											<ul class="nav nav-pills mb-3" id="custom-tab" role="tablist">
+												<li class="nav-item" role="presentation">
+													<button class="nav-link active" id="tab-home" data-bs-toggle="pill" data-bs-target="#content-home" type="button" role="tab"
+															aria-controls="content-home" aria-selected="true"><span><i class="fa-solid fa-map-location me-1"></i></span>
+														MAP</button>
+												</li>
+												<li class="nav-item" role="presentation">
+													<button class="nav-link" id="tab-profile" data-bs-toggle="pill" data-bs-target="#content-profile" type="button" role="tab"
+															aria-controls="content-profile" aria-selected="false"><span><i
+															   class="fa-solid fa-school me-1"></i></span>SCHOOL</button>
+												</li>
+												<li class="nav-item" role="presentation">
+													<button class="nav-link" id="tab-contact" data-bs-toggle="pill" data-bs-target="#content-contact" type="button" role="tab"
+															aria-controls="content-contact" aria-selected="false"><span><i class="fa-solid fa-map-pin me-1"></i></span>LOACL
+														AMENITIES</button>
+												</li>
+												<li class="nav-item" role="presentation">
+													<button class="nav-link" id="tab-disabled" data-bs-toggle="pill" data-bs-target="#content-disabled" type="button" role="tab"
+															aria-controls="content-disabled" aria-selected="false"><span><i class="fa-solid fa-street-view me-1"></i></span>STREET
+														VIEW</button>
+												</li>
+											</ul>
 
-<div class="tab-content" id="custom-tabContent">
-  <div class="tab-pane fade show active" id="content-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">...</div>
-  <div class="tab-pane fade" id="content-profile" role="tabpanel" aria-labelledby="tab-profile" tabindex="0">...</div>
-  <div class="tab-pane fade" id="content-contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="0">...</div>
-  <div class="tab-pane fade" id="content-disabled" role="tabpanel" aria-labelledby="tab-disabled" tabindex="0">...</div>
-</div>
+											<div class="tab-content" id="custom-tabContent">
+												<div class="tab-pane fade show active" id="content-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">...</div>
+												<div class="tab-pane fade" id="content-profile" role="tabpanel" aria-labelledby="tab-profile" tabindex="0">...</div>
+												<div class="tab-pane fade" id="content-contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="0">...</div>
+												<div class="tab-pane fade" id="content-disabled" role="tabpanel" aria-labelledby="tab-disabled" tabindex="0">...</div>
+											</div>
 
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-      	<h5 class="info">Walk Score</h5>
+										</div>
+									</div>
+								</div>
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+												aria-controls="collapseTwo">
+											<h5 class="info">Walk Score</h5>
 
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-  <div class="d-flex align-items-center mb-4">
-    <div class="text-center p-3" style="min-width:80px; background:#f8f9fa; border-radius:10px; border:1px solid #cce;">
-      <div class="fw-bold text-primary" style="font-size:0.8rem;">Walk Score</div>
-      <div class="fw-bold text-primary" style="font-size:2rem;">94</div>
-    </div>
-    <div class="ms-3">
-      <p class="fw-bold info">Walker's Paradise</p>
-      <small class="text-muted">Daily errands do not require a car</small>
-    </div>
-  </div>
+										</button>
+									</h2>
+									<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+										<div class="accordion-body">
+											<div class="d-flex align-items-center mb-4">
+												<div class="text-center p-3" style="min-width:80px; background:#f8f9fa; border-radius:10px; border:1px solid #cce;">
+													<div class="fw-bold text-primary" style="font-size:0.8rem;">Walk Score</div>
+													<div class="fw-bold text-primary" style="font-size:2rem;">94</div>
+												</div>
+												<div class="ms-3">
+													<p class="fw-bold info">Walker's Paradise</p>
+													<small class="text-muted">Daily errands do not require a car</small>
+												</div>
+											</div>
 
-  <div class="d-flex align-items-center mb-4">
-    <div class="text-center p-3" style="min-width:80px; background:#f8f9fa; border-radius:10px; border:1px solid #cce;">
-      <div class="fw-bold text-info" style="font-size:0.8rem;">Transit Score</div>
-      <div class="fw-bold text-info" style="font-size:2rem;">82</div>
-    </div>
-    <div class="ms-3">
-      <p class="fw-bold info">Excellent Transit</p>
-      <small class="text-muted">Transit is convenient for most trips</small>
-    </div>
-  </div>
+											<div class="d-flex align-items-center mb-4">
+												<div class="text-center p-3" style="min-width:80px; background:#f8f9fa; border-radius:10px; border:1px solid #cce;">
+													<div class="fw-bold text-info" style="font-size:0.8rem;">Transit Score</div>
+													<div class="fw-bold text-info" style="font-size:2rem;">82</div>
+												</div>
+												<div class="ms-3">
+													<p class="fw-bold info">Excellent Transit</p>
+													<small class="text-muted">Transit is convenient for most trips</small>
+												</div>
+											</div>
 
-  <div class="d-flex align-items-center">
-    <div class="text-center p-3" style="min-width:80px; background:#f8f9fa; border-radius:10px; border:1px solid #cce;">
-      <div class="fw-bold text-primary" style="font-size:0.8rem;">Bike Score</div>
-      <div class="fw-bold text-primary" style="font-size:2rem;">53</div>
-    </div>
-    <div class="ms-3">
-	        <p class="fw-bold info">Bikeable</p>
-      <small class="text-muted">Some bike infrastructure</small>
-    </div>
-  </div>
+											<div class="d-flex align-items-center">
+												<div class="text-center p-3" style="min-width:80px; background:#f8f9fa; border-radius:10px; border:1px solid #cce;">
+													<div class="fw-bold text-primary" style="font-size:0.8rem;">Bike Score</div>
+													<div class="fw-bold text-primary" style="font-size:2rem;">53</div>
+												</div>
+												<div class="ms-3">
+													<p class="fw-bold info">Bikeable</p>
+													<small class="text-muted">Some bike infrastructure</small>
+												</div>
+											</div>
 
-      </div>
-    </div>
-  </div>
-  <!-- <div class="accordion-item">
+										</div>
+									</div>
+								</div>
+								<!-- <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
         Accordion Item #3
@@ -371,81 +383,85 @@
       </div>
     </div>
   </div> -->
-</div>
-					</div>
+							</div>
+						</div>
 					</div>
 
 					<div class="row mt-lg-5 mt-3 ">
 						<ul class="nav nav-pills mb-3 " id="score-tabs" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link rounded-4 active" id="score-walk-tab" data-bs-toggle="pill" data-bs-target="#score-walk" type="button" role="tab" aria-controls="score-walk" aria-selected="true"><span><i class="fa-solid fa-person me-1"></i></span>Request a Showing</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="score-transit-tab" data-bs-toggle="pill" data-bs-target="#score-transit" type="button" role="tab" aria-controls="score-transit" aria-selected="false"><span><i class="fa-solid fa-clock-rotate-left me-1"></i></span>Property History
-</button>
-  </li>	
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="score-bike-tab" data-bs-toggle="pill" data-bs-target="#score-bike" type="button" role="tab" aria-controls="score-bike" aria-selected="false"><span><i class="fa-solid fa-house me-1"></i></span>Recent Sales in Area</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="score-disabled-tab" data-bs-toggle="pill" data-bs-target="#score-disabled" type="button" role="tab" aria-controls="score-disabled" aria-selected="false" ><span><i class="fa-solid fa-circle-question me-1"></i></span>Have a Question?</button>
-  </li>
-</ul>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link rounded-4 active" id="score-walk-tab" data-bs-toggle="pill" data-bs-target="#score-walk" type="button" role="tab"
+										aria-controls="score-walk" aria-selected="true"><span><i class="fa-solid fa-person me-1"></i></span>Request a Showing</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="score-transit-tab" data-bs-toggle="pill" data-bs-target="#score-transit" type="button" role="tab"
+										aria-controls="score-transit" aria-selected="false"><span><i class="fa-solid fa-clock-rotate-left me-1"></i></span>Property History
+								</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="score-bike-tab" data-bs-toggle="pill" data-bs-target="#score-bike" type="button" role="tab" aria-controls="score-bike"
+										aria-selected="false"><span><i class="fa-solid fa-house me-1"></i></span>Recent Sales in Area</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="score-disabled-tab" data-bs-toggle="pill" data-bs-target="#score-disabled" type="button" role="tab"
+										aria-controls="score-disabled" aria-selected="false"><span><i class="fa-solid fa-circle-question me-1"></i></span>Have a Question?</button>
+							</li>
+						</ul>
 
-<div class="tab-content" id="score-tabs-content">
-  <div class="tab-pane fade show active" id="score-walk" role="tabpanel" aria-labelledby="score-walk-tab" tabindex="0">	
-		<form class="form-card bg-white" [formGroup]="userForm" name="userForm">
-						<mat-form-field appearance="fill">
-							<mat-label class="info">First Name</mat-label>
-							<input formControlName="firstName" required matInput placeholder="First Name" />
-							<mat-error>First name is required</mat-error>
-						</mat-form-field>
-						<mat-form-field appearance="fill">
-							<mat-label class="info">Email</mat-label>
-							<input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
-							@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
-							<mat-error>Please enter a valid email address</mat-error>
-							}
-							@if (userForm.hasError('required', 'emailAddress')) {
-							<mat-error>Email is required</mat-error>
-							}
-						</mat-form-field>
-						<mat-form-field appearance="fill">
-							<mat-label class="info">Phone Number</mat-label>
-							<input type="tel" formControlName="phoneNumber" matInput placeholder="Ex. 123-456-1234" />
-							@if (userForm.hasError('pattern', 'phoneNumber')) {
-							<mat-error>Please enter a valid phone number</mat-error>
-							}
-							@if (userForm.hasError('required', 'phoneNumber')) {
-							<mat-error>Phone number is required</mat-error>
-							}
-						</mat-form-field>
-						<mat-form-field appearance="fill">
-							<mat-label class="info">Leave a comment</mat-label>
-							<textarea formControlName="comment" class="form-control" rows="4" matInput placeholder="Ex. Enter comment about this property"></textarea>
-							<mat-error>Comment is required</mat-error>
-						</mat-form-field>
-						<p class="mb-0 fw-semibold">I am</p>
-						<div class="d-flex flex-wrap gap-2 py-3">
-							<input type="radio" class="btn-check radio_btn" name="userType" id="seller" value="Seller" checked required>
-							<label class="btn  rounded-pill" for="seller">Seller</label>
+						<div class="tab-content" id="score-tabs-content">
+							<div class="tab-pane fade show active" id="score-walk" role="tabpanel" aria-labelledby="score-walk-tab" tabindex="0">
+								<form class="form-card bg-white" [formGroup]="userForm" name="userForm">
+									<mat-form-field appearance="fill">
+										<mat-label class="info">First Name</mat-label>
+										<input formControlName="firstName" required matInput placeholder="First Name" />
+										<mat-error>First name is required</mat-error>
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Email</mat-label>
+										<input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
+										@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
+										<mat-error>Please enter a valid email address</mat-error>
+										}
+										@if (userForm.hasError('required', 'emailAddress')) {
+										<mat-error>Email is required</mat-error>
+										}
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Phone Number</mat-label>
+										<input type="tel" formControlName="phoneNumber" matInput placeholder="Ex. 123-456-1234" />
+										@if (userForm.hasError('pattern', 'phoneNumber')) {
+										<mat-error>Please enter a valid phone number</mat-error>
+										}
+										@if (userForm.hasError('required', 'phoneNumber')) {
+										<mat-error>Phone number is required</mat-error>
+										}
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Leave a comment</mat-label>
+										<textarea formControlName="comment" class="form-control" rows="4" matInput placeholder="Ex. Enter comment about this property"></textarea>
+										<mat-error>Comment is required</mat-error>
+									</mat-form-field>
+									<p class="mb-0 fw-semibold">I am</p>
+									<div class="d-flex flex-wrap gap-2 py-3">
+										<input type="radio" class="btn-check radio_btn" name="userType" id="seller" value="Seller" checked required>
+										<label class="btn  rounded-pill" for="seller">Seller</label>
 
-							<input type="radio" class="btn-check" name="userType" id="buyer" value="Buyer" required>
-							<label class="btn  rounded-pill" for="buyer">Buyer</label>
+										<input type="radio" class="btn-check" name="userType" id="buyer" value="Buyer" required>
+										<label class="btn  rounded-pill" for="buyer">Buyer</label>
 
-							<input type="radio" class="btn-check" name="userType" id="renter" value="Renter" required>
-							<label class="btn  rounded-pill" for="renter">Renter</label>
+										<input type="radio" class="btn-check" name="userType" id="renter" value="Renter" required>
+										<label class="btn  rounded-pill" for="renter">Renter</label>
 
-							<input type="radio" class="btn-check" name="userType" id="buyerSeller" value="Buyer & Seller" required>
-							<label class="btn  rounded-pill" for="buyerSeller">Buyer & Seller</label>
+										<input type="radio" class="btn-check" name="userType" id="buyerSeller" value="Buyer & Seller" required>
+										<label class="btn  rounded-pill" for="buyerSeller">Buyer & Seller</label>
+									</div>
+									<button class="btn search_btn w-100 fw-bold">Send</button>
+								</form>
+							</div>
+							<div class="tab-pane fade" id="score-transit" role="tabpanel" aria-labelledby="score-transit-tab" tabindex="0">Transit Score content...</div>
+							<div class="tab-pane fade" id="score-bike" role="tabpanel" aria-labelledby="score-bike-tab" tabindex="0">Bike Score content...</div>
+							<div class="tab-pane fade" id="score-disabled" role="tabpanel" aria-labelledby="score-disabled-tab" tabindex="0">Disabled content...</div>
 						</div>
-						<button class="btn search_btn w-100 fw-bold">Send</button>
-					</form>
-						</div>
-  <div class="tab-pane fade" id="score-transit" role="tabpanel" aria-labelledby="score-transit-tab" tabindex="0">Transit Score content...</div>
-  <div class="tab-pane fade" id="score-bike" role="tabpanel" aria-labelledby="score-bike-tab" tabindex="0">Bike Score content...</div>
-  <div class="tab-pane fade" id="score-disabled" role="tabpanel" aria-labelledby="score-disabled-tab" tabindex="0">Disabled content...</div>
-</div>
 
 					</div>
 
@@ -679,12 +695,12 @@
 				</div>
 			</div>
 
-			<button
+			<!--<button
 					type="button"
 					(click)="back()"
 					class="btn w-25 mt-3 search_btn">
 				Back
-			</button>
+			</button> -->
 		</div>
 	</div>
 </div>

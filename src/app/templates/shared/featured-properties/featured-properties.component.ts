@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
 import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
 import { stringiFy } from "../../../consts/Utility";
@@ -12,6 +13,7 @@ import { PropertyModel } from "../../../models/PropertyModel";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 import { StorageService } from "../../../services/storage.service";
+import { PropertydetailComponent } from "../propertydetail/propertydetail.component";
 
 @Component({
 	selector: "app-featured-properties",
@@ -21,6 +23,7 @@ import { StorageService } from "../../../services/storage.service";
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
+	providers: [DialogService],
 })
 export class FeaturedPropertiesComponent implements OnInit {
 	imageUrl = environment.imageUrl;
@@ -32,10 +35,11 @@ export class FeaturedPropertiesComponent implements OnInit {
 	constructor(
 		private _interestedUserDialog: MatDialog,
 		private propertyService: PropertyService,
-		private notificationService: NotificationService,
-		private storageService: StorageService,
-		private router: Router,
-		private activatedRoute: ActivatedRoute
+		// private notificationService: NotificationService,
+		// private storageService: StorageService,
+		// private router: Router,
+		// private activatedRoute: ActivatedRoute,
+		private dialogService: DialogService
 	) {}
 
 	ngOnInit(): void {
@@ -69,22 +73,33 @@ export class FeaturedPropertiesComponent implements OnInit {
 	}
 
 	redirectToDetail(property: PropertyModel): void {
-		const currentTemplate = this.router.url.split("/")[1];
-		this.router.navigate([`/${currentTemplate}`, "property-detail"], {
-			relativeTo: this.activatedRoute,
-			queryParams: {
-				address: "",
-				property_type: "",
-				bedrooms: "",
-				bathrooms: "",
-				min_price: "",
-				max_price: "",
-				property_status: "",
-				sqFt: "",
+		// const currentTemplate = this.router.url.split("/")[1];
+		// this.router.navigate([`/${currentTemplate}`, "property-detail"], {
+		// 	relativeTo: this.activatedRoute,
+		// 	queryParams: {
+		// 		address: "",
+		// 		property_type: "",
+		// 		bedrooms: "",
+		// 		bathrooms: "",
+		// 		min_price: "",
+		// 		max_price: "",
+		// 		property_status: "",
+		// 		sqFt: "",
+		// 		propertyId: property._id,
+		// 		mlsId: property.ListingKey,
+		// 	},
+		// 	queryParamsHandling: "replace",
+		// });
+		this.dialogService.open(PropertydetailComponent, {
+			header: `Property Information`,
+			width: "90%",
+			maximizable: true,
+			closable: true,
+			modal: true,
+			data: {
 				propertyId: property._id,
 				mlsId: property.ListingKey,
 			},
-			queryParamsHandling: "replace",
 		});
 	}
 

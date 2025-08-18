@@ -21,6 +21,8 @@ import { map } from "rxjs/operators";
 // import { GalleryComponent } from "../../../components/gallery/gallery.component";
 import { environment } from "../../../environments/environment.development";
 // import { SiteConfig } from "../../../models/SiteConfig";
+import { DialogRef } from "@angular/cdk/dialog";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { SiteConfigService } from "../../../services/site-config.service";
 // import { LightboxModule, Lightbox } from 'ng-gallery/lightbox';
@@ -65,30 +67,26 @@ export class PropertydetailComponent implements OnInit {
 	galleryConfig$: Observable<GalleryConfig>;
 	galleryRef: GalleryRef | undefined;
 
-	selectedFilters: any = {
-		propertyId: "",
-		mlsId: "",
-	};
-
 	// siteConfig: SiteConfig | undefined;
 	private siteConfigSubscription: Subscription | undefined;
 
 	siteConfigBS: BehaviorSubject<any>;
 	siteConfigObservable: Observable<any>;
-
+	mlsId: string = "";
+	propertyId: string = "";
 	constructor(
 		breakpointObserver: BreakpointObserver,
-		private route: ActivatedRoute,
+		// private route: ActivatedRoute,
 		private propertyService: PropertyService,
 		private titleService: Title,
 		private location: Location,
 		private router: Router,
 		private fb: FormBuilder,
 		private gallery: Gallery,
-		private siteConfigService: SiteConfigService
+		private siteConfigService: SiteConfigService,
+		private dialogConfig: DynamicDialogConfig
 	) {
 		this.titleService.setTitle("Property Detail");
-
 		this.siteConfigBS = new BehaviorSubject(null);
 		this.siteConfigObservable = this.siteConfigBS.asObservable();
 
@@ -108,20 +106,27 @@ export class PropertydetailComponent implements OnInit {
 				};
 			})
 		);
+
+		const { mlsId, propertyId } = this.dialogConfig.data;
+		this.mlsId = mlsId;
+		this.propertyId = propertyId;
+		if (this.propertyId && this.mlsId) {
+			this.getPropertyInformation();
+		}
 	}
 
 	ngOnInit(): void {
 		this.galleryRef = this.gallery.ref("propertyGallery");
 
-		this.route.queryParams.subscribe((params) => {
-			if (Object.keys(params).length > 0) {
-				this.selectedFilters = {
-					...this.selectedFilters,
-					...params,
-				};
-				this.getPropertyInformation();
-			}
-		});
+		// this.route.queryParams.subscribe((params) => {
+		// 	if (Object.keys(params).length > 0) {
+		// 		this.selectedFilters = {
+		// 			...this.selectedFilters,
+		// 			...params,
+		// 		};
+		// 		this.getPropertyInformation();
+		// 	}
+		// });
 
 		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
 			if (config) {
@@ -171,13 +176,12 @@ export class PropertydetailComponent implements OnInit {
 
 	getPropertyInformation(): void {
 		this.loadingSubject.next(true);
-		this.propertyService.getPropertyDetails(this.selectedFilters.propertyId, this.selectedFilters.mlsId).subscribe({
+		this.propertyService.getPropertyDetails(this.propertyId, this.mlsId).subscribe({
 			next: (response) => {
 				this.property = response;
 				this.center.lat = this.property.Latitude;
 				this.center.lng = this.property.Longitude;
 				if (this.galleryRef && this.property.Media) {
-					debugger;
 					this.property?.Media?.forEach((x) => {
 						this.galleryRef?.add(
 							new ImageItem({

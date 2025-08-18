@@ -9,6 +9,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { DefaultRenderer, MarkerClusterer } from "@googlemaps/markerclusterer";
+import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
 import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
 import { sortTypes } from "../../../consts/DefaultTypes";
@@ -19,6 +20,7 @@ import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 import { StorageService } from "../../../services/storage.service";
+import { PropertydetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
 @Component({
@@ -38,6 +40,7 @@ import { SearchComponent } from "../search/search.component";
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
+	providers: [DialogService],
 })
 export class MapComponent implements OnInit, AfterViewInit {
 	imageUrl = environment.imageUrl;
@@ -78,11 +81,12 @@ export class MapComponent implements OnInit, AfterViewInit {
 		private _interestedUserDialog: MatDialog,
 		private propertyService: PropertyService,
 		public loadingService: LoadingService,
-		private notificationService: NotificationService,
-		private storageService: StorageService,
+		// private notificationService: NotificationService,
+		// private storageService: StorageService,
+		// private router: Router,
 		private titleService: Title,
-		private router: Router,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private dialogService: DialogService
 	) {
 		this.titleService.setTitle("Properties on map");
 	}
@@ -282,22 +286,33 @@ export class MapComponent implements OnInit, AfterViewInit {
 	}
 
 	redirectToDetail(property: PropertyModel): void {
-		const currentTemplate = this.router.url.split("/")[1];
-		this.router.navigate([`/${currentTemplate}`, "property-detail"], {
-			relativeTo: this.route,
-			queryParams: {
-				address: this.selectedFilters["address"],
-				property_type: this.selectedFilters["property_type"],
-				bedrooms: this.selectedFilters["bedrooms"],
-				bathrooms: this.selectedFilters["bathrooms"],
-				min_price: this.selectedFilters["min_price"],
-				max_price: this.selectedFilters["max_price"],
-				property_status: this.selectedFilters["property_status"],
-				sqFt: this.selectedFilters["sqFt"],
+		// const currentTemplate = this.router.url.split("/")[1];
+		// this.router.navigate([`/${currentTemplate}`, "property-detail"], {
+		// 	relativeTo: this.route,
+		// 	queryParams: {
+		// 		address: this.selectedFilters["address"],
+		// 		property_type: this.selectedFilters["property_type"],
+		// 		bedrooms: this.selectedFilters["bedrooms"],
+		// 		bathrooms: this.selectedFilters["bathrooms"],
+		// 		min_price: this.selectedFilters["min_price"],
+		// 		max_price: this.selectedFilters["max_price"],
+		// 		property_status: this.selectedFilters["property_status"],
+		// 		sqFt: this.selectedFilters["sqFt"],
+		// 		propertyId: property._id,
+		// 		mlsId: property.ListingKey,
+		// 	},
+		// 	queryParamsHandling: "replace",
+		// });
+		this.dialogService.open(PropertydetailComponent, {
+			header: `Property Information`,
+			width: "90%",
+			maximizable: true,
+			closable: true,
+			modal: true,
+			data: {
 				propertyId: property._id,
 				mlsId: property.ListingKey,
 			},
-			queryParamsHandling: "replace",
 		});
 	}
 
