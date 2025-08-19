@@ -155,64 +155,57 @@
 	</div>
 </div>
 
-<div class="container-fluid sec-3 search-container">
+
+<div class="container-fluid sec-3 search-container" >
 	<div class="container">
-		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
-			<div class="col-12 mt-5 mt-lg-0 p-4">
-				<h4 class="card-title info text-center">Get a free consultation</h4>
+		<div class="row  align-items-center justify-content-around mx-0">
+		 <div class="col-lg-7 col-12">
+            <div class="">
+                <h1 class="fw-semibold text-white">Get In Touch </h1>
+                <p class="fw-semibold text-white">
+                    Your way to better real estate software starts here. For 35 years, we’ve proudly delivered the gold standard in real estate software to businesses of all shapes, sizes, and structures, and we’d be honored to partner with your organization today.
+                </p>
+            </div>
+        </div>
+			<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-4">
 				<div class="card shadow">
 					<div class="card-body">
-						<form [formGroup]="userForm" name="userForm">
-							<div class="row">
-								<div class="col">
-									<mat-form-field appearance="fill">
-										<mat-label class="info">First Name</mat-label>
-										<input formControlName="firstName" required matInput placeholder="First Name" />
-										<mat-error>First name is required</mat-error>
-									</mat-form-field>
-								</div>
-
-								<div class="col">
-									<mat-form-field appearance="fill">
-										<mat-label class="info">Email</mat-label>
-										<input class="w-100" type="email" formControlName="emailAddress" required email
-											matInput placeholder="Ex. pat@example.com" />
-										@if (userForm.hasError('email', 'emailAddress') &&
-										!userForm.hasError('required',
-										'emailAddress')) {
-										<mat-error>Please enter a valid email address</mat-error>
-										}
-										@if (userForm.hasError('required', 'emailAddress')) {
-										<mat-error>Email is required</mat-error>
-										}
-									</mat-form-field>
-								</div>
-								<div class="col">
-									<mat-form-field appearance="fill">
-										<mat-label class="info">Phone Number</mat-label>
-										<input type="tel" formControlName="phoneNumber" matInput
-											placeholder="Ex. 123-456-1234" />
-										@if (userForm.hasError('pattern', 'phoneNumber')) {
-										<mat-error>Please enter a valid phone number</mat-error>
-										}
-										@if (userForm.hasError('required', 'phoneNumber')) {
-										<mat-error>Phone number is required</mat-error>
-										}
-									</mat-form-field>
-								</div>
-
-							</div>
-
-							<mat-form-field appearance="fill">
-								<mat-label class="info">Leave a comment</mat-label>
-								<textarea formControlName="comment" class="form-control" rows="4" matInput
-									placeholder="Ex. Enter comment about this property"></textarea>
-								<mat-error>Comment is required</mat-error>
-							</mat-form-field>
-							<button class="btn search_btn w-100 fw-bold">Save</button>
-						</form>
+					  <h5 class="card-title info">Lets Get In Touch</h5>
+					  <form [formGroup]="userForm" name="userForm" >
+						<mat-form-field appearance="fill">
+						  <mat-label class="info">First Name</mat-label>
+						  <input formControlName="firstName" required matInput placeholder="First Name" />
+						  <mat-error>First name is required</mat-error>
+						</mat-form-field>
+						<mat-form-field appearance="fill">
+						  <mat-label class="info">Email</mat-label>
+						  <input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
+						  @if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
+						   <mat-error>Please enter a valid email address</mat-error>
+						  }
+						 @if (userForm.hasError('required', 'emailAddress')) {
+						   <mat-error>Email is required</mat-error>
+						  }
+						</mat-form-field>
+						<mat-form-field appearance="fill">
+						  <mat-label class="info">Phone Number</mat-label>
+						  <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
+						  @if (userForm.hasError('pattern', 'phoneNumber')) {
+							<mat-error>Please enter a valid phone number</mat-error>
+						   }
+						   @if (userForm.hasError('required', 'phoneNumber')) {
+							<mat-error>Phone number is required</mat-error>
+						  }
+						</mat-form-field>
+						<mat-form-field appearance="fill">
+						  <mat-label class="info">Leave a comment</mat-label>
+						  <textarea formControlName="comment" class="form-control" rows="4" matInput placeholder="Ex. Enter comment about this property"></textarea>
+						  <mat-error>Comment is required</mat-error>
+						</mat-form-field>
+						<button class="btn search_btn w-100 fw-bold">Save</button>
+					  </form>
 					</div>
-				</div>
+				  </div>
 			</div>
 		</div>
 	</div>
