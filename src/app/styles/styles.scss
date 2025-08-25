@@ -34,11 +34,21 @@ p-editor.p-editor .p-editor-container .ql-editor {
 	height: auto !important;
 }
 
-app-login{
-	p-password{
+app-login {
+	p-password {
 		width: 89%;
-	  .p-password{
-	  	display: initial;
-	  }
+		.p-password {
+			display: initial;
+		}
 	}
+}
+
+/* Walkscore default css */
+#ws-walkscore-tile {
+	position: relative;
+	text-align: left;
+}
+
+#ws-walkscore-tile * {
+	float: none;
 }

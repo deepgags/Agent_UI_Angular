@@ -8,24 +8,22 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { Title } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { NgbCarouselConfig, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { Gallery, GalleryConfig, GalleryModule, GalleryRef, ImageItem, ThumbnailsPosition } from "ng-gallery";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import { map } from "rxjs/operators";
+import { environment } from "../../../environments/environment.development";
 import { InterestedUserModel } from "../../../models/InterestedUserModel";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { PropertyService } from "../../../services/property.service";
-// import { SearchComponent } from "../search/search.component";
 
-import { Gallery, GalleryConfig, GalleryModule, GalleryRef, ImageItem, ThumbnailsPosition } from "ng-gallery";
-import { map } from "rxjs/operators";
-// import { GalleryComponent } from "../../../components/gallery/gallery.component";
-import { environment } from "../../../environments/environment.development";
-// import { SiteConfig } from "../../../models/SiteConfig";
-import { DialogRef } from "@angular/cdk/dialog";
+import { AccordionModule } from "primeng/accordion";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { SiteConfigService } from "../../../services/site-config.service";
-// import { LightboxModule, Lightbox } from 'ng-gallery/lightbox';
+
+declare var window: any;
 
 @Component({
 	selector: "app-propertydetail",
@@ -42,6 +40,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		RouterModule,
 		GalleryModule,
 		PhoneSearch,
+		AccordionModule,
 	],
 	providers: [provideAnimations(), NgbCarouselConfig],
 	templateUrl: "./propertydetail.component.html",
@@ -191,6 +190,9 @@ export class PropertydetailComponent implements OnInit {
 						);
 					});
 				}
+				setTimeout(() => {
+					this.loadWalkScore();
+				}, 1500);
 			},
 			error: (err) => {
 				// this.notificationService.showNotification("Error occurred while getting property information");
@@ -259,5 +261,25 @@ export class PropertydetailComponent implements OnInit {
 		// 		}
 		// 	})
 		// }
+	}
+
+	loadWalkScore() {
+		debugger;
+		// window.ws_wsid = "ge7127abd982e495d9fe2d24cba96d9fb";
+		// window.ws_address = this.property?.UnparsedAddress || "";
+		// window.ws_format = "wide";
+		// window.ws_width = "690";
+		// window.ws_height = "525";
+
+		(window as any).ws_wsid = "ge7127abd982e495d9fe2d24cba96d9fb";
+		(window as any).ws_address = this.property?.UnparsedAddress || "";
+		(window as any).ws_format = "wide";
+		(window as any).ws_width = "690";
+		(window as any).ws_height = "525";
+
+		const script = document.createElement("script");
+		script.type = "text/javascript";
+		script.src = "http://www.walkscore.com/tile/show-walkscore-tile.php";
+		document.getElementById("ws-walkscore-tile")?.appendChild(script);
 	}
 }

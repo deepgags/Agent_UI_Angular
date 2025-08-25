@@ -194,8 +194,7 @@
 													{{
 														property.PurchaseContractDate
 															? (property.PurchaseContractDate | date)
-															: "No
-                        Date"
+															: "No Date"
 													}}
 												</span>
 											</div>
@@ -282,108 +281,51 @@
 
 					<div class="row mt-lg-5 mt-3 align-items-center">
 						<div class="col">
-							<div class="accordion" id="accordionExample">
-								<div class="accordion-item">
-									<h2 class="accordion-header">
-										<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-												aria-controls="collapseOne">
-											<h5 class="info">Amenities</h5>
-										</button>
-									</h2>
-									<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-										<div class="accordion-body">
-											<ul class="nav nav-pills mb-3" id="custom-tab" role="tablist">
-												<li class="nav-item" role="presentation">
-													<button class="nav-link active" id="tab-home" data-bs-toggle="pill" data-bs-target="#content-home" type="button" role="tab"
-															aria-controls="content-home" aria-selected="true"><span><i class="fa-solid fa-map-location me-1"></i></span>
-														MAP</button>
-												</li>
-												<li class="nav-item" role="presentation">
-													<button class="nav-link" id="tab-profile" data-bs-toggle="pill" data-bs-target="#content-profile" type="button" role="tab"
-															aria-controls="content-profile" aria-selected="false"><span><i
-															   class="fa-solid fa-school me-1"></i></span>SCHOOL</button>
-												</li>
-												<li class="nav-item" role="presentation">
-													<button class="nav-link" id="tab-contact" data-bs-toggle="pill" data-bs-target="#content-contact" type="button" role="tab"
-															aria-controls="content-contact" aria-selected="false"><span><i class="fa-solid fa-map-pin me-1"></i></span>LOACL
-														AMENITIES</button>
-												</li>
-												<li class="nav-item" role="presentation">
-													<button class="nav-link" id="tab-disabled" data-bs-toggle="pill" data-bs-target="#content-disabled" type="button" role="tab"
-															aria-controls="content-disabled" aria-selected="false"><span><i class="fa-solid fa-street-view me-1"></i></span>STREET
-														VIEW</button>
-												</li>
-											</ul>
+							<p-accordion value="0" [multiple]="true" [activeIndex]="[1,2]">
+								<p-accordion-panel value="0">
+									<p-accordion-header>Amenities</p-accordion-header>
+									<p-accordion-content>
+										<ul class="nav nav-pills mb-3" id="custom-tab" role="tablist">
+											<li class="nav-item" role="presentation">
+												<button class="nav-link active" id="tab-home" data-bs-toggle="pill" data-bs-target="#content-home" type="button" role="tab"
+														aria-controls="content-home" aria-selected="true"><span><i class="fa-solid fa-map-location me-1"></i></span>
+													MAP</button>
+											</li>
+											<li class="nav-item" role="presentation">
+												<button class="nav-link" id="tab-profile" data-bs-toggle="pill" data-bs-target="#content-profile" type="button" role="tab"
+														aria-controls="content-profile" aria-selected="false"><span><i
+														   class="fa-solid fa-school me-1"></i></span>SCHOOL</button>
+											</li>
+											<li class="nav-item" role="presentation">
+												<button class="nav-link" id="tab-contact" data-bs-toggle="pill" data-bs-target="#content-contact" type="button" role="tab"
+														aria-controls="content-contact" aria-selected="false"><span><i class="fa-solid fa-map-pin me-1"></i></span>LOACL
+													AMENITIES</button>
+											</li>
+											<li class="nav-item" role="presentation">
+												<button class="nav-link" id="tab-disabled" data-bs-toggle="pill" data-bs-target="#content-disabled" type="button" role="tab"
+														aria-controls="content-disabled" aria-selected="false"><span><i class="fa-solid fa-street-view me-1"></i></span>STREET
+													VIEW</button>
+											</li>
+										</ul>
 
-											<div class="tab-content" id="custom-tabContent">
-												<div class="tab-pane fade show active" id="content-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">...</div>
-												<div class="tab-pane fade" id="content-profile" role="tabpanel" aria-labelledby="tab-profile" tabindex="0">...</div>
-												<div class="tab-pane fade" id="content-contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="0">...</div>
-												<div class="tab-pane fade" id="content-disabled" role="tabpanel" aria-labelledby="tab-disabled" tabindex="0">...</div>
-											</div>
-
+										<div class="tab-content" id="custom-tabContent">
+											<div class="tab-pane fade show active" id="content-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">...</div>
+											<div class="tab-pane fade" id="content-profile" role="tabpanel" aria-labelledby="tab-profile" tabindex="0">...</div>
+											<div class="tab-pane fade" id="content-contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="0">...</div>
+											<div class="tab-pane fade" id="content-disabled" role="tabpanel" aria-labelledby="tab-disabled" tabindex="0">...</div>
 										</div>
-									</div>
-								</div>
-								<div class="accordion-item">
-									<h2 class="accordion-header">
-										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-												aria-controls="collapseTwo">
-											<h5 class="info">Walk Score</h5>
+									</p-accordion-content>
+								</p-accordion-panel>
 
-										</button>
-									</h2>
-									<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-										<div class="accordion-body">
-											<div class="d-flex align-items-center mb-4">
-												<div class="text-center p-3" style="min-width:80px; background:#f8f9fa; border-radius:10px; border:1px solid #cce;">
-													<div class="fw-bold text-primary" style="font-size:0.8rem;">Walk Score</div>
-													<div class="fw-bold text-primary" style="font-size:2rem;">94</div>
-												</div>
-												<div class="ms-3">
-													<p class="fw-bold info">Walker's Paradise</p>
-													<small class="text-muted">Daily errands do not require a car</small>
-												</div>
-											</div>
+								<p-accordion-panel value="1">
+									<p-accordion-header>Walk Score</p-accordion-header>
+									<p-accordion-content>
+										<div id='ws-walkscore-tile'></div>
+									</p-accordion-content>
+								</p-accordion-panel>
+							</p-accordion>
 
-											<div class="d-flex align-items-center mb-4">
-												<div class="text-center p-3" style="min-width:80px; background:#f8f9fa; border-radius:10px; border:1px solid #cce;">
-													<div class="fw-bold text-info" style="font-size:0.8rem;">Transit Score</div>
-													<div class="fw-bold text-info" style="font-size:2rem;">82</div>
-												</div>
-												<div class="ms-3">
-													<p class="fw-bold info">Excellent Transit</p>
-													<small class="text-muted">Transit is convenient for most trips</small>
-												</div>
-											</div>
-
-											<div class="d-flex align-items-center">
-												<div class="text-center p-3" style="min-width:80px; background:#f8f9fa; border-radius:10px; border:1px solid #cce;">
-													<div class="fw-bold text-primary" style="font-size:0.8rem;">Bike Score</div>
-													<div class="fw-bold text-primary" style="font-size:2rem;">53</div>
-												</div>
-												<div class="ms-3">
-													<p class="fw-bold info">Bikeable</p>
-													<small class="text-muted">Some bike infrastructure</small>
-												</div>
-											</div>
-
-										</div>
-									</div>
-								</div>
-								<!-- <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Accordion Item #3
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the third item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div> -->
-							</div>
+							<!-- <div id='ws-walkscore-tile'></div> -->
 						</div>
 					</div>
 
