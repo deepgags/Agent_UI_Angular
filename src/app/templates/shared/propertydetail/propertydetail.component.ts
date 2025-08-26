@@ -115,6 +115,7 @@ export class PropertydetailComponent implements OnInit {
 	get contactMessage() {
 		return this.contactForm.get("message");
 	}
+
 	imageUrl = environment.imageUrl;
 	property: PropertyModel | undefined;
 	Latitude: number = 0;
@@ -341,33 +342,6 @@ export class PropertydetailComponent implements OnInit {
 		}
 	}
 
-	save() {
-		// const { valid } = this.userForm;
-		// if (valid) {
-		// 	const userInfo = this.storageService.getLoggedUserFromUserInfo();
-		// 	this.userModel.latitude = this.Latitude;
-		// 	this.userModel.longitude = this.Longitude
-		// 	this.userModel.propertyId = this.selectedFilters.propertyId;
-		// 	this.userModel.mlsId = this.selectedFilters.mlsId;
-		// 	this.userModel._id = userInfo._id;
-		// 	this.userModel.templateId = userInfo.templateId;
-		// 	this.loadingSubject.next(true);
-		// 	this.interestdUserService.save(this.userModel).subscribe({
-		// 		next: (v) => { },
-		// 		error: (e) => {
-		// 			this.notificationService.showNotification('Something went wrong while saving information');
-		// 		},
-		// 		complete: () => {
-		// 			this.storageService.saveUserInfo(JSON.stringify(this.userModel), "InterestedUser");
-		// 			this.notificationService.showNotification('Information has been saved');
-		// 			this.loadingSubject.next(false);
-		// 			this.userModel = new InterestedUserModel();
-		// 			this.userForm.reset();
-		// 		}
-		// 	})
-		// }
-	}
-
 	loadWalkScore() {
 		(window as any).ws_wsid = "ge7127abd982e495d9fe2d24cba96d9fb";
 		(window as any).ws_address = this.property?.UnparsedAddress || "";
@@ -462,6 +436,28 @@ export class PropertydetailComponent implements OnInit {
 			next: () => {
 				// this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.haveQuestionForm.reset();
+			},
+			error: () => {
+				// this.notificationService.showError("Failed to send message. Please try again later.");
+			},
+		});
+	}
+
+	submitContactForm() {
+		if (this.contactForm.invalid) {
+			this.contactForm.markAllAsTouched();
+			// this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		const params = {
+			...this.contactForm.value,
+			leadSource: "contactForm",
+		};
+		this.publicService.submitContactForm(params).subscribe({
+			next: () => {
+				// this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.contactForm.reset();
 			},
 			error: () => {
 				// this.notificationService.showError("Failed to send message. Please try again later.");

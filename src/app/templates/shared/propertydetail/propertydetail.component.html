@@ -410,21 +410,35 @@
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Name</mat-label>
 										<input formControlName="name" required matInput placeholder="Name" />
-										<mat-error>Name is required</mat-error>
+										<span class="error" *ngIf="propertyHistoryName?.invalid && (propertyHistoryName?.dirty || propertyHistoryName?.touched)">
+											<span *ngIf="propertyHistoryName?.errors?.['required']">Name is required</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Email</mat-label>
 										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
+										<span class="error" *ngIf="propertyHistoryEmail?.invalid && (propertyHistoryEmail?.dirty || propertyHistoryEmail?.touched)">
+											<span *ngIf="propertyHistoryEmail?.errors?.['required']">Name is required</span>
+											<span *ngIf="propertyHistoryEmail?.errors?.['email']">Please enter a valid email address</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Phone Number</mat-label>
 										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
-
+										<span class="error" *ngIf="propertyHistoryPhone?.invalid && (propertyHistoryPhone?.dirty || propertyHistoryPhone?.touched)">
+											<span *ngIf="propertyHistoryPhone?.errors?.['required']">Phone number is required</span>
+											<span *ngIf="propertyHistoryPhone?.errors?.['pattern']">Please enter a valid phone number</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Leave a comment</mat-label>
 										<textarea formControlName="message" class="form-control" rows="4" matInput
 												  placeholder="Ex. Enter your request about this property"></textarea>
+										<span
+											  class="error"
+											  *ngIf="propertyHistoryMessage?.invalid && (propertyHistoryMessage?.dirty || propertyHistoryMessage?.touched)">
+											<span *ngIf="propertyHistoryMessage?.errors?.['required']">Comment is required</span>
+										</span>
 									</mat-form-field>
 									<p class="mb-0 fw-semibold">I am</p>
 									<div class="d-flex flex-wrap gap-2 py-3">
@@ -449,21 +463,35 @@
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Name</mat-label>
 										<input formControlName="name" required matInput placeholder="Name" />
-										<mat-error>Name is required</mat-error>
+										<span class="error" *ngIf="recentSaleName?.invalid && (recentSaleName?.dirty || recentSaleName?.touched)">
+											<span *ngIf="recentSaleName?.errors?.['required']">Name is required</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Email</mat-label>
 										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
+										<span class="error" *ngIf="recentSaleEmail?.invalid && (recentSaleEmail?.dirty || recentSaleEmail?.touched)">
+											<span *ngIf="recentSaleEmail?.errors?.['required']">Name is required</span>
+											<span *ngIf="recentSaleEmail?.errors?.['email']">Please enter a valid email address</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Phone Number</mat-label>
 										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
-
+										<span class="error" *ngIf="recentSalePhone?.invalid && (recentSalePhone?.dirty || recentSalePhone?.touched)">
+											<span *ngIf="recentSalePhone?.errors?.['required']">Phone number is required</span>
+											<span *ngIf="recentSalePhone?.errors?.['pattern']">Please enter a valid phone number</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Leave a comment</mat-label>
 										<textarea formControlName="message" class="form-control" rows="4" matInput
 												  placeholder="Ex. Enter your request about this property"></textarea>
+										<span
+											  class="error"
+											  *ngIf="recentSaleMessage?.invalid && (recentSaleMessage?.dirty || recentSaleMessage?.touched)">
+											<span *ngIf="recentSaleMessage?.errors?.['required']">Comment is required</span>
+										</span>
 									</mat-form-field>
 									<p class="mb-0 fw-semibold">I am</p>
 									<div class="d-flex flex-wrap gap-2 py-3">
@@ -483,21 +511,35 @@
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Name</mat-label>
 										<input formControlName="name" required matInput placeholder="Name" />
-										<mat-error>Name is required</mat-error>
+										<span class="error" *ngIf="haveQuestionName?.invalid && (haveQuestionName?.dirty || haveQuestionName?.touched)">
+											<span *ngIf="haveQuestionName?.errors?.['required']">Name is required</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Email</mat-label>
 										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
+										<span class="error" *ngIf="haveQuestionEmail?.invalid && (haveQuestionEmail?.dirty || haveQuestionEmail?.touched)">
+											<span *ngIf="haveQuestionEmail?.errors?.['required']">Name is required</span>
+											<span *ngIf="haveQuestionEmail?.errors?.['email']">Please enter a valid email address</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Phone Number</mat-label>
 										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
-
+										<span class="error" *ngIf="haveQuestionPhone?.invalid && (haveQuestionPhone?.dirty || haveQuestionPhone?.touched)">
+											<span *ngIf="haveQuestionPhone?.errors?.['required']">Phone number is required</span>
+											<span *ngIf="haveQuestionPhone?.errors?.['pattern']">Please enter a valid phone number</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Leave a comment</mat-label>
 										<textarea formControlName="message" class="form-control" rows="4" matInput
 												  placeholder="Ex. Enter your request about this property"></textarea>
+										<span
+											  class="error"
+											  *ngIf="haveQuestionMessage?.invalid && (haveQuestionMessage?.dirty || haveQuestionMessage?.touched)">
+											<span *ngIf="haveQuestionMessage?.errors?.['required']">Comment is required</span>
+										</span>
 									</mat-form-field>
 									<p class="mb-0 fw-semibold">I am</p>
 									<div class="d-flex flex-wrap gap-2 py-3">
@@ -579,15 +621,17 @@
 							h12
 							<form
 								  [formGroup]="contactForm"
-								  name="userForm">
+								  (ngSubmit)="submitContactForm()">
 								<mat-form-field appearance="fill">
-									<mat-label class="info">First Name</mat-label>
+									<mat-label class="info">Name</mat-label>
 									<input
 										   formControlName="name"
 										   required
 										   matInput
 										   placeholder="Name" />
-									<mat-error>First name is required</mat-error>
+									<span class="error" *ngIf="contactName?.invalid && (contactName?.dirty || contactName?.touched)">
+										<span *ngIf="contactName?.errors?.['required']">Name is required</span>
+									</span>
 								</mat-form-field>
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Email</mat-label>
@@ -599,6 +643,10 @@
 										   email
 										   matInput
 										   placeholder="Ex. pat@example.com" />
+									<span class="error" *ngIf="contactEmail?.invalid && (contactEmail?.dirty || contactEmail?.touched)">
+										<span *ngIf="contactEmail?.errors?.['required']">Name is required</span>
+										<span *ngIf="contactEmail?.errors?.['email']">Please enter a valid email address</span>
+									</span>
 								</mat-form-field>
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Phone Number</mat-label>
@@ -607,6 +655,10 @@
 										   formControlName="phone"
 										   matInput
 										   placeholder="Ex. 123-456-1234" />
+									<span class="error" *ngIf="contactPhone?.invalid && (contactPhone?.dirty || contactPhone?.touched)">
+										<span *ngIf="contactPhone?.errors?.['required']">Phone number is required</span>
+										<span *ngIf="contactPhone?.errors?.['pattern']">Please enter a valid phone number</span>
+									</span>
 								</mat-form-field>
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Leave a comment</mat-label>
@@ -616,7 +668,11 @@
 											  rows="4"
 											  matInput
 											  placeholder="Ex. Enter comment about this property"></textarea>
-									<mat-error>Comment is required</mat-error>
+									<span
+										  class="error"
+										  *ngIf="contactMessage?.invalid && (contactMessage?.dirty || contactMessage?.touched)">
+										<span *ngIf="contactMessage?.errors?.['required']">Comment is required</span>
+									</span>
 								</mat-form-field>
 								<p class="mb-0 fw-semibold">I am</p>
 								<div class="d-flex flex-wrap gap-2 py-3">
@@ -625,9 +681,8 @@
 									<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
 									}
 								</div>
-								<button
-										class="btn search_btn w-100 fw-bold"
-										(click)="save()">
+								<button type="submit"
+										class="btn search_btn w-100 fw-bold">
 									Save
 								</button>
 							</form>
