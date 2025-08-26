@@ -1,24 +1,23 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CustomerService } from '../../../services/customer.service';
-import { NotificationService } from '../../../services/notification.service';
+import { Component } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { CustomerService } from "../../../services/customer.service";
+import { NotificationService } from "../../../services/notification.service";
 
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 import { InputTextModule } from "primeng/inputtext";
 import { PasswordModule } from "primeng/password";
 
 @Component({
-	selector: 'app-login',
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss'],
-	imports: [CommonModule, ReactiveFormsModule, RouterModule, InputTextModule, PasswordModule]
+	selector: "app-login",
+	templateUrl: "./login.component.html",
+	styleUrls: ["./login.component.scss"],
+	imports: [CommonModule, ReactiveFormsModule, RouterModule, InputTextModule, PasswordModule],
 })
 export class LoginComponent {
 	loginForm: FormGroup;
-
 
 	constructor(
 		private fb: FormBuilder,
@@ -27,8 +26,8 @@ export class LoginComponent {
 		private notificationService: NotificationService
 	) {
 		this.loginForm = this.fb.group({
-			email: ['', [Validators.required, Validators.email]],
-			password: ['', [Validators.required]]
+			email: ["", [Validators.required, Validators.email]],
+			password: ["", [Validators.required]],
 		});
 	}
 
@@ -37,12 +36,12 @@ export class LoginComponent {
 			const { email, password } = this.loginForm.value;
 			this.customerService.login({ emailAddress: email, password }).subscribe({
 				next: (response: any) => {
-					localStorage.setItem('token', response.token);
-					this.router.navigate(['/profile']);
+					localStorage.setItem("token", response.token);
+					this.router.navigate(["/profile"]);
 				},
 				error: (error: any) => {
-					this.notificationService.showNotification(error.error.message);
-				}
+					this.notificationService.showSuccess(error.error.message);
+				},
 			});
 		}
 	}

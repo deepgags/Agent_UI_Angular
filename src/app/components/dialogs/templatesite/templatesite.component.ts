@@ -57,7 +57,7 @@ export class TemplatesiteComponent implements OnInit {
 			this.customerService.save(this.customerData).subscribe({
 				next: (v) => {},
 				error: (e) => {
-					this.notificationService.showNotification("Something went wrong while saving information.");
+					this.notificationService.showSuccess("Something went wrong while saving information.");
 				},
 				complete: () => {
 					this.dialogRef.close();

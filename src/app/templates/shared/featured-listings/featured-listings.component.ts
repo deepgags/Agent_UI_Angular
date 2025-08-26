@@ -119,7 +119,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 	redirectToDetail(property: PropertyModel): void {
 		if (!this.currentTemplateId) {
 			console.error("Template ID not available to redirect to property detail.");
-			this.notificationService.showNotification("Cannot determine page context. Please try again.");
+			this.notificationService.showSuccess("Cannot determine page context. Please try again.");
 			return;
 		}
 

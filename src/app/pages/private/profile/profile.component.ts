@@ -264,7 +264,7 @@ export class ProfileComponent {
 				}
 			},
 			error: () => {
-				this.notificationService.showNotification("An error has occurred while getting customer information");
+				this.notificationService.showSuccess("An error has occurred while getting customer information");
 			},
 			complete: () => {},
 		});
@@ -278,7 +278,7 @@ export class ProfileComponent {
 				this.getProfile();
 			},
 			error: () => {
-				this.notificationService.showNotification("Error occurred while getting brokerage types");
+				this.notificationService.showSuccess("Error occurred while getting brokerage types");
 			},
 			complete: () => {
 				this.loadingService.loadingOff();
@@ -309,7 +309,7 @@ export class ProfileComponent {
 				}
 			},
 			error: (error) => {
-				this.notificationService.showNotification("Error occurred while getting templates");
+				this.notificationService.showSuccess("Error occurred while getting templates");
 			},
 		});
 	}
@@ -384,16 +384,16 @@ export class ProfileComponent {
 			this.customerService.update(params).subscribe({
 				next: (v) => {},
 				error: (e) => {
-					this.notificationService.showNotification(e.error.message || "Something went wrong while updating information.");
+					this.notificationService.showSuccess(e.error.message || "Something went wrong while updating information.");
 				},
 				complete: () => {
-					this.notificationService.showNotification("Profile updated successfully");
+					this.notificationService.showSuccess("Profile updated successfully");
 					this.loadingService.loadingOff();
 				},
 			});
 		} else {
 			this.agentForm.markAllAsTouched();
-			this.notificationService.showNotification("One or more required fields are missing or invalid.");
+			this.notificationService.showSuccess("One or more required fields are missing or invalid.");
 		}
 	}
 

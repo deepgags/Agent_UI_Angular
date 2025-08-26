@@ -1,7 +1,7 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { CommonModule, Location } from "@angular/common";
 import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from "@angular/google-maps";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -19,8 +19,10 @@ import { PropertyModel } from "../../../models/PropertyModel";
 import { PropertyService } from "../../../services/property.service";
 
 import { AccordionModule } from "primeng/accordion";
-import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { DialogService, DynamicDialogConfig } from "primeng/dynamicdialog";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
+import { NotificationService } from "../../../services/notification.service";
+import { PublicService } from "../../../services/public.service";
 import { SiteConfigService } from "../../../services/site-config.service";
 
 declare var window: any;
@@ -42,13 +44,77 @@ declare var window: any;
 		PhoneSearch,
 		AccordionModule,
 	],
-	providers: [provideAnimations(), NgbCarouselConfig],
+	providers: [provideAnimations(), NgbCarouselConfig, DialogService],
 	templateUrl: "./propertydetail.component.html",
 	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./propertydetail.component.scss"],
 	standalone: true,
 })
 export class PropertydetailComponent implements OnInit {
+	get requestShowingName() {
+		return this.requestShowingForm.get("name");
+	}
+	get requestShowingEmail() {
+		return this.requestShowingForm.get("email");
+	}
+	get requestShowingPhone() {
+		return this.requestShowingForm.get("phone");
+	}
+	get requestShowingMessage() {
+		return this.requestShowingForm.get("message");
+	}
+
+	get propertyHistoryName() {
+		return this.propertyHistoryForm.get("name");
+	}
+	get propertyHistoryEmail() {
+		return this.propertyHistoryForm.get("email");
+	}
+	get propertyHistoryPhone() {
+		return this.propertyHistoryForm.get("phone");
+	}
+	get propertyHistoryMessage() {
+		return this.propertyHistoryForm.get("message");
+	}
+
+	get recentSaleName() {
+		return this.recentSaleInAreaForm.get("name");
+	}
+	get recentSaleEmail() {
+		return this.recentSaleInAreaForm.get("email");
+	}
+	get recentSalePhone() {
+		return this.recentSaleInAreaForm.get("phone");
+	}
+	get recentSaleMessage() {
+		return this.recentSaleInAreaForm.get("message");
+	}
+
+	get haveQuestionName() {
+		return this.haveQuestionForm.get("name");
+	}
+	get haveQuestionEmail() {
+		return this.haveQuestionForm.get("email");
+	}
+	get haveQuestionPhone() {
+		return this.haveQuestionForm.get("phone");
+	}
+	get haveQuestionMessage() {
+		return this.haveQuestionForm.get("message");
+	}
+
+	get contactName() {
+		return this.contactForm.get("name");
+	}
+	get contactEmail() {
+		return this.contactForm.get("email");
+	}
+	get contactPhone() {
+		return this.contactForm.get("phone");
+	}
+	get contactMessage() {
+		return this.contactForm.get("message");
+	}
 	imageUrl = environment.imageUrl;
 	property: PropertyModel | undefined;
 	Latitude: number = 0;
@@ -56,38 +122,108 @@ export class PropertydetailComponent implements OnInit {
 	private loadingSubject = new BehaviorSubject<boolean>(false);
 	loading$ = this.loadingSubject.asObservable();
 
-	userForm!: FormGroup;
+	requestShowingForm: FormGroup;
+	propertyHistoryForm: FormGroup;
+	recentSaleInAreaForm: FormGroup;
+	haveQuestionForm: FormGroup;
+	contactForm: FormGroup;
+
 	userModel: InterestedUserModel = new InterestedUserModel();
 
 	@ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 	zoom = 14;
-	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Cananda
+	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Canada
 
 	galleryConfig$: Observable<GalleryConfig>;
 	galleryRef: GalleryRef | undefined;
 
-	// siteConfig: SiteConfig | undefined;
 	private siteConfigSubscription: Subscription | undefined;
 
 	siteConfigBS: BehaviorSubject<any>;
 	siteConfigObservable: Observable<any>;
 	mlsId: string = "";
 	propertyId: string = "";
+	userTypes = [
+		{
+			title: "Seller",
+			value: "seller",
+		},
+		{
+			title: "Buyer",
+			value: "buyer",
+		},
+		{
+			title: "Renter",
+			value: "renter",
+		},
+		{
+			title: "Buyer And Seller",
+			value: "buyerAndSeller",
+		},
+	];
 	constructor(
 		breakpointObserver: BreakpointObserver,
-		// private route: ActivatedRoute,
 		private propertyService: PropertyService,
 		private titleService: Title,
 		private location: Location,
 		private router: Router,
-		private fb: FormBuilder,
 		private gallery: Gallery,
 		private siteConfigService: SiteConfigService,
-		private dialogConfig: DynamicDialogConfig
+		private dialogConfig: DynamicDialogConfig,
+		// private notificationService: NotificationService
+		private publicService: PublicService
 	) {
 		this.titleService.setTitle("Property Detail");
 		this.siteConfigBS = new BehaviorSubject(null);
 		this.siteConfigObservable = this.siteConfigBS.asObservable();
+
+		const { mlsId, propertyId } = this.dialogConfig.data;
+		this.mlsId = mlsId;
+		this.propertyId = propertyId;
+		if (this.propertyId && this.mlsId) {
+			this.getPropertyInformation();
+		}
+
+		this.requestShowingForm = new FormGroup({
+			name: new FormControl("", Validators.required),
+			email: new FormControl("", [Validators.required, Validators.email]),
+			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			date: new FormControl("", [Validators.required]),
+			message: new FormControl("I would like more information regarding a property", Validators.required),
+			userType: new FormControl("seller", Validators.required),
+		});
+
+		this.propertyHistoryForm = new FormGroup({
+			name: new FormControl("", Validators.required),
+			email: new FormControl("", [Validators.required, Validators.email]),
+			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			message: new FormControl("I would like more information regarding a property", Validators.required),
+			userType: new FormControl("seller", Validators.required),
+		});
+
+		this.recentSaleInAreaForm = new FormGroup({
+			name: new FormControl("", Validators.required),
+			email: new FormControl("", [Validators.required, Validators.email]),
+			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			message: new FormControl("I would like more information regarding a property", Validators.required),
+			userType: new FormControl("seller", Validators.required),
+		});
+
+		this.haveQuestionForm = new FormGroup({
+			name: new FormControl("", Validators.required),
+			email: new FormControl("", [Validators.required, Validators.email]),
+			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			message: new FormControl("I would like more information regarding a property", Validators.required),
+			userType: new FormControl("seller", Validators.required),
+		});
+
+		this.contactForm = new FormGroup({
+			name: new FormControl("", Validators.required),
+			email: new FormControl("", [Validators.required, Validators.email]),
+			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			message: new FormControl("I would like more information regarding a property", Validators.required),
+			userType: new FormControl("seller", Validators.required),
+		});
 
 		this.galleryConfig$ = breakpointObserver.observe([Breakpoints.HandsetPortrait]).pipe(
 			map((res) => {
@@ -105,13 +241,6 @@ export class PropertydetailComponent implements OnInit {
 				};
 			})
 		);
-
-		const { mlsId, propertyId } = this.dialogConfig.data;
-		this.mlsId = mlsId;
-		this.propertyId = propertyId;
-		if (this.propertyId && this.mlsId) {
-			this.getPropertyInformation();
-		}
 	}
 
 	ngOnInit(): void {
@@ -131,30 +260,6 @@ export class PropertydetailComponent implements OnInit {
 			if (config) {
 				// this.siteConfig = config;
 				this.siteConfigBS.next(config);
-			}
-		});
-
-		const interestedUserInfo: any = "";
-
-		this.userForm = this.fb.group({
-			firstName: new FormControl(interestedUserInfo.firstName, Validators.required),
-			phoneNumber: new FormControl(interestedUserInfo.phoneNumber, [
-				Validators.required,
-				Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"),
-			]),
-			emailAddress: new FormControl(interestedUserInfo.emailAddress, [Validators.required, Validators.email]),
-			comment: new FormControl(
-				interestedUserInfo.comment ? interestedUserInfo.comment : "I would like more information regarding a property",
-				Validators.required
-			),
-		});
-
-		this.userForm.valueChanges.subscribe((data) => {
-			if (JSON.stringify(data) !== JSON.stringify({})) {
-				this.userModel.firstName = data.firstName;
-				this.userModel.phoneNumber = data.phoneNumber;
-				this.userModel.emailAddress = data.emailAddress;
-				this.userModel.comment = data.comment;
 			}
 		});
 
@@ -264,13 +369,6 @@ export class PropertydetailComponent implements OnInit {
 	}
 
 	loadWalkScore() {
-		debugger;
-		// window.ws_wsid = "ge7127abd982e495d9fe2d24cba96d9fb";
-		// window.ws_address = this.property?.UnparsedAddress || "";
-		// window.ws_format = "wide";
-		// window.ws_width = "690";
-		// window.ws_height = "525";
-
 		(window as any).ws_wsid = "ge7127abd982e495d9fe2d24cba96d9fb";
 		(window as any).ws_address = this.property?.UnparsedAddress || "";
 		(window as any).ws_format = "wide";
@@ -281,5 +379,93 @@ export class PropertydetailComponent implements OnInit {
 		script.type = "text/javascript";
 		script.src = "http://www.walkscore.com/tile/show-walkscore-tile.php";
 		document.getElementById("ws-walkscore-tile")?.appendChild(script);
+	}
+
+	submitRequestShowingForm() {
+		if (this.requestShowingForm.invalid) {
+			this.requestShowingForm.markAllAsTouched();
+			// this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		const params = {
+			...this.requestShowingForm.value,
+			leadSource: "requestShowing",
+		};
+		this.publicService.submitContactForm(params).subscribe({
+			next: () => {
+				// this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.requestShowingForm.reset();
+			},
+			error: () => {
+				// this.notificationService.showError("Failed to send message. Please try again later.");
+			},
+		});
+	}
+
+	submitPropertyHistoryForm() {
+		if (this.propertyHistoryForm.invalid) {
+			this.propertyHistoryForm.markAllAsTouched();
+			// this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		const params = {
+			...this.propertyHistoryForm.value,
+			leadSource: "propertyHistory",
+		};
+		this.publicService.submitContactForm(params).subscribe({
+			next: () => {
+				// this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.propertyHistoryForm.reset();
+			},
+			error: () => {
+				// this.notificationService.showError("Failed to send message. Please try again later.");
+			},
+		});
+	}
+
+	submitRecentSalesInAreaForm() {
+		if (this.recentSaleInAreaForm.invalid) {
+			this.recentSaleInAreaForm.markAllAsTouched();
+			// this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		const params = {
+			...this.recentSaleInAreaForm.value,
+			leadSource: "recentSalesInArea",
+		};
+		this.publicService.submitContactForm(params).subscribe({
+			next: () => {
+				// this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.recentSaleInAreaForm.reset();
+			},
+			error: () => {
+				// this.notificationService.showError("Failed to send message. Please try again later.");
+			},
+		});
+	}
+
+	submitHaveQuestionForm() {
+		if (this.haveQuestionForm.invalid) {
+			this.haveQuestionForm.markAllAsTouched();
+			// this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		const params = {
+			...this.haveQuestionForm.value,
+			leadSource: "haveQuestion",
+		};
+		this.publicService.submitContactForm(params).subscribe({
+			next: () => {
+				// this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.haveQuestionForm.reset();
+			},
+			error: () => {
+				// this.notificationService.showError("Failed to send message. Please try again later.");
+			},
+		});
 	}
 }

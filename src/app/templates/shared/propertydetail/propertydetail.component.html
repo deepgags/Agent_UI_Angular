@@ -346,63 +346,171 @@
 							</li>
 							<li class="nav-item" role="presentation">
 								<button class="nav-link" id="score-disabled-tab" data-bs-toggle="pill" data-bs-target="#score-disabled" type="button" role="tab"
-										aria-controls="score-disabled" aria-selected="false"><span><i class="fa-solid fa-circle-question me-1"></i></span>Have a Question?</button>
+										aria-controls="score-disabled" aria-selected="false"><span><i class="fa-solid fa-circle-question me-1"></i></span>
+									Have a Question?</button>
 							</li>
 						</ul>
 
 						<div class="tab-content" id="score-tabs-content">
 							<div class="tab-pane fade show active" id="score-walk" role="tabpanel" aria-labelledby="score-walk-tab" tabindex="0">
-								<form class="form-card bg-white" [formGroup]="userForm" name="userForm">
+								<form class="form-card bg-white" [formGroup]="requestShowingForm" (ngSubmit)="submitRequestShowingForm()">
+									<p>
+										Interested in viewing a property? Need more information? Fill out the form below and you will be contacted shortly. Thank you for your
+										interest. Your business is appreciated!
+									</p>
 									<mat-form-field appearance="fill">
-										<mat-label class="info">First Name</mat-label>
-										<input formControlName="firstName" required matInput placeholder="First Name" />
-										<mat-error>First name is required</mat-error>
+										<mat-label class="info">Name</mat-label>
+										<input formControlName="name" required matInput placeholder="Name" />
+										<span class="error" *ngIf="requestShowingName?.invalid && (requestShowingName?.dirty || requestShowingName?.touched)">
+											<span *ngIf="requestShowingName?.errors?.['required']">Name is required</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Email</mat-label>
-										<input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
-										@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
-										<mat-error>Please enter a valid email address</mat-error>
-										}
-										@if (userForm.hasError('required', 'emailAddress')) {
-										<mat-error>Email is required</mat-error>
-										}
+										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
+										<span class="error" *ngIf="requestShowingEmail?.invalid && (requestShowingEmail?.dirty || requestShowingEmail?.touched)">
+											<span *ngIf="requestShowingEmail?.errors?.['required']">Name is required</span>
+											<span *ngIf="requestShowingEmail?.errors?.['email']">Please enter a valid email address</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Phone Number</mat-label>
-										<input type="tel" formControlName="phoneNumber" matInput placeholder="Ex. 123-456-1234" />
-										@if (userForm.hasError('pattern', 'phoneNumber')) {
-										<mat-error>Please enter a valid phone number</mat-error>
-										}
-										@if (userForm.hasError('required', 'phoneNumber')) {
-										<mat-error>Phone number is required</mat-error>
-										}
+										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
+										<span class="error" *ngIf="requestShowingPhone?.invalid && (requestShowingPhone?.dirty || requestShowingPhone?.touched)">
+											<span *ngIf="requestShowingPhone?.errors?.['required']">Phone number is required</span>
+											<span *ngIf="requestShowingPhone?.errors?.['pattern']">Please enter a valid phone number</span>
+										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Leave a comment</mat-label>
-										<textarea formControlName="comment" class="form-control" rows="4" matInput placeholder="Ex. Enter comment about this property"></textarea>
-										<mat-error>Comment is required</mat-error>
+										<textarea formControlName="message" class="form-control" rows="4" matInput
+												  placeholder="Ex. Enter your request about this property"></textarea>
+										<span
+											  class="error"
+											  *ngIf="requestShowingMessage?.invalid && (requestShowingMessage?.dirty || requestShowingMessage?.touched)">
+											<span *ngIf="requestShowingMessage?.errors?.['required']">Comment is required</span>
+										</span>
 									</mat-form-field>
 									<p class="mb-0 fw-semibold">I am</p>
 									<div class="d-flex flex-wrap gap-2 py-3">
-										<input type="radio" class="btn-check radio_btn" name="userType" id="seller" value="Seller" checked required>
-										<label class="btn  rounded-pill" for="seller">Seller</label>
-
-										<input type="radio" class="btn-check" name="userType" id="buyer" value="Buyer" required>
-										<label class="btn  rounded-pill" for="buyer">Buyer</label>
-
-										<input type="radio" class="btn-check" name="userType" id="renter" value="Renter" required>
-										<label class="btn  rounded-pill" for="renter">Renter</label>
-
-										<input type="radio" class="btn-check" name="userType" id="buyerSeller" value="Buyer & Seller" required>
-										<label class="btn  rounded-pill" for="buyerSeller">Buyer & Seller</label>
+										@for(type of userTypes; track $index){
+										<input type="radio" class="btn-check radio_btn" formControlName="userType" [id]="type.value" [value]="type.value" required>
+										<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
+										}
 									</div>
-									<button class="btn search_btn w-100 fw-bold">Send</button>
+									<button type="submit" class="btn search_btn w-100 fw-bold">Send</button>
 								</form>
 							</div>
-							<div class="tab-pane fade" id="score-transit" role="tabpanel" aria-labelledby="score-transit-tab" tabindex="0">Transit Score content...</div>
-							<div class="tab-pane fade" id="score-bike" role="tabpanel" aria-labelledby="score-bike-tab" tabindex="0">Bike Score content...</div>
-							<div class="tab-pane fade" id="score-disabled" role="tabpanel" aria-labelledby="score-disabled-tab" tabindex="0">Disabled content...</div>
+
+							<div class="tab-pane fade" id="score-transit" role="tabpanel" aria-labelledby="score-transit-tab" tabindex="0">
+								<form class="form-card bg-white" [formGroup]="propertyHistoryForm" (ngSubmit)="submitPropertyHistoryForm()">
+									<p>
+										Every property has a history. If you’re interested in knowing all the details, fill out this form to receive a comprehensive report.
+									</p>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Name</mat-label>
+										<input formControlName="name" required matInput placeholder="Name" />
+										<mat-error>Name is required</mat-error>
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Email</mat-label>
+										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Phone Number</mat-label>
+										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
+
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Leave a comment</mat-label>
+										<textarea formControlName="message" class="form-control" rows="4" matInput
+												  placeholder="Ex. Enter your request about this property"></textarea>
+									</mat-form-field>
+									<p class="mb-0 fw-semibold">I am</p>
+									<div class="d-flex flex-wrap gap-2 py-3">
+										@for(type of userTypes; track $index){
+										<input type="radio" class="btn-check radio_btn" formControlName="userType" [id]="type.value" [value]="type.value" required>
+										<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
+										}
+									</div>
+									<button type="submit" class="btn search_btn w-100 fw-bold">
+										Send
+									</button>
+								</form>
+							</div>
+
+							<div class="tab-pane fade" id="score-bike" role="tabpanel" aria-labelledby="score-bike-tab" tabindex="0">
+								<form class="form-card bg-white" [formGroup]="recentSaleInAreaForm" (ngSubmit)="submitRecentSalesInAreaForm()">
+									<p>
+										The key to placing a competitive offer is an accurate picture of the current real estate market. Enter your contact information to receive a
+										detailed price comparison of this
+										property against other comparable listings and recent sales in the surrounding areas.
+									</p>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Name</mat-label>
+										<input formControlName="name" required matInput placeholder="Name" />
+										<mat-error>Name is required</mat-error>
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Email</mat-label>
+										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Phone Number</mat-label>
+										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
+
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Leave a comment</mat-label>
+										<textarea formControlName="message" class="form-control" rows="4" matInput
+												  placeholder="Ex. Enter your request about this property"></textarea>
+									</mat-form-field>
+									<p class="mb-0 fw-semibold">I am</p>
+									<div class="d-flex flex-wrap gap-2 py-3">
+										@for(type of userTypes; track $index){
+										<input type="radio" class="btn-check radio_btn" formControlName="userType" [id]="type.value" [value]="type.value" required>
+										<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
+										}
+									</div>
+									<button type="submit" class="btn search_btn w-100 fw-bold">
+										Send
+									</button>
+								</form>
+							</div>
+
+							<div class="tab-pane fade" id="score-disabled" role="tabpanel" aria-labelledby="score-disabled-tab" tabindex="0">
+								<form class="form-card bg-white" [formGroup]="haveQuestionForm" (ngSubmit)="submitHaveQuestionForm()">
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Name</mat-label>
+										<input formControlName="name" required matInput placeholder="Name" />
+										<mat-error>Name is required</mat-error>
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Email</mat-label>
+										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Phone Number</mat-label>
+										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
+
+									</mat-form-field>
+									<mat-form-field appearance="fill">
+										<mat-label class="info">Leave a comment</mat-label>
+										<textarea formControlName="message" class="form-control" rows="4" matInput
+												  placeholder="Ex. Enter your request about this property"></textarea>
+									</mat-form-field>
+									<p class="mb-0 fw-semibold">I am</p>
+									<div class="d-flex flex-wrap gap-2 py-3">
+										@for(type of userTypes; track $index){
+										<input type="radio" class="btn-check radio_btn" formControlName="userType" [id]="type.value" [value]="type.value" required>
+										<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
+										}
+									</div>
+									<button type="submit" class="btn search_btn w-100 fw-bold">
+										Send
+									</button>
+								</form>
+							</div>
 						</div>
 
 					</div>
@@ -468,17 +576,17 @@
 								</a>
 								.
 							</p>
+							h12
 							<form
-								  [formGroup]="userForm"
-								  name="userForm"
-								  *ngIf="userForm">
+								  [formGroup]="contactForm"
+								  name="userForm">
 								<mat-form-field appearance="fill">
 									<mat-label class="info">First Name</mat-label>
 									<input
-										   formControlName="firstName"
+										   formControlName="name"
 										   required
 										   matInput
-										   placeholder="First Name" />
+										   placeholder="Name" />
 									<mat-error>First name is required</mat-error>
 								</mat-form-field>
 								<mat-form-field appearance="fill">
@@ -486,40 +594,37 @@
 									<input
 										   class="w-100"
 										   type="email"
-										   formControlName="emailAddress"
+										   formControlName="email"
 										   required
 										   email
 										   matInput
 										   placeholder="Ex. pat@example.com" />
-									@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
-									<mat-error>Please enter a valid email address</mat-error>
-									} @if (userForm.hasError('required', 'emailAddress')) {
-									<mat-error>Email is required</mat-error>
-									}
 								</mat-form-field>
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Phone Number</mat-label>
 									<input
 										   type="tel"
-										   formControlName="phoneNumber"
+										   formControlName="phone"
 										   matInput
 										   placeholder="Ex. 123-456-1234" />
-									@if (userForm.hasError('pattern', 'phoneNumber')) {
-									<mat-error>Please enter a valid phone number</mat-error>
-									} @if (userForm.hasError('required', 'phoneNumber')) {
-									<mat-error>Phone number is required</mat-error>
-									}
 								</mat-form-field>
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Leave a comment</mat-label>
 									<textarea
-											  formControlName="comment"
+											  formControlName="message"
 											  class="form-control"
 											  rows="4"
 											  matInput
 											  placeholder="Ex. Enter comment about this property"></textarea>
 									<mat-error>Comment is required</mat-error>
 								</mat-form-field>
+								<p class="mb-0 fw-semibold">I am</p>
+								<div class="d-flex flex-wrap gap-2 py-3">
+									@for(type of userTypes; track $index){
+									<input type="radio" class="btn-check radio_btn" formControlName="userType" [id]="type.value" [value]="type.value" required>
+									<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
+									}
+								</div>
 								<button
 										class="btn search_btn w-100 fw-bold"
 										(click)="save()">

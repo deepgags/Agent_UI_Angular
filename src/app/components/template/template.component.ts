@@ -78,7 +78,7 @@ export class TemplateComponent implements OnInit {
 				}
 			},
 			error: (error) => {
-				this.notificationService.showNotification("Error occurred while getting templates");
+				this.notificationService.showSuccess("Error occurred while getting templates");
 			},
 			complete: () => {
 				this.loadingService.loadingOff();

@@ -6,6 +6,7 @@ import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { DialogService } from "primeng/dynamicdialog";
+import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { PasswordModule } from "primeng/password";
@@ -18,7 +19,6 @@ import { BrokerageTypeService } from "../../../services/brokerage.service";
 import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
-import { IftaLabelModule } from "primeng/iftalabel";
 @Component({
 	selector: "app-register",
 	imports: [
@@ -117,7 +117,7 @@ export class RegisterComponent implements OnInit {
 				this.brokerageTypes = response.data;
 			},
 			error: () => {
-				this.notificationService.showNotification("Error occurred while getting brokerage types");
+				this.notificationService.showSuccess("Error occurred while getting brokerage types");
 			},
 			complete: () => {
 				this.loadingService.loadingOff();
@@ -202,12 +202,12 @@ export class RegisterComponent implements OnInit {
 				},
 				error: (error: any) => {
 					this.loadingService.loadingOff();
-					this.notificationService.showNotification(error.error.message);
+					this.notificationService.showSuccess(error.error.message);
 				},
 			});
 		} else {
 			this.customerForm.markAllAsTouched();
-			this.notificationService.showNotification("One or more required fields are missing or invalid.");
+			this.notificationService.showSuccess("One or more required fields are missing or invalid.");
 		}
 	}
 
