@@ -63,6 +63,7 @@ import { T18Component } from './templates/t18/t18.component';
 import { T18HomeComponent } from './templates/t18/t18-home/t18-home.component';
 import { T19HomeComponent } from './templates/t19/t19-home/t19-home.component';
 import { T19Component } from './templates/t19/t19.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 export const routes: Routes = [
@@ -74,6 +75,7 @@ export const routes: Routes = [
 	{ path: 'templates', component: TemplatesComponent },
 	{ path: 'verify', component: VerifyEmailComponent },
 	{ path: 'thanks', component: ThankyouComponent },
+	{ path: 'admin', component: AdminComponent },
 	{
 		path: '',
 		children: [

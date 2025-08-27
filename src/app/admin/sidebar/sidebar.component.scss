@@ -1,0 +1,17 @@
+.btn-toggle {
+  color: #fff;
+  text-align: left;
+}
+
+.btn-toggle::after {
+  content: "›";
+  float: right;
+  transform: rotate(90deg);
+  transition: transform 0.2s;
+  margin-left: 10px;
+}
+
+.btn-toggle.collapsed::after {
+  transform: rotate(0deg);
+  margin-left: 10px;
+}

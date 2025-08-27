@@ -14,11 +14,25 @@
   .broker{
     content:url("../../../../../public/images/profile.png");
   }
+  .nav-link{
+    color: black;
+  }
+
+ .nav-link:hover {
+    color: #575757;
+}
 
   .nav-pills .nav-link.active, .nav-pills .show > .nav-link
  {
-    background-color: #ebebeb;
+    background-color: #1ab02b;
 }
+
+
+.p-accordioncontent-content {
+    background-color: #ffffff !important; 
+
+}
+
 .form-card {
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
@@ -118,4 +132,13 @@
   }
   
   
-  
+  .search_btn {
+		color: white;
+		background-color: #0d6efd !important;
+		border-radius: 10px;
+
+		&:hover {
+			background-color: #0c57c8 !important;
+			color: white;
+		}
+	}
