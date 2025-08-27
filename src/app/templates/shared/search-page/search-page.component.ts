@@ -7,6 +7,7 @@ import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { CarouselModule } from "primeng/carousel";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
 import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
@@ -16,16 +17,26 @@ import { environment } from "../../../environments/environment.development";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { RequestPropertyModel } from "../../../models/RequestPropertyModel";
 import { HighlightSearch } from "../../../pipes/highlight";
+import { TimeAgo } from "../../../pipes/time-ago";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 import { StorageService } from "../../../services/storage.service";
 import { PropertydetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
-
 @Component({
 	selector: "app-search-page",
-	imports: [FormsModule, CommonModule, MatIconModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule],
+	imports: [
+		FormsModule,
+		CommonModule,
+		MatIconModule,
+		SearchComponent,
+		RouterModule,
+		MatPaginatorModule,
+		MatProgressSpinnerModule,
+		CarouselModule,
+		TimeAgo,
+	],
 	templateUrl: "./search-page.component.html",
 	styleUrls: ["./search-page.component.scss"],
 	encapsulation: ViewEncapsulation.None,

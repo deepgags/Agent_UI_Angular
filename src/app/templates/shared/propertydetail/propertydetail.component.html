@@ -1,5 +1,4 @@
-<div
-	 class="loading-container flex-content-center"
+<div class="loading-container flex-content-center"
 	 *ngIf="loading$ | async">
 	<div class="spinner"></div>
 </div>
@@ -16,15 +15,13 @@
 			</div>
 		</div>
 	</div> -->
-	<div
-		 class="container-fluid search-container bg-light"
+	<div class="container-fluid search-container bg-light"
 		 *ngIf="property">
 		<div class="container py-3">
 			<!-- <h2 class="fw-semibold text-start mb-3">Property Information</h2> -->
 			<div class="row card p-3">
 				<div class="col-12">
-					<gallery
-							 *ngIf="property.Media && property.Media.length > 0"
+					<gallery *ngIf="property.Media && property.Media.length > 0"
 							 id="propertyGallery"
 							 counter
 							 thumbs
@@ -33,8 +30,7 @@
 							 loadingStrategy="preload"
 							 loadingAttr="eager"></gallery>
 					<!-- <app-gallery [images]="property.Media" /> -->
-					<img
-						 class="img-fluid rounded no-image-fixed-height"
+					<img class="img-fluid rounded no-image-fixed-height"
 						 *ngIf="property.Media ? property.Media.length == 0 : true"
 						 [src]="'/images/commercial_no_Image.jpg'"
 						 alt="No property image to display" />
@@ -61,24 +57,21 @@
 					</div>
 				</div>
 				<div class="row justify-content-around">
-					<div
-						 class="col-md-3"
+					<div class="col-md-3"
 						 *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
 						<div class="border rounded p-3 text-center bg-light">
 							<span class="fw-semibold">Bed:</span>
 							{{ property.BedroomsTotal }}
 						</div>
 					</div>
-					<div
-						 class="col-md-3 mt-lg-0 mt-3"
+					<div class="col-md-3 mt-lg-0 mt-3"
 						 *ngIf="property.BathroomsTotalInteger && property.BathroomsTotalInteger > 0">
 						<div class="border rounded p-3 text-center bg-light">
 							<span class="fw-semibold">Bath:</span>
 							{{ property.BathroomsTotalInteger }}
 						</div>
 					</div>
-					<div
-						 class="col-md-3 mt-lg-0 mt-3"
+					<div class="col-md-3 mt-lg-0 mt-3"
 						 *ngIf="property.BuildingAreaTotal && property.BuildingAreaTotal > 0">
 						<div class="border rounded p-3 text-center bg-light">
 							<span class="fw-semibold">Area:</span>
@@ -89,15 +82,12 @@
 			</div>
 			<div class="row mt-4">
 				<div class="col-lg-8 col-12">
-					<ul
-						class="nav nav-underline mb-3 g-5"
+					<ul class="nav nav-underline mb-3 g-5"
 						id="pills-tab"
 						role="tablist">
-						<li
-							class="nav-item"
+						<li class="nav-item"
 							role="presentation">
-							<button
-									class="nav-link active"
+							<button class="nav-link active"
 									id="pills-home-tab"
 									data-bs-toggle="pill"
 									data-bs-target="#pills-home"
@@ -108,11 +98,9 @@
 								Description
 							</button>
 						</li>
-						<li
-							class="nav-item ms-lg-5"
+						<li class="nav-item ms-lg-5"
 							role="presentation">
-							<button
-									class="nav-link"
+							<button class="nav-link"
 									id="pills-profile-tab"
 									data-bs-toggle="pill"
 									data-bs-target="#pills-profile"
@@ -125,11 +113,9 @@
 							</button>
 						</li>
 					</ul>
-					<div
-						 class="tab-content"
+					<div class="tab-content"
 						 id="pills-tabContent">
-						<div
-							 class="tab-pane fade show active"
+						<div class="tab-pane fade show active"
 							 id="pills-home"
 							 role="tabpanel"
 							 aria-labelledby="pills-home-tab"
@@ -226,20 +212,17 @@
 								</div>
 							</div>
 						</div>
-						<div
-							 class="tab-pane fade"
+						<div class="tab-pane fade"
 							 id="pills-profile"
 							 role="tabpanel"
 							 aria-labelledby="pills-profile-tab"
 							 tabindex="0">
 							<div class="ratio ratio-16x9">
-								<google-map
-											[center]="{ lat: property.Latitude, lng: property.Longitude }"
+								<google-map [center]="{ lat: property.Latitude, lng: property.Longitude }"
 											[zoom]="zoom"
 											height="500px"
 											width="100%">
-									<map-marker
-												id="mapMarkerLarge"
+									<map-marker id="mapMarkerLarge"
 												#mapMarker="mapMarker"
 												[position]="{ lat: property.Latitude, lng: property.Longitude }"
 												[label]="property.ListOfficeName"
@@ -281,38 +264,86 @@
 
 					<div class="row mt-lg-5 mt-3 align-items-center">
 						<div class="col">
-							<p-accordion value="0" [multiple]="true" [activeIndex]="[1,2]">
+							<p-accordion value="0"
+										 [multiple]="true"
+										 [activeIndex]="[1,2]">
 								<p-accordion-panel value="0">
 									<p-accordion-header>Amenities</p-accordion-header>
 									<p-accordion-content>
-										<ul class="nav nav-pills mb-3" id="custom-tab" role="tablist">
-											<li class="nav-item" role="presentation">
-												<button class="nav-link active" id="tab-home" data-bs-toggle="pill" data-bs-target="#content-home" type="button" role="tab"
-														aria-controls="content-home" aria-selected="true"><span><i class="fa-solid fa-map-location me-1"></i></span>
+										<ul class="nav nav-pills mb-3"
+											id="custom-tab"
+											role="tablist">
+											<li class="nav-item"
+												role="presentation">
+												<button class="nav-link active"
+														id="tab-home"
+														data-bs-toggle="pill"
+														data-bs-target="#content-home"
+														type="button"
+														role="tab"
+														aria-controls="content-home"
+														aria-selected="true"><span><i class="fa-solid fa-map-location me-1"></i></span>
 													MAP</button>
 											</li>
-											<li class="nav-item" role="presentation">
-												<button class="nav-link" id="tab-profile" data-bs-toggle="pill" data-bs-target="#content-profile" type="button" role="tab"
-														aria-controls="content-profile" aria-selected="false"><span><i
-														   class="fa-solid fa-school me-1"></i></span>SCHOOL</button>
+											<li class="nav-item"
+												role="presentation">
+												<button class="nav-link"
+														id="tab-profile"
+														data-bs-toggle="pill"
+														data-bs-target="#content-profile"
+														type="button"
+														role="tab"
+														aria-controls="content-profile"
+														aria-selected="false"><span><i class="fa-solid fa-school me-1"></i></span>SCHOOL</button>
 											</li>
-											<li class="nav-item" role="presentation">
-												<button class="nav-link" id="tab-contact" data-bs-toggle="pill" data-bs-target="#content-contact" type="button" role="tab"
-														aria-controls="content-contact" aria-selected="false"><span><i class="fa-solid fa-map-pin me-1"></i></span>LOACL
+											<li class="nav-item"
+												role="presentation">
+												<button class="nav-link"
+														id="tab-contact"
+														data-bs-toggle="pill"
+														data-bs-target="#content-contact"
+														type="button"
+														role="tab"
+														aria-controls="content-contact"
+														aria-selected="false"><span><i class="fa-solid fa-map-pin me-1"></i></span>LOACL
 													AMENITIES</button>
 											</li>
-											<li class="nav-item" role="presentation">
-												<button class="nav-link" id="tab-disabled" data-bs-toggle="pill" data-bs-target="#content-disabled" type="button" role="tab"
-														aria-controls="content-disabled" aria-selected="false"><span><i class="fa-solid fa-street-view me-1"></i></span>STREET
+											<li class="nav-item"
+												role="presentation">
+												<button class="nav-link"
+														id="tab-disabled"
+														data-bs-toggle="pill"
+														data-bs-target="#content-disabled"
+														type="button"
+														role="tab"
+														aria-controls="content-disabled"
+														aria-selected="false"><span><i class="fa-solid fa-street-view me-1"></i></span>STREET
 													VIEW</button>
 											</li>
 										</ul>
 
-										<div class="tab-content" id="custom-tabContent">
-											<div class="tab-pane fade show active" id="content-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">...</div>
-											<div class="tab-pane fade" id="content-profile" role="tabpanel" aria-labelledby="tab-profile" tabindex="0">...</div>
-											<div class="tab-pane fade" id="content-contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="0">...</div>
-											<div class="tab-pane fade" id="content-disabled" role="tabpanel" aria-labelledby="tab-disabled" tabindex="0">...</div>
+										<div class="tab-content"
+											 id="custom-tabContent">
+											<div class="tab-pane fade show active"
+												 id="content-home"
+												 role="tabpanel"
+												 aria-labelledby="tab-home"
+												 tabindex="0">...</div>
+											<div class="tab-pane fade"
+												 id="content-profile"
+												 role="tabpanel"
+												 aria-labelledby="tab-profile"
+												 tabindex="0">...</div>
+											<div class="tab-pane fade"
+												 id="content-contact"
+												 role="tabpanel"
+												 aria-labelledby="tab-contact"
+												 tabindex="0">...</div>
+											<div class="tab-pane fade"
+												 id="content-disabled"
+												 role="tabpanel"
+												 aria-labelledby="tab-disabled"
+												 tabindex="0">...</div>
 										</div>
 									</p-accordion-content>
 								</p-accordion-panel>
@@ -330,63 +361,117 @@
 					</div>
 
 					<div class="row mt-lg-5 mt-3 ">
-						<ul class="nav nav-pills mb-3 " id="score-tabs" role="tablist">
-							<li class="nav-item" role="presentation">
-								<button class="nav-link rounded-4 active" id="score-walk-tab" data-bs-toggle="pill" data-bs-target="#score-walk" type="button" role="tab"
-										aria-controls="score-walk" aria-selected="true"><span><i class="fa-solid fa-person me-1"></i></span>Request a Showing</button>
+						<ul class="nav nav-pills mb-3 "
+							id="score-tabs"
+							role="tablist">
+							<li class="nav-item"
+								role="presentation">
+								<button class="nav-link rounded-4 active"
+										id="score-walk-tab"
+										data-bs-toggle="pill"
+										data-bs-target="#score-walk"
+										type="button"
+										role="tab"
+										aria-controls="score-walk"
+										aria-selected="true"><span><i class="fa-solid fa-person me-1"></i></span>Request a Showing</button>
 							</li>
-							<li class="nav-item" role="presentation">
-								<button class="nav-link" id="score-transit-tab" data-bs-toggle="pill" data-bs-target="#score-transit" type="button" role="tab"
-										aria-controls="score-transit" aria-selected="false"><span><i class="fa-solid fa-clock-rotate-left me-1"></i></span>Property History
+							<li class="nav-item"
+								role="presentation">
+								<button class="nav-link"
+										id="score-transit-tab"
+										data-bs-toggle="pill"
+										data-bs-target="#score-transit"
+										type="button"
+										role="tab"
+										aria-controls="score-transit"
+										aria-selected="false"><span><i class="fa-solid fa-clock-rotate-left me-1"></i></span>Property History
 								</button>
 							</li>
-							<li class="nav-item" role="presentation">
-								<button class="nav-link" id="score-bike-tab" data-bs-toggle="pill" data-bs-target="#score-bike" type="button" role="tab" aria-controls="score-bike"
+							<li class="nav-item"
+								role="presentation">
+								<button class="nav-link"
+										id="score-bike-tab"
+										data-bs-toggle="pill"
+										data-bs-target="#score-bike"
+										type="button"
+										role="tab"
+										aria-controls="score-bike"
 										aria-selected="false"><span><i class="fa-solid fa-house me-1"></i></span>Recent Sales in Area</button>
 							</li>
-							<li class="nav-item" role="presentation">
-								<button class="nav-link" id="score-disabled-tab" data-bs-toggle="pill" data-bs-target="#score-disabled" type="button" role="tab"
-										aria-controls="score-disabled" aria-selected="false"><span><i class="fa-solid fa-circle-question me-1"></i></span>
+							<li class="nav-item"
+								role="presentation">
+								<button class="nav-link"
+										id="score-disabled-tab"
+										data-bs-toggle="pill"
+										data-bs-target="#score-disabled"
+										type="button"
+										role="tab"
+										aria-controls="score-disabled"
+										aria-selected="false"><span><i class="fa-solid fa-circle-question me-1"></i></span>
 									Have a Question?</button>
 							</li>
 						</ul>
 
-						<div class="tab-content" id="score-tabs-content">
-							<div class="tab-pane fade show active" id="score-walk" role="tabpanel" aria-labelledby="score-walk-tab" tabindex="0">
-								<form class="form-card bg-white" [formGroup]="requestShowingForm" (ngSubmit)="submitRequestShowingForm()">
+						<div class="tab-content"
+							 id="score-tabs-content">
+							<div class="tab-pane fade show active"
+								 id="score-walk"
+								 role="tabpanel"
+								 aria-labelledby="score-walk-tab"
+								 tabindex="0">
+								<form class="form-card bg-white"
+									  [formGroup]="requestShowingForm"
+									  (ngSubmit)="submitRequestShowingForm()">
 									<p>
 										Interested in viewing a property? Need more information? Fill out the form below and you will be contacted shortly. Thank you for your
 										interest. Your business is appreciated!
 									</p>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Name</mat-label>
-										<input formControlName="name" required matInput placeholder="Name" />
-										<span class="error" *ngIf="requestShowingName?.invalid && (requestShowingName?.dirty || requestShowingName?.touched)">
+										<input formControlName="name"
+											   required
+											   matInput
+											   placeholder="Name" />
+										<span class="error"
+											  *ngIf="requestShowingName?.invalid && (requestShowingName?.dirty || requestShowingName?.touched)">
 											<span *ngIf="requestShowingName?.errors?.['required']">Name is required</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Email</mat-label>
-										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
-										<span class="error" *ngIf="requestShowingEmail?.invalid && (requestShowingEmail?.dirty || requestShowingEmail?.touched)">
+										<input class="w-100"
+											   type="email"
+											   formControlName="email"
+											   required
+											   email
+											   matInput
+											   placeholder="Ex. pat@example.com" />
+										<span class="error"
+											  *ngIf="requestShowingEmail?.invalid && (requestShowingEmail?.dirty || requestShowingEmail?.touched)">
 											<span *ngIf="requestShowingEmail?.errors?.['required']">Name is required</span>
 											<span *ngIf="requestShowingEmail?.errors?.['email']">Please enter a valid email address</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Phone Number</mat-label>
-										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
-										<span class="error" *ngIf="requestShowingPhone?.invalid && (requestShowingPhone?.dirty || requestShowingPhone?.touched)">
+										<input type="tel"
+											   formControlName="phone"
+											   matInput
+											   placeholder="Ex. 123-456-1234" />
+										<span class="error"
+											  *ngIf="requestShowingPhone?.invalid && (requestShowingPhone?.dirty || requestShowingPhone?.touched)">
 											<span *ngIf="requestShowingPhone?.errors?.['required']">Phone number is required</span>
 											<span *ngIf="requestShowingPhone?.errors?.['pattern']">Please enter a valid phone number</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Leave a comment</mat-label>
-										<textarea formControlName="message" class="form-control" rows="4" matInput
+										<textarea formControlName="message"
+												  class="form-control"
+												  rows="4"
+												  matInput
 												  placeholder="Ex. Enter your request about this property"></textarea>
-										<span
-											  class="error"
+										<span class="error"
 											  *ngIf="requestShowingMessage?.invalid && (requestShowingMessage?.dirty || requestShowingMessage?.touched)">
 											<span *ngIf="requestShowingMessage?.errors?.['required']">Comment is required</span>
 										</span>
@@ -394,48 +479,78 @@
 									<p class="mb-0 fw-semibold">I am</p>
 									<div class="d-flex flex-wrap gap-2 py-3">
 										@for(type of userTypes; track $index){
-										<input type="radio" class="btn-check radio_btn" formControlName="userType" [id]="type.value" [value]="type.value" required>
-										<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
+										<input type="radio"
+											   class="btn-check radio_btn"
+											   formControlName="userType"
+											   [id]="type.value"
+											   [value]="type.value"
+											   required>
+										<label class="btn  rounded-pill"
+											   [for]="type.value">{{type.title}}</label>
 										}
 									</div>
-									<button type="submit" class="btn search_btn w-100 fw-bold">Send</button>
+									<button type="submit"
+											class="btn search_btn w-100 fw-bold">Send</button>
 								</form>
 							</div>
 
-							<div class="tab-pane fade" id="score-transit" role="tabpanel" aria-labelledby="score-transit-tab" tabindex="0">
-								<form class="form-card bg-white" [formGroup]="propertyHistoryForm" (ngSubmit)="submitPropertyHistoryForm()">
+							<div class="tab-pane fade"
+								 id="score-transit"
+								 role="tabpanel"
+								 aria-labelledby="score-transit-tab"
+								 tabindex="0">
+								<form class="form-card bg-white"
+									  [formGroup]="propertyHistoryForm"
+									  (ngSubmit)="submitPropertyHistoryForm()">
 									<p>
 										Every property has a history. If you’re interested in knowing all the details, fill out this form to receive a comprehensive report.
 									</p>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Name</mat-label>
-										<input formControlName="name" required matInput placeholder="Name" />
-										<span class="error" *ngIf="propertyHistoryName?.invalid && (propertyHistoryName?.dirty || propertyHistoryName?.touched)">
+										<input formControlName="name"
+											   required
+											   matInput
+											   placeholder="Name" />
+										<span class="error"
+											  *ngIf="propertyHistoryName?.invalid && (propertyHistoryName?.dirty || propertyHistoryName?.touched)">
 											<span *ngIf="propertyHistoryName?.errors?.['required']">Name is required</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Email</mat-label>
-										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
-										<span class="error" *ngIf="propertyHistoryEmail?.invalid && (propertyHistoryEmail?.dirty || propertyHistoryEmail?.touched)">
+										<input class="w-100"
+											   type="email"
+											   formControlName="email"
+											   required
+											   email
+											   matInput
+											   placeholder="Ex. pat@example.com" />
+										<span class="error"
+											  *ngIf="propertyHistoryEmail?.invalid && (propertyHistoryEmail?.dirty || propertyHistoryEmail?.touched)">
 											<span *ngIf="propertyHistoryEmail?.errors?.['required']">Name is required</span>
 											<span *ngIf="propertyHistoryEmail?.errors?.['email']">Please enter a valid email address</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Phone Number</mat-label>
-										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
-										<span class="error" *ngIf="propertyHistoryPhone?.invalid && (propertyHistoryPhone?.dirty || propertyHistoryPhone?.touched)">
+										<input type="tel"
+											   formControlName="phone"
+											   matInput
+											   placeholder="Ex. 123-456-1234" />
+										<span class="error"
+											  *ngIf="propertyHistoryPhone?.invalid && (propertyHistoryPhone?.dirty || propertyHistoryPhone?.touched)">
 											<span *ngIf="propertyHistoryPhone?.errors?.['required']">Phone number is required</span>
 											<span *ngIf="propertyHistoryPhone?.errors?.['pattern']">Please enter a valid phone number</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Leave a comment</mat-label>
-										<textarea formControlName="message" class="form-control" rows="4" matInput
+										<textarea formControlName="message"
+												  class="form-control"
+												  rows="4"
+												  matInput
 												  placeholder="Ex. Enter your request about this property"></textarea>
-										<span
-											  class="error"
+										<span class="error"
 											  *ngIf="propertyHistoryMessage?.invalid && (propertyHistoryMessage?.dirty || propertyHistoryMessage?.touched)">
 											<span *ngIf="propertyHistoryMessage?.errors?.['required']">Comment is required</span>
 										</span>
@@ -443,18 +558,31 @@
 									<p class="mb-0 fw-semibold">I am</p>
 									<div class="d-flex flex-wrap gap-2 py-3">
 										@for(type of userTypes; track $index){
-										<input type="radio" class="btn-check radio_btn" formControlName="userType" [id]="type.value" [value]="type.value" required>
-										<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
+										<input type="radio"
+											   class="btn-check radio_btn"
+											   formControlName="userType"
+											   [id]="type.value"
+											   [value]="type.value"
+											   required>
+										<label class="btn  rounded-pill"
+											   [for]="type.value">{{type.title}}</label>
 										}
 									</div>
-									<button type="submit" class="btn search_btn w-100 fw-bold">
+									<button type="submit"
+											class="btn search_btn w-100 fw-bold">
 										Send
 									</button>
 								</form>
 							</div>
 
-							<div class="tab-pane fade" id="score-bike" role="tabpanel" aria-labelledby="score-bike-tab" tabindex="0">
-								<form class="form-card bg-white" [formGroup]="recentSaleInAreaForm" (ngSubmit)="submitRecentSalesInAreaForm()">
+							<div class="tab-pane fade"
+								 id="score-bike"
+								 role="tabpanel"
+								 aria-labelledby="score-bike-tab"
+								 tabindex="0">
+								<form class="form-card bg-white"
+									  [formGroup]="recentSaleInAreaForm"
+									  (ngSubmit)="submitRecentSalesInAreaForm()">
 									<p>
 										The key to placing a competitive offer is an accurate picture of the current real estate market. Enter your contact information to receive a
 										detailed price comparison of this
@@ -462,33 +590,50 @@
 									</p>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Name</mat-label>
-										<input formControlName="name" required matInput placeholder="Name" />
-										<span class="error" *ngIf="recentSaleName?.invalid && (recentSaleName?.dirty || recentSaleName?.touched)">
+										<input formControlName="name"
+											   required
+											   matInput
+											   placeholder="Name" />
+										<span class="error"
+											  *ngIf="recentSaleName?.invalid && (recentSaleName?.dirty || recentSaleName?.touched)">
 											<span *ngIf="recentSaleName?.errors?.['required']">Name is required</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Email</mat-label>
-										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
-										<span class="error" *ngIf="recentSaleEmail?.invalid && (recentSaleEmail?.dirty || recentSaleEmail?.touched)">
+										<input class="w-100"
+											   type="email"
+											   formControlName="email"
+											   required
+											   email
+											   matInput
+											   placeholder="Ex. pat@example.com" />
+										<span class="error"
+											  *ngIf="recentSaleEmail?.invalid && (recentSaleEmail?.dirty || recentSaleEmail?.touched)">
 											<span *ngIf="recentSaleEmail?.errors?.['required']">Name is required</span>
 											<span *ngIf="recentSaleEmail?.errors?.['email']">Please enter a valid email address</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Phone Number</mat-label>
-										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
-										<span class="error" *ngIf="recentSalePhone?.invalid && (recentSalePhone?.dirty || recentSalePhone?.touched)">
+										<input type="tel"
+											   formControlName="phone"
+											   matInput
+											   placeholder="Ex. 123-456-1234" />
+										<span class="error"
+											  *ngIf="recentSalePhone?.invalid && (recentSalePhone?.dirty || recentSalePhone?.touched)">
 											<span *ngIf="recentSalePhone?.errors?.['required']">Phone number is required</span>
 											<span *ngIf="recentSalePhone?.errors?.['pattern']">Please enter a valid phone number</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Leave a comment</mat-label>
-										<textarea formControlName="message" class="form-control" rows="4" matInput
+										<textarea formControlName="message"
+												  class="form-control"
+												  rows="4"
+												  matInput
 												  placeholder="Ex. Enter your request about this property"></textarea>
-										<span
-											  class="error"
+										<span class="error"
 											  *ngIf="recentSaleMessage?.invalid && (recentSaleMessage?.dirty || recentSaleMessage?.touched)">
 											<span *ngIf="recentSaleMessage?.errors?.['required']">Comment is required</span>
 										</span>
@@ -496,47 +641,77 @@
 									<p class="mb-0 fw-semibold">I am</p>
 									<div class="d-flex flex-wrap gap-2 py-3">
 										@for(type of userTypes; track $index){
-										<input type="radio" class="btn-check radio_btn" formControlName="userType" [id]="type.value" [value]="type.value" required>
-										<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
+										<input type="radio"
+											   class="btn-check radio_btn"
+											   formControlName="userType"
+											   [id]="type.value"
+											   [value]="type.value"
+											   required>
+										<label class="btn  rounded-pill"
+											   [for]="type.value">{{type.title}}</label>
 										}
 									</div>
-									<button type="submit" class="btn search_btn w-100 fw-bold">
+									<button type="submit"
+											class="btn search_btn w-100 fw-bold">
 										Send
 									</button>
 								</form>
 							</div>
 
-							<div class="tab-pane fade" id="score-disabled" role="tabpanel" aria-labelledby="score-disabled-tab" tabindex="0">
-								<form class="form-card bg-white" [formGroup]="haveQuestionForm" (ngSubmit)="submitHaveQuestionForm()">
+							<div class="tab-pane fade"
+								 id="score-disabled"
+								 role="tabpanel"
+								 aria-labelledby="score-disabled-tab"
+								 tabindex="0">
+								<form class="form-card bg-white"
+									  [formGroup]="haveQuestionForm"
+									  (ngSubmit)="submitHaveQuestionForm()">
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Name</mat-label>
-										<input formControlName="name" required matInput placeholder="Name" />
-										<span class="error" *ngIf="haveQuestionName?.invalid && (haveQuestionName?.dirty || haveQuestionName?.touched)">
+										<input formControlName="name"
+											   required
+											   matInput
+											   placeholder="Name" />
+										<span class="error"
+											  *ngIf="haveQuestionName?.invalid && (haveQuestionName?.dirty || haveQuestionName?.touched)">
 											<span *ngIf="haveQuestionName?.errors?.['required']">Name is required</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Email</mat-label>
-										<input class="w-100" type="email" formControlName="email" required email matInput placeholder="Ex. pat@example.com" />
-										<span class="error" *ngIf="haveQuestionEmail?.invalid && (haveQuestionEmail?.dirty || haveQuestionEmail?.touched)">
+										<input class="w-100"
+											   type="email"
+											   formControlName="email"
+											   required
+											   email
+											   matInput
+											   placeholder="Ex. pat@example.com" />
+										<span class="error"
+											  *ngIf="haveQuestionEmail?.invalid && (haveQuestionEmail?.dirty || haveQuestionEmail?.touched)">
 											<span *ngIf="haveQuestionEmail?.errors?.['required']">Name is required</span>
 											<span *ngIf="haveQuestionEmail?.errors?.['email']">Please enter a valid email address</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Phone Number</mat-label>
-										<input type="tel" formControlName="phone" matInput placeholder="Ex. 123-456-1234" />
-										<span class="error" *ngIf="haveQuestionPhone?.invalid && (haveQuestionPhone?.dirty || haveQuestionPhone?.touched)">
+										<input type="tel"
+											   formControlName="phone"
+											   matInput
+											   placeholder="Ex. 123-456-1234" />
+										<span class="error"
+											  *ngIf="haveQuestionPhone?.invalid && (haveQuestionPhone?.dirty || haveQuestionPhone?.touched)">
 											<span *ngIf="haveQuestionPhone?.errors?.['required']">Phone number is required</span>
 											<span *ngIf="haveQuestionPhone?.errors?.['pattern']">Please enter a valid phone number</span>
 										</span>
 									</mat-form-field>
 									<mat-form-field appearance="fill">
 										<mat-label class="info">Leave a comment</mat-label>
-										<textarea formControlName="message" class="form-control" rows="4" matInput
+										<textarea formControlName="message"
+												  class="form-control"
+												  rows="4"
+												  matInput
 												  placeholder="Ex. Enter your request about this property"></textarea>
-										<span
-											  class="error"
+										<span class="error"
 											  *ngIf="haveQuestionMessage?.invalid && (haveQuestionMessage?.dirty || haveQuestionMessage?.touched)">
 											<span *ngIf="haveQuestionMessage?.errors?.['required']">Comment is required</span>
 										</span>
@@ -544,11 +719,18 @@
 									<p class="mb-0 fw-semibold">I am</p>
 									<div class="d-flex flex-wrap gap-2 py-3">
 										@for(type of userTypes; track $index){
-										<input type="radio" class="btn-check radio_btn" formControlName="userType" [id]="type.value" [value]="type.value" required>
-										<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
+										<input type="radio"
+											   class="btn-check radio_btn"
+											   formControlName="userType"
+											   [id]="type.value"
+											   [value]="type.value"
+											   required>
+										<label class="btn  rounded-pill"
+											   [for]="type.value">{{type.title}}</label>
 										}
 									</div>
-									<button type="submit" class="btn search_btn w-100 fw-bold">
+									<button type="submit"
+											class="btn search_btn w-100 fw-bold">
 										Send
 									</button>
 								</form>
@@ -605,71 +787,65 @@
 							<h5 class="card-title mb-3">Ask About this Home</h5>
 							<p class="text-muted small">
 								Learn more by viewing our
-								<a
-								   href="#"
+								<a href="#"
 								   class="text-decoration-none info fw-semibold">
 									privacy policy
 								</a>
 								or
-								<a
-								   href="#"
+								<a href="#"
 								   class="text-decoration-none info fw-semibold">
 									contact us
 								</a>
 								.
 							</p>
-							h12
-							<form
-								  [formGroup]="contactForm"
+							<form [formGroup]="contactForm"
 								  (ngSubmit)="submitContactForm()">
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Name</mat-label>
-									<input
-										   formControlName="name"
+									<input formControlName="name"
 										   required
 										   matInput
 										   placeholder="Name" />
-									<span class="error" *ngIf="contactName?.invalid && (contactName?.dirty || contactName?.touched)">
+									<span class="error"
+										  *ngIf="contactName?.invalid && (contactName?.dirty || contactName?.touched)">
 										<span *ngIf="contactName?.errors?.['required']">Name is required</span>
 									</span>
 								</mat-form-field>
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Email</mat-label>
-									<input
-										   class="w-100"
+									<input class="w-100"
 										   type="email"
 										   formControlName="email"
 										   required
 										   email
 										   matInput
 										   placeholder="Ex. pat@example.com" />
-									<span class="error" *ngIf="contactEmail?.invalid && (contactEmail?.dirty || contactEmail?.touched)">
+									<span class="error"
+										  *ngIf="contactEmail?.invalid && (contactEmail?.dirty || contactEmail?.touched)">
 										<span *ngIf="contactEmail?.errors?.['required']">Name is required</span>
 										<span *ngIf="contactEmail?.errors?.['email']">Please enter a valid email address</span>
 									</span>
 								</mat-form-field>
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Phone Number</mat-label>
-									<input
-										   type="tel"
+									<input type="tel"
 										   formControlName="phone"
 										   matInput
 										   placeholder="Ex. 123-456-1234" />
-									<span class="error" *ngIf="contactPhone?.invalid && (contactPhone?.dirty || contactPhone?.touched)">
+									<span class="error"
+										  *ngIf="contactPhone?.invalid && (contactPhone?.dirty || contactPhone?.touched)">
 										<span *ngIf="contactPhone?.errors?.['required']">Phone number is required</span>
 										<span *ngIf="contactPhone?.errors?.['pattern']">Please enter a valid phone number</span>
 									</span>
 								</mat-form-field>
 								<mat-form-field appearance="fill">
 									<mat-label class="info">Leave a comment</mat-label>
-									<textarea
-											  formControlName="message"
+									<textarea formControlName="message"
 											  class="form-control"
 											  rows="4"
 											  matInput
 											  placeholder="Ex. Enter comment about this property"></textarea>
-									<span
-										  class="error"
+									<span class="error"
 										  *ngIf="contactMessage?.invalid && (contactMessage?.dirty || contactMessage?.touched)">
 										<span *ngIf="contactMessage?.errors?.['required']">Comment is required</span>
 									</span>
@@ -677,8 +853,14 @@
 								<p class="mb-0 fw-semibold">I am</p>
 								<div class="d-flex flex-wrap gap-2 py-3">
 									@for(type of userTypes; track $index){
-									<input type="radio" class="btn-check radio_btn" formControlName="userType" [id]="type.value" [value]="type.value" required>
-									<label class="btn  rounded-pill" [for]="type.value">{{type.title}}</label>
+									<input type="radio"
+										   class="btn-check radio_btn"
+										   formControlName="userType"
+										   [id]="type.value"
+										   [value]="type.value"
+										   required>
+									<label class="btn  rounded-pill"
+										   [for]="type.value">{{type.title}}</label>
 									}
 								</div>
 								<button type="submit"
@@ -693,8 +875,7 @@
 							<div class="row align-items-center p-3">
 								<div class="col-4">
 									<div class="">
-										<img
-											 [src]="
+										<img [src]="
 												siteConfig?.websiteSettings?.profileImage
 													? siteConfig?.websiteSettings?.profileImage
 													: '/images/Nologo.png'
@@ -717,14 +898,12 @@
 								</div>
 							</div>
 						</div>
-						<div
-							 class="card shadow border-0 rounded-3"
+						<div class="card shadow border-0 rounded-3"
 							 *ngIf="siteConfig?.secondaryAgent">
 							<div class="row align-items-center p-3">
 								<div class="col-4">
 									<div class="">
-										<img
-											 [src]="
+										<img [src]="
 												siteConfig?.secondaryAgent?.profileImage
 													? siteConfig?.secondaryAgent?.profileImage
 													: '/images/Nologo.png'
@@ -750,15 +929,12 @@
 							</div>
 						</div>
 					</div>
-					<div
-						 id="map"
+					<div id="map"
 						 class="">
-						<google-map
-									[center]="{ lat: property.Latitude, lng: property.Longitude }"
+						<google-map [center]="{ lat: property.Latitude, lng: property.Longitude }"
 									[zoom]="zoom"
 									style="width: 100%; height: 100%">
-							<map-marker
-										id="mapMarkerSmall"
+							<map-marker id="mapMarkerSmall"
 										#mapMarkerSmall="mapMarker"
 										[position]="{ lat: property.Latitude, lng: property.Longitude }"
 										[label]="property.ListOfficeName"></map-marker>

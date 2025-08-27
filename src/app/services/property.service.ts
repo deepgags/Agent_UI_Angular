@@ -84,6 +84,7 @@ export class PropertyService {
 									property.ListOfficeName && property.ListOfficeName.toLowerCase().indexOf("homelife") > -1
 										? true
 										: false,
+								ModificationTimestamp: property.ModificationTimestamp,
 							};
 						});
 					}
@@ -142,6 +143,7 @@ export class PropertyService {
 						PurchaseContractDate: property.PurchaseContractDate,
 						TaxLegalDescription: property.TaxLegalDescription,
 						IsFeatureListing: property.ListOfficeName && officesName?.includes(property.ListOfficeName),
+						ModificationTimestamp: property.ModificationTimestamp,
 					};
 					return propertyModel;
 				}

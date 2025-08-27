@@ -34,6 +34,7 @@ export class PropertyModel {
 	BuildingAreaTotal?: number;
 	BuildingAreaUnits?: string;
 	ListOfficeName: string;
+	ModificationTimestamp: string | any;
 	ListingContractDate?: string;
 	PublicRemarksExtra?: string;
 	PurchaseContractDate?: string;
@@ -52,6 +53,7 @@ export class PropertyModel {
 		this.ListOfficeName = "";
 		this.PropertyUse = "";
 		this.UnparsedAddress = "";
+		this.ModificationTimestamp = "";
 	}
 }
 

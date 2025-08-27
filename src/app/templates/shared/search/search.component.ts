@@ -45,6 +45,7 @@ export class SearchComponent implements OnInit {
 
 	propertyTypesDropDown: any = [];
 	propertySubTypesDropDown: any = [];
+	private _allPropertySubTypes: any = [];
 	storyTypesDropDown = storyTypes;
 	bedTypesDropDown = bedTypes;
 	bathTypesDropDown = bathTypes;
@@ -142,10 +143,19 @@ export class SearchComponent implements OnInit {
 		this.propertyService.getPropertyTypes().subscribe({
 			next: (response) => {
 				this.propertyTypesDropDown = response.propertyTypes;
-				this.propertySubTypesDropDown = response.propertySubTypes;
+				this._allPropertySubTypes = response.propertySubTypes;
 			},
 			error: (err) => {},
 			complete: () => {},
 		});
+	}
+
+	filterPropertySubType() {
+		for (const propertyType of this.propertyTypesDropDown) {
+			if (propertyType.LookupValue == this.filters.property_type) {
+				this.propertySubTypesDropDown = this._allPropertySubTypes.filter((_subType: any) => _subType.parent == propertyType._id);
+				break;
+			}
+		}
 	}
 }
