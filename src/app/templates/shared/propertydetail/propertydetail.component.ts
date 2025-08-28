@@ -20,6 +20,11 @@ import { PropertyService } from "../../../services/property.service";
 
 import { AccordionModule } from "primeng/accordion";
 import { DialogService, DynamicDialogConfig } from "primeng/dynamicdialog";
+import { IftaLabelModule } from "primeng/iftalabel";
+import { InputMaskModule } from "primeng/inputmask";
+import { InputTextModule } from "primeng/inputtext";
+import { MultiSelectModule } from "primeng/multiselect";
+import { SelectModule } from "primeng/select";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
@@ -43,6 +48,11 @@ declare var window: any;
 		GalleryModule,
 		PhoneSearch,
 		AccordionModule,
+		IftaLabelModule,
+		InputMaskModule,
+		InputTextModule,
+		SelectModule,
+		MultiSelectModule,
 	],
 	providers: [provideAnimations(), NgbCarouselConfig, DialogService],
 	templateUrl: "./propertydetail.component.html",
@@ -192,6 +202,7 @@ export class PropertydetailComponent implements OnInit {
 			date: new FormControl("", [Validators.required]),
 			message: new FormControl("I would like more information regarding a property", Validators.required),
 			userType: new FormControl("seller", Validators.required),
+			leadType: new FormControl("", Validators.required),
 		});
 
 		this.propertyHistoryForm = new FormGroup({
@@ -200,6 +211,7 @@ export class PropertydetailComponent implements OnInit {
 			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			message: new FormControl("I would like more information regarding a property", Validators.required),
 			userType: new FormControl("seller", Validators.required),
+			leadType: new FormControl("", Validators.required),
 		});
 
 		this.recentSaleInAreaForm = new FormGroup({
@@ -208,6 +220,7 @@ export class PropertydetailComponent implements OnInit {
 			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			message: new FormControl("I would like more information regarding a property", Validators.required),
 			userType: new FormControl("seller", Validators.required),
+			leadType: new FormControl("", Validators.required),
 		});
 
 		this.haveQuestionForm = new FormGroup({
@@ -216,6 +229,7 @@ export class PropertydetailComponent implements OnInit {
 			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			message: new FormControl("I would like more information regarding a property", Validators.required),
 			userType: new FormControl("seller", Validators.required),
+			leadType: new FormControl("", Validators.required),
 		});
 
 		this.contactForm = new FormGroup({
@@ -224,6 +238,7 @@ export class PropertydetailComponent implements OnInit {
 			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			message: new FormControl("I would like more information regarding a property", Validators.required),
 			userType: new FormControl("seller", Validators.required),
+			leadType: new FormControl("", Validators.required),
 		});
 
 		this.galleryConfig$ = breakpointObserver.observe([Breakpoints.HandsetPortrait]).pipe(
