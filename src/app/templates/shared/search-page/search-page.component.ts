@@ -49,7 +49,7 @@ export class SearchPageComponent implements OnInit {
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
-	pageSize: number = 100;
+	pageSize: number = 10;
 	private loadingSubject = new BehaviorSubject<boolean>(false);
 	loading$ = this.loadingSubject.asObservable();
 
@@ -153,6 +153,10 @@ export class SearchPageComponent implements OnInit {
 			data: {
 				propertyId: property._id,
 				mlsId: property.ListingKey,
+				city: property.City,
+				town: property.Town,
+				property_type: stringiFy(this.selectedFilters.property_type),
+				property_subtype: stringiFy(this.selectedFilters.property_subtype),
 			},
 		});
 	}

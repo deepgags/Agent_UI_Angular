@@ -312,6 +312,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 			data: {
 				propertyId: property._id,
 				mlsId: property.ListingKey,
+				address: stringiFy(this.selectedFilters.address),
+				property_type: stringiFy(this.selectedFilters.property_type),
+				property_subtype: stringiFy(this.selectedFilters.property_subtype),
 			},
 		});
 	}

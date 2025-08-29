@@ -19,6 +19,7 @@ import { PropertyModel } from "../../../models/PropertyModel";
 import { PropertyService } from "../../../services/property.service";
 
 import { AccordionModule } from "primeng/accordion";
+import { CarouselModule } from "primeng/carousel";
 import { DialogService, DynamicDialogConfig } from "primeng/dynamicdialog";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
@@ -26,6 +27,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
+import { TimeAgo } from "../../../pipes/time-ago";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
 import { SiteConfigService } from "../../../services/site-config.service";
@@ -53,6 +55,8 @@ declare var window: any;
 		InputTextModule,
 		SelectModule,
 		MultiSelectModule,
+		TimeAgo,
+		CarouselModule,
 	],
 	providers: [provideAnimations(), NgbCarouselConfig, DialogService],
 	templateUrl: "./propertydetail.component.html",
@@ -61,71 +65,6 @@ declare var window: any;
 	standalone: true,
 })
 export class PropertydetailComponent implements OnInit {
-	get requestShowingName() {
-		return this.requestShowingForm.get("name");
-	}
-	get requestShowingEmail() {
-		return this.requestShowingForm.get("email");
-	}
-	get requestShowingPhone() {
-		return this.requestShowingForm.get("phone");
-	}
-	get requestShowingMessage() {
-		return this.requestShowingForm.get("message");
-	}
-
-	get propertyHistoryName() {
-		return this.propertyHistoryForm.get("name");
-	}
-	get propertyHistoryEmail() {
-		return this.propertyHistoryForm.get("email");
-	}
-	get propertyHistoryPhone() {
-		return this.propertyHistoryForm.get("phone");
-	}
-	get propertyHistoryMessage() {
-		return this.propertyHistoryForm.get("message");
-	}
-
-	get recentSaleName() {
-		return this.recentSaleInAreaForm.get("name");
-	}
-	get recentSaleEmail() {
-		return this.recentSaleInAreaForm.get("email");
-	}
-	get recentSalePhone() {
-		return this.recentSaleInAreaForm.get("phone");
-	}
-	get recentSaleMessage() {
-		return this.recentSaleInAreaForm.get("message");
-	}
-
-	get haveQuestionName() {
-		return this.haveQuestionForm.get("name");
-	}
-	get haveQuestionEmail() {
-		return this.haveQuestionForm.get("email");
-	}
-	get haveQuestionPhone() {
-		return this.haveQuestionForm.get("phone");
-	}
-	get haveQuestionMessage() {
-		return this.haveQuestionForm.get("message");
-	}
-
-	get contactName() {
-		return this.contactForm.get("name");
-	}
-	get contactEmail() {
-		return this.contactForm.get("email");
-	}
-	get contactPhone() {
-		return this.contactForm.get("phone");
-	}
-	get contactMessage() {
-		return this.contactForm.get("message");
-	}
-
 	imageUrl = environment.imageUrl;
 	property: PropertyModel | undefined;
 	Latitude: number = 0;
@@ -172,6 +111,16 @@ export class PropertydetailComponent implements OnInit {
 			value: "buyerAndSeller",
 		},
 	];
+
+	private _leadTypes: any[] = [];
+	requirementShowingLeadTypeDropdown: any[] = [];
+	propertyHistoryLeadTypeDropdown: any[] = [];
+	recentSalesInAreaLeadTypeDropdown: any[] = [];
+	haveQuestionLeadTypeDropdown: any[] = [];
+	contactFormLeadTypeDropdown: any[] = [];
+	roomDetails: any;
+	similarProperties: any[] = [];
+
 	constructor(
 		breakpointObserver: BreakpointObserver,
 		private propertyService: PropertyService,
@@ -188,9 +137,11 @@ export class PropertydetailComponent implements OnInit {
 		this.siteConfigBS = new BehaviorSubject(null);
 		this.siteConfigObservable = this.siteConfigBS.asObservable();
 
-		const { mlsId, propertyId } = this.dialogConfig.data;
+		const { mlsId, propertyId, address, property_type, property_subtype } = this.dialogConfig.data;
+		console.log("data", mlsId, propertyId, address, property_type, property_subtype);
 		this.mlsId = mlsId;
 		this.propertyId = propertyId;
+
 		if (this.propertyId && this.mlsId) {
 			this.getPropertyInformation();
 		}
@@ -198,8 +149,8 @@ export class PropertydetailComponent implements OnInit {
 		this.requestShowingForm = new FormGroup({
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
-			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
-			date: new FormControl("", [Validators.required]),
+			phone: new FormControl("", [Validators.required]),
+			date: new FormControl(""),
 			message: new FormControl("I would like more information regarding a property", Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
@@ -208,7 +159,7 @@ export class PropertydetailComponent implements OnInit {
 		this.propertyHistoryForm = new FormGroup({
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
-			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			phone: new FormControl("", [Validators.required]),
 			message: new FormControl("I would like more information regarding a property", Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
@@ -217,7 +168,7 @@ export class PropertydetailComponent implements OnInit {
 		this.recentSaleInAreaForm = new FormGroup({
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
-			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			phone: new FormControl("", [Validators.required]),
 			message: new FormControl("I would like more information regarding a property", Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
@@ -226,7 +177,7 @@ export class PropertydetailComponent implements OnInit {
 		this.haveQuestionForm = new FormGroup({
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
-			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			phone: new FormControl("", [Validators.required]),
 			message: new FormControl("I would like more information regarding a property", Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
@@ -235,7 +186,7 @@ export class PropertydetailComponent implements OnInit {
 		this.contactForm = new FormGroup({
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
-			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			phone: new FormControl("", [Validators.required]),
 			message: new FormControl("I would like more information regarding a property", Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
@@ -259,6 +210,86 @@ export class PropertydetailComponent implements OnInit {
 		);
 	}
 
+	get requestShowingName() {
+		return this.requestShowingForm.get("name");
+	}
+	get requestShowingEmail() {
+		return this.requestShowingForm.get("email");
+	}
+	get requestShowingPhone() {
+		return this.requestShowingForm.get("phone");
+	}
+	get requestShowingMessage() {
+		return this.requestShowingForm.get("message");
+	}
+	get requestLeadType() {
+		return this.requestShowingForm.get("leadType");
+	}
+
+	get propertyHistoryName() {
+		return this.propertyHistoryForm.get("name");
+	}
+	get propertyHistoryEmail() {
+		return this.propertyHistoryForm.get("email");
+	}
+	get propertyHistoryPhone() {
+		return this.propertyHistoryForm.get("phone");
+	}
+	get propertyHistoryMessage() {
+		return this.propertyHistoryForm.get("message");
+	}
+	get propertyLeadType() {
+		return this.propertyHistoryForm.get("leadType");
+	}
+
+	get recentSaleName() {
+		return this.recentSaleInAreaForm.get("name");
+	}
+	get recentSaleEmail() {
+		return this.recentSaleInAreaForm.get("email");
+	}
+	get recentSalePhone() {
+		return this.recentSaleInAreaForm.get("phone");
+	}
+	get recentSaleMessage() {
+		return this.recentSaleInAreaForm.get("message");
+	}
+	get recentLeadType() {
+		return this.recentSaleInAreaForm.get("leadType");
+	}
+
+	get haveQuestionName() {
+		return this.haveQuestionForm.get("name");
+	}
+	get haveQuestionEmail() {
+		return this.haveQuestionForm.get("email");
+	}
+	get haveQuestionPhone() {
+		return this.haveQuestionForm.get("phone");
+	}
+	get haveQuestionMessage() {
+		return this.haveQuestionForm.get("message");
+	}
+	get haveQuestionLeadType() {
+		return this.haveQuestionForm.get("leadType");
+	}
+
+	get contactName() {
+		return this.contactForm.get("name");
+	}
+	get contactEmail() {
+		return this.contactForm.get("email");
+	}
+	get contactPhone() {
+		return this.contactForm.get("phone");
+	}
+	get contactMessage() {
+		return this.contactForm.get("message");
+	}
+	get contactLeadType() {
+		return this.contactForm.get("leadType");
+	}
+
 	ngOnInit(): void {
 		this.galleryRef = this.gallery.ref("propertyGallery");
 
@@ -280,6 +311,7 @@ export class PropertydetailComponent implements OnInit {
 		});
 
 		this.getLocation();
+		this.getLeadTypeDropdown();
 	}
 
 	ngOnDestroy(): void {
@@ -295,6 +327,7 @@ export class PropertydetailComponent implements OnInit {
 	}
 
 	getPropertyInformation(): void {
+		this.property = undefined;
 		this.loadingSubject.next(true);
 		this.propertyService.getPropertyDetails(this.propertyId, this.mlsId).subscribe({
 			next: (response) => {
@@ -311,6 +344,8 @@ export class PropertydetailComponent implements OnInit {
 						);
 					});
 				}
+				this.getRoomDetails();
+				this.getSimilarProperties();
 				setTimeout(() => {
 					this.loadWalkScore();
 				}, 1500);
@@ -371,6 +406,7 @@ export class PropertydetailComponent implements OnInit {
 	}
 
 	submitRequestShowingForm() {
+		console.log(this.requestShowingForm);
 		if (this.requestShowingForm.invalid) {
 			this.requestShowingForm.markAllAsTouched();
 			// this.notificationService.showError("Please fill all required fields correctly.");
@@ -478,5 +514,118 @@ export class PropertydetailComponent implements OnInit {
 				// this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
+	}
+
+	getLeadTypeDropdown() {
+		this.publicService.getLeadTypes().subscribe({
+			next: (res: any) => {
+				this._leadTypes = res.data;
+				this.getLeadTypesForForms("requestShowingForm");
+				this.getLeadTypesForForms("propertyHistoryForm");
+				this.getLeadTypesForForms("recentSaleInAreaForm");
+				this.getLeadTypesForForms("haveQuestionForm");
+				this.getLeadTypesForForms("contactForm");
+			},
+			error: () => {},
+		});
+	}
+
+	private getLeadTypesFromUserType(userType: string) {
+		return this._leadTypes.filter((type) => type.userType == userType);
+	}
+
+	getLeadTypesForForms(from: string) {
+		switch (from) {
+			case "requestShowingForm":
+				{
+					const { userType } = this.requestShowingForm.value;
+					this.requestShowingForm.patchValue({ leadType: "" });
+					this.requestShowingForm.updateValueAndValidity();
+					this.requirementShowingLeadTypeDropdown = this.getLeadTypesFromUserType(userType);
+				}
+				break;
+			case "propertyHistoryForm":
+				{
+					const { userType } = this.propertyHistoryForm.value;
+					this.propertyHistoryForm.patchValue({ leadType: "" });
+					this.propertyHistoryForm.updateValueAndValidity();
+					this.propertyHistoryLeadTypeDropdown = this.getLeadTypesFromUserType(userType);
+				}
+				break;
+			case "recentSaleInAreaForm":
+				{
+					const { userType } = this.recentSaleInAreaForm.value;
+					this.recentSaleInAreaForm.patchValue({ leadType: "" });
+					this.recentSaleInAreaForm.updateValueAndValidity();
+					this.recentSalesInAreaLeadTypeDropdown = this.getLeadTypesFromUserType(userType);
+				}
+				break;
+			case "haveQuestionForm":
+				{
+					const { userType } = this.haveQuestionForm.value;
+					this.haveQuestionForm.patchValue({ leadType: "" });
+					this.haveQuestionForm.updateValueAndValidity();
+					this.haveQuestionLeadTypeDropdown = this.getLeadTypesFromUserType(userType);
+				}
+				break;
+			case "contactForm":
+				{
+					const { userType } = this.contactForm.value;
+					this.contactForm.patchValue({ leadType: "" });
+					this.contactForm.updateValueAndValidity();
+					this.contactFormLeadTypeDropdown = this.getLeadTypesFromUserType(userType);
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	getRoomDetails() {
+		this.loadingSubject.next(true);
+		this.propertyService.getRoomDetails(this.mlsId).subscribe({
+			next: (response) => {
+				console.log("room details", response);
+				this.roomDetails = response;
+				this.loadingSubject.next(false);
+			},
+			error: (err) => {
+				this.loadingSubject.next(false);
+				// this.notificationService.showNotification("Error occurred while getting property information");
+			},
+			complete: () => {
+				this.loadingSubject.next(false);
+			},
+		});
+	}
+
+	getSimilarProperties() {
+		console.log(this.property);
+		const params = {
+			property_type: this.property?.PropertyType,
+			property_subtype: this.property?.PropertySubType,
+			city: this.property?.City,
+			town: this.property?.Town,
+		};
+		this.propertyService.getSimilarProperties(params).subscribe({
+			next: (response) => {
+				this.similarProperties = response;
+			},
+			error: (err) => {
+				this.loadingSubject.next(false);
+			},
+			complete: () => {
+				this.loadingSubject.next(false);
+			},
+		});
+	}
+
+	openSimilarPropertyDetails(property: PropertyModel) {
+		this.mlsId = property.ListingKey;
+		this.propertyId = property._id;
+
+		if (this.propertyId && this.mlsId) {
+			this.getPropertyInformation();
+		}
 	}
 }

@@ -7,8 +7,8 @@
 }
 .p-inputtext {
 	font-size: 13px !important;
-	// padding-top: 4px !important;
-	// padding-bottom: 4px !important;
+	/* // padding-top: 4px !important;
+	// padding-bottom: 4px !important; */
 }
 
 .p-select {
@@ -53,6 +53,8 @@ app-login {
 	float: none;
 }
 
-.p-inputmask {
-	width: 100% !important;
+app-propertydetail {
+	.p-iftalabel .p-inputtext {
+		width: 100% !important;
+	}
 }

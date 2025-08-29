@@ -13,4 +13,8 @@ export class PublicService {
 	submitContactForm(params: any): Observable<PropertyModel[]> {
 		return this.http.post<PropertyModel[]>(`${environment.agentApiUrl}/leads`, params);
 	}
+
+	getLeadTypes(): Observable<any[]> {
+		return this.http.get<any[]>(`${environment.agentApiUrl}/leads/lead-type`);
+	}
 }

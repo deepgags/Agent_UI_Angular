@@ -50,7 +50,7 @@ export class PropertyService {
 								BedroomsTotal: property.BedroomsTotal,
 								BrokerFaxNumber: property.BrokerFaxNumber,
 								BusinessName: property.BusinessName,
-								// City: property.City,
+								City: property.City,
 								// CityRegion: property.CityRegion,
 								// Country: property.Country,
 								// CountyOrParish: property.CountyOrParish,
@@ -70,7 +70,7 @@ export class PropertyService {
 								// StreetName: property.StreetName,
 								// StreetNumber: property.StreetNumber,
 								// StreetSuffix: property.StreetSuffix,
-								// Town: property.Town,
+								Town: property.Town,
 								TransactionType: property.TransactionType,
 								UnitNumber: property.UnitNumber,
 								UnparsedAddress: property.UnparsedAddress,
@@ -109,7 +109,7 @@ export class PropertyService {
 						BedroomsTotal: property.BedroomsTotal,
 						// BrokerFaxNumber: property.BrokerFaxNumber,
 						// BusinessName: property.BusinessName,
-						// City: property.City,
+						City: property.City,
 						// CityRegion: property.CityRegion,
 						// Country: property.Country,
 						// CountyOrParish: property.CountyOrParish,
@@ -129,7 +129,7 @@ export class PropertyService {
 						// StreetName: property.StreetName,
 						// StreetNumber: property.StreetNumber,
 						// StreetSuffix: property.StreetSuffix,
-						// Town: property.Town,
+						Town: property.Town,
 						TransactionType: property.TransactionType,
 						UnitNumber: property.UnitNumber,
 						UnparsedAddress: property.UnparsedAddress,
@@ -157,6 +157,34 @@ export class PropertyService {
 
 	getPropertyTypes(): Observable<any> {
 		return this.http.get(`${environment.propertyApiUrl}/property-types`).pipe(
+			map((result: any) => {
+				if (result && result.data) {
+					return result.data;
+				}
+				return {};
+			}),
+			catchError((error) => {
+				return throwError(() => error);
+			})
+		);
+	}
+
+	getRoomDetails(mlsId: string): Observable<any> {
+		return this.http.get(`${environment.propertyApiUrl}/room-details/${mlsId}`).pipe(
+			map((result: any) => {
+				if (result && result.data) {
+					return result.data;
+				}
+				return {};
+			}),
+			catchError((error) => {
+				return throwError(() => error);
+			})
+		);
+	}
+
+	getSimilarProperties(params: any): Observable<any> {
+		return this.http.post(`${environment.propertyApiUrl}/similar`, params).pipe(
 			map((result: any) => {
 				if (result && result.data) {
 					return result.data;
