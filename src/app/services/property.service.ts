@@ -145,6 +145,7 @@ export class PropertyService {
 						MlsStatus: property.MlsStatus,
 						OccupantType: property.OccupantType,
 						Latitude: property.Latitude,
+						RentIncludes: property.RentIncludes,
 						ListingKey: property.ListingKey,
 						ListPrice: property.ListPrice,
 						ListPriceUnit: property.ListPriceUnit,

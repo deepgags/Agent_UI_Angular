@@ -25,6 +25,7 @@ export class PropertyModel {
 	HeatType?:string;
 	TelephoneYNA?:string;
 	ListAOR?:string;
+	RentIncludes?:[];
 	TaxLegalDescription?:string;
 	VirtualTourURLUnbranded?:string;
 	MlsStatus?:string;
