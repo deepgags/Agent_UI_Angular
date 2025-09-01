@@ -55,16 +55,17 @@
 								 alt="No property image to display"
 								 onerror="this.src = '/images/commercial_no_Image.jpg'" /> -->
 							<p-carousel [value]="property.Media"
-										[numVisible]="1"
-										[numScroll]="1"
+										[numVisible]="5"
+										[numScroll]="5"
 										[circular]="false"
-										showIndicators="false"
+										showIndicators="true"
 										(click)="$event.stopPropagation()">
 								<ng-template let-media
 											 #item>
 									<img [src]="imageUrl + media.Media_url"
 										 class="card-img-top"
 										 alt="No property image to display"
+										 (click)="selectProperty(property)"
 										 onerror="this.src = '/images/commercial_no_Image.jpg'" />
 								</ng-template>
 							</p-carousel>
@@ -105,7 +106,7 @@
 							<p class="info  pt-2 mb-0 fw-semibold">MLS® {{property.ListingKey}}</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<p class="info pt-2 mb-0 fw-semibold">{{property.ListOfficeName}}</p>
-								<span>Approx {{property.ModificationTimestamp | timeAgo}}</span>
+								<small class="text-muted">{{property.ModificationTimestamp | timeAgo}}</small>
 							</div>
 						</div>
 					</div>

@@ -27,7 +27,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
-import { TimeAgo } from "../../../pipes/time-ago";
+import { TimeAgo } from "../../../Pipes/time-ago";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
 import { SiteConfigService } from "../../../services/site-config.service";

@@ -43,7 +43,9 @@ export class PropertyService {
 				map((result: any) => {
 					if (result && result.data && result.data.length > 0) {
 						return result.data.map((property: any) => {
+							debugger;
 							return {
+								
 								_id: property._id,
 								// BuildingName: property.BuildingName,
 								BathroomsTotalInteger: property.BathroomsTotalInteger,
@@ -51,39 +53,47 @@ export class PropertyService {
 								BrokerFaxNumber: property.BrokerFaxNumber,
 								BusinessName: property.BusinessName,
 								City: property.City,
-								// CityRegion: property.CityRegion,
+								 CityRegion: property.CityRegion,
 								// Country: property.Country,
 								// CountyOrParish: property.CountyOrParish,
-								// CrossStreet: property.CrossStreet,
+								CrossStreet: property.CrossStreet,
 								Latitude: property.Latitude,
 								ListingKey: property.ListingKey,
 								ListPrice: property.ListPrice,
 								ListPriceUnit: property.ListPriceUnit,
 								Longitude: property.Longitude,
+								Directions: property.Directions,
+								WaterYN:property.WwaterYN,
+								HeatType : property.HeatType,
+								GarageType : property.GarageType,
+								GarageYN :property.GarageYN,
+								DaysOnMarket : property.DaysOnMarket,
+								ArchitecturalStyle : property.ArchitecturalStyle,
+								HeatSource: property.HeatSource,
 								LotSizeDimensions: property.LotSizeDimensions,
 								OriginalListPrice: property.OriginalListPrice,
-								// PrivateRemarks: property.PrivateRemarks,
+								 
 								PropertySubType: property.PropertySubType,
 								PropertyType: property.PropertyType,
 								// PropertyUse: property.PropertyUse,
 								PublicRemarks: property.PublicRemarks,
+								PublicRemarksExtra: property.PublicRemarksExtra,
+								TaxLegalDescription : property.TaxLegalDescription,
 								// StreetName: property.StreetName,
 								// StreetNumber: property.StreetNumber,
-								// StreetSuffix: property.StreetSuffix,
+								BuildingAreaTotal: property.BuildingAreaTotal,
+								
 								Town: property.Town,
 								TransactionType: property.TransactionType,
 								UnitNumber: property.UnitNumber,
 								UnparsedAddress: property.UnparsedAddress,
 								Media: property.Media,
-								BuildingAreaTotal: property.BuildingAreaTotal,
+								 
 								BuildingAreaUnits: property.BuildingAreaUnits,
 								TotalRecords: result.total,
 								ListOfficeName: property.ListOfficeName,
 								ListingContractDate: property.ListingContractDate,
-								IsFeatureListing:
-									property.ListOfficeName && property.ListOfficeName.toLowerCase().indexOf("homelife") > -1
-										? true
-										: false,
+								IsFeatureListing: false,
 								ModificationTimestamp: property.ModificationTimestamp,
 							};
 						});
@@ -100,6 +110,7 @@ export class PropertyService {
 		const officesName = "";
 		return this.http.get<PropertyModel>(`${environment.propertyApiUrl}/propertyinformation?id=${propertId}&mlsId=${mlsId}`).pipe(
 			map((result: any) => {
+				debugger ;
 				if (result && result.data) {
 					const property = result.data;
 					const propertyModel: PropertyModel = {
@@ -113,7 +124,26 @@ export class PropertyService {
 						// CityRegion: property.CityRegion,
 						// Country: property.Country,
 						// CountyOrParish: property.CountyOrParish,
-						// CrossStreet: property.CrossStreet,
+						PropertyType : property.PropertyType,
+						PropertySubType : property.PropertySubType,
+						 CrossStreet: property.CrossStreet,
+						 HeatSource: property.HeatSource,
+						 HeatType: property.HeatType,
+						RentalItems: property.RentalItems,
+						SewerYNA: property.SewerYNA,
+						Exclusions: property.Exclusions,
+						DaysOnMarket: property.DaysOnMarket,
+						Water: property.Water,
+						Basement: property.Basement,
+						ArchitecturalStyle: property.ArchitecturalStyle,
+						GarageType: property.GarageType,
+						GarageYN: property.GarageYN,
+						TelephoneYNA: property.TelephoneYNA,
+						ListAOR: property.ListAOR,
+						TaxLegalDescription: property.TaxLegalDescription,
+						VirtualTourURLUnbranded: property.VirtualTourURLUnbranded,
+						MlsStatus: property.MlsStatus,
+						OccupantType: property.OccupantType,
 						Latitude: property.Latitude,
 						ListingKey: property.ListingKey,
 						ListPrice: property.ListPrice,
@@ -121,11 +151,11 @@ export class PropertyService {
 						Longitude: property.Longitude,
 						// LotSizeDimensions: property.LotSizeDimensions,
 						// OriginalListPrice: property.OriginalListPrice,
-						// PrivateRemarks: property.PrivateRemarks,
-						PropertySubType: property.PropertySubType,
-						PropertyType: property.PropertyType,
+						 
+						PublicRemarksExtra: property.PublicRemarksExtra,
+						 
 						PropertyUse: property.PropertyUse,
-						// PublicRemarks: property.PublicRemarks,
+						PublicRemarks: property.PublicRemarks,
 						// StreetName: property.StreetName,
 						// StreetNumber: property.StreetNumber,
 						// StreetSuffix: property.StreetSuffix,
@@ -138,11 +168,11 @@ export class PropertyService {
 						BuildingAreaUnits: property.BuildingAreaUnits,
 						TotalRecords: result.total,
 						ListOfficeName: property.ListOfficeName,
-						PublicRemarksExtra: property.PublicRemarksExtra,
+						 
 						ListingContractDate: property.ListingContractDate,
 						PurchaseContractDate: property.PurchaseContractDate,
-						TaxLegalDescription: property.TaxLegalDescription,
-						IsFeatureListing: property.ListOfficeName && officesName?.includes(property.ListOfficeName),
+						
+						IsFeatureListing: false,
 						ModificationTimestamp: property.ModificationTimestamp,
 					};
 					return propertyModel;

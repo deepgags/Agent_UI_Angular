@@ -12,6 +12,23 @@ export class PropertyModel {
 	UnitNumber?: string | "" | undefined;
 	TransactionType?: string | "" | undefined;
 	CrossStreet?: string;
+	RentalItems?: string;
+	SewerYNA?:string;
+	Exclusions?:string;
+	DaysOnMarket?:string;
+	Water?:string;
+	Basement?:string[];
+	ArchitecturalStyle?:string[];
+	GarageType?:string;
+	GarageYN?:string;
+	HeatSource?:string;
+	HeatType?:string;
+	TelephoneYNA?:string;
+	ListAOR?:string;
+	TaxLegalDescription?:string;
+	VirtualTourURLUnbranded?:string;
+	MlsStatus?:string;
+	OccupantType?:string;
 	StreetSuffix?: string | "" | undefined;
 	StreetNumber?: string | "" | undefined;
 	PropertyUse: string;
@@ -33,12 +50,13 @@ export class PropertyModel {
 	_id: string | "";
 	BuildingAreaTotal?: number;
 	BuildingAreaUnits?: string;
+	Directions?: string;
 	ListOfficeName: string;
 	ModificationTimestamp: string | any;
 	ListingContractDate?: string;
 	PublicRemarksExtra?: string;
 	PurchaseContractDate?: string;
-	TaxLegalDescription?: string;
+	 
 	IsFeatureListing: boolean = false;
 
 	constructor() {
@@ -49,11 +67,12 @@ export class PropertyModel {
 		this.Longitude = 0;
 		this.BusinessName = "";
 		this.BuildingName = "";
-		this.CrossStreet = "";
+		 
 		this.ListOfficeName = "";
 		this.PropertyUse = "";
 		this.UnparsedAddress = "";
 		this.ModificationTimestamp = "";
+
 	}
 }
 

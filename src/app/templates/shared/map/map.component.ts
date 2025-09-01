@@ -305,7 +305,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 		// });
 		this.dialogService.open(PropertydetailComponent, {
 			header: `Property Information`,
-			width: "90%",
+			width: "70%",
 			maximizable: true,
 			closable: true,
 			modal: true,

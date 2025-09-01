@@ -16,8 +16,8 @@ import { stringiFy } from "../../../consts/Utility";
 import { environment } from "../../../environments/environment.development";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { RequestPropertyModel } from "../../../models/RequestPropertyModel";
-import { HighlightSearch } from "../../../pipes/highlight";
-import { TimeAgo } from "../../../pipes/time-ago";
+import { HighlightSearch } from "../../../Pipes/highlight";
+import { TimeAgo } from "../../../Pipes/time-ago";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
@@ -146,7 +146,7 @@ export class SearchPageComponent implements OnInit {
 
 		this.dialogService.open(PropertydetailComponent, {
 			header: `Property Information`,
-			width: "90%",
+			width: "70%",
 			maximizable: true,
 			closable: true,
 			modal: true,
@@ -191,8 +191,9 @@ export class SearchPageComponent implements OnInit {
 		this.loadingService.loadingOn();
 		this.loadingSubject.next(true);
 		this.propertyService.searchProperties(params).subscribe({
+			
 			next: (response) => {
-				this.propertiesList = response;
+			debugger;	this.propertiesList = response;
 			},
 			error: (err) => {
 				// this.notificationService.showNotification("Error occurred while getting properties");
