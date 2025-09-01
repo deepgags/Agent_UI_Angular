@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -8,7 +8,7 @@ import { SiteConfig } from '../../../models/SiteConfig';
 
 @Component({
 	selector: 'app-t8-header',
-	imports: [CommonModule, AngularSvgIconModule, PhoneSearch, RouterModule],
+	imports: [AngularSvgIconModule, PhoneSearch, RouterModule],
 	templateUrl: './t8-header.component.html',
 	styleUrls: ['./t8-header.component.scss', '../t8.component.scss']
 })

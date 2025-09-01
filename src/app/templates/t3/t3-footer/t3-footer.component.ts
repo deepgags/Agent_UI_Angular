@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { SiteConfig } from '../../../models/SiteConfig';
@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
 	selector: 'app-t3-footer',
-	imports: [CommonModule, PhoneSearch, AngularSvgIconModule, RouterModule],
+	imports: [PhoneSearch, AngularSvgIconModule, RouterModule],
 	templateUrl: './t3-footer.component.html',
 	styleUrls: ['./t3-footer.component.scss', '../t3.component.scss']
 })

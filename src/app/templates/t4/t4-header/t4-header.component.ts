@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, Input, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
@@ -7,7 +7,7 @@ import { PhoneSearch } from "../../../pipes/phoneSearch";
 
 @Component({
 	selector: "app-t4-header",
-	imports: [CommonModule, AngularSvgIconModule, PhoneSearch, RouterModule],
+	imports: [AngularSvgIconModule, PhoneSearch, RouterModule],
 	templateUrl: "./t4-header.component.html",
 	styleUrls: ["./t4-header.component.scss", "../t4.component.scss"],
 })

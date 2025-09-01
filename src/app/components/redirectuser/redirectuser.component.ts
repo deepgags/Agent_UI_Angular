@@ -1,5 +1,5 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from "@angular/common";
-import { Component, Inject, OnInit, PLATFORM_ID, Renderer2 } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import { Component, Inject, OnInit, PLATFORM_ID, Renderer2, DOCUMENT } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { CustomerModel } from "../../models/CustomerModel";
@@ -9,7 +9,7 @@ import { StorageService } from "../../services/storage.service";
 
 @Component({
 	selector: "app-redirectuser",
-	imports: [CommonModule],
+	imports: [],
 	templateUrl: "./redirectuser.component.html",
 	styleUrl: "./redirectuser.component.scss",
 })

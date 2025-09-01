@@ -1,6 +1,6 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser, Location } from "@angular/common";
+import { CommonModule, isPlatformBrowser, Location } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
-import { Component, Inject, PLATFORM_ID } from "@angular/core";
+import { Component, Inject, PLATFORM_ID, DOCUMENT } from "@angular/core";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Router, RouterOutlet } from "@angular/router";
 import { MessageService } from "primeng/api";

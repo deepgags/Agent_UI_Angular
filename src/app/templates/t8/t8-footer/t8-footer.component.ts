@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -7,7 +7,7 @@ import { PhoneSearch } from '../../../pipes/phoneSearch';
 
 @Component({
 	selector: 'app-t8-footer',
-	imports: [CommonModule, PhoneSearch, AngularSvgIconModule],
+	imports: [PhoneSearch, AngularSvgIconModule],
 	templateUrl: './t8-footer.component.html',
 	styleUrls: ['./t8-footer.component.scss', '../t8.component.scss'],
 })

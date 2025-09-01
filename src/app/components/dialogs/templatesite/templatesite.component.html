@@ -1,16 +1,22 @@
-    <h1 mat-dialog-title style="color: gray !important;">Enter Site URL</h1>
-    <mat-dialog-content id="siteDialog">
-        <form [formGroup]="templateForm" name="siteForm" *ngIf="templateForm">
-          <br>
+<h1 mat-dialog-title style="color: gray !important;">Enter Site URL</h1>
+<mat-dialog-content id="siteDialog">
+  @if (templateForm) {
+    <form [formGroup]="templateForm" name="siteForm">
+      <br>
         <mat-form-field appearance="fill">
           <mat-label>Site URL</mat-label>
           <input formControlName="siteUrl" placeholder="Ex. abc.com | www.abc.com | http://abc.com | https://abc.com" required matInput pattern="(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)" />
-          <mat-error *ngIf="templateForm.get('siteUrl')?.hasError('required')">Site Url is required</mat-error>
-          <mat-error *ngIf="templateForm.value.siteUrl">Incorrect url</mat-error>
+          @if (templateForm.get('siteUrl')?.hasError('required')) {
+            <mat-error>Site Url is required</mat-error>
+          }
+          @if (templateForm.value.siteUrl) {
+            <mat-error>Incorrect url</mat-error>
+          }
         </mat-form-field>
       </form>
-      </mat-dialog-content>
-      <mat-dialog-actions>
-        <button mat-button (click)="close()" class="btn btn-dark me-2 px-4 py-2 fw-semibold mt-5">Close</button>
-        <button class="btn btn-success me-2 px-4 py-2 fw-semibold mt-5" (click)="save()">Save</button>
-      </mat-dialog-actions>
+    }
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="close()" class="btn btn-dark me-2 px-4 py-2 fw-semibold mt-5">Close</button>
+    <button class="btn btn-success me-2 px-4 py-2 fw-semibold mt-5" (click)="save()">Save</button>
+  </mat-dialog-actions>

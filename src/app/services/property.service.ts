@@ -43,9 +43,7 @@ export class PropertyService {
 				map((result: any) => {
 					if (result && result.data && result.data.length > 0) {
 						return result.data.map((property: any) => {
-							debugger;
 							return {
-								
 								_id: property._id,
 								// BuildingName: property.BuildingName,
 								BathroomsTotalInteger: property.BathroomsTotalInteger,
@@ -53,7 +51,7 @@ export class PropertyService {
 								BrokerFaxNumber: property.BrokerFaxNumber,
 								BusinessName: property.BusinessName,
 								City: property.City,
-								 CityRegion: property.CityRegion,
+								CityRegion: property.CityRegion,
 								// Country: property.Country,
 								// CountyOrParish: property.CountyOrParish,
 								CrossStreet: property.CrossStreet,
@@ -63,32 +61,32 @@ export class PropertyService {
 								ListPriceUnit: property.ListPriceUnit,
 								Longitude: property.Longitude,
 								Directions: property.Directions,
-								WaterYN:property.WwaterYN,
-								HeatType : property.HeatType,
-								GarageType : property.GarageType,
-								GarageYN :property.GarageYN,
-								DaysOnMarket : property.DaysOnMarket,
-								ArchitecturalStyle : property.ArchitecturalStyle,
+								WaterYN: property.WwaterYN,
+								HeatType: property.HeatType,
+								GarageType: property.GarageType,
+								GarageYN: property.GarageYN,
+								DaysOnMarket: property.DaysOnMarket,
+								ArchitecturalStyle: property.ArchitecturalStyle,
 								HeatSource: property.HeatSource,
 								LotSizeDimensions: property.LotSizeDimensions,
 								OriginalListPrice: property.OriginalListPrice,
-								 
+
 								PropertySubType: property.PropertySubType,
 								PropertyType: property.PropertyType,
 								// PropertyUse: property.PropertyUse,
 								PublicRemarks: property.PublicRemarks,
 								PublicRemarksExtra: property.PublicRemarksExtra,
-								TaxLegalDescription : property.TaxLegalDescription,
+								TaxLegalDescription: property.TaxLegalDescription,
 								// StreetName: property.StreetName,
 								// StreetNumber: property.StreetNumber,
 								BuildingAreaTotal: property.BuildingAreaTotal,
-								
+
 								Town: property.Town,
 								TransactionType: property.TransactionType,
 								UnitNumber: property.UnitNumber,
 								UnparsedAddress: property.UnparsedAddress,
 								Media: property.Media,
-								 
+
 								BuildingAreaUnits: property.BuildingAreaUnits,
 								TotalRecords: result.total,
 								ListOfficeName: property.ListOfficeName,
@@ -107,10 +105,8 @@ export class PropertyService {
 	}
 
 	getPropertyDetails(propertId: any, mlsId: any): Observable<PropertyModel> {
-		const officesName = "";
 		return this.http.get<PropertyModel>(`${environment.propertyApiUrl}/propertyinformation?id=${propertId}&mlsId=${mlsId}`).pipe(
 			map((result: any) => {
-				debugger ;
 				if (result && result.data) {
 					const property = result.data;
 					const propertyModel: PropertyModel = {
@@ -124,11 +120,11 @@ export class PropertyService {
 						// CityRegion: property.CityRegion,
 						// Country: property.Country,
 						// CountyOrParish: property.CountyOrParish,
-						PropertyType : property.PropertyType,
-						PropertySubType : property.PropertySubType,
-						 CrossStreet: property.CrossStreet,
-						 HeatSource: property.HeatSource,
-						 HeatType: property.HeatType,
+						PropertyType: property.PropertyType,
+						PropertySubType: property.PropertySubType,
+						CrossStreet: property.CrossStreet,
+						HeatSource: property.HeatSource,
+						HeatType: property.HeatType,
 						RentalItems: property.RentalItems,
 						SewerYNA: property.SewerYNA,
 						Exclusions: property.Exclusions,
@@ -152,9 +148,9 @@ export class PropertyService {
 						Longitude: property.Longitude,
 						// LotSizeDimensions: property.LotSizeDimensions,
 						// OriginalListPrice: property.OriginalListPrice,
-						 
+
 						PublicRemarksExtra: property.PublicRemarksExtra,
-						 
+
 						PropertyUse: property.PropertyUse,
 						PublicRemarks: property.PublicRemarks,
 						// StreetName: property.StreetName,
@@ -169,10 +165,10 @@ export class PropertyService {
 						BuildingAreaUnits: property.BuildingAreaUnits,
 						TotalRecords: result.total,
 						ListOfficeName: property.ListOfficeName,
-						 
+
 						ListingContractDate: property.ListingContractDate,
 						PurchaseContractDate: property.PurchaseContractDate,
-						
+
 						IsFeatureListing: false,
 						ModificationTimestamp: property.ModificationTimestamp,
 					};

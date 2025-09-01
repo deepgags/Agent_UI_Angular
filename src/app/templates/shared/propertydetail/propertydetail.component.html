@@ -36,23 +36,23 @@
 						 alt="No property image to display" />
 				</div>
 
-				  <div class="row card-body">
-					 
-					<div class="col-lg-6 justify-content-around d-flex">
-						 
-						<h6 class="">{{ property.UnparsedAddress }}</h6>
-						<a href="property.VirtualTourURLUnbranded"> Virual Tour </a>
+				<div class="row card-body">
+					<div class="col-lg-12 justify-content-between align-items-center d-flex">
+						<h6 class="p-0 m-0">{{ property.UnparsedAddress }}</h6>
+						@if(property.VirtualTourURLUnbranded){
+						<a [href]="property.VirtualTourURLUnbranded"> Virtual Tour </a>
+						}
 					</div>
-					 
-				</div>  
+
+				</div>
 
 				<div class="container my-4">
 					<div class="d-flex border bg-white text-center rounded">
 
 						<!-- Price -->
-						<div class="flex-fill p-3 fw-bold fs-5 text-start border-end">
-							<i class="bi bi-house-fill d-block mb-1 text-success fs-5"></i>
-							 {{ property.ListPrice | currency:'USD' }} {{property.ListPriceUnit}}
+						<div class="flex-fill p-3 border-end">
+							<i class="bi bi-currency-dollar d-block mb-1 text-success fs-5"></i>
+							{{ property.ListPrice | currency:'USD' }} {{property.ListPriceUnit}}
 						</div>
 
 						<!-- Beds -->
@@ -152,9 +152,9 @@
 								 role="tabpanel"
 								 aria-labelledby="pills-home-tab"
 								 tabindex="0">
-								 <p>{{ property.PublicRemarks}}</p>
-								 <p>{{ property.PublicRemarksExtra}}</p>
-								 <p>{{ property.TaxLegalDescription}}</p>
+								<p>{{ property.PublicRemarks}}</p>
+								<p>{{ property.PublicRemarksExtra}}</p>
+								<p>{{ property.TaxLegalDescription}}</p>
 
 								<!-- <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
                     <div class="col">
@@ -190,8 +190,8 @@
                       </div>
                     </div>
                   </div> -->
-<div class="row mt-3">
-	
+								<div class="row mt-3">
+
 
 									<div class="col-12 col-lg-6">
 										<ul class="list-group">
@@ -203,19 +203,19 @@
 											<li class="list-group-item">Heat Source: {{ property.HeatSource}}</li>
 											<li class="list-group-item">Basement: {{ property.Basement}}</li>
 											<li class="list-group-item">Occupant Type: {{ property.OccupantType}}</li>
-											
+
 										</ul>
 									</div>
 									<div class="col-12 col-lg-6 mt-lg-0 mt-4">
 										<ul class="list-group">
-											<li class="list-group-item">Days on Market:  {{ property.DaysOnMarket }}</li>
+											<li class="list-group-item">Days on Market: {{ property.DaysOnMarket }}</li>
 											<li class="list-group-item">Type: {{ property.PropertySubType }}</li>
-											<li class="list-group-item">Sewer:{{ property.SewerYNA}}</li>
-											<li class="list-group-item">Water: {{ property.Water }}</li>
-											<li class="list-group-item">Garage:{{ property.GarageYN }}</li>
+											<li class="list-group-item">Sewer: {{ property.SewerYNA == null ? 'N/A' : property.SewerYNA}}</li>
+											<li class="list-group-item">Water: {{ property.Water == null ? 'N/A' : property.Water }}</li>
+											<li class="list-group-item">Garage: {{ (property.GarageYN == null ? "N/A" : property.GarageYN) }}</li>
 											<li class="list-group-item">Garage Type: {{ property.GarageType }}</li>
-											<li class="list-group-item">Telephone : {{ property.TelephoneYNA}}</li>
-											<li class="list-group-item">Exclusions:{{ property.Exclusions}}</li>
+											<li class="list-group-item">Telephone: {{ (property.TelephoneYNA == null ? "N/A" : property.TelephoneYNA )}}</li>
+											<li class="list-group-item">Exclusions: {{ property.Exclusions == null ? 'N/A' : property.Exclusions}}</li>
 										</ul>
 									</div>
 								</div>
@@ -232,7 +232,7 @@
 												</div>
 												<div class="d-flex justify-content-between py-2 border-bottom">
 													<span class="fw-bold">Directions :</span>
-													<span>{{ property.Directions }}</span>
+													<span>{{ property.Directions == null ? 'N/A' : property.Directions }}</span>
 												</div>
 												<div class="d-flex justify-content-between py-2 border-bottom">
 													<span class="fw-bold">List Contract Date: </span>
@@ -260,14 +260,12 @@
 												</div>
 												<div class="d-flex justify-content-between py-2">
 													<span class="fw-bold">Rent Includes: </span>
-													<span>{{ property.RentIncludes }}</span>
+													<span>{{ property.RentIncludes?.toString() }}</span>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
-								
 							</div>
 							<div class="tab-pane fade"
 								 id="pills-profile"
@@ -347,9 +345,14 @@
 						<div class="row mt-lg-5 mt-3 align-items-center">
 							<div class="col">
 								<p-accordion value="0"
-											 [multiple]="true"
-											 [activeIndex]="[1,2]">
+											 [multiple]="true">
 									<p-accordion-panel value="0">
+										<p-accordion-header class="bg-white text-black">Walk Score</p-accordion-header>
+										<p-accordion-content>
+											<div id='ws-walkscore-tile'></div>
+										</p-accordion-content>
+									</p-accordion-panel>
+									<p-accordion-panel value="1">
 										<p-accordion-header class="bg-white text-black">Amenities</p-accordion-header>
 										<p-accordion-content>
 											<ul class="nav nav-pills mb-3"
@@ -427,13 +430,6 @@
 													 aria-labelledby="tab-disabled"
 													 tabindex="0">CONTENT HERE</div>
 											</div>
-										</p-accordion-content>
-									</p-accordion-panel>
-
-									<p-accordion-panel value="1">
-										<p-accordion-header class="bg-white text-black">Walk Score</p-accordion-header>
-										<p-accordion-content>
-											<div id='ws-walkscore-tile'></div>
 										</p-accordion-content>
 									</p-accordion-panel>
 								</p-accordion>
@@ -554,12 +550,11 @@
 										</div>
 										<div class="mb-3">
 											<p-iftalabel>
-												<textarea pInputTextarea
+												<textarea pTextarea
 														  formControlName="message"
-														  class="form-control"
+														  class="form-control p-inputtext"
 														  rows="4"
-														  id="requestShowingMessage"
-														   ></textarea>
+														  id="requestShowingMessage"></textarea>
 												<label for="requestShowingMessage">Leave a comment</label>
 												<span class="error"
 													  *ngIf="requestShowingMessage?.invalid && (requestShowingMessage?.dirty || requestShowingMessage?.touched)">
@@ -573,12 +568,12 @@
 											<input type="radio"
 												   class="btn-check radio_btn"
 												   formControlName="userType"
-												   [id]="type.value"
+												   [id]="'requestShowingUserType'+type.value"
 												   [value]="type.value"
 												   required
 												   (change)="getLeadTypesForForms('requestShowingForm')">
 											<label class="btn  rounded-pill"
-												   [for]="type.value">{{type.title}}</label>
+												   [for]="'requestShowingUserType'+type.value">{{type.title}}</label>
 											}
 										</div>
 										<div class="mb-3">
@@ -660,12 +655,11 @@
 										</div>
 										<div class="mb-3">
 											<p-iftalabel>
-												<textarea pInputTextarea
+												<textarea pTextarea
 														  formControlName="message"
-														  class="form-control"
+														  class="form-control p-inputtext"
 														  rows="4"
-														  id="propertyHistoryMessage"
-														 ></textarea>
+														  id="propertyHistoryMessage"></textarea>
 												<label for="propertyHistoryMessage">Leave a comment</label>
 												<span class="error"
 													  *ngIf="propertyHistoryMessage?.invalid && (propertyHistoryMessage?.dirty || propertyHistoryMessage?.touched)">
@@ -679,12 +673,12 @@
 											<input type="radio"
 												   class="btn-check radio_btn"
 												   formControlName="userType"
-												   [id]="type.value"
+												   [id]="'propertyHistoryUserType'+type.value"
 												   [value]="type.value"
 												   required
 												   (change)="getLeadTypesForForms('propertyHistoryForm')">
 											<label class="btn  rounded-pill"
-												   [for]="type.value">{{type.title}}</label>
+												   [for]="'propertyHistoryUserType'+type.value">{{type.title}}</label>
 											}
 										</div>
 										<div class="mb-3">
@@ -771,9 +765,9 @@
 										</div>
 										<div class="mb-3">
 											<p-iftalabel>
-												<textarea pInputTextarea
+												<textarea pTextarea
 														  formControlName="message"
-														  class="form-control"
+														  class="form-control p-inputtext"
 														  rows="4"
 														  id="recentSaleMessage"></textarea>
 												<label for="recentSaleMessage">Leave a comment</label>
@@ -789,12 +783,12 @@
 											<input type="radio"
 												   class="btn-check radio_btn"
 												   formControlName="userType"
-												   [id]="type.value"
+												   [id]="'recentSaleInAreaUserType'+type.value"
 												   [value]="type.value"
 												   required
 												   (change)="getLeadTypesForForms('recentSaleInAreaForm')">
 											<label class="btn  rounded-pill"
-												   [for]="type.value">{{type.title}}</label>
+												   [for]="'recentSaleInAreaUserType'+type.value">{{type.title}}</label>
 											}
 										</div>
 										<div class="mb-3">
@@ -877,12 +871,11 @@
 										</div>
 										<div class="mb-3">
 											<p-iftalabel>
-												<textarea pInputTextarea
+												<textarea pTextarea
 														  formControlName="message"
-														  class="form-control"
+														  class="form-control p-inputtext"
 														  rows="4"
-														  id="haveQuestionMessage"
-														  ></textarea>
+														  id="haveQuestionMessage"></textarea>
 												<label for="haveQuestionMessage">Leave a comment</label>
 												<span class="error"
 													  *ngIf="haveQuestionMessage?.invalid && (haveQuestionMessage?.dirty || haveQuestionMessage?.touched)">
@@ -896,12 +889,12 @@
 											<input type="radio"
 												   class="btn-check radio_btn"
 												   formControlName="userType"
-												   [id]="type.value"
+												   [id]="'haveQuestionUserType'+type.value"
 												   [value]="type.value"
 												   required
 												   (change)="getLeadTypesForForms('haveQuestionForm')">
 											<label class="btn  rounded-pill"
-												   [for]="type.value">{{type.title}}</label>
+												   [for]="'haveQuestionUserType'+type.value">{{type.title}}</label>
 											}
 										</div>
 										<div class="mb-3">
@@ -933,72 +926,9 @@
 						<div class="row mt-lg-5 mt-3">
 							<h5 class="">Similar Properties</h5>
 							@for (property of similarProperties; track $index) {
-							<div class="col-12 col-lg-6"
-								 (click)="openSimilarPropertyDetails(property)">
-								<div class="card shadow-sm">
-
-									<!-- Image with Badge -->
-									<div class="position-relative">
-										@if(property && property.Media && property.Media.length>0){
-										<!-- <img [src]="imageUrl + property.Media[0].Media_url"
-																		 class="card-img-top"
-																		 alt="No property image to display"
-																		 onerror="this.src = '/images/commercial_no_Image.jpg'" /> -->
-										<p-carousel [value]="property.Media"
-													[numVisible]="1"
-													[numScroll]="1"
-													[circular]="false"
-													showIndicators="false"
-													(click)="$event.stopPropagation()">
-											<ng-template let-media
-														 #item>
-												<img [src]="imageUrl + media.Media_url"
-													 class="card-img-top"
-													 alt="No property image to display"
-													 onerror="this.src = '/images/commercial_no_Image.jpg'" />
-											</ng-template>
-										</p-carousel>
-										} @else {
-										<img src="/images/commercial_no_Image.jpg"
-											 class="card-img-top"
-											 alt="No property image to display" />
-										}
-										<!-- <span class="badge bg-primary position-absolute top-0 start-0 m-2">For Sale</span> -->
-									</div>
-
-									<!-- Card Body -->
-									<div class="card-body">
-										<div class="d-flex justify-content-between">
-											<h4 class="fw-bold mb-0">
-												{{property.ListPrice | currency:'USD'}}
-												<span>{{property.ListPriceUnit}}</span>
-											</h4>
-											<span class="text-muted">{{property.PropertySubType}}</span>
-										</div>
-
-										<p class="mt-2 mb-1">
-											<i class="bi bi-geo-alt-fill text-primary"></i>
-											{{property.UnparsedAddress}}
-										</p>
-
-										<p class="mb-1">
-											<span class="fw-bold text-primary"
-												  *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
-												Bed · {{property.BedroomsTotal}}</span> &nbsp;
-											<span class="fw-bold text-primary"
-												  *ngIf="property.BathroomsTotalInteger && property.BathroomsTotalInteger > 0">Bath · {{property.BathroomsTotalInteger}}</span>
-										</p>
-
-										<p class="mb-1">
-											<span class="text-primary fw-bold">MLS® {{property.ListingKey}}</span>
-										</p>
-
-										<div class="d-flex justify-content-between">
-											<span class="fw-bold text-primary">{{property.ListOfficeName}}</span>
-											<small class="text-muted"> {{property.ModificationTimestamp | timeAgo}}</small>
-										</div>
-									</div>
-								</div>
+							<div class="col-6">
+								<app-property [property]="property"
+											  [onPropertyClick]="openSimilarPropertyDetails" />
 							</div>
 							}
 						</div>
@@ -1074,12 +1004,11 @@
 									<div class="mb-3">
 										<label for="contactMessage"
 											   class="form-label">Leave a comment</label>
-										<textarea pInputTextarea
+										<textarea pTextarea
 												  formControlName="message"
-												  class="form-control"
+												  class="form-control p-inputtext"
 												  rows="4"
-												  id="contactMessage"
-												  ></textarea>
+												  id="contactMessage"></textarea>
 										<span class="error"
 											  *ngIf="contactMessage?.invalid && (contactMessage?.dirty || contactMessage?.touched)">
 											<span *ngIf="contactMessage?.errors?.['required']">Comment is required</span>
@@ -1091,12 +1020,12 @@
 										<input type="radio"
 											   class="btn-check radio_btn"
 											   formControlName="userType"
-											   [id]="type.value"
+											   [id]="'contactUserType'+type.value"
 											   [value]="type.value"
 											   required
 											   (change)="getLeadTypesForForms('contactForm')">
 										<label class="btn  rounded-pill"
-											   [for]="type.value">{{type.title}}</label>
+											   [for]="'contactUserType'+type.value">{{type.title}}</label>
 										}
 									</div>
 									<div class="mb-3">
@@ -1181,47 +1110,7 @@
 								</div>
 							</div>
 						</div>
-						<div id="map"
-							 class="">
-							<google-map [center]="{ lat: property.Latitude, lng: property.Longitude }"
-										[zoom]="zoom"
-										style="width: 100%; height: 100%">
-								<map-marker id="mapMarkerSmall"
-											#mapMarkerSmall="mapMarker"
-											[position]="{ lat: property.Latitude, lng: property.Longitude }"
-											[label]="property.ListOfficeName"></map-marker>
 
-								<map-info-window #mapMarkerSmall>
-									<div>
-										<h5>{{ property.ListingKey }}</h5>
-										<p>
-											<b>Address:</b>
-											{{ property.UnparsedAddress }}
-										</p>
-										<p>
-											<b>Cross Street:</b>
-											{{ property.CrossStreet }}
-										</p>
-										<p>
-											<b>City:</b>
-											{{ property.City }}
-										</p>
-										<p>
-											<b>Price:</b>
-											${{ property.ListPrice }}
-										</p>
-										<p>
-											<b>Property Type:</b>
-											{{ property.PropertySubType }}
-										</p>
-										<p>
-											<b>Property Use:</b>
-											{{ property.TransactionType }}
-										</p>
-									</div>
-								</map-info-window>
-							</google-map>
-						</div>
 					</div>
 				</div>
 

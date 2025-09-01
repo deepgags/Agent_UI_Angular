@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, inject, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
@@ -13,7 +13,7 @@ import { NotificationService } from "../../../services/notification.service";
 
 @Component({
 	selector: "app-templatesite",
-	imports: [CommonModule, FormsModule, MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule],
+	imports: [FormsModule, MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule],
 	templateUrl: "./templatesite.component.html",
 	styleUrl: "./templatesite.component.scss",
 })

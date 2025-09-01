@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
@@ -20,17 +20,16 @@ import { SearchService } from "../../../services/search.service";
 	selector: "app-t15-home",
 	standalone: true,
 	imports: [
-		RouterModule,
-		SearchComponent,
-		FeaturedPropertiesComponent,
-		CommonModule,
-		NgbModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MatDialogModule,
-		MatFormFieldModule,
-		MatInputModule,
-	],
+    RouterModule,
+    SearchComponent,
+    FeaturedPropertiesComponent,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
+],
 	templateUrl: "./t15-home.component.html",
 	styleUrls: ["./t15-home.component.scss", "../t15.component.scss"],
 	providers: [Title, StorageService],

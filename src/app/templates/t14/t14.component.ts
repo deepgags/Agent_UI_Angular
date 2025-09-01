@@ -1,4 +1,4 @@
- import { CommonModule } from '@angular/common';
+ 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { T14FooterComponent } from './t14-footer/t14-footer.component';
 @Component({
 	selector: 'app-t14',
 	standalone: true,
-	imports: [T14HeaderComponent, T14FooterComponent, RouterModule, CommonModule], // Added CommonModule
+	imports: [T14HeaderComponent, T14FooterComponent, RouterModule], // Added CommonModule
 	templateUrl: './t14.component.html',
 	styleUrl: './t14.component.scss'
 })

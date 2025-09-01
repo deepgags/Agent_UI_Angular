@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component } from "@angular/core";
 
 import { ImageCroppedEvent, ImageCropperComponent, OutputFormat } from "ngx-image-cropper";
@@ -9,7 +9,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 	templateUrl: "./image-dialog.component.html",
 	styleUrls: ["./image-dialog.component.scss"],
 	standalone: true,
-	imports: [CommonModule, ImageCropperComponent],
+	imports: [ImageCropperComponent],
 })
 export class ImageDialogComponent {
 	imageChangedEvent: any;

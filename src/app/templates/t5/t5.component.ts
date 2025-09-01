@@ -1,4 +1,4 @@
- import { CommonModule } from '@angular/common';
+ 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { SiteConfig } from '../../models/SiteConfig';
 @Component({
 	selector: 'app-t5',
 	standalone: true,
-	imports: [T5HeaderComponent, T5FooterComponent, RouterModule, CommonModule], // Added CommonModule
+	imports: [T5HeaderComponent, T5FooterComponent, RouterModule], // Added CommonModule
 	templateUrl: './t5.component.html',
 	styleUrl: './t5.component.scss'
 })

@@ -1,4 +1,4 @@
- import { CommonModule } from '@angular/common';
+ 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { t17HeaderComponent } from './t17-header/t17-header.component';
 @Component({
 	selector: 'app-t17',
 	standalone: true,
-	imports: [t17FooterComponent, t17HeaderComponent, RouterModule, CommonModule], // Added CommonModule
+	imports: [t17FooterComponent, t17HeaderComponent, RouterModule], // Added CommonModule
 	templateUrl: './t17.component.html',
 	styleUrl: './t17.component.scss'
 })

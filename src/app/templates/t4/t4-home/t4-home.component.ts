@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
@@ -20,17 +20,16 @@ import { SiteConfigService } from "../../../services/site-config.service";
 	selector: "app-t4-home",
 	standalone: true,
 	imports: [
-		RouterModule,
-		SearchComponent,
-		FeaturedPropertiesComponent,
-		CommonModule,
-		NgbModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MatDialogModule,
-		MatFormFieldModule,
-		MatInputModule,
-	],
+    RouterModule,
+    SearchComponent,
+    FeaturedPropertiesComponent,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
+],
 	templateUrl: "./t4-home.component.html",
 	styleUrls: ["./t4-home.component.scss", "../t4.component.scss"],
 	providers: [Title, StorageService],

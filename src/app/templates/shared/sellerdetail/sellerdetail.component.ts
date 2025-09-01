@@ -1,11 +1,11 @@
-import { CommonModule } from "@angular/common";
+
 import { Component } from "@angular/core";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SiteConfigService } from "../../../services/site-config.service";
 
 @Component({
 	selector: "app-sellerdetail",
-	imports: [CommonModule],
+	imports: [],
 	templateUrl: "./sellerdetail.component.html",
 	styleUrl: "./sellerdetail.component.scss",
 })

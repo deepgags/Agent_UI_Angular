@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -8,7 +8,7 @@ import { PhoneSearch } from '../../../pipes/phoneSearch';
 
 @Component({
 	selector: 'app-t5-footer',
-	imports: [CommonModule, PhoneSearch, AngularSvgIconModule, RouterModule],
+	imports: [PhoneSearch, AngularSvgIconModule, RouterModule],
 	templateUrl: './t5-footer.component.html',
 	styleUrls: ['./t5-footer.component.scss', '../t5.component.scss'],
 })

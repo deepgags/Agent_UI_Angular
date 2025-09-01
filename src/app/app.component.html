@@ -1,12 +1,14 @@
 <p-toast />
 <!-- Loading spinner -->
-<div class="loading-container flex-content-center" *ngIf="loadingService.isLoading$ | async">
-	<div class="spinner"></div>
-	<!-- <mat-progress-spinner
-      color="primary"
-      mode="indeterminate">
-    </mat-progress-spinner> -->
+@if (loadingService.isLoading$ | async) {
+  <div class="loading-container flex-content-center">
+    <div class="spinner"></div>
+    <!-- <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner> -->
 </div>
+}
 <router-outlet />
 <!-- <loading-indicator
-    [detectRouteTransitions]="true" /> -->
+[detectRouteTransitions]="true" /> -->

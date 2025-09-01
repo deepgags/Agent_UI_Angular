@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -12,7 +12,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 
 @Component({
 	selector: "app-contact",
-	imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, RouterModule],
+	imports: [NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, RouterModule],
 	templateUrl: "./contact.component.html",
 	styleUrl: "./contact.component.scss",
 	standalone: true,

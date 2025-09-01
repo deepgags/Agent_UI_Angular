@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Inject, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TemplateModel } from '../../models/TemplateModel';
@@ -8,7 +8,7 @@ import { GalleryComponent } from '../gallery/gallery.component';
 
 @Component({
 	selector: 'app-template-selection-dialog',
-	imports: [CommonModule, GalleryComponent],
+	imports: [GalleryComponent],
 	templateUrl: './template-selection-dialog.component.html',
 	styleUrl: './template-selection-dialog.component.scss'
 })

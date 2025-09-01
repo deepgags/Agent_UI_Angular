@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
@@ -21,18 +21,17 @@ import { PhoneSearch } from "../../../pipes/phoneSearch";
 	selector: "app-t17-home",
 	standalone: true,
 	imports: [
-		RouterModule,
-		SearchComponent,
-		FeaturedPropertiesComponent,
-		CommonModule,
-		NgbModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MatDialogModule,
-		MatFormFieldModule,
-		MatInputModule,
-		PhoneSearch,
-	],
+    RouterModule,
+    SearchComponent,
+    FeaturedPropertiesComponent,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    PhoneSearch
+],
 	templateUrl: "./t17-home.component.html",
 	styleUrls: ["./t17-home.component.scss", "../t17.component.scss"],
 	providers: [Title, StorageService],

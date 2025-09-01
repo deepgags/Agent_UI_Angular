@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+
 import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatSliderModule } from "@angular/material/slider";
@@ -19,7 +19,7 @@ import { PropertyService } from "../../../services/property.service";
 
 @Component({
 	selector: "app-search",
-	imports: [FormsModule, CommonModule, MatSliderModule],
+	imports: [FormsModule, MatSliderModule],
 	templateUrl: "./search.component.html",
 	styleUrls: ["./search.component.scss"],
 	encapsulation: ViewEncapsulation.None,

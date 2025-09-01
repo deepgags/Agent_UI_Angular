@@ -1,4 +1,4 @@
- import { CommonModule } from '@angular/common';
+ 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { T8HeaderComponent } from './t8-header/t8-header.component';
 @Component({
 	selector: 'app-t8',
 	standalone: true,
-	imports: [T8HeaderComponent, T8FooterComponent, RouterModule, CommonModule], // Added CommonModule
+	imports: [T8HeaderComponent, T8FooterComponent, RouterModule], // Added CommonModule
 	templateUrl: './t8.component.html',
 	styleUrl: './t8.component.scss'
 })

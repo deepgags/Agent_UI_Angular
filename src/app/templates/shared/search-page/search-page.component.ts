@@ -1,29 +1,25 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input, model, OnInit, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { CarouselModule } from "primeng/carousel";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
 import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+import { PropertyComponent } from "../../../components/property/property.component";
 import { sortTypes } from "../../../consts/DefaultTypes";
 import { stringiFy } from "../../../consts/Utility";
-import { environment } from "../../../environments/environment.development";
 import { PropertyModel } from "../../../models/PropertyModel";
-import { RequestPropertyModel } from "../../../models/RequestPropertyModel";
-import { HighlightSearch } from "../../../Pipes/highlight";
-import { TimeAgo } from "../../../Pipes/time-ago";
 import { LoadingService } from "../../../services/loading.service";
-import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
-import { StorageService } from "../../../services/storage.service";
 import { PropertydetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
+
 @Component({
 	selector: "app-search-page",
 	imports: [
@@ -34,8 +30,7 @@ import { SearchComponent } from "../search/search.component";
 		RouterModule,
 		MatPaginatorModule,
 		MatProgressSpinnerModule,
-		CarouselModule,
-		TimeAgo,
+		PropertyComponent,
 	],
 	templateUrl: "./search-page.component.html",
 	styleUrls: ["./search-page.component.scss"],
@@ -45,7 +40,6 @@ import { SearchComponent } from "../search/search.component";
 	providers: [DialogService],
 })
 export class SearchPageComponent implements OnInit {
-	imageUrl = environment.imageUrl;
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
@@ -117,13 +111,13 @@ export class SearchPageComponent implements OnInit {
 		});
 	}
 
-	selectProperty(property: PropertyModel): void {
+	selectProperty = (property: PropertyModel): void => {
 		if (property.IsFeatureListing) {
 			this.openDialog(property);
 		} else {
 			this.redirectToDetail(property);
 		}
-	}
+	};
 
 	redirectToDetail(property: PropertyModel): void {
 		// const currentTemplate = this.router.url.split("/")[1];
@@ -191,9 +185,8 @@ export class SearchPageComponent implements OnInit {
 		this.loadingService.loadingOn();
 		this.loadingSubject.next(true);
 		this.propertyService.searchProperties(params).subscribe({
-			
 			next: (response) => {
-			debugger;	this.propertiesList = response;
+				this.propertiesList = response;
 			},
 			error: (err) => {
 				// this.notificationService.showNotification("Error occurred while getting properties");

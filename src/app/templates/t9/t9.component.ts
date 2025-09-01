@@ -1,4 +1,4 @@
- import { CommonModule } from '@angular/common';
+ 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { T9HeaderComponent } from './t9-header/t9-header.component';
 @Component({
 	selector: 'app-t9',
 	standalone: true,
-	imports: [T9HeaderComponent, T9FooterComponent, RouterModule, CommonModule], // Added CommonModule
+	imports: [T9HeaderComponent, T9FooterComponent, RouterModule], // Added CommonModule
 	templateUrl: './t9.component.html',
 	styleUrl: './t9.component.scss'
 })

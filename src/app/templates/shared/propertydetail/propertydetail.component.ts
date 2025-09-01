@@ -21,17 +21,18 @@ import { PropertyService } from "../../../services/property.service";
 import { AccordionModule } from "primeng/accordion";
 import { CarouselModule } from "primeng/carousel";
 import { DialogService, DynamicDialogConfig } from "primeng/dynamicdialog";
+import { GalleriaModule } from "primeng/galleria";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
+import { PropertyComponent } from "../../../components/property/property.component";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
-import { TimeAgo } from "../../../Pipes/time-ago";
+import { TimeAgo } from "../../../pipes/time-ago";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
 import { SiteConfigService } from "../../../services/site-config.service";
-
 declare var window: any;
 
 @Component({
@@ -57,6 +58,8 @@ declare var window: any;
 		MultiSelectModule,
 		TimeAgo,
 		CarouselModule,
+		GalleriaModule,
+		PropertyComponent,
 	],
 	providers: [provideAnimations(), NgbCarouselConfig, DialogService],
 	templateUrl: "./propertydetail.component.html",
@@ -620,12 +623,12 @@ export class PropertydetailComponent implements OnInit {
 		});
 	}
 
-	openSimilarPropertyDetails(property: PropertyModel) {
+	openSimilarPropertyDetails = (property: PropertyModel) => {
 		this.mlsId = property.ListingKey;
 		this.propertyId = property._id;
 
 		if (this.propertyId && this.mlsId) {
 			this.getPropertyInformation();
 		}
-	}
+	};
 }
