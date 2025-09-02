@@ -87,9 +87,6 @@ export class PropertydetailComponent implements OnInit {
 	zoom = 14;
 	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Canada
 
-	galleryConfig$: Observable<GalleryConfig>;
-	galleryRef: GalleryRef | undefined;
-
 	private siteConfigSubscription: Subscription | undefined;
 
 	siteConfigBS: BehaviorSubject<any>;
@@ -195,22 +192,22 @@ export class PropertydetailComponent implements OnInit {
 			leadType: new FormControl("", Validators.required),
 		});
 
-		this.galleryConfig$ = breakpointObserver.observe([Breakpoints.HandsetPortrait]).pipe(
-			map((res) => {
-				if (res.matches) {
-					return {
-						thumbPosition: ThumbnailsPosition.Top,
-						thumbWidth: 80,
-						thumbHeight: 80,
-					};
-				}
-				return {
-					thumbPosition: ThumbnailsPosition.Left,
-					thumbWidth: 120,
-					thumbHeight: 90,
-				};
-			})
-		);
+		// this.galleryConfig$ = breakpointObserver.observe([Breakpoints.HandsetPortrait]).pipe(
+		// 	map((res) => {
+		// 		if (res.matches) {
+		// 			return {
+		// 				thumbPosition: ThumbnailsPosition.Top,
+		// 				thumbWidth: 80,
+		// 				thumbHeight: 80,
+		// 			};
+		// 		}
+		// 		return {
+		// 			thumbPosition: ThumbnailsPosition.Left,
+		// 			thumbWidth: 120,
+		// 			thumbHeight: 90,
+		// 		};
+		// 	})
+		// );
 	}
 
 	get requestShowingName() {
@@ -294,7 +291,7 @@ export class PropertydetailComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.galleryRef = this.gallery.ref("propertyGallery");
+		// this.galleryRef = this.gallery.ref("propertyGallery");
 
 		// this.route.queryParams.subscribe((params) => {
 		// 	if (Object.keys(params).length > 0) {
@@ -337,16 +334,16 @@ export class PropertydetailComponent implements OnInit {
 				this.property = response;
 				this.center.lat = this.property.Latitude;
 				this.center.lng = this.property.Longitude;
-				if (this.galleryRef && this.property.Media) {
-					this.property?.Media?.forEach((x) => {
-						this.galleryRef?.add(
-							new ImageItem({
-								src: `${this.imageUrl}${x.Media_url}`,
-								thumb: `${this.imageUrl}${x.Media_url}`,
-							})
-						);
-					});
-				}
+				// if (this.galleryRef && this.property.Media) {
+				// 	this.property?.Media?.forEach((x) => {
+				// 		this.galleryRef?.add(
+				// 			new ImageItem({
+				// 				src: `${this.imageUrl}${x.Media_url}`,
+				// 				thumb: `${this.imageUrl}${x.Media_url}`,
+				// 			})
+				// 		);
+				// 	});
+				// }
 				this.getRoomDetails();
 				this.getSimilarProperties();
 				setTimeout(() => {

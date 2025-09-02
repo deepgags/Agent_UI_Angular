@@ -1,148 +1,150 @@
 .loading-container {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 5;
-  }
-
-  .broker{
-    content:url("../../../../../public/images/profile.png");
-  }
-  .nav-link{
-    color: black;
-  }
-
- .nav-link:hover {
-    color: #575757;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 5;
 }
 
-  .nav-pills .nav-link.active, .nav-pills .show > .nav-link
- {
-    background-color: #1ab02b;
+.broker {
+	content: url("../../../../../public/images/profile.png");
+}
+.nav-link {
+	color: black;
 }
 
+.nav-link:hover {
+	color: #575757;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+	background-color: #1ab02b;
+}
 
 .p-accordioncontent-content {
-    background-color: #ffffff !important; 
-
+	background-color: #ffffff !important;
 }
 
 .form-card {
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      padding: 20px;
-    }
-  #map {
-    .map-container {
-      width: 100% !important;
-      height: auto !important;
-      aspect-ratio: 16 / 9;
-      border-radius: 7px !important;
-  
-      // Optional: ensure the map doesn't exceed a certain size on larger screens
-      @media (min-width: 768px) {
-        max-width: 406px;
-        height: 214px !important;
-      }
-    }
-  }
-  
-
-  span{
-    font-size: 14px !important;
-  }
-  li{
-    font-size: 14px;
-  }
-
-  .spinner {
-    border: 8px solid rgba(0, 0, 0, 0.1);
-    border-left-color: #198754; /* Spinner color */
-    border-radius: 50%;
-    width: 100px; /* Spinner size */
-    height: 100px; /* Spinner size */
-    animation: spin 1s linear infinite; /* Spin animation */
-  }
-  
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  p{
-    font-size: 14px !important;
-  }
-
-  h2 {
-    text-align: center;
-  }
-  
-  // .carousel {
-  //   max-width: 400px;
-  //   margin: 0 auto;
-  // }
-  
-  .carousel img {
-    width: 100%;
-  }
-  .carousel .carousel-inner{
-    margin-bottom: 20px !important;
-  }
-
-  .green{
-    box-shadow: #95d8b9 0px 20px 30px -10px;
-  }
-  // .card_hover:hover {
-  //   transform: translateY(-15px);
-  // }
-
-.carousel-caption {
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  top: 21% !important;
-  padding-top: 1.25rem;
-  bottom: 20% !important;
-  padding-bottom: 1.25rem;
-  color: #fff;
-  text-align: center;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+	padding: 20px;
 }
+#map {
+	.map-container {
+		width: 100% !important;
+		height: auto !important;
+		aspect-ratio: 16 / 9;
+		border-radius: 7px !important;
 
-  .fixed-height {
-    height: 400px; /* Adjust height as needed */
-    width: 100%; 
-    border: 1px solid #ddd;
-    object-fit: cover;
-  }
-
-  .no-image-fixed-height {
-    width: 30%; 
-    border: 1px solid #ddd;
-  }
-  @media (max-width: 575.98px) {
-    li,span,p{
-      font-size: 12px !important;
-    }
-  }
-  
-  
-  .search_btn {
-		color: white;
-		background-color: #0d6efd !important;
-		border-radius: 10px;
-
-		&:hover {
-			background-color: #0c57c8 !important;
-			color: white;
+		// Optional: ensure the map doesn't exceed a certain size on larger screens
+		@media (min-width: 768px) {
+			max-width: 406px;
+			height: 214px !important;
 		}
 	}
+}
 
-    .p-accordioncontent-content {
-    color: black !important;
-} 
+span {
+	font-size: 14px !important;
+}
+li {
+	font-size: 14px;
+}
+
+.spinner {
+	border: 8px solid rgba(0, 0, 0, 0.1);
+	border-left-color: #198754; /* Spinner color */
+	border-radius: 50%;
+	width: 100px; /* Spinner size */
+	height: 100px; /* Spinner size */
+	animation: spin 1s linear infinite; /* Spin animation */
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+p {
+	font-size: 14px !important;
+}
+
+h2 {
+	text-align: center;
+}
+
+.carousel img {
+	width: 100%;
+}
+.carousel .carousel-inner {
+	margin-bottom: 20px !important;
+}
+
+.green {
+	box-shadow: #95d8b9 0px 20px 30px -10px;
+}
+
+.carousel-caption {
+	position: absolute;
+	right: 15%;
+	left: 15%;
+	top: 21% !important;
+	padding-top: 1.25rem;
+	bottom: 20% !important;
+	padding-bottom: 1.25rem;
+	color: #fff;
+	text-align: center;
+}
+
+.fixed-height {
+	height: 400px; /* Adjust height as needed */
+	width: 100%;
+	border: 1px solid #ddd;
+	object-fit: cover;
+}
+
+.no-image-fixed-height {
+	width: 30%;
+	border: 1px solid #ddd;
+}
+@media (max-width: 575.98px) {
+	li,
+	span,
+	p {
+		font-size: 12px !important;
+	}
+}
+
+.search_btn {
+	color: white;
+	background-color: #0d6efd !important;
+	border-radius: 10px;
+
+	&:hover {
+		background-color: #0c57c8 !important;
+		color: white;
+	}
+}
+
+.p-accordioncontent-content {
+	color: black !important;
+}
+
+.gallery-image {
+	width: 100%;
+	max-height: 450px;
+	object-fit: cover;
+}
+
+.thumbnail {
+	max-height: 50px;
+	width: auto;
+	object-fit: cover;
+}

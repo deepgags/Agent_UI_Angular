@@ -21,19 +21,30 @@
 			<!-- <h2 class="fw-semibold text-start mb-3">Property Information</h2> -->
 			<div class="row card p-3">
 				<div class="col-12">
-					<gallery *ngIf="property.Media && property.Media.length > 0"
-							 id="propertyGallery"
-							 counter
-							 thumbs
-							 thumbPosition="bottom"
-							 itemAutosize
-							 loadingStrategy="preload"
-							 loadingAttr="eager"></gallery>
-					<!-- <app-gallery [images]="property.Media" /> -->
-					<img class="img-fluid rounded no-image-fixed-height"
-						 *ngIf="property.Media ? property.Media.length == 0 : true"
-						 [src]="'/images/commercial_no_Image.jpg'"
+					@if(property && property.Media && property.Media.length>0){
+					<p-galleria [value]="property.Media"
+								[showItemNavigators]="true"
+								[circular]="true"
+								[numVisible]="8">
+						<ng-template #item
+									 let-media>
+							<img [src]="imageUrl + media.Media_url"
+								 alt="No property image to display"
+								 onerror="this.src = '/images/commercial_no_Image.jpg'"
+								 class="gallery-image" />
+						</ng-template>
+						<ng-template #thumbnail
+									 let-media>
+							<img [src]="imageUrl + media.Media_url"
+								 style="display: block;"
+								 class="thumbnail" />
+						</ng-template>
+					</p-galleria>
+					} @else {
+					<img src="/images/commercial_no_Image.jpg"
+						 class="card-img-top"
 						 alt="No property image to display" />
+					}
 				</div>
 
 				<div class="row card-body">
