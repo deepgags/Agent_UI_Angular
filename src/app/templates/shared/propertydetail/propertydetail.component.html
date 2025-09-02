@@ -21,30 +21,19 @@
 			<!-- <h2 class="fw-semibold text-start mb-3">Property Information</h2> -->
 			<div class="row card p-3">
 				<div class="col-12">
-					@if(property && property.Media && property.Media.length>0){
-					<p-galleria [value]="property.Media"
-								[showItemNavigators]="true"
-								[circular]="true"
-								[numVisible]="8">
-						<ng-template #item
-									 let-media>
-							<img [src]="imageUrl + media.Media_url"
-								 alt="No property image to display"
-								 onerror="this.src = '/images/commercial_no_Image.jpg'"
-								 class="gallery-image" />
-						</ng-template>
-						<ng-template #thumbnail
-									 let-media>
-							<img [src]="imageUrl + media.Media_url"
-								 style="display: block;"
-								 class="thumbnail" />
-						</ng-template>
-					</p-galleria>
-					} @else {
-					<img src="/images/commercial_no_Image.jpg"
-						 class="card-img-top"
+					<gallery *ngIf="property.Media && property.Media.length > 0"
+							 id="propertyGallery"
+							 counter
+							 thumbs
+							 thumbPosition="bottom"
+							 itemAutosize
+							 loadingStrategy="preload"
+							 loadingAttr="eager"></gallery>
+					<!-- <app-gallery [images]="property.Media" /> -->
+					<img class="img-fluid rounded no-image-fixed-height"
+						 *ngIf="property.Media ? property.Media.length == 0 : true"
+						 [src]="'/images/commercial_no_Image.jpg'"
 						 alt="No property image to display" />
-					}
 				</div>
 
 				<div class="row card-body">
@@ -62,39 +51,39 @@
 
 						<!-- Price -->
 						<div class="flex-fill p-3 border-end">
-							<i class="bi bi-currency-dollar d-block mb-1 text-success fs-5"></i>
+							<i class="bi bi-currency-dollar d-block mb-1 info fs-5"></i>
 							{{ property.ListPrice | currency:'USD' }} {{property.ListPriceUnit}}
 						</div>
 
 						<!-- Beds -->
 						<div class="flex-fill p-3 border-end">
-							<i class="bi bi-house-fill d-block mb-1 text-success fs-5"></i>
+							<i class="bi bi-house-fill d-block mb-1 info fs-5"></i>
 							{{ property.BedroomsTotal }}
 							<span class="fw-semibold">Bedrooms</span>
 						</div>
 
 						<!-- Baths -->
 						<div class="flex-fill p-3 border-end">
-							<i class="bi bi-droplet-half d-block mb-1 text-success fs-5"></i>
+							<i class="bi bi-droplet-half d-block mb-1 info fs-5"></i>
 							{{ property.BathroomsTotalInteger }}
 							<span class="fw-semibold">Bathroom</span>
 						</div>
 
 						<!-- Area -->
 						<div class="flex-fill p-3 border-end">
-							<i class="bi bi-border-width d-block mb-1 text-success fs-5"></i>
+							<i class="bi bi-border-width d-block mb-1 info fs-5"></i>
 							<!-- {{ property.BuildingAreaTotal }} {{ property.BuildingAreaUnits }} -->
 							{{property.ListingKey}}
 						</div>
 
 						<!-- Posted Time -->
 						<div class="flex-fill p-3 border-end">
-							<i class="bi bi-calendar3 d-block mb-1 text-success fs-5"></i>
+							<i class="bi bi-calendar3 d-block mb-1 info fs-5"></i>
 							<span class="fw-semibold">{{property.ModificationTimestamp| timeAgo}}</span>
 
 						</div>
 						<div class="flex-fill p-3">
-							<i class="bi bi-calendar3 d-block mb-1 text-success fs-5"></i>
+							<i class="bi bi-archive-fill d-block mb-1 info fs-5"></i>
 							<span class="fw-bold">{{property.MlsStatus}}</span>
 
 						</div>
@@ -206,54 +195,54 @@
 
 									<div class="col-12 col-lg-6">
 										<ul class="list-group">
-											<li class="list-group-item">Bedrooms: {{ property.BedroomsTotal }}</li>
-											<li class="list-group-item">Bathrooms: {{ property.BathroomsTotalInteger }}</li>
-											<li class="list-group-item">Style: {{ property.ArchitecturalStyle?.toString() }}</li>
-											<li class="list-group-item">Building Area: {{ property.BuildingAreaTotal }}</li>
-											<li class="list-group-item">Heat Type: {{ property.HeatType}}</li>
-											<li class="list-group-item">Heat Source: {{ property.HeatSource}}</li>
-											<li class="list-group-item">Basement: {{ property.Basement}}</li>
-											<li class="list-group-item">Occupant Type: {{ property.OccupantType}}</li>
+											<li class="list-group-item">Bedrooms: <span class="fw-semibold">{{ property.BedroomsTotal }}</span> </li>
+											<li class="list-group-item">Bathrooms: <span class="fw-semibold"> {{ property.BathroomsTotalInteger }}</span></li>
+											<li class="list-group-item">Style: <span class="fw-semibold"> {{ property.ArchitecturalStyle?.toString() }}</span></li>
+											<li class="list-group-item">Building Area: <span class="fw-semibold"> {{ property.BuildingAreaTotal }}</span></li>
+											<li class="list-group-item">Heat Type: <span class="fw-semibold">{{ property.HeatType}}</span> </li>
+											<li class="list-group-item">Heat Source: <span class="fw-semibold">{{ property.HeatSource}}</span> </li>
+											<li class="list-group-item">Basement: <span class="fw-semibold">{{ property.Basement}}</span> </li>
+											<li class="list-group-item">Occupant Type: <span class="fw-semibold">{{ property.OccupantType}}</span> </li>
 
 										</ul>
 									</div>
 									<div class="col-12 col-lg-6 mt-lg-0 mt-4">
 										<ul class="list-group">
-											<li class="list-group-item">Days on Market: {{ property.DaysOnMarket }}</li>
-											<li class="list-group-item">Type: {{ property.PropertySubType }}</li>
-											<li class="list-group-item">Sewer: {{ property.SewerYNA == null ? 'N/A' : property.SewerYNA}}</li>
-											<li class="list-group-item">Water: {{ property.Water == null ? 'N/A' : property.Water }}</li>
-											<li class="list-group-item">Garage: {{ (property.GarageYN == null ? "N/A" : property.GarageYN) }}</li>
-											<li class="list-group-item">Garage Type: {{ property.GarageType }}</li>
-											<li class="list-group-item">Telephone: {{ (property.TelephoneYNA == null ? "N/A" : property.TelephoneYNA )}}</li>
-											<li class="list-group-item">Exclusions: {{ property.Exclusions == null ? 'N/A' : property.Exclusions}}</li>
+											<li class="list-group-item">Days on Market: <span class="fw-semibold"> {{ property.DaysOnMarket }}</span></li>
+											<li class="list-group-item">Type: <span class="fw-semibold"> {{ property.PropertySubType }}</span></li>
+											<li class="list-group-item">Sewer: <span class="fw-semibold"> {{ property.SewerYNA == null ? 'N/A' : property.SewerYNA}}</span></li>
+											<li class="list-group-item">Water: <span class="fw-semibold"> {{ property.Water == null ? 'N/A' : property.Water }}</span></li>
+											<li class="list-group-item">Garage: <span class="fw-semibold"> {{ (property.GarageYN == null ? "N/A" : property.GarageYN) }}</span></li>
+											<li class="list-group-item">Garage Type: <span class="fw-semibold"> {{ property.GarageType }}</span></li>
+											<li class="list-group-item">Telephone: <span class="fw-semibold"> {{ (property.TelephoneYNA == null ? "N/A" : property.TelephoneYNA )}}</span></li>
+											<li class="list-group-item">Exclusions: <span class="fw-semibold"> {{ property.Exclusions == null ? 'N/A' : property.Exclusions}}</span></li>
 										</ul>
 									</div>
 								</div>
 								<div class="row mt-5">
 									<div class="col">
-										<div class="card shadow-sm border-0 rounded-4">
+										<div class="card shadow border rounded-3">
 											<div class="card-header head-bg  rounded-top-4">
 												<h5 class="">Property Details</h5>
 											</div>
 											<div class="card-body">
 												<div class="d-flex justify-content-between py-2 border-bottom">
-													<span class="fw-bold">Cross Street: </span>
-													<span>{{ property.CrossStreet }}</span>
+													<span >Cross Street: </span>
+													<span class="fw-bold">{{ property.CrossStreet }}</span>
 												</div>
 												<div class="d-flex justify-content-between py-2 border-bottom">
-													<span class="fw-bold">Directions :</span>
-													<span>{{ property.Directions == null ? 'N/A' : property.Directions }}</span>
+													<span >Directions :</span>
+													<span class="fw-bold">{{ property.Directions == null ? 'N/A' : property.Directions }}</span>
 												</div>
 												<div class="d-flex justify-content-between py-2 border-bottom">
-													<span class="fw-bold">List Contract Date: </span>
-													<span>
+													<span >List Contract Date: </span>
+													<span class="fw-bold">
 														{{ property.ListingContractDate ? (property.ListingContractDate | date) : "No Date" }}
 													</span>
 												</div>
 												<div class="d-flex justify-content-between py-2 border-bottom">
-													<span class="fw-bold">Purchase Contract Date: </span>
-													<span>
+													<span >Purchase Contract Date: </span>
+													<span class="fw-bold">
 														{{
 														property.PurchaseContractDate
 															? (property.PurchaseContractDate | date)
@@ -262,16 +251,16 @@
 													</span>
 												</div>
 												<div class="d-flex justify-content-between py-2">
-													<span class="fw-bold">List Office Name: </span>
-													<span>{{ property.ListOfficeName }}</span>
+													<span >List Office Name: </span>
+													<span class="fw-bold">{{ property.ListOfficeName }}</span>
 												</div>
 												<div class="d-flex justify-content-between py-2">
-													<span class="fw-bold">Listing: </span>
-													<span>{{ property.ListAOR }}</span>
+													<span >Listing: </span>
+													<span class="fw-bold">{{ property.ListAOR }}</span>
 												</div>
 												<div class="d-flex justify-content-between py-2">
-													<span class="fw-bold">Rent Includes: </span>
-													<span>{{ property.RentIncludes?.toString() }}</span>
+													<span >Rent Includes: </span>
+													<span class="fw-bold">{{ property.RentIncludes?.toString() }}</span>
 												</div>
 											</div>
 										</div>
@@ -327,7 +316,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row mt-4">
+						<div class="row mt-4 shadow border p-3 rounded-3">
 							<div class="col">
 								<div class="table-responsive ">
 									<table class="table table-bordered">
@@ -353,7 +342,7 @@
 						</div>
 
 
-						<div class="row mt-lg-5 mt-3 align-items-center">
+						<div class="row mt-lg-5 mt-3 align-items-center ">
 							<div class="col">
 								<p-accordion value="0"
 											 [multiple]="true">
@@ -447,7 +436,7 @@
 							</div>
 						</div>
 
-						<div class="row mt-lg-5 mt-3 ">
+						<div class="row mt-lg-5 mt-3 shadow border rounded-3 p-3">
 							<ul class="nav nav-pills mb-3 "
 								id="score-tabs"
 								role="tablist">
@@ -934,10 +923,10 @@
 						</div>
 
 						@if (similarProperties && similarProperties.length > 0) {
-						<div class="row mt-lg-5 mt-3">
-							<h5 class="">Similar Properties</h5>
+						<div class="row mt-lg-5 py-3 shadow">
+							<h5 class="pb-2">Similar Properties</h5>
 							@for (property of similarProperties; track $index) {
-							<div class="col-6">
+							<div class="col-6 ">
 								<app-property [property]="property"
 											  [onPropertyClick]="openSimilarPropertyDetails" />
 							</div>

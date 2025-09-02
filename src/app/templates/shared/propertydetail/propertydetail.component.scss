@@ -1,3 +1,7 @@
+:root {
+	--primary-color: #00c1cf;
+}
+
 .loading-container {
 	position: fixed;
 	height: 100%;
@@ -24,7 +28,7 @@
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-	background-color: #1ab02b;
+	background-color: var(--primary-color);
 }
 
 .p-accordioncontent-content {
@@ -120,6 +124,10 @@ h2 {
 	p {
 		font-size: 12px !important;
 	}
+}
+
+.info{
+  color: var(--primary-color);
 }
 
 .search_btn {
