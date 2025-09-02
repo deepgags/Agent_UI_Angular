@@ -213,9 +213,12 @@
 											<li class="list-group-item">Sewer: <span class="fw-semibold"> {{ property.SewerYNA == null ? 'N/A' : property.SewerYNA}}</span></li>
 											<li class="list-group-item">Water: <span class="fw-semibold"> {{ property.Water == null ? 'N/A' : property.Water }}</span></li>
 											<li class="list-group-item">Garage: <span class="fw-semibold"> {{ (property.GarageYN == null ? "N/A" : property.GarageYN) }}</span></li>
-											<li class="list-group-item">Garage Type: <span class="fw-semibold"> {{ property.GarageType }}</span></li>
-											<li class="list-group-item">Telephone: <span class="fw-semibold"> {{ (property.TelephoneYNA == null ? "N/A" : property.TelephoneYNA )}}</span></li>
-											<li class="list-group-item">Exclusions: <span class="fw-semibold"> {{ property.Exclusions == null ? 'N/A' : property.Exclusions}}</span></li>
+											<li class="list-group-item">Garage Type: <span class="fw-semibold"> {{property.GarageType == null ? 'N/A' : property.GarageType}}</span>
+											</li>
+											<li class="list-group-item">Telephone: <span class="fw-semibold">
+													{{ (property.TelephoneYNA == null ? "N/A" : property.TelephoneYNA )}}</span></li>
+											<li class="list-group-item">Exclusions: <span class="fw-semibold"> {{ property.Exclusions == null ? 'N/A' : property.Exclusions}}</span>
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -227,21 +230,21 @@
 											</div>
 											<div class="card-body">
 												<div class="d-flex justify-content-between py-2 border-bottom">
-													<span >Cross Street: </span>
-													<span class="fw-bold">{{ property.CrossStreet }}</span>
+													<span>Cross Street: </span>
+													<span class="fw-bold">{{property.CrossStreet == null ? 'N/A' : property.CrossStreet}}</span>
 												</div>
 												<div class="d-flex justify-content-between py-2 border-bottom">
-													<span >Directions :</span>
+													<span>Directions :</span>
 													<span class="fw-bold">{{ property.Directions == null ? 'N/A' : property.Directions }}</span>
 												</div>
 												<div class="d-flex justify-content-between py-2 border-bottom">
-													<span >List Contract Date: </span>
+													<span>List Contract Date: </span>
 													<span class="fw-bold">
 														{{ property.ListingContractDate ? (property.ListingContractDate | date) : "No Date" }}
 													</span>
 												</div>
 												<div class="d-flex justify-content-between py-2 border-bottom">
-													<span >Purchase Contract Date: </span>
+													<span>Purchase Contract Date: </span>
 													<span class="fw-bold">
 														{{
 														property.PurchaseContractDate
@@ -251,15 +254,15 @@
 													</span>
 												</div>
 												<div class="d-flex justify-content-between py-2">
-													<span >List Office Name: </span>
-													<span class="fw-bold">{{ property.ListOfficeName }}</span>
+													<span>List Office Name: </span>
+													<span class="fw-bold">{{property.ListOfficeName == null ? 'N/A': property.ListOfficeName}}</span>
 												</div>
 												<div class="d-flex justify-content-between py-2">
-													<span >Listing: </span>
+													<span>Listing: </span>
 													<span class="fw-bold">{{ property.ListAOR }}</span>
 												</div>
 												<div class="d-flex justify-content-between py-2">
-													<span >Rent Includes: </span>
+													<span>Rent Includes: </span>
 													<span class="fw-bold">{{ property.RentIncludes?.toString() }}</span>
 												</div>
 											</div>
