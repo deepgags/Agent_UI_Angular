@@ -578,14 +578,14 @@
 										</div>
 										<div class="mb-3">
 											<p-iftalabel>
-												<p-multiselect [options]="requirementShowingLeadTypeDropdown"
+												<p-multiselect [options]="requestShowingLeadTypeDropdown"
 															   formControlName="leadType"
-															   display="chip"
 															   optionLabel="leadSource"
 															   optionValue="leadSource"
 															   class="w-100"
 															   [filter]="false"
-															   inputId="leadSource" />
+															   inputId="leadSource"
+															   [showHeader]="false" />
 												<label for="leadSource">
 													Select option suits you best
 												</label>
@@ -690,7 +690,8 @@
 															   optionValue="leadSource"
 															   class="w-100"
 															   [filter]="false"
-															   inputId="leadSource" />
+															   inputId="leadSource"
+															   [showHeader]="false" />
 												<label for="leadSource">
 													Select option suits you best
 												</label>
@@ -800,7 +801,8 @@
 															   optionValue="leadSource"
 															   class="w-100"
 															   [filter]="false"
-															   inputId="leadSource" />
+															   inputId="leadSource"
+															   [showHeader]="false" />
 												<label for="leadSource">
 													Select option suits you best
 												</label>
@@ -906,7 +908,8 @@
 															   optionValue="leadSource"
 															   class="w-100"
 															   [filter]="false"
-															   inputId="leadSource" />
+															   inputId="leadSource"
+															   [showHeader]="false" />
 												<label for="leadSource">
 													Select option suits you best
 												</label>
@@ -1037,7 +1040,9 @@
 														   optionValue="leadSource"
 														   class="w-100"
 														   [filter]="false"
-														   inputId="leadSource" />
+														   inputId="leadSource"
+														   [showHeader]="false"
+														   [showHeader]="false" />
 											<label for="leadSource">
 												Select option suits you best
 											</label>

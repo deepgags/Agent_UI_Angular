@@ -116,7 +116,7 @@ export class PropertydetailComponent implements OnInit {
 	];
 
 	private _leadTypes: any[] = [];
-	requirementShowingLeadTypeDropdown: any[] = [];
+	requestShowingLeadTypeDropdown: any[] = [];
 	propertyHistoryLeadTypeDropdown: any[] = [];
 	recentSalesInAreaLeadTypeDropdown: any[] = [];
 	haveQuestionLeadTypeDropdown: any[] = [];
@@ -544,7 +544,7 @@ export class PropertydetailComponent implements OnInit {
 					const { userType } = this.requestShowingForm.value;
 					this.requestShowingForm.patchValue({ leadType: "" });
 					this.requestShowingForm.updateValueAndValidity();
-					this.requirementShowingLeadTypeDropdown = this.getLeadTypesFromUserType(userType);
+					this.requestShowingLeadTypeDropdown = this.getLeadTypesFromUserType(userType);
 				}
 				break;
 			case "propertyHistoryForm":
