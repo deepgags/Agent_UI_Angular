@@ -13,23 +13,23 @@ export class PropertyModel {
 	TransactionType?: string | "" | undefined;
 	CrossStreet?: string;
 	RentalItems?: string;
-	SewerYNA?:string;
-	Exclusions?:string;
-	DaysOnMarket?:string;
-	Water?:string;
-	Basement?:string[];
-	ArchitecturalStyle?:string[];
-	GarageType?:string;
-	GarageYN?:string;
-	HeatSource?:string;
-	HeatType?:string;
-	TelephoneYNA?:string;
-	ListAOR?:string;
-	RentIncludes?:[];
-	TaxLegalDescription?:string;
-	VirtualTourURLUnbranded?:string;
-	MlsStatus?:string;
-	OccupantType?:string;
+	SewerYNA?: string;
+	Exclusions?: string;
+	DaysOnMarket?: string;
+	Water?: string;
+	Basement?: string[];
+	ArchitecturalStyle?: string[];
+	GarageType?: string;
+	GarageYN?: string;
+	HeatSource?: string;
+	HeatType?: string;
+	TelephoneYNA?: string;
+	ListAOR?: string;
+	RentIncludes?: [];
+	TaxLegalDescription?: string;
+	VirtualTourURLUnbranded?: string;
+	MlsStatus?: string;
+	OccupantType?: string;
 	StreetSuffix?: string | "" | undefined;
 	StreetNumber?: string | "" | undefined;
 	PropertyUse: string;
@@ -45,7 +45,7 @@ export class PropertyModel {
 	Latitude: number;
 	ListingKey: string | "";
 	Longitude: number;
-	Media: any[] | MediaModel[] | undefined;
+	Media: any[] | undefined;
 	PropertySubType: string | "" | undefined;
 	PropertyType: string | "" | undefined;
 	_id: string | "";
@@ -57,7 +57,7 @@ export class PropertyModel {
 	ListingContractDate?: string;
 	PublicRemarksExtra?: string;
 	PurchaseContractDate?: string;
-	 
+
 	IsFeatureListing: boolean = false;
 
 	constructor() {
@@ -68,12 +68,11 @@ export class PropertyModel {
 		this.Longitude = 0;
 		this.BusinessName = "";
 		this.BuildingName = "";
-		 
+
 		this.ListOfficeName = "";
 		this.PropertyUse = "";
 		this.UnparsedAddress = "";
 		this.ModificationTimestamp = "";
-
 	}
 }
 

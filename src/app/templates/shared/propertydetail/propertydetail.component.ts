@@ -1,4 +1,4 @@
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import { BreakpointObserver } from "@angular/cdk/layout";
 import { CommonModule, Location } from "@angular/common";
 import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -10,7 +10,7 @@ import { Title } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { Router, RouterModule } from "@angular/router";
 import { NgbCarouselConfig, NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { Gallery, GalleryConfig, GalleryModule, GalleryRef, ImageItem, ThumbnailsPosition } from "ng-gallery";
+// import { Gallery, GalleryConfig, GalleryModule, GalleryRef, ImageItem, ThumbnailsPosition } from "ng-gallery";
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "../../../environments/environment.development";
@@ -27,9 +27,10 @@ import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
+import { TabsModule } from "primeng/tabs";
 import { PropertyComponent } from "../../../components/property/property.component";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
-import { TimeAgo } from "../../../Pipes/time-ago";
+import { TimeAgo } from "../../../pipes/time-ago";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
 import { SiteConfigService } from "../../../services/site-config.service";
@@ -48,7 +49,7 @@ declare var window: any;
 		MatInputModule,
 		GoogleMapsModule,
 		RouterModule,
-		GalleryModule,
+		// GalleryModule,
 		PhoneSearch,
 		AccordionModule,
 		IftaLabelModule,
@@ -60,6 +61,7 @@ declare var window: any;
 		CarouselModule,
 		GalleriaModule,
 		PropertyComponent,
+		TabsModule,
 	],
 	providers: [provideAnimations(), NgbCarouselConfig, DialogService],
 	templateUrl: "./propertydetail.component.html",
@@ -127,13 +129,11 @@ export class PropertydetailComponent implements OnInit {
 		private titleService: Title,
 		private location: Location,
 		private router: Router,
-		private gallery: Gallery,
 		private siteConfigService: SiteConfigService,
 		private dialogConfig: DynamicDialogConfig,
 		// private notificationService: NotificationService
 		private publicService: PublicService
 	) {
-
 		this.titleService.setTitle("Property Detail");
 		this.siteConfigBS = new BehaviorSubject(null);
 		this.siteConfigObservable = this.siteConfigBS.asObservable();
@@ -144,7 +144,6 @@ export class PropertydetailComponent implements OnInit {
 		this.propertyId = propertyId;
 
 		if (this.propertyId && this.mlsId) {
-			debugger;
 			this.getPropertyInformation();
 		}
 
@@ -602,7 +601,6 @@ export class PropertydetailComponent implements OnInit {
 	}
 
 	getSimilarProperties() {
-		console.log(this.property);
 		const params = {
 			property_type: this.property?.PropertyType,
 			property_subtype: this.property?.PropertySubType,
