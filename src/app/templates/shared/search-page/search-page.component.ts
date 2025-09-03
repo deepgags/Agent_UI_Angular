@@ -43,7 +43,7 @@ export class SearchPageComponent implements OnInit {
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
-	pageSize: number = 100;
+	pageSize: number = 24;
 	private loadingSubject = new BehaviorSubject<boolean>(false);
 	loading$ = this.loadingSubject.asObservable();
 

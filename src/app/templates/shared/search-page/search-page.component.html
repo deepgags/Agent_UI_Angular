@@ -8,7 +8,7 @@
 <div class="container-fluid search-container">
   <div class="search-container">
     <div class="row justify-content-center align-items-center">
-      <h2 class=" fw-semibold text-center mt-3">Search Your Dream Home</h2>
+     <!-- <h2 class=" fw-semibold text-center mt-3">Search Your Dream Home</h2>-->
       <div class="col-10 bg-white py-4">
         <app-search [filters]="selectedFilters"
           [onSearch]="searchProperties"
@@ -41,7 +41,7 @@
             [pageIndex]="pageIndex-1"
             (page)="pageEvent = searchProperties(selectedFilters, $event)"
             [pageSize]="pageSize"
-            [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+            [pageSizeOptions]="[12, 24, 36, 48, 60, 120]"
             aria-label="Select page">
           </mat-paginator>
         </div>
@@ -60,7 +60,7 @@
         [pageIndex]="pageIndex-1"
         (page)="pageEvent = searchProperties(selectedFilters, $event)"
         [pageSize]="pageSize"
-        [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+        [pageSizeOptions]="[12, 24, 36, 48, 60, 120]"
         aria-label="Select page">
       </mat-paginator>
     </div>

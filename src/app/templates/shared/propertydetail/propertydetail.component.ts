@@ -29,7 +29,7 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
 import { PropertyComponent } from "../../../components/property/property.component";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
-import { TimeAgo } from "../../../pipes/time-ago";
+import { TimeAgo } from "../../../Pipes/time-ago";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
 import { SiteConfigService } from "../../../services/site-config.service";
@@ -133,6 +133,7 @@ export class PropertydetailComponent implements OnInit {
 		// private notificationService: NotificationService
 		private publicService: PublicService
 	) {
+
 		this.titleService.setTitle("Property Detail");
 		this.siteConfigBS = new BehaviorSubject(null);
 		this.siteConfigObservable = this.siteConfigBS.asObservable();
@@ -143,6 +144,7 @@ export class PropertydetailComponent implements OnInit {
 		this.propertyId = propertyId;
 
 		if (this.propertyId && this.mlsId) {
+			debugger;
 			this.getPropertyInformation();
 		}
 
