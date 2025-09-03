@@ -158,26 +158,25 @@ h2 {
 }
 
 #tab{
-
 /* Tabs container */
 #score-tabs {
-  border-bottom: none;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+gap: 8px;
 }
 
 /* Tab buttons */
 #score-tabs .nav-link {
+  flex: 1; /* make all tabs equal width */
+  text-align: center;
   border-radius: 12px 12px 0 0;
   background: #f8f9fa;
   color: #6c757d;
   font-weight: 600;
   letter-spacing: 1px;
-  padding: 12px 24px;
+  padding: 12px 10px;
   border: 1px solid #dee2e6;
   border-bottom: none;
   transition: all 0.3s ease;
+  white-space: nowrap; /* keep text in single line */
 }
 
 /* Hover effect */
@@ -207,17 +206,6 @@ h2 {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  #score-tabs {
-    flex-wrap: wrap;
-  }
-  #score-tabs .nav-link {
-    font-size: 14px;
-    padding: 10px 16px;
-  }
 }
 
 }
