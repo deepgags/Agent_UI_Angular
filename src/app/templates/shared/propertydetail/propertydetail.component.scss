@@ -156,3 +156,66 @@ h2 {
 	width: auto;
 	object-fit: cover;
 }
+
+#tab{
+
+
+.nav-pills {
+    border-bottom: 1.5px solid #06bbcc1e;
+    margin-bottom: 0 !important;
+    background: #fff;
+    border-radius: 15px 15px 0 0;
+    overflow: visible;
+    position: relative;
+    padding-left: 8px;
+}
+
+/* Tab buttons: inactive tabs */
+.nav-pills .nav-link {
+    border-radius: 12px 12px 0 0 !important;
+    color: #8b8e99;
+    font-weight: 600;
+    background: #f4f5fa;  /* Light grey for non-active tabs */
+    transition: all 0.3s;
+    margin-right: 6px;
+    min-width: 150px;
+    text-align: center;
+    padding: 12px 0 12px 0;
+    border: none;
+    position: relative;
+    z-index: 0;
+    box-shadow: none;
+}
+
+/* Active tab styling */
+.nav-pills .nav-link.active, .nav-pills .nav-link:focus {
+    background: #e8fbfd !important;
+    color: #05babe !important;
+    box-shadow: 0 6px 24px 2px #0585bb14;
+    border-bottom: 3px solid #06bbcc;
+    z-index: 1;
+    position: relative;
+}
+
+/* Hover for non-active tabs */
+.nav-pills .nav-link:hover:not(.active) {
+    background: #f1f3f7;
+    color: #06bbcc;
+}
+
+/* Focus state optional (hide native ring, use custom shadow) */
+.nav-pills .nav-link:focus {
+    box-shadow: 0 6px 24px 2px #06bbcc25, 0 0 0 0 #fff;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 767px) {
+    .nav-pills .nav-link {
+        min-width: 120px;
+        font-size: 0.98em;
+    }
+}
+
+
+
+}

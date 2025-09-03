@@ -439,490 +439,492 @@
 							</div>
 						</div>
 
-						<div class="row mt-lg-5 mt-3 shadow border rounded-3 p-3">
-							<ul class="nav nav-pills mb-3 "
-								id="score-tabs"
-								role="tablist">
-								<li class="nav-item"
-									role="presentation">
-									<button class="nav-link active"
-											id="score-walk-tab"
-											data-bs-toggle="pill"
-											data-bs-target="#score-walk"
-											type="button"
-											role="tab"
-											aria-controls="score-walk"
-											aria-selected="true"><span><i class="fa-solid fa-person me-1"></i></span>Request a Showing</button>
-								</li>
-								<li class="nav-item"
-									role="presentation">
-									<button class="nav-link"
-											id="score-transit-tab"
-											data-bs-toggle="pill"
-											data-bs-target="#score-transit"
-											type="button"
-											role="tab"
-											aria-controls="score-transit"
-											aria-selected="false"><span><i class="fa-solid fa-clock-rotate-left me-1"></i></span>Property History
-									</button>
-								</li>
-								<li class="nav-item"
-									role="presentation">
-									<button class="nav-link"
-											id="score-bike-tab"
-											data-bs-toggle="pill"
-											data-bs-target="#score-bike"
-											type="button"
-											role="tab"
-											aria-controls="score-bike"
-											aria-selected="false"><span><i class="fa-solid fa-house me-1"></i></span>Recent Sales in Area</button>
-								</li>
-								<li class="nav-item"
-									role="presentation">
-									<button class="nav-link"
-											id="score-disabled-tab"
-											data-bs-toggle="pill"
-											data-bs-target="#score-disabled"
-											type="button"
-											role="tab"
-											aria-controls="score-disabled"
-											aria-selected="false"><span><i class="fa-solid fa-circle-question me-1"></i></span>
-										Have a Question?</button>
-								</li>
-							</ul>
-
-							<div class="tab-content"
-								 id="score-tabs-content">
-								<div class="tab-pane fade show active"
-									 id="score-walk"
-									 role="tabpanel"
-									 aria-labelledby="score-walk-tab"
-									 tabindex="0">
-									<form class="form-card bg-white"
-										  [formGroup]="requestShowingForm"
-										  (ngSubmit)="submitRequestShowingForm()">
-										<p>
-											Interested in viewing a property? Need more information? Fill out the form below and you will be contacted shortly. Thank you for your
-											interest. Your business is appreciated!
-										</p>
-										<div class="mb-3">
-											<p-iftalabel>
-												<input type="text"
-													   pInputText
-													   formControlName="name"
-													   class="form-control"
-													   id="requestShowingName"
-													   required />
-												<label for="requestShowingName">Name</label>
-												<span class="error"
-													  *ngIf="requestShowingName?.invalid && (requestShowingName?.dirty || requestShowingName?.touched)">
-													<span *ngIf="requestShowingName?.errors?.['required']">Name is required</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<input type="email"
-													   pInputText
-													   formControlName="email"
-													   class="form-control w-100"
-													   id="requestShowingEmail"
-													   required />
-												<label for="requestShowingEmail">Email</label>
-												<span class="error"
-													  *ngIf="requestShowingEmail?.invalid && (requestShowingEmail?.dirty || requestShowingEmail?.touched)">
-													<span *ngIf="requestShowingEmail?.errors?.['required']">Email is required</span>
-													<span *ngIf="requestShowingEmail?.errors?.['email']">Please enter a valid email address</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<p-inputmask mask="(999) 999-9999"
-															 formControlName="phone"
-															 placeholder="Ex. 123-456-1234"
-															 class="w-100"
-															 id="requestShowingPhone"></p-inputmask>
-												<label for="requestShowingPhone">Phone Number</label>
-												<span class="error"
-													  *ngIf="requestShowingPhone?.invalid && (requestShowingPhone?.dirty || requestShowingPhone?.touched)">
-													<span *ngIf="requestShowingPhone?.errors?.['required']">Phone number is required</span>
-													<span *ngIf="requestShowingPhone?.errors?.['pattern']">Please enter a valid phone number</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<textarea pTextarea
-														  formControlName="message"
-														  class="form-control p-inputtext"
-														  rows="4"
-														  id="requestShowingMessage"></textarea>
-												<label for="requestShowingMessage">Leave a comment</label>
-												<span class="error"
-													  *ngIf="requestShowingMessage?.invalid && (requestShowingMessage?.dirty || requestShowingMessage?.touched)">
-													<span *ngIf="requestShowingMessage?.errors?.['required']">Comment is required</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<p class="mb-0 fw-semibold">I am</p>
-										<div class="d-flex flex-wrap gap-2 py-3">
-											@for(type of userTypes; track $index){
-											<input type="radio"
-												   class="btn-check radio_btn"
-												   formControlName="userType"
-												   [id]="'requestShowingUserType'+type.value"
-												   [value]="type.value"
-												   required
-												   (change)="getLeadTypesForForms('requestShowingForm')">
-											<label class="btn  rounded-pill"
-												   [for]="'requestShowingUserType'+type.value">{{type.title}}</label>
-											}
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<p-multiselect [options]="requestShowingLeadTypeDropdown"
-															   formControlName="leadType"
-															   optionLabel="leadSource"
-															   optionValue="leadSource"
-															   class="w-100"
-															   [filter]="false"
-															   inputId="leadSource"
-															   [showHeader]="false" />
-												<label for="leadSource">
-													Select option suits you best
-												</label>
-											</p-iftalabel>
-										</div>
-										<button type="submit"
-												class="btn search_btn w-100 fw-bold">Send</button>
-									</form>
-								</div>
-
-								<div class="tab-pane fade"
-									 id="score-transit"
-									 role="tabpanel"
-									 aria-labelledby="score-transit-tab"
-									 tabindex="0">
-									<form class="form-card bg-white"
-										  [formGroup]="propertyHistoryForm"
-										  (ngSubmit)="submitPropertyHistoryForm()">
-										<p>
-											Every property has a history. If you’re interested in knowing all the details, fill out this form to receive a comprehensive report.
-										</p>
-										<div class="mb-3">
-											<p-iftalabel>
-												<input type="text"
-													   pInputText
-													   formControlName="name"
-													   class="form-control"
-													   id="propertyHistoryName"
-													   required />
-												<label for="propertyHistoryName">Name</label>
-												<span class="error"
-													  *ngIf="propertyHistoryName?.invalid && (propertyHistoryName?.dirty || propertyHistoryName?.touched)">
-													<span *ngIf="propertyHistoryName?.errors?.['required']">Name is required</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<input type="email"
-													   pInputText
-													   formControlName="email"
-													   class="form-control w-100"
-													   id="propertyHistoryEmail"
-													   required />
-												<label for="propertyHistoryEmail">Email</label>
-												<span class="error"
-													  *ngIf="propertyHistoryEmail?.invalid && (propertyHistoryEmail?.dirty || propertyHistoryEmail?.touched)">
-													<span *ngIf="propertyHistoryEmail?.errors?.['required']">Email is required</span>
-													<span *ngIf="propertyHistoryEmail?.errors?.['email']">Please enter a valid email address</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<p-inputmask mask="(999) 999-9999"
-															 formControlName="phone"
-															 placeholder="Ex. 123-456-1234"
-															 class="w-100"
-															 id="propertyHistoryPhone"></p-inputmask>
-												<label for="propertyHistoryPhone">Phone Number</label>
-												<span class="error"
-													  *ngIf="propertyHistoryPhone?.invalid && (propertyHistoryPhone?.dirty || propertyHistoryPhone?.touched)">
-													<span *ngIf="propertyHistoryPhone?.errors?.['required']">Phone number is required</span>
-													<span *ngIf="propertyHistoryPhone?.errors?.['pattern']">Please enter a valid phone number</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<textarea pTextarea
-														  formControlName="message"
-														  class="form-control p-inputtext"
-														  rows="4"
-														  id="propertyHistoryMessage"></textarea>
-												<label for="propertyHistoryMessage">Leave a comment</label>
-												<span class="error"
-													  *ngIf="propertyHistoryMessage?.invalid && (propertyHistoryMessage?.dirty || propertyHistoryMessage?.touched)">
-													<span *ngIf="propertyHistoryMessage?.errors?.['required']">Comment is required</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<p class="mb-0 fw-semibold">I am</p>
-										<div class="d-flex flex-wrap gap-2 py-3">
-											@for(type of userTypes; track $index){
-											<input type="radio"
-												   class="btn-check radio_btn"
-												   formControlName="userType"
-												   [id]="'propertyHistoryUserType'+type.value"
-												   [value]="type.value"
-												   required
-												   (change)="getLeadTypesForForms('propertyHistoryForm')">
-											<label class="btn  rounded-pill"
-												   [for]="'propertyHistoryUserType'+type.value">{{type.title}}</label>
-											}
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<p-multiselect [options]="propertyHistoryLeadTypeDropdown"
-															   formControlName="leadType"
-															   optionLabel="leadSource"
-															   optionValue="leadSource"
-															   class="w-100"
-															   [filter]="false"
-															   inputId="leadSource"
-															   [showHeader]="false" />
-												<label for="leadSource">
-													Select option suits you best
-												</label>
-											</p-iftalabel>
-										</div>
-										<button type="submit"
-												class="btn search_btn w-100 fw-bold">
-											Send
+						<div id="tab">
+							<div class="row mt-lg-5 mt-3 shadow border rounded-3 p-3">
+								<ul class="nav nav-pills mb-3 "
+									id="score-tabs"
+									role="tablist">
+									<li class="nav-item"
+										role="presentation">
+										<button class="nav-link active"
+												id="score-walk-tab"
+												data-bs-toggle="pill"
+												data-bs-target="#score-walk"
+												type="button"
+												role="tab"
+												aria-controls="score-walk"
+												aria-selected="true"><span><i class="fa-solid fa-person me-1"></i></span>Request a Showing</button>
+									</li>
+									<li class="nav-item"
+										role="presentation">
+										<button class="nav-link"
+												id="score-transit-tab"
+												data-bs-toggle="pill"
+												data-bs-target="#score-transit"
+												type="button"
+												role="tab"
+												aria-controls="score-transit"
+												aria-selected="false"><span><i class="fa-solid fa-clock-rotate-left me-1"></i></span>Property History
 										</button>
-									</form>
+									</li>
+									<li class="nav-item"
+										role="presentation">
+										<button class="nav-link"
+												id="score-bike-tab"
+												data-bs-toggle="pill"
+												data-bs-target="#score-bike"
+												type="button"
+												role="tab"
+												aria-controls="score-bike"
+												aria-selected="false"><span><i class="fa-solid fa-house me-1"></i></span>Recent Sales in Area</button>
+									</li>
+									<li class="nav-item"
+										role="presentation">
+										<button class="nav-link"
+												id="score-disabled-tab"
+												data-bs-toggle="pill"
+												data-bs-target="#score-disabled"
+												type="button"
+												role="tab"
+												aria-controls="score-disabled"
+												aria-selected="false"><span><i class="fa-solid fa-circle-question me-1"></i></span>
+											Have a Question?</button>
+									</li>
+								</ul>
+	
+								<div class="tab-content"
+									 id="score-tabs-content">
+									<div class="tab-pane fade show active"
+										 id="score-walk"
+										 role="tabpanel"
+										 aria-labelledby="score-walk-tab"
+										 tabindex="0">
+										<form class="form-card bg-white"
+											  [formGroup]="requestShowingForm"
+											  (ngSubmit)="submitRequestShowingForm()">
+											<p>
+												Interested in viewing a property? Need more information? Fill out the form below and you will be contacted shortly. Thank you for your
+												interest. Your business is appreciated!
+											</p>
+											<div class="mb-3">
+												<p-iftalabel>
+													<input type="text"
+														   pInputText
+														   formControlName="name"
+														   class="form-control"
+														   id="requestShowingName"
+														   required />
+													<label for="requestShowingName">Name</label>
+													<span class="error"
+														  *ngIf="requestShowingName?.invalid && (requestShowingName?.dirty || requestShowingName?.touched)">
+														<span *ngIf="requestShowingName?.errors?.['required']">Name is required</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<input type="email"
+														   pInputText
+														   formControlName="email"
+														   class="form-control w-100"
+														   id="requestShowingEmail"
+														   required />
+													<label for="requestShowingEmail">Email</label>
+													<span class="error"
+														  *ngIf="requestShowingEmail?.invalid && (requestShowingEmail?.dirty || requestShowingEmail?.touched)">
+														<span *ngIf="requestShowingEmail?.errors?.['required']">Email is required</span>
+														<span *ngIf="requestShowingEmail?.errors?.['email']">Please enter a valid email address</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<p-inputmask mask="(999) 999-9999"
+																 formControlName="phone"
+																 placeholder="Ex. 123-456-1234"
+																 class="w-100"
+																 id="requestShowingPhone"></p-inputmask>
+													<label for="requestShowingPhone">Phone Number</label>
+													<span class="error"
+														  *ngIf="requestShowingPhone?.invalid && (requestShowingPhone?.dirty || requestShowingPhone?.touched)">
+														<span *ngIf="requestShowingPhone?.errors?.['required']">Phone number is required</span>
+														<span *ngIf="requestShowingPhone?.errors?.['pattern']">Please enter a valid phone number</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<textarea pTextarea
+															  formControlName="message"
+															  class="form-control p-inputtext"
+															  rows="4"
+															  id="requestShowingMessage"></textarea>
+													<label for="requestShowingMessage">Leave a comment</label>
+													<span class="error"
+														  *ngIf="requestShowingMessage?.invalid && (requestShowingMessage?.dirty || requestShowingMessage?.touched)">
+														<span *ngIf="requestShowingMessage?.errors?.['required']">Comment is required</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<p class="mb-0 fw-semibold">I am</p>
+											<div class="d-flex flex-wrap gap-2 py-3">
+												@for(type of userTypes; track $index){
+												<input type="radio"
+													   class="btn-check radio_btn"
+													   formControlName="userType"
+													   [id]="'requestShowingUserType'+type.value"
+													   [value]="type.value"
+													   required
+													   (change)="getLeadTypesForForms('requestShowingForm')">
+												<label class="btn  rounded-pill"
+													   [for]="'requestShowingUserType'+type.value">{{type.title}}</label>
+												}
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<p-multiselect [options]="requestShowingLeadTypeDropdown"
+																   formControlName="leadType"
+																   optionLabel="leadSource"
+																   optionValue="leadSource"
+																   class="w-100"
+																   [filter]="false"
+																   inputId="leadSource"
+																   [showHeader]="false" />
+													<label for="leadSource">
+														Select option suits you best
+													</label>
+												</p-iftalabel>
+											</div>
+											<button type="submit"
+													class="btn search_btn w-100 fw-bold">Send</button>
+										</form>
+									</div>
+	
+									<div class="tab-pane fade"
+										 id="score-transit"
+										 role="tabpanel"
+										 aria-labelledby="score-transit-tab"
+										 tabindex="0">
+										<form class="form-card bg-white"
+											  [formGroup]="propertyHistoryForm"
+											  (ngSubmit)="submitPropertyHistoryForm()">
+											<p>
+												Every property has a history. If you’re interested in knowing all the details, fill out this form to receive a comprehensive report.
+											</p>
+											<div class="mb-3">
+												<p-iftalabel>
+													<input type="text"
+														   pInputText
+														   formControlName="name"
+														   class="form-control"
+														   id="propertyHistoryName"
+														   required />
+													<label for="propertyHistoryName">Name</label>
+													<span class="error"
+														  *ngIf="propertyHistoryName?.invalid && (propertyHistoryName?.dirty || propertyHistoryName?.touched)">
+														<span *ngIf="propertyHistoryName?.errors?.['required']">Name is required</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<input type="email"
+														   pInputText
+														   formControlName="email"
+														   class="form-control w-100"
+														   id="propertyHistoryEmail"
+														   required />
+													<label for="propertyHistoryEmail">Email</label>
+													<span class="error"
+														  *ngIf="propertyHistoryEmail?.invalid && (propertyHistoryEmail?.dirty || propertyHistoryEmail?.touched)">
+														<span *ngIf="propertyHistoryEmail?.errors?.['required']">Email is required</span>
+														<span *ngIf="propertyHistoryEmail?.errors?.['email']">Please enter a valid email address</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<p-inputmask mask="(999) 999-9999"
+																 formControlName="phone"
+																 placeholder="Ex. 123-456-1234"
+																 class="w-100"
+																 id="propertyHistoryPhone"></p-inputmask>
+													<label for="propertyHistoryPhone">Phone Number</label>
+													<span class="error"
+														  *ngIf="propertyHistoryPhone?.invalid && (propertyHistoryPhone?.dirty || propertyHistoryPhone?.touched)">
+														<span *ngIf="propertyHistoryPhone?.errors?.['required']">Phone number is required</span>
+														<span *ngIf="propertyHistoryPhone?.errors?.['pattern']">Please enter a valid phone number</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<textarea pTextarea
+															  formControlName="message"
+															  class="form-control p-inputtext"
+															  rows="4"
+															  id="propertyHistoryMessage"></textarea>
+													<label for="propertyHistoryMessage">Leave a comment</label>
+													<span class="error"
+														  *ngIf="propertyHistoryMessage?.invalid && (propertyHistoryMessage?.dirty || propertyHistoryMessage?.touched)">
+														<span *ngIf="propertyHistoryMessage?.errors?.['required']">Comment is required</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<p class="mb-0 fw-semibold">I am</p>
+											<div class="d-flex flex-wrap gap-2 py-3">
+												@for(type of userTypes; track $index){
+												<input type="radio"
+													   class="btn-check radio_btn"
+													   formControlName="userType"
+													   [id]="'propertyHistoryUserType'+type.value"
+													   [value]="type.value"
+													   required
+													   (change)="getLeadTypesForForms('propertyHistoryForm')">
+												<label class="btn  rounded-pill"
+													   [for]="'propertyHistoryUserType'+type.value">{{type.title}}</label>
+												}
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<p-multiselect [options]="propertyHistoryLeadTypeDropdown"
+																   formControlName="leadType"
+																   optionLabel="leadSource"
+																   optionValue="leadSource"
+																   class="w-100"
+																   [filter]="false"
+																   inputId="leadSource"
+																   [showHeader]="false" />
+													<label for="leadSource">
+														Select option suits you best
+													</label>
+												</p-iftalabel>
+											</div>
+											<button type="submit"
+													class="btn search_btn w-100 fw-bold">
+												Send
+											</button>
+										</form>
+									</div>
+	
+									<div class="tab-pane fade"
+										 id="score-bike"
+										 role="tabpanel"
+										 aria-labelledby="score-bike-tab"
+										 tabindex="0">
+										<form class="form-card bg-white"
+											  [formGroup]="recentSaleInAreaForm"
+											  (ngSubmit)="submitRecentSalesInAreaForm()">
+											<p>
+												The key to placing a competitive offer is an accurate picture of the current real estate market. Enter your contact information to
+												receive a
+												detailed price comparison of this
+												property against other comparable listings and recent sales in the surrounding areas.
+											</p>
+											<div class="mb-3">
+												<p-iftalabel>
+													<input type="text"
+														   pInputText
+														   formControlName="name"
+														   class="form-control"
+														   id="recentSaleName"
+														   required />
+													<label for="recentSaleName">Name</label>
+													<span class="error"
+														  *ngIf="recentSaleName?.invalid && (recentSaleName?.dirty || recentSaleName?.touched)">
+														<span *ngIf="recentSaleName?.errors?.['required']">Name is required</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<input type="email"
+														   pInputText
+														   formControlName="email"
+														   class="form-control w-100"
+														   id="recentSaleEmail"
+														   required />
+													<label for="recentSaleEmail">Email</label>
+													<span class="error"
+														  *ngIf="recentSaleEmail?.invalid && (recentSaleEmail?.dirty || recentSaleEmail?.touched)">
+														<span *ngIf="recentSaleEmail?.errors?.['required']">Email is required</span>
+														<span *ngIf="recentSaleEmail?.errors?.['email']">Please enter a valid email address</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel class="w-100">
+													<p-inputmask mask="(999) 999-9999"
+																 formControlName="phone"
+																 placeholder="Ex. 123-456-1234"
+																 class="w-100"
+																 id="recentSalePhone"></p-inputmask>
+													<label for="recentSalePhone">Phone Number</label>
+													<span class="error"
+														  *ngIf="recentSalePhone?.invalid && (recentSalePhone?.dirty || recentSalePhone?.touched)">
+														<span *ngIf="recentSalePhone?.errors?.['required']">Phone number is required</span>
+														<span *ngIf="recentSalePhone?.errors?.['pattern']">Please enter a valid phone number</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<textarea pTextarea
+															  formControlName="message"
+															  class="form-control p-inputtext"
+															  rows="4"
+															  id="recentSaleMessage"></textarea>
+													<label for="recentSaleMessage">Leave a comment</label>
+													<span class="error"
+														  *ngIf="recentSaleMessage?.invalid && (recentSaleMessage?.dirty || recentSaleMessage?.touched)">
+														<span *ngIf="recentSaleMessage?.errors?.['required']">Comment is required</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<p class="mb-0 fw-semibold">I am</p>
+											<div class="d-flex flex-wrap gap-2 py-3">
+												@for(type of userTypes; track $index){
+												<input type="radio"
+													   class="btn-check radio_btn"
+													   formControlName="userType"
+													   [id]="'recentSaleInAreaUserType'+type.value"
+													   [value]="type.value"
+													   required
+													   (change)="getLeadTypesForForms('recentSaleInAreaForm')">
+												<label class="btn  rounded-pill"
+													   [for]="'recentSaleInAreaUserType'+type.value">{{type.title}}</label>
+												}
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<p-multiselect [options]="recentSalesInAreaLeadTypeDropdown"
+																   formControlName="leadType"
+																   optionLabel="leadSource"
+																   optionValue="leadSource"
+																   class="w-100"
+																   [filter]="false"
+																   inputId="leadSource"
+																   [showHeader]="false" />
+													<label for="leadSource">
+														Select option suits you best
+													</label>
+												</p-iftalabel>
+											</div>
+											<button type="submit"
+													class="btn search_btn w-100 fw-bold">
+												Send
+											</button>
+										</form>
+									</div>
+	
+									<div class="tab-pane fade"
+										 id="score-disabled"
+										 role="tabpanel"
+										 aria-labelledby="score-disabled-tab"
+										 tabindex="0">
+										<form class="form-card bg-white"
+											  [formGroup]="haveQuestionForm"
+											  (ngSubmit)="submitHaveQuestionForm()">
+											<div class="mb-3">
+												<p-iftalabel>
+													<input type="text"
+														   pInputText
+														   formControlName="name"
+														   placeholder="Name"
+														   class="form-control"
+														   id="haveQuestionName"
+														   required />
+													<label for="haveQuestionName">Name</label>
+													<span class="error"
+														  *ngIf="haveQuestionName?.invalid && (haveQuestionName?.dirty || haveQuestionName?.touched)">
+														<span *ngIf="haveQuestionName?.errors?.['required']">Name is required</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<input type="email"
+														   pInputText
+														   formControlName="email"
+														   placeholder="Ex. pat@example.com"
+														   class="form-control w-100"
+														   id="haveQuestionEmail"
+														   required />
+													<label for="haveQuestionEmail">Email</label>
+													<span class="error"
+														  *ngIf="haveQuestionEmail?.invalid && (haveQuestionEmail?.dirty || haveQuestionEmail?.touched)">
+														<span *ngIf="haveQuestionEmail?.errors?.['required']">Name is required</span>
+														<span *ngIf="haveQuestionEmail?.errors?.['email']">Please enter a valid email address</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<p-inputmask mask="(999) 999-9999"
+																 formControlName="phone"
+																 placeholder="Ex. 123-456-1234"
+																 class="w-100"
+																 id="haveQuestionPhone"></p-inputmask>
+													<label for="haveQuestionPhone">Phone Number</label>
+													<span class="error"
+														  *ngIf="haveQuestionPhone?.invalid && (haveQuestionPhone?.dirty || haveQuestionPhone?.touched)">
+														<span *ngIf="haveQuestionPhone?.errors?.['required']">Phone number is required</span>
+														<span *ngIf="haveQuestionPhone?.errors?.['pattern']">Please enter a valid phone number</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<textarea pTextarea
+															  formControlName="message"
+															  class="form-control p-inputtext"
+															  rows="4"
+															  id="haveQuestionMessage"></textarea>
+													<label for="haveQuestionMessage">Leave a comment</label>
+													<span class="error"
+														  *ngIf="haveQuestionMessage?.invalid && (haveQuestionMessage?.dirty || haveQuestionMessage?.touched)">
+														<span *ngIf="haveQuestionMessage?.errors?.['required']">Comment is required</span>
+													</span>
+												</p-iftalabel>
+											</div>
+											<p class="mb-0 fw-semibold">I am</p>
+											<div class="d-flex flex-wrap gap-2 py-3">
+												@for(type of userTypes; track $index){
+												<input type="radio"
+													   class="btn-check radio_btn"
+													   formControlName="userType"
+													   [id]="'haveQuestionUserType'+type.value"
+													   [value]="type.value"
+													   required
+													   (change)="getLeadTypesForForms('haveQuestionForm')">
+												<label class="btn  rounded-pill"
+													   [for]="'haveQuestionUserType'+type.value">{{type.title}}</label>
+												}
+											</div>
+											<div class="mb-3">
+												<p-iftalabel>
+													<p-multiselect [options]="haveQuestionLeadTypeDropdown"
+																   formControlName="leadType"
+																   optionLabel="leadSource"
+																   optionValue="leadSource"
+																   class="w-100"
+																   [filter]="false"
+																   inputId="leadSource"
+																   [showHeader]="false" />
+													<label for="leadSource">
+														Select option suits you best
+													</label>
+												</p-iftalabel>
+											</div>
+											<button type="submit"
+													class="btn search_btn w-100 fw-bold">
+												Send
+											</button>
+										</form>
+									</div>
 								</div>
-
-								<div class="tab-pane fade"
-									 id="score-bike"
-									 role="tabpanel"
-									 aria-labelledby="score-bike-tab"
-									 tabindex="0">
-									<form class="form-card bg-white"
-										  [formGroup]="recentSaleInAreaForm"
-										  (ngSubmit)="submitRecentSalesInAreaForm()">
-										<p>
-											The key to placing a competitive offer is an accurate picture of the current real estate market. Enter your contact information to
-											receive a
-											detailed price comparison of this
-											property against other comparable listings and recent sales in the surrounding areas.
-										</p>
-										<div class="mb-3">
-											<p-iftalabel>
-												<input type="text"
-													   pInputText
-													   formControlName="name"
-													   class="form-control"
-													   id="recentSaleName"
-													   required />
-												<label for="recentSaleName">Name</label>
-												<span class="error"
-													  *ngIf="recentSaleName?.invalid && (recentSaleName?.dirty || recentSaleName?.touched)">
-													<span *ngIf="recentSaleName?.errors?.['required']">Name is required</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<input type="email"
-													   pInputText
-													   formControlName="email"
-													   class="form-control w-100"
-													   id="recentSaleEmail"
-													   required />
-												<label for="recentSaleEmail">Email</label>
-												<span class="error"
-													  *ngIf="recentSaleEmail?.invalid && (recentSaleEmail?.dirty || recentSaleEmail?.touched)">
-													<span *ngIf="recentSaleEmail?.errors?.['required']">Email is required</span>
-													<span *ngIf="recentSaleEmail?.errors?.['email']">Please enter a valid email address</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel class="w-100">
-												<p-inputmask mask="(999) 999-9999"
-															 formControlName="phone"
-															 placeholder="Ex. 123-456-1234"
-															 class="w-100"
-															 id="recentSalePhone"></p-inputmask>
-												<label for="recentSalePhone">Phone Number</label>
-												<span class="error"
-													  *ngIf="recentSalePhone?.invalid && (recentSalePhone?.dirty || recentSalePhone?.touched)">
-													<span *ngIf="recentSalePhone?.errors?.['required']">Phone number is required</span>
-													<span *ngIf="recentSalePhone?.errors?.['pattern']">Please enter a valid phone number</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<textarea pTextarea
-														  formControlName="message"
-														  class="form-control p-inputtext"
-														  rows="4"
-														  id="recentSaleMessage"></textarea>
-												<label for="recentSaleMessage">Leave a comment</label>
-												<span class="error"
-													  *ngIf="recentSaleMessage?.invalid && (recentSaleMessage?.dirty || recentSaleMessage?.touched)">
-													<span *ngIf="recentSaleMessage?.errors?.['required']">Comment is required</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<p class="mb-0 fw-semibold">I am</p>
-										<div class="d-flex flex-wrap gap-2 py-3">
-											@for(type of userTypes; track $index){
-											<input type="radio"
-												   class="btn-check radio_btn"
-												   formControlName="userType"
-												   [id]="'recentSaleInAreaUserType'+type.value"
-												   [value]="type.value"
-												   required
-												   (change)="getLeadTypesForForms('recentSaleInAreaForm')">
-											<label class="btn  rounded-pill"
-												   [for]="'recentSaleInAreaUserType'+type.value">{{type.title}}</label>
-											}
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<p-multiselect [options]="recentSalesInAreaLeadTypeDropdown"
-															   formControlName="leadType"
-															   optionLabel="leadSource"
-															   optionValue="leadSource"
-															   class="w-100"
-															   [filter]="false"
-															   inputId="leadSource"
-															   [showHeader]="false" />
-												<label for="leadSource">
-													Select option suits you best
-												</label>
-											</p-iftalabel>
-										</div>
-										<button type="submit"
-												class="btn search_btn w-100 fw-bold">
-											Send
-										</button>
-									</form>
-								</div>
-
-								<div class="tab-pane fade"
-									 id="score-disabled"
-									 role="tabpanel"
-									 aria-labelledby="score-disabled-tab"
-									 tabindex="0">
-									<form class="form-card bg-white"
-										  [formGroup]="haveQuestionForm"
-										  (ngSubmit)="submitHaveQuestionForm()">
-										<div class="mb-3">
-											<p-iftalabel>
-												<input type="text"
-													   pInputText
-													   formControlName="name"
-													   placeholder="Name"
-													   class="form-control"
-													   id="haveQuestionName"
-													   required />
-												<label for="haveQuestionName">Name</label>
-												<span class="error"
-													  *ngIf="haveQuestionName?.invalid && (haveQuestionName?.dirty || haveQuestionName?.touched)">
-													<span *ngIf="haveQuestionName?.errors?.['required']">Name is required</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<input type="email"
-													   pInputText
-													   formControlName="email"
-													   placeholder="Ex. pat@example.com"
-													   class="form-control w-100"
-													   id="haveQuestionEmail"
-													   required />
-												<label for="haveQuestionEmail">Email</label>
-												<span class="error"
-													  *ngIf="haveQuestionEmail?.invalid && (haveQuestionEmail?.dirty || haveQuestionEmail?.touched)">
-													<span *ngIf="haveQuestionEmail?.errors?.['required']">Name is required</span>
-													<span *ngIf="haveQuestionEmail?.errors?.['email']">Please enter a valid email address</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<p-inputmask mask="(999) 999-9999"
-															 formControlName="phone"
-															 placeholder="Ex. 123-456-1234"
-															 class="w-100"
-															 id="haveQuestionPhone"></p-inputmask>
-												<label for="haveQuestionPhone">Phone Number</label>
-												<span class="error"
-													  *ngIf="haveQuestionPhone?.invalid && (haveQuestionPhone?.dirty || haveQuestionPhone?.touched)">
-													<span *ngIf="haveQuestionPhone?.errors?.['required']">Phone number is required</span>
-													<span *ngIf="haveQuestionPhone?.errors?.['pattern']">Please enter a valid phone number</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<textarea pTextarea
-														  formControlName="message"
-														  class="form-control p-inputtext"
-														  rows="4"
-														  id="haveQuestionMessage"></textarea>
-												<label for="haveQuestionMessage">Leave a comment</label>
-												<span class="error"
-													  *ngIf="haveQuestionMessage?.invalid && (haveQuestionMessage?.dirty || haveQuestionMessage?.touched)">
-													<span *ngIf="haveQuestionMessage?.errors?.['required']">Comment is required</span>
-												</span>
-											</p-iftalabel>
-										</div>
-										<p class="mb-0 fw-semibold">I am</p>
-										<div class="d-flex flex-wrap gap-2 py-3">
-											@for(type of userTypes; track $index){
-											<input type="radio"
-												   class="btn-check radio_btn"
-												   formControlName="userType"
-												   [id]="'haveQuestionUserType'+type.value"
-												   [value]="type.value"
-												   required
-												   (change)="getLeadTypesForForms('haveQuestionForm')">
-											<label class="btn  rounded-pill"
-												   [for]="'haveQuestionUserType'+type.value">{{type.title}}</label>
-											}
-										</div>
-										<div class="mb-3">
-											<p-iftalabel>
-												<p-multiselect [options]="haveQuestionLeadTypeDropdown"
-															   formControlName="leadType"
-															   optionLabel="leadSource"
-															   optionValue="leadSource"
-															   class="w-100"
-															   [filter]="false"
-															   inputId="leadSource"
-															   [showHeader]="false" />
-												<label for="leadSource">
-													Select option suits you best
-												</label>
-											</p-iftalabel>
-										</div>
-										<button type="submit"
-												class="btn search_btn w-100 fw-bold">
-											Send
-										</button>
-									</form>
-								</div>
+	
 							</div>
-
 						</div>
 
 						@if (similarProperties && similarProperties.length > 0) {
