@@ -98,12 +98,13 @@ export class MapComponent implements OnInit, AfterViewInit {
 	initMap() {
 		if (this.mapComponent) {
 			this.map = new google.maps.Map(this.mapComponent.nativeElement, {
-				center: { lat: 0, lng: 0 },
-				zoom: 15,
+				center: { lat: 43.724934, lng: -79.7595439 },
+				zoom: 8,
 				mapTypeControl: true,
 				mapId: "properties",
-				disableDefaultUI: false,
+				disableDefaultUI: true,
 				heading: 90,
+				
 				tilt: 45,
 				zoomControl: true,
 				streetViewControl: false,
@@ -187,21 +188,21 @@ export class MapComponent implements OnInit, AfterViewInit {
 		const { InfoWindow } = await (google.maps.importLibrary("maps") as unknown as { InfoWindow: typeof google.maps.InfoWindow });
 		const informationwindow = new InfoWindow({
 			content:
-				"<div><h5>" +
+				"<div ><h5>" +
 				property.ListingKey +
-				"</h5><p><b>Address : </b>" +
+				"</h5><p style='margin-bottom: 0px;'><b>Address : </b>" +
 				property.UnparsedAddress +
-				"<p><b>Cross Street : </b>" +
+				"<p style='margin-bottom: 0px;'><b>Cross Street : </b>" +
 				property.CrossStreet +
-				+"<p><b>City : </b>" +
-				property.City +
-				"<p><b>City : </b>" +
-				property.City +
-				"<p><b>Price : </b>" +
+				"<p style='margin-bottom: 0px;'><b>Bedrooms : </b>" +
+				property.BedroomsTotal +
+				"<p style='margin-bottom: 0px;'><b>Washrooms : </b>" +
+				property.BathroomsTotalInteger +
+				"<p style='margin-bottom: 0px;'><b>Price : </b>" +
 				property.ListPrice +
-				"<p><b>Property Type : </b>" +
+				"<p style='margin-bottom: 0px;'><b>Property Type : </b>" +
 				property.PropertyType +
-				"<p><b>Property Use : </b>" +
+				"<p style='margin-bottom: 0px;'><b>Property Use : </b>" +
 				property.TransactionType,
 			position: this.map.getCenter(),
 			disableAutoPan: true,
