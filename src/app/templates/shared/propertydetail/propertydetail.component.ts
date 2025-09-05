@@ -29,6 +29,7 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
 import { PropertyComponent } from "../../../components/property/property.component";
+import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { TimeAgo } from "../../../Pipes/time-ago";
 import { NotificationService } from "../../../services/notification.service";
@@ -122,7 +123,7 @@ export class PropertydetailComponent implements OnInit {
 	contactFormLeadTypeDropdown: any[] = [];
 	roomDetails: any;
 	similarProperties: any[] = [];
-
+	siteConfig: SiteConfig | undefined;
 	constructor(
 		breakpointObserver: BreakpointObserver,
 		private propertyService: PropertyService,
@@ -306,7 +307,7 @@ export class PropertydetailComponent implements OnInit {
 
 		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
 			if (config) {
-				// this.siteConfig = config;
+				this.siteConfig = config;
 				this.siteConfigBS.next(config);
 			}
 		});
@@ -418,6 +419,8 @@ export class PropertydetailComponent implements OnInit {
 		const params = {
 			...this.requestShowingForm.value,
 			leadSource: "requestShowing",
+			siteId: this.siteConfig?.id,
+			mlsId: this.mlsId,
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
@@ -440,6 +443,8 @@ export class PropertydetailComponent implements OnInit {
 		const params = {
 			...this.propertyHistoryForm.value,
 			leadSource: "propertyHistory",
+			siteId: this.siteConfig?.id,
+			mlsId: this.mlsId,
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
@@ -462,6 +467,8 @@ export class PropertydetailComponent implements OnInit {
 		const params = {
 			...this.recentSaleInAreaForm.value,
 			leadSource: "recentSalesInArea",
+			siteId: this.siteConfig?.id,
+			mlsId: this.mlsId,
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
@@ -484,6 +491,8 @@ export class PropertydetailComponent implements OnInit {
 		const params = {
 			...this.haveQuestionForm.value,
 			leadSource: "haveQuestion",
+			siteId: this.siteConfig?.id,
+			mlsId: this.mlsId,
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
@@ -506,6 +515,8 @@ export class PropertydetailComponent implements OnInit {
 		const params = {
 			...this.contactForm.value,
 			leadSource: "contactForm",
+			siteId: this.siteConfig?.id,
+			mlsId: this.mlsId,
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
