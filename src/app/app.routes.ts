@@ -64,6 +64,10 @@ import { T18HomeComponent } from './templates/t18/t18-home/t18-home.component';
 import { T19HomeComponent } from './templates/t19/t19-home/t19-home.component';
 import { T19Component } from './templates/t19/t19.component';
 import { AdminComponent } from './admin/admin.component';
+import { WebsettingComponent } from './admin/websetting/websetting.component';
+import { ManagerComponent } from './admin/manager/manager.component';
+import { LeadsComponent } from './admin/leads/leads.component';
+import { SettingsComponent } from './admin/settings/settings.component';
 
 
 export const routes: Routes = [
@@ -75,7 +79,11 @@ export const routes: Routes = [
 	{ path: 'templates', component: TemplatesComponent },
 	{ path: 'verify', component: VerifyEmailComponent },
 	{ path: 'thanks', component: ThankyouComponent },
-	{ path: 'admin', component: AdminComponent },
+	{ path: 'dashboard', component: AdminComponent },
+  	{ path: 'website-settings', component: WebsettingComponent },
+  	{ path: 'page-manager', component: ManagerComponent },
+  	{ path: 'leads-list', component: LeadsComponent },
+  	{ path: 'settings', component: SettingsComponent },
 	{
 		path: '',
 		children: [
