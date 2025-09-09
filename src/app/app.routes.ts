@@ -83,7 +83,7 @@ export const routes: Routes = [
 		path: "",
 		component: PrivateComponent,
 		children: [
-			// { path: "dashboard", component: AdminComponent },
+			{ path: "dashboard", component: AdminComponent },
 			{ path: "leads", component: LeadsComponent },
 			{ path: "settings", component: SettingsComponent },
 			{ path: "website-settings", component: WebsiteSettingsComponent },
