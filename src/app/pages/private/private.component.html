@@ -1,13 +1,17 @@
 <div class="container-fluid p-0">
-	<div class="">
-		<app-navbar></app-navbar>
-		<div class="row mx-0">
-			<div class="col-2 ps-0">
-				<app-sidebar></app-sidebar>
-			</div>
-			<div class="col-10 ps-0">
-				<router-outlet />
-			</div>
-		</div>
-	</div>
+  <!-- Navbar -->
+  <app-navbar></app-navbar>
+
+  <!-- Main layout -->
+  <div class="row g-0">
+    <!-- Sidebar -->
+    <div class="col-md-2 d-none d-md-block sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <!-- Content -->
+    <div class="col-12 col-md-10 offset-md-2 content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
