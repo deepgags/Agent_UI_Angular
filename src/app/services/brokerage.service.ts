@@ -10,7 +10,7 @@ import { BrokerageTypeModel } from "../models/BrokerageTypeModel";
 export class BrokerageTypeService {
 	private brokerageTypes: BrokerageTypeModel[] = [];
 	query = signal<string>("");
-	private baseUrl: string = environment.agentApiUrl;
+	private baseUrl: string = environment.baseUrl;
 
 	constructor(private http: HttpClient) {}
 	getBrokerageTypes(): Observable<BrokerageTypeModel[]> {

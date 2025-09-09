@@ -9,7 +9,7 @@ import { PropertyModel } from "../models/PropertyModel";
 })
 export class PropertyService {
 	query = signal<string>("");
-	private Apiurl: string = `${environment.propertyApiUrl}`;
+	private Apiurl: string = `${environment.baseUrl}`;
 
 	constructor(private http: HttpClient) {}
 
@@ -34,7 +34,7 @@ export class PropertyService {
 
 		return this.http
 			.get<PropertyModel[]>(
-				`${this.Apiurl}?page=${page}&pageSize=${pageSize}&address=${address}
+				`${this.Apiurl}/properties?page=${page}&pageSize=${pageSize}&address=${address}
       &property_type=${property_type}&property_subtype=${property_subtype}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
       &max_price=${max_price}&min_area=${sqFt}&brokerageType=${brokerageType ? brokerageType : ""}&sort=${sort}`
@@ -105,7 +105,7 @@ export class PropertyService {
 	}
 
 	getPropertyDetails(propertId: any, mlsId: any): Observable<PropertyModel> {
-		return this.http.get<PropertyModel>(`${environment.propertyApiUrl}/propertyinformation?id=${propertId}&mlsId=${mlsId}`).pipe(
+		return this.http.get<PropertyModel>(`${environment.baseUrl}/properties/propertyinformation?id=${propertId}&mlsId=${mlsId}`).pipe(
 			map((result: any) => {
 				if (result && result.data) {
 					const property = result.data;
@@ -183,7 +183,7 @@ export class PropertyService {
 	}
 
 	getPropertyTypes(): Observable<any> {
-		return this.http.get(`${environment.propertyApiUrl}/property-types`).pipe(
+		return this.http.get(`${environment.baseUrl}/properties/property-types`).pipe(
 			map((result: any) => {
 				if (result && result.data) {
 					return result.data;
@@ -197,7 +197,7 @@ export class PropertyService {
 	}
 
 	getRoomDetails(mlsId: string): Observable<any> {
-		return this.http.get(`${environment.propertyApiUrl}/room-details/${mlsId}`).pipe(
+		return this.http.get(`${environment.baseUrl}/properties/room-details/${mlsId}`).pipe(
 			map((result: any) => {
 				if (result && result.data) {
 					return result.data;
@@ -211,7 +211,7 @@ export class PropertyService {
 	}
 
 	getSimilarProperties(params: any): Observable<any> {
-		return this.http.post(`${environment.propertyApiUrl}/similar`, params).pipe(
+		return this.http.post(`${environment.baseUrl}/properties/similar`, params).pipe(
 			map((result: any) => {
 				if (result && result.data) {
 					return result.data;

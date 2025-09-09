@@ -11,10 +11,10 @@ export class PublicService {
 	constructor(private http: HttpClient) {}
 
 	submitContactForm(params: any): Observable<PropertyModel[]> {
-		return this.http.post<PropertyModel[]>(`${environment.agentApiUrl}/leads`, params);
+		return this.http.post<PropertyModel[]>(`${environment.baseUrl}/leads`, params);
 	}
 
 	getLeadTypes(): Observable<any[]> {
-		return this.http.get<any[]>(`${environment.agentApiUrl}/leads/lead-type`);
+		return this.http.get<any[]>(`${environment.baseUrl}/leads/lead-type`);
 	}
 }

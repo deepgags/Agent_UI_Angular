@@ -1,0 +1,33 @@
+.btn-toggle {
+	color: #fff;
+	text-align: left;
+}
+
+.btn-toggle::after {
+	content: "›";
+	float: right;
+	transform: rotate(90deg);
+	transition: transform 0.2s;
+	margin-left: 10px;
+}
+
+.btn-toggle.collapsed::after {
+	transform: rotate(0deg);
+	margin-left: 10px;
+}
+
+.flex-shrink-0 .active {
+	background-color: #495057 !important;
+	border-radius: 0.375rem;
+	font-weight: 600;
+	padding: 10px;
+}
+.flex-shrink-0 .active i {
+	color: #ffc107;
+}
+
+@media (max-width: 576px) {
+	.mobile {
+		display: none !important;
+	}
+}

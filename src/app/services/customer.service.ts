@@ -11,7 +11,7 @@ import { CustomerModel } from "../models/CustomerModel";
 export class CustomerService {
 	private customers: CustomerModel[] = [];
 	query = signal<string>("");
-	private baseUrl: string = environment.agentApiUrl;
+	private baseUrl: string = environment.baseUrl;
 
 	constructor(private http: HttpClient) {}
 

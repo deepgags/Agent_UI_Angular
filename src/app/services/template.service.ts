@@ -6,7 +6,7 @@ import { environment } from "../environments/environment.development";
 	providedIn: "root",
 })
 export class TemplateService {
-	private baseUrl: string = environment.agentApiUrl;
+	private baseUrl: string = environment.baseUrl;
 
 	constructor(private http: HttpClient) {}
 

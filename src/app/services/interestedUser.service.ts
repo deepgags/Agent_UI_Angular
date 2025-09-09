@@ -14,7 +14,7 @@ export class InterestedUserService {
 	private Apiurl: string = "";
 
 	constructor(private http: HttpClient, private storageService: StorageService) {
-		this.Apiurl = environment.agentApiUrl + environment.interestedUserUrl;
+		this.Apiurl = environment.baseUrl + environment.interestedUserUrl;
 	}
 
 	save(user: InterestedUserModel) {

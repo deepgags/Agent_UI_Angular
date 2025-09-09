@@ -59,7 +59,7 @@ export class AppComponent {
 
 	private loadSiteConfiguration(): void {
 		const hostname = this.document.location.hostname;
-		const apiUrl = `${environment.agentApiUrl}/customer/web`;
+		const apiUrl = `${environment.baseUrl}/customer/web`;
 		this.loadingService.loadingOn();
 		this.http.get(apiUrl, { params: { domain: hostname } }).subscribe({
 			next: (response: any) => {
