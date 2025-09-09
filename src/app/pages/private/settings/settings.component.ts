@@ -26,8 +26,6 @@ import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { TemplateService } from "../../../services/template.service";
-import { NavbarComponent } from "../components/navbar/navbar.component";
-import { SidebarComponent } from "../components/sidebar/sidebar.component";
 
 @Component({
 	selector: "app-settings",

@@ -86,7 +86,7 @@ export const routes: Routes = [
 			{ path: "dashboard", component: AdminComponent },
 			{ path: "leads", component: LeadsComponent },
 			{ path: "settings", component: SettingsComponent },
-			{ path: "website-settings", component: WebsiteSettingsComponent },
+			// { path: "website-settings", component: WebsiteSettingsComponent },
 			{ path: "page-manager", component: ManagerComponent },
 			{ path: "change-password", component: ChangePasswordComponent },
 			{ path: "template", component: TemplateComponent },
