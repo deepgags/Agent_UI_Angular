@@ -1,0 +1,16 @@
+export enum FieldsType {
+	Image = 'Image',
+	Action = 'Action',
+	Text = 'text',
+	LinkButton = 'linkButton',
+	Number = 'number',
+	Email = 'email',
+	Telephone = 'tel',
+	DropDown = 'dropdown',
+	DropDownWithImage = 'dropDownWithImage',
+	AutoComplete = 'autoComplete',
+	Date = 'date',
+	Boolean = 'boolean',
+	Currency = 'currency',
+	Percentage = 'percentage',
+}

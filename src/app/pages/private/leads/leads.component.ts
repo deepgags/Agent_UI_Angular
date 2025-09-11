@@ -1,65 +1,122 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { ConfirmationService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { PaginatorModule } from "primeng/paginator";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
-
-interface Page {
-	sno: number;
-	pageName: string;
-	pageTitle: string;
-	pageIndex: number;
-	dated: string;
-}
+import { SimpleTableComponent } from "../../../components/simple-table/simple-table.component";
+import { FieldsType } from "../../../enums/fields-type.enum";
+import { Lead, LeadsService } from "../../../services/leads.service";
 
 @Component({
 	selector: "app-leads",
 	standalone: true,
-	imports: [CommonModule, TableModule, ButtonModule, PaginatorModule],
+	imports: [CommonModule, TableModule, ButtonModule, PaginatorModule, ProgressSpinnerModule, SimpleTableComponent],
 	templateUrl: "./leads.component.html",
 	styleUrls: ["./leads.component.scss"],
+	providers: [ConfirmationService],
 })
-export class LeadsComponent {
-	pages: Page[] = [
-		{ sno: 1, pageName: "Home", pageTitle: "Home", pageIndex: 1, dated: "8/12/2025 11:54:10 AM" },
-		{ sno: 2, pageName: "About", pageTitle: "About", pageIndex: 2, dated: "8/12/2025 11:55:06 AM" },
-		{ sno: 3, pageName: "Services", pageTitle: "Our Services", pageIndex: 3, dated: "8/12/2025 12:00:00 PM" },
-		{ sno: 4, pageName: "Contact", pageTitle: "Contact Us", pageIndex: 4, dated: "8/12/2025 12:05:00 PM" },
-		{ sno: 5, pageName: "Blog", pageTitle: "Blog", pageIndex: 5, dated: "8/12/2025 12:10:00 PM" },
-		{ sno: 6, pageName: "FAQ", pageTitle: "Frequently Asked Questions", pageIndex: 6, dated: "8/12/2025 12:15:00 PM" },
+export class LeadsComponent implements OnInit {
+	leads: Lead[] = [];
+
+	columns = [
+		{
+			field: "name",
+			header: "Customer Name",
+			disableSort: false,
+			fieldType: FieldsType.Text,
+		},
+		{
+			field: "email",
+			header: "Email",
+			disableSort: false,
+			fieldType: FieldsType.Text,
+		},
+		{
+			field: "userType",
+			header: "User Type",
+			disableSort: false,
+			fieldType: FieldsType.Text,
+		},
+		{
+			field: "createdAt",
+			header: "Lead Date",
+			disableSort: false,
+			fieldType: FieldsType.Date,
+		},
+		{
+			field: "action",
+			header: "Action",
+			disableSort: false,
+			fieldType: FieldsType.Action,
+		},
 	];
 
-	pagedPages: Page[] = [];
+	pagedLeads: Lead[] = [];
 	rows: number = 5;
 	first: number = 0;
+	loading: boolean = false;
+	error: string | null = null;
 
-	constructor() {
-		this.updatePagedData();
+	constructor(private leadsService: LeadsService, private confirmationService: ConfirmationService) {}
+
+	ngOnInit() {
+		this.getLeads();
 	}
 
-	// ✅ This was missing earlier!
-	onPageChange(event: any) {
-		this.first = event.first;
-		this.rows = event.rows;
-		this.updatePagedData();
+	getLeads() {
+		this.loading = true;
+		this.error = null;
+		this.leadsService.getLeads().subscribe({
+			next: (res: any) => {
+				this.leads = res.data;
+				this.loading = false;
+			},
+			error: (error) => {
+				this.error = "Failed to load leads";
+				this.loading = false;
+				console.error("Error loading leads:", error);
+			},
+		});
 	}
 
-	updatePagedData() {
-		this.pagedPages = this.pages.slice(this.first, this.first + this.rows);
-	}
+	deleteLead = (lead: any, index: number) => {
+		debugger;
+		this.confirmationService.confirm({
+			header: "Delete Lead",
+			message: "Do you want to delete this lead?",
+			icon: "bi bi-trash3",
+			rejectLabel: "Cancel",
+			rejectButtonProps: {
+				label: "Cancel",
+				severity: "secondary",
+				outlined: true,
+			},
+			acceptButtonProps: {
+				label: "Delete",
+				severity: "danger",
+			},
 
-	createPage() {
-		alert("Create Page clicked");
-	}
+			accept: () => {
+				this._confirmDeleteLead(lead, index);
+			},
+			reject: () => {},
+		});
+	};
 
-	editPage(page: Page) {
-		alert(`Editing page: ${page.pageName}`);
-	}
-
-	deletePage(page: Page) {
-		if (confirm(`Are you sure you want to delete ${page.pageName}?`)) {
-			this.pages = this.pages.filter((p) => p.sno !== page.sno);
-			this.updatePagedData();
-		}
-	}
+	private _confirmDeleteLead = (lead: any, index: number) => {
+		this.loading = true;
+		this.leadsService.deleteLead(lead.id || lead.sno).subscribe({
+			next: () => {
+				this.leads.splice(index, 1);
+				this.loading = false;
+			},
+			error: (error) => {
+				this.error = "Failed to delete lead";
+				this.loading = false;
+				console.error("Error deleting lead:", error);
+			},
+		});
+	};
 }

@@ -1,17 +1,35 @@
 <div class="col mt-3">
-	<h2>Admin Dashboard</h2>
+	<h2>Dashboard</h2>
+
+	<!-- Loading State -->
+	<div *ngIf="loading"
+		 class="text-center py-4">
+		<p-progressSpinner></p-progressSpinner>
+		<p class="mt-2">Loading dashboard data...</p>
+	</div>
+
+	<!-- Error State -->
+	<div *ngIf="error"
+		 class="alert alert-danger"
+		 role="alert">
+		{{ error }}
+		<button class="btn btn-outline-danger btn-sm ms-2"
+				(click)="loadDashboardData()">Retry</button>
+	</div>
+
 	<!-- Top Cards -->
-	<div class="row g-3 mb-4">
+	<div class="row g-3 mb-4"
+		 *ngIf="!loading && !error">
 		<div class="col-md-3 col-6">
 			<div class="card  card1 h-100">
 				<div class="card-body">
 					<h5 class="text-white card-title">Registered Users</h5>
-					<h3 class="text-white">0</h3>
+					<h3 class="text-white">{{ dashboardData.registeredUsers || 0 }}</h3>
 				</div>
-				<div class="card-footer  text-center">
+				<!-- <div class="card-footer  text-center">
 					<a href="#"
 					   class="text-white text-decoration-none">View Detail</a>
-				</div>
+				</div> -->
 			</div>
 		</div>
 
@@ -19,36 +37,36 @@
 			<div class="card  card2 h-100">
 				<div class="card-body">
 					<h5 class="text-white card-title">Total Leads</h5>
-					<h3 class="text-white">0</h3>
+					<h3 class="text-white">{{ dashboardData.totalLeads }}</h3>
 				</div>
-				<div class="card-footer  text-center">
+				<!-- <div class="card-footer  text-center">
 					<a href="#"
 					   class="text-white text-decoration-none">View Detail</a>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<div class="col-md-3 col-6">
 			<div class="card  card3 h-100">
 				<div class="card-body">
-					<h5 class="text-white card-title">Total clients</h5>
-					<h3 class="text-white">0</h3>
+					<h5 class="text-white card-title">Leads Last Month</h5>
+					<h3 class="text-white">{{ dashboardData.previousMonthLeads }}</h3>
 				</div>
-				<div class="card-footer  text-center">
+				<!-- <div class="card-footer  text-center">
 					<a href="#"
 					   class="text-white text-decoration-none">View Detail</a>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<div class="col-md-3 col-6">
 			<div class="card  card4 h-100">
 				<div class="card-body">
-					<h5 class="text-white card-title">Users added in this month</h5>
-					<h3 class="text-white">0</h3>
+					<h5 class="text-white card-title">Leads this month</h5>
+					<h3 class="text-white">{{ dashboardData.currentMonthLeads }}</h3>
 				</div>
-				<div class="card-footer  text-center">
+				<!-- <div class="card-footer  text-center">
 					<a href="#"
 					   class="text-white text-decoration-none">View Detail</a>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

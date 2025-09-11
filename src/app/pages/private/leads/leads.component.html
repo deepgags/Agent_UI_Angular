@@ -1,83 +1,90 @@
 <div class="col mt-3">
-	<h2>Leads List</h2>
+	<h2>Leads</h2>
 	<div class="border rounded">
-
 		<div class="p-4">
 			<!-- Create Page Button -->
-			<div class="d-flex gap-2 justify-content-end mb-3">
+			<!-- <div class="d-flex gap-2 justify-content-end mb-3">
 				<div class=" py-3">
-					<input type="radio" class="btn-check" name="userType" id="seller" value="seller" checked required>
-<label class="btn rounded-pill me-2" for="seller">Seller</label>
+					<input type="radio"
+						   class="btn-check"
+						   name="userType"
+						   id="seller"
+						   value="seller"
+						   checked
+						   required>
+					<label class="btn rounded-pill me-2"
+						   for="seller">Seller</label>
 
-<input type="radio" class="btn-check" name="userType" id="buyer" value="buyer" required>
-<label class="btn rounded-pill me-2" for="buyer">Buyer</label>
+					<input type="radio"
+						   class="btn-check"
+						   name="userType"
+						   id="buyer"
+						   value="buyer"
+						   required>
+					<label class="btn rounded-pill me-2"
+						   for="buyer">Buyer</label>
 
-<input type="radio" class="btn-check" name="userType" id="renter" value="renter" required>
-<label class="btn rounded-pill me-2" for="renter">Renter</label>
+					<input type="radio"
+						   class="btn-check"
+						   name="userType"
+						   id="renter"
+						   value="renter"
+						   required>
+					<label class="btn rounded-pill me-2"
+						   for="renter">Renter</label>
 
-<input type="radio" class="btn-check" name="userType" id="buyerSeller" value="buyerAndSeller" required>
-<label class="btn rounded-pill me-2" for="buyerSeller">Buyer & Seller</label>
+					<input type="radio"
+						   class="btn-check"
+						   name="userType"
+						   id="buyerSeller"
+						   value="buyerAndSeller"
+						   required>
+					<label class="btn rounded-pill me-2"
+						   for="buyerSeller">Buyer & Seller</label>
 
-<input type="radio" class="btn-check" name="userType" id="investor" value="investor" required>
-<label class="btn rounded-pill" for="investor">Investor</label>
+					<input type="radio"
+						   class="btn-check"
+						   name="userType"
+						   id="investor"
+						   value="investor"
+						   required>
+					<label class="btn rounded-pill"
+						   for="investor">Investor</label>
 
 				</div>
+			</div> -->
+
+			<!-- Loading State -->
+			<div *ngIf="loading"
+				 class="text-center py-4">
+				<p-progressSpinner></p-progressSpinner>
+				<p class="mt-2">Loading leads...</p>
+			</div>
+
+			<!-- Error State -->
+			<div *ngIf="error"
+				 class="alert alert-danger"
+				 role="alert">
+				{{ error }}
+				<button class="btn btn-outline-danger btn-sm ms-2"
+						(click)="getLeads()">Retry</button>
 			</div>
 
 			<!-- Data Table -->
-			<p-table [value]="pagedPages"
-					 responsiveLayout="scroll"
-					 styleClass="p-datatable-gridlines">
-				<!-- Table Header -->
-				<ng-template pTemplate="header">
-					<tr>
-						<th style="width: 70px; text-align: center;">S.NO</th>
-						<th style="min-width: 150px;">PAGE NAME</th>
-						<th style="min-width: 150px;">PAGE TITLE</th>
-						<th style="width: 100px; text-align: center;">PAGE INDEX</th>
-						<th style="min-width: 200px;">DATED</th>
-						<th style="width: 160px; text-align: center;">ACTION</th>
-					</tr>
-				</ng-template>
-
-				<!-- Table Body -->
-				<ng-template pTemplate="body"
-							 let-page>
-					<tr>
-						<td style="text-align: center;">{{ page.sno }}</td>
-						<td>{{ page.pageName }}</td>
-						<td>{{ page.pageTitle }}</td>
-						<td style="text-align: center;">{{ page.pageIndex }}</td>
-						<td>{{ page.dated }}</td>
-						<td class="text-center">
-							<div class="d-flex justify-center gap-2">
-								<button pButton
-										label="Edit"
-										icon="pi pi-pencil"
-										class="p-button-success p-button-sm">
-								</button>
-								<button pButton
-										label="Delete"
-										icon="pi pi-trash"
-										class="p-button-danger p-button-sm"
-										(click)="deletePage(page)">
-								</button>
-							</div>
-						</td>
-
-					</tr>
-				</ng-template>
-			</p-table>
-
-			<!-- External Paginator -->
-			<div class="mt-3">
-				<p-paginator [rows]="rows"
-							 [totalRecords]="pages.length"
-							 [rowsPerPageOptions]="[5,10,20]"
-							 (onPageChange)="onPageChange($event)">
-				</p-paginator>
+			<div *ngIf="!loading && !error">
+				<app-simple-table [columns]="columns"
+								  [data]="leads"
+								  [paginator]="true"
+								  [rows]="25"
+								  [showFilter]="true"
+								  [showActions]="true"
+								  [showEditAction]="false"
+								  [showDeleteAction]="true"
+								  [onDelete]="deleteLead"
+								  [highlightRow]="true"
+								  #table>
+				</app-simple-table>
 			</div>
 		</div>
-	</div>
 
-</div>
+	</div>

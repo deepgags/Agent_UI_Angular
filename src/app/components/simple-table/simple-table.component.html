@@ -1,0 +1,253 @@
+<p-table #table
+		 dataKey="id"
+		 [columns]="columns"
+		 [value]="data"
+		 [paginator]="paginator"
+		 [rows]="rows"
+		 [rowsPerPageOptions]="[10, 25, 50]"
+		 [selectionMode]="'single'"
+		 rowGroupMode="subheader"
+		 styleClass="bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border"
+		 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} rows"
+		 [showCurrentPageReport]="true"
+		 [scrollable]="true"
+		 [exportFilename]="exportFileName"
+		 paginatorDropdownAppendTo="body">
+	<ng-template pTemplate="header"
+				 let-columns>
+		<tr>
+			@for (col of columns; track col) {
+			<th [ngStyle]="{
+					width: col.width,
+					'max-width': col.width,
+					'min-width': col.width
+				}"
+				[ngClass]="{
+					'text-left': !col.isNumeric,
+					'text-right': col.isNumeric
+				}"
+				[pSortableColumn]="col.field"
+				[pSortableColumnDisabled]="col.disableSort">
+				{{ col.header }}
+				@if (!col.disableSort) {
+				<p-sortIcon [field]="col.field"></p-sortIcon>
+				}
+			</th>
+			}
+		</tr>
+
+		@if (showFilter) {
+		<tr>
+			@for (col of columns; track col) {
+			<th [ngStyle]="{
+					width: col.width,
+					'max-width': col.width,
+					'min-width': col.width
+				}"
+				[ngClass]="{
+					'text-left': !col.isNumeric,
+					'text-right': col.isNumeric
+				}">
+				@if (
+				col.field != 'Action' &&
+				col.field != 'Photo' &&
+				col.field != 'Image'
+				) {
+				<p-columnFilter type="text"
+								[field]="col.field"
+								[matchMode]="'contains'">
+				</p-columnFilter>
+				}
+			</th>
+			}
+		</tr>
+		}
+	</ng-template>
+	<ng-template pTemplate="body"
+				 let-rowData
+				 let-columns="columns"
+				 let-rowIndex="rowIndex">
+		<tr (click)="onEdit(rowData.UID, rowData, rowIndex)"
+			[class]="highlightRow && rowData[highlightCheckKey] == highlightCheckValue ? highlightActiveClass : '' ">
+			@for (col of columns; track col) {
+			@if (showActions && col.fieldType == fieldTypes.Action) {
+			<td>
+				<div class="flex gap-4 items-center justify-start min-h-[35px]">
+					@if (showEditAction) {
+					<button pButton
+							pRipple
+							type="button"
+							pTooltip="Edit"
+							(click)="
+								$event.stopPropagation();
+								onEdit(rowData.UID, rowData, rowIndex)
+							"
+							class="p-button-rounded p-button-text"
+							[disabled]="disableEditAction">
+						<i class="bi bi-pencil-square"></i>
+					</button>
+					}
+					@if (((showDeleteAction || rowData.showDeleteAction) && !col.checkDeleteCondition) || (col.checkDeleteCondition && rowData[col.deleteActionCheck] == true)) {
+					<button pButton
+							pRipple
+							type="button"
+							pTooltip="Delete"
+							tooltipPosition="top"
+							(click)="$event.stopPropagation(); onDelete(rowData, rowIndex)"
+							class="p-button-rounded p-button-text"
+							[disabled]="rowData.IsReadOnly || disableDeleteAction"
+							tooltipPosition="top">
+						<i class="bi bi-trash3"></i>
+					</button>
+					}
+					@if ( showExtraAction && rowData[col.hideExtraActionCheck]) {
+					<button pButton
+							pRipple
+							type="button"
+							[pTooltip]="extraActionToolTip"
+							tooltipPosition="top"
+							[icon]="extraActionIcon"
+							(click)="$event.stopPropagation(); onExtraAction(rowData, rowIndex)"
+							class="p-button-rounded p-button-text"></button>
+					}
+					@if (showFirstAction) {
+					<button pButton
+							pRipple
+							type="button"
+							[pTooltip]="firstActionToolTip"
+							tooltipPosition="top"
+							[icon]="firstActionIcon"
+							(click)="$event.stopPropagation(); onFirstActionClick(rowData, rowIndex)"
+							class="p-button-rounded p-button-text"></button>
+					}
+					@if (showSecondAction) {
+					<button pButton
+							pRipple
+							type="button"
+							[pTooltip]="secondActionToolTip"
+							tooltipPosition="left"
+							[icon]="secondActionIcon"
+							(click)="$event.stopPropagation(); onSecondActionClick(rowData, rowIndex)"
+							class="p-button-rounded p-button-text"></button>
+					}
+				</div>
+			</td>
+			}
+			@if (
+			col.fieldType == fieldTypes.Text ||
+			col.fieldType == fieldTypes.Email
+			) {
+			<td [ngStyle]="{
+						width: col.width,
+						'max-width': col.width,
+						'min-width': col.width
+					}"
+				[ngClass]="{
+						'text-left': !col.isNumeric,
+						'text-right': col.isNumeric
+					}"
+				[class]="'cursor-pointer ' + col.class"
+				[pTooltip]="col.showToolTip ? rowData[col.field] : ''"
+				[autoHide]="false"
+				tooltipPosition="bottom">
+				{{ rowData[col.field] ? rowData[col.field] : '-' }}
+			</td>
+			}
+			@if (col.fieldType == fieldTypes.Telephone) {
+			<td [ngStyle]="{
+						width: col.width,
+						'max-width': col.width,
+						'min-width': col.width
+					}"
+				[ngClass]="{
+						'text-left': !col.isNumeric,
+						'text-right': col.isNumeric
+					}"
+				[class]="'cursor-pointer ' + col.class"
+				[pTooltip]="col.showToolTip ? rowData[col.field] : ''"
+				[autoHide]="false"
+				tooltipPosition="bottom">
+				{{ rowData[col.field] | phoneNumber }}
+			</td>
+			}
+			@if (col.fieldType == fieldTypes.Date) {
+			<td [ngStyle]="{
+						width: col.width,
+						'max-width': col.width,
+						'min-width': col.width
+					}"
+				[ngClass]="{
+						'text-left': !col.isNumeric,
+						'text-right': col.isNumeric
+					}"
+				[class]="'cursor-pointer'">
+				{{ rowData[col.field] | date : 'dd-MMM-yyyy' }}
+			</td>
+			}
+			@if (col.fieldType == fieldTypes.Number) {
+			<td [ngStyle]="{
+						width: col.width,
+						'max-width': col.width,
+						'min-width': col.width
+					}"
+				[ngClass]="{
+						'text-left': !col.isNumeric,
+						'text-right': col.isNumeric
+					}"
+				[class]="'cursor-pointer'">
+				{{
+			rowData[col.field]
+			? col?.prefix +
+			(rowData[col.field] | number : '1.2-2') +
+			col?.suffix
+			: (0 | number : '1.2-2')
+			}}
+			</td>
+			}
+
+			@if (col.fieldType == fieldTypes.Boolean) {
+			<td [ngStyle]="{
+						width: col.width,
+						'max-width': col.width,
+						'min-width': col.width
+					}"
+				[ngClass]="{
+						'text-left': !col.isNumeric,
+						'text-right': col.isNumeric
+					}"
+				[class]="'cursor-pointer'">
+				{{ rowData[col.field] ? 'Yes' : 'No' }}
+			</td>
+			}
+			@if (col.fieldType == fieldTypes.LinkButton) {
+			<td [ngStyle]="{
+						width: col.width,
+						'max-width': col.width,
+						'min-width': col.width
+					}"
+				[ngClass]="{
+						'text-left': !col.isNumeric,
+						'text-right': col.isNumeric
+					}">
+				<!-- <span (click)="col.onClick(rowData)">
+						{{ col.header }}
+					</span> -->
+				<button pButton
+						type="button"
+						[label]="col.header"
+						class="p-0 cursor-pointer p-button-text"
+						(click)="col.onClick(rowData)"></button>
+			</td>
+			}
+			}
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="emptymessage">
+		<tr>
+			<td [attr.colspan]="columns?.length"
+				class="font-semibold text-center">
+				No Data available
+			</td>
+		</tr>
+	</ng-template>
+</p-table>
