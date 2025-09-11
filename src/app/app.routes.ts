@@ -68,6 +68,8 @@ import { T8HomeComponent } from "./templates/t8/t8-home/t8-home.component";
 import { T8Component } from "./templates/t8/t8.component";
 import { T9HomeComponent } from "./templates/t9/t9-home/t9-home.component";
 import { T9Component } from "./templates/t9/t9.component";
+import { UserloginComponent } from "./pages/public/user-login/user-login.component";
+import { UserSignupComponent } from "./pages/public/user-signup/user-signup.component";
 
 export const routes: Routes = [
 	{ path: "", redirectTo: "/loading", pathMatch: "full" },
@@ -78,6 +80,8 @@ export const routes: Routes = [
 	{ path: "templates", component: TemplatesComponent },
 	{ path: "verify", component: VerifyEmailComponent },
 	{ path: "thanks", component: ThankyouComponent },
+	{ path: "user-login", component: UserloginComponent },
+	{ path: "user-signup", component: UserSignupComponent },
 	// { path: 'website-settings', component: WebsettingComponent },
 	{
 		path: "",

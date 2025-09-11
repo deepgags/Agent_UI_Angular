@@ -1,24 +1,24 @@
 .btn-toggle {
 	color: #fff;
 	text-align: left;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn-toggle::after {
 	content: "›";
 	float: right;
 	transform: rotate(90deg);
-	transition: transform 0.2s;
+	transition: transform 0.3s ease;
 	margin-left: 10px;
-}
-
-.side_bg{
- background-color: rgb(243 243 243);
-
 }
 
 .btn-toggle.collapsed::after {
 	transform: rotate(0deg);
 	margin-left: 10px;
+}
+
+.side_bg {
+	background-color: rgb(243, 243, 243);
 }
 
 .flex-shrink-0 .active {
@@ -27,9 +27,12 @@
 	font-weight: 600;
 	padding: 10px;
 	color: white !important;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 .flex-shrink-0 .active i {
 	color: #ffc107;
+	transition: color 0.3s ease;
 }
 
 @media (max-width: 576px) {
@@ -37,4 +40,3 @@
 		display: none !important;
 	}
 }
-
