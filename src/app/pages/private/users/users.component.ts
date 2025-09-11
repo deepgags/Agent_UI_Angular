@@ -7,23 +7,23 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
 import { SimpleTableComponent } from "../../../components/simple-table/simple-table.component";
 import { FieldsType } from "../../../enums/fields-type.enum";
-import { Lead, LeadsService } from "../../../services/leads.service";
+import { Users, UsersService } from "../../../services/users.service";
 
 @Component({
-	selector: "app-leads",
+	selector: "app-users",
 	standalone: true,
 	imports: [CommonModule, TableModule, ButtonModule, PaginatorModule, ProgressSpinnerModule, SimpleTableComponent],
-	templateUrl: "./leads.component.html",
-	styleUrls: ["./leads.component.scss"],
+	templateUrl: "./users.component.html",
+	styleUrls: ["./users.component.scss"],
 	providers: [ConfirmationService],
 })
-export class LeadsComponent implements OnInit {
-	leads: Lead[] = [];
+export class UsersComponent implements OnInit {
+	users: Users[] = [];
 
 	columns = [
 		{
 			field: "name",
-			header: "Customer Name",
+			header: "Name",
 			disableSort: false,
 			fieldType: FieldsType.Text,
 		},
@@ -34,14 +34,14 @@ export class LeadsComponent implements OnInit {
 			fieldType: FieldsType.Text,
 		},
 		{
-			field: "userType",
-			header: "User Type",
+			field: "phone",
+			header: "Phone",
 			disableSort: false,
-			fieldType: FieldsType.Text,
+			fieldType: FieldsType.Telephone,
 		},
 		{
 			field: "createdAt",
-			header: "Lead Date",
+			header: "Joined",
 			disableSort: true,
 			fieldType: FieldsType.Date,
 		},
@@ -53,13 +53,13 @@ export class LeadsComponent implements OnInit {
 		},
 	];
 
-	pagedLeads: Lead[] = [];
+	pagedLeads: Users[] = [];
 	rows: number = 5;
 	first: number = 0;
 	loading: boolean = false;
 	error: string | null = null;
 
-	constructor(private leadsService: LeadsService, private confirmationService: ConfirmationService) {}
+	constructor(private usersService: UsersService, private confirmationService: ConfirmationService) {}
 
 	ngOnInit() {
 		this.getLeads();
@@ -68,24 +68,23 @@ export class LeadsComponent implements OnInit {
 	getLeads() {
 		this.loading = true;
 		this.error = null;
-		this.leadsService.getLeads().subscribe({
+		this.usersService.getUsers().subscribe({
 			next: (res: any) => {
-				this.leads = res.data;
+				this.users = res.data;
 				this.loading = false;
 			},
 			error: (error) => {
-				this.error = "Failed to load leads";
+				this.error = "Failed to load users";
 				this.loading = false;
-				console.error("Error loading leads:", error);
+				console.error("Error loading users:", error);
 			},
 		});
 	}
 
-	deleteLead = (lead: any, index: number) => {
-		debugger;
+	deleteUser = (user: any, index: number) => {
 		this.confirmationService.confirm({
-			header: "Delete Lead",
-			message: "Do you want to delete this lead?",
+			header: "Delete User",
+			message: "Do you want to delete this user?",
 			icon: "bi bi-trash3",
 			rejectLabel: "Cancel",
 			rejectButtonProps: {
@@ -99,23 +98,23 @@ export class LeadsComponent implements OnInit {
 			},
 
 			accept: () => {
-				this._confirmDeleteLead(lead, index);
+				this._confirmDeleteUser(user, index);
 			},
 			reject: () => {},
 		});
 	};
 
-	private _confirmDeleteLead = (lead: any, index: number) => {
+	private _confirmDeleteUser = (user: any, index: number) => {
 		this.loading = true;
-		this.leadsService.deleteLead(lead.id || lead.sno).subscribe({
+		this.usersService.deleteUser(user.id).subscribe({
 			next: () => {
-				this.leads.splice(index, 1);
+				this.users.splice(index, 1);
 				this.loading = false;
 			},
 			error: (error) => {
-				this.error = "Failed to delete lead";
+				this.error = "Failed to delete user";
 				this.loading = false;
-				console.error("Error deleting lead:", error);
+				console.error("Error deleting user:", error);
 			},
 		});
 	};

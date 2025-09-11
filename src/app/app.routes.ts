@@ -11,12 +11,15 @@ import { PaymentComponent } from "./pages/private/payment/payment.component";
 import { PrivateComponent } from "./pages/private/private.component";
 import { ProfileComponent } from "./pages/private/profile/profile.component";
 import { SettingsComponent } from "./pages/private/settings/settings.component";
+import { UsersComponent } from "./pages/private/users/users.component";
 import { WebsiteSettingsComponent } from "./pages/private/website-settings/website-settings.component";
 import { ForgotComponent } from "./pages/public/forgot/forgot.component";
 import { LoginComponent } from "./pages/public/login/login.component";
 import { NotFoundComponent } from "./pages/public/not-found/not-found.component";
 import { RegisterComponent } from "./pages/public/register/register.component";
 import { TemplatesComponent } from "./pages/public/templates/templates.component";
+import { UserloginComponent } from "./pages/public/user-login/user-login.component";
+import { UserSignupComponent } from "./pages/public/user-signup/user-signup.component";
 import { VerifyEmailComponent } from "./pages/public/verify-email/verify-email.component";
 import { AboutComponent } from "./templates/shared/about/about.component";
 import { BuyerComponent } from "./templates/shared/buyer/buyer.component";
@@ -68,8 +71,6 @@ import { T8HomeComponent } from "./templates/t8/t8-home/t8-home.component";
 import { T8Component } from "./templates/t8/t8.component";
 import { T9HomeComponent } from "./templates/t9/t9-home/t9-home.component";
 import { T9Component } from "./templates/t9/t9.component";
-import { UserloginComponent } from "./pages/public/user-login/user-login.component";
-import { UserSignupComponent } from "./pages/public/user-signup/user-signup.component";
 
 export const routes: Routes = [
 	{ path: "", redirectTo: "/loading", pathMatch: "full" },
@@ -95,6 +96,7 @@ export const routes: Routes = [
 			{ path: "template", component: TemplateComponent },
 			{ path: "profile", component: ProfileComponent },
 			{ path: "payment", component: PaymentComponent },
+			{ path: "users", component: UsersComponent },
 		],
 		canActivate: [authGuard],
 	},

@@ -1,65 +1,105 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { ButtonModule } from "primeng/button";
-import { PaginatorModule } from "primeng/paginator";
-import { TableModule } from "primeng/table";
-
-interface Page {
-	sno: number;
-	pageName: string;
-	pageTitle: string;
-	pageIndex: number;
-	dated: string;
-}
+import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { EditorModule } from "primeng/editor";
+import { IftaLabelModule } from "primeng/iftalabel";
+import { InputMaskModule } from "primeng/inputmask";
+import { InputTextModule } from "primeng/inputtext";
+import { SelectModule } from "primeng/select";
+import { TextareaModule } from "primeng/textarea";
+import { CustomerService } from "../../../services/customer.service";
+import { LoadingService } from "../../../services/loading.service";
+import { NotificationService } from "../../../services/notification.service";
 
 @Component({
 	selector: "app-manager",
 	standalone: true,
-	imports: [CommonModule, TableModule, ButtonModule, PaginatorModule],
+	imports: [
+		CommonModule,
+		ReactiveFormsModule,
+		InputTextModule,
+		SelectModule,
+		InputMaskModule,
+		IftaLabelModule,
+		TextareaModule,
+		EditorModule,
+	],
 	templateUrl: "./manager.component.html",
 	styleUrls: ["./manager.component.scss"],
 })
 export class ManagerComponent {
-	pages: Page[] = [
-		{ sno: 1, pageName: "Home", pageTitle: "Home", pageIndex: 1, dated: "8/12/2025 11:54:10 AM" },
-		{ sno: 2, pageName: "About", pageTitle: "About", pageIndex: 2, dated: "8/12/2025 11:55:06 AM" },
-		{ sno: 3, pageName: "Services", pageTitle: "Our Services", pageIndex: 3, dated: "8/12/2025 12:00:00 PM" },
-		{ sno: 4, pageName: "Contact", pageTitle: "Contact Us", pageIndex: 4, dated: "8/12/2025 12:05:00 PM" },
-		{ sno: 5, pageName: "Blog", pageTitle: "Blog", pageIndex: 5, dated: "8/12/2025 12:10:00 PM" },
-		{ sno: 6, pageName: "FAQ", pageTitle: "Frequently Asked Questions", pageIndex: 6, dated: "8/12/2025 12:15:00 PM" },
-	];
+	agentForm!: FormGroup;
 
-	pagedPages: Page[] = [];
-	rows: number = 5;
-	first: number = 0;
+	constructor(
+		private customerService: CustomerService,
+		private notificationService: NotificationService,
+		private loadingService: LoadingService
+	) {}
 
-	constructor() {
-		this.updatePagedData();
+	ngOnInit() {
+		this.agentForm = new FormGroup({
+			aboutText: new FormControl(""),
+			contactText: new FormControl(""),
+			sellingYourHouseText: new FormControl(""),
+			renovatingForResellText: new FormControl(""),
+			commonSellingMistakeText: new FormControl(""),
+			buyerText: new FormControl(""),
+		});
+
+		this.getProfile();
 	}
 
-	// ✅ This was missing earlier!
-	onPageChange(event: any) {
-		this.first = event.first;
-		this.rows = event.rows;
-		this.updatePagedData();
+	getProfile() {
+		this.customerService.getCustomer().subscribe({
+			next: (response: any) => {
+				if (response.status) {
+					if (response.data.websiteSettings) {
+						this.agentForm.patchValue({
+							aboutText: response.data.websiteSettings.aboutText || "",
+							contactText: response.data.websiteSettings.contactText || "",
+							sellingYourHouseText: response.data.websiteSettings.sellingYourHouseText || "",
+							renovatingForResellText: response.data.websiteSettings.renovatingForResellText || "",
+							commonSellingMistakeText: response.data.websiteSettings.commonSellingMistakeText || "",
+							buyerText: response.data.websiteSettings.buyerText || "",
+						});
+					}
+				}
+			},
+			error: () => {
+				this.notificationService.showSuccess("An error has occurred while getting customer information");
+			},
+			complete: () => {},
+		});
 	}
 
-	updatePagedData() {
-		this.pagedPages = this.pages.slice(this.first, this.first + this.rows);
-	}
+	save() {
+		const { valid } = this.agentForm;
+		if (valid) {
+			this.loadingService.loadingOn();
 
-	createPage() {
-		alert("Create Page clicked");
-	}
-
-	editPage(page: Page) {
-		alert(`Editing page: ${page.pageName}`);
-	}
-
-	deletePage(page: Page) {
-		if (confirm(`Are you sure you want to delete ${page.pageName}?`)) {
-			this.pages = this.pages.filter((p) => p.sno !== page.sno);
-			this.updatePagedData();
+			const params = {
+				websiteSettings: {
+					aboutText: this.agentForm.get("aboutText")?.value || "",
+					contactText: this.agentForm.get("contactText")?.value || "",
+					sellingYourHouseText: this.agentForm.get("sellingYourHouseText")?.value || "",
+					renovatingForResellText: this.agentForm.get("renovatingForResellText")?.value || "",
+					commonSellingMistakeText: this.agentForm.get("commonSellingMistakeText")?.value || "",
+					buyerText: this.agentForm.get("buyerText")?.value || "",
+				},
+			};
+			this.customerService.update(params).subscribe({
+				next: (v) => {},
+				error: (e) => {
+					this.notificationService.showSuccess(e.error.message || "Something went wrong while updating information.");
+				},
+				complete: () => {
+					this.notificationService.showSuccess("Page content updated successfully");
+					this.loadingService.loadingOff();
+				},
+			});
+		} else {
+			this.agentForm.markAllAsTouched();
+			this.notificationService.showSuccess("One or more required fields are missing or invalid.");
 		}
 	}
 }

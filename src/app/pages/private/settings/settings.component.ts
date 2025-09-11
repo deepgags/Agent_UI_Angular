@@ -3,16 +3,14 @@ import { Component, Inject, inject, PLATFORM_ID } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { Title } from "@angular/platform-browser";
-import { Router } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
-import { MenuItem } from "primeng/api";
 import { ColorPickerModule } from "primeng/colorpicker";
 import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
 import { EditorModule } from "primeng/editor";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
-import { MenuModule } from "primeng/menu";
+
 import { SelectModule } from "primeng/select";
 import { TextareaModule } from "primeng/textarea";
 import { BehaviorSubject, Observable } from "rxjs";
@@ -39,7 +37,6 @@ import { TemplateService } from "../../../services/template.service";
 		SelectModule,
 		InputMaskModule,
 		ColorPickerModule,
-		MenuModule,
 		DynamicDialogModule,
 		IftaLabelModule,
 		TextareaModule,
@@ -70,11 +67,9 @@ export class SettingsComponent {
 	secondaryAgentProfileImageObservable: Observable<string>;
 
 	readonly dialog = inject(MatDialog);
-	items: MenuItem[] | undefined;
 
 	constructor(
 		private fb: FormBuilder,
-		private router: Router,
 		private customerService: CustomerService,
 		private brokerageTypeService: BrokerageTypeService,
 		private notificationService: NotificationService,
@@ -85,25 +80,6 @@ export class SettingsComponent {
 		@Inject(PLATFORM_ID) private platformId: Object
 	) {
 		this.titleService.setTitle("Profile");
-		this.items = [
-			{
-				label: "Settings",
-				items: [
-					{
-						label: "Change Password",
-						icon: "fas fa-key",
-						routerLink: "/change-password",
-					},
-					{
-						label: "Log Out",
-						icon: "fas fa-power-off",
-						command: () => {
-							this.logout();
-						},
-					},
-				],
-			},
-		];
 
 		this.brokerageImage = new BehaviorSubject("");
 		this.brokerageImageObservable = this.brokerageImage.asObservable();
@@ -178,12 +154,12 @@ export class SettingsComponent {
 			websiteEmail: new FormControl(""),
 			websitePhone: new FormControl(""),
 			// websiteAddress: new FormControl(""),
-			aboutText: new FormControl(""),
-			contactText: new FormControl(""),
-			sellingYourHouseText: new FormControl(""),
-			renovatingForResellText: new FormControl(""),
-			commonSellingMistakeText: new FormControl(""),
-			buyerText: new FormControl(""),
+			// aboutText: new FormControl(""),
+			// contactText: new FormControl(""),
+			// sellingYourHouseText: new FormControl(""),
+			// renovatingForResellText: new FormControl(""),
+			// commonSellingMistakeText: new FormControl(""),
+			// buyerText: new FormControl(""),
 			secondaryAgent: this.fb.group({
 				firstName: new FormControl(""),
 				lastName: new FormControl(""),
@@ -245,12 +221,12 @@ export class SettingsComponent {
 							websiteEmail: websiteEmail,
 							websitePhone: websitePhone,
 							// websiteAddress: websiteAddress,
-							aboutText: response.data.websiteSettings.aboutText || "",
-							contactText: response.data.websiteSettings.contactText || "",
-							sellingYourHouseText: response.data.websiteSettings.sellingYourHouseText || "",
-							renovatingForResellText: response.data.websiteSettings.renovatingForResellText || "",
-							commonSellingMistakeText: response.data.websiteSettings.commonSellingMistakeText || "",
-							buyerText: response.data.websiteSettings.buyerText || "",
+							// aboutText: response.data.websiteSettings.aboutText || "",
+							// contactText: response.data.websiteSettings.contactText || "",
+							// sellingYourHouseText: response.data.websiteSettings.sellingYourHouseText || "",
+							// renovatingForResellText: response.data.websiteSettings.renovatingForResellText || "",
+							// commonSellingMistakeText: response.data.websiteSettings.commonSellingMistakeText || "",
+							// buyerText: response.data.websiteSettings.buyerText || "",
 						});
 						if (response.data.secondaryAgent) {
 							this.agentForm.get("secondaryAgent")?.patchValue({
@@ -355,12 +331,12 @@ export class SettingsComponent {
 					templateId,
 					primaryColor,
 					secondaryColor,
-					aboutText: this.agentForm.get("aboutText")?.value || "",
-					contactText: this.agentForm.get("contactText")?.value || "",
-					sellingYourHouseText: this.agentForm.get("sellingYourHouseText")?.value || "",
-					renovatingForResellText: this.agentForm.get("renovatingForResellText")?.value || "",
-					commonSellingMistakeText: this.agentForm.get("commonSellingMistakeText")?.value || "",
-					buyerText: this.agentForm.get("buyerText")?.value || "",
+					// aboutText: this.agentForm.get("aboutText")?.value || "",
+					// contactText: this.agentForm.get("contactText")?.value || "",
+					// sellingYourHouseText: this.agentForm.get("sellingYourHouseText")?.value || "",
+					// renovatingForResellText: this.agentForm.get("renovatingForResellText")?.value || "",
+					// commonSellingMistakeText: this.agentForm.get("commonSellingMistakeText")?.value || "",
+					// buyerText: this.agentForm.get("buyerText")?.value || "",
 					socialLinks: {
 						facebook,
 						twitter,
@@ -396,11 +372,6 @@ export class SettingsComponent {
 			this.agentForm.markAllAsTouched();
 			this.notificationService.showSuccess("One or more required fields are missing or invalid.");
 		}
-	}
-
-	logout() {
-		this.customerService.logout();
-		this.router.navigate(["/login"]);
 	}
 
 	onProfileImageChange(event: Event): void {

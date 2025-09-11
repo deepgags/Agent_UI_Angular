@@ -1,0 +1,38 @@
+<div class="col mt-3">
+	<h2>Registered Users</h2>
+	<div class="border rounded">
+		<div class="p-4">
+
+			<!-- Loading -->
+			<div *ngIf="loading"
+				 class="text-center py-4">
+				<p-progressSpinner></p-progressSpinner>
+				<p class="mt-2">Loading leads...</p>
+			</div>
+
+			<!-- Error -->
+			<div *ngIf="error"
+				 class="alert alert-danger"
+				 role="alert">
+				{{ error }}
+				<button class="btn btn-outline-danger btn-sm ms-2"
+						(click)="getLeads()">Retry</button>
+			</div>
+
+			<!-- Data Table -->
+			<div *ngIf="!loading && !error">
+				<app-simple-table [columns]="columns"
+								  [data]="users"
+								  [paginator]="true"
+								  [rows]="25"
+								  [showFilter]="true"
+								  [showActions]="true"
+								  [showEditAction]="false"
+								  [showDeleteAction]="true"
+								  [onDelete]="deleteUser"
+								  [highlightRow]="true"
+								  #table />
+			</div>
+		</div>
+
+	</div>

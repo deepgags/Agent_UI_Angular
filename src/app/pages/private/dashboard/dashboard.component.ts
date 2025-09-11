@@ -5,13 +5,6 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
 import { DashboardData, DashboardService } from "../../../services/dashboard.service";
 
-interface Product {
-	code: string;
-	name: string;
-	category: string;
-	quantity: number;
-}
-
 @Component({
 	selector: "app-admin",
 	standalone: true,
@@ -26,14 +19,6 @@ export class AdminComponent implements OnInit {
 		previousMonthLeads: 0,
 		currentMonthLeads: 0,
 	};
-
-	products: Product[] = [
-		{ code: "P1001", name: "Laptop", category: "Electronics", quantity: 12 },
-		{ code: "P1002", name: "Phone", category: "Electronics", quantity: 30 },
-		{ code: "P1003", name: "Shirt", category: "Clothing", quantity: 45 },
-		{ code: "P1004", name: "Book", category: "Stationery", quantity: 20 },
-		{ code: "P1005", name: "Shoes", category: "Footwear", quantity: 15 },
-	];
 
 	loading: boolean = false;
 	error: string | null = null;
