@@ -10,16 +10,16 @@ import { provideAnimations } from "@angular/platform-browser/animations";
 import { Router } from "@angular/router";
 import { NgbCarouselConfig, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { BehaviorSubject } from "rxjs";
-import { CustomerModel } from "../../models/CustomerModel";
-import { TemplateModel } from "../../models/TemplateModel";
-import { CustomerService } from "../../services/customer.service";
-import { LoadingService } from "../../services/loading.service";
-import { NotificationService } from "../../services/notification.service";
-import { SharedDataService } from "../../services/shareddata.service";
-import { StorageService } from "../../services/storage.service";
-import { TemplateService } from "../../services/template.service";
-import { TemplatesiteComponent } from "../dialogs/templatesite/templatesite.component";
-import { GalleryComponent } from "../gallery/gallery.component";
+import { TemplatesiteComponent } from "../../../components/dialogs/templatesite/templatesite.component";
+import { GalleryComponent } from "../../../components/gallery/gallery.component";
+import { CustomerModel } from "../../../models/CustomerModel";
+import { TemplateModel } from "../../../models/TemplateModel";
+import { CustomerService } from "../../../services/customer.service";
+import { LoadingService } from "../../../services/loading.service";
+import { NotificationService } from "../../../services/notification.service";
+import { SharedDataService } from "../../../services/shareddata.service";
+import { StorageService } from "../../../services/storage.service";
+import { TemplateService } from "../../../services/template.service";
 
 @Component({
 	selector: "app-template",

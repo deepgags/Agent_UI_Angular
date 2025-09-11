@@ -1,6 +1,5 @@
 import { Routes } from "@angular/router";
 import { RedirectUserComponent } from "./components/redirectuser/redirectuser.component";
-import { TemplateComponent } from "./components/template/template.component";
 import { ThankyouComponent } from "./components/thankyou/thankyou.component";
 import { authGuard } from "./guards/auth.guard";
 import { ChangePasswordComponent } from "./pages/private/change-password/change-password.component";
@@ -11,8 +10,9 @@ import { PaymentComponent } from "./pages/private/payment/payment.component";
 import { PrivateComponent } from "./pages/private/private.component";
 import { ProfileComponent } from "./pages/private/profile/profile.component";
 import { SettingsComponent } from "./pages/private/settings/settings.component";
+import { TemplateComponent } from "./pages/private/template/template.component";
 import { UsersComponent } from "./pages/private/users/users.component";
-import { WebsiteSettingsComponent } from "./pages/private/website-settings/website-settings.component";
+// import { WebsiteSettingsComponent } from "./pages/private/website-settings/website-settings.component";
 import { ForgotComponent } from "./pages/public/forgot/forgot.component";
 import { LoginComponent } from "./pages/public/login/login.component";
 import { NotFoundComponent } from "./pages/public/not-found/not-found.component";
