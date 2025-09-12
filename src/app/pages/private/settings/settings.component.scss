@@ -3,3 +3,7 @@
 	width: 120px;
 	object-fit: cover;
 }
+
+*:not(h2) {
+  font-size: 14px !important;
+}
