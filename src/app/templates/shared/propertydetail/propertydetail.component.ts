@@ -132,7 +132,7 @@ export class PropertydetailComponent implements OnInit {
 		private router: Router,
 		private siteConfigService: SiteConfigService,
 		private dialogConfig: DynamicDialogConfig,
-		// private notificationService: NotificationService
+		private notificationService: NotificationService,
 		private publicService: PublicService
 	) {
 		this.titleService.setTitle("Property Detail");
@@ -412,7 +412,7 @@ export class PropertydetailComponent implements OnInit {
 		console.log(this.requestShowingForm);
 		if (this.requestShowingForm.invalid) {
 			this.requestShowingForm.markAllAsTouched();
-			// this.notificationService.showError("Please fill all required fields correctly.");
+			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
 
@@ -424,11 +424,11 @@ export class PropertydetailComponent implements OnInit {
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
-				// this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.requestShowingForm.reset();
 			},
 			error: () => {
-				// this.notificationService.showError("Failed to send message. Please try again later.");
+				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
 	}
@@ -436,7 +436,7 @@ export class PropertydetailComponent implements OnInit {
 	submitPropertyHistoryForm() {
 		if (this.propertyHistoryForm.invalid) {
 			this.propertyHistoryForm.markAllAsTouched();
-			// this.notificationService.showError("Please fill all required fields correctly.");
+			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
 
@@ -448,11 +448,11 @@ export class PropertydetailComponent implements OnInit {
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
-				// this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.propertyHistoryForm.reset();
 			},
 			error: () => {
-				// this.notificationService.showError("Failed to send message. Please try again later.");
+				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
 	}
@@ -460,7 +460,7 @@ export class PropertydetailComponent implements OnInit {
 	submitRecentSalesInAreaForm() {
 		if (this.recentSaleInAreaForm.invalid) {
 			this.recentSaleInAreaForm.markAllAsTouched();
-			// this.notificationService.showError("Please fill all required fields correctly.");
+			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
 
@@ -472,11 +472,11 @@ export class PropertydetailComponent implements OnInit {
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
-				// this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.recentSaleInAreaForm.reset();
 			},
 			error: () => {
-				// this.notificationService.showError("Failed to send message. Please try again later.");
+				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
 	}
@@ -484,7 +484,7 @@ export class PropertydetailComponent implements OnInit {
 	submitHaveQuestionForm() {
 		if (this.haveQuestionForm.invalid) {
 			this.haveQuestionForm.markAllAsTouched();
-			// this.notificationService.showError("Please fill all required fields correctly.");
+			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
 
@@ -496,11 +496,11 @@ export class PropertydetailComponent implements OnInit {
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
-				// this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.haveQuestionForm.reset();
 			},
 			error: () => {
-				// this.notificationService.showError("Failed to send message. Please try again later.");
+				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
 	}
@@ -508,7 +508,7 @@ export class PropertydetailComponent implements OnInit {
 	submitContactForm() {
 		if (this.contactForm.invalid) {
 			this.contactForm.markAllAsTouched();
-			// this.notificationService.showError("Please fill all required fields correctly.");
+			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
 
@@ -520,11 +520,11 @@ export class PropertydetailComponent implements OnInit {
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
-				// this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.contactForm.reset();
 			},
 			error: () => {
-				// this.notificationService.showError("Failed to send message. Please try again later.");
+				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
 	}

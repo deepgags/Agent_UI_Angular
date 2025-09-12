@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { ConfirmationService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { PaginatorModule } from "primeng/paginator";
@@ -7,6 +7,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
 import { SimpleTableComponent } from "../../../components/simple-table/simple-table.component";
 import { FieldsType } from "../../../enums/fields-type.enum";
+import { NotificationService } from "../../../services/notification.service";
 import { Users, UsersService } from "../../../services/users.service";
 
 @Component({
@@ -59,13 +60,16 @@ export class UsersComponent implements OnInit {
 	loading: boolean = false;
 	error: string | null = null;
 
-	constructor(private usersService: UsersService, private confirmationService: ConfirmationService) {}
+	private notificationService = inject(NotificationService);
+	private usersService = inject(UsersService);
+	private confirmationService = inject(ConfirmationService);
+	constructor() {}
 
 	ngOnInit() {
-		this.getLeads();
+		this.getUsers();
 	}
 
-	getLeads() {
+	getUsers() {
 		this.loading = true;
 		this.error = null;
 		this.usersService.getUsers().subscribe({
@@ -110,11 +114,12 @@ export class UsersComponent implements OnInit {
 			next: () => {
 				this.users.splice(index, 1);
 				this.loading = false;
+				this.notificationService.showError("User deleted.");
 			},
 			error: (error) => {
-				this.error = "Failed to delete user";
 				this.loading = false;
 				console.error("Error deleting user:", error);
+				this.notificationService.showError("Unable to delete user.");
 			},
 		});
 	};

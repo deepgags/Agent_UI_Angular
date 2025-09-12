@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { ConfirmationService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { PaginatorModule } from "primeng/paginator";
@@ -8,6 +8,7 @@ import { TableModule } from "primeng/table";
 import { SimpleTableComponent } from "../../../components/simple-table/simple-table.component";
 import { FieldsType } from "../../../enums/fields-type.enum";
 import { Lead, LeadsService } from "../../../services/leads.service";
+import { NotificationService } from "../../../services/notification.service";
 
 @Component({
 	selector: "app-leads",
@@ -15,7 +16,6 @@ import { Lead, LeadsService } from "../../../services/leads.service";
 	imports: [CommonModule, TableModule, ButtonModule, PaginatorModule, ProgressSpinnerModule, SimpleTableComponent],
 	templateUrl: "./leads.component.html",
 	styleUrls: ["./leads.component.scss"],
-	providers: [ConfirmationService],
 })
 export class LeadsComponent implements OnInit {
 	leads: Lead[] = [];
@@ -59,7 +59,13 @@ export class LeadsComponent implements OnInit {
 	loading: boolean = false;
 	error: string | null = null;
 
-	constructor(private leadsService: LeadsService, private confirmationService: ConfirmationService) {}
+	private notificationService = inject(NotificationService);
+
+	private confirmationService = inject(ConfirmationService);
+
+	private leadsService = inject(LeadsService);
+
+	constructor() {}
 
 	ngOnInit() {
 		this.getLeads();
@@ -82,7 +88,6 @@ export class LeadsComponent implements OnInit {
 	}
 
 	deleteLead = (lead: any, index: number) => {
-		debugger;
 		this.confirmationService.confirm({
 			header: "Delete Lead",
 			message: "Do you want to delete this lead?",
@@ -111,11 +116,12 @@ export class LeadsComponent implements OnInit {
 			next: () => {
 				this.leads.splice(index, 1);
 				this.loading = false;
+				this.notificationService.showSuccess("Lead removed.");
 			},
 			error: (error) => {
-				this.error = "Failed to delete lead";
 				this.loading = false;
 				console.error("Error deleting lead:", error);
+				this.notificationService.showSuccess("Unable to remove lead.");
 			},
 		});
 	};

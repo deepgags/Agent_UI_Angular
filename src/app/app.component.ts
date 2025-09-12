@@ -3,19 +3,19 @@ import { HttpClient } from "@angular/common/http";
 import { Component, DOCUMENT, Inject, PLATFORM_ID } from "@angular/core";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Router, RouterOutlet } from "@angular/router";
-import { ConfirmationService, MessageService } from "primeng/api";
-import { ConfirmDialogModule } from "primeng/confirmdialog";
-import { ToastModule } from "primeng/toast";
+
+import { ConfirmDialog, ConfirmDialogModule } from "primeng/confirmdialog";
+import { Toast, ToastModule } from "primeng/toast";
 import { Pages } from "./enums/pages";
 import { environment } from "./environments/environment.development";
 import { LoadingService } from "./services/loading.service";
 import { SiteConfigService } from "./services/site-config.service";
+
 @Component({
 	selector: "app-root",
-	imports: [RouterOutlet, CommonModule, MatProgressSpinnerModule, ToastModule, ConfirmDialogModule],
+	imports: [RouterOutlet, CommonModule, MatProgressSpinnerModule, Toast, ConfirmDialogModule, ConfirmDialog],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.scss",
-	providers: [MessageService, ConfirmationService],
 })
 export class AppComponent {
 	currentPath: string = "";
