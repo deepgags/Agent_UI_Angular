@@ -70,7 +70,7 @@ declare var window: any;
 	styleUrls: ["./propertydetail.component.scss"],
 	standalone: true,
 })
-export class PropertydetailComponent implements OnInit {
+export class PropertyDetailComponent implements OnInit {
 	imageUrl = environment.imageUrl;
 	property: PropertyModel | undefined;
 	Latitude: number = 0;
@@ -539,7 +539,7 @@ export class PropertydetailComponent implements OnInit {
 				this.getLeadTypesForForms("haveQuestionForm");
 				this.getLeadTypesForForms("contactForm");
 			},
-			error: () => {},
+			error: () => { },
 		});
 	}
 

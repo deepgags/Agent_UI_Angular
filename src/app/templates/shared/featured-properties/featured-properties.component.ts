@@ -13,7 +13,7 @@ import { PropertyModel } from "../../../models/PropertyModel";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 import { StorageService } from "../../../services/storage.service";
-import { PropertydetailComponent } from "../propertydetail/propertydetail.component";
+import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 
 @Component({
 	selector: "app-featured-properties",
@@ -40,7 +40,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 		// private router: Router,
 		// private activatedRoute: ActivatedRoute,
 		private dialogService: DialogService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.searchProperties();
@@ -90,7 +90,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 		// 	},
 		// 	queryParamsHandling: "replace",
 		// });
-		this.dialogService.open(PropertydetailComponent, {
+		this.dialogService.open(PropertyDetailComponent, {
 			header: `Property Information`,
 			width: "70%",
 			maximizable: true,
@@ -130,7 +130,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 			error: (err) => {
 				// this.notificationService.showNotification("Error occurred while getting properties");
 			},
-			complete: () => {},
+			complete: () => { },
 		});
 	};
 }

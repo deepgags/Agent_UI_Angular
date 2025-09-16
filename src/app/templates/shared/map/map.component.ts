@@ -20,7 +20,7 @@ import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 import { StorageService } from "../../../services/storage.service";
-import { PropertydetailComponent } from "../propertydetail/propertydetail.component";
+import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
 @Component({
@@ -104,7 +104,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 				mapId: "properties",
 				disableDefaultUI: true,
 				heading: 90,
-				
+
 				tilt: 45,
 				zoomControl: true,
 				streetViewControl: false,
@@ -304,7 +304,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 		// 	},
 		// 	queryParamsHandling: "replace",
 		// });
-		this.dialogService.open(PropertydetailComponent, {
+		this.dialogService.open(PropertyDetailComponent, {
 			header: `Property Information`,
 			width: "70%",
 			maximizable: true,

@@ -52,7 +52,7 @@ export class AppComponent {
 					this.currentPath != Pages.PROFILE &&
 					this.currentPath != Pages.VERIFY_EMAIL)
 			) {
-				this.loadSiteConfiguration();
+				// this.loadSiteConfiguration();
 			}
 		}
 	}

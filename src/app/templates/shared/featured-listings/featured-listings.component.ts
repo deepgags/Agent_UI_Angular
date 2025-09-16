@@ -20,7 +20,7 @@ import { PropertyService } from "../../../services/property.service";
 // import { StorageService } from '../../../services/storage.service'; // Not used in current snippet
 import { DialogService } from "primeng/dynamicdialog";
 import { environment } from "../../../environments/environment.development";
-import { PropertydetailComponent } from "../propertydetail/propertydetail.component";
+import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
 @Component({
@@ -140,7 +140,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 		// 	queryParamsHandling: "merge", // Consider 'merge' or 'preserve' based on desired behavior
 		// });
 
-		this.dialogService.open(PropertydetailComponent, {
+		this.dialogService.open(PropertyDetailComponent, {
 			header: `Property Information`,
 			width: "70%",
 			maximizable: true,

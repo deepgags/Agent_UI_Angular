@@ -17,7 +17,7 @@ import { stringiFy } from "../../../consts/Utility";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { LoadingService } from "../../../services/loading.service";
 import { PropertyService } from "../../../services/property.service";
-import { PropertydetailComponent } from "../propertydetail/propertydetail.component";
+import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
 @Component({
@@ -138,7 +138,7 @@ export class SearchPageComponent implements OnInit {
 		// 	queryParamsHandling: "replace",
 		// });
 
-		this.dialogService.open(PropertydetailComponent, {
+		this.dialogService.open(PropertyDetailComponent, {
 			header: `Property Information`,
 			width: "70%",
 			maximizable: true,
