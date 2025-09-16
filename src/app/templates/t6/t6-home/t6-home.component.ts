@@ -22,17 +22,17 @@ import { SiteConfigService } from "../../../services/site-config.service";
 	selector: "app-t6-home",
 	standalone: true,
 	imports: [
-    RouterModule,
-    SearchComponent,
-    FeaturedPropertiesComponent,
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    PhoneSearch
-],
+		RouterModule,
+		SearchComponent,
+		FeaturedPropertiesComponent,
+		NgbModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatDialogModule,
+		MatFormFieldModule,
+		MatInputModule,
+		PhoneSearch
+	],
 	templateUrl: "./t6-home.component.html",
 	styleUrls: ["./t6-home.component.scss", "../t6.component.scss"],
 	providers: [Title, StorageService],
@@ -48,7 +48,7 @@ export class T6HomeComponent implements OnInit {
 		private titleService: Title,
 		private siteConfigService: SiteConfigService,
 		private searchService: SearchService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -73,6 +73,6 @@ export class T6HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		this.searchService.goToSearch(selectedFilters, searchByMap, "/t6");
+		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};
 }

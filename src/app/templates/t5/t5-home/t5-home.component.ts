@@ -21,17 +21,17 @@ import { SiteConfigService } from "../../../services/site-config.service";
 	selector: "app-t5-home",
 	standalone: true,
 	imports: [
-    RouterModule,
-    SearchComponent,
-    FeaturedPropertiesComponent,
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    PhoneSearch
-],
+		RouterModule,
+		SearchComponent,
+		FeaturedPropertiesComponent,
+		NgbModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatDialogModule,
+		MatFormFieldModule,
+		MatInputModule,
+		PhoneSearch
+	],
 	templateUrl: "./t5-home.component.html",
 	styleUrls: ["./t5-home.component.scss", "../t5.component.scss"],
 	providers: [Title, StorageService],
@@ -47,7 +47,7 @@ export class T5HomeComponent implements OnInit {
 		private titleService: Title,
 		private siteConfigService: SiteConfigService,
 		private searchService: SearchService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -66,6 +66,6 @@ export class T5HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		this.searchService.goToSearch(selectedFilters, searchByMap, "/t5");
+		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};
 }

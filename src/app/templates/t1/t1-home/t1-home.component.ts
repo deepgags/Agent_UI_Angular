@@ -22,11 +22,10 @@ export class T1HomeComponent implements OnInit {
 	siteConfigSubscription: any;
 
 	constructor(
-		private router: Router,
 		private titleService: Title,
 		private siteConfigService: SiteConfigService,
 		private searchService: SearchService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -38,7 +37,7 @@ export class T1HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		this.searchService.goToSearch(selectedFilters, searchByMap, "/t1");
+		this.searchService.goToSearch(selectedFilters, searchByMap);
 		/*
 		const { address, property_type, property_subtype, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } = selectedFilters;
 		searchByMap = selectedFilters["searchByMap"] || searchByMap;

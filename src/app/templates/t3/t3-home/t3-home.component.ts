@@ -21,7 +21,7 @@ export class T3HomeComponent implements OnInit {
 	siteConfig: SiteConfig | undefined;
 	siteConfigSubscription: any;
 
-	constructor(private titleService: Title, private siteConfigService: SiteConfigService, private searchService: SearchService) {}
+	constructor(private titleService: Title, private siteConfigService: SiteConfigService, private searchService: SearchService) { }
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -33,6 +33,6 @@ export class T3HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		this.searchService.goToSearch(selectedFilters, searchByMap, "/t3");
+		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};
 }

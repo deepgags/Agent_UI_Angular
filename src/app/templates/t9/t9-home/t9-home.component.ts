@@ -20,16 +20,16 @@ import { SiteConfigService } from "../../../services/site-config.service";
 	selector: "app-t9-home",
 	standalone: true,
 	imports: [
-    RouterModule,
-    SearchComponent,
-    FeaturedPropertiesComponent,
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule
-],
+		RouterModule,
+		SearchComponent,
+		FeaturedPropertiesComponent,
+		NgbModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatDialogModule,
+		MatFormFieldModule,
+		MatInputModule
+	],
 	templateUrl: "./t9-home.component.html",
 	styleUrls: ["./t9-home.component.scss", "../t9.component.scss"],
 	providers: [Title, StorageService],
@@ -45,7 +45,7 @@ export class T9HomeComponent implements OnInit {
 		private titleService: Title,
 		private siteConfigService: SiteConfigService,
 		private searchService: SearchService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -64,6 +64,6 @@ export class T9HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		this.searchService.goToSearch(selectedFilters, searchByMap, "/t9");
+		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};
 }

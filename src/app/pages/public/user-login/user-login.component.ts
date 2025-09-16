@@ -17,7 +17,7 @@ import { Pages } from "../../../enums/pages";
 	imports: [ReactiveFormsModule, RouterModule, InputTextModule, PasswordModule],
 	standalone: true,
 })
-export class UserloginComponent {
+export class UserLoginComponent {
 	loginForm: FormGroup;
 
 	constructor(

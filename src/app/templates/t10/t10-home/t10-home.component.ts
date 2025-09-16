@@ -2,7 +2,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
-import { Router, RouterModule } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { StorageService } from "../../../services/storage.service";
@@ -20,16 +20,16 @@ import { SiteConfigService } from "../../../services/site-config.service";
 	selector: "app-t10-home",
 	standalone: true,
 	imports: [
-    RouterModule,
-    SearchComponent,
-    FeaturedPropertiesComponent,
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule
-],
+		RouterModule,
+		SearchComponent,
+		FeaturedPropertiesComponent,
+		NgbModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatDialogModule,
+		MatFormFieldModule,
+		MatInputModule
+	],
 	templateUrl: "./t10-home.component.html",
 	styleUrls: ["./t10-home.component.scss", "../t10.component.scss"],
 	providers: [Title, StorageService],
@@ -45,7 +45,7 @@ export class T10HomeComponent implements OnInit {
 		private titleService: Title,
 		private siteConfigService: SiteConfigService,
 		private searchService: SearchService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -64,6 +64,6 @@ export class T10HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		this.searchService.goToSearch(selectedFilters, searchByMap, "/t10");
+		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};
 }

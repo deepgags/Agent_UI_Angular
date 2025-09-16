@@ -13,23 +13,23 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { SiteConfigService } from "../../../services/site-config.service";
 import { SearchService } from "../../../services/search.service";
+import { SiteConfigService } from "../../../services/site-config.service";
 
 @Component({
 	selector: "app-t18-home",
 	standalone: true,
 	imports: [
-    RouterModule,
-    SearchComponent,
-    FeaturedPropertiesComponent,
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule
-],
+		RouterModule,
+		SearchComponent,
+		FeaturedPropertiesComponent,
+		NgbModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatDialogModule,
+		MatFormFieldModule,
+		MatInputModule
+	],
 	templateUrl: "./t18-home.component.html",
 	styleUrls: ["./t18-home.component.scss", "../t18.component.scss"],
 	providers: [Title, StorageService],
@@ -45,7 +45,7 @@ export class T18HomeComponent implements OnInit {
 		private titleService: Title,
 		private siteConfigService: SiteConfigService,
 		private searchService: SearchService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
@@ -64,6 +64,6 @@ export class T18HomeComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		this.searchService.goToSearch(selectedFilters, searchByMap, "/t18");
+		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};
 }

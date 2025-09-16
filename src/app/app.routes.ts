@@ -12,27 +12,26 @@ import { ProfileComponent } from "./pages/private/profile/profile.component";
 import { SettingsComponent } from "./pages/private/settings/settings.component";
 import { TemplateComponent } from "./pages/private/template/template.component";
 import { UsersComponent } from "./pages/private/users/users.component";
-// import { WebsiteSettingsComponent } from "./pages/private/website-settings/website-settings.component";
 import { ForgotComponent } from "./pages/public/forgot/forgot.component";
 import { LoginComponent } from "./pages/public/login/login.component";
 import { NotFoundComponent } from "./pages/public/not-found/not-found.component";
 import { RegisterComponent } from "./pages/public/register/register.component";
 import { TemplatesComponent } from "./pages/public/templates/templates.component";
-import { UserloginComponent } from "./pages/public/user-login/user-login.component";
+import { UserLoginComponent } from "./pages/public/user-login/user-login.component";
 import { UserSignupComponent } from "./pages/public/user-signup/user-signup.component";
 import { VerifyEmailComponent } from "./pages/public/verify-email/verify-email.component";
+
 export const routes: Routes = [
-	// { path: "", redirectTo: "/loading", pathMatch: "full" },
-	{ path: "loading", component: RedirectUserComponent },
+	// { path: "", redirectTo: '/loading', pathMatch: "full" },
+	// { path: "loading", component: RedirectUserComponent },
 	{ path: "register", component: RegisterComponent },
 	{ path: "login", component: LoginComponent },
 	{ path: "forgot-password", component: ForgotComponent },
 	{ path: "templates", component: TemplatesComponent },
 	{ path: "verify", component: VerifyEmailComponent },
 	{ path: "thanks", component: ThankyouComponent },
-	{ path: "user-login", component: UserloginComponent },
+	{ path: "user-login", component: UserLoginComponent },
 	{ path: "user-signup", component: UserSignupComponent },
-	// { path: 'website-settings', component: WebsettingComponent },
 	{
 		path: "agent",
 		component: PrivateComponent,

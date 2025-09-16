@@ -1,112 +1,26 @@
-import { CommonModule, isPlatformBrowser, Location } from "@angular/common";
-import { HttpClient } from "@angular/common/http";
-import { Component, DOCUMENT, Inject, PLATFORM_ID } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { Router, RouterOutlet } from "@angular/router";
-
+import { RouterOutlet } from "@angular/router";
 import { ConfirmDialog, ConfirmDialogModule } from "primeng/confirmdialog";
-import { Toast, ToastModule } from "primeng/toast";
-import { Pages } from "./enums/pages";
-import { environment } from "./environments/environment.development";
+import { Toast } from "primeng/toast";
 import { LoadingService } from "./services/loading.service";
-import { SiteConfigService } from "./services/site-config.service";
 
 @Component({
 	selector: "app-root",
-	imports: [RouterOutlet, CommonModule, MatProgressSpinnerModule, Toast, ConfirmDialogModule, ConfirmDialog],
+	imports: [
+		RouterOutlet,
+		CommonModule,
+		MatProgressSpinnerModule,
+		Toast,
+		ConfirmDialogModule,
+		ConfirmDialog
+	],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.scss",
 })
 export class AppComponent {
-	currentPath: string = "";
-	queryParams: any = {};
-	isBrowser: boolean = false;
 	constructor(
-		public loadingService: LoadingService,
-		private router: Router,
-		private http: HttpClient,
-		@Inject(DOCUMENT) private document: Document,
-		private location: Location,
-		private siteConfigService: SiteConfigService,
-		@Inject(PLATFORM_ID) platformId: Object
-	) {
-		this.isBrowser = isPlatformBrowser(platformId);
-	}
-
-	ngAfterViewInit() {
-		if (this.isBrowser) {
-			const queryStr = window.location.search;
-			if (queryStr) {
-				const urlParams = new URLSearchParams(queryStr);
-				for (const [key, value] of urlParams) {
-					this.queryParams[key] = value;
-				}
-			}
-			this.currentPath = this.location.path().split("?")[0];
-
-			if (
-				this.currentPath === "/" ||
-				this.currentPath === Pages.LOADING ||
-				(this.currentPath != Pages.REGISTER &&
-					this.currentPath != Pages.LOGIN &&
-					this.currentPath != Pages.PROFILE &&
-					this.currentPath != Pages.VERIFY_EMAIL)
-			) {
-				// this.loadSiteConfiguration();
-			}
-		}
-	}
-
-	private loadSiteConfiguration(): void {
-		const hostname = this.document.location.hostname;
-		const apiUrl = `${environment.baseUrl}/customer/web`;
-		this.loadingService.loadingOn();
-		this.http.get(apiUrl, { params: { domain: hostname } }).subscribe({
-			next: (response: any) => {
-				const config: any = response.data;
-				this.loadingService.loadingOff();
-				this.redirectToTemplate(config);
-				if (config.websiteSettings.primaryColor) {
-					document.documentElement.style.setProperty("--primary-color", config.websiteSettings.primaryColor);
-				}
-				if (config.websiteSettings.secondaryColor) {
-					document.documentElement.style.setProperty("--secondary-color", config.websiteSettings.secondaryColor);
-				}
-			},
-			error: (error: any) => {
-				console.error("Failed to load site configuration:", error);
-				this.loadingService.loadingOff();
-				this.router.navigate(["/register"]);
-			},
-		});
-	}
-
-	redirectToTemplate(config: any) {
-		// if (this.currentPath != Pages.REGISTER
-		// 	&& this.currentPath != Pages.LOGIN
-		// 	&& this.currentPath != Pages.VERIFY_EMAIL
-		// 	&& this.currentPath.indexOf(Pages.VERIFY_EMAIL) > 0
-		// 	&& this.currentPath != Pages.PROFILE
-		// 	|| (this.currentPath == '/' || this.currentPath === Pages.LOADING)
-		// ) {
-		// }
-		// else
-		if (config && config.websiteSettings && config.websiteSettings.templateId) {
-			const hostname = this.document.location.hostname;
-			this.siteConfigService.setConfig(config, hostname);
-			if (this.currentPath === Pages.LOADING) {
-				this.router.navigate([`/${config.websiteSettings.templateId}`], { queryParams: this.queryParams });
-			} else {
-				if (this.queryParams) {
-					this.router.navigate([this.currentPath], {
-						queryParams: this.queryParams,
-					});
-				} else {
-					this.router.navigate([this.currentPath]);
-				}
-			}
-		} else {
-			this.router.navigate(["/default"]);
-		}
-	}
+		public loadingService: LoadingService
+	) { }
 }

@@ -26,7 +26,7 @@ import { PropertyService } from "../../../services/property.service";
 	standalone: true,
 })
 export class SearchComponent implements OnInit {
-	@Input("onSearch") onSearch: Function = () => {};
+	@Input("onSearch") onSearch: Function = () => { };
 
 	@Input("showMapSearch") showMapSearch = true;
 
@@ -59,7 +59,7 @@ export class SearchComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private propertyService: PropertyService,
 		public loadingService: LoadingService
-	) {}
+	) { }
 
 	searchProperties = (searchByMap: boolean = false) => {
 		const currentUrl = this.router.url.split("/")[1];
@@ -84,8 +84,9 @@ export class SearchComponent implements OnInit {
 		// 	distance: filtersWithValue['distance']
 		// }
 
+		debugger
 		if (searchByMap) {
-			this.router.navigate([`${currentUrl}/map`], {
+			this.router.navigate(['/map'], {
 				queryParams: filtersWithValue,
 				queryParamsHandling: "replace",
 			});
@@ -145,8 +146,8 @@ export class SearchComponent implements OnInit {
 				this.propertyTypesDropDown = response.propertyTypes;
 				this._allPropertySubTypes = response.propertySubTypes;
 			},
-			error: (err) => {},
-			complete: () => {},
+			error: (err) => { },
+			complete: () => { },
 		});
 	}
 
