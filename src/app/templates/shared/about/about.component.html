@@ -1,6 +1,8 @@
 <div class="p-0 container-fluid ">
 	<div class="position-relative">
-		<img class="banner w-100" src="/images/banner3.png" alt="Banner Image">
+		<img class="banner w-100"
+			 src="/images/banner3.png"
+			 alt="Banner Image">
 		<div class="text-center position-absolute top-50 start-50 translate-middle">
 			<h1 class="text-white fw-bold baner-text">About Us</h1>
 		</div>
@@ -20,14 +22,13 @@
 					<div class="row align-items-center p-3">
 						<div class="col-4">
 							<div class="">
-								<img
-									[src]="
+								<img [src]="
 											siteConfig?.websiteSettings?.profileImage
 												? siteConfig?.websiteSettings?.profileImage
 												: '/images/Nologo.png'
 										"
-									alt=""
-									height="120px" />
+									 alt=""
+									 height="120px" />
 							</div>
 						</div>
 
@@ -120,7 +121,10 @@
 	<section class="py-5 bg-client">
 		<div class="container">
 			<h2 class="mb-4 text-center">What Clients Say</h2>
-			<div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+			<div id="testimonialCarousel"
+				 class="carousel slide"
+				 data-bs-ride="carousel"
+				 data-bs-interval="4000">
 				<div class="text-center carousel-inner">
 					<div class="carousel-item active">
 						<blockquote class="blockquote">
@@ -141,10 +145,16 @@
 						</blockquote>
 					</div>
 				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+				<button class="carousel-control-prev"
+						type="button"
+						data-bs-target="#testimonialCarousel"
+						data-bs-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
 				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+				<button class="carousel-control-next"
+						type="button"
+						data-bs-target="#testimonialCarousel"
+						data-bs-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</button>
 			</div>
@@ -156,7 +166,8 @@
 		<div class="container text-center">
 			<h4 class="mb-2">Ready to make your move?</h4>
 			<p>Let's connect and turn your real estate dreams into reality.</p>
-			<a [routerLink]="['/t1/contact']" class="px-4 py-2 btn search_btn">Contact Me</a>
+			<a [routerLink]="['/contact']"
+			   class="px-4 py-2 btn search_btn">Contact Me</a>
 		</div>
 	</section>
 </div>

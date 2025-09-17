@@ -11,6 +11,7 @@ import { DialogService } from "primeng/dynamicdialog";
 import { tap } from "rxjs";
 import { routes } from "./app.routes";
 import { AuthInterceptor } from "./interceptors/auth.interceptor";
+import { NotFoundComponent } from "./pages/public/not-found/not-found.component";
 import { RoutesConfigService } from "./services/routes-config.service";
 
 const initializeApp = (router: Router, routesConfigService: RoutesConfigService): () => Promise<void> => {
@@ -21,6 +22,7 @@ const initializeApp = (router: Router, routesConfigService: RoutesConfigService)
 				.pipe(
 					tap((dynamicRoutes: any) => {
 						const newRoutes: Routes = [
+							{ path: "", redirectTo: "/home", pathMatch: "full" },
 							dynamicRoutes,
 							...routes,
 						];
