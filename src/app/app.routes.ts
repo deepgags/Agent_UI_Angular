@@ -33,7 +33,7 @@ export const routes: Routes = [
 	{ path: "user-login", component: UserLoginComponent },
 	{ path: "user-signup", component: UserSignupComponent },
 	{
-		path: "agent",
+		path: "",
 		component: PrivateComponent,
 		children: [
 			{ path: "dashboard", component: AdminComponent },
