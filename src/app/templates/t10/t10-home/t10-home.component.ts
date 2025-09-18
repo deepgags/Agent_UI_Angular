@@ -10,6 +10,7 @@ import { FeaturedPropertiesComponent } from "../../shared/featured-properties/fe
 import { SearchComponent } from "../../shared/search/search.component";
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from "@angular/material/dialog";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { SiteConfig } from "../../../models/SiteConfig";
@@ -28,7 +29,8 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		ReactiveFormsModule,
 		MatDialogModule,
 		MatFormFieldModule,
-		MatInputModule
+		MatInputModule,
+		PhoneSearch,
 	],
 	templateUrl: "./t10-home.component.html",
 	styleUrls: ["./t10-home.component.scss", "../t10.component.scss"],

@@ -2,16 +2,12 @@
 	<div class="container pt-2 search-container">
 	  <div class=" top-padding">
 		<div class="">
-		  <p class="fs-2 mb-0 fw-semibold text-white">
-			Hi, I’m Person Name
-		  </p>
-		  <p class="fs-4 info">Sales Representative</p>
 		  <p class="fw-semibold  text-white">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions.</p>
 		  <p class="fw-semibold text-white">
 			Every engagement is an opportunity to create a lasting impression and a forever client. Acharya is a well serving in real estate with the reputation of providing quality services and keeping excellent relations with the clients. </p>
 
 				<!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn search_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
 	Get in Touch
   </button>
 
@@ -84,10 +80,10 @@
 					<div class="ms-2">
 						<p>
 							<a
-								class="text-white fw-semibold text-decoration-none"
-								href="tel:+4733378901">
-								+47 333 78 901
-							</a>
+									class="text-white fw-semibold text-decoration-none"
+									[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
+									{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+								</a>
 						</p>
 					</div>
 				</div>
@@ -99,10 +95,10 @@
 					<div class="ms-2 mt-1">
 						<p>
 							<a
-								class="text-white fw-semibold text-decoration-none"
-								href="mailto:someoneexample.com">
-								democc.com
-							</a>
+									class="text-white fw-semibold text-decoration-none"
+									[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+									{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+								</a>
 						</p>
 					</div>
 				</div>
@@ -128,10 +124,10 @@
 					<div class="ms-2">
 						<p>
 							<a
-								class="text-white fw-semibold text-decoration-none"
-								href="tel:+4733378901">
-								+47 333 78 901
-							</a>
+									class="text-white fw-semibold text-decoration-none"
+									[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
+									{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
+								</a>
 						</p>
 					</div>
 				</div>
@@ -143,10 +139,10 @@
 					<div class="ms-2 mt-1">
 						<p>
 							<a
-								class="text-white fw-semibold text-decoration-none"
-								href="mailto:someoneexample.com">
-								democc.com
-							</a>
+									class="text-white fw-semibold text-decoration-none"
+									[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
+									{{ siteConfig?.secondaryAgent?.websiteEmail }}
+								</a>
 						</p>
 					</div>
 				</div>
