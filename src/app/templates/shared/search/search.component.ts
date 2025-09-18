@@ -84,7 +84,6 @@ export class SearchComponent implements OnInit {
 		// 	distance: filtersWithValue['distance']
 		// }
 
-		debugger
 		if (searchByMap) {
 			this.router.navigate(['/map'], {
 				queryParams: filtersWithValue,
@@ -145,6 +144,8 @@ export class SearchComponent implements OnInit {
 			next: (response) => {
 				this.propertyTypesDropDown = response.propertyTypes;
 				this._allPropertySubTypes = response.propertySubTypes;
+				this.filters.property_type = response.propertyTypes[0].LookupValue;
+				this.filterPropertySubType()
 			},
 			error: (err) => { },
 			complete: () => { },
@@ -155,6 +156,7 @@ export class SearchComponent implements OnInit {
 		for (const propertyType of this.propertyTypesDropDown) {
 			if (propertyType.LookupValue == this.filters.property_type) {
 				this.propertySubTypesDropDown = this._allPropertySubTypes.filter((_subType: any) => _subType.parent == propertyType._id);
+				this.filters.property_subtype = this.propertySubTypesDropDown[0].LookupValue
 				break;
 			}
 		}

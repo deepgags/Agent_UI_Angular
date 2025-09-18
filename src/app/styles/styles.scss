@@ -58,7 +58,139 @@ app-propertydetail {
 		width: 100% !important;
 	}
 	/* .p-tabpanels {
-		padding-left: 0;
-		padding-right: 0;
-	} */
+padding-left: 0;
+padding-right: 0;
+} */
+}
+
+/* Custom Map Controls */
+.custom-map-controls {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.control-button {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+	transition: all 0.2s ease-in-out;
+}
+
+.control-button:hover {
+	transform: scale(1.1);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.blue-button {
+	background-color: #1a73e8;
+	color: white;
+}
+
+.white-button {
+	background-color: white;
+	color: #5f6368;
+}
+
+.amenities-bar {
+	display: none; /* Initially hidden */
+	background-color: white;
+	border-radius: 28px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	padding: 8px;
+	gap: 8px;
+	position: absolute;
+	top: 60px !important;
+	right: 70px !important;
+	animation: slideIn 0.3s ease-in-out;
+	flex-direction: row;
+}
+
+.amenity-button {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: none;
+	background-color: #f1f3f4;
+	color: #5f6368;
+	cursor: pointer;
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease-in-out;
+}
+
+.amenity-button:hover {
+	background-color: #e8eaed;
+	transform: scale(1.1);
+}
+
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateX(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Drawing mode styles */
+.gm-style .drawing-mode-active .gm-style-iw {
+	display: none !important;
+}
+
+/* Amenity markers */
+.amenity-marker {
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 50%;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Info window styling */
+.gm-style .gm-style-iw {
+	font-family: "Roboto", Arial, sans-serif;
+	max-width: 250px;
+}
+
+.gm-style .gm-style-iw-d {
+	padding: 12px;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.gm-style .gm-style-iw-d strong {
+	color: #333;
+	font-weight: 600;
+}
+
+/* Drawing controls styling */
+.gm-style .gmnoprint.gm-bundled-control .gm-bundled-control-on-bottom {
+	bottom: 100px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.map-control,
+	.map-control-button {
+		font-size: 11px;
+		padding: 6px 10px;
+	}
+
+	.gm-style .custom-map-controls {
+		margin-right: 5px;
+		margin-top: 5px;
+		gap: 6px;
+	}
 }

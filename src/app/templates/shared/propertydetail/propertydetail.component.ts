@@ -1,6 +1,6 @@
 import { BreakpointObserver } from "@angular/cdk/layout";
 import { CommonModule, Location } from "@angular/common";
-import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from "@angular/google-maps";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -36,6 +36,7 @@ import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
 import { SiteConfigService } from "../../../services/site-config.service";
 declare var window: any;
+declare var google: any;
 
 @Component({
 	selector: "app-propertydetail",
@@ -70,7 +71,7 @@ declare var window: any;
 	styleUrls: ["./propertydetail.component.scss"],
 	standalone: true,
 })
-export class PropertyDetailComponent implements OnInit {
+export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	imageUrl = environment.imageUrl;
 	property: PropertyModel | undefined;
 	Latitude: number = 0;
@@ -87,8 +88,29 @@ export class PropertyDetailComponent implements OnInit {
 	userModel: InterestedUserModel = new InterestedUserModel();
 
 	@ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
+	@ViewChild('map', { static: false }) map!: GoogleMap;
 	zoom = 14;
 	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Canada
+
+	// Map controls properties
+	private drawingManager: any;
+	private amenityMarkers: google.maps.Marker[] = [];
+	private currentMapType: string = 'roadmap';
+	private isAmenitiesBarOpen = false;
+	private amenities: any[] = [
+		{ type: 'school', icon: 'fas fa-graduation-cap' },
+		{ type: 'park', icon: 'fas fa-tree' },
+		{ type: 'hospital', icon: 'fas fa-hospital' },
+		{ type: 'shopping_mall', icon: 'fas fa-shopping-cart' },
+		{ type: 'restaurant', icon: 'fas fa-utensils' },
+		{ type: 'store', icon: 'fas fa-store' },
+		{ type: 'bank', icon: 'fas fa-university' },
+		{ type: 'gas_station', icon: 'fas fa-gas-pump' },
+		{ type: 'camera', icon: 'fas fa-camera' },
+		{ type: 'coffee', icon: 'fas fa-coffee' },
+		{ type: 'stroller', icon: 'fas fa-baby-carriage' },
+		{ type: 'bus', icon: 'fas fa-bus' },
+	];
 
 	private siteConfigSubscription: Subscription | undefined;
 
@@ -315,6 +337,10 @@ export class PropertyDetailComponent implements OnInit {
 		this.getLocation();
 		this.getLeadTypeDropdown();
 		this.getPropertyInformation();
+	}
+
+	ngAfterViewInit(): void {
+		this.addMapControls();
 	}
 
 	ngOnDestroy(): void {
@@ -640,4 +666,223 @@ export class PropertyDetailComponent implements OnInit {
 			this.getPropertyInformation();
 		}
 	};
+
+
+	private addMapControls(): void {
+		setTimeout(() => {
+			if (this.map) {
+				const googleMap = this.map.googleMap;
+				if (googleMap) {
+					this.addCustomControls(googleMap);
+				}
+			}
+		}, 1000);
+	}
+
+
+	private addCustomControls(googleMap: google.maps.Map) {
+		const controlDiv = document.createElement('div');
+		controlDiv.className = 'custom-map-controls';
+
+		const drawControl = this.createMapButton('fas fa-pencil-alt', () => this.toggleDrawingMode(googleMap), 'Draw Region', false);
+
+		const amenitiesControl = this.createMapButton('fas fa-info', () => this.toggleAmenities(googleMap), 'Amenities', true);
+
+		const locationControl = this.createMapButton('fas fa-location-arrow', () => this.centerOnUserLocation(googleMap), 'My Location', true);
+
+		controlDiv.appendChild(drawControl);
+		controlDiv.appendChild(amenitiesControl);
+		controlDiv.appendChild(locationControl);
+
+		googleMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+	}
+
+	// Create a circular icon button
+	private createMapButton(iconClass: string, onClick: () => void, title: string, isBlue: boolean): HTMLElement {
+		const button = document.createElement('button');
+		button.className = `control-button ${isBlue ? 'blue-button' : 'white-button'}`;
+		button.title = title;
+		button.innerHTML = `<i class="${iconClass}"></i>`;
+		button.onclick = onClick;
+		return button;
+	}
+
+	// Toggle amenities
+	private toggleAmenities(googleMap: google.maps.Map): void {
+		this.isAmenitiesBarOpen = !this.isAmenitiesBarOpen;
+		const amenitiesBar = document.getElementById('amenities-bar');
+
+		if (this.isAmenitiesBarOpen) {
+			if (!amenitiesBar) {
+				this.createAmenitiesBar(googleMap);
+			} else {
+				amenitiesBar.style.display = 'flex';
+			}
+		} else {
+			if (amenitiesBar) {
+				amenitiesBar.style.display = 'none';
+			}
+			this.clearAmenityMarkers();
+		}
+	}
+
+	// Create the amenities bar
+	private createAmenitiesBar(googleMap: google.maps.Map): void {
+		const amenitiesBar = document.createElement('div');
+		amenitiesBar.id = 'amenities-bar';
+		amenitiesBar.className = 'amenities-bar';
+
+		this.amenities.forEach(amenity => {
+			const amenityButton = document.createElement('button');
+			amenityButton.className = 'amenity-button';
+			amenityButton.title = amenity.type.replace(/_/g, ' ');
+			amenityButton.innerHTML = `<i class="${amenity.icon}"></i>`;
+			amenityButton.onclick = () => this.searchForAmenity(googleMap, amenity.type);
+			amenitiesBar.appendChild(amenityButton);
+		});
+
+		googleMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(amenitiesBar);
+	}
+
+	// Toggle drawing mode
+	private toggleDrawingMode(googleMap: google.maps.Map): void {
+		if (this.drawingManager) {
+			this.drawingManager.setMap(null);
+			this.drawingManager = null;
+			this.notificationService.showSuccess('Drawing mode disabled');
+		} else {
+			// Initialize Drawing Manager
+			this.drawingManager = new google.maps.drawing.DrawingManager({
+				drawingMode: google.maps.drawing.OverlayType.POLYGON,
+				drawingControl: true,
+				drawingControlOptions: {
+					position: google.maps.ControlPosition.TOP_CENTER,
+					drawingModes: [
+						google.maps.drawing.OverlayType.POLYGON,
+						google.maps.drawing.OverlayType.RECTANGLE,
+					],
+				},
+				polygonOptions: {
+					fillColor: '#FF0000',
+					fillOpacity: 0.3,
+					strokeColor: '#FF0000',
+					strokeWeight: 2,
+					clickable: true,
+					editable: true,
+					zIndex: 1,
+				},
+			});
+
+			this.drawingManager.setMap(googleMap);
+			this.notificationService.showSuccess('Drawing mode enabled - Click and drag to draw regions');
+
+			// Listen for overlay complete
+			google.maps.event.addListener(this.drawingManager, 'overlaycomplete', (event: any) => {
+				if (event.type === google.maps.drawing.OverlayType.POLYGON) {
+					const polygon = event.overlay;
+					this.notificationService.showSuccess('Region drawn successfully!');
+				}
+			});
+		}
+	}
+
+	// Search for a specific amenity
+	private searchForAmenity(googleMap: google.maps.Map, type: string): void {
+		this.clearAmenityMarkers();
+		const service = new google.maps.places.PlacesService(googleMap);
+		const request = {
+			location: googleMap.getCenter(),
+			radius: 2000, // 2km radius
+			type: type,
+		};
+
+		service.nearbySearch(request, (results: any[], status: any) => {
+			if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+				const bounds = new google.maps.LatLngBounds();
+				results.forEach(place => {
+					const marker = new google.maps.Marker({
+						position: place.geometry.location,
+						map: googleMap,
+						title: place.name,
+						icon: {
+							url: this.getAmenityIcon(type),
+							scaledSize: new google.maps.Size(32, 32),
+						},
+					});
+					this.amenityMarkers.push(marker);
+					bounds.extend(place.geometry.location);
+				});
+				googleMap.fitBounds(bounds);
+			} else {
+				this.notificationService.showError(`No ${type.replace(/_/g, ' ')} found nearby`);
+			}
+		});
+	}
+
+	// Get appropriate icon for amenity type
+	private getAmenityIcon(type: string): string {
+		const iconMap: { [key: string]: string } = {
+			'school': '📚',
+			'park': '🌳',
+			'hospital': '🏥',
+			'shopping_mall': '🏬',
+			'restaurant': '🍽️',
+			'grocery_or_supermarket': '🛒',
+			'bank': '🏦',
+			'gas_station': '⛽',
+			'bus_station': '🚌',
+		};
+		return iconMap[type] || '📍';
+	}
+
+	// Clear amenity markers
+	private clearAmenityMarkers(): void {
+		this.amenityMarkers.forEach(marker => {
+			marker.setMap(null);
+		});
+		this.amenityMarkers = [];
+	}
+
+	// Toggle map layers
+	private toggleMapLayers(googleMap: google.maps.Map): void {
+		const mapTypes = ['roadmap', 'satellite', 'terrain'];
+		const currentIndex = mapTypes.indexOf(this.currentMapType);
+		const nextIndex = (currentIndex + 1) % mapTypes.length;
+		this.currentMapType = mapTypes[nextIndex];
+
+		googleMap.setMapTypeId(this.currentMapType);
+		this.notificationService.showSuccess(`Map type changed to ${this.currentMapType}`);
+	}
+
+	// Center on user location
+	private centerOnUserLocation(googleMap: google.maps.Map): void {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					const userLocation = {
+						lat: position.coords.latitude,
+						lng: position.coords.longitude,
+					};
+
+					googleMap.setCenter(userLocation);
+					googleMap.setZoom(15);
+
+					// Add marker for user location
+					const marker = new google.maps.Marker({
+						position: userLocation,
+						map: googleMap,
+						title: 'Your Location',
+						icon: '👤',
+					});
+
+					this.notificationService.showSuccess('Centered on your location');
+				},
+				(error) => {
+					this.notificationService.showError('Unable to get your location. Please enable location services.');
+				}
+			);
+		} else {
+			this.notificationService.showError('Geolocation is not supported by this browser.');
+		}
+	}
 }

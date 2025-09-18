@@ -1,5 +1,4 @@
 import { Routes } from "@angular/router";
-import { RedirectUserComponent } from "./components/redirectuser/redirectuser.component";
 import { ThankyouComponent } from "./components/thankyou/thankyou.component";
 import { authGuard } from "./guards/auth.guard";
 import { ChangePasswordComponent } from "./pages/private/change-password/change-password.component";

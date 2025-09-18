@@ -79,15 +79,12 @@ export class SearchPageComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		// this.pageIndex = 1;
-		// this.pageSize = 12;
 		this.route.queryParams.subscribe((params) => {
 			if (Object.keys(params).length > 0) {
 				this.selectedFilters = {
 					...this.selectedFilters,
 					...params,
 				};
-
 				this.searchProperties(params);
 			}
 		});
@@ -120,24 +117,6 @@ export class SearchPageComponent implements OnInit {
 	};
 
 	redirectToDetail(property: PropertyModel): void {
-		// const currentTemplate = this.router.url.split("/")[1];
-		// this.router.navigate([`/${currentTemplate}`, "property-detail"], {
-		// 	relativeTo: this.activatedRoute,
-		// 	queryParams: {
-		// 		address: this.selectedFilters["address"],
-		// 		property_type: this.selectedFilters["property_type"],
-		// 		bedrooms: this.selectedFilters["bedrooms"],
-		// 		bathrooms: this.selectedFilters["bathrooms"],
-		// 		min_price: this.selectedFilters["min_price"],
-		// 		max_price: this.selectedFilters["max_price"],
-		// 		property_status: this.selectedFilters["property_status"],
-		// 		sqFt: this.selectedFilters["sqFt"],
-		// 		propertyId: property._id,
-		// 		mlsId: property.ListingKey,
-		// 	},
-		// 	queryParamsHandling: "replace",
-		// });
-
 		this.dialogService.open(PropertyDetailComponent, {
 			header: `Property Information`,
 			width: "70%",
