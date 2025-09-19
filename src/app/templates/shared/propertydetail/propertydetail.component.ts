@@ -143,7 +143,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	recentSalesInAreaLeadTypeDropdown: any[] = [];
 	haveQuestionLeadTypeDropdown: any[] = [];
 	contactFormLeadTypeDropdown: any[] = [];
-	roomDetails: any;
+	roomDetails: any[] = [];
 	similarProperties: any[] = [];
 	siteConfig: SiteConfig | undefined;
 	constructor(
@@ -162,7 +162,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		this.siteConfigObservable = this.siteConfigBS.asObservable();
 
 		const { mlsId, propertyId, address, property_type, property_subtype } = this.dialogConfig.data;
-		console.log("data", mlsId, propertyId, address, property_type, property_subtype);
 		this.mlsId = mlsId;
 		this.propertyId = propertyId;
 

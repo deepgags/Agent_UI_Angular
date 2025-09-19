@@ -6,26 +6,37 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { BehaviorSubject, Subscription } from "rxjs"; // Added Subscription
-import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+import { RouterModule } from "@angular/router";
+import { BehaviorSubject, Subscription } from "rxjs";
+import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
 import { stringiFy } from "../../../consts/Utility";
 import { PropertyModel } from "../../../models/PropertyModel";
-import { SiteConfigService } from "../../../services/site-config.service"; // Import SiteConfigService
+import { SiteConfigService } from "../../../services/site-config.service";
+// Import SiteConfigService
 // import { RequestPropertyModel } from '../../../models/RequestPropertyModel'; // Not used in current snippet
 // import { HighlightSearch } from '../../../pipes/highlight'; // Not used in current snippet
 import { LoadingService } from "../../../services/loading.service";
-import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 // import { StorageService } from '../../../services/storage.service'; // Not used in current snippet
 import { DialogService } from "primeng/dynamicdialog";
+import { PropertyComponent } from "../../../components/property/property.component";
 import { environment } from "../../../environments/environment.development";
+import { SiteConfig } from "../../../models/SiteConfig";
 import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
 @Component({
 	selector: "app-featured-listings",
-	imports: [FormsModule, CommonModule, MatIconModule, SearchComponent, RouterModule, MatPaginatorModule, MatProgressSpinnerModule],
+	imports: [
+		FormsModule,
+		CommonModule,
+		MatIconModule,
+		SearchComponent,
+		RouterModule,
+		MatPaginatorModule,
+		MatProgressSpinnerModule,
+		PropertyComponent
+	],
 	templateUrl: "./featured-listings.component.html",
 	styleUrl: "./featured-listings.component.scss",
 	encapsulation: ViewEncapsulation.None,
@@ -33,9 +44,9 @@ import { SearchComponent } from "../search/search.component";
 	standalone: true,
 	providers: [DialogService],
 })
+
 export class FeaturedListingsComponent implements OnInit, OnDestroy {
 	imageUrl = environment.imageUrl;
-
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
@@ -43,8 +54,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 	private loadingSubject = new BehaviorSubject<boolean>(false);
 	loading$ = this.loadingSubject.asObservable();
 	private siteConfigSubscription: Subscription | undefined;
-	private currentTemplateId: string | null = null;
-
+	siteId: string = "";
 	selectedFilters: any = {
 		address: "",
 		property_type: "",
@@ -62,10 +72,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 		private _interestedUserDialog: MatDialog,
 		private propertyService: PropertyService,
 		public loadingService: LoadingService,
-		private notificationService: NotificationService,
 		private titleService: Title,
-		// private router: Router,
-		// private activatedRoute: ActivatedRoute,
 		private siteConfigService: SiteConfigService,
 		private dialogService: DialogService
 	) {
@@ -73,9 +80,9 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
-		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
-			if (config && config.websiteSettings.templateId) {
-				this.currentTemplateId = config.websiteSettings.templateId;
+		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config: any) => {
+			if (config) {
+				this.siteId = config.id
 			}
 		});
 		this.pageIndex = 1;
@@ -90,7 +97,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 	}
 
 	openDialog(property: PropertyModel) {
-		const userDialog = this._interestedUserDialog.open(InteresteduserComponent, {
+		const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
 			width: "50%",
 			height: "auto",
 			disableClose: true,
@@ -107,39 +114,15 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	selectProperty(property: PropertyModel): void {
+	selectProperty = (property: PropertyModel): void => {
 		if (property.IsFeatureListing) {
-			// Assuming IsFeatureListing is a boolean property
 			this.openDialog(property);
 		} else {
 			this.redirectToDetail(property);
 		}
 	}
 
-	redirectToDetail(property: PropertyModel): void {
-		if (!this.currentTemplateId) {
-			console.error("Template ID not available to redirect to property detail.");
-			this.notificationService.showSuccess("Cannot determine page context. Please try again.");
-			return;
-		}
-
-		// this.router.navigate([`/${this.currentTemplateId}`, "property-detail"], {
-		// 	// relativeTo: this.activatedRoute, // Not needed if path is absolute from root
-		// 	queryParams: {
-		// 		address: this.selectedFilters["address"],
-		// 		property_type: this.selectedFilters["property_type"],
-		// 		bedrooms: this.selectedFilters["bedrooms"],
-		// 		bathrooms: this.selectedFilters["bathrooms"],
-		// 		min_price: this.selectedFilters["min_price"],
-		// 		max_price: this.selectedFilters["max_price"],
-		// 		property_status: this.selectedFilters["property_status"],
-		// 		sqFt: this.selectedFilters["sqFt"],
-		// 		propertyId: property._id,
-		// 		mlsId: property.ListingKey,
-		// 	},
-		// 	queryParamsHandling: "merge", // Consider 'merge' or 'preserve' based on desired behavior
-		// });
-
+	redirectToDetail = (property: PropertyModel): void => {
 		this.dialogService.open(PropertyDetailComponent, {
 			header: `Property Information`,
 			width: "70%",
@@ -159,9 +142,6 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 	searchProperties = (selectedFilters: any, event?: PageEvent) => {
 		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;
 		this.pageSize = event?.pageSize ?? this.pageSize;
-
-		const userInfo: any = {};
-
 		const params = {
 			page: this.pageIndex,
 			pageSize: this.pageSize,
@@ -175,18 +155,18 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 			max_price: stringiFy(selectedFilters.max_price),
 			sqFt: stringiFy(selectedFilters.sqFt),
 			distance: stringiFy(selectedFilters.distance),
-			brokerageType: userInfo?.brokerage?.alternateName,
-			propertyFeedType: "IDX",
+			// brokerageType: userInfo?.brokerage?.alternateName,
+			// propertyFeedType: "IDX",
+			siteId: this.siteId
 		};
 
 		this.loadingService.loadingOn();
 		this.loadingSubject.next(true);
-		this.propertyService.searchProperties(params).subscribe({
+		this.propertyService.featuredProperties(params).subscribe({
 			next: (response) => {
 				this.propertiesList = response;
 			},
 			error: (err) => {
-				// this.notificationService.showNotification("Error occurred while getting properties");
 			},
 			complete: () => {
 				this.loadingSubject.next(false);

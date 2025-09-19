@@ -6,7 +6,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
-import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
 import { stringiFy } from "../../../consts/Utility";
 import { environment } from "../../../environments/environment.development";
 import { PropertyModel } from "../../../models/PropertyModel";
@@ -55,7 +55,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 	}
 
 	openDialog(property: PropertyModel) {
-		const userDialog = this._interestedUserDialog.open(InteresteduserComponent, {
+		const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
 			width: "50%",
 			height: "auto",
 			disableClose: true,

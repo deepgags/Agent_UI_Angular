@@ -136,6 +136,11 @@ export const statusTypes = [
 	{ label: "For Sale", value: "For Sale", text: "For Sale" },
 	{ label: "For Lease", value: "For Lease", text: "For Lease" },
 	{ label: "For Sub-Lease", value: "For Sub-Lease", text: "For Sub-Lease" },
+	{ label: "Leased Conditional", value: "Leased Conditional", text: "Leased Conditional" },
+	{ label: "Sold Conditional", value: "Sold Conditional", text: "Sold Conditional" },
+	{ label: "Sold Conditional Escape", value: "Sold Conditional Escape", text: "Sold Conditional Escape" },
+	{ label: "Suspended", value: "Suspended", text: "Suspended" },
+	{ label: "Terminated", value: "Terminated", text: "Terminated" },
 ];
 
 export const minPrices = [

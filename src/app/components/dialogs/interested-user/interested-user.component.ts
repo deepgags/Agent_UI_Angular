@@ -16,16 +16,16 @@ import { NotificationService } from '../../../services/notification.service';
 import { StorageService } from '../../../services/storage.service';
 
 @Component({
-	selector: 'app-interesteduser',
+	selector: 'app-interestedUser',
 	imports: [NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule],
 	templateUrl: './interested-user.component.html',
 	styleUrl: './interested-user.component.scss'
 })
-export class InteresteduserComponent implements OnInit {
+export class InterestedUserComponent implements OnInit {
 
 	userForm!: FormGroup;
 	userModel: InterestedUserModel = new InterestedUserModel();
-	readonly dialogRef = inject(MatDialogRef<InteresteduserComponent>);
+	readonly dialogRef = inject(MatDialogRef<InterestedUserComponent>);
 
 	Latitude: number = 0;
 	Longitude: number = 0;

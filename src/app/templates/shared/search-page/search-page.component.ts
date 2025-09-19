@@ -10,7 +10,7 @@ import { ActivatedRoute, RouterModule } from "@angular/router";
 import { CarouselModule } from "primeng/carousel";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
-import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
 import { PropertyComponent } from "../../../components/property/property.component";
 import { sortTypes } from "../../../consts/DefaultTypes";
 import { stringiFy } from "../../../consts/Utility";
@@ -91,7 +91,7 @@ export class SearchPageComponent implements OnInit {
 	}
 
 	openDialog(property: PropertyModel) {
-		const userDialog = this._interestedUserDialog.open(InteresteduserComponent, {
+		const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
 			width: "50%",
 			height: "auto",
 			disableClose: true,

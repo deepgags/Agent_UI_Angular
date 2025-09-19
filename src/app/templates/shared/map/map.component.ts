@@ -11,7 +11,7 @@ import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { DefaultRenderer, MarkerClusterer } from "@googlemaps/markerclusterer";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
-import { InteresteduserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
 import { sortTypes } from "../../../consts/DefaultTypes";
 import { stringiFy } from "../../../consts/Utility";
 import { environment } from "../../../environments/environment.development";
@@ -163,7 +163,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 	}
 
 	openDialog(property: PropertyModel) {
-		const userDialog = this._interestedUserDialog.open(InteresteduserComponent, {
+		const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
 			width: "50%",
 			height: "auto",
 			disableClose: true,
