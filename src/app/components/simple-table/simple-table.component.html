@@ -50,6 +50,7 @@
 				}">
 				@if (
 				col.field != 'Action' &&
+				col.field != 'action' &&
 				col.field != 'Photo' &&
 				col.field != 'Image'
 				) {
@@ -151,6 +152,25 @@
 				[autoHide]="false"
 				tooltipPosition="bottom">
 				{{ rowData[col.field] ? rowData[col.field] : '-' }}
+			</td>
+			}
+			@if (
+			col.fieldType == fieldTypes.Capitalize
+			) {
+			<td [ngStyle]="{
+						width: col.width,
+						'max-width': col.width,
+						'min-width': col.width
+					}"
+				[ngClass]="{
+						'text-left': !col.isNumeric,
+						'text-right': col.isNumeric
+					}"
+				[class]="'cursor-pointer ' + col.class"
+				[pTooltip]="col.showToolTip ? rowData[col.field] : ''"
+				[autoHide]="false"
+				tooltipPosition="bottom">
+				{{ rowData[col.field] ? (rowData[col.field] | camelCaseToCapitalize) : '-' }}
 			</td>
 			}
 			@if (col.fieldType == fieldTypes.Telephone) {

@@ -13,4 +13,5 @@ export enum FieldsType {
 	Boolean = 'boolean',
 	Currency = 'currency',
 	Percentage = 'percentage',
+	Capitalize = 'capitalize',
 }
