@@ -31,6 +31,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		MatFormFieldModule,
 		MatInputModule,
 		PhoneSearch,
+		
 	],
 	templateUrl: "./t10-home.component.html",
 	styleUrls: ["./t10-home.component.scss", "../t10.component.scss"],

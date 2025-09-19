@@ -5,6 +5,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { RouterModule } from "@angular/router";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PublicService } from "../../../services/public.service";
@@ -12,7 +13,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 
 @Component({
 	selector: "app-contact",
-	imports: [NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, RouterModule],
+	imports: [NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, RouterModule,PhoneSearch],
 	templateUrl: "./contact.component.html",
 	styleUrl: "./contact.component.scss",
 	standalone: true,
