@@ -35,7 +35,7 @@ export class PropertyService {
 		return this.http
 			.get<PropertyModel[]>(
 				`${this.Apiurl}/properties?page=${page}&pageSize=${pageSize}&address=${address}
-      &property_type=${property_type}&property_subtype=${property_subtype}&bedrooms=${bedrooms}
+      &property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(property_subtype)}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
       &max_price=${max_price}&min_area=${sqFt}&brokerageType=${brokerageType ? brokerageType : ""}&sort=${sort}`
 			)
@@ -105,6 +105,7 @@ export class PropertyService {
 	}
 
 	featuredProperties(propertyParams: any): Observable<PropertyModel[]> {
+		debugger
 		const {
 			page,
 			pageSize,
@@ -124,7 +125,7 @@ export class PropertyService {
 		return this.http
 			.get<PropertyModel[]>(
 				`${this.Apiurl}/properties/featured?page=${page}&pageSize=${pageSize}&address=${address}
-      &property_type=${property_type}&property_subtype=${property_subtype}&bedrooms=${bedrooms}
+      &property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(property_subtype)}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
       &max_price=${max_price}&min_area=${sqFt}&brokerageType=${brokerageType ? brokerageType : ""}&sort=${sort}&siteId=${siteId}`
 			)
