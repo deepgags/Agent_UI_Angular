@@ -31,11 +31,12 @@ export class RoutesConfigService {
 					this.document.documentElement.style.setProperty("--secondary-color", config.websiteSettings.secondaryColor);
 				}
 				this.siteConfigService.setConfig(config, hostname);
-				return templates[templateId] || templates["t1"];
+				return templates[templateId];
 			}),
 			catchError((error: any) => {
 				console.error("Failed to load site configuration:", error);
-				return of(templates["t1"]);
+				// return of(templates["t1"]);
+				return [];
 			})
 		);
 	}

@@ -3,21 +3,19 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from "@
 import { FormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
 import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
-import { stringiFy } from "../../../consts/Utility";
+import { PropertyComponent } from "../../../components/property/property.component";
 import { environment } from "../../../environments/environment.development";
 import { PropertyModel } from "../../../models/PropertyModel";
-import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
-import { StorageService } from "../../../services/storage.service";
 import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 
 @Component({
 	selector: "app-featured-properties",
-	imports: [FormsModule, CommonModule, MatIconModule, RouterModule],
+	imports: [FormsModule, CommonModule, MatIconModule, RouterModule, PropertyComponent],
 	templateUrl: "./featured-properties.component.html",
 	styleUrl: "./featured-properties.component.scss",
 	encapsulation: ViewEncapsulation.None,
@@ -25,6 +23,7 @@ import { PropertyDetailComponent } from "../propertydetail/propertydetail.compon
 	standalone: true,
 	providers: [DialogService],
 })
+
 export class FeaturedPropertiesComponent implements OnInit {
 	imageUrl = environment.imageUrl;
 	private propertiesSubject = new BehaviorSubject<PropertyModel[]>([]);
@@ -35,10 +34,6 @@ export class FeaturedPropertiesComponent implements OnInit {
 	constructor(
 		private _interestedUserDialog: MatDialog,
 		private propertyService: PropertyService,
-		// private notificationService: NotificationService,
-		// private storageService: StorageService,
-		// private router: Router,
-		// private activatedRoute: ActivatedRoute,
 		private dialogService: DialogService
 	) { }
 
@@ -46,7 +41,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 		this.searchProperties();
 	}
 
-	selectProperty(property: PropertyModel): void {
+	selectProperty = (property: PropertyModel): void => {
 		if (property.IsFeatureListing) {
 			this.openDialog(property);
 		} else {
@@ -120,10 +115,11 @@ export class FeaturedPropertiesComponent implements OnInit {
 			sqFt: "",
 			distance: "",
 			brokerageType: userInfo?.brokerage?.alternateName,
-			propertyFeedType: "IDX",
+			// propertyFeedType: "IDX",
+			sort: "",
 		};
 
-		this.propertyService.searchProperties(params).subscribe({
+		this.propertyService.featuredProperties(params).subscribe({
 			next: (response) => {
 				this.propertiesSubject.next(response);
 			},
