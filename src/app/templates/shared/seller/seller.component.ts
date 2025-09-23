@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { ExtendedRouteService } from "../../../services/extended-route.service";
 
 @Component({
 	selector: "app-seller",
@@ -9,17 +8,18 @@ import { ExtendedRouteService } from "../../../services/extended-route.service";
 	styleUrl: "./seller.component.scss",
 })
 export class SellerComponent {
-	constructor(private extendedRouter: ExtendedRouteService) {}
+
+	constructor(private router: Router) { }
 
 	goToSellerDetail() {
-		this.extendedRouter.navigateToSharedPage("sellerdetails");
+		this.router.navigate(["/sellerdetails"]);
 	}
 
 	goToReSellDetail() {
-		this.extendedRouter.navigateToSharedPage("sellerdetails2");
+		this.router.navigate(["/sellerdetails2"]);
 	}
 
 	goToSellerCommonSellingMistake() {
-		this.extendedRouter.navigateToSharedPage("sellerdetails3");
+		this.router.navigate(["/sellerdetails3"]);
 	}
 }

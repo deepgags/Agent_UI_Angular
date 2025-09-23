@@ -3,8 +3,10 @@
 	<div class="">
 		<div class="row g-4">
 			@for (property of properties$ | async; track property) {
-			<!-- <div class="col-lg-4  col-md-6 col-sm-12 mb-lg-0 mb-3">
-            <a class="text-decoration-none" (click)="selectProperty(property)">
+			<div class="col-lg-4  col-md-6 col-sm-12 mb-lg-0 mb-3">
+				<app-property [property]="property"
+							  [onPropertyClick]="selectProperty" />
+				<!-- <a class="text-decoration-none" (click)="selectProperty(property)">
               <div class="card h-100 property-card border border-light-subtle">
                 <div class="image-container">
 							<img [src]="property && property.Media && property.Media.length>0 ?
@@ -42,10 +44,9 @@
                   <p class="info  pt-2 mb-0 fw-semibold">MLS® {{property.ListingKey}} <span>{{property.ListOfficeName}}</span></p>
                 </div>
               </div>
-            </a>
-          </div> -->
-			<app-property [property]="property"
-						  [onPropertyClick]="selectProperty" />
+            </a> -->
+			</div>
+
 			}
 		</div>
 		@if (properties.length == 0) {
