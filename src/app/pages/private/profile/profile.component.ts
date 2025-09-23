@@ -154,8 +154,8 @@ export class ProfileComponent {
 			brokerageType: new FormControl("", Validators.required),
 			firstName: new FormControl("", Validators.required),
 			lastName: new FormControl("", Validators.required),
-			phoneNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
-			emailAddress: new FormControl("", [Validators.required, Validators.email]),
+			phoneNumber: new FormControl(""),
+			emailAddress: new FormControl(""),
 			address: new FormControl(""),
 			logoImage: new FormControl(""),
 			logoImagePath: new FormControl(""),
@@ -266,7 +266,7 @@ export class ProfileComponent {
 			error: () => {
 				this.notificationService.showSuccess("An error has occurred while getting customer information");
 			},
-			complete: () => {},
+			complete: () => { },
 		});
 	}
 
@@ -382,7 +382,7 @@ export class ProfileComponent {
 				},
 			};
 			this.customerService.update(params).subscribe({
-				next: (v) => {},
+				next: (v) => { },
 				error: (e) => {
 					this.notificationService.showSuccess(e.error.message || "Something went wrong while updating information.");
 				},

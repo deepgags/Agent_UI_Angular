@@ -68,7 +68,7 @@
 																 inputId="phoneNumber"></p-inputmask>
 													<label for="phoneNumber">Phone Number</label>
 												</p-iftalabel>
-												@if (phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)) {
+												<!-- @if (phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)) {
 												<span class="error">
 													@if (phoneNumber?.errors?.['required']) {
 													<span>Phone Number is required</span>
@@ -77,7 +77,7 @@
 													<span>Enter a valid phone number</span>
 													}
 												</span>
-												}
+												} -->
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -88,11 +88,10 @@
 														   formControlName="emailAddress"
 														   placeholder="Personal Email"
 														   class="form-control"
-														   id="emailAddress"
-														   required />
+														   id="emailAddress" />
 													<label for="emailAddress">Personal Email</label>
 												</p-iftalabel>
-												@if (emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)) {
+												<!-- @if (emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)) {
 												<span class="error">
 													@if (emailAddress?.errors?.['required']) {
 													<span>Email Address is required</span>
@@ -101,7 +100,7 @@
 													<span>Enter a valid email address</span>
 													}
 												</span>
-												}
+												} -->
 											</div>
 										</div>
 									</div>
