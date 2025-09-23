@@ -1,30 +1,37 @@
-<div class="container-fluid footer-bg">
+<div class="container-fluid fotter-bg">
   <div class="container search-container">
-
     <footer class="py-5">
       <div class="row justify-content-center align-items-center  border-bottom pb-3 mb-3 ">
-        <div class="pb-3 mb-3 row justify-content-center align-items-center  ">
-          <div class="mb-3 col-lg-3 col-12 d-flex mb-lg-0">
-            <div class="d-flex align-items-center">
-              <div class="">
-                <!-- <a [routerLink]="['home']" *ngIf="siteConfig">
-                <img [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
-              </a> -->
-            </div>
-            <div class="">
-              <h5 class=" ms-4 text-white">{{ siteConfig?.brokerage?.name}}</h5>
-            </div>
+        <div class="mb-3 col-lg-3 col-12 d-flex flex-column align-items-center mb-lg-0">
+            <div class="mb-2">
+              @if (siteConfig) {
+      <a
+        [routerLink]="['home']"
+        >
+        <img
+          [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+          alt="No brokerage logo"
+          height="66px" />
+      </a>
+    }
           </div>
-        </div>
-        <div class="mb-3 col-lg-6 col-12 mb-lg-0">
-          @if (siteConfig?.websiteSettings?.contactInfo?.address) {
-            <p class="text-center fs-3 fw-semibold">Address</p>
-          }
-          <p class="text-center  small">
-            {{siteConfig?.websiteSettings?.contactInfo?.address}}
-          </p>
-        </div>
-        <div class="mb-3 col-lg-3 col-12 mb-lg-0 footer-contact">
+          <div class="">
+            <h5 class=" ms-4 text-white">{{ siteConfig?.brokerage?.name}}</h5>
+            
+          </div>
+
+      </div>
+      <div class="mb-3 col-lg-5 col-12 mb-lg-0">
+        @if (siteConfig?.websiteSettings?.contactInfo?.address) {
+          <p class="text-center fs-3 fw-semibold">Address</p>
+        }
+        <p class="text-center  small">
+          {{siteConfig?.websiteSettings?.contactInfo?.address}}
+        </p>
+      </div>
+      <div class="mb-3 col-lg-4 col-12 mb-lg-0 d-flex justify-content-between footer-contact">
+        <div class="">
+
           <p class="text-center fs-3 fw-semibold">Contact</p>
           @if (siteConfig?.websiteSettings?.contactInfo?.phone) {
             <div class=" d-flex justify-content-center">
@@ -41,7 +48,6 @@
           <div class="d-flex justify-content-center">
             <div class="">
               <i class="fa-solid fa-envelope info"></i>
-
             </div>
             <div class="ms-2">
               <p>
@@ -50,6 +56,41 @@
               </p>
             </div>
           </div>
+        </div>
+
+
+        <div class="">
+         <p class="text-center fs-3 fw-semibold">Contact</p>
+        @if (siteConfig?.websiteSettings?.contactInfo?.phone) {
+          <div class=" d-flex justify-content-center">
+            <div class="">
+              <i class="fa-solid fa-phone info"></i>
+            </div>
+            <div class="ms-2">
+              <p>
+                <a
+									class="text-white small fw-semibold text-decoration-none"
+									[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
+									{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
+								</a>
+              </p>
+            </div>
+          </div>
+        }
+        <div class="d-flex justify-content-center">
+          <div class="">
+            <i class="fa-solid fa-envelope info"></i>
+          </div>
+          <div class="ms-2">
+            <p>
+              <a
+									class="text-white fw-semibold small text-decoration-none"
+									[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
+									{{ siteConfig?.secondaryAgent?.websiteEmail }}
+								</a>
+            </p>
+          </div>
+        </div>
         </div>
       </div>
     </div>

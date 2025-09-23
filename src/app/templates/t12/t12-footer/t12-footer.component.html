@@ -4,11 +4,18 @@
     <footer class="py-5">
       <div class="row justify-content-center align-items-center  border-bottom pb-3 mb-3 ">
         <div class="mb-3 col-lg-3 col-12 d-flex mb-lg-0">
-          <div class="d-flex align-items-center">
-            <div class="">
-              <!-- <a [routerLink]="['home']" *ngIf="siteConfig">
-              <img [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'" alt="No brokerage logo" height="66px" />
-            </a> -->
+          <div class="">
+            <div class="mb-2">
+             @if (siteConfig) {
+      <a
+        [routerLink]="['home']"
+        >
+        <img
+          [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+          alt="No brokerage logo"
+          height="66px" />
+      </a>
+    }
           </div>
           <div class="">
             <h5 class=" ms-4 text-white">{{ siteConfig?.brokerage?.name}}</h5>
