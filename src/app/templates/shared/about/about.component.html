@@ -12,8 +12,8 @@
 <div class="container py-5 search-container">
 	<div class="py-3 row">
 		<div class="col-md-8">
-			<p class="fw-semibold">
-				{{siteConfig?.websiteSettings?.aboutText || aboutText}}
+			<p class="fw-semibold"
+			   [innerHTML]="siteConfig?.websiteSettings?.aboutText || aboutText">
 			</p>
 		</div>
 		<div class="col-md-4">
