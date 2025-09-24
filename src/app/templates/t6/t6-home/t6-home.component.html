@@ -20,19 +20,17 @@
 	<div class="container search-container p-5">
 		<div class="row">
 			<div class="col-lg-6 col-12">
-				<div
-					class="card border-0 shadow p-0"
-					style="max-width: 540px">
+				<div class="card border-0 shadow p-0"
+					 style="max-width: 540px">
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
-							<img
-								[src]="
+							<img [src]="
 									siteConfig?.secondaryAgent?.profileImage
 										? siteConfig?.secondaryAgent?.profileImage
 										: '/images/Nologo.png'
 								"
-								alt="No profile image"
-								class="overlay-image w-100" />
+								 alt="No profile image"
+								 class="overlay-image w-100" />
 						</div>
 						<div class="col-md-6">
 							<div class="card-body">
@@ -48,14 +46,13 @@
 								<div class="mb-3">
 									<div class="d-flex mb-2">
 										<div class="">
-																<i class="fa-solid fa-phone info"></i>
+											<i class="fa-solid fa-phone info"></i>
 
 										</div>
 										<div class="ms-2">
 											<p>
-												<a
-													class="text-dark fw-semibold text-decoration-none"
-													[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
+												<a class="text-dark fw-semibold text-decoration-none"
+												   [href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
 													{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
 												</a>
 											</p>
@@ -63,14 +60,13 @@
 									</div>
 									<div class="d-flex">
 										<div class="">
-															<i class="fa-solid fa-envelope info"></i>
+											<i class="fa-solid fa-envelope info"></i>
 
 										</div>
 										<div class="ms-2">
 											<p>
-												<a
-													class="text-dark fw-semibold text-decoration-none"
-													[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
+												<a class="text-dark fw-semibold text-decoration-none"
+												   [href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
 													{{ siteConfig?.secondaryAgent?.websiteEmail }}
 												</a>
 											</p>
@@ -78,19 +74,16 @@
 									</div>
 								</div>
 								<div class="d-flex gap-3 fs-4">
-									<a
-										href="#"
-										class="text-decoration-none info">
+									<a href="#"
+									   class="text-decoration-none info">
 										<i class="fa-brands fa-x-twitter"></i>
 									</a>
-									<a
-										href="#"
-										class="text-decoration-none info">
+									<a href="#"
+									   class="text-decoration-none info">
 										<i class="fa-brands fa-facebook"></i>
 									</a>
-									<a
-										href="#"
-										class="text-decoration-none info">
+									<a href="#"
+									   class="text-decoration-none info">
 										<i class="fa-brands fa-instagram"></i>
 									</a>
 								</div>
@@ -100,19 +93,17 @@
 				</div>
 			</div>
 			<div class="col-lg-6 col-12 mt-5 mt-lg-0">
-				<div
-					class="card border-0 shadow p-0"
-					style="max-width: 540px">
+				<div class="card border-0 shadow p-0"
+					 style="max-width: 540px">
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
-							<img
-								[src]="
+							<img [src]="
 									siteConfig?.websiteSettings?.profileImage
 										? siteConfig?.websiteSettings?.profileImage
 										: '/images/Nologo.png'
 								"
-								alt="No profile image"
-								class="overlay-image w-100" />
+								 alt="No profile image"
+								 class="overlay-image w-100" />
 						</div>
 						<div class="col-md-6">
 							<div class="card-body">
@@ -130,9 +121,8 @@
 										</div>
 										<div class="ms-2">
 											<p>
-												<a
-													class="text-dark fw-semibold text-decoration-none"
-													[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
+												<a class="text-dark fw-semibold text-decoration-none"
+												   [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
 													{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
 												</a>
 											</p>
@@ -144,9 +134,8 @@
 										</div>
 										<div class="ms-2">
 											<p>
-												<a
-													class="text-dark fw-semibold text-decoration-none"
-													[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+												<a class="text-dark fw-semibold text-decoration-none"
+												   [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
 													{{ siteConfig?.websiteSettings?.contactInfo?.email }}
 												</a>
 											</p>
@@ -154,19 +143,16 @@
 									</div>
 								</div>
 								<div class="d-flex gap-3 fs-4">
-									<a
-										href="#"
-										class="text-decoration-none info">
+									<a href="#"
+									   class="text-decoration-none info">
 										<i class="fa-brands fa-x-twitter"></i>
 									</a>
-									<a
-										href="#"
-										class="text-decoration-none info">
+									<a href="#"
+									   class="text-decoration-none info">
 										<i class="fa-brands fa-facebook"></i>
 									</a>
-									<a
-										href="#"
-										class="text-decoration-none info">
+									<a href="#"
+									   class="text-decoration-none info">
 										<i class="fa-brands fa-instagram"></i>
 									</a>
 								</div>
@@ -183,42 +169,34 @@
 	<p class="text text-center fw-semibold">Find Properties in These Cities</p>
 	<div class="row">
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div
-				class="image-container"
-				(click)="searchProperties({ address: 'Toronto' })">
-				<img
-					src="./t6/images/p1.png"
-					alt="" />
+			<div class="image-container"
+				 (click)="searchProperties({ address: 'Toronto' })">
+				<img src="./t6/images/p1.png"
+					 alt="" />
 				<div class="image-label">Toronto</div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div
-				class="image-container"
-				(click)="searchProperties({ address: 'Milton' })">
-				<img
-					src="./t6/images/p2.png"
-					alt="" />
+			<div class="image-container"
+				 (click)="searchProperties({ address: 'Milton' })">
+				<img src="./t6/images/p2.png"
+					 alt="" />
 				<div class="image-label">Milton</div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div
-				class="image-container"
-				(click)="searchProperties({ address: 'Brampton' })">
-				<img
-					src="./t6/images/p3.png"
-					alt="" />
+			<div class="image-container"
+				 (click)="searchProperties({ address: 'Brampton' })">
+				<img src="./t6/images/p3.png"
+					 alt="" />
 				<div class="image-label">Brampton</div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div
-				class="image-container"
-				(click)="searchProperties({ address: 'Mississauga' })">
-				<img
-					src="./t6/images/p4.png"
-					alt="" />
+			<div class="image-container"
+				 (click)="searchProperties({ address: 'Mississauga' })">
+				<img src="./t6/images/p4.png"
+					 alt="" />
 				<div class="image-label">Mississauga</div>
 			</div>
 		</div>
@@ -258,69 +236,15 @@
 		<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
 			<div class="col-lg-8 col-12">
 				<div class="">
-					<img
-						class="img-fluid"
-						src="t6/images/contact-img.png"
-						alt="" />
+					<img class="img-fluid"
+						 src="t6/images/contact-img.png"
+						 alt="" />
 				</div>
 			</div>
 			<div class="col-lg-4 col-12 mt-lg-0 mt-3">
 				<div class="card shadow">
 					<div class="card-body">
-						<h5 class="card-title info">Lets Get In Touch</h5>
-						<form
-							[formGroup]="userForm"
-							name="userForm">
-							<mat-form-field appearance="fill">
-								<mat-label class="info">First Name</mat-label>
-								<input
-									formControlName="firstName"
-									required
-									matInput
-									placeholder="First Name" />
-								<mat-error>First name is required</mat-error>
-							</mat-form-field>
-							<mat-form-field appearance="fill">
-								<mat-label class="info">Email</mat-label>
-								<input
-									class="w-100"
-									type="email"
-									formControlName="emailAddress"
-									required
-									email
-									matInput
-									placeholder="Ex. pat@example.com" />
-								@if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
-								<mat-error>Please enter a valid email address</mat-error>
-								} @if (userForm.hasError('required', 'emailAddress')) {
-								<mat-error>Email is required</mat-error>
-								}
-							</mat-form-field>
-							<mat-form-field appearance="fill">
-								<mat-label class="info">Phone Number</mat-label>
-								<input
-									type="tel"
-									formControlName="phoneNumber"
-									matInput
-									placeholder="Ex. 123-456-1234" />
-								@if (userForm.hasError('pattern', 'phoneNumber')) {
-								<mat-error>Please enter a valid phone number</mat-error>
-								} @if (userForm.hasError('required', 'phoneNumber')) {
-								<mat-error>Phone number is required</mat-error>
-								}
-							</mat-form-field>
-							<mat-form-field appearance="fill">
-								<mat-label class="info">Leave a comment</mat-label>
-								<textarea
-									formControlName="comment"
-									class="form-control"
-									rows="4"
-									matInput
-									placeholder="Ex. Enter comment about this property"></textarea>
-								<mat-error>Comment is required</mat-error>
-							</mat-form-field>
-							<button class="btn search_btn w-100 fw-bold">Save</button>
-						</form>
+						<app-hero-contact-form />
 					</div>
 				</div>
 			</div>

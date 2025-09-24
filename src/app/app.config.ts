@@ -1,6 +1,6 @@
 import { provideHttpClient, withFetch, withInterceptors } from "@angular/common/http";
 import { APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
-import { provideClientHydration, withEventReplay } from "@angular/platform-browser";
+
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter, Router, Routes } from '@angular/router';
 import Aura from "@primeng/themes/aura";
@@ -42,7 +42,6 @@ export const appConfig: ApplicationConfig = {
 		provideAnimations(),
 		provideAngularSvgIcon(),
 		provideRouter(routes),
-		provideClientHydration(withEventReplay()),
 		providePrimeNG({
 			theme: {
 				preset: Aura,

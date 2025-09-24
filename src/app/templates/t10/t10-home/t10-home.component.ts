@@ -1,21 +1,21 @@
 
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { CustomerModel } from "../../../models/CustomerModel";
+import { SiteConfig } from "../../../models/SiteConfig";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
+import { SearchService } from "../../../services/search.service";
+import { SiteConfigService } from "../../../services/site-config.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from "@angular/material/dialog";
-import { PhoneSearch } from "../../../pipes/phoneSearch";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { SiteConfig } from "../../../models/SiteConfig";
-import { SearchService } from "../../../services/search.service";
-import { SiteConfigService } from "../../../services/site-config.service";
 
 @Component({
 	selector: "app-t10-home",
@@ -31,7 +31,8 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		MatFormFieldModule,
 		MatInputModule,
 		PhoneSearch,
-		
+		HeroContactFormComponent
+
 	],
 	templateUrl: "./t10-home.component.html",
 	styleUrls: ["./t10-home.component.scss", "../t10.component.scss"],

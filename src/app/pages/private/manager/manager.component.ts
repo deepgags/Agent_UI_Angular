@@ -90,7 +90,7 @@ export class ManagerComponent {
 			this.customerService.updatePageContent(params).subscribe({
 				next: (v) => { },
 				error: (e) => {
-					this.notificationService.showSuccess(e.error.message || "Something went wrong while updating content.");
+					this.notificationService.showError(e.error.message || "Something went wrong while updating content.");
 				},
 				complete: () => {
 					this.notificationService.showSuccess("Page content updated.");

@@ -1,5 +1,5 @@
-import { CommonModule, isPlatformBrowser } from "@angular/common";
-import { Component, Inject, inject, PLATFORM_ID } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Component, inject } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { Title } from "@angular/platform-browser";
@@ -81,7 +81,6 @@ export class ProfileComponent {
 		private titleService: Title,
 		private templateService: TemplateService,
 		public dialogService: DialogService,
-		@Inject(PLATFORM_ID) private platformId: Object
 	) {
 		this.titleService.setTitle("Profile");
 		this.items = [
@@ -403,22 +402,20 @@ export class ProfileComponent {
 	}
 
 	onProfileImageChange(event: Event): void {
-		if (isPlatformBrowser(this.platformId)) {
-			const ref = this.dialogService.open(ImageDialogComponent, {
-				header: "Adjust Profile Image",
-				height: "80%",
-				width: "80%",
-				closable: false,
-				closeOnEscape: false,
-				focusOnShow: false,
-				data: {
-					imageChangedEvent: event,
-				},
-			});
-			ref.onClose.subscribe((croppedImage: string) => {
-				this.primaryAgentProfileImage.next(croppedImage);
-			});
-		}
+		const ref = this.dialogService.open(ImageDialogComponent, {
+			header: "Adjust Profile Image",
+			height: "80%",
+			width: "80%",
+			closable: false,
+			closeOnEscape: false,
+			focusOnShow: false,
+			data: {
+				imageChangedEvent: event,
+			},
+		});
+		ref.onClose.subscribe((croppedImage: string) => {
+			this.primaryAgentProfileImage.next(croppedImage);
+		});
 	}
 
 	onLogoImageChange(event: Event): void {
@@ -440,24 +437,22 @@ export class ProfileComponent {
 	}
 
 	onSecondaryProfileImageChange(event: Event): void {
-		if (isPlatformBrowser(this.platformId)) {
-			const ref = this.dialogService.open(ImageDialogComponent, {
-				header: "Adjust Profile Image",
-				height: "80%",
-				width: "80%",
-				closable: false,
-				closeOnEscape: false,
-				focusOnShow: false,
-				data: {
-					imageChangedEvent: event,
-				},
-			});
-			ref.onClose.subscribe((croppedImage: string) => {
-				if (croppedImage) {
-					this.secondaryAgentProfileImage.next(croppedImage);
-				}
-			});
-		}
+		const ref = this.dialogService.open(ImageDialogComponent, {
+			header: "Adjust Profile Image",
+			height: "80%",
+			width: "80%",
+			closable: false,
+			closeOnEscape: false,
+			focusOnShow: false,
+			data: {
+				imageChangedEvent: event,
+			},
+		});
+		ref.onClose.subscribe((croppedImage: string) => {
+			if (croppedImage) {
+				this.secondaryAgentProfileImage.next(croppedImage);
+			}
+		});
 	}
 
 	openTemplateDialog() {

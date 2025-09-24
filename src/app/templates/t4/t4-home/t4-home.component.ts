@@ -1,20 +1,20 @@
 
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { Title } from "@angular/platform-browser";
-import { Router, RouterModule } from "@angular/router";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { CustomerModel } from "../../../models/CustomerModel";
-import { StorageService } from "../../../services/storage.service";
-import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
-import { SearchComponent } from "../../shared/search/search.component";
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { Title } from "@angular/platform-browser";
+import { RouterModule } from "@angular/router";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
+import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SearchService } from "../../../services/search.service";
 import { SiteConfigService } from "../../../services/site-config.service";
+import { StorageService } from "../../../services/storage.service";
+import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
+import { SearchComponent } from "../../shared/search/search.component";
 
 @Component({
 	selector: "app-t4-home",
@@ -28,7 +28,8 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		ReactiveFormsModule,
 		MatDialogModule,
 		MatFormFieldModule,
-		MatInputModule
+		MatInputModule,
+		HeroContactFormComponent
 	],
 	templateUrl: "./t4-home.component.html",
 	styleUrls: ["./t4-home.component.scss", "../t4.component.scss"],
