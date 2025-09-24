@@ -1,0 +1,70 @@
+<div class="">
+	<h5 class="card-title info">Lets Get In Touch</h5>
+	<form [formGroup]="heroContactForm"
+		  (ngSubmit)="submitHeroContactForm()">
+		<div class="mb-3">
+			<label for="contactName"
+				   class="form-label">Name</label>
+			<input type="text"
+				   pInputText
+				   formControlName="name"
+				   placeholder="Name"
+				   class="form-control"
+				   id="contactName"
+				   required />
+			<span class="error"
+				  *ngIf="contactName?.invalid && (contactName?.dirty || contactName?.touched)">
+				<span *ngIf="contactName?.errors?.['required']">Name is required</span>
+			</span>
+		</div>
+		<div class="mb-3">
+			<label for="contactEmail"
+				   class="form-label">Email</label>
+			<input type="email"
+				   pInputText
+				   formControlName="email"
+				   placeholder="Ex. pat@example.com"
+				   class="form-control w-100"
+				   id="contactEmail"
+				   required />
+			<span class="error"
+				  *ngIf="contactEmail?.invalid && (contactEmail?.dirty || contactEmail?.touched)">
+				<span *ngIf="contactEmail?.errors?.['required']">Name is required</span>
+				<span *ngIf="contactEmail?.errors?.['email']">Please enter a valid email address</span>
+			</span>
+		</div>
+		<div class="mb-3">
+			<label for="contactPhone"
+				   class="form-label">Phone Number</label>
+			<input type="tel"
+				   pInputText
+				   formControlName="phone"
+				   placeholder="Ex. 123-456-1234"
+				   class="form-control w-100"
+				   id="contactPhone" />
+			<span class="error"
+				  *ngIf="contactPhone?.invalid && (contactPhone?.dirty || contactPhone?.touched)">
+				<span *ngIf="contactPhone?.errors?.['required']">Phone number is required</span>
+				<span *ngIf="contactPhone?.errors?.['pattern']">Please enter a valid phone number</span>
+			</span>
+		</div>
+		<div class="mb-3">
+			<label for="contactMessage"
+				   class="form-label">Leave a comment</label>
+			<textarea pTextarea
+					  formControlName="message"
+					  class="form-control p-inputtext"
+					  rows="4"
+					  id="contactMessage"></textarea>
+			<span class="error"
+				  *ngIf="contactMessage?.invalid && (contactMessage?.dirty || contactMessage?.touched)">
+				<span *ngIf="contactMessage?.errors?.['required']">Comment is required</span>
+			</span>
+		</div>
+
+		<button type="submit"
+				class="btn search_btn w-100 fw-bold">
+			Submit
+		</button>
+	</form>
+</div>

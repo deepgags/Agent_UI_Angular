@@ -34,7 +34,7 @@ export class ManagerComponent {
 		private customerService: CustomerService,
 		private notificationService: NotificationService,
 		private loadingService: LoadingService
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.agentForm = new FormGroup({
@@ -68,7 +68,7 @@ export class ManagerComponent {
 			error: () => {
 				this.notificationService.showSuccess("An error has occurred while getting customer information");
 			},
-			complete: () => {},
+			complete: () => { },
 		});
 	}
 
@@ -87,13 +87,13 @@ export class ManagerComponent {
 					buyerText: this.agentForm.get("buyerText")?.value || "",
 				},
 			};
-			this.customerService.update(params).subscribe({
-				next: (v) => {},
+			this.customerService.updatePageContent(params).subscribe({
+				next: (v) => { },
 				error: (e) => {
-					this.notificationService.showSuccess(e.error.message || "Something went wrong while updating information.");
+					this.notificationService.showSuccess(e.error.message || "Something went wrong while updating content.");
 				},
 				complete: () => {
-					this.notificationService.showSuccess("Page content updated successfully");
+					this.notificationService.showSuccess("Page content updated.");
 					this.loadingService.loadingOff();
 				},
 			});

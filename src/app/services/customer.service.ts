@@ -13,7 +13,7 @@ export class CustomerService {
 	query = signal<string>("");
 	private baseUrl: string = environment.baseUrl;
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) { }
 
 	register(params: CustomerModel): Observable<any> {
 		return this.http.post(`${this.baseUrl}/customer/register`, params);
@@ -33,6 +33,10 @@ export class CustomerService {
 
 	update(params: any) {
 		return this.http.patch(this.baseUrl + "/customer/update", params);
+	}
+
+	updatePageContent(params: any) {
+		return this.http.patch(this.baseUrl + "/customer/update-content", params);
 	}
 
 	saveWebsiteSettings(settings: any) {
