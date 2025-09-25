@@ -1,72 +1,68 @@
-import { BreakpointObserver } from "@angular/cdk/layout";
-import { CommonModule, isPlatformBrowser } from "@angular/common";
-import { Component, Inject, OnInit, PLATFORM_ID } from "@angular/core";
-import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
+import { CommonModule } from "@angular/common";
+import { Component, OnInit, } from "@angular/core";
+
 import { Title } from "@angular/platform-browser";
-import { provideAnimations } from "@angular/platform-browser/animations";
-import { Router } from "@angular/router";
-import { NgbCarouselConfig, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+
+import { DialogModule } from "primeng/dialog";
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BehaviorSubject } from "rxjs";
-import { TemplatesiteComponent } from "../../../components/dialogs/templatesite/templatesite.component";
 import { GalleryComponent } from "../../../components/gallery/gallery.component";
+import { TemplatePreviewComponent } from "../../../components/template-preview/template-preview.component";
 import { CustomerModel } from "../../../models/CustomerModel";
+import { SiteConfig } from "../../../models/SiteConfig";
 import { TemplateModel } from "../../../models/TemplateModel";
 import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { SharedDataService } from "../../../services/shareddata.service";
-import { StorageService } from "../../../services/storage.service";
+import { SiteConfigService } from "../../../services/site-config.service";
 import { TemplateService } from "../../../services/template.service";
 
 @Component({
 	selector: "app-template",
 	imports: [
 		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MatDialogModule,
-		MatFormFieldModule,
-		MatInputModule,
-		NgbModule,
 		GalleryComponent,
+		DialogModule,
+		DynamicDialogModule,
 	],
-	providers: [provideAnimations(), NgbCarouselConfig],
+	providers: [DialogService],
 	templateUrl: "./template.component.html",
 	styleUrl: "./template.component.scss",
 })
 export class TemplateComponent implements OnInit {
-	isBrowser: boolean = false;
-	templateForm!: FormGroup;
+	selectedTemplate: any = "";
 	customerModel!: CustomerModel;
 	private templatesSubject = new BehaviorSubject<TemplateModel[]>([]);
 	templates$ = this.templatesSubject.asObservable();
+	siteConfig: SiteConfig | undefined;
+	siteConfigSubscription: any;
 
 	constructor(
-		breakpointObserver: BreakpointObserver,
-		private _siteDialog: MatDialog,
 		private customerService: CustomerService,
-		private storageService: StorageService,
 		private templateService: TemplateService,
 		private notificationService: NotificationService,
 		private titleService: Title,
 		private loadingService: LoadingService,
 		private sharedDataService: SharedDataService,
-		private router: Router,
-		@Inject(PLATFORM_ID) platformId: Object
+		public dialogService: DialogService,
+		private siteConfigService: SiteConfigService,
 	) {
 		this.titleService.setTitle("Templates");
-		this.isBrowser = isPlatformBrowser(platformId);
 	}
 
 	ngOnInit() {
-		this.sharedDataService.CustomerData.subscribe((data) => {
-			this.customerModel = data;
-			this.getTemplates();
-			// this.setGalleryImages();
+		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
+			if (config) {
+				this.siteConfig = config;
+				this.selectedTemplate = config.websiteSettings.templateId;
+			}
 		});
+		// this.sharedDataService.CustomerData.subscribe((data) => {
+		// 	this.customerModel = data;
+		// 	console.log(data);
+		// });
+		this.getTemplates();
 	}
 
 	getTemplates() {
@@ -86,76 +82,44 @@ export class TemplateComponent implements OnInit {
 		});
 	}
 
-	// setGalleryImages() {
-	// 	this.templatesSubject.subscribe(x => {
-	// 		x.forEach(template => {
-	// 			this.galleryRef = this.gallery.ref(template.id);
-	// 			template.images?.forEach(x => {
-	// 				if (this.galleryRef) {
-	// 					this.galleryRef.add(new ImageItem(
-	// 						{
-	// 							src: x,
-	// 							thumb: x
-	// 						}));
-	// 				}
-	// 			})
-	// 		})
-	// 	});
-	// }
+	setTemplate(template: TemplateModel) {
+		if (template && template.templateKey) {
+			this.loadingService.loadingOn();
+			const params = {
+				templateKey: template.templateKey
+			};
+			this.customerService.changeTemplate(params).subscribe({
+				next: (v) => {
+					this.selectedTemplate = template.templateKey;
+				},
+				error: (e) => {
+					this.notificationService.showSuccess(e.error.message || "Something went wrong while changing template.");
+				},
+				complete: () => {
+					this.notificationService.showSuccess("Template changed successfully");
+					this.loadingService.loadingOff();
+				},
+			});
+		} else {
+			this.notificationService.showSuccess("Select template to apply.");
+		}
 
-	openDialog() {
-		// this._siteDialog.open(TemplatesiteComponent,
-		// 	{
-		// 		width: '50%',
-		// 		height: 'auto',
-		// 		disableClose: true,
-		// 		autoFocus: false,
-		// 		restoreFocus: false,
-		// 		hasBackdrop: true,
-		// 		data: this.customerModel
-		// 	}
-		// )
 	}
 
-	selectTemplate(template: TemplateModel, sender: any) {
-		// template.isSelected = !template.isSelected;
-		// if (template.isSelected) {
-		// 	// this.customerModel.templateId = template._id;
-		// }
-		// this.templates$.subscribe(x => x.forEach(item => {
-		// 	if (template._id != item._id) {
-		// 		item.isSelected = false
-		// 	}
-		// }));
-	}
-
-	previewTemplate(template: TemplateModel, sender: any) {
-		// this.loadingService.loadingOn();
-		// this.customerService.templatePreviewAvailable(template._id)
-		// 	.subscribe({
-		// 		next: (response) => {
-		// 			if (response && response._id != "") {
-		// 				this.storageService.saveUserInfo(JSON.stringify(response));
-		// 				this.router.navigate([]).then(result => { window.open('loading', '_blank'); });
-		// 				return;
-		// 			}
-		// 			this.notificationService.showNotification('No data exist for template preview')
-		// 		},
-		// 		error: () => {
-		// 			this.notificationService.showNotification('Error occurred exist while template preview')
-		// 		},
-		// 		complete: () => {
-		// 			this.loadingService.loadingOff()
-		// 		}
-		// 	})
-	}
-
-	save() {
-		// 	if (this.customerModel.templateId != "") {
-		// 		this.openDialog();
-		// 	}
-		// 	else {
-		// 		this.notificationService.showNotification("Please select template")
-		// 	}
+	previewTemplate(template: TemplateModel) {
+		const ref = this.dialogService.open(TemplatePreviewComponent, {
+			header: 'Preview',
+			modal: true,
+			closable: true,
+			width: "80%",
+			data: {
+				template: template
+			}
+		});
+		ref.onClose.subscribe((setTemplate: boolean) => {
+			if (setTemplate) {
+				this.setTemplate(template)
+			}
+		})
 	}
 }
