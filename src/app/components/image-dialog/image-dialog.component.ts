@@ -18,7 +18,10 @@ export class ImageDialogComponent {
 	isImageCroppingInProgress = false;
 	maintainRatio = true;
 	fileFormat: OutputFormat = "png";
-	constructor(private ref: DynamicDialogRef, private dialogConfig: DynamicDialogConfig) {
+	constructor(
+		private ref: DynamicDialogRef,
+		private dialogConfig: DynamicDialogConfig
+	) {
 		const { imageChangedEvent, freeSelection } = this.dialogConfig.data;
 		this.imageChangedEvent = imageChangedEvent;
 

@@ -39,6 +39,10 @@ export class CustomerService {
 		return this.http.patch(this.baseUrl + "/customer/update-content", params);
 	}
 
+	changeTemplate(params: any) {
+		return this.http.patch(this.baseUrl + "/customer/set-template", params);
+	}
+
 	saveWebsiteSettings(settings: any) {
 		return this.http.post(this.baseUrl + "/customer/website-settings", settings);
 	}
@@ -60,22 +64,6 @@ export class CustomerService {
 
 	getCustomer() {
 		return this.http.get(`${this.baseUrl}/customer/profile`);
-	}
-
-	templatePreviewAvailable(templateId: string): Observable<CustomerModel> {
-		return this.http.get<CustomerModel>(this.baseUrl + "/customerByTemplateForPreview?templateid=" + templateId).pipe(
-			map((result: any) => {
-				if (result && result.data && result.data.length > 0) {
-					const customer: CustomerModel = result.data[0];
-					return customer;
-				}
-				return this.customers[0];
-			}),
-			catchError((error) => {
-				console.error("Error fetching customers:", error);
-				return throwError(() => error);
-			})
-		);
 	}
 
 	getCustomers(emailAddress: string): Observable<CustomerModel> {
