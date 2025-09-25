@@ -4,6 +4,7 @@ import { Router, RouterModule } from "@angular/router";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SearchService } from "../../../services/search.service";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { SiteConfigService } from "../../../services/site-config.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
@@ -11,7 +12,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 
 @Component({
 	selector: "app-t3-home",
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent,PhoneSearch],
 	templateUrl: "./t3-home.component.html",
 	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./t3-home.component.scss", "../t3.component.scss"],
