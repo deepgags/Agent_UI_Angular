@@ -96,119 +96,86 @@
 		<div class="col-lg-4 col-12 mt-4 mt-lg-0">
 			<div class="card shadow">
 				<div class="card-body">
-					<h5 class="card-title info">Ask About this Home</h5>
-					<form [formGroup]="userForm"
-						  name="userForm"
+					<h5 class="card-title info">Ask About Property</h5>
+					<form class="form-card bg-white"
+						  [formGroup]="contactForm"
 						  (ngSubmit)="submitContactForm()">
-						<mat-form-field appearance="fill">
-							<mat-label class="info">Name</mat-label>
-							<input formControlName="name"
-								   required
-								   matInput
-								   placeholder="Full Name" />
-							@if (name?.invalid && (name?.dirty || name?.touched)) {
-							<span class="error">
-								@if (name?.errors?.['required']) {
-								<span>Name is required</span>
-								}
-							</span>
-							}
-						</mat-form-field>
-						<mat-form-field appearance="fill">
-							<mat-label class="info">Email</mat-label>
-							<input class="w-100"
-								   type="email"
-								   formControlName="email"
-								   required
-								   email
-								   matInput
-								   placeholder="Ex. pat@example.com" />
-
-							@if (email?.invalid && (email?.dirty || email?.touched)) {
-							<span class="error">
-								@if (email?.errors?.['required']) {
-								<span>Email number is required</span>
-								}
-								@if (email?.errors?.['email']) {
-								<span>Please enter a valid email address</span>
-								}
-							</span>
-							}
-						</mat-form-field>
-						<mat-form-field appearance="fill">
-							<mat-label class="info">Phone Number</mat-label>
-							<input type="tel"
-								   formControlName="phone"
-								   matInput
-								   placeholder="Ex. 123-456-1234" />
-
-							@if (phone?.invalid && (phone?.dirty || phone?.touched)) {
-							<span class="error">
-								@if (phone?.errors?.['required']) {
-								<span>Phone number is required</span>
-								}
-								@if (phone?.errors?.['pattern']) {
-								<span>Please enter a valid phone number</span>
-								}
-							</span>
-							}
-
-						</mat-form-field>
-						<mat-form-field appearance="fill">
-							<mat-label class="info">Leave a comment</mat-label>
-							<textarea formControlName="message"
-									  class="form-control"
-									  rows="4"
-									  matInput
-									  placeholder="Ex. Enter comment about this property"></textarea>
-
-							@if (message?.invalid && (message?.dirty || message?.touched)) {
-							<span class="error">
-								@if (message?.errors?.['required']) {
-								<span>Comment is required</span>
-								}
-							</span>
-							}
-
-						</mat-form-field>
+						<p>
+							Interested in viewing a property? Need more information? Fill out the form below and you will be contacted shortly. Thank you for
+							your interest. Your business is appreciated!
+						</p>
+						<div class="mb-3">
+							<p-iftalabel>
+								<input type="text"
+									   pInputText
+									   formControlName="name"
+									   class="form-control"
+									   id="name"
+									   required />
+								<label for="name">Name</label>
+								<span class="error"
+									  *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+									<span *ngIf="name?.errors?.['required']">Name is required</span>
+								</span>
+							</p-iftalabel>
+						</div>
+						<div class="mb-3">
+							<p-iftalabel>
+								<input type="email"
+									   pInputText
+									   formControlName="email"
+									   class="form-control w-100"
+									   id="email"
+									   required />
+								<label for="email">Email</label>
+								<span class="error"
+									  *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+									<span *ngIf="email?.errors?.['required']">Email is required</span>
+									<span *ngIf="email?.errors?.['email']">Please enter a valid email address</span>
+								</span>
+							</p-iftalabel>
+						</div>
+						<div class="mb-3">
+							<p-iftalabel>
+								<p-inputmask mask="(999) 999-9999"
+											 formControlName="phone"
+											 placeholder="Ex. 123-456-1234"
+											 class="w-100"
+											 id="phone"></p-inputmask>
+								<label for="phone">Phone Number</label>
+								<span class="error"
+									  *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+									<span *ngIf="phone?.errors?.['required']">Phone number is required</span>
+									<span *ngIf="phone?.errors?.['pattern']">Please enter a valid phone number</span>
+								</span>
+							</p-iftalabel>
+						</div>
+						<div class="mb-3">
+							<p-iftalabel>
+								<textarea pTextarea
+										  formControlName="message"
+										  class="form-control p-inputtext"
+										  rows="4"
+										  id="message"></textarea>
+								<label for="message">Leave a comment</label>
+								<span class="error"
+									  *ngIf="message?.invalid && (message?.dirty || message?.touched)">
+									<span *ngIf="message?.errors?.['required']">Comment is required</span>
+								</span>
+							</p-iftalabel>
+						</div>
 						<p class="mb-0 fw-semibold">I am</p>
 						<div class="d-flex flex-wrap gap-2 py-3">
+							@for(type of userTypes; track $index){
 							<input type="radio"
-								   class="btn-check"
-								   name="userType"
-								   id="seller"
-								   value="seller"
-								   checked
+								   class="btn-check radio_btn"
+								   formControlName="userType"
+								   [id]="'userType'+type.value"
+								   [value]="type.value"
 								   required>
 							<label class="btn  rounded-pill"
-								   for="seller">Seller</label>
-
-							<input type="radio"
-								   class="btn-check"
-								   name="userType"
-								   id="buyer"
-								   value="buyer"
-								   required>
-							<label class="btn  rounded-pill"
-								   for="buyer">Buyer</label>
-
-							<input type="radio"
-								   class="btn-check"
-								   name="userType"
-								   id="renter"
-								   value="renter"
-								   required>
-							<label class="btn  rounded-pill"
-								   for="renter">Renter</label>
-
-							<input type="radio"
-								   class="btn-check"
-								   name="userType"
-								   id="buyerSeller"
-								   value="buyerAndSeller"
-								   required>
-							<label class="btn  rounded-pill"
-								   for="buyerSeller">Buyer & Seller</label>
+								   [for]="'userType'+type.value">{{type.title}}</label>
+							}
 						</div>
 						<button type="submit"
 								class="btn search_btn w-100 fw-bold">Submit</button>

@@ -1,55 +1,98 @@
 
+import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { IftaLabelModule } from "primeng/iftalabel";
+import { InputMaskModule } from "primeng/inputmask";
+import { InputTextModule } from "primeng/inputtext";
+import { MultiSelectModule } from "primeng/multiselect";
+import { SelectModule } from "primeng/select";
 import { SiteConfig } from "../../../models/SiteConfig";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
+import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
 import { SiteConfigService } from "../../../services/site-config.service";
 
 @Component({
 	selector: "app-contact",
-	imports: [NgbModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, RouterModule,PhoneSearch],
+	imports: [
+		CommonModule,
+		NgbModule,
+		FormsModule,
+		ReactiveFormsModule,
+		RouterModule,
+		PhoneSearch,
+		IftaLabelModule,
+		InputMaskModule,
+		InputTextModule,
+		SelectModule,
+		MultiSelectModule,
+	],
 	templateUrl: "./contact.component.html",
 	styleUrl: "./contact.component.scss",
 	standalone: true,
 })
 export class ContactComponent {
-	userForm!: FormGroup;
+	contactForm!: FormGroup;
 	siteConfig: SiteConfig | undefined;
 	siteConfigSubscription: any;
 
 	contactText =
 		"Your way to better real estate software starts here. For 35 years, we’ve proudly delivered the gold standard in real estate software to businesses of all shapes, sizes, and structures, and we’d be honored to partner with your organization today.";
 
-	constructor(private fb: FormBuilder, private siteConfigService: SiteConfigService, private publicService: PublicService) {}
+	userTypes = [
+		{
+			title: "Seller",
+			value: "seller",
+		},
+		{
+			title: "Buyer",
+			value: "buyer",
+		},
+		{
+			title: "Renter",
+			value: "renter",
+		},
+		{
+			title: "Buyer And Seller",
+			value: "buyerAndSeller",
+		},
+	];
 
-	get name() {
-		return this.userForm.get("name");
-	}
-	get email() {
-		return this.userForm.get("email");
-	}
-	get phone() {
-		return this.userForm.get("phone");
-	}
-	get message() {
-		return this.userForm.get("message");
-	}
-
-	ngOnInit(): void {
-		this.userForm = this.fb.group({
+	constructor(
+		private siteConfigService: SiteConfigService,
+		private notificationService: NotificationService,
+		private publicService: PublicService
+	) {
+		this.contactForm = new FormGroup({
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
-			phone: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			phone: new FormControl("", [Validators.required]),
 			message: new FormControl("", Validators.required),
 			userType: new FormControl("seller", Validators.required),
 		});
+	}
 
+	get name() {
+		return this.contactForm.get("name");
+	}
+	get email() {
+		return this.contactForm.get("email");
+	}
+	get phone() {
+		return this.contactForm.get("phone");
+	}
+	get message() {
+		return this.contactForm.get("message");
+	}
+
+	get requestLeadType() {
+		return this.contactForm.get("leadType");
+	}
+
+	ngOnInit(): void {
 		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
 			if (config) {
 				this.siteConfig = config;
@@ -58,23 +101,24 @@ export class ContactComponent {
 	}
 
 	submitContactForm() {
-		if (this.userForm.invalid) {
-			this.userForm.markAllAsTouched();
-			const errorMessage = "Please fill all required fields correctly.";
+		if (this.contactForm.invalid) {
+			this.contactForm.markAllAsTouched();
+			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
 
 		const params = {
-			...this.userForm.value,
+			...this.contactForm.value,
 			leadSource: "contactForm",
+			siteId: this.siteConfig?.id,
 		};
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
-				const success = "Your message has been sent successfully.";
-				this.userForm.reset();
+				this.notificationService.showSuccess("Your request has been submitted successfully.");
+				this.contactForm.reset();
 			},
 			error: () => {
-				const errorMessage = "Failed to send message. Please try again later.";
+				this.notificationService.showError("Failed to submit request. Please try again later.");
 			},
 		});
 	}

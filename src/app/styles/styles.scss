@@ -14,7 +14,11 @@
 .p-select {
 	font-size: 13px !important;
 }
-
+p-inputmask {
+	.p-inputtext {
+		width: 100%;
+	}
+}
 .error {
 	color: red !important;
 	font-size: 13px !important;
