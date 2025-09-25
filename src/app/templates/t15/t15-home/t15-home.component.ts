@@ -9,6 +9,7 @@ import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { SearchService } from "../../../services/search.service";
 import { SiteConfigService } from "../../../services/site-config.service";
 import { StorageService } from "../../../services/storage.service";
@@ -29,7 +30,8 @@ import { HeroContactFormComponent } from "../../../components/hero-contact-form/
 		MatDialogModule,
 		MatFormFieldModule,
 		MatInputModule,
-		HeroContactFormComponent
+		HeroContactFormComponent,
+		PhoneSearch
 	],
 	templateUrl: "./t15-home.component.html",
 	styleUrls: ["./t15-home.component.scss", "../t15.component.scss"],
