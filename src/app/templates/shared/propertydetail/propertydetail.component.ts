@@ -621,7 +621,8 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
 	getRoomDetails() {
 		this.loadingSubject.next(true);
-		this.propertyService.getRoomDetails(this.mlsId).subscribe({
+		const feedType = this.property?.PropertyFeedType ?? ""
+		this.propertyService.getRoomDetails(this.mlsId, feedType).subscribe({
 			next: (response) => {
 				console.log("room details", response);
 				this.roomDetails = response;

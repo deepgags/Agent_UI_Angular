@@ -265,6 +265,7 @@ export class PropertyService {
 
 						IsFeatureListing: false,
 						ModificationTimestamp: property.ModificationTimestamp,
+						PropertyFeedType: property.PropertyFeedType
 					};
 					return propertyModel;
 				}
@@ -290,8 +291,8 @@ export class PropertyService {
 		);
 	}
 
-	getRoomDetails(mlsId: string): Observable<any> {
-		return this.http.get(`${environment.baseUrl}/properties/room-details/${mlsId}`).pipe(
+	getRoomDetails(mlsId: string, propertyFeedType: string): Observable<any> {
+		return this.http.get(`${environment.baseUrl}/properties/room-details/${mlsId}/${propertyFeedType}`).pipe(
 			map((result: any) => {
 				if (result && result.data) {
 					return result.data;

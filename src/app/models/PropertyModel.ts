@@ -59,6 +59,7 @@ export class PropertyModel {
 	PurchaseContractDate?: string;
 
 	IsFeatureListing: boolean = false;
+	PropertyFeedType: string = ""
 
 	constructor() {
 		this.TotalRecords = 10;
@@ -84,6 +85,7 @@ export class MediaModel {
 	Media_category: string;
 	ImageSize_description: string;
 	Modification_Timestamp: string;
+
 
 	constructor() {
 		this.Media_key = "";
