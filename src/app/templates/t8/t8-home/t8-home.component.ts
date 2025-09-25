@@ -8,7 +8,7 @@ import { CustomerModel } from "../../../models/CustomerModel";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
-
+import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -30,7 +30,8 @@ import { HeroContactFormComponent } from "../../../components/hero-contact-form/
 		MatDialogModule,
 		MatFormFieldModule,
 		MatInputModule,
-		HeroContactFormComponent
+		HeroContactFormComponent,
+		PhoneSearch
 	],
 	templateUrl: "./t8-home.component.html",
 	styleUrls: ["./t8-home.component.scss", "../t8.component.scss"],

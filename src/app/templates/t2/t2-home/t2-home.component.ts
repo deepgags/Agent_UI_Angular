@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Router, RouterModule } from "@angular/router";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SearchService } from "../../../services/search.service";
@@ -10,7 +11,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 
 @Component({
 	selector: "app-t2-home",
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent,PhoneSearch],
 	templateUrl: "./t2-home.component.html",
 	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./t2-home.component.scss", "../t2.component.scss"],

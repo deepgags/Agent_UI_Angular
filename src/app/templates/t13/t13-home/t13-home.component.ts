@@ -11,6 +11,7 @@ import { HeroContactFormComponent } from "../../../components/hero-contact-form/
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SearchService } from "../../../services/search.service";
+import { PhoneSearch } from "../../../pipes/phoneSearch";
 import { SiteConfigService } from "../../../services/site-config.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
@@ -29,7 +30,8 @@ import { SearchComponent } from "../../shared/search/search.component";
 		MatDialogModule,
 		MatFormFieldModule,
 		MatInputModule,
-		HeroContactFormComponent
+		HeroContactFormComponent,
+		PhoneSearch
 	],
 	templateUrl: "./t13-home.component.html",
 	styleUrls: ["./t13-home.component.scss", "../t13.component.scss"],

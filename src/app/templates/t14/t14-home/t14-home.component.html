@@ -23,10 +23,11 @@
 							</div>
 							<div class="ms-2">
 								<p>
-									<a class="text-white fw-semibold text-decoration-none"
-									   href="tel:+4733378901">
-										+47 333 78 901
-									</a>
+									<a
+									class="text-white fw-semibold text-decoration-none"
+									[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
+									{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+								</a>
 								</p>
 							</div>
 						</div>
@@ -37,10 +38,11 @@
 							</div>
 							<div class="ms-2 mt-1">
 								<p>
-									<a class="text-white fw-semibold text-decoration-none"
-									   href="mailto:someoneexample.com">
-										democc.com
-									</a>
+									<a
+									class="text-white fw-semibold text-decoration-none"
+									[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+									{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+								</a>
 								</p>
 							</div>
 						</div>
@@ -63,10 +65,11 @@
 							</div>
 							<div class="ms-2">
 								<p>
-									<a class="text-white fw-semibold text-decoration-none"
-									   href="tel:+4733378901">
-										+47 333 78 901
-									</a>
+										<a
+									class="text-white fw-semibold text-decoration-none"
+									[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
+									{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
+								</a>
 								</p>
 							</div>
 						</div>
@@ -77,10 +80,11 @@
 							</div>
 							<div class="ms-2 mt-1">
 								<p>
-									<a class="text-white fw-semibold text-decoration-none"
-									   href="mailto:someoneexample.com">
-										democc.com
-									</a>
+									<a
+									class="text-white fw-semibold text-decoration-none"
+									[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
+									{{ siteConfig?.secondaryAgent?.websiteEmail }}
+								</a>
 								</p>
 							</div>
 						</div>
