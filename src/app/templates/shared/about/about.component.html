@@ -10,7 +10,7 @@
 </div>
 
 <div class="container py-5 search-container">
-	<div class="py-3 row">
+	<div class="py-3 row align-items-center">
 		<div class="col-md-8">
 			<p class="fw-semibold"
 			   [innerHTML]="siteConfig?.websiteSettings?.aboutText || aboutText">
@@ -25,10 +25,9 @@
 								<img [src]="
 											siteConfig?.websiteSettings?.profileImage
 												? siteConfig?.websiteSettings?.profileImage
-												: '/images/Nologo.png'
-										"
+												: '/images/Nologo.png'"
 									 alt=""
-									 height="120px" />
+									 height="120px"/>
 							</div>
 						</div>
 
