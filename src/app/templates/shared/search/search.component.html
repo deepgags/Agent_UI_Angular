@@ -1,56 +1,67 @@
 <div class="row justify-content-around search-container align-items-center">
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<input type="text"
+		<!-- <input type="text"
 			   [(ngModel)]="filters.address"
 			   class="search-bar"
-			   placeholder="City, Address, Postal Code, MLS®#" />
+			   placeholder="City, Address, Postal Code, MLS®#" /> -->
+		<!-- <input type="text"
+			   [(ngModel)]="filters.address"
+			   class="search-bar"
+			   placeholder="City, Address, Postal Code, MLS®#" /> -->
+		<p-autocomplete [(ngModel)]="filters.address"
+						[suggestions]="cities"
+						optionLabel="city"
+						optionValue="city"
+						placeholder="Search City"
+						appendTo="body"
+						(completeMethod)="searchCityProvince($event)" />
+
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.property_type"
-				class="form-select custom-select"
-				(change)="filterPropertySubType()">
-			@for (property of propertyTypesDropDown; track property) {
-			<option [value]="property.LookupValue">{{property.LookupValue}}</option>
-			}
-		</select>
+		<p-select [options]="propertyTypesDropDown"
+				  [(ngModel)]="filters.property_type"
+				  optionLabel="LookupValue"
+				  optionValue="LookupValue"
+				  placeholder="Select Property Type"
+				  appendTo="body"
+				  (onChange)="filterPropertySubType()" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.property_subtype"
-				class="form-select custom-select">
-			<option value="">Select Property Subtype</option>
-			@for (type of propertySubTypesDropDown; track type) {
-			<option [value]="type.LookupValue">{{type.LookupValue}}</option>
-			}
-		</select>
+		<p-select [options]="propertySubTypesDropDown"
+				  [(ngModel)]="filters.property_subtype"
+				  optionLabel="LookupValue"
+				  optionValue="LookupValue"
+				  placeholder="Select Property Subtype"
+				  appendTo="body" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.bedrooms"
-				class="form-select custom-select">
-			@for (beds of bedTypesDropDown; track beds) {
-			<option [value]="beds.value">{{beds.label}}</option>
-			}
-		</select>
+		<p-select [options]="bedTypesDropDown"
+				  [(ngModel)]="filters.bedrooms"
+				  optionLabel="label"
+				  optionValue="value"
+				  placeholder="Bedrooms"
+				  appendTo="body" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.bathrooms"
-				class="form-select custom-select">
-			@for (bath of bathTypesDropDown; track bath) {
-			<option [value]="bath.value">{{bath.label}}</option>
-			}
-		</select>
+		<p-select [options]="bathTypesDropDown"
+				  [(ngModel)]="filters.bathrooms"
+				  optionLabel="label"
+				  optionValue="value"
+				  placeholder="Bathrooms"
+				  appendTo="body" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<select [(ngModel)]="filters.property_status"
-				class="form-select custom-select">
-			@for (status of statusTypesDropDown; track status) {
-			<option [value]="status.value">{{status.label}}</option>
-			}
-		</select>
+		<p-select [options]="statusTypesDropDown"
+				  [(ngModel)]="filters.property_status"
+				  optionLabel="label"
+				  optionValue="value"
+				  placeholder="Select Property Status"
+				  appendTo="body" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
@@ -70,9 +81,7 @@
 								aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-
 						<div class="row g-4">
-
 							<div class="col-md-6">
 								<select [(ngModel)]="filters.min_price"
 										class="form-select">

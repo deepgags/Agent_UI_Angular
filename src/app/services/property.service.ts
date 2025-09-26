@@ -123,7 +123,8 @@ export class PropertyService {
 			max_price,
 			sqFt,
 			brokerageType,
-			sort, siteId
+			sort,
+			siteId
 		} = propertyParams;
 
 		return this.http

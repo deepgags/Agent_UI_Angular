@@ -46,8 +46,13 @@
               </div>
             </a> -->
 			</div>
-
 			}
+
+			<a [routerLink]="['/featured-listings']"
+			   class="btn search_btn w-auto fw-bold mx-auto">
+				View All
+			</a>
+
 		</div>
 		@if (properties.length == 0) {
 		<h2 class="text-center mt-5">No properties found</h2>

@@ -66,6 +66,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 		property_status: "",
 		sqFt: "",
 		distance: "20",
+		sort: "",
 	};
 
 	constructor(
@@ -157,6 +158,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 			distance: stringiFy(selectedFilters.distance),
 			// brokerageType: userInfo?.brokerage?.alternateName,
 			// propertyFeedType: "IDX",
+			sort: "",
 			siteId: this.siteId
 		};
 

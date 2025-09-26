@@ -70,6 +70,12 @@ export class LeadsComponent implements OnInit {
 			fieldType: FieldsType.Capitalize,
 		},
 		{
+			field: "leadType",
+			header: "Lead Type",
+			disableSort: false,
+			fieldType: FieldsType.Text,
+		},
+		{
 			field: "Action",
 			header: "Action",
 			disableSort: true,

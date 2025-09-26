@@ -1,15 +1,14 @@
 
 import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MatSliderModule } from "@angular/material/slider";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
+import { SelectModule } from 'primeng/select';
 import {
 	bathTypes,
 	bedTypes,
 	maxPrices,
 	minPrices,
-	propertySubTypes,
-	propertyTypes,
 	sqFitTypes,
 	statusTypes,
 	storyTypes,
@@ -19,7 +18,7 @@ import { PropertyService } from "../../../services/property.service";
 
 @Component({
 	selector: "app-search",
-	imports: [FormsModule, MatSliderModule],
+	imports: [FormsModule, AutoCompleteModule, SelectModule],
 	templateUrl: "./search.component.html",
 	styleUrls: ["./search.component.scss"],
 	encapsulation: ViewEncapsulation.None,
@@ -43,6 +42,8 @@ export class SearchComponent implements OnInit {
 		distance: "20",
 	};
 
+	private _cities: any = [];
+	cities: any = [];
 	propertyTypesDropDown: any = [];
 	propertySubTypesDropDown: any = [];
 	private _allPropertySubTypes: any = [];
@@ -142,6 +143,7 @@ export class SearchComponent implements OnInit {
 	getPropertyTypeDropdowns() {
 		this.propertyService.getPropertyTypes().subscribe({
 			next: (response) => {
+				this._cities = response.cities;
 				this.propertyTypesDropDown = response.propertyTypes;
 				this._allPropertySubTypes = response.propertySubTypes;
 				this.filters.property_type = response.propertyTypes[0].LookupValue;
@@ -160,5 +162,12 @@ export class SearchComponent implements OnInit {
 				break;
 			}
 		}
+	}
+
+	searchCityProvince(event: AutoCompleteCompleteEvent) {
+		this.cities = this._cities.filter((item: any) =>
+			// item.province_name?.toLowerCase().startsWith(event.query.toLowerCase()) ||
+			item.city?.toLowerCase().startsWith(event.query.toLowerCase())
+		);
 	}
 }
