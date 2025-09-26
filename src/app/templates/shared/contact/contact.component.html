@@ -50,6 +50,7 @@
 				</div>
 			</div>
 
+			@if(siteConfig?.secondaryAgent && siteConfig?.secondaryAgent?.firstName){
 			<div class="card p-3 shadow-sm border-0 rounded mt-3">
 				<h5 class="fw-bold mb-3 info">Contact Info</h5>
 
@@ -86,6 +87,7 @@
 					   class="btn btn-light border"><i class="bi bi-linkedin info"></i></a>
 				</div>
 			</div>
+			}
 			<div>
 				<p class="text-muted mt-3"
 				   [innerHTML]="siteConfig?.websiteSettings?.contactText ? siteConfig?.websiteSettings?.contactText : contactText">
