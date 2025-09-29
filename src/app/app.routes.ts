@@ -7,7 +7,6 @@ import { LeadsComponent } from "./pages/private/leads/leads.component";
 import { ManagerComponent } from "./pages/private/manager/manager.component";
 import { PaymentComponent } from "./pages/private/payment/payment.component";
 import { PrivateComponent } from "./pages/private/private.component";
-import { ProfileComponent } from "./pages/private/profile/profile.component";
 import { SettingsComponent } from "./pages/private/settings/settings.component";
 import { TemplateComponent } from "./pages/private/template/template.component";
 import { UsersComponent } from "./pages/private/users/users.component";
@@ -41,7 +40,6 @@ export const routes: Routes = [
 			{ path: "page-manager", component: ManagerComponent },
 			{ path: "change-password", component: ChangePasswordComponent },
 			{ path: "template", component: TemplateComponent },
-			{ path: "profile", component: ProfileComponent },
 			{ path: "payment", component: PaymentComponent },
 			{ path: "users", component: UsersComponent },
 		],

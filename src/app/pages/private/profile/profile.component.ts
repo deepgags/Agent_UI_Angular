@@ -17,7 +17,6 @@ import { SelectModule } from "primeng/select";
 import { TextareaModule } from "primeng/textarea";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
-import { TemplateSelectionDialogComponent } from "../../../components/template-selection-dialog/template-selection-dialog.component";
 import { BrokerageTypeModel } from "../../../models/BrokerageTypeModel";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { TemplateModel } from "../../../models/TemplateModel";
@@ -455,35 +454,4 @@ export class ProfileComponent {
 		});
 	}
 
-	openTemplateDialog() {
-		let dialogRef = this.dialog.open(TemplateSelectionDialogComponent, {
-			maxHeight: "90vh",
-			maxWidth: "90vw",
-			width: "90vw",
-			height: "90vh",
-			data: {
-				templates: this.templates,
-			},
-		});
-
-		dialogRef.afterClosed().subscribe((selectedTemplate: TemplateModel) => {
-			if (selectedTemplate) {
-				this.agentForm.patchValue({
-					templateId: selectedTemplate.templateKey,
-				});
-			}
-		});
-	}
-
-	onTemplateChange(e: any) {
-		for (const template of this.templates) {
-			if (template.templateKey == e.value) {
-				this.agentForm.patchValue({
-					primaryColor: template.primaryColor,
-					secondaryColor: template.secondaryColor,
-				});
-				break;
-			}
-		}
-	}
 }

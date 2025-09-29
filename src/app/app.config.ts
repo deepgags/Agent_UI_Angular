@@ -24,7 +24,7 @@ const initializeApp = (router: Router, routesConfigService: RoutesConfigService)
 						const newRoutes: Routes = [
 							{ path: "", redirectTo: "/home", pathMatch: "full" },
 							dynamicRoutes,
-							...routes,
+							...routes
 						];
 						router.resetConfig(newRoutes);
 					})

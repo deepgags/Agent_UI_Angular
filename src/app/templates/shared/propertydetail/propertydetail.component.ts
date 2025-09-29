@@ -31,7 +31,7 @@ import { TabsModule } from "primeng/tabs";
 import { PropertyComponent } from "../../../components/property/property.component";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneSearch } from "../../../pipes/phoneSearch";
-import { TimeAgo } from "../../../Pipes/time-ago";
+import { TimeAgo } from "../../../pipes/time-ago";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
 import { SiteConfigService } from "../../../services/site-config.service";

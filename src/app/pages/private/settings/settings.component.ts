@@ -15,16 +15,14 @@ import { SelectModule } from "primeng/select";
 import { TextareaModule } from "primeng/textarea";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
-import { TemplateSelectionDialogComponent } from "../../../components/template-selection-dialog/template-selection-dialog.component";
+
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { BrokerageTypeModel } from "../../../models/BrokerageTypeModel";
 import { CustomerModel } from "../../../models/CustomerModel";
-import { TemplateModel } from "../../../models/TemplateModel";
 import { BrokerageTypeService } from "../../../services/brokerage.service";
 import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
-import { TemplateService } from "../../../services/template.service";
-
 @Component({
 	selector: "app-settings",
 	imports: [
@@ -41,6 +39,7 @@ import { TemplateService } from "../../../services/template.service";
 		IftaLabelModule,
 		TextareaModule,
 		EditorModule,
+		ToggleSwitchModule,
 	],
 	templateUrl: "./settings.component.html",
 	styleUrl: "./settings.component.scss",
@@ -50,18 +49,17 @@ export class SettingsComponent {
 	agentForm!: FormGroup;
 	agentData!: CustomerModel;
 	brokerageTypes: BrokerageTypeModel[] = [];
-	templates: any[] = [];
 
 	existingProfileImage = "";
 
-	brokerageImage: BehaviorSubject<string>;
-	brokerageImageObservable: Observable<string>;
+	// brokerageImage: BehaviorSubject<string>;
+	// brokerageImageObservable: Observable<string>;
 
 	primaryAgentProfileImage: BehaviorSubject<string>;
 	primaryAgentProfileImageObservable: Observable<string>;
 
-	logoImage: BehaviorSubject<string>;
-	logoImageObservable: Observable<string>;
+	brokerageLogoImage: BehaviorSubject<string>;
+	brokerageLogoImageObservable: Observable<string>;
 
 	secondaryAgentProfileImage: BehaviorSubject<string>;
 	secondaryAgentProfileImageObservable: Observable<string>;
@@ -75,16 +73,15 @@ export class SettingsComponent {
 		private notificationService: NotificationService,
 		private loadingService: LoadingService,
 		private titleService: Title,
-		private templateService: TemplateService,
 		public dialogService: DialogService
 	) {
 		this.titleService.setTitle("Profile");
 
-		this.brokerageImage = new BehaviorSubject("");
-		this.brokerageImageObservable = this.brokerageImage.asObservable();
+		// this.brokerageImage = new BehaviorSubject("");
+		// this.brokerageImageObservable = this.brokerageImage.asObservable();
 
-		this.logoImage = new BehaviorSubject("");
-		this.logoImageObservable = this.logoImage.asObservable();
+		this.brokerageLogoImage = new BehaviorSubject("");
+		this.brokerageLogoImageObservable = this.brokerageLogoImage.asObservable();
 
 		this.primaryAgentProfileImage = new BehaviorSubject("");
 		this.primaryAgentProfileImageObservable = this.primaryAgentProfileImage.asObservable();
@@ -120,10 +117,6 @@ export class SettingsComponent {
 		return this.agentForm.get("siteUrl");
 	}
 
-	get templateId() {
-		return this.agentForm.get("templateId");
-	}
-
 	ngOnInit() {
 		this.agentForm = this.fb.group({
 			businessName: new FormControl("", Validators.required),
@@ -142,7 +135,6 @@ export class SettingsComponent {
 				// Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?"),
 			]),
 			// Website Settings Form Controls
-			templateId: new FormControl("", Validators.required),
 			primaryColor: new FormControl(""),
 			secondaryColor: new FormControl(""),
 			facebook: new FormControl(""),
@@ -169,7 +161,6 @@ export class SettingsComponent {
 		});
 
 		this.getBrokerageTypes();
-		this.getTemplates();
 	}
 
 	getProfile() {
@@ -192,9 +183,9 @@ export class SettingsComponent {
 					} = websiteSettings;
 
 					this.existingProfileImage = profileImage;
-					this.brokerageImage.next(brokerage.logoPath);
+					// this.brokerageImage.next(brokerage.logoPath);
 					this.primaryAgentProfileImage.next(profileImage);
-					this.logoImage.next(logoImage);
+					this.brokerageLogoImage.next(logoImage);
 
 					this.agentForm.patchValue({
 						businessName: businessName,
@@ -262,33 +253,14 @@ export class SettingsComponent {
 		});
 	}
 
-	brokerageChange(selectedBrokerage: any): void {
-		for (const brokerage of this.brokerageTypes) {
-			if (brokerage._id === selectedBrokerage) {
-				this.brokerageImage.next(brokerage.logoPath);
-				break;
-			}
-		}
-	}
-
-	getTemplates() {
-		this.templateService.getTemplates().subscribe({
-			next: (response: any) => {
-				if (response.data && response.data.length > 0) {
-					this.templates = response.data;
-					if (this.agentData && this.agentData.websiteSettings) {
-						const { templateId } = this.agentData.websiteSettings;
-						this.agentForm.patchValue({
-							templateId: templateId,
-						});
-					}
-				}
-			},
-			error: (error) => {
-				this.notificationService.showSuccess("Error occurred while getting templates");
-			},
-		});
-	}
+	// brokerageChange(selectedBrokerage: any): void {
+	// 	for (const brokerage of this.brokerageTypes) {
+	// 		if (brokerage._id === selectedBrokerage) {
+	// 			this.brokerageImage.next(brokerage.logoPath);
+	// 			break;
+	// 		}
+	// 	}
+	// }
 
 	save() {
 		const { valid } = this.agentForm;
@@ -349,8 +321,8 @@ export class SettingsComponent {
 						// address: websiteAddress,
 					},
 					profileImage: this.primaryAgentProfileImage.value ? this.primaryAgentProfileImage.value : this.existingProfileImage,
-					brokerageImage: this.brokerageImage.value,
-					logoImage: this.logoImage.value,
+					brokerageImage: this.brokerageLogoImage.value,
+					// logoImage: this.brokerageLogoImage.value,
 				},
 				secondaryAgent: {
 					...this.agentForm.value.secondaryAgent,
@@ -390,7 +362,7 @@ export class SettingsComponent {
 		});
 	}
 
-	onLogoImageChange(event: Event): void {
+	onBrokerageLogoImageChange(event: Event): void {
 		const ref = this.dialogService.open(ImageDialogComponent, {
 			header: "Adjust Logo Image",
 			height: "80%",
@@ -403,7 +375,7 @@ export class SettingsComponent {
 		});
 		ref.onClose.subscribe((croppedImage: string) => {
 			if (croppedImage) {
-				this.logoImage.next(croppedImage);
+				this.brokerageLogoImage.next(croppedImage);
 			}
 		});
 	}
@@ -425,37 +397,5 @@ export class SettingsComponent {
 				this.secondaryAgentProfileImage.next(croppedImage);
 			}
 		});
-	}
-
-	openTemplateDialog() {
-		let dialogRef = this.dialog.open(TemplateSelectionDialogComponent, {
-			maxHeight: "90vh",
-			maxWidth: "90vw",
-			width: "90vw",
-			height: "90vh",
-			data: {
-				templates: this.templates,
-			},
-		});
-
-		dialogRef.afterClosed().subscribe((selectedTemplate: TemplateModel) => {
-			if (selectedTemplate) {
-				this.agentForm.patchValue({
-					templateId: selectedTemplate.templateKey,
-				});
-			}
-		});
-	}
-
-	onTemplateChange(e: any) {
-		for (const template of this.templates) {
-			if (template.templateKey == e.value) {
-				this.agentForm.patchValue({
-					primaryColor: template.primaryColor,
-					secondaryColor: template.secondaryColor,
-				});
-				break;
-			}
-		}
 	}
 }

@@ -465,40 +465,7 @@
 											}
 										</div>
 									</div>
-									<div class="row align-items-center mb-3">
-										<div class="col-md-8">
-											<p-iftalabel>
-												<p-select formControlName="templateId"
-														  [options]="templates"
-														  optionLabel="name"
-														  optionValue="templateKey"
-														  styleClass="w-100"
-														  inputId="templateId"
-														  (onChange)="onTemplateChange($event)">
-													<ng-template pTemplate="item"
-																 let-template>
-														{{ template.name }} - {{ template.description }}
-													</ng-template>
-												</p-select>
-												<label for="templateId">Website Template</label>
-											</p-iftalabel>
-											@if (templateId?.invalid && (templateId?.dirty || templateId?.touched)) {
-											<span class="error">
-												@if (templateId?.errors?.['required']) {
-												<span>Template is required</span>
-												}
-											</span>
-											}
-										</div>
-										<div class="col-md-4">
-											<button type="button"
-													class="btn btn-success w-100"
-													(click)="openTemplateDialog()">
-												<i class="fas fa-eye me-2"></i>
-												Select Template
-											</button>
-										</div>
-									</div>
+
 
 									<div class="row">
 										<div class="col-md-6">
