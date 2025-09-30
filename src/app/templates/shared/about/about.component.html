@@ -27,7 +27,7 @@
 												? siteConfig?.websiteSettings?.profileImage
 												: '/images/Nologo.png'"
 									 alt=""
-									 height="120px"/>
+									 height="120px" />
 							</div>
 						</div>
 
@@ -126,22 +126,14 @@
 				 data-bs-interval="4000">
 				<div class="text-center carousel-inner">
 					<div class="carousel-item active">
+						@if(testimonials && testimonials.length > 0){
+						@for(testimonial of testimonials; track $index){
 						<blockquote class="blockquote">
-							<p>"Outstanding service and dedication. Couldn't have asked for more!"</p>
-							<footer class="blockquote-footer">Jane D.</footer>
+							<p>"{{testimonial.message}}"</p>
+							<footer class="blockquote-footer">J{{testimonial.customerName}}</footer>
 						</blockquote>
-					</div>
-					<div class="carousel-item">
-						<blockquote class="blockquote">
-							<p>"Acharya made our home buying journey smooth and enjoyable."</p>
-							<footer class="blockquote-footer">Mark & Lina</footer>
-						</blockquote>
-					</div>
-					<div class="carousel-item">
-						<blockquote class="blockquote">
-							<p>"Very responsive, knowledgeable, and truly puts clients first."</p>
-							<footer class="blockquote-footer">Samuel K.</footer>
-						</blockquote>
+						}
+						}
 					</div>
 				</div>
 				<button class="carousel-control-prev"

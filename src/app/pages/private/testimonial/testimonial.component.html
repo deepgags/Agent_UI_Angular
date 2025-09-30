@@ -1,0 +1,43 @@
+<div class="col mt-3">
+	<h2>Testimonials</h2>
+	<div class="border rounded">
+		<div class="p-4">
+			<div class="d-flex gap-2 justify-content-end mb-3">
+				<button class="btn btn-primary"
+						(click)="addTestimonial()">Add Testimonial</button>
+			</div>
+
+			<!-- Loading State -->
+			<div *ngIf="loading"
+				 class="text-center py-4">
+				<p-progressSpinner></p-progressSpinner>
+				<p class="mt-2">Loading Testimonials ...</p>
+			</div>
+
+			<!-- Error State -->
+			<div *ngIf="error"
+				 class="alert alert-danger"
+				 role="alert">
+				{{ error }}
+				<button class="btn btn-outline-danger btn-sm ms-2"
+						(click)="getTestimonial()">Retry</button>
+			</div>
+
+			<!-- Data Table -->
+			<div *ngIf="!loading && !error">
+				<app-simple-table [columns]="columns"
+								  [data]="testimonials"
+								  [paginator]="true"
+								  [rows]="25"
+								  [showFilter]="true"
+								  [showActions]="true"
+								  [showEditAction]="false"
+								  [showDeleteAction]="true"
+								  [onDelete]="deleteTestimonial"
+								  [highlightRow]="true"
+								  #table>
+				</app-simple-table>
+			</div>
+		</div>
+
+	</div>

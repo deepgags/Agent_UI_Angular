@@ -1,0 +1,54 @@
+<div class="">
+	<form [formGroup]="form"
+		  (ngSubmit)="submitForm()"
+		  class="d-flex flex-column">
+		<div class="mb-3">
+			<label for="name"
+				   class="form-label">Name</label>
+			<input type="text"
+				   pInputText
+				   formControlName="name"
+				   placeholder="Name"
+				   class="form-control"
+				   id="name"
+				   required />
+			<span class="error"
+				  *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+				<span *ngIf="name?.errors?.['required']">Name is required</span>
+			</span>
+		</div>
+
+		<div class="mb-3">
+			<label for="message"
+				   class="form-label">Testimonial Message</label>
+			<textarea pTextarea
+					  formControlName="message"
+					  class="form-control p-inputtext"
+					  rows="4"
+					  placeholder="Message"
+					  id="message"></textarea>
+			<span class="error"
+				  *ngIf="message?.invalid && (message?.dirty || message?.touched)">
+				<span *ngIf="message?.errors?.['required']">Message is required</span>
+			</span>
+		</div>
+
+		<div class="mb-3 d-flex flex-column">
+			<label for="date"
+				   class="form-label">Testimonial Date</label>
+			<p-datepicker formControlName="date"
+						  class=""
+						  id="date"
+						  autofocus="false" />
+			<span class="error"
+				  *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+				<span *ngIf="date?.errors?.['required']">Date is required</span>
+			</span>
+		</div>
+
+		<button type="submit"
+				class="btn btn-primary w-auto fw-bold align-self-end">
+			Submit
+		</button>
+	</form>
+</div>

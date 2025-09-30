@@ -9,6 +9,7 @@ import { PaymentComponent } from "./pages/private/payment/payment.component";
 import { PrivateComponent } from "./pages/private/private.component";
 import { SettingsComponent } from "./pages/private/settings/settings.component";
 import { TemplateComponent } from "./pages/private/template/template.component";
+import { TestimonialComponent } from "./pages/private/testimonial/testimonial.component";
 import { UsersComponent } from "./pages/private/users/users.component";
 import { ForgotComponent } from "./pages/public/forgot/forgot.component";
 import { LoginComponent } from "./pages/public/login/login.component";
@@ -36,6 +37,7 @@ export const routes: Routes = [
 		children: [
 			{ path: "dashboard", component: AdminComponent },
 			{ path: "leads", component: LeadsComponent },
+			{ path: "testimonial", component: TestimonialComponent },
 			{ path: "settings", component: SettingsComponent },
 			{ path: "page-manager", component: ManagerComponent },
 			{ path: "change-password", component: ChangePasswordComponent },
