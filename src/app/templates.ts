@@ -5,6 +5,7 @@ import { CalculatorComponent } from "./templates/shared/calculator/calculator.co
 import { ContactComponent } from "./templates/shared/contact/contact.component";
 import { FeaturedListingsComponent } from "./templates/shared/featured-listings/featured-listings.component";
 import { MapComponent } from "./templates/shared/map/map.component";
+import { MortgageCalculatorComponent } from "./templates/shared/mortgage-calculator/mortgage-calculator.component";
 import { PropertyDetailComponent } from "./templates/shared/propertydetail/propertydetail.component";
 import { SearchPageComponent } from "./templates/shared/search-page/search-page.component";
 import { SellerComponent } from "./templates/shared/seller/seller.component";
@@ -50,12 +51,10 @@ import { T8Component } from "./templates/t8/t8.component";
 import { T9HomeComponent } from "./templates/t9/t9-home/t9-home.component";
 import { T9Component } from "./templates/t9/t9.component";
 
-
-
 export interface TemplateRoute {
 	path: string;
 	component: any;
-	children: any[]
+	children: any[];
 }
 
 export interface TemplateRoutes {
@@ -64,7 +63,7 @@ export interface TemplateRoutes {
 
 export const templates: TemplateRoutes = {
 	t1: {
-		path: '',
+		path: "",
 		component: T1Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -81,10 +80,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t2: {
-		path: '',
+		path: "",
 		component: T2Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -101,10 +101,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t3: {
-		path: '',
+		path: "",
 		component: T3Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -121,10 +122,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t4: {
-		path: '',
+		path: "",
 		component: T4Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -141,10 +143,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
 		],
 	},
 	t5: {
-		path: '',
+		path: "",
 		component: T5Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -161,10 +164,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t6: {
-		path: '',
+		path: "",
 		component: T6Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -181,10 +185,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t7: {
-		path: '',
+		path: "",
 		component: T7Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -201,10 +206,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t8: {
-		path: '',
+		path: "",
 		component: T8Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -221,10 +227,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t9: {
-		path: '',
+		path: "",
 		component: T9Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -241,10 +248,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t10: {
-		path: '',
+		path: "",
 		component: T10Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -261,10 +269,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t11: {
-		path: '',
+		path: "",
 		component: T11Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -281,10 +290,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t12: {
-		path: '',
+		path: "",
 		component: T12Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -301,10 +311,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t13: {
-		path: '',
+		path: "",
 		component: T13Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -321,10 +332,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t14: {
-		path: '',
+		path: "",
 		component: T14Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -341,10 +353,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t15: {
-		path: '',
+		path: "",
 		component: T15Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -361,10 +374,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t16: {
-		path: '',
+		path: "",
 		component: T16Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -381,10 +395,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t17: {
-		path: '',
+		path: "",
 		component: T17Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -401,10 +416,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t18: {
-		path: '',
+		path: "",
 		component: T18Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -421,10 +437,11 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 	t19: {
-		path: '',
+		path: "",
 		component: T19Component,
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
@@ -441,6 +458,7 @@ export const templates: TemplateRoutes = {
 			{ path: "sellerdetails2", component: Sellerdetail2Component },
 			{ path: "sellerdetails3", component: Sellerdetail3Component },
 			{ path: "about", component: AboutComponent },
-		]
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
 	},
 };
