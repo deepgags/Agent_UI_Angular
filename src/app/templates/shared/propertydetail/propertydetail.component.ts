@@ -138,7 +138,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	roomDetails: any[] = [];
 	similarProperties: any[] = [];
 	siteConfig: SiteConfig = {} as SiteConfig;
-
+	private readonly _defaultMessage = "I would like more information regarding a property";
 	constructor(
 		private propertyService: PropertyService,
 		private titleService: Title,
@@ -164,7 +164,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
 			date: new FormControl(""),
-			message: new FormControl("I would like more information regarding a property", Validators.required),
+			message: new FormControl(this._defaultMessage, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
@@ -173,7 +173,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
-			message: new FormControl("I would like more information regarding a property", Validators.required),
+			message: new FormControl(this._defaultMessage, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
@@ -182,7 +182,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
-			message: new FormControl("I would like more information regarding a property", Validators.required),
+			message: new FormControl(this._defaultMessage, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
@@ -191,7 +191,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
-			message: new FormControl("I would like more information regarding a property", Validators.required),
+			message: new FormControl(this._defaultMessage, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
@@ -200,7 +200,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
-			message: new FormControl("I would like more information regarding a property", Validators.required),
+			message: new FormControl(this._defaultMessage, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
@@ -430,6 +430,9 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			next: () => {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.requestShowingForm.reset();
+				this.requestShowingForm.patchValue({
+					message: this._defaultMessage,
+				});
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -454,6 +457,9 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			next: () => {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.propertyHistoryForm.reset();
+				this.propertyHistoryForm.patchValue({
+					message: this._defaultMessage,
+				});
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -478,6 +484,9 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			next: () => {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.recentSaleInAreaForm.reset();
+				this.recentSaleInAreaForm.patchValue({
+					message: this._defaultMessage,
+				});
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -502,6 +511,9 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			next: () => {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.haveQuestionForm.reset();
+				this.haveQuestionForm.patchValue({
+					message: this._defaultMessage,
+				});
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -526,6 +538,9 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			next: () => {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.contactForm.reset();
+				this.contactForm.patchValue({
+					message: this._defaultMessage,
+				});
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");

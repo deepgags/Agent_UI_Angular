@@ -272,6 +272,7 @@ export class SettingsComponent {
 				youtube,
 				websiteEmail,
 				websitePhone,
+				designation,
 				// websiteAddress,
 			} = this.agentForm.getRawValue();
 
@@ -281,6 +282,7 @@ export class SettingsComponent {
 				lastName: lastName,
 				address: address,
 				brokerageTypeId: brokerageType,
+				designation,
 				websiteSettings: {
 					siteUrl: siteUrl,
 					primaryColor,
@@ -310,7 +312,7 @@ export class SettingsComponent {
 			this.customerService.update(params).subscribe({
 				next: (v) => {},
 				error: (e) => {
-					this.notificationService.showSuccess(e.error.message || "Something went wrong while updating information.");
+					this.notificationService.showError(e.error.message || "Something went wrong while updating information.");
 				},
 				complete: () => {
 					this.notificationService.showSuccess("Profile updated successfully");
@@ -319,7 +321,7 @@ export class SettingsComponent {
 			});
 		} else {
 			this.agentForm.markAllAsTouched();
-			this.notificationService.showSuccess("One or more required fields are missing or invalid.");
+			this.notificationService.showError("One or more required fields are missing or invalid.");
 		}
 	}
 

@@ -2,6 +2,7 @@ export interface SiteConfig {
 	id: string;
 	firstName: string;
 	lastName: string;
+	designation: string;
 	// templateId: string;
 	// phone: string;
 	// email: string;
@@ -51,5 +52,6 @@ export interface SiteConfig {
 		websiteEmail: string;
 		websitePhone: string;
 		profileImage: string;
+		designation: string;
 	};
 }

@@ -949,12 +949,12 @@
 							<div class="mb-3">
 								<label for="contactPhone"
 									   class="form-label">Phone Number</label>
-								<input type="tel"
-									   pInputText
-									   formControlName="phone"
-									   placeholder="Ex. 123-456-1234"
-									   class="form-control w-100"
-									   id="contactPhone" />
+
+								<p-inputmask mask="(999) 999-9999"
+											 formControlName="phone"
+											 placeholder="Ex. 123-456-1234"
+											 class="w-100"
+											 id="contactPhone"></p-inputmask>
 								<span class="error"
 									  *ngIf="contactPhone?.invalid && (contactPhone?.dirty || contactPhone?.touched)">
 									<span *ngIf="contactPhone?.errors?.['required']">Phone number is required</span>
