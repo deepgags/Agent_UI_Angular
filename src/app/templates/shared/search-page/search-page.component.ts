@@ -7,7 +7,6 @@ import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { CarouselModule } from "primeng/carousel";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
 import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";

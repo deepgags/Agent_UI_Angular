@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, } from "@angular/core";
+import { Component, OnInit, WritableSignal } from "@angular/core";
 
 import { Title } from "@angular/platform-browser";
 
 import { DialogModule } from "primeng/dialog";
-import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
 import { GalleryComponent } from "../../../components/gallery/gallery.component";
 import { TemplatePreviewComponent } from "../../../components/template-preview/template-preview.component";
@@ -15,17 +15,11 @@ import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { SharedDataService } from "../../../services/shareddata.service";
-import { SiteConfigService } from "../../../services/site-config.service";
 import { TemplateService } from "../../../services/template.service";
 
 @Component({
 	selector: "app-template",
-	imports: [
-		CommonModule,
-		GalleryComponent,
-		DialogModule,
-		DynamicDialogModule,
-	],
+	imports: [CommonModule, GalleryComponent, DialogModule, DynamicDialogModule],
 	providers: [DialogService],
 	templateUrl: "./template.component.html",
 	styleUrl: "./template.component.scss",
@@ -35,8 +29,7 @@ export class TemplateComponent implements OnInit {
 	customerModel!: CustomerModel;
 	private templatesSubject = new BehaviorSubject<TemplateModel[]>([]);
 	templates$ = this.templatesSubject.asObservable();
-	siteConfig: SiteConfig | undefined;
-	siteConfigSubscription: any;
+	siteConfig: SiteConfig = {} as SiteConfig;
 
 	constructor(
 		private customerService: CustomerService,
@@ -45,23 +38,14 @@ export class TemplateComponent implements OnInit {
 		private titleService: Title,
 		private loadingService: LoadingService,
 		private sharedDataService: SharedDataService,
-		public dialogService: DialogService,
-		private siteConfigService: SiteConfigService,
+		public dialogService: DialogService
 	) {
 		this.titleService.setTitle("Templates");
 	}
 
 	ngOnInit() {
-		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
-			if (config) {
-				this.siteConfig = config;
-				this.selectedTemplate = config.websiteSettings.templateId;
-			}
-		});
-		// this.sharedDataService.CustomerData.subscribe((data) => {
-		// 	this.customerModel = data;
-		// 	console.log(data);
-		// });
+		this.siteConfig = this.sharedDataService.siteData();
+		this.selectedTemplate = this.siteConfig.websiteSettings.templateId;
 		this.getTemplates();
 	}
 
@@ -86,7 +70,7 @@ export class TemplateComponent implements OnInit {
 		if (template && template.templateKey) {
 			this.loadingService.loadingOn();
 			const params = {
-				templateKey: template.templateKey
+				templateKey: template.templateKey,
 			};
 			this.customerService.changeTemplate(params).subscribe({
 				next: (v) => {
@@ -103,23 +87,22 @@ export class TemplateComponent implements OnInit {
 		} else {
 			this.notificationService.showSuccess("Select template to apply.");
 		}
-
 	}
 
 	previewTemplate(template: TemplateModel) {
 		const ref = this.dialogService.open(TemplatePreviewComponent, {
-			header: 'Preview',
+			header: "Preview",
 			modal: true,
 			closable: true,
 			width: "80%",
 			data: {
-				template: template
-			}
+				template: template,
+			},
 		});
 		ref.onClose.subscribe((setTemplate: boolean) => {
 			if (setTemplate) {
-				this.setTemplate(template)
+				this.setTemplate(template);
 			}
-		})
+		});
 	}
 }

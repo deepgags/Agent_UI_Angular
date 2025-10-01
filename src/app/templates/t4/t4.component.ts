@@ -1,37 +1,23 @@
-
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { SiteConfig } from '../../models/SiteConfig';
-import { SiteConfigService } from '../../services/site-config.service';
-import { T4FooterComponent } from './t4-footer/t4-footer.component';
-import { T4HeaderComponent } from './t4-header/t4-header.component';
+import { Component, OnInit } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { SiteConfig } from "../../models/SiteConfig";
+import { SharedDataService } from "../../services/shareddata.service";
+import { T4FooterComponent } from "./t4-footer/t4-footer.component";
+import { T4HeaderComponent } from "./t4-header/t4-header.component";
 
 @Component({
-	selector: 'app-t4',
+	selector: "app-t4",
 	standalone: true,
-	imports: [T4HeaderComponent, T4FooterComponent, RouterModule], // Added CommonModule
-	templateUrl: './t4.component.html',
-	styleUrl: './t4.component.scss'
+	imports: [T4HeaderComponent, T4FooterComponent, RouterModule],
+	templateUrl: "./t4.component.html",
+	styleUrl: "./t4.component.scss",
 })
-export class T4Component implements OnInit, OnDestroy {
+export class T4Component implements OnInit {
+	siteConfig: SiteConfig = {} as SiteConfig;
 
-	public siteConfig: SiteConfig | null = null;
-	private siteConfigSubscription: Subscription | undefined;
-
-	constructor(private siteConfigService: SiteConfigService) { }
+	constructor(private sharedDataService: SharedDataService) {}
 
 	ngOnInit(): void {
-		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe(config => {
-			if (config) {
-				this.siteConfig = config;
-			}
-		});
-	}
-
-	ngOnDestroy(): void {
-		if (this.siteConfigSubscription) {
-			this.siteConfigSubscription.unsubscribe();
-		}
+		this.siteConfig = this.sharedDataService.siteData();
 	}
 }

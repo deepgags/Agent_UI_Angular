@@ -1,14 +1,12 @@
 <div class="background-container search-container">
 	<div class="first">
-		<img
-			[src]="siteConfig?.websiteSettings?.profileImage ? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'"
-			alt="No profile image"
-			class="overlay-image" />
-		<div
-			class="card position-absolute man-card"
-			style="width: 15rem">
+		<img [src]="siteConfig.websiteSettings.profileImage ? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
+			 alt="No profile image"
+			 class="overlay-image" />
+		<div class="card position-absolute man-card"
+			 style="width: 15rem">
 			<div class="card-body">
-				<h5 class="card-head text-white">{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}</h5>
+				<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
 				<div class="d-flex">
 					<div class="">
 						<i class="fa-solid fa-phone info"></i>
@@ -16,26 +14,24 @@
 					</div>
 					<div class="ms-2">
 						<p>
-							<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
-									{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-								</a>
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+								{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+							</a>
 						</p>
 					</div>
 				</div>
 				<div class="d-flex">
 					<div class="">
-										<i class="fa-solid fa-envelope info"></i>
+						<i class="fa-solid fa-envelope info"></i>
 
 					</div>
 					<div class="ms-2 mt-1">
 						<p>
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-									{{ siteConfig?.websiteSettings?.contactInfo?.email }}
-								</a>
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+								{{ siteConfig.websiteSettings.contactInfo.email }}
+							</a>
 						</p>
 					</div>
 				</div>
@@ -44,42 +40,38 @@
 	</div>
 
 	<div class="second">
-		<img
-			[src]="siteConfig?.secondaryAgent?.profileImage ? siteConfig?.secondaryAgent?.profileImage : '/images/Nologo.png'"
-			alt="No profile image"
-			class="overlay-image2" />
-		<div
-			class="card position-absolute man_card2"
-			style="width: 15rem">
+		<img [src]="siteConfig.secondaryAgent?.profileImage ? siteConfig.secondaryAgent?.profileImage : '/images/Nologo.png'"
+			 alt="No profile image"
+			 class="overlay-image2" />
+		<div class="card position-absolute man_card2"
+			 style="width: 15rem">
 			<div class="card-body">
-				<h5 class="card-head text-white">{{ siteConfig?.secondaryAgent?.firstName }} {{ siteConfig?.secondaryAgent?.lastName }}</h5>
+				<h5 class="card-head text-white">{{ siteConfig.secondaryAgent?.firstName }} {{ siteConfig.secondaryAgent?.lastName }}</h5>
 				<div class="d-flex">
 					<div class="">
-											<i class="fa-solid fa-phone info"></i>
+						<i class="fa-solid fa-phone info"></i>
 
 					</div>
 					<div class="ms-2">
 						<p>
-							<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
-									{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
-								</a>
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'tel:' + siteConfig.secondaryAgent?.websitePhone">
+								{{ siteConfig.secondaryAgent?.websitePhone | phone }}
+							</a>
 						</p>
 					</div>
 				</div>
 				<div class="d-flex">
 					<div class="">
-										<i class="fa-solid fa-envelope info"></i>
+						<i class="fa-solid fa-envelope info"></i>
 
 					</div>
 					<div class="ms-2 mt-1">
 						<p>
-							<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
-									{{ siteConfig?.secondaryAgent?.websiteEmail }}
-								</a>
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'mailto:' + siteConfig.secondaryAgent?.websiteEmail">
+								{{ siteConfig.secondaryAgent?.websiteEmail }}
+							</a>
 						</p>
 					</div>
 				</div>
@@ -107,49 +99,67 @@
 	</p>
 
 	<div class="row pt-lg-5 p-lg-0 p-4">
-		
+
 		<div class="col-lg-6 col-12 mb-lg-0 mb-3">
-			<div class=" position-relative pro_card" (click)="searchProperties({address:'Toronto'})">
-			  <img class="w-100" src="t3/images/Group 2.png" alt="" />
-			  <p class="image-label position-absolute text-white m-0 fs-3">Toronto</p>
+			<div class=" position-relative pro_card"
+				 (click)="searchProperties({address:'Toronto'})">
+				<img class="w-100"
+					 src="t3/images/Group 2.png"
+					 alt="" />
+				<p class="image-label position-absolute text-white m-0 fs-3">Toronto</p>
 			</div>
-		  </div>
-		  
-		  
-		  <div class="col-lg-3 col-12 mb-lg-0 mb-3">
-			<div class="position-relative pro_card" (click)="searchProperties({address:'Milton'})">
-			  <img class="w-100" src="t3/images/Group 5.png" alt="">
-			  <p class="image-label position-absolute text-white m-0 fs-3">Milton</p>
+		</div>
+
+
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+			<div class="position-relative pro_card"
+				 (click)="searchProperties({address:'Milton'})">
+				<img class="w-100"
+					 src="t3/images/Group 5.png"
+					 alt="">
+				<p class="image-label position-absolute text-white m-0 fs-3">Milton</p>
 			</div>
-		  </div>
-		  
-		  <div class="col-lg-3 col-12 mb-lg-0 mb-3">
-			<div class="position-relative pro_card" (click)="searchProperties({address:'Brampton'})">
-			  <img class="w-100" src="t3/images/Group 3.png" alt="">
-			  <p class="image-label position-absolute text-white m-0 fs-3">Brampton</p>
+		</div>
+
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+			<div class="position-relative pro_card"
+				 (click)="searchProperties({address:'Brampton'})">
+				<img class="w-100"
+					 src="t3/images/Group 3.png"
+					 alt="">
+				<p class="image-label position-absolute text-white m-0 fs-3">Brampton</p>
 			</div>
-		  </div>
+		</div>
 	</div>
 	<div class="row pt-4 ">
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-			<div class="position-relative pro_card" (click)="searchProperties({address:'Mississauga'})">
-			  <img class="w-100" src="/t2/images/Group 4.png" alt="">
-			  <p class="image-label position-absolute text-white m-0 fs-3">Mississauga</p>
+			<div class="position-relative pro_card"
+				 (click)="searchProperties({address:'Mississauga'})">
+				<img class="w-100"
+					 src="/t2/images/Group 4.png"
+					 alt="">
+				<p class="image-label position-absolute text-white m-0 fs-3">Mississauga</p>
 			</div>
-		  </div>
+		</div>
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-			<div class="position-relative pro_card" (click)="searchProperties({address:'Ottawa'})">
-			  <img class="w-100" src="t3/images/Group 5.png" alt="">
-			  <p class="image-label position-absolute text-white m-0 fs-3">Ottawa</p>
+			<div class="position-relative pro_card"
+				 (click)="searchProperties({address:'Ottawa'})">
+				<img class="w-100"
+					 src="t3/images/Group 5.png"
+					 alt="">
+				<p class="image-label position-absolute text-white m-0 fs-3">Ottawa</p>
 			</div>
-		  </div>
+		</div>
 
 		<div class="col-lg-6 col-12 mb-lg-0 mb-3">
-			<div class=" position-relative pro_card" (click)="searchProperties({address:'Calgary'})">
-			  <img class="w-100" src="t3/images/Group 2.png" alt="" />
-			  <p class="image-label position-absolute text-white m-0 fs-3">Calgary</p>
+			<div class=" position-relative pro_card"
+				 (click)="searchProperties({address:'Calgary'})">
+				<img class="w-100"
+					 src="t3/images/Group 2.png"
+					 alt="" />
+				<p class="image-label position-absolute text-white m-0 fs-3">Calgary</p>
 			</div>
-		  </div>
+		</div>
 
 
 	</div>
@@ -211,10 +221,14 @@
 			</div>
 			<div class="col-lg-4 col-12">
 				<div class="input-group mb-3">
-					<input type="text" class="form-control email" placeholder="Email address.." aria-label="Username"
-						aria-describedby="basic-addon1" />
+					<input type="text"
+						   class="form-control email"
+						   placeholder="Email address.."
+						   aria-label="Username"
+						   aria-describedby="basic-addon1" />
 				</div>
-				<button type="button" class="btn btn-light w-100 submit fw-semibold">
+				<button type="button"
+						class="btn btn-light w-100 submit fw-semibold">
 					Submit
 				</button>
 			</div>

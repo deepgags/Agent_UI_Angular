@@ -1,30 +1,24 @@
-@if (loading$ | async) {
-<div class="loading-container flex-content-center">
-	<div class="spinner">
-	</div>
-</div>
-}
 <div class="container-fluid search-container">
-	<div class="container">
-		<div class="row justify-content-center">
-			<h2 class=" fw-semibold text-center info mt-3">Featured Properties</h2>
-			<div class="col-12 bg-white py-4">
-				<app-search [filters]="selectedFilters"
-							[onSearch]="searchProperties"
-							class="search-container" />
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <h2 class=" fw-semibold text-center info mt-3">Featured Properties</h2>
+      <div class="col-12 bg-white py-4">
+        <app-search [filters]="selectedFilters"
+                    [onSearch]="searchProperties"
+                    class="search-container" />
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container-fluid sec-3 search-container">
-	@if (propertiesList && propertiesList.length>0) {
-	<div class="">
+  @if (propertiesList && propertiesList.length>0) {
+  <div class="">
 
-		<div class="row g-4">
-			@for (property of propertiesList; track property) {
-			<div class="col-lg-4 col_32 col-md-6 col-sm-12 mb-lg-0 mb-3">
-				<!-- <a class="text-decoration-none" (click)="selectProperty(property)">
+    <div class="row g-4">
+      @for (property of propertiesList; track property) {
+      <div class="col-lg-4 col_32 col-md-6 col-sm-12 mb-lg-0 mb-3">
+        <!-- <a class="text-decoration-none" (click)="selectProperty(property)">
               <div class="card h-100 property-card border border-light-subtle">
                 <div class="image-container">
                   <img [src]="property && property.Media && property.Media.length>0 ? imageUrl + property.Media[0].Media_url : '/images/commercial_no_Image.jpg'"
@@ -63,22 +57,22 @@
                 </div>
               </div>
             </a> -->
-				<app-property [property]="property"
-							  [onPropertyClick]="selectProperty" />
-			</div>
-			}
-		</div>
-		<mat-paginator class="py-3"
-					   [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
-					   [pageIndex]="pageIndex-1"
-					   (page)="pageEvent = searchProperties(selectedFilters, $event)"
-					   [pageSize]="pageSize"
-					   [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
-					   aria-label="Select page">
-		</mat-paginator>
-	</div>
-	}
-	@if (propertiesList && propertiesList.length==0) {
-	<h6>No properties found for selected criteria.</h6>
-	}
+        <app-property [property]="property"
+                      [onPropertyClick]="selectProperty" />
+      </div>
+      }
+    </div>
+    <mat-paginator class="py-3"
+                   [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
+                   [pageIndex]="pageIndex-1"
+                   (page)="pageEvent = searchProperties(selectedFilters, $event)"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+                   aria-label="Select page">
+    </mat-paginator>
+  </div>
+  }
+  @if (propertiesList && propertiesList.length==0) {
+  <h6>No properties found for selected criteria.</h6>
+  }
 </div>

@@ -25,8 +25,8 @@
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
 							<img [src]="
-									siteConfig?.secondaryAgent?.profileImage
-										? siteConfig?.secondaryAgent?.profileImage
+									siteConfig.secondaryAgent?.profileImage
+										? siteConfig.secondaryAgent?.profileImage
 										: '/images/Nologo.png'
 								"
 								 alt="No profile image"
@@ -35,7 +35,7 @@
 						<div class="col-md-6">
 							<div class="card-body">
 								<h5 class="card-title mb-3 fw-semibold">
-									{{ siteConfig?.secondaryAgent?.firstName }} {{ siteConfig?.secondaryAgent?.lastName }}
+									{{ siteConfig.secondaryAgent?.firstName }} {{ siteConfig.secondaryAgent?.lastName }}
 								</h5>
 								<p class="card-text fw-semibold mb-3">SALES REPRESENTATIVE</p>
 								<p class="card-text text-muted mb-3">
@@ -52,8 +52,8 @@
 										<div class="ms-2">
 											<p>
 												<a class="text-dark fw-semibold text-decoration-none"
-												   [href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
-													{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
+												   [href]="'tel:' + siteConfig.secondaryAgent?.websitePhone">
+													{{ siteConfig.secondaryAgent?.websitePhone | phone }}
 												</a>
 											</p>
 										</div>
@@ -66,8 +66,8 @@
 										<div class="ms-2">
 											<p>
 												<a class="text-dark fw-semibold text-decoration-none"
-												   [href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
-													{{ siteConfig?.secondaryAgent?.websiteEmail }}
+												   [href]="'mailto:' + siteConfig.secondaryAgent?.websiteEmail">
+													{{ siteConfig.secondaryAgent?.websiteEmail }}
 												</a>
 											</p>
 										</div>
@@ -98,8 +98,8 @@
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
 							<img [src]="
-									siteConfig?.websiteSettings?.profileImage
-										? siteConfig?.websiteSettings?.profileImage
+									siteConfig.websiteSettings.profileImage
+										? siteConfig.websiteSettings.profileImage
 										: '/images/Nologo.png'
 								"
 								 alt="No profile image"
@@ -107,7 +107,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="card-body">
-								<h5 class="card-title mb-3 fw-semibold">{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}</h5>
+								<h5 class="card-title mb-3 fw-semibold">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
 								<p class="card-text fw-semibold mb-3">SALES REPRESENTATIVE</p>
 								<p class="card-text text-muted mb-3">
 									Lorem ipsum dolor sit amet,
@@ -122,8 +122,8 @@
 										<div class="ms-2">
 											<p>
 												<a class="text-dark fw-semibold text-decoration-none"
-												   [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
-													{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+												   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+													{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
 												</a>
 											</p>
 										</div>
@@ -135,8 +135,8 @@
 										<div class="ms-2">
 											<p>
 												<a class="text-dark fw-semibold text-decoration-none"
-												   [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-													{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+												   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+													{{ siteConfig.websiteSettings.contactInfo.email }}
 												</a>
 											</p>
 										</div>

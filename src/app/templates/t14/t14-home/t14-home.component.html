@@ -9,80 +9,77 @@
 				</div>
 			</div>
 			<div class="first">
-				<img [src]="siteConfig?.websiteSettings?.profileImage ? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'"
+				<img [src]="siteConfig.websiteSettings.profileImage ? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
 					 alt="No profile image"
 					 class="overlay-image" />
 				<div class="card position-absolute man-card"
 					 style="width: 15rem">
 					<div class="card-body">
-						<h5 class="card-head text-white">{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}</h5>
+						<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
 						<div class="d-flex">
 							<div class="">
-															<i class="fa-solid fa-phone info"></i>
+								<i class="fa-solid fa-phone info"></i>
 
 							</div>
 							<div class="ms-2">
 								<p>
-									<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
-									{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-								</a>
+									<a class="text-white fw-semibold text-decoration-none"
+									   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+										{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+									</a>
 								</p>
 							</div>
 						</div>
 						<div class="d-flex">
 							<div class="">
 								<i class="fa-solid fa-envelope info"></i>
-							<div class="ms-2 mt-1">
-								<p>
-									<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-									{{ siteConfig?.websiteSettings?.contactInfo?.email }}
-								</a>
-								</p>
+								<div class="ms-2 mt-1">
+									<p>
+										<a class="text-white fw-semibold text-decoration-none"
+										   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+											{{ siteConfig.websiteSettings.contactInfo.email }}
+										</a>
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="second">
-				<img [src]="siteConfig?.secondaryAgent?.profileImage ? siteConfig?.secondaryAgent?.profileImage : '/images/Nologo.png'"
-					 alt="No profile image"
-					 class="overlay-image2" />
-				<div class="card position-absolute man_card2"
-					 style="width: 15rem">
-					<div class="card-body">
-						<h5 class="card-head text-white">{{ siteConfig?.secondaryAgent?.firstName }} {{ siteConfig?.secondaryAgent?.lastName }}</h5>
-						<div class="d-flex">
-							<div class="">
-															<i class="fa-solid fa-phone info"></i>
+				<div class="second">
+					<img [src]="siteConfig.secondaryAgent?.profileImage ? siteConfig.secondaryAgent?.profileImage : '/images/Nologo.png'"
+						 alt="No profile image"
+						 class="overlay-image2" />
+					<div class="card position-absolute man_card2"
+						 style="width: 15rem">
+						<div class="card-body">
+							<h5 class="card-head text-white">{{ siteConfig.secondaryAgent?.firstName }} {{ siteConfig.secondaryAgent?.lastName }}</h5>
+							<div class="d-flex">
+								<div class="">
+									<i class="fa-solid fa-phone info"></i>
 
+								</div>
+								<div class="ms-2">
+									<p>
+										<a class="text-white fw-semibold text-decoration-none"
+										   [href]="'tel:' + siteConfig.secondaryAgent?.websitePhone">
+											{{ siteConfig.secondaryAgent?.websitePhone | phone }}
+										</a>
+									</p>
+								</div>
 							</div>
-							<div class="ms-2">
-								<p>
-										<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
-									{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
-								</a>
-								</p>
-							</div>
-						</div>
-						<div class="d-flex">
-							<div class="">
-								<i class="fa-solid fa-envelope info"></i>
-							</div>
-							<div class="ms-2 mt-1">
-								<p>
-									<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
-									{{ siteConfig?.secondaryAgent?.websiteEmail }}
-								</a>
-								</p>
+							<div class="d-flex">
+								<div class="">
+									<i class="fa-solid fa-envelope info"></i>
+								</div>
+								<div class="ms-2 mt-1">
+									<p>
+										<a class="text-white fw-semibold text-decoration-none"
+										   [href]="'mailto:' + siteConfig.secondaryAgent?.websiteEmail">
+											{{ siteConfig.secondaryAgent?.websiteEmail }}
+										</a>
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -90,146 +87,147 @@
 			</div>
 		</div>
 	</div>
-</div>
 
-<div class="container pt-2 search-container">
-	<div class="row justify-content-center">
-		<p class="text fw-semibold pt-3">Search Your Dream Home</p>
-		<p class="text-white ">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and extraordinary services
-			to our worldwide clients.</p>
-		<div class="col-12 menu-bg p-4 mb-5">
-			<app-search [onSearch]="searchProperties" />
+	<div class="container pt-2 search-container">
+		<div class="row justify-content-center">
+			<p class="text fw-semibold pt-3">Search Your Dream Home</p>
+			<p class="text-white ">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and extraordinary
+				services
+				to our worldwide clients.</p>
+			<div class="col-12 menu-bg p-4 mb-5">
+				<app-search [onSearch]="searchProperties" />
+			</div>
 		</div>
 	</div>
-</div>
 
-<div class="container py-lg-5 p-lg-0 p-4 search-container">
-	<div class="row align-items-center justify-content-around">
-		<div class="col-lg-5 col-12">
-			<h2 class=" fw-semibold">
-				"Enjoy a clear and simple <br> home-buying experience"
-			</h2>
-			<p class="info fs-4">Real Estate Specialist Name</p>
-			<p class=" fw-normal">
-				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always
-				in a position to make informed decisions. Every engagement is an opportunity to create a lasting impression and a forever client.
+	<div class="container py-lg-5 p-lg-0 p-4 search-container">
+		<div class="row align-items-center justify-content-around">
+			<div class="col-lg-5 col-12">
+				<h2 class=" fw-semibold">
+					"Enjoy a clear and simple <br> home-buying experience"
+				</h2>
+				<p class="info fs-4">Real Estate Specialist Name</p>
+				<p class=" fw-normal">
+					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are
+					always
+					in a position to make informed decisions. Every engagement is an opportunity to create a lasting impression and a forever client.
+				</p>
+
+			</div>
+
+			<div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
+				<div class="">
+					<img class="w-100 rounded"
+						 src="t8/images/real-state.png"
+						 alt="">
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="container-fluid search-container">
+
+		<div class="container py-lg-5 p-lg-0 p-4">
+			<p class="text text-center py-3 fw-semibold">
+				Find Properties in These Cities
 			</p>
 
-		</div>
-
-		<div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
-			<div class="">
-				<img class="w-100 rounded"
-					 src="t8/images/real-state.png"
-					 alt="">
-			</div>
-		</div>
-
-	</div>
-</div>
-
-
-<div class="container-fluid search-container">
-
-	<div class="container py-lg-5 p-lg-0 p-4">
-		<p class="text text-center py-3 fw-semibold">
-			Find Properties in These Cities
-		</p>
-
-		<div class="row">
-			<div class="col-lg-6 col-12">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Toronto'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro1.png"
-						 alt="">
-					<div class="image-text">Toronto</div>
+			<div class="row">
+				<div class="col-lg-6 col-12">
+					<div class="image-container w-100"
+						 (click)="searchProperties({address:'Toronto'})">
+						<img class="w-100 rounded-3"
+							 src="t8/images/pro1.png"
+							 alt="">
+						<div class="image-text">Toronto</div>
+					</div>
 				</div>
-			</div>
 
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Milton</div>
+				<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+					<div class="image-container w-100"
+						 (click)="searchProperties({address:'Milton'})">
+						<img class="w-100 rounded-3"
+							 src="t8/images/pro2.png"
+							 alt="">
+						<div class="image-text">Milton</div>
+					</div>
 				</div>
-			</div>
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Brampton'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Brampton</div>
+				<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+					<div class="image-container w-100"
+						 (click)="searchProperties({address:'Brampton'})">
+						<img class="w-100 rounded-3"
+							 src="t8/images/pro2.png"
+							 alt="">
+						<div class="image-text">Brampton</div>
 
-				</div>
-			</div>
-		</div>
-		<div class="row mt-3">
-
-			<div class="col-lg-3 col-12">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Mississaugas'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Mississaugas</div>
-
-				</div>
-			</div>
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Montreal'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Montreal</div>
-
-				</div>
-			</div>
-			<div class="col-lg-6 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Ottawa'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro1.png"
-						 alt="">
-					<div class="image-text">Ottawa</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="container-fluid search-container">
-	<div class="container pb-5">
-		<p class="text text-center py-3 fw-semibold">Featured Properties</p>
-		<app-featured-properties />
-	</div>
-</div>
-
-
-
-<div class="container-fluid sec-3 search-container">
-	<div class="container">
-		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
-			<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-4">
-				<div class="card shadow">
-					<div class="card-body">
-						<app-hero-contact-form />
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6 col-12 d-flex justify-content-end">
-				<div class="">
-					<img class="img-fluid rounded-3"
-						 src="t11/images/contact-img.png"
-						 alt="">
+			<div class="row mt-3">
+
+				<div class="col-lg-3 col-12">
+					<div class="image-container w-100"
+						 (click)="searchProperties({address:'Mississaugas'})">
+						<img class="w-100 rounded-3"
+							 src="t8/images/pro2.png"
+							 alt="">
+						<div class="image-text">Mississaugas</div>
+
+					</div>
+				</div>
+				<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+					<div class="image-container w-100"
+						 (click)="searchProperties({address:'Montreal'})">
+						<img class="w-100 rounded-3"
+							 src="t8/images/pro2.png"
+							 alt="">
+						<div class="image-text">Montreal</div>
+
+					</div>
+				</div>
+				<div class="col-lg-6 col-12 mt-lg-0 mt-3">
+					<div class="image-container w-100"
+						 (click)="searchProperties({address:'Ottawa'})">
+						<img class="w-100 rounded-3"
+							 src="t8/images/pro1.png"
+							 alt="">
+						<div class="image-text">Ottawa</div>
+
+					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
-</div>
+
+	<div class="container-fluid search-container">
+		<div class="container pb-5">
+			<p class="text text-center py-3 fw-semibold">Featured Properties</p>
+			<app-featured-properties />
+		</div>
+	</div>
+
+
+
+	<div class="container-fluid sec-3 search-container">
+		<div class="container">
+			<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
+				<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-4">
+					<div class="card shadow">
+						<div class="card-body">
+							<app-hero-contact-form />
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-12 d-flex justify-content-end">
+					<div class="">
+						<img class="img-fluid rounded-3"
+							 src="t11/images/contact-img.png"
+							 alt="">
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>

@@ -1,16 +1,17 @@
 <div class="background-container">
 	<div class="container pt-2 search-container">
-	<div class="top-padding">
-		<div class="row justify-content-center">
-			<p class="text text-white fw-semibold pt-3">Search Your Dream Home</p>
-			<p class="text-white text-center">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and extraordinary services to our worldwide clients.</p>
-			<div class="col-12 menu-bg p-4 mb-5">
-				<app-search [onSearch]="searchProperties" />
+		<div class="top-padding">
+			<div class="row justify-content-center">
+				<p class="text text-white fw-semibold pt-3">Search Your Dream Home</p>
+				<p class="text-white text-center">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and
+					extraordinary services to our worldwide clients.</p>
+				<div class="col-12 menu-bg p-4 mb-5">
+					<app-search [onSearch]="searchProperties" />
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-  </div>
 
 <div class="container-fluid search-container">
 	<div class="container py-5">
@@ -22,83 +23,41 @@
 
 <div class="container-fluid">
 	<div class="container">
-	  <div class="row justify-content-center align-items-center">
-		<div class="col-lg-6 col-12">
-		  <p class="fs-2 mb-0 fw-semibold ">
-			Hi, I’m {{siteConfig?.firstName}} {{siteConfig?.lastName}}
-		  </p>
-		  <p class="fs-4 info">Sales Representative</p>
-		  <p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always in a position to make informed decisions.</p>
-		  <p class="fw-semibold">
-			Every engagement is an opportunity to create a lasting impression and a forever client. Acharya is a well serving in real estate with the reputation of providing quality services and keeping excellent relations with the clients. </p>
+		<div class="row justify-content-center align-items-center">
+			<div class="col-lg-6 col-12">
+				<p class="fs-2 mb-0 fw-semibold ">
+					Hi, I’m {{siteConfig.firstName}} {{siteConfig.lastName}}
+				</p>
+				<p class="fs-4 info">Sales Representative</p>
+				<p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to
+					insure that they are always in a position to make informed decisions.</p>
+				<p class="fw-semibold">
+					Every engagement is an opportunity to create a lasting impression and a forever client. Acharya is a well serving in real estate with the reputation of
+					providing quality services and keeping excellent relations with the clients. </p>
 
 				<!-- Button trigger modal -->
-<button type="button" class="btn search_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-	Get in Touch
-  </button>
+				<button type="button"
+						class="btn search_btn"
+						data-bs-toggle="modal"
+						data-bs-target="#exampleModal">
+					Get in Touch
+				</button>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title info fs-5" id="exampleModalLabel">Get in Touch</h1>
-		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<div class="">
-				<div class="card-body">
-				  <form [formGroup]="userForm" name="userForm" >
-	  				<mat-form-field appearance="fill">
-					  <mat-label class="info">First Name</mat-label>
-					  <input formControlName="firstName" required matInput placeholder="First Name" />
-					  <mat-error>First name is required</mat-error>
-					</mat-form-field>
-					<mat-form-field appearance="fill">
-					  <mat-label class="info">Email</mat-label>
-					  <input class="w-100" type="email" formControlName="emailAddress" required email matInput placeholder="Ex. pat@example.com" />
-					  @if (userForm.hasError('email', 'emailAddress') && !userForm.hasError('required', 'emailAddress')) {
-					   <mat-error>Please enter a valid email address</mat-error>
-					  }
-					 @if (userForm.hasError('required', 'emailAddress')) {
-					   <mat-error>Email is required</mat-error>
-					  }
-					</mat-form-field>
-					<mat-form-field appearance="fill">
-					  <mat-label class="info">Phone Number</mat-label>
-					  <input type="tel" formControlName="phoneNumber" matInput  placeholder="Ex. 123-456-1234" />
-					  @if (userForm.hasError('pattern', 'phoneNumber')) {
-						<mat-error>Please enter a valid phone number</mat-error>
-					   }
-					   @if (userForm.hasError('required', 'phoneNumber')) {
-						<mat-error>Phone number is required</mat-error>
-					  }
-					</mat-form-field>
-				  </form>
+			</div>
+			<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-end justify-content-center">
+				<div class="">
+					<div class="position-relative d-inline-block">
+						<img class="img-fluid"
+							 src="./t7/images/profile-bg.png"
+							 alt="profile-bg">
+						<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
+							 alt="No profile image"
+							 class="overlay-image position-absolute top-50 start-50 translate-middle mob_pic"
+							 style="height: 367px;">
+					</div>
 				</div>
-			  </div>
+			</div>
 		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		  <button type="button" class="btn search_btn">Save changes</button>
-		</div>
-	  </div>
-	</div>
-  </div>
-				<!-- <a class="btn btn_outline ms-4  text-decoration-none pop" [href]="'tel:'+customer?.phoneNumber | phone">{{customer?.phoneNumber | phone}}</a> -->
-
-		</div>
-		<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-end justify-content-center">
-		  <div class="">
-
-	<div class="position-relative d-inline-block">
-		<img class="img-fluid" src="./t7/images/profile-bg.png" alt="profile-bg">
-<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image"  class="overlay-image position-absolute top-50 start-50 translate-middle mob_pic"
-			 style="height: 367px;">
-	  </div>
-		  </div>
-		</div>
-	  </div>
 	</div>
 </div>
 
@@ -109,28 +68,40 @@
 		</p>
 		<div class="row">
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+				<div class="image-container w-100"
+					 (click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3"
+						 src="t8/images/pro2.png"
+						 alt="">
 					<div class="image-text">Milton</div>
 				</div>
 			</div>
 
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+				<div class="image-container w-100"
+					 (click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3"
+						 src="t8/images/pro2.png"
+						 alt="">
 					<div class="image-text">Milton</div>
 				</div>
 			</div>
 
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+				<div class="image-container w-100"
+					 (click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3"
+						 src="t8/images/pro2.png"
+						 alt="">
 					<div class="image-text">Milton</div>
 				</div>
 			</div>
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Brampton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+				<div class="image-container w-100"
+					 (click)="searchProperties({address:'Brampton'})">
+					<img class="w-100 rounded-3"
+						 src="t8/images/pro2.png"
+						 alt="">
 					<div class="image-text">Brampton</div>
 
 				</div>
@@ -139,28 +110,40 @@
 
 		<div class="row mt-3">
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+				<div class="image-container w-100"
+					 (click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3"
+						 src="t8/images/pro2.png"
+						 alt="">
 					<div class="image-text">Milton</div>
 				</div>
 			</div>
 
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+				<div class="image-container w-100"
+					 (click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3"
+						 src="t8/images/pro2.png"
+						 alt="">
 					<div class="image-text">Milton</div>
 				</div>
 			</div>
 
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+				<div class="image-container w-100"
+					 (click)="searchProperties({address:'Milton'})">
+					<img class="w-100 rounded-3"
+						 src="t8/images/pro2.png"
+						 alt="">
 					<div class="image-text">Milton</div>
 				</div>
 			</div>
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100" (click)="searchProperties({address:'Brampton'})">
-					<img class="w-100 rounded-3" src="t8/images/pro2.png" alt="">
+				<div class="image-container w-100"
+					 (click)="searchProperties({address:'Brampton'})">
+					<img class="w-100 rounded-3"
+						 src="t8/images/pro2.png"
+						 alt="">
 					<div class="image-text">Brampton</div>
 
 				</div>
@@ -185,42 +168,42 @@
 		</div>
 		<div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
 			<div class="">
-				<img class="w-100 rounded" src="t8/images/real-state.png" alt="">
+				<img class="w-100 rounded"
+					 src="t8/images/real-state.png"
+					 alt="">
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="container-fluid sec-3">
-		<div class="container">
-			<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
-				<div class="col-lg-8 col-12">
-					<p class="worth">
-						WHAT’S YOUR HOME
-						<br />
-						REALLY WORTH?
-					</p>
-					<p class="text-white">
-						Type your address below to find out how much your
-						<br />
-						property is worth.
-					</p>
+	<div class="container">
+		<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
+			<div class="col-lg-8 col-12">
+				<p class="worth">
+					WHAT’S YOUR HOME
+					<br />
+					REALLY WORTH?
+				</p>
+				<p class="text-white">
+					Type your address below to find out how much your
+					<br />
+					property is worth.
+				</p>
+			</div>
+			<div class="col-lg-4 col-12">
+				<div class="input-group mb-3">
+					<input type="text"
+						   class="form-control email"
+						   placeholder="Email address.."
+						   aria-label="Username"
+						   aria-describedby="basic-addon1" />
 				</div>
-				<div class="col-lg-4 col-12">
-					<div class="input-group mb-3">
-						<input
-							type="text"
-							class="form-control email"
-							placeholder="Email address.."
-							aria-label="Username"
-							aria-describedby="basic-addon1" />
-					</div>
-					<button
-						type="button"
+				<button type="button"
 						class="btn btn-light w-100 submit fw-semibold">
-						Submit
-					</button>
-				</div>
+					Submit
+				</button>
 			</div>
 		</div>
 	</div>
+</div>

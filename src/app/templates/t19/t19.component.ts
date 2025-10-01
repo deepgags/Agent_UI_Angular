@@ -1,38 +1,23 @@
-
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { SiteConfig } from '../../models/SiteConfig';
-import { SiteConfigService } from '../../services/site-config.service';
-import { T19HeaderComponent } from './t19-header/t19-header.component';
-import { T19FooterComponent } from './t19-footer/t19-footer.component';
-
+import { Component, OnInit } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { SiteConfig } from "../../models/SiteConfig";
+import { SharedDataService } from "../../services/shareddata.service";
+import { T19FooterComponent } from "./t19-footer/t19-footer.component";
+import { T19HeaderComponent } from "./t19-header/t19-header.component";
 
 @Component({
-	selector: 'app-t19',
+	selector: "app-t19",
 	standalone: true,
-	imports: [T19FooterComponent, T19HeaderComponent, RouterModule], // Added CommonModule
-	templateUrl: './t19.component.html',
-	styleUrl: './t19.component.scss'
+	imports: [T19FooterComponent, T19HeaderComponent, RouterModule],
+	templateUrl: "./t19.component.html",
+	styleUrl: "./t19.component.scss",
 })
-export class T19Component implements OnInit, OnDestroy {
+export class T19Component implements OnInit {
+	siteConfig: SiteConfig = {} as SiteConfig;
 
-	public siteConfig: SiteConfig | null = null;
-	private siteConfigSubscription: Subscription | undefined;
-	
-	constructor(private siteConfigService: SiteConfigService) { }
+	constructor(private sharedDataService: SharedDataService) {}
 
 	ngOnInit(): void {
-		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe(config => {
-			if (config) {
-				this.siteConfig = config;
-			}
-		});
-	}
-
-	ngOnDestroy(): void {
-		if (this.siteConfigSubscription) {
-			this.siteConfigSubscription.unsubscribe();
-		}
+		this.siteConfig = this.sharedDataService.siteData();
 	}
 }

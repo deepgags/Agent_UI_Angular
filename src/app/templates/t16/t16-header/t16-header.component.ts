@@ -1,20 +1,19 @@
-
-import { Component, Input, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { PhoneSearch } from '../../../pipes/phoneSearch';
-import { SiteConfig } from '../../../models/SiteConfig';
+import { Component, Input, OnInit } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { AngularSvgIconModule } from "angular-svg-icon";
+import { SiteConfig } from "../../../models/SiteConfig";
+import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
 
 @Component({
-	selector: 'app-t16-header',
-	imports: [AngularSvgIconModule, PhoneSearch, RouterModule],
-	templateUrl: './t16-header.component.html',
-	styleUrls: ['./t16-header.component.scss', '../t16.component.scss']
+	selector: "app-t16-header",
+	imports: [AngularSvgIconModule, PhoneNumberPipe, RouterModule],
+	templateUrl: "./t16-header.component.html",
+	styleUrls: ["./t16-header.component.scss", "../t16.component.scss"],
 })
 export class T16HeaderComponent implements OnInit {
-	@Input('siteConfig') siteConfig: SiteConfig | null = null;
+	@Input("siteConfig") siteConfig: SiteConfig | null = null;
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

@@ -45,6 +45,7 @@ export interface SiteConfig {
 		logoPath: string;
 	};
 	secondaryAgent?: {
+		enableSecondaryAgent: boolean;
 		firstName: string;
 		lastName: string;
 		websiteEmail: string;

@@ -1,36 +1,28 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IftaLabelModule } from 'primeng/iftalabel';
-import { InputMaskModule } from 'primeng/inputmask';
-import { InputTextModule } from 'primeng/inputtext';
-// import { Subscription } from 'rxjs';
-import { SiteConfig } from '../../models/SiteConfig';
-import { NotificationService } from '../../services/notification.service';
-import { PublicService } from '../../services/public.service';
-import { SiteConfigService } from '../../services/site-config.service';
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { IftaLabelModule } from "primeng/iftalabel";
+import { InputMaskModule } from "primeng/inputmask";
+import { InputTextModule } from "primeng/inputtext";
+import { SiteConfig } from "../../models/SiteConfig";
+import { NotificationService } from "../../services/notification.service";
+import { PublicService } from "../../services/public.service";
+import { SharedDataService } from "../../services/shareddata.service";
 
 @Component({
-	selector: 'app-hero-contact-form',
-	imports: [
-		CommonModule,
-		ReactiveFormsModule,
-		IftaLabelModule,
-		InputMaskModule,
-		InputTextModule,
-	],
-	templateUrl: './hero-contact-form.component.html',
-	styleUrl: './hero-contact-form.component.scss'
+	selector: "app-hero-contact-form",
+	imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, InputMaskModule, InputTextModule],
+	templateUrl: "./hero-contact-form.component.html",
+	styleUrl: "./hero-contact-form.component.scss",
 })
 export class HeroContactFormComponent {
 	heroContactForm: FormGroup;
-	siteConfig: SiteConfig | undefined;
-	// private siteConfigSubscription: Subscription | undefined;
+	siteConfig: SiteConfig = {} as SiteConfig;
 
 	constructor(
 		private publicService: PublicService,
 		private notificationService: NotificationService,
-		private siteConfigService: SiteConfigService,
+		private sharedDataService: SharedDataService
 	) {
 		this.heroContactForm = new FormGroup({
 			name: new FormControl("", Validators.required),
@@ -54,11 +46,7 @@ export class HeroContactFormComponent {
 	}
 
 	ngOnInit() {
-		this.siteConfigService.currentConfig$.subscribe((config) => {
-			if (config) {
-				this.siteConfig = config;
-			}
-		});
+		this.siteConfig = this.sharedDataService.siteData();
 	}
 
 	submitHeroContactForm() {

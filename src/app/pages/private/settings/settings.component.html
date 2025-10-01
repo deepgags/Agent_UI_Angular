@@ -113,19 +113,19 @@
 										</p-iftalabel>
 									</div>
 								</div>
-								<!-- <div class="col-md-4">
-                    <div class="mb-3">
-                      <p-iftalabel>
-                        <input type="text"
-                          pInputText
-                          formControlName="websiteAddress"
-                          placeholder="Address"
-                          class="form-control"
-                          id="websiteAddress" />
-                        <label for="websiteAddress">Address (Displayed on Website)</label>
-                      </p-iftalabel>
-                    </div>
-                  </div> -->
+								<div class="col-md-6">
+									<div class="mb-3">
+										<p-iftalabel>
+											<input type="text"
+												   pInputText
+												   formControlName="designation"
+												   placeholder="Designation"
+												   class="form-control"
+												   id="designation" />
+											<label for="designation">Designation (Displayed on Website)</label>
+										</p-iftalabel>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="mb-4 border p-3 rounded shadow-sm"
@@ -135,6 +135,13 @@
 								Secondary Agent Information
 							</h6>
 							<div class="row">
+								<div class="col-md-12">
+									<div class="mb-3 d-flex gap-2">
+										<label for="enableSecondaryAgent">Enable Secondary Agent</label>
+										<p-toggleswitch formControlName="enableSecondaryAgent"
+														id="enableSecondaryAgent" />
+									</div>
+								</div>
 								<div class="col-md-6">
 									<div class="mb-3">
 										<p-iftalabel>
@@ -185,6 +192,19 @@
 												   class="form-control"
 												   id="secondaryWebsiteEmail" />
 											<label for="secondaryWebsiteEmail">Website Email</label>
+										</p-iftalabel>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mb-3">
+										<p-iftalabel>
+											<input type="text"
+												   pInputText
+												   formControlName="designation"
+												   placeholder="Designation"
+												   class="form-control"
+												   id="designation" />
+											<label for="designation">Designation (Displayed on Website)</label>
 										</p-iftalabel>
 									</div>
 								</div>

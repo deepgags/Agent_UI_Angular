@@ -1,26 +1,23 @@
 <div class="background-container search-container">
 	<div class="first">
-		<img
-			[src]="siteConfig?.websiteSettings?.profileImage ? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'"
-			alt="No profile image"
-			class="overlay-image" />
-		<div
-			class="card position-absolute man-card"
-			style="width: 15rem">
+		<img [src]="siteConfig.websiteSettings.profileImage ? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
+			 alt="No profile image"
+			 class="overlay-image" />
+		<div class="card position-absolute man-card"
+			 style="width: 15rem">
 			<div class="card-body">
-				<h5 class="card-head text-white">{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}</h5>
+				<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
 				<div class="d-flex">
 					<div class="">
-													<i class="fa-solid fa-phone info"></i>
+						<i class="fa-solid fa-phone info"></i>
 
 					</div>
 					<div class="ms-2">
 						<p>
-							<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
-									{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-								</a>
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+								{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+							</a>
 						</p>
 					</div>
 				</div>
@@ -30,11 +27,10 @@
 					</div>
 					<div class="ms-2 mt-1">
 						<p>
-							<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-									{{ siteConfig?.websiteSettings?.contactInfo?.email }}
-								</a>
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+								{{ siteConfig.websiteSettings.contactInfo.email }}
+							</a>
 						</p>
 					</div>
 				</div>
@@ -42,28 +38,26 @@
 		</div>
 	</div>
 
+	@if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
 	<div class="second">
-		<img
-			[src]="siteConfig?.secondaryAgent?.profileImage ? siteConfig?.secondaryAgent?.profileImage : '/images/Nologo.png'"
-			alt="No profile image"
-			class="overlay-image2" />
-		<div
-			class="card position-absolute man_card2"
-			style="width: 15rem">
+		<img [src]="siteConfig.secondaryAgent.profileImage ? siteConfig.secondaryAgent.profileImage : '/images/Nologo.png'"
+			 alt="No profile image"
+			 class="overlay-image2" />
+		<div class="card position-absolute man_card2"
+			 style="width: 15rem">
 			<div class="card-body">
-				<h5 class="card-head text-white">{{ siteConfig?.secondaryAgent?.firstName }} {{ siteConfig?.secondaryAgent?.lastName }}</h5>
+				<h5 class="card-head text-white">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</h5>
 				<div class="d-flex">
 					<div class="">
-												<i class="fa-solid fa-phone info"></i>
+						<i class="fa-solid fa-phone info"></i>
 
 					</div>
 					<div class="ms-2">
 						<p>
-							<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
-									{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
-								</a>
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+								{{ siteConfig.secondaryAgent.websitePhone | phone }}
+							</a>
 						</p>
 					</div>
 				</div>
@@ -73,17 +67,17 @@
 					</div>
 					<div class="ms-2 mt-1">
 						<p>
-							<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
-									{{ siteConfig?.secondaryAgent?.websiteEmail }}
-								</a>
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+								{{ siteConfig.secondaryAgent.websiteEmail }}
+							</a>
 						</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	}
 </div>
 <div class="container p-lg-0 p-4">
 	<div class="pt-lg-5 p-lg-0 p-4">
@@ -92,53 +86,45 @@
 	</div>
 	<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
 		<div class="col">
-			<div
-				class="pro_card"
-				(click)="searchProperties({ address: 'Toronto' })">
+			<div class="pro_card"
+				 (click)="searchProperties({ address: 'Toronto' })">
 				<div class="content text-center">
-					<img
-						class="img-fluid rounded mb-2"
-						src="/t2/images/Group 2.png"
-						alt="" />
+					<img class="img-fluid rounded mb-2"
+						 src="/t2/images/Group 2.png"
+						 alt="" />
 					<p class="pro-card-text">Toronto</p>
 				</div>
 			</div>
 		</div>
 		<div class="col">
-			<div
-				class="pro_card"
-				(click)="searchProperties({ address: 'Milton' })">
+			<div class="pro_card"
+				 (click)="searchProperties({ address: 'Milton' })">
 				<div class="content text-center">
-					<img
-						class="img-fluid rounded mb-2"
-						src="/t2/images/Group 3.png"
-						alt="" />
+					<img class="img-fluid rounded mb-2"
+						 src="/t2/images/Group 3.png"
+						 alt="" />
 					<p class="pro-card-text">Milton</p>
 				</div>
 			</div>
 		</div>
 		<div class="col">
-			<div
-				class="pro_card"
-				(click)="searchProperties({ address: 'Brampton' })">
+			<div class="pro_card"
+				 (click)="searchProperties({ address: 'Brampton' })">
 				<div class="content text-center">
-					<img
-						class="img-fluid rounded mb-2"
-						src="/t2/images/Group 4.png"
-						alt="" />
+					<img class="img-fluid rounded mb-2"
+						 src="/t2/images/Group 4.png"
+						 alt="" />
 					<p class="pro-card-text">Brampton</p>
 				</div>
 			</div>
 		</div>
 		<div class="col">
-			<div
-				class="pro_card"
-				(click)="searchProperties({ address: 'Mississauga' })">
+			<div class="pro_card"
+				 (click)="searchProperties({ address: 'Mississauga' })">
 				<div class="content text-center">
-					<img
-						class="img-fluid rounded mb-2"
-						src="/t2/images/Group 5.png"
-						alt="" />
+					<img class="img-fluid rounded mb-2"
+						 src="/t2/images/Group 5.png"
+						 alt="" />
 					<p class="pro-card-text">Mississauga</p>
 				</div>
 			</div>
@@ -200,16 +186,14 @@
 			</div>
 			<div class="col-lg-4 col-12">
 				<div class="input-group mb-3">
-					<input
-						type="text"
-						class="form-control email"
-						placeholder="Email address.."
-						aria-label="Username"
-						aria-describedby="basic-addon1" />
+					<input type="text"
+						   class="form-control email"
+						   placeholder="Email address.."
+						   aria-label="Username"
+						   aria-describedby="basic-addon1" />
 				</div>
-				<button
-					type="button"
-					class="btn btn-light w-100 submit fw-semibold">
+				<button type="button"
+						class="btn btn-light w-100 submit fw-semibold">
 					Submit
 				</button>
 			</div>

@@ -5,18 +5,13 @@ import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { environment } from "../environments/environment.development";
 import { templates } from "../templates";
-import { SiteConfigService } from "./site-config.service";
+import { SharedDataService } from "./shareddata.service";
 
 @Injectable({
 	providedIn: "root",
 })
 export class RoutesConfigService {
-
-	constructor(
-		private http: HttpClient,
-		@Inject(DOCUMENT) private document: Document,
-		private siteConfigService: SiteConfigService,
-	) { }
+	constructor(private http: HttpClient, @Inject(DOCUMENT) private document: Document, private sharedDataService: SharedDataService) {}
 
 	loadSiteConfiguration(): Observable<Route> {
 		const hostname = this.document.location.hostname;
@@ -30,7 +25,9 @@ export class RoutesConfigService {
 				if (config.websiteSettings.secondaryColor) {
 					this.document.documentElement.style.setProperty("--secondary-color", config.websiteSettings.secondaryColor);
 				}
-				this.siteConfigService.setConfig(config, hostname);
+
+				this.sharedDataService.setSiteData(config);
+				this.sharedDataService.setSiteId(response.data.id);
 				return templates[templateId];
 			}),
 			catchError((error: any) => {

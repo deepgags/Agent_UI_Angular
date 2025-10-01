@@ -10,14 +10,6 @@ import { Title } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { Router, RouterModule } from "@angular/router";
 import { NgbCarouselConfig, NgbModule } from "@ng-bootstrap/ng-bootstrap";
-// import { Gallery, GalleryConfig, GalleryModule, GalleryRef, ImageItem, ThumbnailsPosition } from "ng-gallery";
-import { BehaviorSubject, Observable, Subscription } from "rxjs";
-import { map } from "rxjs/operators";
-import { environment } from "../../../environments/environment.development";
-import { InterestedUserModel } from "../../../models/InterestedUserModel";
-import { PropertyModel } from "../../../models/PropertyModel";
-import { PropertyService } from "../../../services/property.service";
-
 import { AccordionModule } from "primeng/accordion";
 import { CarouselModule } from "primeng/carousel";
 import { DialogService, DynamicDialogConfig } from "primeng/dynamicdialog";
@@ -28,13 +20,18 @@ import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
+import { BehaviorSubject } from "rxjs";
 import { PropertyComponent } from "../../../components/property/property.component";
+import { environment } from "../../../environments/environment.development";
+import { InterestedUserModel } from "../../../models/InterestedUserModel";
+import { PropertyModel } from "../../../models/PropertyModel";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneSearch } from "../../../pipes/phoneSearch";
+import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
 import { TimeAgo } from "../../../pipes/time-ago";
 import { NotificationService } from "../../../services/notification.service";
+import { PropertyService } from "../../../services/property.service";
 import { PublicService } from "../../../services/public.service";
-import { SiteConfigService } from "../../../services/site-config.service";
+import { SharedDataService } from "../../../services/shareddata.service";
 declare var window: any;
 declare var google: any;
 
@@ -52,7 +49,7 @@ declare var google: any;
 		GoogleMapsModule,
 		RouterModule,
 		// GalleryModule,
-		PhoneSearch,
+		PhoneNumberPipe,
 		AccordionModule,
 		IftaLabelModule,
 		InputMaskModule,
@@ -78,7 +75,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	Longitude: number = 0;
 	private loadingSubject = new BehaviorSubject<boolean>(false);
 	loading$ = this.loadingSubject.asObservable();
-
 	requestShowingForm: FormGroup;
 	propertyHistoryForm: FormGroup;
 	recentSaleInAreaForm: FormGroup;
@@ -88,34 +84,30 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	userModel: InterestedUserModel = new InterestedUserModel();
 
 	@ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
-	@ViewChild('map', { static: false }) map!: GoogleMap;
+	@ViewChild("map", { static: false }) map!: GoogleMap;
 	zoom = 14;
 	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Canada
 
 	// Map controls properties
 	private drawingManager: any;
 	private amenityMarkers: google.maps.Marker[] = [];
-	private currentMapType: string = 'roadmap';
+	private currentMapType: string = "roadmap";
 	private isAmenitiesBarOpen = false;
 	private amenities: any[] = [
-		{ type: 'school', icon: 'fas fa-graduation-cap' },
-		{ type: 'park', icon: 'fas fa-tree' },
-		{ type: 'hospital', icon: 'fas fa-hospital' },
-		{ type: 'shopping_mall', icon: 'fas fa-shopping-cart' },
-		{ type: 'restaurant', icon: 'fas fa-utensils' },
-		{ type: 'store', icon: 'fas fa-store' },
-		{ type: 'bank', icon: 'fas fa-university' },
-		{ type: 'gas_station', icon: 'fas fa-gas-pump' },
-		{ type: 'camera', icon: 'fas fa-camera' },
-		{ type: 'coffee', icon: 'fas fa-coffee' },
-		{ type: 'stroller', icon: 'fas fa-baby-carriage' },
-		{ type: 'bus', icon: 'fas fa-bus' },
+		{ type: "school", icon: "fas fa-graduation-cap" },
+		{ type: "park", icon: "fas fa-tree" },
+		{ type: "hospital", icon: "fas fa-hospital" },
+		{ type: "shopping_mall", icon: "fas fa-shopping-cart" },
+		{ type: "restaurant", icon: "fas fa-utensils" },
+		{ type: "store", icon: "fas fa-store" },
+		{ type: "bank", icon: "fas fa-university" },
+		{ type: "gas_station", icon: "fas fa-gas-pump" },
+		{ type: "camera", icon: "fas fa-camera" },
+		{ type: "coffee", icon: "fas fa-coffee" },
+		{ type: "stroller", icon: "fas fa-baby-carriage" },
+		{ type: "bus", icon: "fas fa-bus" },
 	];
 
-	private siteConfigSubscription: Subscription | undefined;
-
-	siteConfigBS: BehaviorSubject<any>;
-	siteConfigObservable: Observable<any>;
 	mlsId: string = "";
 	propertyId: string = "";
 	userTypes = [
@@ -145,21 +137,19 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	contactFormLeadTypeDropdown: any[] = [];
 	roomDetails: any[] = [];
 	similarProperties: any[] = [];
-	siteConfig: SiteConfig | undefined;
+	siteConfig: SiteConfig = {} as SiteConfig;
+
 	constructor(
-		breakpointObserver: BreakpointObserver,
 		private propertyService: PropertyService,
 		private titleService: Title,
 		private location: Location,
 		private router: Router,
-		private siteConfigService: SiteConfigService,
+		private sharedDataService: SharedDataService,
 		private dialogConfig: DynamicDialogConfig,
 		private notificationService: NotificationService,
 		private publicService: PublicService
 	) {
 		this.titleService.setTitle("Property Detail");
-		this.siteConfigBS = new BehaviorSubject(null);
-		this.siteConfigObservable = this.siteConfigBS.asObservable();
 
 		const { mlsId, propertyId, address, property_type, property_subtype } = this.dialogConfig.data;
 		this.mlsId = mlsId;
@@ -326,12 +316,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		// 	}
 		// });
 
-		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
-			if (config) {
-				this.siteConfig = config;
-				this.siteConfigBS.next(config);
-			}
-		});
+		this.siteConfig = this.sharedDataService.siteData();
 
 		this.getLocation();
 		this.getLeadTypeDropdown();
@@ -340,12 +325,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit(): void {
 		this.addMapControls();
-	}
-
-	ngOnDestroy(): void {
-		if (this.siteConfigSubscription) {
-			this.siteConfigSubscription.unsubscribe();
-		}
 	}
 
 	openInfoWindow(property: PropertyModel, marker: MapMarker): void {
@@ -564,7 +543,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.getLeadTypesForForms("haveQuestionForm");
 				this.getLeadTypesForForms("contactForm");
 			},
-			error: () => { },
+			error: () => {},
 		});
 	}
 
@@ -621,7 +600,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
 	getRoomDetails() {
 		this.loadingSubject.next(true);
-		const feedType = this.property?.PropertyFeedType ?? ""
+		const feedType = this.property?.PropertyFeedType ?? "";
 		this.propertyService.getRoomDetails(this.mlsId, feedType).subscribe({
 			next: (response) => {
 				console.log("room details", response);
@@ -667,7 +646,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		}
 	};
 
-
 	private addMapControls(): void {
 		setTimeout(() => {
 			if (this.map) {
@@ -679,16 +657,20 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		}, 1000);
 	}
 
-
 	private addCustomControls(googleMap: google.maps.Map) {
-		const controlDiv = document.createElement('div');
-		controlDiv.className = 'custom-map-controls';
+		const controlDiv = document.createElement("div");
+		controlDiv.className = "custom-map-controls";
 
-		const drawControl = this.createMapButton('fas fa-pencil-alt', () => this.toggleDrawingMode(googleMap), 'Draw Region', false);
+		const drawControl = this.createMapButton("fas fa-pencil-alt", () => this.toggleDrawingMode(googleMap), "Draw Region", false);
 
-		const amenitiesControl = this.createMapButton('fas fa-info', () => this.toggleAmenities(googleMap), 'Amenities', true);
+		const amenitiesControl = this.createMapButton("fas fa-info", () => this.toggleAmenities(googleMap), "Amenities", true);
 
-		const locationControl = this.createMapButton('fas fa-location-arrow', () => this.centerOnUserLocation(googleMap), 'My Location', true);
+		const locationControl = this.createMapButton(
+			"fas fa-location-arrow",
+			() => this.centerOnUserLocation(googleMap),
+			"My Location",
+			true
+		);
 
 		controlDiv.appendChild(drawControl);
 		controlDiv.appendChild(amenitiesControl);
@@ -699,8 +681,8 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
 	// Create a circular icon button
 	private createMapButton(iconClass: string, onClick: () => void, title: string, isBlue: boolean): HTMLElement {
-		const button = document.createElement('button');
-		button.className = `control-button ${isBlue ? 'blue-button' : 'white-button'}`;
+		const button = document.createElement("button");
+		button.className = `control-button ${isBlue ? "blue-button" : "white-button"}`;
 		button.title = title;
 		button.innerHTML = `<i class="${iconClass}"></i>`;
 		button.onclick = onClick;
@@ -710,17 +692,17 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	// Toggle amenities
 	private toggleAmenities(googleMap: google.maps.Map): void {
 		this.isAmenitiesBarOpen = !this.isAmenitiesBarOpen;
-		const amenitiesBar = document.getElementById('amenities-bar');
+		const amenitiesBar = document.getElementById("amenities-bar");
 
 		if (this.isAmenitiesBarOpen) {
 			if (!amenitiesBar) {
 				this.createAmenitiesBar(googleMap);
 			} else {
-				amenitiesBar.style.display = 'flex';
+				amenitiesBar.style.display = "flex";
 			}
 		} else {
 			if (amenitiesBar) {
-				amenitiesBar.style.display = 'none';
+				amenitiesBar.style.display = "none";
 			}
 			this.clearAmenityMarkers();
 		}
@@ -728,14 +710,14 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
 	// Create the amenities bar
 	private createAmenitiesBar(googleMap: google.maps.Map): void {
-		const amenitiesBar = document.createElement('div');
-		amenitiesBar.id = 'amenities-bar';
-		amenitiesBar.className = 'amenities-bar';
+		const amenitiesBar = document.createElement("div");
+		amenitiesBar.id = "amenities-bar";
+		amenitiesBar.className = "amenities-bar";
 
-		this.amenities.forEach(amenity => {
-			const amenityButton = document.createElement('button');
-			amenityButton.className = 'amenity-button';
-			amenityButton.title = amenity.type.replace(/_/g, ' ');
+		this.amenities.forEach((amenity) => {
+			const amenityButton = document.createElement("button");
+			amenityButton.className = "amenity-button";
+			amenityButton.title = amenity.type.replace(/_/g, " ");
 			amenityButton.innerHTML = `<i class="${amenity.icon}"></i>`;
 			amenityButton.onclick = () => this.searchForAmenity(googleMap, amenity.type);
 			amenitiesBar.appendChild(amenityButton);
@@ -749,7 +731,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		if (this.drawingManager) {
 			this.drawingManager.setMap(null);
 			this.drawingManager = null;
-			this.notificationService.showSuccess('Drawing mode disabled');
+			this.notificationService.showSuccess("Drawing mode disabled");
 		} else {
 			// Initialize Drawing Manager
 			this.drawingManager = new google.maps.drawing.DrawingManager({
@@ -757,15 +739,12 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				drawingControl: true,
 				drawingControlOptions: {
 					position: google.maps.ControlPosition.TOP_CENTER,
-					drawingModes: [
-						google.maps.drawing.OverlayType.POLYGON,
-						google.maps.drawing.OverlayType.RECTANGLE,
-					],
+					drawingModes: [google.maps.drawing.OverlayType.POLYGON, google.maps.drawing.OverlayType.RECTANGLE],
 				},
 				polygonOptions: {
-					fillColor: '#FF0000',
+					fillColor: "#FF0000",
 					fillOpacity: 0.3,
-					strokeColor: '#FF0000',
+					strokeColor: "#FF0000",
 					strokeWeight: 2,
 					clickable: true,
 					editable: true,
@@ -774,13 +753,13 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			});
 
 			this.drawingManager.setMap(googleMap);
-			this.notificationService.showSuccess('Drawing mode enabled - Click and drag to draw regions');
+			this.notificationService.showSuccess("Drawing mode enabled - Click and drag to draw regions");
 
 			// Listen for overlay complete
-			google.maps.event.addListener(this.drawingManager, 'overlaycomplete', (event: any) => {
+			google.maps.event.addListener(this.drawingManager, "overlaycomplete", (event: any) => {
 				if (event.type === google.maps.drawing.OverlayType.POLYGON) {
 					const polygon = event.overlay;
-					this.notificationService.showSuccess('Region drawn successfully!');
+					this.notificationService.showSuccess("Region drawn successfully!");
 				}
 			});
 		}
@@ -799,7 +778,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		service.nearbySearch(request, (results: any[], status: any) => {
 			if (status === google.maps.places.PlacesServiceStatus.OK && results) {
 				const bounds = new google.maps.LatLngBounds();
-				results.forEach(place => {
+				results.forEach((place) => {
 					const marker = new google.maps.Marker({
 						position: place.geometry.location,
 						map: googleMap,
@@ -814,7 +793,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				});
 				googleMap.fitBounds(bounds);
 			} else {
-				this.notificationService.showError(`No ${type.replace(/_/g, ' ')} found nearby`);
+				this.notificationService.showError(`No ${type.replace(/_/g, " ")} found nearby`);
 			}
 		});
 	}
@@ -822,22 +801,22 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	// Get appropriate icon for amenity type
 	private getAmenityIcon(type: string): string {
 		const iconMap: { [key: string]: string } = {
-			'school': '📚',
-			'park': '🌳',
-			'hospital': '🏥',
-			'shopping_mall': '🏬',
-			'restaurant': '🍽️',
-			'grocery_or_supermarket': '🛒',
-			'bank': '🏦',
-			'gas_station': '⛽',
-			'bus_station': '🚌',
+			school: "📚",
+			park: "🌳",
+			hospital: "🏥",
+			shopping_mall: "🏬",
+			restaurant: "🍽️",
+			grocery_or_supermarket: "🛒",
+			bank: "🏦",
+			gas_station: "⛽",
+			bus_station: "🚌",
 		};
-		return iconMap[type] || '📍';
+		return iconMap[type] || "📍";
 	}
 
 	// Clear amenity markers
 	private clearAmenityMarkers(): void {
-		this.amenityMarkers.forEach(marker => {
+		this.amenityMarkers.forEach((marker) => {
 			marker.setMap(null);
 		});
 		this.amenityMarkers = [];
@@ -845,7 +824,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
 	// Toggle map layers
 	private toggleMapLayers(googleMap: google.maps.Map): void {
-		const mapTypes = ['roadmap', 'satellite', 'terrain'];
+		const mapTypes = ["roadmap", "satellite", "terrain"];
 		const currentIndex = mapTypes.indexOf(this.currentMapType);
 		const nextIndex = (currentIndex + 1) % mapTypes.length;
 		this.currentMapType = mapTypes[nextIndex];
@@ -871,18 +850,18 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 					const marker = new google.maps.Marker({
 						position: userLocation,
 						map: googleMap,
-						title: 'Your Location',
-						icon: '👤',
+						title: "Your Location",
+						icon: "👤",
 					});
 
-					this.notificationService.showSuccess('Centered on your location');
+					this.notificationService.showSuccess("Centered on your location");
 				},
 				(error) => {
-					this.notificationService.showError('Unable to get your location. Please enable location services.');
+					this.notificationService.showError("Unable to get your location. Please enable location services.");
 				}
 			);
 		} else {
-			this.notificationService.showError('Geolocation is not supported by this browser.');
+			this.notificationService.showError("Geolocation is not supported by this browser.");
 		}
 	}
 }

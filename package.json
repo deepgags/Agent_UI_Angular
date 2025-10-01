@@ -29,7 +29,7 @@
 		"@types/jquery": "^3.5.32",
 		"angular-svg-icon": "^19.1.1",
 		"bootstrap": "^5.3.3",
-		"chart.js": "^4.5.0",
+		"chart.js": "^3.9.1",
 		"dayjs": "^1.11.14",
 		"hammerjs": "^2.0.8",
 		"i": "^0.3.7",

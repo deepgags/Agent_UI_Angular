@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { ConfirmationService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
-import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
 import { PaginatorModule } from "primeng/paginator";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
@@ -10,15 +10,15 @@ import { SimpleTableComponent } from "../../../components/simple-table/simple-ta
 import { FieldsType } from "../../../enums/fields-type.enum";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { NotificationService } from "../../../services/notification.service";
-import { SiteConfigService } from "../../../services/site-config.service";
+import { SharedDataService } from "../../../services/shareddata.service";
 import { Testimonial, TestimonialService } from "../../../services/testimonial.service";
 import { ManageTestimonialComponent } from "../manage-testimonial/manage-testimonial.component";
 
 @Component({
-	selector: 'app-testimonial',
+	selector: "app-testimonial",
 	imports: [CommonModule, TableModule, ButtonModule, PaginatorModule, ProgressSpinnerModule, SimpleTableComponent, DynamicDialogModule],
-	templateUrl: './testimonial.component.html',
-	styleUrl: './testimonial.component.scss'
+	templateUrl: "./testimonial.component.html",
+	styleUrl: "./testimonial.component.scss",
 })
 export class TestimonialComponent {
 	testimonials: Testimonial[] = [];
@@ -55,29 +55,21 @@ export class TestimonialComponent {
 	loading: boolean = false;
 	error: string | null = null;
 
-	private notificationService = inject(NotificationService);
-
-	private confirmationService = inject(ConfirmationService);
-
-	private dialogService = inject(DialogService)
-
-	private testimonialService = inject(TestimonialService);
-	private siteConfigService = inject(SiteConfigService);
-
 	siteId = "";
-	siteConfig: SiteConfig | undefined;
-	siteConfigSubscription: any;
+	siteConfig: SiteConfig = {} as SiteConfig;
 
-	constructor() { }
+	constructor(
+		private notificationService: NotificationService,
+		private confirmationService: ConfirmationService,
+		private dialogService: DialogService,
+		private sharedDataService: SharedDataService,
+		private testimonialService: TestimonialService
+	) {}
 
 	ngOnInit() {
 		this.getTestimonial();
-		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
-			if (config) {
-				this.siteConfig = config;
-				this.siteId = this.siteConfig?.id;
-			}
-		});
+		this.siteConfig = this.sharedDataService.siteData();
+		this.siteId = this.sharedDataService.siteId();
 	}
 
 	getTestimonial() {
@@ -99,19 +91,19 @@ export class TestimonialComponent {
 
 	addTestimonial = () => {
 		const ref = this.dialogService.open(ManageTestimonialComponent, {
-			header: 'Add Testimonial',
+			header: "Add Testimonial",
 			draggable: false,
 			modal: true,
 			closable: true,
 			width: "50%",
-			data: {}
+			data: {},
 		});
 		ref.onClose.subscribe((refresh: boolean) => {
 			if (refresh) {
 				this.getTestimonial();
 			}
 		});
-	}
+	};
 
 	deleteTestimonial = (testimonial: any, index: number) => {
 		this.confirmationService.confirm({
@@ -132,7 +124,7 @@ export class TestimonialComponent {
 			accept: () => {
 				this._confirmDeleteTestimonial(testimonial, index);
 			},
-			reject: () => { },
+			reject: () => {},
 		});
 	};
 

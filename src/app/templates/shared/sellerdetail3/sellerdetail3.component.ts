@@ -1,7 +1,6 @@
-
 import { Component } from "@angular/core";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { SiteConfigService } from "../../../services/site-config.service";
+import { SharedDataService } from "../../../services/shareddata.service";
 
 @Component({
 	selector: "app-sellerdetail3",
@@ -10,17 +9,13 @@ import { SiteConfigService } from "../../../services/site-config.service";
 	styleUrl: "./sellerdetail3.component.scss",
 })
 export class Sellerdetail3Component {
-	siteConfig: SiteConfig | undefined;
+	siteConfig: SiteConfig = {} as SiteConfig;
 	siteConfigSubscription: any;
 
-	constructor(private siteConfigService: SiteConfigService) {}
+	constructor(private sharedDataService: SharedDataService) {}
 
 	ngOnInit() {
-		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
-			if (config) {
-				this.siteConfig = config;
-			}
-		});
+		this.siteConfig = this.sharedDataService.siteData();
 	}
 
 	ngOnDestroy(): void {

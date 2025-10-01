@@ -1,18 +1,9 @@
-
 import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
-import { SelectModule } from 'primeng/select';
-import {
-	bathTypes,
-	bedTypes,
-	maxPrices,
-	minPrices,
-	sqFitTypes,
-	statusTypes,
-	storyTypes,
-} from "../../../consts/DefaultTypes";
+import { AutoCompleteCompleteEvent, AutoCompleteModule } from "primeng/autocomplete";
+import { SelectModule } from "primeng/select";
+import { bathTypes, bedTypes, maxPrices, minPrices, sqFitTypes, statusTypes, storyTypes } from "../../../consts/DefaultTypes";
 import { LoadingService } from "../../../services/loading.service";
 import { PropertyService } from "../../../services/property.service";
 
@@ -25,7 +16,7 @@ import { PropertyService } from "../../../services/property.service";
 	standalone: true,
 })
 export class SearchComponent implements OnInit {
-	@Input("onSearch") onSearch: Function = () => { };
+	@Input("onSearch") onSearch: Function = () => {};
 
 	@Input("showMapSearch") showMapSearch = true;
 
@@ -60,7 +51,7 @@ export class SearchComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private propertyService: PropertyService,
 		public loadingService: LoadingService
-	) { }
+	) {}
 
 	searchProperties = (searchByMap: boolean = false) => {
 		const currentUrl = this.router.url.split("/")[1];
@@ -86,7 +77,7 @@ export class SearchComponent implements OnInit {
 		// }
 
 		if (searchByMap) {
-			this.router.navigate(['/map'], {
+			this.router.navigate(["/map"], {
 				queryParams: filtersWithValue,
 				queryParamsHandling: "replace",
 			});
@@ -147,18 +138,19 @@ export class SearchComponent implements OnInit {
 				this.propertyTypesDropDown = response.propertyTypes;
 				this._allPropertySubTypes = response.propertySubTypes;
 				this.filters.property_type = response.propertyTypes[0].LookupValue;
-				this.filterPropertySubType()
+				this.filterPropertySubType();
 			},
-			error: (err) => { },
-			complete: () => { },
+			error: (err) => {},
+			complete: () => {},
 		});
 	}
 
 	filterPropertySubType() {
 		for (const propertyType of this.propertyTypesDropDown) {
 			if (propertyType.LookupValue == this.filters.property_type) {
-				this.propertySubTypesDropDown = this._allPropertySubTypes.filter((_subType: any) => _subType.parent == propertyType._id);
-				this.filters.property_subtype = this.propertySubTypesDropDown[0].LookupValue
+				const _subTypeDropDown = this._allPropertySubTypes.filter((_subType: any) => _subType.parent == propertyType._id);
+				this.propertySubTypesDropDown = [{ LookupValue: "All", _id: "" }, ..._subTypeDropDown];
+				this.filters.property_subtype = this.propertySubTypesDropDown[0].LookupValue;
 				break;
 			}
 		}

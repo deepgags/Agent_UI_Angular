@@ -10,6 +10,9 @@
 						<div>
 							<app-gallery [images]="template.images" />
 						</div>
+						<p class="text-center fw-bold mt-2 text-capitalize">
+							{{template.templateKey}} - {{template.name}}
+						</p>
 						<div class="text-center">
 							<footer class="footer">
 								<button [ngClass]="template.templateKey == selectedTemplate ? 'btn btn-success border border-success green' : 'btn btn-primary'"

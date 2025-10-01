@@ -6,24 +6,23 @@
 					class="btn btn-outline-light mt-5">View all apartments</button>
 		</div>
 		<div class="">
-			<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'"
+			<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
 				 alt="No profile image"
 				 class="overlay-image">
 			<div class="card position-absolute  man-card "
 				 style="width: 15rem;">
 				<div class="card-body">
-					<h5 class="card-head text-white">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h5>
+					<h5 class="card-head text-white">{{siteConfig.firstName}} {{siteConfig.lastName}}</h5>
 					<div class=" d-flex">
 						<div class="">
-													<i class="fa-solid fa-phone info"></i>
+							<i class="fa-solid fa-phone info"></i>
 
 						</div>
 						<div class="ms-2">
 							<p>
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
-									{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+								<a class="text-white fw-semibold text-decoration-none"
+								   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+									{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
 								</a>
 							</p>
 						</div>
@@ -34,10 +33,9 @@
 						</div>
 						<div class="ms-2 mt-1">
 							<p>
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-									{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+								<a class="text-white fw-semibold text-decoration-none"
+								   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+									{{ siteConfig.websiteSettings.contactInfo.email }}
 								</a>
 							</p>
 						</div>
@@ -222,17 +220,17 @@
 		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
 			<!-- <div class="col-lg-6 col-12">
 				<div class="">
-					<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'" alt="No profile image" class="">
+					<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'" alt="No profile image" class="">
 				</div>
 			</div> -->
 			<div class="col-lg-4 col-12">
 				<div class="card border-0 text-center p-4"
 					 style="background-color: #f9f5f1;">
 					<!-- <img src="agent-image.jpg" alt="Agent Image" class="img-fluid mb-3" /> -->
-					<img [src]="siteConfig?.websiteSettings?.profileImage? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'"
+					<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
 						 alt="No profile image"
 						 class="img-fluid mb-3">
-					<h5 class="fw-bold mb-0">{{siteConfig?.firstName}} {{siteConfig?.lastName}}</h5>
+					<h5 class="fw-bold mb-0">{{siteConfig.firstName}} {{siteConfig.lastName}}</h5>
 					<p class="text-muted mb-3">Real Estate Agent</p>
 
 					<div class="mb-2">

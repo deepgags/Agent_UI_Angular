@@ -1,4 +1,3 @@
-
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -10,10 +9,10 @@ import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneSearch } from "../../../pipes/phoneSearch";
+import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
-import { SiteConfigService } from "../../../services/site-config.service";
+import { SharedDataService } from "../../../services/shareddata.service";
 
 @Component({
 	selector: "app-contact",
@@ -23,7 +22,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 		FormsModule,
 		ReactiveFormsModule,
 		RouterModule,
-		PhoneSearch,
+		PhoneNumberPipe,
 		IftaLabelModule,
 		InputMaskModule,
 		InputTextModule,
@@ -36,8 +35,7 @@ import { SiteConfigService } from "../../../services/site-config.service";
 })
 export class ContactComponent {
 	contactForm!: FormGroup;
-	siteConfig: SiteConfig | undefined;
-	siteConfigSubscription: any;
+	siteConfig: SiteConfig = {} as SiteConfig;
 
 	contactText =
 		"Your way to better real estate software starts here. For 35 years, we’ve proudly delivered the gold standard in real estate software to businesses of all shapes, sizes, and structures, and we’d be honored to partner with your organization today.";
@@ -62,7 +60,7 @@ export class ContactComponent {
 	];
 
 	constructor(
-		private siteConfigService: SiteConfigService,
+		private sharedDataService: SharedDataService,
 		private notificationService: NotificationService,
 		private publicService: PublicService
 	) {
@@ -93,11 +91,7 @@ export class ContactComponent {
 	}
 
 	ngOnInit(): void {
-		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config) => {
-			if (config) {
-				this.siteConfig = config;
-			}
-		});
+		this.siteConfig = this.sharedDataService.siteData();
 	}
 
 	submitContactForm() {

@@ -1,16 +1,26 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
-import { CustomerModel } from "../models/CustomerModel";
+import { Injectable, signal } from "@angular/core";
+import { SiteConfig } from "../models/SiteConfig";
 
 @Injectable({
 	providedIn: "root",
 })
 export class SharedDataService {
-	private dataSource = new BehaviorSubject<any>(null);
-	CustomerData = this.dataSource.asObservable(); //new CustomerModel();//
+	private _siteId = signal("");
+	private _siteData = signal<SiteConfig | any>({} as SiteConfig);
 
-	changeData(data: any) {
-		//this.CustomerData = data;
-		this.dataSource.next(data);
+	setSiteId(_siteId: string) {
+		this._siteId.set(_siteId);
+	}
+
+	setSiteData(_siteData: any) {
+		this._siteData.set(_siteData);
+	}
+
+	get siteId() {
+		return this._siteId;
+	}
+
+	get siteData() {
+		return this._siteData;
 	}
 }

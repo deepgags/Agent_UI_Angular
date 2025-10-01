@@ -7,21 +7,15 @@ import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
-import { BehaviorSubject, Subscription } from "rxjs";
+import { DialogService } from "primeng/dynamicdialog";
 import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+import { PropertyComponent } from "../../../components/property/property.component";
 import { stringiFy } from "../../../consts/Utility";
+import { environment } from "../../../environments/environment.development";
 import { PropertyModel } from "../../../models/PropertyModel";
-import { SiteConfigService } from "../../../services/site-config.service";
-// Import SiteConfigService
-// import { RequestPropertyModel } from '../../../models/RequestPropertyModel'; // Not used in current snippet
-// import { HighlightSearch } from '../../../pipes/highlight'; // Not used in current snippet
 import { LoadingService } from "../../../services/loading.service";
 import { PropertyService } from "../../../services/property.service";
-// import { StorageService } from '../../../services/storage.service'; // Not used in current snippet
-import { DialogService } from "primeng/dynamicdialog";
-import { PropertyComponent } from "../../../components/property/property.component";
-import { environment } from "../../../environments/environment.development";
-import { SiteConfig } from "../../../models/SiteConfig";
+import { SharedDataService } from "../../../services/shareddata.service";
 import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
@@ -35,7 +29,7 @@ import { SearchComponent } from "../search/search.component";
 		RouterModule,
 		MatPaginatorModule,
 		MatProgressSpinnerModule,
-		PropertyComponent
+		PropertyComponent,
 	],
 	templateUrl: "./featured-listings.component.html",
 	styleUrl: "./featured-listings.component.scss",
@@ -44,16 +38,13 @@ import { SearchComponent } from "../search/search.component";
 	standalone: true,
 	providers: [DialogService],
 })
-
-export class FeaturedListingsComponent implements OnInit, OnDestroy {
+export class FeaturedListingsComponent implements OnInit {
 	imageUrl = environment.imageUrl;
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
 	pageSize: number = 12;
-	private loadingSubject = new BehaviorSubject<boolean>(false);
-	loading$ = this.loadingSubject.asObservable();
-	private siteConfigSubscription: Subscription | undefined;
+
 	siteId: string = "";
 	selectedFilters: any = {
 		address: "",
@@ -74,27 +65,17 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 		private propertyService: PropertyService,
 		public loadingService: LoadingService,
 		private titleService: Title,
-		private siteConfigService: SiteConfigService,
+		private sharedDataService: SharedDataService,
 		private dialogService: DialogService
 	) {
 		this.titleService.setTitle("Search Properties");
 	}
 
 	ngOnInit(): void {
-		this.siteConfigSubscription = this.siteConfigService.currentConfig$.subscribe((config: any) => {
-			if (config) {
-				this.siteId = config.id
-			}
-		});
+		this.siteId = this.sharedDataService.siteId();
 		this.pageIndex = 1;
 		this.pageSize = 12;
 		this.searchProperties({});
-	}
-
-	ngOnDestroy(): void {
-		if (this.siteConfigSubscription) {
-			this.siteConfigSubscription.unsubscribe();
-		}
 	}
 
 	openDialog(property: PropertyModel) {
@@ -121,7 +102,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 		} else {
 			this.redirectToDetail(property);
 		}
-	}
+	};
 
 	redirectToDetail = (property: PropertyModel): void => {
 		this.dialogService.open(PropertyDetailComponent, {
@@ -138,7 +119,7 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 				property_subtype: stringiFy(this.selectedFilters.property_subtype),
 			},
 		});
-	}
+	};
 
 	searchProperties = (selectedFilters: any, event?: PageEvent) => {
 		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;
@@ -159,20 +140,16 @@ export class FeaturedListingsComponent implements OnInit, OnDestroy {
 			// brokerageType: userInfo?.brokerage?.alternateName,
 			// propertyFeedType: "IDX",
 			sort: "",
-			siteId: this.siteId
+			siteId: this.siteId,
 		};
 
 		this.loadingService.loadingOn();
-		this.loadingSubject.next(true);
 		this.propertyService.featuredProperties(params).subscribe({
 			next: (response) => {
 				this.propertiesList = response;
 			},
-			error: (err) => {
-			},
-			complete: () => {
-				this.loadingSubject.next(false);
-			},
+			error: (err) => {},
+			complete: () => {},
 		});
 		return event;
 	};

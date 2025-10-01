@@ -10,39 +10,37 @@
 				</div>
 			</div>
 			<div class="first">
-				<img [src]="siteConfig?.websiteSettings?.profileImage ? siteConfig?.websiteSettings?.profileImage : '/images/Nologo.png'"
+				<img [src]="siteConfig.websiteSettings.profileImage ? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
 					 alt="No profile image"
 					 class="overlay-image" />
 				<div class="card position-absolute man-card"
 					 style="width: 15rem">
 					<div class="card-body">
-						<h5 class="card-head text-white">{{ siteConfig?.firstName }} {{ siteConfig?.lastName }}</h5>
+						<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
 						<div class="d-flex">
 							<div class="">
-														<i class="fa-solid fa-phone info"></i>
+								<i class="fa-solid fa-phone info"></i>
 
 							</div>
 							<div class="ms-2">
 								<p>
-									<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
-									{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-								</a>
+									<a class="text-white fw-semibold text-decoration-none"
+									   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+										{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+									</a>
 								</p>
 							</div>
 						</div>
 						<div class="d-flex">
 							<div class="">
-						<i class="fa-solid fa-envelope info"></i>
+								<i class="fa-solid fa-envelope info"></i>
 							</div>
 							<div class="ms-2 mt-1">
 								<p>
-									<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-									{{ siteConfig?.websiteSettings?.contactInfo?.email }}
-								</a>
+									<a class="text-white fw-semibold text-decoration-none"
+									   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+										{{ siteConfig.websiteSettings.contactInfo.email }}
+									</a>
 								</p>
 							</div>
 						</div>

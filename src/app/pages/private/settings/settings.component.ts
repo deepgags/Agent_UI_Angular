@@ -16,7 +16,7 @@ import { TextareaModule } from "primeng/textarea";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
 
-import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { BrokerageTypeModel } from "../../../models/BrokerageTypeModel";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { BrokerageTypeService } from "../../../services/brokerage.service";
@@ -124,6 +124,7 @@ export class SettingsComponent {
 			firstName: new FormControl("", Validators.required),
 			lastName: new FormControl("", Validators.required),
 			phoneNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			designation: new FormControl(""),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			address: new FormControl(""),
 			logoImage: new FormControl(""),
@@ -144,19 +145,14 @@ export class SettingsComponent {
 			youtube: new FormControl(""),
 			websiteEmail: new FormControl(""),
 			websitePhone: new FormControl(""),
-			// websiteAddress: new FormControl(""),
-			// aboutText: new FormControl(""),
-			// contactText: new FormControl(""),
-			// sellingYourHouseText: new FormControl(""),
-			// renovatingForResellText: new FormControl(""),
-			// commonSellingMistakeText: new FormControl(""),
-			// buyerText: new FormControl(""),
 			secondaryAgent: this.fb.group({
+				enableSecondaryAgent: new FormControl(false),
 				firstName: new FormControl(""),
 				lastName: new FormControl(""),
 				websitePhone: new FormControl(""),
 				websiteEmail: new FormControl(""),
 				profileImage: new FormControl(""),
+				designation: new FormControl(""),
 			}),
 		});
 
@@ -172,7 +168,6 @@ export class SettingsComponent {
 						response.data;
 
 					const {
-						templateId,
 						primaryColor,
 						secondaryColor,
 						logoImage,
@@ -200,7 +195,6 @@ export class SettingsComponent {
 
 					if (response.data.websiteSettings) {
 						this.agentForm.patchValue({
-							templateId: templateId,
 							primaryColor: primaryColor,
 							secondaryColor: secondaryColor,
 							facebook: facebook,
@@ -210,13 +204,6 @@ export class SettingsComponent {
 							youtube: youtube,
 							websiteEmail: websiteEmail,
 							websitePhone: websitePhone,
-							// websiteAddress: websiteAddress,
-							// aboutText: response.data.websiteSettings.aboutText || "",
-							// contactText: response.data.websiteSettings.contactText || "",
-							// sellingYourHouseText: response.data.websiteSettings.sellingYourHouseText || "",
-							// renovatingForResellText: response.data.websiteSettings.renovatingForResellText || "",
-							// commonSellingMistakeText: response.data.websiteSettings.commonSellingMistakeText || "",
-							// buyerText: response.data.websiteSettings.buyerText || "",
 						});
 						if (response.data.secondaryAgent) {
 							this.agentForm.get("secondaryAgent")?.patchValue({
@@ -233,7 +220,7 @@ export class SettingsComponent {
 			error: () => {
 				this.notificationService.showSuccess("An error has occurred while getting customer information");
 			},
-			complete: () => { },
+			complete: () => {},
 		});
 	}
 
@@ -276,7 +263,6 @@ export class SettingsComponent {
 				address,
 				brokerageType,
 				siteUrl,
-				templateId,
 				primaryColor,
 				secondaryColor,
 				facebook,
@@ -287,8 +273,6 @@ export class SettingsComponent {
 				websiteEmail,
 				websitePhone,
 				// websiteAddress,
-				aboutText,
-				contactText,
 			} = this.agentForm.getRawValue();
 
 			const params = {
@@ -299,15 +283,8 @@ export class SettingsComponent {
 				brokerageTypeId: brokerageType,
 				websiteSettings: {
 					siteUrl: siteUrl,
-					templateId,
 					primaryColor,
 					secondaryColor,
-					// aboutText: this.agentForm.get("aboutText")?.value || "",
-					// contactText: this.agentForm.get("contactText")?.value || "",
-					// sellingYourHouseText: this.agentForm.get("sellingYourHouseText")?.value || "",
-					// renovatingForResellText: this.agentForm.get("renovatingForResellText")?.value || "",
-					// commonSellingMistakeText: this.agentForm.get("commonSellingMistakeText")?.value || "",
-					// buyerText: this.agentForm.get("buyerText")?.value || "",
 					socialLinks: {
 						facebook,
 						twitter,
@@ -318,7 +295,6 @@ export class SettingsComponent {
 					contactInfo: {
 						email: websiteEmail,
 						phone: websitePhone,
-						// address: websiteAddress,
 					},
 					profileImage: this.primaryAgentProfileImage.value ? this.primaryAgentProfileImage.value : this.existingProfileImage,
 					brokerageImage: this.brokerageLogoImage.value,
@@ -329,8 +305,10 @@ export class SettingsComponent {
 					profileImage: this.secondaryAgentProfileImage.value,
 				},
 			};
+			// console.log(params);
+			// return;
 			this.customerService.update(params).subscribe({
-				next: (v) => { },
+				next: (v) => {},
 				error: (e) => {
 					this.notificationService.showSuccess(e.error.message || "Something went wrong while updating information.");
 				},

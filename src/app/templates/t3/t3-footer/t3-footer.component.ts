@@ -1,22 +1,18 @@
-
-import { Component, Input, OnInit } from '@angular/core';
-import { AngularSvgIconModule } from 'angular-svg-icon';
-import { SiteConfig } from '../../../models/SiteConfig';
-import { PhoneSearch } from '../../../pipes/phoneSearch';
-import { RouterModule } from '@angular/router';
-
+import { Component, Input, OnInit } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { AngularSvgIconModule } from "angular-svg-icon";
+import { SiteConfig } from "../../../models/SiteConfig";
+import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
 
 @Component({
-	selector: 'app-t3-footer',
-	imports: [PhoneSearch, AngularSvgIconModule, RouterModule],
-	templateUrl: './t3-footer.component.html',
-	styleUrls: ['./t3-footer.component.scss', '../t3.component.scss']
+	selector: "app-t3-footer",
+	imports: [PhoneNumberPipe, AngularSvgIconModule, RouterModule],
+	templateUrl: "./t3-footer.component.html",
+	styleUrls: ["./t3-footer.component.scss", "../t3.component.scss"],
 })
 export class T3FooterComponent implements OnInit {
-	@Input('siteConfig') siteConfig: SiteConfig | null = null;
-	constructor() { }
+	@Input("siteConfig") siteConfig: SiteConfig | null = null;
+	constructor() {}
 
-	ngOnInit(): void {
-	}
-
+	ngOnInit(): void {}
 }
