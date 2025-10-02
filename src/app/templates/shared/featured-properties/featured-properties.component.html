@@ -47,13 +47,15 @@
             </a> -->
 			</div>
 			}
-
-			<a [routerLink]="['/featured-listings']"
-			   class="btn search_btn w-auto fw-bold mx-auto">
-				View All
-			</a>
-
 		</div>
+    <div class="row justify-content-center">
+       <div class="col d-flex justify-content-center">
+         <a [routerLink]="['/featured-listings']"
+              class="btn search_btn w-auto fw-bold mx-auto">
+             View All
+           </a>
+       </div>
+    </div>
 		@if (properties.length == 0) {
 		<h2 class="text-center mt-5">No properties found</h2>
 		}
