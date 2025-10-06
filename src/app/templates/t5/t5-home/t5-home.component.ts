@@ -22,7 +22,6 @@ import { SearchComponent } from "../../shared/search/search.component";
 export class T5HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
-	siteConfigSubscription: any;
 	constructor(private titleService: Title, private sharedDataService: SharedDataService, private searchService: SearchService) {}
 
 	ngOnInit(): void {

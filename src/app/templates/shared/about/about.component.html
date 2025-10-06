@@ -33,9 +33,8 @@
 
 						<div class="col-8">
 							<div class="card-body">
-								<h6 class="text-muted mb-0">PRESENTED BY</h6>
 								<h5 class="card-title info mt-1">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-								<p class="card-text mb-2 text-secondary small">Agent</p>
+								<p class="fw-semibold fs-6 mb-0">{{ siteConfig.designation}}</p>
 								<div class="text-muted small">
 									<p class="mb-1">Email: {{ siteConfig.websiteSettings.contactInfo.email }}</p>
 									<p class="mb-0">Call: {{ siteConfig.websiteSettings.contactInfo.phone | phone }}</p>
