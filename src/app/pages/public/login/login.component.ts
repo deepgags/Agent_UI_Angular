@@ -9,6 +9,7 @@ import { RouterModule } from "@angular/router";
 import { InputTextModule } from "primeng/inputtext";
 import { PasswordModule } from "primeng/password";
 import { Pages } from "../../../enums/pages";
+import { NotificationService } from "../../../services/notification.service";
 
 @Component({
 	selector: "app-login",
@@ -23,7 +24,8 @@ export class LoginComponent {
 	constructor(
 		private fb: FormBuilder,
 		private customerService: CustomerService,
-		private router: Router // private notificationService: NotificationService
+		private router: Router,
+		private notificationService: NotificationService
 	) {
 		this.loginForm = this.fb.group({
 			email: ["", [Validators.required, Validators.email]],
@@ -40,7 +42,7 @@ export class LoginComponent {
 					this.router.navigate([Pages.DASHBOARD]);
 				},
 				error: (error: any) => {
-					// this.notificationService.showSuccess(error.error.message);
+					this.notificationService.showError(error.error.message);
 				},
 			});
 		}

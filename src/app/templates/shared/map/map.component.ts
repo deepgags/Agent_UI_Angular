@@ -8,10 +8,11 @@ import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { DefaultRenderer, MarkerClusterer } from "@googlemaps/markerclusterer";
+import { DefaultRenderer, MarkerClusterer, SuperClusterAlgorithm } from "@googlemaps/markerclusterer";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
 import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+import { PropertyComponent } from "../../../components/property/property.component";
 import { sortTypes } from "../../../consts/DefaultTypes";
 import { stringiFy } from "../../../consts/Utility";
 import { environment } from "../../../environments/environment.development";
@@ -34,6 +35,7 @@ import { SearchComponent } from "../search/search.component";
 		MatPaginatorModule,
 		MatProgressSpinnerModule,
 		GoogleMapsModule,
+		PropertyComponent,
 	],
 	templateUrl: "./map.component.html",
 	styleUrl: "./map.component.scss",
@@ -57,7 +59,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 	@ViewChild("mapComponent") mapComponent!: ElementRef<HTMLDivElement>;
 	// @ViewChild('infoWindow') infoWindow!: ElementRef<MapInfoWindow>;
 	previousInfoWindow: google.maps.InfoWindow | null = null;
+	preventClose: boolean = false;
 	map!: google.maps.Map;
+	markerClusterer: MarkerClusterer | null = null;
 
 	markers = [{ position: { lat: 56.1304, lng: 106.3468 }, property: new PropertyModel() }]; // Center of Canada
 
@@ -130,26 +134,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 		});
 	}
 
-	async renderMarker(property: PropertyModel) {
-		if (property.Latitude && property.Longitude) {
-			const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as {
-				AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement;
-			});
-
-			const markerELement = new AdvancedMarkerElement({
-				map: this.map,
-				content: this.buildContent(property),
-				position: { lat: property.Latitude, lng: property.Longitude },
-				title: property.PropertyType,
-				zIndex: google.maps.Marker.MAX_ZINDEX,
-			});
-
-			markerELement.addListener("gmp-click", async () => {
-				await this.openInfoWindow(markerELement, property);
-			});
-		}
-	}
-
 	getLocation(): void {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition((position) => {
@@ -180,36 +164,57 @@ export class MapComponent implements OnInit, AfterViewInit {
 		});
 	}
 
-	async openInfoWindow(marker: any, property: PropertyModel) {
+	async openInfoWindow(marker: google.maps.Marker, content: string, properties: PropertyModel[] = []) {
 		if (this.previousInfoWindow) {
 			this.previousInfoWindow.close();
 		}
-
-		const { InfoWindow } = await (google.maps.importLibrary("maps") as unknown as { InfoWindow: typeof google.maps.InfoWindow });
-		const informationwindow = new InfoWindow({
-			content:
-				"<div ><h5>" +
-				property.ListingKey +
-				"</h5><p style='margin-bottom: 0px;'><b>Address : </b>" +
-				property.UnparsedAddress +
-				"<p style='margin-bottom: 0px;'><b>Cross Street : </b>" +
-				property.CrossStreet +
-				"<p style='margin-bottom: 0px;'><b>Bedrooms : </b>" +
-				property.BedroomsTotal +
-				"<p style='margin-bottom: 0px;'><b>Washrooms : </b>" +
-				property.BathroomsTotalInteger +
-				"<p style='margin-bottom: 0px;'><b>Price : </b>" +
-				property.ListPrice +
-				"<p style='margin-bottom: 0px;'><b>Property Type : </b>" +
-				property.PropertyType +
-				"<p style='margin-bottom: 0px;'><b>Property Use : </b>" +
-				property.TransactionType,
-			position: this.map.getCenter(),
-			disableAutoPan: true,
+		const informationwindow = new google.maps.InfoWindow({
+			content: content,
+			maxWidth: 360,
 		});
-		informationwindow.open({ map: this.map, shouldFocus: true });
+		google.maps.event.addListener(informationwindow, "domready", () => {
+			const iwOuter = document.querySelector(".gm-style-iw") as HTMLElement;
+			if (iwOuter) {
+				iwOuter.addEventListener("mouseenter", () => {
+					this.preventClose = true;
+				});
+				iwOuter.addEventListener("mouseleave", () => {
+					this.preventClose = false;
+					informationwindow.close();
+				});
+			}
+			const buttons = document.querySelectorAll("[data-action]");
+			buttons.forEach((btn) => {
+				btn.addEventListener("click", (e) => {
+					const action = btn.getAttribute("data-action");
+					const cid = btn.getAttribute("data-carousel");
+					const img = document.getElementById(`img-${cid}`) as HTMLImageElement;
+					if (img) {
+						const images = JSON.parse(img.getAttribute("data-images") || "[]");
+						let current = parseInt(img.getAttribute("data-current") || "0");
+						if (action === "next") {
+							current = (current + 1) % images.length;
+						} else if (action === "prev") {
+							current = (current - 1 + images.length) % images.length;
+						}
+						img.src = this.imageUrl + images[current];
+						img.setAttribute("data-current", current.toString());
+					}
+				});
+			});
+			const propertyDivs = document.querySelectorAll("[data-index]");
+			propertyDivs.forEach((div) => {
+				const index = parseInt(div.getAttribute("data-index") || "0");
+				const property = properties[index];
+				if (property) {
+					div.addEventListener("click", () => {
+						this.selectProperty(property);
+					});
+				}
+			});
+		});
+		informationwindow.open(this.map, marker);
 		this.previousInfoWindow = informationwindow;
-		//this.toggleHighlight(markerView)
 	}
 
 	// toggleHighlight(markerView:any) {
@@ -227,64 +232,76 @@ export class MapComponent implements OnInit, AfterViewInit {
 		return "#" + n.slice(0, 6);
 	}
 
-	buildContent(property: PropertyModel) {
-		const content = document.createElement("div");
-		let propertyIcon = "home";
-		switch (property.PropertyType) {
-			case "Residential Freehold":
-				propertyIcon = "home";
-				break;
-			case "Residential Condo & Other":
-				propertyIcon = "home";
-				break;
-			case "Commercial":
-				propertyIcon = "building";
-				break;
-			default:
-				propertyIcon = "home";
-				break;
-		}
+	buildPropertyContent(property: PropertyModel, index: number = 0): string {
+		const media = property.Media || [];
+		const carouselId = `carousel-${property.ListingKey || "default"}`;
+		const images = media.length > 0 ? media.map((m) => m.Media_url) : ["/images/commercial_no_Image.jpg"];
+		const currentSrc = this.imageUrl + images[0];
+		const imagesJson = JSON.stringify(images);
 
-		content.classList.add("property");
-		content.style.backgroundColor = this.getRandomColor();
+		const controls =
+			images.length > 1
+				? `<button data-action="prev" data-carousel="${carouselId}" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><i class="bi bi-chevron-left"></i></button>
+				<button data-action="next" data-carousel="${carouselId}" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><i class="bi bi-chevron-right"></i></button>`
+				: "";
 
-		content.innerHTML = `
-      <div class="icon">
-          <i aria-hidden="true" class="fa fa-icon fa-${propertyIcon}" title="${property.PropertyType}"></i>
-          <span class="fa-sr-only">${propertyIcon}</span>
-      </div>
-      <div class="details">
-          <div class="price">${property.ListPrice}</div>
-          <div class="address">${property.UnparsedAddress}</div>
-          <div class="features">
-          <div>
-              <i aria-hidden="true" class="fa fa-bed fa-lg bed" title="bedroom"></i>
-              <span class="fa-sr-only">bedroom</span>
-              <span>${property.BedroomsTotal}</span>
-          </div>
-          <div>
-              <i aria-hidden="true" class="fa fa-bath fa-lg bath" title="bathroom"></i>
-              <span class="fa-sr-only">bathroom</span>
-              <span>${property.BathroomsTotalInteger}</span>
-          </div>
-          <div>
-              <i aria-hidden="true" class="fa fa-ruler fa-lg size" title="size"></i>
-              <span class="fa-sr-only">size</span>
-              <span>${property.BuildingAreaTotal} {property.BuildingAreaUnits} <sup>2</sup></span>
-          </div>
-          </div>
-      </div>
-      `;
-		return content;
+		const priceFormatted = property.ListPrice ? `$${property.ListPrice.toLocaleString()}` : "Price not available";
+		const beds = property.BedroomsTotal
+			? `<div style="margin-right: 1rem;"><span style="font-weight: 600;">Bed ·</span> ${property.BedroomsTotal}</div>`
+			: "";
+		const baths = property.BathroomsTotalInteger
+			? `<div style="margin-right: 1rem;"><span style="font-weight: 600;">Bath ·</span> ${property.BathroomsTotalInteger}</div>`
+			: "";
+		const area = property.BuildingAreaTotal
+			? `<div><span style="font-weight: 600;">Area ·</span> ${property.BuildingAreaTotal} ${property.BuildingAreaUnits}</div>`
+			: "";
+		const officeName = property.ListOfficeName || "N/A";
+		const mls = property.ListingKey || "N/A";
+		const modificationDate = property.ModificationTimestamp ? new Date(property.ModificationTimestamp).toLocaleDateString() : "N/A";
+
+		const width = "300px";
+		const imgHeight = "200px";
+		const fontSize = "1.5rem";
+		const padding = "1rem";
+		const marginBottom = "10px";
+
+		return `<div data-index="${index}" style="width: ${width}; font-family: Arial, sans-serif; border: 1px solid #dee2e6; border-radius: 0.375rem; overflow: hidden; margin-bottom: ${marginBottom};">
+		<div style="position: relative;"">
+		<img id="img-${carouselId}" src="${currentSrc}" data-images='${imagesJson}' data-current="0" alt="Property image" onerror="this.src='/images/commercial_no_Image.jpg'" style="width: 100%; height: ${imgHeight}; object-fit: cover;">
+				${controls}
+		</div>
+		<div style="padding: ${padding};">
+				<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+					<p style="margin: 0; font-size: ${fontSize}; font-weight: 600;">${priceFormatted}</p>
+					<span style="font-weight: 600;">${property.PropertySubType || "N/A"}</span>
+					</div>
+					<span style="display: inline-block; padding: 0.25rem 0.5rem; background-color: #007bff; color: white; border-radius: 0.25rem; font-size: 0.875rem;">${
+						property.TransactionType || "N/A"
+					}</span>
+			<p style="margin: 0.25rem 0; display: flex; align-items: center;"><i class="fa-solid fa-location-dot" style="margin-right: 0.5rem;"></i>
+			 ${property.UnparsedAddress || "N/A"}
+			 </p>
+			<div style="display: flex; justify-content: space-between; align-items: center;">
+				<div style="display: flex; align-items: center;">
+						${beds}${baths}${area}
+				</div>
+				<p style="margin: 0; padding-top: 0.5rem; font-weight: 600;">MLS® ${mls}</p>
+			</div>
+			<div style="display: flex; justify-content: space-between; align-items: center;">
+					<p style="margin: 0; padding-top: 0.5rem; font-weight: 600;">${officeName}</p>
+					<small style="color: #6c757d;">${modificationDate}</small>
+			</div>
+		</div>
+	</div>`;
 	}
 
-	selectProperty(property: PropertyModel): void {
+	selectProperty = (property: PropertyModel): void => {
 		if (property.IsFeatureListing) {
 			this.openDialog(property);
 		} else {
 			this.redirectToDetail(property);
 		}
-	}
+	};
 
 	redirectToDetail(property: PropertyModel): void {
 		// const currentTemplate = this.router.url.split("/")[1];
@@ -368,32 +385,132 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 		this.loadingService.loadingOn();
 		this.loadingSubject.next(true);
+
 		this.propertyService.searchProperties(params).subscribe({
 			next: async (response) => {
+				// console.log(response);
 				this.propertiesList = response;
 				this.markers = [];
 
-				this.initMap();
+				if (this.markerClusterer) {
+					this.markerClusterer.clearMarkers();
+				}
+
 				this.propertiesList.forEach(async (x) => {
-					this.markers.push({ position: { lat: x.Latitude, lng: x.Longitude }, property: x });
-					await this.renderMarker(x);
-				});
-				const { AdvancedMarkerElement } = await (google.maps.importLibrary("marker") as unknown as {
-					AdvancedMarkerElement: typeof google.maps.marker.AdvancedMarkerElement;
-				});
-
-				const markerClusterer = new MarkerClusterer({
-					map: this.map,
-					renderer: new DefaultRenderer(),
-					markers: this.markers.map(
-						(x) => new AdvancedMarkerElement({ position: x.position, content: this.buildContent(x.property) })
-					),
+					// console.log(x.Latitude, x.Longitude);
+					if (x.Latitude && x.Longitude) {
+						this.markers.push({ position: { lat: x.Latitude, lng: x.Longitude }, property: x });
+					}
 				});
 
-				//   markerClusterer.addListener("click", (e:any) => {
-				//     const data = e;
-				//     this.zoomToFitMarkers(e.markers.map((x:any) => ({ position: { lat: x.position.lat, lng: x.position.lng }, property: x.property })));
-				//  });
+				const markersForCluster = this.markers.map((markerData) => {
+					const svg = `
+						<svg fill="#fa1e6b" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+						<circle cx="120" cy="120" r="100" />
+						<text x="120" y="135" font-size="60" text-anchor="middle" fill="white">1</text>
+						</svg>`;
+
+					const marker = new google.maps.Marker({
+						position: markerData.position,
+						icon: {
+							url: `data:image/svg+xml;base64,${btoa(svg)}`,
+							scaledSize: new google.maps.Size(40, 40),
+						},
+					});
+
+					marker.set("property", markerData.property);
+
+					marker.addListener("click", () => {
+						const property = marker.get("property");
+						if (property) {
+							const content = this.buildPropertyContent(property);
+
+							this.openInfoWindow(marker, content, [property]);
+						}
+					});
+					return marker;
+				});
+
+				const renderer = {
+					render: (cluster: any, stats: any, map: any) => {
+						const count = cluster.count;
+						const position = cluster.position;
+
+						const price = count === 1 ? cluster.markers[0].get("property").ListPrice : 0;
+						const priceLabel = price > 0 ? `$${(price / 1000).toFixed(0)}K` : "";
+
+						const svg = `
+<svg fill="#fa1e6b" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+<circle cx="120" cy="120" r="100" />
+<text x="120" y="135" font-size="60" text-anchor="middle" fill="white">${count}</text>
+</svg>`;
+
+						const clusterMarker = new google.maps.Marker({
+							position,
+							icon: {
+								url: `data:image/svg+xml;base64,${btoa(svg)}`,
+								scaledSize: new google.maps.Size(40, 40),
+							},
+							map,
+						});
+
+						clusterMarker.addListener("mouseover", async () => {
+							let content = "";
+							if (count > 1) {
+								content = `<div class="cluster-info-content">`;
+								let i = 0;
+								cluster.markers.forEach((marker: any) => {
+									const property = marker.get("property");
+									if (property) {
+										content += this.buildPropertyContent(property, i);
+										i++;
+									}
+								});
+								content += `</div>`;
+							} else {
+								const property = cluster.markers[0].get("property");
+								if (property) {
+									content = this.buildPropertyContent(property, 0);
+								}
+							}
+							await this.openInfoWindow(
+								clusterMarker,
+								content,
+								count > 1
+									? cluster.markers
+											.map((m: any) => m.get("property") as PropertyModel)
+											.filter((p: PropertyModel | undefined) => p)
+									: [cluster.markers[0].get("property") as PropertyModel].filter((p: PropertyModel | undefined) => p)
+							);
+						});
+
+						clusterMarker.addListener("mouseout", () => {
+							setTimeout(() => {
+								if (this.previousInfoWindow && !this.preventClose) {
+									this.previousInfoWindow.close();
+								}
+							}, 100);
+						});
+
+						clusterMarker.addListener("click", () => {
+							if (count > 1) {
+								map.fitBounds(cluster.bounds);
+							}
+						});
+
+						return clusterMarker;
+					},
+				};
+
+				if (!this.markerClusterer) {
+					this.markerClusterer = new MarkerClusterer({
+						map: this.map,
+						renderer: renderer,
+						algorithm: new SuperClusterAlgorithm({ minPoints: 2 }),
+					});
+				}
+
+				this.markerClusterer.addMarkers(markersForCluster);
 
 				this.zoomToFitMarkers();
 			},

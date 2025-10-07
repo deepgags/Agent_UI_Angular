@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 
 	@Input("showMapSearch") showMapSearch = true;
 
-	@Input("filters") filters: any = {
+	_filtersDefault: any = {
 		address: "",
 		property_type: "",
 		property_subtype: "",
@@ -32,6 +32,8 @@ export class SearchComponent implements OnInit {
 		sqFt: "",
 		distance: "20",
 	};
+
+	@Input("filters") filters: any = { ...this._filtersDefault };
 
 	private _cities: any = [];
 	cities: any = [];
@@ -139,6 +141,9 @@ export class SearchComponent implements OnInit {
 				this._allPropertySubTypes = response.propertySubTypes;
 				this.filters.property_type = response.propertyTypes[0].LookupValue;
 				this.filterPropertySubType();
+				setTimeout(() => {
+					this.setFiltersFromQueryParams();
+				}, 200);
 			},
 			error: (err) => {},
 			complete: () => {},
@@ -162,4 +167,28 @@ export class SearchComponent implements OnInit {
 			item.city?.toLowerCase().startsWith(event.query.toLowerCase())
 		);
 	}
+
+	setFiltersFromQueryParams = () => {
+		this.activatedRoute.queryParams.subscribe((params: any) => {
+			const { bathrooms, bedrooms, property_subtype, property_type } = params;
+			if (property_type) {
+				this.filters.property_type = property_type;
+				this.filterPropertySubType();
+			}
+			if (property_subtype) {
+				this.filters.property_subtype = property_subtype;
+			}
+
+			if (bathrooms) {
+				this.filters.bathrooms = bathrooms;
+			}
+			if (bedrooms) {
+				this.filters.bedrooms = bedrooms;
+			}
+		});
+	};
+
+	setPropetyType() {}
+
+	setPropertySubType() {}
 }
