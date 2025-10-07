@@ -11,7 +11,7 @@ import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
 	styleUrls: ["./t11-header.component.scss", "../t11.component.scss"],
 })
 export class T11HeaderComponent implements OnInit {
-	@Input("siteConfig") siteConfig: SiteConfig | null = null;
+	@Input("siteConfig") siteConfig: SiteConfig | any;
 
 	constructor() {}
 

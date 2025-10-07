@@ -11,7 +11,8 @@ import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
 	styleUrls: ["./t2-header.component.scss", "../t2.component.scss"],
 })
 export class T2HeaderComponent implements OnInit {
-	@Input("siteConfig") siteConfig: SiteConfig | null = null;
+	@Input("siteConfig") siteConfig: SiteConfig | any;
+
 	constructor() {}
 
 	ngOnInit(): void {}

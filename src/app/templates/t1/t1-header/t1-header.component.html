@@ -12,20 +12,21 @@
             height="66px" />
         </a> -->
       </div>
-      <div class="ms-4">
-         <h4 class="fw-semibold info">
+      <div class="">
+        <h4 class="fw-semibold info">
          {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
         </h4>
-        <p class="fw-normal fs-6">
-          (Real Estate Agent)
-        </p>
+							<p class="fw-semibold fs-6">{{ siteConfig.designation }}</p>
+        
       </div>
+
     </div>
   </div>
   <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
     <div class="d-flex justify-content-center">
       <div class="">
         <i class="fa-solid fa-phone info"></i>
+
       </div>
       <div class="ms-2">
         <p class="mb-0">
@@ -40,6 +41,7 @@
     <div class="d-flex justify-content-center ms-5">
       <div class="">
         <i class="fa-solid fa-envelope info"></i>
+
       </div>
       <div class="ms-2">
         <p class="mb-0">

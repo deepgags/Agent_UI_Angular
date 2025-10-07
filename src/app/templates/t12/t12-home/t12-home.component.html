@@ -17,7 +17,7 @@
 			<!-- Text Section -->
 			<div class="col-lg-6 col-12">
 				<p class="fs-2 mb-0 fw-semibold">Hi, I’m {{siteConfig.firstName}} {{siteConfig.lastName}}</p>
-				<p class="info fw-bold fs-5">Sales Representative</p>
+				<p class="info fw-bold fs-5">{{ siteConfig.designation}}</p>
 				<p class="fw-semibold mb-0">
 					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are
 					always in a position to make informed decisions.
@@ -27,13 +27,12 @@
 					quality services and keeping excellent relations with the clients.
 				</p>
 
-				<!-- Get in Touch Button -->
-				<button type="button"
-						class="btn search_btn me-2"
-						data-bs-toggle="modal"
-						data-bs-target="#exampleModal">
+					
+				<a 
+						class="btn search_btn"
+						[routerLink]="['/contact']">
 					Get in Touch
-				</button>
+				</a>
 
 			</div>
 
