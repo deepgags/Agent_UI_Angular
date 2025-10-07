@@ -29,19 +29,16 @@
 				<p class="fs-2 mb-0 fw-semibold ">
 					Hi, I’m {{siteConfig.firstName}}
 				</p>
-				<p class="fs-4 info">Sales Representative</p>
+				<p class="fs-4 info">{{ siteConfig.designation }}</p>
 				<p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to
 					insure that they are always in a position to make informed decisions.</p>
 				<p class="fw-semibold">
 					Every engagement is an opportunity to create a lasting impression and a forever client. Acharya is a well serving in real estate with the reputation of
 					providing quality services and keeping excellent relations with the clients. </p>
 
-				<!-- Button trigger modal -->
-				<a type="button"
-						class="btn search_btn"
-						[routerLink]="['contact']">
-					Get in Touch
-				</a>
+				<a class="btn search_btn" routerLink="/contact">
+  Get in Touch
+</a>
 
 			</div>
 			<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-end justify-content-center">
