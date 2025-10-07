@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
-import { SharedDataService } from "../../../services/shareddata.service";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
-import { CustomerModel } from "../../../models/CustomerModel";
 
 @Component({
 	selector: "app-t5-header",
@@ -13,13 +11,9 @@ import { CustomerModel } from "../../../models/CustomerModel";
 	styleUrls: ["./t5-header.component.scss", "../t5.component.scss"],
 })
 export class T5HeaderComponent implements OnInit {
-		customer!: CustomerModel | null;
-		siteConfig: SiteConfig = {} as SiteConfig;
+	@Input("siteConfig") siteConfig: SiteConfig | null = null;
 
-	constructor(private sharedDataService: SharedDataService) {}
+	constructor() {}
 
-	ngOnInit(): void {
-		this.siteConfig = this.sharedDataService.siteData();
-
-	}
+	ngOnInit(): void {}
 }
