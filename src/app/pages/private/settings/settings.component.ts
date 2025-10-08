@@ -330,15 +330,20 @@ export class SettingsComponent {
 			header: "Adjust Profile Image",
 			height: "80%",
 			width: "80%",
-			closable: false,
-			closeOnEscape: false,
+			closable: true,
+			closeOnEscape: true,
+			modal: true,
 			focusOnShow: false,
 			data: {
 				imageChangedEvent: event,
 			},
 		});
 		ref.onClose.subscribe((croppedImage: string) => {
-			this.primaryAgentProfileImage.next(croppedImage);
+			if (croppedImage) {
+				this.primaryAgentProfileImage.next(croppedImage);
+			} else {
+				this.primaryAgentProfileImage.next("");
+			}
 		});
 	}
 
@@ -347,15 +352,20 @@ export class SettingsComponent {
 			header: "Adjust Logo Image",
 			height: "80%",
 			width: "80%",
-			closable: false,
-			closeOnEscape: false,
+			closable: true,
+			closeOnEscape: true,
+			modal: true,
+			focusOnShow: false,
 			data: {
 				imageChangedEvent: event,
+				freeSelection: true,
 			},
 		});
 		ref.onClose.subscribe((croppedImage: string) => {
 			if (croppedImage) {
 				this.brokerageLogoImage.next(croppedImage);
+			} else {
+				this.brokerageLogoImage.next("");
 			}
 		});
 	}
@@ -365,8 +375,9 @@ export class SettingsComponent {
 			header: "Adjust Profile Image",
 			height: "80%",
 			width: "80%",
-			closable: false,
-			closeOnEscape: false,
+			closable: true,
+			closeOnEscape: true,
+			modal: true,
 			focusOnShow: false,
 			data: {
 				imageChangedEvent: event,
@@ -375,6 +386,8 @@ export class SettingsComponent {
 		ref.onClose.subscribe((croppedImage: string) => {
 			if (croppedImage) {
 				this.secondaryAgentProfileImage.next(croppedImage);
+			} else {
+				this.secondaryAgentProfileImage.next("");
 			}
 		});
 	}

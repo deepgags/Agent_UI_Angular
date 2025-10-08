@@ -1,4 +1,3 @@
-
 import { Component } from "@angular/core";
 
 import { ImageCroppedEvent, ImageCropperComponent, OutputFormat } from "ngx-image-cropper";
@@ -18,10 +17,7 @@ export class ImageDialogComponent {
 	isImageCroppingInProgress = false;
 	maintainRatio = true;
 	fileFormat: OutputFormat = "png";
-	constructor(
-		private ref: DynamicDialogRef,
-		private dialogConfig: DynamicDialogConfig
-	) {
+	constructor(private ref: DynamicDialogRef, private dialogConfig: DynamicDialogConfig) {
 		const { imageChangedEvent, freeSelection } = this.dialogConfig.data;
 		this.imageChangedEvent = imageChangedEvent;
 
