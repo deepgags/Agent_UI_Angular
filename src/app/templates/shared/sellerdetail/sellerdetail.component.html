@@ -13,12 +13,15 @@
 
 @if (!siteConfig.websiteSettings.sellingYourHouseText) {
 <div class="container"
-     [innerHTML]="sellerText"></div>
+     [innerHTML]="sellerText">
+    </div>
 }
 
 
 @if (siteConfig.websiteSettings.sellingYourHouseText) {
-<div>
-  <p [innerHTML]="siteConfig.websiteSettings.sellingYourHouseText"></p>
-</div>
+  <div class="container">
+    <div>
+      <p [innerHTML]="siteConfig.websiteSettings.sellingYourHouseText"></p>
+    </div>
+  </div>
 }

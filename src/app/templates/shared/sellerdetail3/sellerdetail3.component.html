@@ -10,11 +10,15 @@
 </div>
 
 @if (!siteConfig.websiteSettings.commonSellingMistakeText) {
-<div [innerHTML]="commonSellingMistakeText"></div>
+	<div class="container">
+		<div [innerHTML]="commonSellingMistakeText"></div>
+	</div>
 }
 
 @if (siteConfig.websiteSettings.commonSellingMistakeText) {
-<div>
-	<p [innerHTML]="siteConfig.websiteSettings.commonSellingMistakeText"></p>
-</div>
+	<div class="container">
+		<div>
+			<p [innerHTML]="siteConfig.websiteSettings.commonSellingMistakeText"></p>
+		</div>
+	</div>
 }
