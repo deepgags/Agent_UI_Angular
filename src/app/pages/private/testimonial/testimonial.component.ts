@@ -67,9 +67,9 @@ export class TestimonialComponent {
 	) {}
 
 	ngOnInit() {
-		this.getTestimonial();
 		this.siteConfig = this.sharedDataService.siteData();
 		this.siteId = this.sharedDataService.siteId();
+		this.getTestimonial();
 	}
 
 	getTestimonial() {
