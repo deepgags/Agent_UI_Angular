@@ -129,13 +129,13 @@
 							</div>
 							<div class="row">
 									<div class="col-lg-6 col-12">
+										<div class="bg-white shadow-sm">
+
 							<h6 class="text-muted  d-flex align-items-center">
 								<i class="fas fa-user-tie text-muted me-2"></i>
 								Primary Agent Picture
 							</h6>
 							<div class="upload-container p-3 border rounded bg-light">
-								<div class="row">
-									<div class="col">
 										<label class="form-label fw-semibold d-block"
 											   style="font-size: 14px">
 											<i class="fas fa-user-circle me-2"></i>
@@ -146,8 +146,11 @@
 											   class="form-control upload-btn w-100"
 											   id="profileImageUpload"
 											   accept="image/*" />
-									</div>
-									<div class="col">
+							</div>
+						</div>
+										</div>
+						
+									<div class="col-lg-6 col-12">
 										@if (primaryAgentProfileImageObservable | async; as primaryAgentProfileImage) {
 										<div class="mt-3 p-2 border rounded bg-white shadow-sm">
 											<div class="text-center">
@@ -159,9 +162,6 @@
 										</div>
 										}
 									</div>
-								</div>
-							</div>
-						</div>
 							</div>
 						</div>
 						<div class="mb-4 border p-3 rounded shadow-sm"
@@ -248,13 +248,12 @@
 								<div class="row mb-3">
 					
 						<div class="col-lg-6 col-12">
+							<div class="bg-white shadow-sm">
 							<h6 class="text-muted d-flex align-items-center">
 								<i class="fas fa-user-tie text-muted me-2"></i>
 								Secondary Agent Picture
 							</h6>
 							<div class="upload-container p-3 border rounded bg-light">
-								<div class="row">
-									<div class="col">
 										<label class="form-label fw-semibold d-block"
 											   style="font-size: 14px">
 											<i class="fas fa-user-circle me-2"></i>
@@ -265,8 +264,11 @@
 											   class="form-control upload-btn w-100"
 											   id="secondaryProfileImageUpload"
 											   accept="image/*" />
-									</div>
-									<div class="col">
+							</div>
+						</div>
+						</div>
+						
+									<div class="col-lg-6 col-12">
 										@if ( secondaryAgentProfileImageObservable | async; as secondaryAgentProfileImage )
 										{
 										<div class="mt-3 p-2 border rounded bg-white shadow-sm">
@@ -279,10 +281,6 @@
 										</div>
 										}
 									</div>
-								</div>
-							</div>
-						</div>
-
 					</div>
 						</div>
 
