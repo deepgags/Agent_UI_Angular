@@ -127,6 +127,42 @@
 									</div>
 								</div>
 							</div>
+							<div class="row">
+									<div class="col-lg-6 col-12">
+							<h6 class="text-muted  d-flex align-items-center">
+								<i class="fas fa-user-tie text-muted me-2"></i>
+								Primary Agent Picture
+							</h6>
+							<div class="upload-container p-3 border rounded bg-light">
+								<div class="row">
+									<div class="col">
+										<label class="form-label fw-semibold d-block"
+											   style="font-size: 14px">
+											<i class="fas fa-user-circle me-2"></i>
+											Profile Picture
+										</label>
+										<input type="file"
+											   (change)="onProfileImageChange($event)"
+											   class="form-control upload-btn w-100"
+											   id="profileImageUpload"
+											   accept="image/*" />
+									</div>
+									<div class="col">
+										@if (primaryAgentProfileImageObservable | async; as primaryAgentProfileImage) {
+										<div class="mt-3 p-2 border rounded bg-white shadow-sm">
+											<div class="text-center">
+												<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
+												<img [src]="primaryAgentProfileImage"
+													 class="rounded border image-preview"
+													 alt="Profile Picture Preview" />
+											</div>
+										</div>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+							</div>
 						</div>
 						<div class="mb-4 border p-3 rounded shadow-sm"
 							 formGroupName="secondaryAgent">
@@ -209,7 +245,45 @@
 									</div>
 								</div>
 							</div>
+								<div class="row mb-3">
+					
+						<div class="col-lg-6 col-12">
+							<h6 class="text-muted d-flex align-items-center">
+								<i class="fas fa-user-tie text-muted me-2"></i>
+								Secondary Agent Picture
+							</h6>
+							<div class="upload-container p-3 border rounded bg-light">
+								<div class="row">
+									<div class="col">
+										<label class="form-label fw-semibold d-block"
+											   style="font-size: 14px">
+											<i class="fas fa-user-circle me-2"></i>
+											Profile Picture
+										</label>
+										<input type="file"
+											   (change)="onSecondaryProfileImageChange($event)"
+											   class="form-control upload-btn w-100"
+											   id="secondaryProfileImageUpload"
+											   accept="image/*" />
+									</div>
+									<div class="col">
+										@if ( secondaryAgentProfileImageObservable | async; as secondaryAgentProfileImage )
+										{
+										<div class="mt-3 p-2 border rounded bg-white shadow-sm">
+											<div class="text-center">
+												<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
+												<img [src]="secondaryAgentProfileImage"
+													 class="rounded border image-preview"
+													 alt="Profile Picture Preview" />
+											</div>
+										</div>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
 
+					</div>
 						</div>
 
 						<div class="row">
@@ -297,86 +371,14 @@
 
 					</div>
 
-					<div class="row mb-3">
-						<div class="col-lg-6 col-12">
-							<h6 class="text-muted  d-flex align-items-center">
-								<i class="fas fa-user-tie text-muted me-2"></i>
-								Primary Agent Picture
-							</h6>
-							<div class="upload-container p-3 border rounded bg-light">
-								<div class="row">
-									<div class="col">
-										<label class="form-label fw-semibold d-block"
-											   style="font-size: 14px">
-											<i class="fas fa-user-circle me-2"></i>
-											Profile Picture
-										</label>
-										<input type="file"
-											   (change)="onProfileImageChange($event)"
-											   class="form-control upload-btn w-100"
-											   id="profileImageUpload"
-											   accept="image/*" />
-									</div>
-									<div class="col">
-										@if (primaryAgentProfileImageObservable | async; as primaryAgentProfileImage) {
-										<div class="mt-3 p-2 border rounded bg-white shadow-sm">
-											<div class="text-center">
-												<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
-												<img [src]="primaryAgentProfileImage"
-													 class="rounded border image-preview"
-													 alt="Profile Picture Preview" />
-											</div>
-										</div>
-										}
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6 col-12">
-							<h6 class="text-muted d-flex align-items-center">
-								<i class="fas fa-user-tie text-muted me-2"></i>
-								Secondary Agent Picture
-							</h6>
-							<div class="upload-container p-3 border rounded bg-light">
-								<div class="row">
-									<div class="col">
-										<label class="form-label fw-semibold d-block"
-											   style="font-size: 14px">
-											<i class="fas fa-user-circle me-2"></i>
-											Profile Picture
-										</label>
-										<input type="file"
-											   (change)="onSecondaryProfileImageChange($event)"
-											   class="form-control upload-btn w-100"
-											   id="secondaryProfileImageUpload"
-											   accept="image/*" />
-									</div>
-									<div class="col">
-										@if ( secondaryAgentProfileImageObservable | async; as secondaryAgentProfileImage )
-										{
-										<div class="mt-3 p-2 border rounded bg-white shadow-sm">
-											<div class="text-center">
-												<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
-												<img [src]="secondaryAgentProfileImage"
-													 class="rounded border image-preview"
-													 alt="Profile Picture Preview" />
-											</div>
-										</div>
-										}
-									</div>
-								</div>
-							</div>
-						</div>
 
-					</div>
-
-					<div class="mb-4">
+					<div class="mb-4 border p-3 rounded shadow-sm">
+						
+						
 						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
 							<i class="fas fa-building text-muted me-2"></i>
 							Brokerage Information
 						</h6>
-
-
 						<div class="row mt-4 justify-content-start align-items-start">
 							<div class="col-lg-6 col-12">
 								<label class="form-label fw-semibold d-block">
@@ -428,7 +430,7 @@
 						</div>
 					</div>
 
-					<div class="mb-4">
+					<div class="mb-4 border p-3 rounded shadow-sm">
 						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
 							<i class="fas fa-cog text-muted me-2"></i>
 							Website Settings
@@ -471,7 +473,7 @@
 					</div>
 
 
-					<div class="mb-4">
+					<div class="mb-4 border p-3 rounded shadow-sm">
 						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
 							<i class="fas fa-share-alt text-muted me-2"></i>
 							Social Media
