@@ -9,34 +9,179 @@
 					  name="brokerageForm"
 					  class="w-100"
 					  (ngSubmit)="save()">
-					<div class="mb-4">
+					<div class="">
 						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
 							<i class="fas fa-address-book text-muted me-2"></i>
 							Account Information
 						</h6>
-						<div class="row">
-							<div class="col-md-12 mb-3">
-								<p-iftalabel>
-									<input type="url"
-										   pInputText
-										   formControlName="siteUrl"
-										   placeholder="Website URL"
-										   class="form-control"
-										   id="siteUrl"
-										   required />
-									<label for="siteUrl">Website URL</label>
-								</p-iftalabel>
-								@if (siteUrl?.invalid && (siteUrl?.dirty || siteUrl?.touched)) {
-								<span class="error">
-									@if (siteUrl?.errors?.['required']) {
-									<span>Website URL is required</span>
-									} @if (siteUrl?.errors?.['pattern']) {
-									<span>Enter a valid website URL</span>
+						<div class="mb-4 border p-3 rounded shadow-sm">
+							<div class="row">
+								<div class="col-md-12 mb-3">
+									<p-iftalabel>
+										<input type="url"
+											   pInputText
+											   formControlName="siteUrl"
+											   placeholder="Website URL"
+											   class="form-control"
+											   id="siteUrl"
+											   required />
+										<label for="siteUrl">Website URL</label>
+									</p-iftalabel>
+									@if (siteUrl?.invalid && (siteUrl?.dirty || siteUrl?.touched)) {
+									<span class="error">
+										@if (siteUrl?.errors?.['required']) {
+										<span>Website URL is required</span>
+										} @if (siteUrl?.errors?.['pattern']) {
+										<span>Enter a valid website URL</span>
+										}
+									</span>
 									}
-								</span>
-								}
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6">
+									<div class="mb-3">
+										<p-iftalabel>
+											<p-inputmask mask="999-999-9999"
+														 formControlName="phoneNumber"
+														 styleClass="form-control"
+														 inputId="phoneNumber"></p-inputmask>
+											<label for="phoneNumber">Phone Number</label>
+										</p-iftalabel>
+										@if (phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)) {
+										<span class="error">
+											@if (phoneNumber?.errors?.['required']) {
+											<span>Phone Number is required</span>
+											} @if (phoneNumber?.errors?.['pattern']) {
+											<span>Enter a valid phone number</span>
+											}
+										</span>
+										}
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mb-3">
+										<p-iftalabel>
+											<input type="email"
+												   pInputText
+												   formControlName="emailAddress"
+												   placeholder="Personal Email"
+												   class="form-control"
+												   id="emailAddress"
+												   required />
+											<label for="emailAddress">Personal Email</label>
+										</p-iftalabel>
+										@if (emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)) {
+										<span class="error">
+											@if (emailAddress?.errors?.['required']) {
+											<span>Email Address is required</span>
+											} @if (emailAddress?.errors?.['email']) {
+											<span>Enter a valid email address</span>
+											}
+										</span>
+										}
+									</div>
+								</div>
+							</div>
+	
+							<div class="row">
+								<div class="col-md-6">
+									<div class="mb-3">
+										<p-iftalabel>
+											<input type="text"
+												   pInputText
+												   formControlName="businessName"
+												   placeholder="Business Name"
+												   class="form-control"
+												   id="businessName"
+												   required />
+											<label for="businessName">Brokerage Name</label>
+										</p-iftalabel>
+										@if (businessName?.invalid && (businessName?.dirty || businessName?.touched)) {
+										<span class="error">
+											@if (businessName?.errors?.['required']) {
+											<span>Brokerage Name is required</span>
+											}
+										</span>
+										}
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mb-3">
+										<p-iftalabel>
+											<input type="text"
+												   pInputText
+												   formControlName="address"
+												   placeholder="Brokerage Address"
+												   class="form-control"
+												   id="address" />
+											<label for="address">Brokerage Address</label>
+										</p-iftalabel>
+									</div>
+								</div>
 							</div>
 						</div>
+
+							<div class="mb-4 border p-3 rounded shadow-sm">
+						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
+							<i class="fas fa-building text-muted me-2"></i>
+							Brokerage Information
+						</h6>
+						<div class="row mt-4 justify-content-start align-items-start">
+							<div class="col-lg-6 col-12">
+								<label class="form-label fw-semibold d-block">
+									Brokerage
+								</label>
+								<div class="mb-3">
+									<p-iftalabel>
+										<p-select formControlName="brokerageType"
+												  [options]="brokerageTypes"
+												  optionLabel="name"
+												  optionValue="_id"
+												  styleClass="w-100"
+												  inputId="brokerageType"></p-select>
+										<label for="brokerageType">Brokerage</label>
+									</p-iftalabel>
+									@if (brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)) {
+									<span class="error">
+										@if (brokerageType?.errors?.['required']) {
+										<span>Brokerage is required</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-start align-items-start">
+							
+							<div class="col-lg-6 col-12">
+								<div class="upload-container mb-3 mb-md-0 bg-light">
+										<label class="form-label fw-semibold d-block">
+											Brokerage Logo
+										</label>
+										<input type="file"
+											   (change)="onBrokerageLogoImageChange($event)"
+											   class="form-control upload-btn w-100"
+											   id="logoImageUpload"
+											   accept="image/*" />
+										
+								</div>
+							</div>
+							<div class="col-lg-6 col-12">
+								@if (brokerageLogoImageObservable | async; as logoImage) {
+										<div class="mt-3">
+											<div class="text-center">
+												<h6 class="text-dark fw-bold mb-2">Logo Preview</h6>
+												<img [src]="logoImage"
+													 class="rounded border image-preview"
+													 alt="Logo Preview" />
+											</div>
+										</div>
+										}
+							</div>
+						</div>
+					</div>
 
 						<div class="mb-4 border p-3 rounded shadow-sm">
 							<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
@@ -164,6 +309,7 @@
 									</div>
 							</div>
 						</div>
+						
 						<div class="mb-4 border p-3 rounded shadow-sm"
 							 formGroupName="secondaryAgent">
 							<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
@@ -284,149 +430,10 @@
 					</div>
 						</div>
 
-						<div class="row">
-							<div class="col-md-6">
-								<div class="mb-3">
-									<p-iftalabel>
-										<p-inputmask mask="999-999-9999"
-													 formControlName="phoneNumber"
-													 styleClass="form-control"
-													 inputId="phoneNumber"></p-inputmask>
-										<label for="phoneNumber">Phone Number</label>
-									</p-iftalabel>
-									@if (phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)) {
-									<span class="error">
-										@if (phoneNumber?.errors?.['required']) {
-										<span>Phone Number is required</span>
-										} @if (phoneNumber?.errors?.['pattern']) {
-										<span>Enter a valid phone number</span>
-										}
-									</span>
-									}
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-3">
-									<p-iftalabel>
-										<input type="email"
-											   pInputText
-											   formControlName="emailAddress"
-											   placeholder="Personal Email"
-											   class="form-control"
-											   id="emailAddress"
-											   required />
-										<label for="emailAddress">Personal Email</label>
-									</p-iftalabel>
-									@if (emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)) {
-									<span class="error">
-										@if (emailAddress?.errors?.['required']) {
-										<span>Email Address is required</span>
-										} @if (emailAddress?.errors?.['email']) {
-										<span>Enter a valid email address</span>
-										}
-									</span>
-									}
-								</div>
-							</div>
-						</div>
-
-						<div class="row mt-4">
-							<div class="col-md-6">
-								<div class="mb-3">
-									<p-iftalabel>
-										<input type="text"
-											   pInputText
-											   formControlName="businessName"
-											   placeholder="Business Name"
-											   class="form-control"
-											   id="businessName"
-											   required />
-										<label for="businessName">Brokerage Name</label>
-									</p-iftalabel>
-									@if (businessName?.invalid && (businessName?.dirty || businessName?.touched)) {
-									<span class="error">
-										@if (businessName?.errors?.['required']) {
-										<span>Brokerage Name is required</span>
-										}
-									</span>
-									}
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-3">
-									<p-iftalabel>
-										<input type="text"
-											   pInputText
-											   formControlName="address"
-											   placeholder="Brokerage Address"
-											   class="form-control"
-											   id="address" />
-										<label for="address">Brokerage Address</label>
-									</p-iftalabel>
-								</div>
-							</div>
-						</div>
-
 					</div>
 
 
-					<div class="mb-4 border p-3 rounded shadow-sm">
-						
-						
-						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
-							<i class="fas fa-building text-muted me-2"></i>
-							Brokerage Information
-						</h6>
-						<div class="row mt-4 justify-content-start align-items-start">
-							<div class="col-lg-6 col-12">
-								<label class="form-label fw-semibold d-block">
-									Brokerage
-								</label>
-								<div class="mb-3">
-									<p-iftalabel>
-										<p-select formControlName="brokerageType"
-												  [options]="brokerageTypes"
-												  optionLabel="name"
-												  optionValue="_id"
-												  styleClass="w-100"
-												  inputId="brokerageType"></p-select>
-										<label for="brokerageType">Brokerage</label>
-									</p-iftalabel>
-									@if (brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)) {
-									<span class="error">
-										@if (brokerageType?.errors?.['required']) {
-										<span>Brokerage is required</span>
-										}
-									</span>
-									}
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="upload-container mb-3 mb-md-0 bg-light">
-									<div class="col-6">
-										<label class="form-label fw-semibold d-block">
-											Brokerage Logo
-										</label>
-										<input type="file"
-											   (change)="onBrokerageLogoImageChange($event)"
-											   class="form-control upload-btn w-100"
-											   id="logoImageUpload"
-											   accept="image/*" />
-										@if (brokerageLogoImageObservable | async; as logoImage) {
-										<div class="mt-3">
-											<div class="text-center">
-												<h6 class="text-dark fw-bold mb-2">Logo Preview</h6>
-												<img [src]="logoImage"
-													 class="rounded border image-preview"
-													 alt="Logo Preview" />
-											</div>
-										</div>
-										}
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+				
 
 					<div class="mb-4 border p-3 rounded shadow-sm">
 						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
