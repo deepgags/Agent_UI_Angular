@@ -34,16 +34,11 @@
 						</div>
 						<div class="col-md-6">
 							<div class="card-body">
-								<h5 class="card-title mb-3 fw-semibold">
+								<h5 class="card-title fw-semibold">
 									{{ siteConfig.secondaryAgent?.firstName }} {{ siteConfig.secondaryAgent?.lastName }}
 								</h5>
 								<p class="card-text fw-semibold">{{ siteConfig.secondaryAgent?.designation}}</p>
-								<p class="card-text text-muted mb-3">
-									Lorem ipsum dolor sit amet,
-									<br />
-									consectetur adipiscing elit.
-								</p>
-								<div class="mb-3">
+								<div class="">
 									<div class="d-flex mb-2">
 										<div class="">
 											<i class="fa-solid fa-phone info"></i>
@@ -107,20 +102,15 @@
 						</div>
 						<div class="col-md-6">
 							<div class="card-body">
-								<h5 class="card-title mb-3 fw-semibold">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-								<p class="card-text fw-semibold mb-3">{{ siteConfig.designation}}</p>
-								<p class="card-text text-muted mb-3">
-									Lorem ipsum dolor sit amet,
-									<br />
-									consectetur adipiscing elit.
-								</p>
-								<div class="mb-3">
-									<div class="d-flex mb-2">
+								<h5 class="card-title fw-semibold">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
+								<p class="card-text fw-semibold">{{ siteConfig.designation}}</p>
+								<div class="">
+									<div class="d-flex">
 										<div class="">
 											<i class="fa-solid fa-phone info"></i>
 										</div>
 										<div class="ms-2">
-											<p>
+											<p class="">
 												<a class="text-dark fw-semibold text-decoration-none"
 												   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
 													{{ siteConfig.websiteSettings.contactInfo.phone | phone }}

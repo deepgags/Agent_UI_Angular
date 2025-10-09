@@ -22,7 +22,21 @@
 
     </div>
   </div>
-  <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
+
+    <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
+    @if (siteConfig) {
+      <a
+        [routerLink]="['home']"
+        >
+        <img
+          [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+          alt="No brokerage logo"
+          height="66px" />
+      </a>
+    }
+  </div>
+
+  <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-end">
     <div class="d-flex justify-content-center">
       <div class="">
         <i class="fa-solid fa-phone info"></i>
@@ -53,18 +67,6 @@
         </p>
       </div>
     </div>
-  </div>
-  <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-    @if (siteConfig) {
-      <a
-        [routerLink]="['home']"
-        >
-        <img
-          [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-          alt="No brokerage logo"
-          height="66px" />
-      </a>
-    }
   </div>
 </div>
 </div>
