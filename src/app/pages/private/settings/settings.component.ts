@@ -290,7 +290,7 @@ export class SettingsComponent {
 				businessName: businessName,
 				firstName: firstName,
 				lastName: lastName,
-				address: address,
+
 				brokerageTypeId: brokerageType,
 				designation,
 				websiteSettings: {
@@ -307,6 +307,7 @@ export class SettingsComponent {
 					contactInfo: {
 						email: websiteEmail,
 						phone: websitePhone,
+						address: address,
 					},
 					profileImage: this.primaryAgentProfileImage.value ? this.primaryAgentProfileImage.value : this.existingProfileImage,
 					brokerageImage: this.brokerageLogoImage.value,
