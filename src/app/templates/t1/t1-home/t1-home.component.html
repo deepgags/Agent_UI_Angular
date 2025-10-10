@@ -8,7 +8,7 @@
 			 style="width: 15rem">
 			<div class="card-body">
 				<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-				<p class="card-text text-white">{{ siteConfig.designation}}</p>
+						<p class="card-text text-white">{{ siteConfig.designation}}</p>
 				<div class="d-flex">
 					<div class="">
 						<i class="fa-solid fa-phone info"></i>
@@ -26,6 +26,7 @@
 				<div class="d-flex">
 					<div class="">
 						<i class="fa-solid fa-envelope info"></i>
+
 					</div>
 					<div class="ms-2 mt-1">
 						<p>
@@ -39,48 +40,50 @@
 			</div>
 		</div>
 	</div>
-	@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-				<div class="">
-					<img [src]="siteConfig.secondaryAgent.profileImage ? siteConfig.secondaryAgent.profileImage : '/images/Nologo.png'"
-						 alt="No profile image"
-						 class="overlay-image position-absolute man" />
-					<div class="card position-absolute man-card"
-						 style="width: 18rem">
-						<div class="card-body">
-							<h5 class="card-head text-white mb-1">
-								{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
-							</h5>
-							<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation}}</p>
-							<div class="d-flex">
-								<div class="">
-									<i class="fa-solid fa-phone info"></i>
-								</div>
-								<div class="ms-2">
-									<p class="mb-0">
-										<a class="text-white fw-semibold text-decoration-none"
-										   [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
-											{{ siteConfig.secondaryAgent.websitePhone | phone }}
-										</a>
-									</p>
-								</div>
-							</div>
-							<div class="d-flex">
-								<div class="">
-									<i class="fa-solid fa-envelope info"></i>
-								</div>
-								<div class="ms-2 mt-1">
-									<p>
-										<a class="text-white fw-semibold text-decoration-none"
-										   [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
-											{{ siteConfig.secondaryAgent.websiteEmail }}
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
+
+	<div class="second">
+			@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
+
+		<img [src]="siteConfig.secondaryAgent?.profileImage ? siteConfig.secondaryAgent?.profileImage : '/images/Nologo.png'"
+			 alt="No profile image"
+			 class="overlay-image2" />
+		<div class="card position-absolute man_card2"
+			 style="width: 15rem">
+			<div class="card-body">
+				<h5 class="card-head text-white">{{ siteConfig.secondaryAgent?.firstName }} {{ siteConfig.secondaryAgent?.lastName }}</h5>
+						<p class="card-text text-white">{{ siteConfig.secondaryAgent?.designation}}</p>
+				<div class="d-flex">
+					<div class="">
+						<i class="fa-solid fa-phone info"></i>
+
+					</div>
+					<div class="ms-2">
+						<p class="mb-0">
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'tel:' + siteConfig.secondaryAgent?.websitePhone">
+								{{ siteConfig.secondaryAgent?.websitePhone | phone }}
+							</a>
+						</p>
 					</div>
 				</div>
-				}
+				<div class="d-flex">
+					<div class="">
+						<i class="fa-solid fa-envelope info"></i>
+
+					</div>
+					<div class="ms-2 mt-1">
+						<p>
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'mailto:' + siteConfig.secondaryAgent?.websiteEmail">
+								{{ siteConfig.secondaryAgent?.websiteEmail }}
+							</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+			}
+	</div>
 </div>
 
 	<div class="container-fluid menu_img">
