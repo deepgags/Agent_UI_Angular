@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from "@angular/core"; // Added OnDestroy
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
@@ -40,7 +40,7 @@ import { SearchComponent } from "../search/search.component";
 })
 export class FeaturedListingsComponent implements OnInit {
 	imageUrl = environment.imageUrl;
-	propertiesList: PropertyModel[] | undefined;
+	propertiesList: PropertyModel[] = [];
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
 	pageSize: number = 12;
@@ -66,7 +66,8 @@ export class FeaturedListingsComponent implements OnInit {
 		public loadingService: LoadingService,
 		private titleService: Title,
 		private sharedDataService: SharedDataService,
-		private dialogService: DialogService
+		private dialogService: DialogService,
+		private cdr: ChangeDetectorRef
 	) {
 		this.titleService.setTitle("Search Properties");
 	}
@@ -143,12 +144,16 @@ export class FeaturedListingsComponent implements OnInit {
 			siteId: this.siteId,
 		};
 
-		this.loadingService.loadingOn();
+		// this.loadingService.loadingOn();
 		this.propertyService.featuredProperties(params).subscribe({
 			next: (response) => {
 				this.propertiesList = response;
+				// this.loadingService.loadingOff();
+				this.cdr.detectChanges();
 			},
-			error: (err) => {},
+			error: (err) => {
+				// this.loadingService.loadingOff();
+			},
 			complete: () => {},
 		});
 		return event;
