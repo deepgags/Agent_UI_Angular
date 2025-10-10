@@ -54,9 +54,9 @@
 								<p class="fw-semibold fs-6">{{ siteConfig.secondaryAgent.designation }}</p>
 	
 						<p class="mb-2">
-							<i class="bi bi-geo-alt-fill info me-2"></i>
-							22 Slan Ave, Scarborough , M1G 3B2
-						</p>
+						<i class="bi bi-geo-alt-fill info me-2"></i>
+						{{ siteConfig.websiteSettings.contactInfo.address}}
+					</p>
 						<p class="mb-2">
 							<i class="bi bi-telephone-fill info me-2"></i>
 							<a class="text-dark fw-semibold text-decoration-none"
@@ -78,8 +78,13 @@
 				<div class="mt-3">
 					<h6 class="fw-bold info">Follow Us</h6>
 							<div class="d-flex gap-2">
-								<a href="#"
-								   class="btn btn-light border"><i class="bi bi-facebook info"></i></a>
+								@if(siteConfig.websiteSettings.socialLinks.facebook){
+
+									<a [href]="siteConfig.websiteSettings.socialLinks.facebook"
+									   class="btn btn-light border"><i class="bi bi-facebook info"></i>
+									
+									</a>
+								}
 								<a href="#"
 								   class="btn btn-light border"><i class="bi bi-twitter info"></i></a>
 								<a href="#"
