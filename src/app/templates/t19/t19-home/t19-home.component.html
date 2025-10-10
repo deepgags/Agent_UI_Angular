@@ -71,95 +71,130 @@
 </div>
 
 <div class="container-fluid search-container">
-	<div class="container py-lg-5 p-lg-0 p-4">
-		<p class="text text-center py-3 fw-semibold">
-			Find Properties in These Cities
-		</p>
-		<div class="row">
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Brampton'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Brampton</div>
-
-				</div>
-			</div>
-		</div>
-
-		<div class="row mt-3">
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Milton'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({address:'Brampton'})">
-					<img class="w-100 rounded-3"
-						 src="t8/images/pro2.png"
-						 alt="">
-					<div class="image-text">Brampton</div>
-
-				</div>
-			</div>
-		</div>
-
+	<div class="container">
+	<div class="py-5">
+		<h2 class="text-center">Find Properties in These Cities</h2>
 	</div>
+	<div class="row">
+		<div class="col-12 col-lg-4 mouse">
+			<div class="card mb-3"
+				 (click)="searchProperties({address:'Toronto'})">
+				<div class="row g-0">
+					<div class="col-md-5">
+						<div>
+							<img src="./t10/images/proToronto.png"
+								 class="img-fluid prop-img rounded-start"
+								 alt="...">
+						</div>
+					</div>
+					<div class="col-md-7 d-flex align-items-center justify-content-center">
+						<div class="card-body text-center">
+							<h4 class="card-title m-0">Toronto</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-4 mouse">
+			<div class="card mb-3"
+				 (click)="searchProperties({address:'Brampton'})">
+				<div class="row g-0">
+					<div class="col-md-5">
+						<div>
+							<img src="./t10/images/proBrampton.png"
+								 class="img-fluid prop-img rounded-start"
+								 alt="...">
+						</div>
+					</div>
+					<div class="col-md-7 d-flex align-items-center justify-content-center">
+						<div class="card-body text-center">
+							<h4 class="card-title m-0">Brampton</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-4 mouse">
+			<div class="card mb-3"
+				 (click)="searchProperties({address:'Milton'})">
+				<div class="row g-0">
+					<div class="col-md-5">
+						<div>
+							<img src="./t10/images/proMilton.png"
+								 class="img-fluid prop-img rounded-start"
+								 alt="...">
+						</div>
+					</div>
+					<div class="col-md-7 d-flex align-items-center justify-content-center">
+						<div class="card-body text-center">
+							<h4 class="card-title m-0">Milton</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12 col-lg-4 mouse">
+			<div class="card mb-3"
+				 (click)="searchProperties({address:'Mississauga'})">
+				<div class="row g-0">
+					<div class="col-md-5">
+						<div>
+							<img src="./t10/images/proMississuaga.png"
+								 class="img-fluid prop-img rounded-start"
+								 alt="...">
+						</div>
+					</div>
+					<div class="col-md-7 d-flex align-items-center justify-content-center">
+						<div class="card-body text-center">
+							<h4 class="card-title m-0">Mississauga</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-4 mouse">
+			<div class="card mb-3"
+				 (click)="searchProperties({address:'Montreal'})">
+				<div class="row g-0">
+					<div class="col-md-5">
+						<div>
+							<img src="./t10/images/proMontreal.png"
+								 class="img-fluid prop-img rounded-start"
+								 alt="...">
+						</div>
+					</div>
+					<div class="col-md-7 d-flex align-items-center justify-content-center">
+						<div class="card-body text-center">
+							<h4 class="card-title m-0">Montreal</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-4 mouse">
+			<div class="card mb-3"
+				 (click)="searchProperties({address:'Ottawa'})">
+				<div class="row g-0">
+					<div class="col-md-5">
+						<div>
+							<img src="./t10/images/proOttawa.png"
+								 class="img-fluid prop-img rounded-start"
+								 alt="...">
+						</div>
+					</div>
+					<div class="col-md-7 d-flex align-items-center justify-content-center">
+						<div class="card-body text-center">
+							<h4 class="card-title m-0">Ottawa</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </div>
 
 <div class="container py-lg-5 p-lg-0 p-4 search-container">

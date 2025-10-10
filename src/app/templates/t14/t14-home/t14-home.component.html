@@ -48,7 +48,7 @@
 				</div>
 			</div>
 
-			@if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
+			@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent)  {
 			<div class="second">
 				<img [src]="siteConfig.secondaryAgent.profileImage ? siteConfig.secondaryAgent.profileImage : '/images/Nologo.png'"
 					 alt="No profile image"
