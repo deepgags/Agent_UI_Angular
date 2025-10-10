@@ -1,5 +1,5 @@
 <div class="background-container">
-	<div class="container">
+	<div class="container search-container">
 		<div class=" top-padding">
 			<div class="">
 				<div class="">
@@ -19,7 +19,7 @@
 						<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
 						<div class="d-flex">
 							<div class="">
-								<i class="fa-solid fa-phone info"></i>
+							<i class="bi bi-telephone-fill info"></i>
 
 							</div>
 							<div class="ms-2">
@@ -33,7 +33,8 @@
 						</div>
 						<div class="d-flex">
 							<div class="">
-								<i class="fa-solid fa-envelope info"></i>
+							  <i class="bi bi-envelope-at-fill info"></i>
+
 							</div>
 							<div class="ms-2 mt-1">
 								<p>
@@ -168,7 +169,7 @@
 			<h2 class=" fw-semibold">
 				"Enjoy a clear and simple <br> home-buying experience"
 			</h2>
-			<p class="info fs-4">Real Estate Specialist Name</p>
+			<p class="info fs-4">Real Estate Specialist {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
 			<p class=" fw-normal">
 				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
 				educate and prepare my clients to insure that they are always in a position to make informed decisions.

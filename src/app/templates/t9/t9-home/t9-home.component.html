@@ -32,7 +32,7 @@
 			</div>
 			<div class="col-lg-6 col-12">
 				<p class="fs-2 mb-0 fw-semibold ">
-					Hi, I’m {{siteConfig.firstName}}
+					Hi, I’m {{siteConfig.firstName}} {{siteConfig.lastName}}
 				</p>
 				<p class="fs-4 info">{{ siteConfig.designation}}</p>
 				<p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to
@@ -55,57 +55,57 @@
 </div>
 
 
-<div class="container  p-lg-0 p-4">
-	<p class="text text-center py-3 fw-semibold">Find Properties in These Cities</p>
-	<p class="text-center fw-normal"></p>
-	<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-		<div class="col">
-			<div class="pro_card"
-				 (click)="searchProperties({address:'Toronto'})">
-				<div class="content text-center">
-					<img class="img-fluid rounded mb-2"
-						 src="/t9/images/proToronto.png"
-						 alt="">
-					<p class="pro-card-text">Toronto</p>
+
+	<div class="container p-lg-0 p-4">
+		<p class="text text-center mb-0 fw-semibold">Find Properties in These Cities</p>
+		<p class="text-center fw-normal"></p>
+		<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+			<div class="col">
+				<div class="pro_card"
+					 (click)="searchProperties({ address: 'Toronto' })">
+					<div class="content text-center">
+						<img class="img-fluid rounded mb-2"
+							 src="/t2/images/Group 2.png"
+							 alt="" />
+						<p class="pro-card-text">Toronto</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col">
-			<div class="pro_card"
-				 (click)="searchProperties({address:'Milton'})">
-				<div class="content text-center">
-					<img class="img-fluid rounded mb-2"
-						 src="/t9/images/proMilton.png"
-						 alt="">
-					<p class="pro-card-text">Milton</p>
+			<div class="col">
+				<div class="pro_card"
+					 (click)="searchProperties({ address: 'Milton' })">
+					<div class="content text-center">
+						<img class="img-fluid rounded mb-2"
+							 src="/t2/images/Group 3.png"
+							 alt="" />
+						<p class="pro-card-text">Milton</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col">
-			<div class="pro_card"
-				 (click)="searchProperties({address:'Brampton'})">
-				<div class="content text-center">
-					<img class="img-fluid rounded mb-2"
-						 src="/t9/images/proBrampton.png"
-						 alt="">
-					<p class="pro-card-text">Brampton</p>
+			<div class="col">
+				<div class="pro_card"
+					 (click)="searchProperties({ address: 'Brampton' })">
+					<div class="content text-center">
+						<img class="img-fluid rounded mb-2"
+							 src="/t2/images/Group 4.png"
+							 alt="" />
+						<p class="pro-card-text">Brampton</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col">
-			<div class="pro_card"
-				 (click)="searchProperties({address:'Mississauga'})">
-				<div class="content text-center">
-					<img class="img-fluid rounded mb-2"
-						 src="/t9/images/proMississuaga.png"
-						 alt="">
-					<p class="pro-card-text">Mississauga</p>
+			<div class="col">
+				<div class="pro_card"
+					 (click)="searchProperties({ address: 'Mississauga' })">
+					<div class="content text-center">
+						<img class="img-fluid rounded mb-2"
+							 src="/t2/images/Group 5.png"
+							 alt="" />
+						<p class="pro-card-text">Mississauga</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-</div>
 
 <div class="container-fluid  py-5">
 	<div class="container bg-white">

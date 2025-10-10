@@ -13,29 +13,30 @@
 	</div>
 </div>
 
-<div class="container-fluid sec-3 p-5 search-container">
+<div class="container-fluid  p-5 search-container">
 
-	<div class="container search-container">
+	<div class="container">
 		<div class="row justify-content-center align-items-center">
-			<div class="col-lg-6 col-12 py-lg-0 py-3  d-flex justify-content-lg-start justify-content-center">
+			
+				<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-start justify-content-center">
 				<div class="">
 
 					<div class="position-relative d-inline-block">
-						<img class="img-fluid mobile-view"
-							 src="./t9/images/profile-bg.png"
-							 alt="profile-bg">
+
 						<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
 							 alt="No profile image"
-							 class="position-absolute top-50 start-50 translate-middle mob_pic overlay-image"
-							 style="width: 360px; height: 367px;">
+							 class=" mob_pic"
+							 style=" height: 367px;">
 					</div>
+
 				</div>
 			</div>
+
 			<div class="col-lg-6 col-12">
 				<p class="fs-2 mb-0 fw-semibold ">
 					Hi, I’m {{siteConfig.firstName}} {{siteConfig.lastName}}
 				</p>
-				<p class="fs-4 info">Sales Representative</p>
+				<p class="fs-4 info">{{ siteConfig.designation}}</p>
 				<p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to
 					insure that they are always in a position to make informed decisions.</p>
 				<p class="fw-semibold">
@@ -43,12 +44,11 @@
 					providing quality services and keeping excellent relations with the clients. </p>
 
 				<!-- Button trigger modal -->
-				<button type="button"
+				<a 
 						class="btn search_btn"
-						data-bs-toggle="modal"
-						data-bs-target="#exampleModal">
+						routerLink="/contact">
 					Get in Touch
-				</button>
+				</a>
 
 			</div>
 		</div>
@@ -121,7 +121,7 @@
 			<h2 class=" fw-semibold">
 				"Enjoy a clear and simple <br> home-buying experience"
 			</h2>
-			<p class="info fs-4">Real Estate Specialist Name</p>
+			<p class="info fs-4">Real Estate Specialist {{siteConfig.firstName}} {{siteConfig.lastName}}</p>
 			<p class=" fw-normal">
 				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
 				educate and prepare my clients to insure that they are always in a position to make informed decisions.
@@ -141,7 +141,7 @@
 <div class="container-fluid sec-3 search-container">
 	<div class="container">
 		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
-			<div class="col-12 mt-5 mt-lg-0 p-4">
+			<div class="col-12 col-lg-6 mt-5 mt-lg-0 p-4">
 				<!-- <h4 class="card-title info text-center">Get a free consultation</h4> -->
 				<div class="card shadow">
 					<div class="card-body">
