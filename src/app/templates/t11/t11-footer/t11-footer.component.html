@@ -3,96 +3,95 @@
     <footer class="py-5">
       <div class="row justify-content-center align-items-center  border-bottom pb-3 mb-3 ">
         <div class="mb-3 col-lg-6 col-12 d-flex flex-column align-items-start mb-lg-0">
-            <div class="mb-2">
-              @if (siteConfig) {
-      <a
-        [routerLink]="['home']"
-        >
-        <img
-          [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-          alt="No brokerage logo"
-          height="66px" />
-      </a>
-    }
+          <div class="mb-2">
+            @if (siteConfig) {
+            <a [routerLink]="['home']">
+              <img [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+                   alt="No brokerage logo"
+                   height="66px" />
+            </a>
+            }
           </div>
           <div class="">
             <h5 class="text-white">{{ siteConfig?.brokerage?.name}}</h5>
-            
+
           </div>
 
-      </div>
-      <div class="mb-3 col-lg-2 col-12 mb-lg-0">
-        <!-- @if (siteConfig?.websiteSettings?.contactInfo?.address) {
+        </div>
+        <div class="mb-3 col-lg-2 col-12 mb-lg-0">
+          <!-- @if (siteConfig?.websiteSettings?.contactInfo?.address) {
           <p class="text-center fs-3 fw-semibold">Address</p>
         }
         <p class="text-center  small">
           {{siteConfig?.websiteSettings?.contactInfo?.address}}
         </p> -->
-      </div>
-      <div class="mb-3 col-lg-4 col-12 mb-lg-0  justify-content-between footer-contact">
-        <div class="mb-1">
-          <p class="text-center fs-4 fw-semibold mb-0">Contact</p>
-          @if (siteConfig?.websiteSettings?.contactInfo?.phone) {
+        </div>
+        <div class="mb-3 col-lg-4 col-12 mb-lg-0  justify-content-between footer-contact">
+          <div class="mb-1">
+            <p class="text-center fs-4 fw-semibold mb-0">Contact</p>
+            @if (siteConfig?.websiteSettings?.contactInfo?.phone) {
             <div class=" d-flex justify-content-center align-items-center">
               <div class="">
                 <i class="fa-solid fa-phone info"></i>
               </div>
               <div class="ms-2">
                 <p class="mb-0">
-                  <a class="text-white fw-semibold small text-decoration-none pop" href="tel:{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}">{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}</a>
+                  <a class="text-white fw-semibold small text-decoration-none pop"
+                     href="tel:{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}">{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}</a>
                 </p>
               </div>
             </div>
-          }
-          <div class="d-flex justify-content-center align-items-center">
-            <div class="">
-              <i class="fa-solid fa-envelope info"></i>
-            </div>
-            <div class="ms-2">
-              <p class="mb-0">
-                <a class="text-white fw-semibold small text-decoration-none pop" href="mailto:{{siteConfig?.websiteSettings?.contactInfo?.email}}">{{siteConfig?.websiteSettings?.contactInfo?.email}}
-                </a>
-              </p>
+            }
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="">
+                <i class="fa-solid fa-envelope info"></i>
+              </div>
+              <div class="ms-2">
+                <p class="mb-0">
+                  <a class="text-white fw-semibold small text-decoration-none pop"
+                     href="mailto:{{siteConfig?.websiteSettings?.contactInfo?.email}}">{{siteConfig?.websiteSettings?.contactInfo?.email}}
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-	@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-        <div class="">
-        
-          <div class=" d-flex justify-content-center align-items-center">
-            <div class="">
-              <i class="fa-solid fa-phone info"></i>
-            </div>
-            <div class="ms-2">
-              <p class="mb-0">
-                <a
-									class="text-white small fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig?.secondaryAgent?.websitePhone">
-									{{ siteConfig?.secondaryAgent?.websitePhone | phone }}
-								</a>
-              </p>
-            </div>
-          </div>
-        <div class="d-flex justify-content-center align-items-center">
+          @if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
           <div class="">
-            <i class="fa-solid fa-envelope info"></i>
+
+            <div class=" d-flex justify-content-center align-items-center">
+              <div class="">
+                <i class="fa-solid fa-phone info"></i>
+              </div>
+              <div class="ms-2">
+                <p class="mb-0">
+                  <a class="text-white small fw-semibold text-decoration-none"
+                     [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+                    {{ siteConfig.secondaryAgent.websitePhone | phone }}
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="">
+                <i class="fa-solid fa-envelope info"></i>
+              </div>
+              <div class="ms-2">
+                <p class="mb-0">
+                  <a class="text-white fw-semibold small text-decoration-none"
+                     [href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
+                    {{ siteConfig?.secondaryAgent?.websiteEmail }}
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
-          <div class="ms-2">
-            <p class="mb-0">
-              <a
-									class="text-white fw-semibold small text-decoration-none"
-									[href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
-									{{ siteConfig?.secondaryAgent?.websiteEmail }}
-								</a>
-            </p>
-          </div>
+          }
         </div>
-        </div>
-      }
       </div>
-    </div>
-    <p class="text-center text-white small">Copyright 2021 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information shown. The information provided herein must only be used by consumers that have a bona fide interest in the purchase, sale or lease of real estate and may not be used for any commercial purpose or any other purpose.</p>
-  </footer>
-</div>
+      <p class="text-center text-white small">Copyright 2021 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information
+        shown. The information provided herein must only be used by consumers that have a bona fide interest in the purchase, sale or lease of real estate and may not be used for
+        any commercial purpose or any other purpose.</p>
+    </footer>
+  </div>
 </div>
