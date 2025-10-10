@@ -164,8 +164,17 @@ export class SettingsComponent {
 			next: (response: any) => {
 				if (response.status) {
 					this.agentData = response.data;
-					const { businessName, firstName, lastName, emailAddress, phoneNumber, brokerageTypeId, websiteSettings, brokerage } =
-						response.data;
+					const {
+						businessName,
+						firstName,
+						lastName,
+						emailAddress,
+						phoneNumber,
+						brokerageTypeId,
+						websiteSettings,
+						brokerage,
+						designation,
+					} = response.data;
 
 					const {
 						primaryColor,
@@ -191,6 +200,7 @@ export class SettingsComponent {
 						phoneNumber: phoneNumber,
 						brokerageType: brokerageTypeId,
 						siteUrl: siteUrl,
+						designation: designation,
 					});
 
 					if (response.data.websiteSettings) {
