@@ -117,7 +117,7 @@
 			<div class="position-relative pro_card"
 				 (click)="searchProperties({address:'Milton'})">
 				<img class="w-100"
-					 src="t3/images/Group 5.png"
+					 src="t3/images/proMiltonPortrait1.png"
 					 alt="">
 				<p class="image-label position-absolute text-white m-0 fs-3">Milton</p>
 			</div>
@@ -147,7 +147,7 @@
 			<div class="position-relative pro_card"
 				 (click)="searchProperties({address:'Ottawa'})">
 				<img class="w-100"
-					 src="t3/images/Group 5.png"
+					 src="t3/images/proOttawaPortrait1.png"
 					 alt="">
 				<p class="image-label position-absolute text-white m-0 fs-3">Ottawa</p>
 			</div>
@@ -157,7 +157,7 @@
 			<div class=" position-relative pro_card"
 				 (click)="searchProperties({address:'Calgary'})">
 				<img class="w-100"
-					 src="t3/images/Group 2.png"
+					 src="t3/images/proCalgaryLandscape1.png"
 					 alt="" />
 				<p class="image-label position-absolute text-white m-0 fs-3">Calgary</p>
 			</div>
@@ -174,13 +174,13 @@
 				"Enjoy a clear and simple home-buying experience"
 			</p>
 			<div class="col">
-				<p class="estate text-center">Real Estate Specialist {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+				<p class="estate text-center">Real Estate {{ siteConfig.designation }} {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
 				<p class="text-center fw-semibold">
 					I believe every client has the right to be treated fairly,
 					honestly and with integrity. My aim is to educate and prepare my
 					clients to insure that they are always in a position to make
 					informed decisions.Every engagement is an opportunity to create a
-					lasting impression and a forever client. Acharya is a well serving
+					lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving
 					in real estate with the reputation of providing quality services
 					and keeping excellent relations with the clients. My intend to
 					provide our clients with the best personalized real estate
