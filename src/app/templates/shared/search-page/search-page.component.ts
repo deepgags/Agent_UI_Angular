@@ -58,6 +58,7 @@ export class SearchPageComponent implements OnInit {
 		sqFt: "",
 		distance: "20",
 		sort: "Most",
+		city: "",
 	};
 
 	sortDropDown = sortTypes;
@@ -80,11 +81,12 @@ export class SearchPageComponent implements OnInit {
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((params) => {
 			if (Object.keys(params).length > 0) {
+				debugger;
 				this.selectedFilters = {
 					...this.selectedFilters,
 					...params,
 				};
-				this.searchProperties(params);
+				this.searchProperties(this.selectedFilters);
 			}
 		});
 	}
@@ -139,6 +141,7 @@ export class SearchPageComponent implements OnInit {
 	}
 
 	searchProperties = (selectedFilters: any, event?: PageEvent) => {
+		debugger;
 		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;
 		this.pageSize = event?.pageSize ?? this.pageSize;
 
@@ -158,6 +161,7 @@ export class SearchPageComponent implements OnInit {
 			sqFt: stringiFy(selectedFilters.sqFt),
 			distance: stringiFy(selectedFilters.distance),
 			sort: sort,
+			city: stringiFy(selectedFilters.city),
 		};
 
 		this.loadingService.loadingOn();

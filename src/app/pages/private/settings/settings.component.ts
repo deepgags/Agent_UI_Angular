@@ -49,6 +49,7 @@ import { NotificationService } from "../../../services/notification.service";
 	providers: [DialogService],
 })
 export class SettingsComponent {
+	_fileSizeLimit = 2097152; //2MB
 	@ViewChild("brokerageLogoUpload", { static: false }) brokerageLogoUpload!: ElementRef<HTMLInputElement>;
 
 	agentForm!: FormGroup;
@@ -350,6 +351,11 @@ export class SettingsComponent {
 	}
 
 	onProfileImageChange(event: Event): void {
+		const file = (event.target as HTMLInputElement).files?.[0];
+		if (file && file.size > this._fileSizeLimit) {
+			this.notificationService.showError("File size must be less than 2MB");
+			return;
+		}
 		const ref = this.dialogService.open(ImageDialogComponent, {
 			header: "Adjust Profile Image",
 			height: "80%",
@@ -372,6 +378,11 @@ export class SettingsComponent {
 	}
 
 	onBrokerageLogoImageChange(event: Event): void {
+		const file = (event.target as HTMLInputElement).files?.[0];
+		if (file && file.size > this._fileSizeLimit) {
+			this.notificationService.showError("File size must be less than 2MB");
+			return;
+		}
 		const ref = this.dialogService.open(ImageDialogComponent, {
 			header: "Adjust Logo Image",
 			height: "80%",
@@ -402,6 +413,11 @@ export class SettingsComponent {
 	}
 
 	onSecondaryProfileImageChange(event: Event): void {
+		const file = (event.target as HTMLInputElement).files?.[0];
+		if (file && file.size > this._fileSizeLimit) {
+			this.notificationService.showError("File size must be less than 2MB");
+			return;
+		}
 		const ref = this.dialogService.open(ImageDialogComponent, {
 			header: "Adjust Profile Image",
 			height: "80%",

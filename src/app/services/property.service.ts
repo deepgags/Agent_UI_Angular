@@ -11,10 +11,7 @@ export class PropertyService {
 	query = signal<string>("");
 	private Apiurl: string = environment.baseUrl;
 
-	constructor(
-		private http: HttpClient,
-		@Inject(DOCUMENT) private document: Document,
-	) { }
+	constructor(private http: HttpClient, @Inject(DOCUMENT) private document: Document) {}
 
 	searchProperties(propertyParams: any): Observable<PropertyModel[]> {
 		const hostname = this.document.location.hostname;
@@ -34,14 +31,19 @@ export class PropertyService {
 			sqFt,
 			brokerageType,
 			sort,
+			city,
 		} = propertyParams;
 
 		return this.http
 			.get<PropertyModel[]>(
-				`${this.Apiurl}/properties?page=${page}&pageSize=${pageSize}&address=${address}
-      &property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(property_subtype)}&bedrooms=${bedrooms}
+				`${this.Apiurl}/properties?page=${page}&pageSize=${pageSize}&address=${address}&city=${city}
+      &property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(
+					property_subtype
+				)}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
-      &max_price=${max_price}&min_area=${sqFt}&brokerageType=${brokerageType ? brokerageType : ""}&sort=${sort}&domain=${hostname}`
+      &max_price=${max_price}&min_area=${sqFt}&brokerageType=${
+					brokerageType ? brokerageType : ""
+				}&sort=${sort}&domain=${hostname}`
 			)
 			.pipe(
 				map((result: any) => {
@@ -124,15 +126,19 @@ export class PropertyService {
 			sqFt,
 			brokerageType,
 			sort,
-			siteId
+			siteId,
 		} = propertyParams;
 
 		return this.http
 			.get<PropertyModel[]>(
 				`${this.Apiurl}/properties/featured?page=${page}&pageSize=${pageSize}&address=${address}
-      &property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(property_subtype)}&bedrooms=${bedrooms}
+      &property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(
+					property_subtype
+				)}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
-      &max_price=${max_price}&min_area=${sqFt}&brokerageType=${brokerageType ? brokerageType : ""}&sort=${sort}&domain=${hostname}`
+      &max_price=${max_price}&min_area=${sqFt}&brokerageType=${
+					brokerageType ? brokerageType : ""
+				}&sort=${sort}&domain=${hostname}`
 			)
 			.pipe(
 				map((result: any) => {
@@ -200,82 +206,84 @@ export class PropertyService {
 	}
 
 	getPropertyDetails(propertId: any, mlsId: any): Observable<PropertyModel> {
-		return this.http.get<PropertyModel>(`${environment.baseUrl}/properties/propertyinformation?id=${propertId}&mlsId=${mlsId}`).pipe(
-			map((result: any) => {
-				if (result && result.data) {
-					const property = result.data;
-					const propertyModel: PropertyModel = {
-						_id: property._id,
-						// BuildingName: property.BuildingName,
-						BathroomsTotalInteger: property.BathroomsTotalInteger,
-						BedroomsTotal: property.BedroomsTotal,
-						// BrokerFaxNumber: property.BrokerFaxNumber,
-						// BusinessName: property.BusinessName,
-						City: property.City,
-						// CityRegion: property.CityRegion,
-						// Country: property.Country,
-						// CountyOrParish: property.CountyOrParish,
-						PropertyType: property.PropertyType,
-						PropertySubType: property.PropertySubType,
-						CrossStreet: property.CrossStreet,
-						HeatSource: property.HeatSource,
-						HeatType: property.HeatType,
-						RentalItems: property.RentalItems,
-						SewerYNA: property.SewerYNA,
-						Exclusions: property.Exclusions,
-						DaysOnMarket: property.DaysOnMarket,
-						Water: property.Water,
-						Basement: property.Basement,
-						ArchitecturalStyle: property.ArchitecturalStyle,
-						GarageType: property.GarageType,
-						GarageYN: property.GarageYN,
-						TelephoneYNA: property.TelephoneYNA,
-						ListAOR: property.ListAOR,
-						TaxLegalDescription: property.TaxLegalDescription,
-						VirtualTourURLUnbranded: property.VirtualTourURLUnbranded,
-						MlsStatus: property.MlsStatus,
-						OccupantType: property.OccupantType,
-						Latitude: property.Latitude,
-						RentIncludes: property.RentIncludes,
-						ListingKey: property.ListingKey,
-						ListPrice: property.ListPrice,
-						ListPriceUnit: property.ListPriceUnit,
-						Longitude: property.Longitude,
-						// LotSizeDimensions: property.LotSizeDimensions,
-						// OriginalListPrice: property.OriginalListPrice,
+		return this.http
+			.get<PropertyModel>(`${environment.baseUrl}/properties/propertyinformation?id=${propertId}&mlsId=${mlsId}`)
+			.pipe(
+				map((result: any) => {
+					if (result && result.data) {
+						const property = result.data;
+						const propertyModel: PropertyModel = {
+							_id: property._id,
+							// BuildingName: property.BuildingName,
+							BathroomsTotalInteger: property.BathroomsTotalInteger,
+							BedroomsTotal: property.BedroomsTotal,
+							// BrokerFaxNumber: property.BrokerFaxNumber,
+							// BusinessName: property.BusinessName,
+							City: property.City,
+							// CityRegion: property.CityRegion,
+							// Country: property.Country,
+							// CountyOrParish: property.CountyOrParish,
+							PropertyType: property.PropertyType,
+							PropertySubType: property.PropertySubType,
+							CrossStreet: property.CrossStreet,
+							HeatSource: property.HeatSource,
+							HeatType: property.HeatType,
+							RentalItems: property.RentalItems,
+							SewerYNA: property.SewerYNA,
+							Exclusions: property.Exclusions,
+							DaysOnMarket: property.DaysOnMarket,
+							Water: property.Water,
+							Basement: property.Basement,
+							ArchitecturalStyle: property.ArchitecturalStyle,
+							GarageType: property.GarageType,
+							GarageYN: property.GarageYN,
+							TelephoneYNA: property.TelephoneYNA,
+							ListAOR: property.ListAOR,
+							TaxLegalDescription: property.TaxLegalDescription,
+							VirtualTourURLUnbranded: property.VirtualTourURLUnbranded,
+							MlsStatus: property.MlsStatus,
+							OccupantType: property.OccupantType,
+							Latitude: property.Latitude,
+							RentIncludes: property.RentIncludes,
+							ListingKey: property.ListingKey,
+							ListPrice: property.ListPrice,
+							ListPriceUnit: property.ListPriceUnit,
+							Longitude: property.Longitude,
+							// LotSizeDimensions: property.LotSizeDimensions,
+							// OriginalListPrice: property.OriginalListPrice,
 
-						PublicRemarksExtra: property.PublicRemarksExtra,
+							PublicRemarksExtra: property.PublicRemarksExtra,
 
-						PropertyUse: property.PropertyUse,
-						PublicRemarks: property.PublicRemarks,
-						// StreetName: property.StreetName,
-						// StreetNumber: property.StreetNumber,
-						// StreetSuffix: property.StreetSuffix,
-						Town: property.Town,
-						TransactionType: property.TransactionType,
-						UnitNumber: property.UnitNumber,
-						UnparsedAddress: property.UnparsedAddress,
-						Media: property.Media,
-						BuildingAreaTotal: property.BuildingAreaTotal,
-						BuildingAreaUnits: property.BuildingAreaUnits,
-						TotalRecords: result.total,
-						ListOfficeName: property.ListOfficeName,
+							PropertyUse: property.PropertyUse,
+							PublicRemarks: property.PublicRemarks,
+							// StreetName: property.StreetName,
+							// StreetNumber: property.StreetNumber,
+							// StreetSuffix: property.StreetSuffix,
+							Town: property.Town,
+							TransactionType: property.TransactionType,
+							UnitNumber: property.UnitNumber,
+							UnparsedAddress: property.UnparsedAddress,
+							Media: property.Media,
+							BuildingAreaTotal: property.BuildingAreaTotal,
+							BuildingAreaUnits: property.BuildingAreaUnits,
+							TotalRecords: result.total,
+							ListOfficeName: property.ListOfficeName,
 
-						ListingContractDate: property.ListingContractDate,
-						PurchaseContractDate: property.PurchaseContractDate,
+							ListingContractDate: property.ListingContractDate,
+							PurchaseContractDate: property.PurchaseContractDate,
 
-						IsFeatureListing: false,
-						ModificationTimestamp: property.ModificationTimestamp,
-						PropertyFeedType: property.PropertyFeedType
-					};
-					return propertyModel;
-				}
-				return {} as PropertyModel;
-			}),
-			catchError((error) => {
-				return throwError(() => error);
-			})
-		);
+							IsFeatureListing: false,
+							ModificationTimestamp: property.ModificationTimestamp,
+							PropertyFeedType: property.PropertyFeedType,
+						};
+						return propertyModel;
+					}
+					return {} as PropertyModel;
+				}),
+				catchError((error) => {
+					return throwError(() => error);
+				})
+			);
 	}
 
 	getPropertyTypes(): Observable<any> {
