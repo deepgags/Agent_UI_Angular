@@ -21,11 +21,13 @@
 		<div class="row">
 			<div class="col-lg-6 col-12">
 				@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-				<div class="card border-0 shadow p-0" style="max-width: 540px">
+				<div class="card border-0 shadow p-0"
+					 style="max-width: 540px">
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
 							<img [src]="siteConfig.secondaryAgent.profileImage ? siteConfig.secondaryAgent.profileImage : '/images/Nologo.png'"
-								alt="No profile image" class="overlay-image w-100" />
+								 alt="No profile image"
+								 class="overlay-image w-100" />
 						</div>
 						<div class="col-md-6">
 							<div class="card-body">
@@ -42,7 +44,7 @@
 										<div class="ms-2">
 											<p>
 												<a class="text-dark fw-semibold text-decoration-none"
-													[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+												   [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
 													{{ siteConfig.secondaryAgent.websitePhone | phone }}
 												</a>
 											</p>
@@ -56,7 +58,7 @@
 										<div class="ms-2">
 											<p>
 												<a class="text-dark fw-semibold text-decoration-none"
-													[href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+												   [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
 													{{ siteConfig.secondaryAgent.websiteEmail }}
 												</a>
 											</p>
@@ -66,22 +68,28 @@
 								<div class="d-flex gap-2">
 
 									@if (siteConfig.websiteSettings.socialLinks.facebook) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank"
-										rel="noopener noreferrer" class="btn btn-light border">
+									<a [href]="siteConfig.websiteSettings.socialLinks.facebook"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-light border">
 										<i class="bi bi-facebook info"></i>
 									</a>
 									}
 
 									@if (siteConfig.websiteSettings.socialLinks.twitter) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank"
-										rel="noopener noreferrer" class="btn btn-light border">
+									<a [href]="siteConfig.websiteSettings.socialLinks.twitter"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-light border">
 										<i class="bi bi-twitter info"></i>
 									</a>
 									}
 
 									@if (siteConfig.websiteSettings.socialLinks.instagram) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank"
-										rel="noopener noreferrer" class="btn btn-light border">
+									<a [href]="siteConfig.websiteSettings.socialLinks.instagram"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-light border">
 										<i class="bi bi-instagram info"></i>
 									</a>
 									}
@@ -95,14 +103,17 @@
 				}
 			</div>
 			<div class="col-lg-6 col-12 mt-5 mt-lg-0">
-				<div class="card border-0 shadow p-0" style="max-width: 540px">
+				<div class="card border-0 shadow p-0"
+					 style="max-width: 540px">
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
 							<img [src]="
 									siteConfig.websiteSettings.profileImage
 										? siteConfig.websiteSettings.profileImage
 										: '/images/Nologo.png'
-								" alt="No profile image" class="overlay-image w-100" />
+								"
+								 alt="No profile image"
+								 class="overlay-image w-100" />
 						</div>
 						<div class="col-md-6">
 							<div class="card-body">
@@ -117,7 +128,7 @@
 										<div class="ms-2">
 											<p class="">
 												<a class="text-dark fw-semibold text-decoration-none"
-													[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+												   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
 													{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
 												</a>
 											</p>
@@ -130,7 +141,7 @@
 										<div class="ms-2">
 											<p>
 												<a class="text-dark fw-semibold text-decoration-none"
-													[href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+												   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
 													{{ siteConfig.websiteSettings.contactInfo.email }}
 												</a>
 											</p>
@@ -139,22 +150,28 @@
 								</div>
 								<div class="d-flex gap-2">
 									@if (siteConfig.websiteSettings.socialLinks.facebook) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank"
-										rel="noopener noreferrer" class="btn btn-light border">
+									<a [href]="siteConfig.websiteSettings.socialLinks.facebook"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-light border">
 										<i class="bi bi-facebook info"></i>
 									</a>
 									}
 
 									@if (siteConfig.websiteSettings.socialLinks.twitter) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank"
-										rel="noopener noreferrer" class="btn btn-light border">
+									<a [href]="siteConfig.websiteSettings.socialLinks.twitter"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-light border">
 										<i class="bi bi-twitter info"></i>
 									</a>
 									}
 
 									@if (siteConfig.websiteSettings.socialLinks.instagram) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank"
-										rel="noopener noreferrer" class="btn btn-light border">
+									<a [href]="siteConfig.websiteSettings.socialLinks.instagram"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-light border">
 										<i class="bi bi-instagram info"></i>
 									</a>
 									}
@@ -173,26 +190,34 @@
 	<p class="text text-center fw-semibold">Find Properties in These Cities</p>
 	<div class="row">
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div class="image-container" (click)="searchProperties({ address: 'Toronto' })">
-				<img src="./t6/images/p1.png" alt="" />
+			<div class="image-container"
+				 (click)="searchProperties({ city: 'Toronto' })">
+				<img src="./t6/images/p1.png"
+					 alt="" />
 				<div class="image-label">Toronto</div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div class="image-container" (click)="searchProperties({ address: 'Milton' })">
-				<img src="./t6/images/p2.png" alt="" />
+			<div class="image-container"
+				 (click)="searchProperties({ city: 'Milton' })">
+				<img src="./t6/images/p2.png"
+					 alt="" />
 				<div class="image-label">Milton</div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div class="image-container" (click)="searchProperties({ address: 'Brampton' })">
-				<img src="./t6/images/p3.png" alt="" />
+			<div class="image-container"
+				 (click)="searchProperties({ city: 'Brampton' })">
+				<img src="./t6/images/p3.png"
+					 alt="" />
 				<div class="image-label">Brampton</div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div class="image-container" (click)="searchProperties({ address: 'Mississauga' })">
-				<img src="./t6/images/p4.png" alt="" />
+			<div class="image-container"
+				 (click)="searchProperties({ city: 'Mississauga' })">
+				<img src="./t6/images/p4.png"
+					 alt="" />
 				<div class="image-label">Mississauga</div>
 			</div>
 		</div>
@@ -240,7 +265,9 @@
 		<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
 			<div class="col-lg-8 col-12">
 				<div class="">
-					<img class="img-fluid" src="t6/images/contact-img.png" alt="" />
+					<img class="img-fluid"
+						 src="t6/images/contact-img.png"
+						 alt="" />
 				</div>
 			</div>
 			<div class="col-lg-4 col-12 mt-lg-0 mt-3">

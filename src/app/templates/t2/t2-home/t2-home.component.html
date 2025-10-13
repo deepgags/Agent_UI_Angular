@@ -7,7 +7,7 @@
 			 style="width: 15rem">
 			<div class="card-body">
 				<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-						<p class="card-text text-white">{{ siteConfig.designation}}</p>
+				<p class="card-text text-white">{{ siteConfig.designation}}</p>
 				<div class="d-flex">
 					<div class="">
 						<i class="fa-solid fa-phone info"></i>
@@ -40,17 +40,17 @@
 		</div>
 	</div>
 
-<div class="second">
-			@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
+	<div class="second">
+		@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
 
-<img [src]="siteConfig.secondaryAgent.profileImage ? siteConfig.secondaryAgent.profileImage : '/images/Nologo.png'"
-					 alt="No profile image"
-					 class="overlay-image2" />
+		<img [src]="siteConfig.secondaryAgent.profileImage ? siteConfig.secondaryAgent.profileImage : '/images/Nologo.png'"
+			 alt="No profile image"
+			 class="overlay-image2" />
 		<div class="card position-absolute man_card2"
 			 style="width: 15rem">
 			<div class="card-body">
 				<h5 class="card-head text-white">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</h5>
-						<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation}}</p>
+				<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation}}</p>
 				<div class="d-flex">
 					<div class="">
 						<i class="fa-solid fa-phone info"></i>
@@ -81,7 +81,7 @@
 				</div>
 			</div>
 		</div>
-			}
+		}
 	</div>
 </div>
 <div class="container p-lg-0 p-4">
@@ -92,7 +92,7 @@
 	<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
 		<div class="col">
 			<div class="pro_card"
-				 (click)="searchProperties({ address: 'Toronto' })">
+				 (click)="searchProperties({ city: 'Toronto' })">
 				<div class="content text-center">
 					<img class="img-fluid rounded mb-2"
 						 src="/t2/images/Group 2.png"
@@ -103,7 +103,7 @@
 		</div>
 		<div class="col">
 			<div class="pro_card"
-				 (click)="searchProperties({ address: 'Milton' })">
+				 (click)="searchProperties({ city: 'Milton' })">
 				<div class="content text-center">
 					<img class="img-fluid rounded mb-2"
 						 src="/t2/images/Group 3.png"
@@ -114,7 +114,7 @@
 		</div>
 		<div class="col">
 			<div class="pro_card"
-				 (click)="searchProperties({ address: 'Brampton' })">
+				 (click)="searchProperties({ city: 'Brampton' })">
 				<div class="content text-center">
 					<img class="img-fluid rounded mb-2"
 						 src="/t2/images/Group 4.png"
@@ -125,7 +125,7 @@
 		</div>
 		<div class="col">
 			<div class="pro_card"
-				 (click)="searchProperties({ address: 'Mississauga' })">
+				 (click)="searchProperties({ city: 'Mississauga' })">
 				<div class="content text-center">
 					<img class="img-fluid rounded mb-2"
 						 src="/t2/images/Group 5.png"
@@ -163,7 +163,8 @@
 			<p class="text-center fw-semibold small text-secondary">
 				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my
 				clients to insure that they are always in a position to make informed decisions.Every engagement is an opportunity to create
-				a lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving in real estate with the reputation of providing quality
+				a lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving in real estate with the reputation of providing
+				quality
 				services and keeping excellent relations with the clients. My intend to provide our clients with the best personalized real
 				estate experience from beginning to end. I enjoy sharing my expertise by giving you the scoop on the local real estate
 				market. My aim is to guide & prepare our clients to ensure that they are always in a position to make informed decision. I
