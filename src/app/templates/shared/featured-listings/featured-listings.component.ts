@@ -8,6 +8,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { DialogService } from "primeng/dynamicdialog";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
 import { PropertyComponent } from "../../../components/property/property.component";
 import { stringiFy } from "../../../consts/Utility";
@@ -30,6 +31,7 @@ import { SearchComponent } from "../search/search.component";
 		MatPaginatorModule,
 		MatProgressSpinnerModule,
 		PropertyComponent,
+		ProgressSpinnerModule,
 	],
 	templateUrl: "./featured-listings.component.html",
 	styleUrl: "./featured-listings.component.scss",
@@ -40,7 +42,7 @@ import { SearchComponent } from "../search/search.component";
 })
 export class FeaturedListingsComponent implements OnInit {
 	imageUrl = environment.imageUrl;
-	propertiesList: PropertyModel[] = [];
+	propertiesList: PropertyModel[] | null = null;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
 	pageSize: number = 12;
@@ -148,11 +150,10 @@ export class FeaturedListingsComponent implements OnInit {
 		this.propertyService.featuredProperties(params).subscribe({
 			next: (response) => {
 				this.propertiesList = response;
-				// this.loadingService.loadingOff();
 				this.cdr.detectChanges();
 			},
 			error: (err) => {
-				// this.loadingService.loadingOff();
+				this.propertiesList = [];
 			},
 			complete: () => {},
 		});

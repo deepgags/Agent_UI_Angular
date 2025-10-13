@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { Component, ElementRef, inject, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { Title } from "@angular/platform-browser";
@@ -16,6 +16,7 @@ import { TextareaModule } from "primeng/textarea";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
 
+import { AutoCompleteCompleteEvent, AutoCompleteModule } from "primeng/autocomplete";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 import { BrokerageTypeModel } from "../../../models/BrokerageTypeModel";
 import { CustomerModel } from "../../../models/CustomerModel";
@@ -23,6 +24,7 @@ import { BrokerageTypeService } from "../../../services/brokerage.service";
 import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
+
 @Component({
 	selector: "app-settings",
 	imports: [
@@ -40,15 +42,19 @@ import { NotificationService } from "../../../services/notification.service";
 		TextareaModule,
 		EditorModule,
 		ToggleSwitchModule,
+		AutoCompleteModule,
 	],
 	templateUrl: "./settings.component.html",
 	styleUrl: "./settings.component.scss",
 	providers: [DialogService],
 })
 export class SettingsComponent {
+	@ViewChild("brokerageLogoUpload", { static: false }) brokerageLogoUpload!: ElementRef<HTMLInputElement>;
+
 	agentForm!: FormGroup;
 	agentData!: CustomerModel;
-	brokerageTypes: BrokerageTypeModel[] = [];
+	brokerageTypes: string[] = [];
+	_brokerageTypesCopy: string[] = [];
 
 	existingProfileImage = "";
 
@@ -123,7 +129,10 @@ export class SettingsComponent {
 			brokerageType: new FormControl("", Validators.required),
 			firstName: new FormControl("", Validators.required),
 			lastName: new FormControl("", Validators.required),
-			phoneNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			phoneNumber: new FormControl("", [
+				Validators.required,
+				Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"),
+			]),
 			designation: new FormControl(""),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			address: new FormControl(""),
@@ -179,7 +188,7 @@ export class SettingsComponent {
 					const {
 						primaryColor,
 						secondaryColor,
-						logoImage,
+						brokerageImage,
 						contactInfo: { address, email: websiteEmail, phone: websitePhone },
 						socialLinks: { facebook, instagram, linkedin, twitter, youtube },
 						profileImage,
@@ -189,7 +198,7 @@ export class SettingsComponent {
 					this.existingProfileImage = profileImage;
 					// this.brokerageImage.next(brokerage.logoPath);
 					this.primaryAgentProfileImage.next(profileImage);
-					this.brokerageLogoImage.next(logoImage);
+					this.brokerageLogoImage.next(brokerageImage);
 
 					this.agentForm.patchValue({
 						businessName: businessName,
@@ -238,7 +247,7 @@ export class SettingsComponent {
 		this.loadingService.loadingOn();
 		this.brokerageTypeService.getBrokerageTypes().subscribe({
 			next: (response: any) => {
-				this.brokerageTypes = response.data;
+				this._brokerageTypesCopy = response.data;
 				this.getProfile();
 			},
 			error: () => {
@@ -309,7 +318,9 @@ export class SettingsComponent {
 						phone: websitePhone,
 						address: address,
 					},
-					profileImage: this.primaryAgentProfileImage.value ? this.primaryAgentProfileImage.value : this.existingProfileImage,
+					profileImage: this.primaryAgentProfileImage.value
+						? this.primaryAgentProfileImage.value
+						: this.existingProfileImage,
 					brokerageImage: this.brokerageLogoImage.value,
 					// logoImage: this.brokerageLogoImage.value,
 				},
@@ -323,7 +334,9 @@ export class SettingsComponent {
 			this.customerService.update(params).subscribe({
 				next: (v) => {},
 				error: (e) => {
-					this.notificationService.showError(e.error.message || "Something went wrong while updating information.");
+					this.notificationService.showError(
+						e.error.message || "Something went wrong while updating information."
+					);
 				},
 				complete: () => {
 					this.notificationService.showSuccess("Profile updated successfully");
@@ -381,6 +394,13 @@ export class SettingsComponent {
 		});
 	}
 
+	removeBrokerageLogoImage(): void {
+		this.brokerageLogoImage.next("");
+		if (this.brokerageLogoUpload) {
+			this.brokerageLogoUpload.nativeElement.value = "";
+		}
+	}
+
 	onSecondaryProfileImageChange(event: Event): void {
 		const ref = this.dialogService.open(ImageDialogComponent, {
 			header: "Adjust Profile Image",
@@ -402,4 +422,10 @@ export class SettingsComponent {
 			}
 		});
 	}
+
+	searchBrokerage = (event: any) => {
+		this.brokerageTypes = this._brokerageTypesCopy.filter((item) => {
+			return item.toLowerCase().indexOf(event.query.toLowerCase()) > -1;
+		});
+	};
 }
