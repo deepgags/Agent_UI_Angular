@@ -6,9 +6,9 @@
           <div class="mb-2">
             @if (siteConfig) {
             <a [routerLink]="['home']">
-              <img [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-                   alt="No brokerage logo"
-                   height="66px" />
+              <img
+                [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+                alt="No brokerage logo" height="66px" />
             </a>
             }
           </div>
@@ -37,7 +37,8 @@
               <div class="ms-2">
                 <p class="mb-0">
                   <a class="text-white fw-semibold small text-decoration-none pop"
-                     href="tel:{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}">{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}</a>
+                    href="tel:{{siteConfig?.websiteSettings?.contactInfo?.phone | phone}}">{{siteConfig?.websiteSettings?.contactInfo?.phone
+                    | phone}}</a>
                 </p>
               </div>
             </div>
@@ -49,7 +50,7 @@
               <div class="ms-2">
                 <p class="mb-0">
                   <a class="text-white fw-semibold small text-decoration-none pop"
-                     href="mailto:{{siteConfig?.websiteSettings?.contactInfo?.email}}">{{siteConfig?.websiteSettings?.contactInfo?.email}}
+                    href="mailto:{{siteConfig?.websiteSettings?.contactInfo?.email}}">{{siteConfig?.websiteSettings?.contactInfo?.email}}
                   </a>
                 </p>
               </div>
@@ -66,7 +67,7 @@
               <div class="ms-2">
                 <p class="mb-0">
                   <a class="text-white small fw-semibold text-decoration-none"
-                     [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+                    [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
                     {{ siteConfig.secondaryAgent.websitePhone | phone }}
                   </a>
                 </p>
@@ -79,8 +80,8 @@
               <div class="ms-2">
                 <p class="mb-0">
                   <a class="text-white fw-semibold small text-decoration-none"
-                     [href]="'mailto:' + siteConfig?.secondaryAgent?.websiteEmail">
-                    {{ siteConfig?.secondaryAgent?.websiteEmail }}
+                    [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+                    {{ siteConfig.secondaryAgent.websiteEmail }}
                   </a>
                 </p>
               </div>
@@ -89,8 +90,10 @@
           }
         </div>
       </div>
-      <p class="text-center text-white small">Copyright 2021 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information
-        shown. The information provided herein must only be used by consumers that have a bona fide interest in the purchase, sale or lease of real estate and may not be used for
+      <p class="text-center text-white small">Copyright 2021 All rights reserved. Toronto Real Estate Board (TREB)
+        assumes no responsibility for the accuracy of any information
+        shown. The information provided herein must only be used by consumers that have a bona fide interest in the
+        purchase, sale or lease of real estate and may not be used for
         any commercial purpose or any other purpose.</p>
     </footer>
   </div>
