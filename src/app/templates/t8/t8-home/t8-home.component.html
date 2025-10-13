@@ -16,7 +16,7 @@
 					 style="width: 15rem">
 					<div class="card-body">
 						<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-										<p class="card-text text-white">{{ siteConfig.designation}}</p>
+						<p class="card-text text-white">{{ siteConfig.designation}}</p>
 						<div class="d-flex">
 							<div class="">
 								<i class="fa-solid fa-phone info"></i>
@@ -56,7 +56,7 @@
 					 style="width: 15rem">
 					<div class="card-body">
 						<h5 class="card-head text-white">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</h5>
-										<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation}}</p>
+						<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation}}</p>
 						<div class="d-flex">
 							<div class="">
 								<i class="fa-solid fa-phone info"></i>
@@ -179,7 +179,7 @@
 		<div class="row">
 			<div class="col-lg-6 col-12">
 				<div class="image-container w-100 rounded"
-					 (click)="searchProperties({address:'Toronto'})">
+					 (click)="searchProperties({ city:'Toronto'})">
 					<img class="w-100"
 						 src="t8/images/proToronto.png"
 						 alt="">
@@ -189,7 +189,7 @@
 
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container w-100 rounded"
-					 (click)="searchProperties({address:'Milton'})">
+					 (click)="searchProperties({ city:'Milton'})">
 					<img class="w-100"
 						 src="t8/images/proMilton.png"
 						 alt="">
@@ -198,7 +198,7 @@
 			</div>
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container w-100 rounded"
-					 (click)="searchProperties({address:'Brampton'})">
+					 (click)="searchProperties({ city:'Brampton'})">
 					<img class="w-100"
 						 src="t8/images/proBrampton.png"
 						 alt="">
@@ -211,7 +211,7 @@
 
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container w-100 rounded"
-					 (click)="searchProperties({address:'Mississauga'})">
+					 (click)="searchProperties({ city:'Mississauga'})">
 					<img class="w-100"
 						 src="t8/images/pro2.png"
 						 alt="">
@@ -221,7 +221,7 @@
 			</div>
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container w-100 rounded"
-					 (click)="searchProperties({address:'Montreal'})">
+					 (click)="searchProperties({ city:'Montreal'})">
 					<img class="w-100"
 						 src="t8/images/proMississuaga.png"
 						 alt="">
@@ -231,7 +231,7 @@
 			</div>
 			<div class="col-lg-6 col-12 mt-lg-0 mt-3">
 				<div class="image-container w-100 rounded"
-					 (click)="searchProperties({address:'Ottawa'})">
+					 (click)="searchProperties({ city:'Ottawa'})">
 					<img class="w-100"
 						 src="t8/images/proOttawa.png"
 						 alt="">

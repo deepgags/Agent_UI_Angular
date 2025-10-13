@@ -17,8 +17,8 @@
 
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
-			
-				<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-start justify-content-center">
+
+			<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-start justify-content-center">
 				<div class="">
 
 					<div class="position-relative d-inline-block">
@@ -40,13 +40,13 @@
 				<p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to
 					insure that they are always in a position to make informed decisions.</p>
 				<p class="fw-semibold">
-					Every engagement is an opportunity to create a lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving in real estate with the reputation of
+					Every engagement is an opportunity to create a lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving
+					in real estate with the reputation of
 					providing quality services and keeping excellent relations with the clients. </p>
 
 				<!-- Button trigger modal -->
-				<a 
-						class="btn search_btn"
-						routerLink="/contact">
+				<a class="btn search_btn"
+				   routerLink="/contact">
 					Get in Touch
 				</a>
 
@@ -69,7 +69,7 @@
 	<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
 		<div class="col">
 			<div class="pro_card"
-				 (click)="searchProperties({address:'Toronto'})">
+				 (click)="searchProperties({ city:'Toronto'})">
 				<div class="content text-center">
 					<img class="img-fluid rounded mb-2"
 						 src="/t2/images/Group 2.png"
@@ -80,7 +80,7 @@
 		</div>
 		<div class="col">
 			<div class="pro_card"
-				 (click)="searchProperties({address:'Milton'})">
+				 (click)="searchProperties({ city:'Milton'})">
 				<div class="content text-center">
 					<img class="img-fluid rounded mb-2"
 						 src="/t2/images/Group 3.png"
@@ -91,7 +91,7 @@
 		</div>
 		<div class="col">
 			<div class="pro_card"
-				 (click)="searchProperties({address:'Brampton'})">
+				 (click)="searchProperties({ city:'Brampton'})">
 				<div class="content text-center">
 					<img class="img-fluid rounded mb-2"
 						 src="/t2/images/Group 4.png"
@@ -102,7 +102,7 @@
 		</div>
 		<div class="col">
 			<div class="pro_card"
-				 (click)="searchProperties({address:'Mississauga'})">
+				 (click)="searchProperties({ city:'Mississauga'})">
 				<div class="content text-center">
 					<img class="img-fluid rounded mb-2"
 						 src="/t2/images/Group 5.png"

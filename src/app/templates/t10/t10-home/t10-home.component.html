@@ -30,7 +30,7 @@
 					 style="width: 15rem">
 					<div class="card-body">
 						<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-										<p class="card-text text-white">{{ siteConfig.designation}}</p>
+						<p class="card-text text-white">{{ siteConfig.designation}}</p>
 
 						<div class="d-flex">
 							<div class="">
@@ -72,7 +72,7 @@
 					 style="width: 15rem">
 					<div class="card-body">
 						<h5 class="card-head text-white">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</h5>
-										<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation}}</p>
+						<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation}}</p>
 
 						<div class="d-flex">
 							<div class="">
@@ -128,7 +128,7 @@
 	<div class="row">
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3"
-				 (click)="searchProperties({address:'Toronto'})">
+				 (click)="searchProperties({ city:'Toronto'})">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
@@ -147,7 +147,7 @@
 		</div>
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3"
-				 (click)="searchProperties({address:'Brampton'})">
+				 (click)="searchProperties({ city:'Brampton'})">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
@@ -166,7 +166,7 @@
 		</div>
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3"
-				 (click)="searchProperties({address:'Milton'})">
+				 (click)="searchProperties({ city:'Milton'})">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
@@ -188,7 +188,7 @@
 	<div class="row">
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3"
-				 (click)="searchProperties({address:'Mississauga'})">
+				 (click)="searchProperties({ city:'Mississauga'})">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
@@ -207,7 +207,7 @@
 		</div>
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3"
-				 (click)="searchProperties({address:'Montreal'})">
+				 (click)="searchProperties({ city:'Montreal'})">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
@@ -226,7 +226,7 @@
 		</div>
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3"
-				 (click)="searchProperties({address:'Ottawa'})">
+				 (click)="searchProperties({ city:'Ottawa'})">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>

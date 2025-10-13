@@ -19,7 +19,7 @@
 						<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
 						<div class="d-flex">
 							<div class="">
-								 <i class="bi bi-telephone-fill info"></i>
+								<i class="bi bi-telephone-fill info"></i>
 
 							</div>
 							<div class="ms-2">
@@ -33,7 +33,7 @@
 						</div>
 						<div class="d-flex">
 							<div class="">
-								  <i class="bi bi-envelope-at-fill info"></i>
+								<i class="bi bi-envelope-at-fill info"></i>
 							</div>
 							<div class="ms-2 mt-1">
 								<p>
@@ -72,129 +72,129 @@
 
 <div class="container-fluid search-container">
 	<div class="container">
-	<div class="py-5">
-		<h2 class="text-center">Find Properties in These Cities</h2>
-	</div>
-	<div class="row">
-		<div class="col-12 col-lg-4 mouse">
-			<div class="card mb-3"
-				 (click)="searchProperties({address:'Toronto'})">
-				<div class="row g-0">
-					<div class="col-md-5">
-						<div>
-							<img src="./t10/images/proToronto.png"
-								 class="img-fluid prop-img rounded-start"
-								 alt="...">
+		<div class="py-5">
+			<h2 class="text-center">Find Properties in These Cities</h2>
+		</div>
+		<div class="row">
+			<div class="col-12 col-lg-4 mouse">
+				<div class="card mb-3"
+					 (click)="searchProperties({ city:'Toronto'})">
+					<div class="row g-0">
+						<div class="col-md-5">
+							<div>
+								<img src="./t10/images/proToronto.png"
+									 class="img-fluid prop-img rounded-start"
+									 alt="...">
+							</div>
+						</div>
+						<div class="col-md-7 d-flex align-items-center justify-content-center">
+							<div class="card-body text-center">
+								<h4 class="card-title m-0">Toronto</h4>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-7 d-flex align-items-center justify-content-center">
-						<div class="card-body text-center">
-							<h4 class="card-title m-0">Toronto</h4>
+				</div>
+			</div>
+			<div class="col-12 col-lg-4 mouse">
+				<div class="card mb-3"
+					 (click)="searchProperties({ city:'Brampton'})">
+					<div class="row g-0">
+						<div class="col-md-5">
+							<div>
+								<img src="./t10/images/proBrampton.png"
+									 class="img-fluid prop-img rounded-start"
+									 alt="...">
+							</div>
+						</div>
+						<div class="col-md-7 d-flex align-items-center justify-content-center">
+							<div class="card-body text-center">
+								<h4 class="card-title m-0">Brampton</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-4 mouse">
+				<div class="card mb-3"
+					 (click)="searchProperties({ city:'Milton'})">
+					<div class="row g-0">
+						<div class="col-md-5">
+							<div>
+								<img src="./t10/images/proMilton.png"
+									 class="img-fluid prop-img rounded-start"
+									 alt="...">
+							</div>
+						</div>
+						<div class="col-md-7 d-flex align-items-center justify-content-center">
+							<div class="card-body text-center">
+								<h4 class="card-title m-0">Milton</h4>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-12 col-lg-4 mouse">
-			<div class="card mb-3"
-				 (click)="searchProperties({address:'Brampton'})">
-				<div class="row g-0">
-					<div class="col-md-5">
-						<div>
-							<img src="./t10/images/proBrampton.png"
-								 class="img-fluid prop-img rounded-start"
-								 alt="...">
-						</div>
-					</div>
-					<div class="col-md-7 d-flex align-items-center justify-content-center">
-						<div class="card-body text-center">
-							<h4 class="card-title m-0">Brampton</h4>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-12 col-lg-4 mouse">
-			<div class="card mb-3"
-				 (click)="searchProperties({address:'Milton'})">
-				<div class="row g-0">
-					<div class="col-md-5">
-						<div>
-							<img src="./t10/images/proMilton.png"
-								 class="img-fluid prop-img rounded-start"
-								 alt="...">
-						</div>
-					</div>
-					<div class="col-md-7 d-flex align-items-center justify-content-center">
-						<div class="card-body text-center">
-							<h4 class="card-title m-0">Milton</h4>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-12 col-lg-4 mouse">
-			<div class="card mb-3"
-				 (click)="searchProperties({address:'Mississauga'})">
-				<div class="row g-0">
-					<div class="col-md-5">
-						<div>
-							<img src="./t10/images/proMississuaga.png"
-								 class="img-fluid prop-img rounded-start"
-								 alt="...">
+		<div class="row">
+			<div class="col-12 col-lg-4 mouse">
+				<div class="card mb-3"
+					 (click)="searchProperties({ city:'Mississauga'})">
+					<div class="row g-0">
+						<div class="col-md-5">
+							<div>
+								<img src="./t10/images/proMississuaga.png"
+									 class="img-fluid prop-img rounded-start"
+									 alt="...">
+							</div>
 						</div>
-					</div>
-					<div class="col-md-7 d-flex align-items-center justify-content-center">
-						<div class="card-body text-center">
-							<h4 class="card-title m-0">Mississauga</h4>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-12 col-lg-4 mouse">
-			<div class="card mb-3"
-				 (click)="searchProperties({address:'Montreal'})">
-				<div class="row g-0">
-					<div class="col-md-5">
-						<div>
-							<img src="./t10/images/proMontreal.png"
-								 class="img-fluid prop-img rounded-start"
-								 alt="...">
-						</div>
-					</div>
-					<div class="col-md-7 d-flex align-items-center justify-content-center">
-						<div class="card-body text-center">
-							<h4 class="card-title m-0">Montreal</h4>
+						<div class="col-md-7 d-flex align-items-center justify-content-center">
+							<div class="card-body text-center">
+								<h4 class="card-title m-0">Mississauga</h4>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-12 col-lg-4 mouse">
-			<div class="card mb-3"
-				 (click)="searchProperties({address:'Ottawa'})">
-				<div class="row g-0">
-					<div class="col-md-5">
-						<div>
-							<img src="./t10/images/proOttawa.png"
-								 class="img-fluid prop-img rounded-start"
-								 alt="...">
+			<div class="col-12 col-lg-4 mouse">
+				<div class="card mb-3"
+					 (click)="searchProperties({ city:'Montreal'})">
+					<div class="row g-0">
+						<div class="col-md-5">
+							<div>
+								<img src="./t10/images/proMontreal.png"
+									 class="img-fluid prop-img rounded-start"
+									 alt="...">
+							</div>
+						</div>
+						<div class="col-md-7 d-flex align-items-center justify-content-center">
+							<div class="card-body text-center">
+								<h4 class="card-title m-0">Montreal</h4>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-7 d-flex align-items-center justify-content-center">
-						<div class="card-body text-center">
-							<h4 class="card-title m-0">Ottawa</h4>
+				</div>
+			</div>
+			<div class="col-12 col-lg-4 mouse">
+				<div class="card mb-3"
+					 (click)="searchProperties({ city:'Ottawa'})">
+					<div class="row g-0">
+						<div class="col-md-5">
+							<div>
+								<img src="./t10/images/proOttawa.png"
+									 class="img-fluid prop-img rounded-start"
+									 alt="...">
+							</div>
+						</div>
+						<div class="col-md-7 d-flex align-items-center justify-content-center">
+							<div class="card-body text-center">
+								<h4 class="card-title m-0">Ottawa</h4>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 
 <div class="container py-lg-5 p-lg-0 p-4 search-container">

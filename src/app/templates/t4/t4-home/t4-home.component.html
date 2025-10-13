@@ -6,7 +6,7 @@
 				<div class="">
 					<h2 class="text-white display-3 fw-semibold">Find Your <br> Dream Home</h2>
 					<p class="text-white">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and
-					extraordinary services to our worldwide clients.</p>
+						extraordinary services to our worldwide clients.</p>
 				</div>
 			</div>
 			<div class="col-12 col-lg-4 ">
@@ -34,12 +34,14 @@
 				<p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to
 					insure that they are always in a position to make informed decisions.</p>
 				<p class="fw-semibold">
-					Every engagement is an opportunity to create a lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving in real estate with the reputation of
+					Every engagement is an opportunity to create a lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving
+					in real estate with the reputation of
 					providing quality services and keeping excellent relations with the clients. </p>
 
-				<a class="btn search_btn" routerLink="/contact">
-  Get in Touch
-</a>
+				<a class="btn search_btn"
+				   routerLink="/contact">
+					Get in Touch
+				</a>
 
 			</div>
 			<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-end justify-content-center">
@@ -78,7 +80,7 @@
 	<div class="row pt-lg-5 p-lg-0 p-4">
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3  position-relative">
 			<div class="city_card"
-				 (click)="searchProperties({address:'Toronto'})">
+				 (click)="searchProperties({ city:'Toronto'})">
 				<img class="w-100 "
 					 src="/t4/images/group1.png"
 					 alt="" />
@@ -88,7 +90,7 @@
 
 		<div class="col-lg-3 col-12   position-relative">
 			<div class="mb-3 city_card "
-				 (click)="searchProperties({address:'Milton'})">
+				 (click)="searchProperties({ city:'Milton'})">
 				<img class="w-100"
 					 src="/t4/images/g2.png"
 					 alt="">
@@ -96,7 +98,7 @@
 			</div>
 
 			<div class=" city_card "
-				 (click)="searchProperties({address:'Brampton'})">
+				 (click)="searchProperties({ city:'Brampton'})">
 				<img class="w-100"
 					 src="/t4/images/g2.png"
 					 alt="">
@@ -107,7 +109,7 @@
 		</div>
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3 city_card position-relative">
 			<div class=" city_card"
-				 (click)="searchProperties({address:'Ottawa'})">
+				 (click)="searchProperties({ city:'Ottawa'})">
 				<img class="w-100"
 					 src="/t4/images/group1.png"
 					 alt="" />
@@ -117,7 +119,7 @@
 
 		<div class="col-lg-3 col-12   position-relative">
 			<div class="mb-3 city_card"
-				 (click)="searchProperties({address:'Mississauga'})">
+				 (click)="searchProperties({ city:'Mississauga'})">
 				<img class="w-100"
 					 src="/t4/images/g2.png"
 					 alt="">
@@ -126,7 +128,7 @@
 			</div>
 
 			<div class=" city_card "
-				 (click)="searchProperties({address:'Calgary'})">
+				 (click)="searchProperties({ city:'Calgary'})">
 				<img class="w-100"
 					 src="/t4/images/g2.png"
 					 alt="">
