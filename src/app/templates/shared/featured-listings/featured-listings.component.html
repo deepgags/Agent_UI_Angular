@@ -69,7 +69,15 @@
                    [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
                    aria-label="Select page"></mat-paginator>
   </div>
-  } @if (propertiesList && propertiesList.length==0) {
-  <h6>No properties found for selected criteria.</h6>
+  } @else if (propertiesList && propertiesList.length==0) {
+  <div class="d-flex justify-content-center align-items-center py-5">
+    <h6>No Featured properties avialable.</h6>
+  </div>
+  } @else {
+
+  <div class="d-flex justify-content-center align-items-center py-5">
+    <p-progress-spinner strokeWidth="4"
+                        animationDuration=".8s" />
+  </div>
   }
 </div>

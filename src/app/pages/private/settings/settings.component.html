@@ -38,7 +38,7 @@
 									}
 								</div>
 							</div>
-							
+
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-3">
@@ -84,7 +84,7 @@
 									</div>
 								</div>
 							</div>
-	
+
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-3">
@@ -123,65 +123,79 @@
 							</div>
 						</div>
 
-							<div class="mb-4 border p-3 rounded shadow-sm">
-						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
-							<i class="fas fa-building text-muted me-2"></i>
-							Brokerage Information
-						</h6>
-						<div class="row mt-4 justify-content-start align-items-start">
-							<div class="col-lg-6 col-12">
-								<label class="form-label fw-semibold d-block">
-									Brokerage
-								</label>
-								<div class="mb-3">
-									<p-iftalabel>
-										<p-select formControlName="brokerageType"
-												  [options]="brokerageTypes"
-												  optionLabel="name"
-												  optionValue="_id"
-												  styleClass="w-100"
-												  inputId="brokerageType"></p-select>
-										<label for="brokerageType">Brokerage</label>
-									</p-iftalabel>
-									@if (brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)) {
-									<span class="error">
-										@if (brokerageType?.errors?.['required']) {
-										<span>Brokerage is required</span>
+						<div class="mb-4 border p-3 rounded shadow-sm">
+							<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
+								<i class="fas fa-building text-muted me-2"></i>
+								Brokerage Information
+							</h6>
+							<div class="row mt-4 justify-content-start align-items-start">
+								<div class="col-lg-6 col-12">
+									<label class="form-label fw-semibold d-block">
+										Brokerage
+									</label>
+									<div class="mb-3">
+										<p-iftalabel>
+											<!-- <p-select formControlName="brokerageType"
+													  [options]="brokerageTypes"
+													  optionLabel="name"
+													  optionValue="_id"
+													  styleClass="w-100"
+													  inputId="brokerageType"></p-select> -->
+											<p-autocomplete formControlName="brokerageType"
+															[suggestions]="brokerageTypes"
+															(completeMethod)="searchBrokerage($event)"
+															styleClass="w-100"
+															class="w-100" />
+											<label for="brokerageType">Brokerage</label>
+										</p-iftalabel>
+										@if (brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)) {
+										<span class="error">
+											@if (brokerageType?.errors?.['required']) {
+											<span>Brokerage is required</span>
+											}
+										</span>
 										}
-									</span>
-									}
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row justify-content-start align-items-start">
-							
-							<div class="col-lg-6 col-12">
-								<div class="upload-container mb-3 mb-md-0 bg-light">
+							<div class="row justify-content-start align-items-start">
+
+								<div class="col-lg-6 col-12">
+									<div class="upload-container mb-3 mb-md-0 bg-light">
 										<label class="form-label fw-semibold d-block">
 											Brokerage Logo
 										</label>
 										<input type="file"
+											   #brokerageLogoUpload
 											   (change)="onBrokerageLogoImageChange($event)"
 											   class="form-control upload-btn w-100"
 											   id="logoImageUpload"
 											   accept="image/*" />
-										
+
+									</div>
+								</div>
+								<div class="col-lg-6 col-12">
+									@if (brokerageLogoImageObservable | async; as logoImage) {
+									<div class="mt-3 p-2 border rounded bg-white shadow-sm position-relative">
+										<button type="button"
+												class="btn btn-sm position-absolute top-0 end-0 mt-1 me-1 p-0"
+												style="background: none; border: none; color: #dc3545; font-size: 18px;"
+												(click)="removeBrokerageLogoImage()"
+												title="Remove Logo">
+											<i class="bi bi-x-circle-fill"></i>
+										</button>
+										<div class="text-center">
+											<h6 class="text-dark fw-bold mb-2">Brokerage Logo Preview</h6>
+											<img [src]="logoImage"
+												 class="rounded border image-preview"
+												 style="width: 150px; height: 150px; object-fit: cover;"
+												 alt="Logo Preview" />
+										</div>
+									</div>
+									}
 								</div>
 							</div>
-							<div class="col-lg-6 col-12">
-								@if (brokerageLogoImageObservable | async; as logoImage) {
-										<div class="mt-3">
-											<div class="text-center">
-												<h6 class="text-dark fw-bold mb-2">Logo Preview</h6>
-												<img [src]="logoImage"
-													 class="rounded border image-preview"
-													 alt="Logo Preview" />
-											</div>
-										</div>
-										}
-							</div>
 						</div>
-					</div>
 
 						<div class="mb-4 border p-3 rounded shadow-sm">
 							<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
@@ -273,43 +287,43 @@
 								</div>
 							</div>
 							<div class="row">
-									<div class="col-lg-6 col-12">
-										<div class="bg-white shadow-sm">
+								<div class="col-lg-6 col-12">
+									<div class="bg-white shadow-sm">
 
-							<h6 class="text-muted  d-flex align-items-center">
-								<i class="fas fa-user-tie text-muted me-2"></i>
-								Primary Agent Picture
-							</h6>
-							<div class="upload-container p-3 border rounded bg-light">
-										<label class="form-label fw-semibold d-block"
-											   style="font-size: 14px">
-											<i class="fas fa-user-circle me-2"></i>
-											Profile Picture
-										</label>
-										<input type="file"
-											   (change)="onProfileImageChange($event)"
-											   class="form-control upload-btn w-100"
-											   id="profileImageUpload"
-											   accept="image/*" />
-							</div>
-						</div>
+										<h6 class="text-muted  d-flex align-items-center">
+											<i class="fas fa-user-tie text-muted me-2"></i>
+											Primary Agent Picture
+										</h6>
+										<div class="upload-container p-3 border rounded bg-light">
+											<label class="form-label fw-semibold d-block"
+												   style="font-size: 14px">
+												<i class="fas fa-user-circle me-2"></i>
+												Profile Picture
+											</label>
+											<input type="file"
+												   (change)="onProfileImageChange($event)"
+												   class="form-control upload-btn w-100"
+												   id="profileImageUpload"
+												   accept="image/*" />
 										</div>
-						
-									<div class="col-lg-6 col-12">
-										@if (primaryAgentProfileImageObservable | async; as primaryAgentProfileImage) {
-										<div class="mt-3 p-2 border rounded bg-white shadow-sm">
-											<div class="text-center">
-												<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
-												<img [src]="primaryAgentProfileImage"
-													 class="rounded border image-preview"
-													 alt="Profile Picture Preview" />
-											</div>
-										</div>
-										}
 									</div>
+								</div>
+
+								<div class="col-lg-6 col-12">
+									@if (primaryAgentProfileImageObservable | async; as primaryAgentProfileImage) {
+									<div class="mt-3 p-2 border rounded bg-white shadow-sm">
+										<div class="text-center">
+											<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
+											<img [src]="primaryAgentProfileImage"
+												 class="rounded border image-preview"
+												 alt="Profile Picture Preview" />
+										</div>
+									</div>
+									}
+								</div>
 							</div>
 						</div>
-						
+
 						<div class="mb-4 border p-3 rounded shadow-sm"
 							 formGroupName="secondaryAgent">
 							<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
@@ -391,49 +405,49 @@
 									</div>
 								</div>
 							</div>
-								<div class="row mb-3">
-					
-						<div class="col-lg-6 col-12">
-							<div class="bg-white shadow-sm">
-							<h6 class="text-muted d-flex align-items-center">
-								<i class="fas fa-user-tie text-muted me-2"></i>
-								Secondary Agent Picture
-							</h6>
-							<div class="upload-container p-3 border rounded bg-light">
-										<label class="form-label fw-semibold d-block"
-											   style="font-size: 14px">
-											<i class="fas fa-user-circle me-2"></i>
-											Profile Picture
-										</label>
-										<input type="file"
-											   (change)="onSecondaryProfileImageChange($event)"
-											   class="form-control upload-btn w-100"
-											   id="secondaryProfileImageUpload"
-											   accept="image/*" />
+							<div class="row mb-3">
+
+								<div class="col-lg-6 col-12">
+									<div class="bg-white shadow-sm">
+										<h6 class="text-muted d-flex align-items-center">
+											<i class="fas fa-user-tie text-muted me-2"></i>
+											Secondary Agent Picture
+										</h6>
+										<div class="upload-container p-3 border rounded bg-light">
+											<label class="form-label fw-semibold d-block"
+												   style="font-size: 14px">
+												<i class="fas fa-user-circle me-2"></i>
+												Profile Picture
+											</label>
+											<input type="file"
+												   (change)="onSecondaryProfileImageChange($event)"
+												   class="form-control upload-btn w-100"
+												   id="secondaryProfileImageUpload"
+												   accept="image/*" />
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-6 col-12">
+									@if ( secondaryAgentProfileImageObservable | async; as secondaryAgentProfileImage )
+									{
+									<div class="mt-3 p-2 border rounded bg-white shadow-sm">
+										<div class="text-center">
+											<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
+											<img [src]="secondaryAgentProfileImage"
+												 class="rounded border image-preview"
+												 alt="Profile Picture Preview" />
+										</div>
+									</div>
+									}
+								</div>
 							</div>
 						</div>
-						</div>
-						
-									<div class="col-lg-6 col-12">
-										@if ( secondaryAgentProfileImageObservable | async; as secondaryAgentProfileImage )
-										{
-										<div class="mt-3 p-2 border rounded bg-white shadow-sm">
-											<div class="text-center">
-												<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
-												<img [src]="secondaryAgentProfileImage"
-													 class="rounded border image-preview"
-													 alt="Profile Picture Preview" />
-											</div>
-										</div>
-										}
-									</div>
-					</div>
-						</div>
 
 					</div>
 
 
-				
+
 
 					<div class="mb-4 border p-3 rounded shadow-sm">
 						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
