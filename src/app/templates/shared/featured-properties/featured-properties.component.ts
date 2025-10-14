@@ -6,7 +6,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { RouterModule } from "@angular/router";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
-import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+
 import { PropertyComponent } from "../../../components/property/property.component";
 import { environment } from "../../../environments/environment.development";
 import { PropertyModel } from "../../../models/PropertyModel";
@@ -23,7 +23,6 @@ import { PropertyDetailComponent } from "../propertydetail/propertydetail.compon
 	standalone: true,
 	providers: [DialogService],
 })
-
 export class FeaturedPropertiesComponent implements OnInit {
 	imageUrl = environment.imageUrl;
 	private propertiesSubject = new BehaviorSubject<PropertyModel[]>([]);
@@ -35,7 +34,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 		private _interestedUserDialog: MatDialog,
 		private propertyService: PropertyService,
 		private dialogService: DialogService
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.searchProperties();
@@ -43,31 +42,31 @@ export class FeaturedPropertiesComponent implements OnInit {
 
 	selectProperty = (property: PropertyModel): void => {
 		if (property.IsFeatureListing) {
-			this.openDialog(property);
+			this.openUserSignupDialog(property);
 		} else {
-			this.redirectToDetail(property);
+			this.openPropertyDetails(property);
 		}
+	};
+
+	openUserSignupDialog(property: PropertyModel) {
+		// TODO: OPen user Signup dialog
+		// const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
+		// 	width: "50%",
+		// 	height: "auto",
+		// 	disableClose: true,
+		// 	autoFocus: false,
+		// 	restoreFocus: false,
+		// 	hasBackdrop: true,
+		// 	data: property,
+		// });
+		// userDialog.afterClosed().subscribe((result) => {
+		// 	if (result) {
+		// 		this.openPropertyDetails(property);
+		// 	}
+		// });
 	}
 
-	openDialog(property: PropertyModel) {
-		const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
-			width: "50%",
-			height: "auto",
-			disableClose: true,
-			autoFocus: false,
-			restoreFocus: false,
-			hasBackdrop: true,
-			data: property,
-		});
-
-		userDialog.afterClosed().subscribe((result) => {
-			if (result) {
-				this.redirectToDetail(property);
-			}
-		});
-	}
-
-	redirectToDetail(property: PropertyModel): void {
+	openPropertyDetails(property: PropertyModel): void {
 		// const currentTemplate = this.router.url.split("/")[1];
 		// this.router.navigate([`/${currentTemplate}`, "property-detail"], {
 		// 	relativeTo: this.activatedRoute,
@@ -126,7 +125,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 			error: (err) => {
 				// this.notificationService.showNotification("Error occurred while getting properties");
 			},
-			complete: () => { },
+			complete: () => {},
 		});
 	};
 }

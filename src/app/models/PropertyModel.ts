@@ -59,7 +59,7 @@ export class PropertyModel {
 	PurchaseContractDate?: string;
 
 	IsFeatureListing: boolean = false;
-	PropertyFeedType: string = ""
+	PropertyFeedType: string = "";
 
 	constructor() {
 		this.TotalRecords = 10;
@@ -74,6 +74,7 @@ export class PropertyModel {
 		this.PropertyUse = "";
 		this.UnparsedAddress = "";
 		this.ModificationTimestamp = "";
+		this.PropertyFeedType = "";
 	}
 }
 
@@ -85,7 +86,6 @@ export class MediaModel {
 	Media_category: string;
 	ImageSize_description: string;
 	Modification_Timestamp: string;
-
 
 	constructor() {
 		this.Media_key = "";

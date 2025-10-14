@@ -9,7 +9,6 @@ import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { DialogService } from "primeng/dynamicdialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
 import { PropertyComponent } from "../../../components/property/property.component";
 import { stringiFy } from "../../../consts/Utility";
 import { environment } from "../../../environments/environment.development";
@@ -81,33 +80,32 @@ export class FeaturedListingsComponent implements OnInit {
 		this.searchProperties({});
 	}
 
-	openDialog(property: PropertyModel) {
-		const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
-			width: "50%",
-			height: "auto",
-			disableClose: true,
-			autoFocus: false,
-			restoreFocus: false,
-			hasBackdrop: true,
-			data: property,
+	openUserSignupDialog(property: PropertyModel) {
+		// TODO: OPen user Signup dialog
+		const ref = this.dialogService.open(PropertyDetailComponent, {
+			header: `Login Requierd`,
+			width: "70%",
+			maximizable: false,
+			closable: true,
+			modal: true,
+			data: {},
 		});
-
-		userDialog.afterClosed().subscribe((result) => {
-			if (result) {
-				this.redirectToDetail(property);
+		ref.onClose.subscribe((isUserLoggedIn: boolean) => {
+			if (isUserLoggedIn) {
+				this.openPropertyDetails(property);
 			}
 		});
 	}
 
 	selectProperty = (property: PropertyModel): void => {
 		if (property.IsFeatureListing) {
-			this.openDialog(property);
+			this.openUserSignupDialog(property);
 		} else {
-			this.redirectToDetail(property);
+			this.openPropertyDetails(property);
 		}
 	};
 
-	redirectToDetail = (property: PropertyModel): void => {
+	openPropertyDetails = (property: PropertyModel): void => {
 		this.dialogService.open(PropertyDetailComponent, {
 			header: `Property Information`,
 			width: "70%",

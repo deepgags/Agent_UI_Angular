@@ -7,7 +7,6 @@
 						[showIndicators]="false"
 						[showItemNavigators]="false"
 						[showThumbnails]="false"
-						[containerStyle]="{ 'max-width': '640px' }"
 						[value]="property.Media"
 						[(activeIndex)]="activeIndex">
 				<ng-template let-media
@@ -16,8 +15,7 @@
 						<img [src]="imageUrl + media.Media_url"
 							 alt="No property image to display"
 							 onerror="this.src = '/images/commercial_no_Image.jpg'"
-							 (click)="onPropertyClick(property)"
-							 style="height:238px; max-height: 238px;" />
+							 (click)="onPropertyClick(property)" />
 
 						<button type="button"
 								role="navigation"

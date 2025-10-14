@@ -16,7 +16,15 @@ import { ManageTestimonialComponent } from "../manage-testimonial/manage-testimo
 
 @Component({
 	selector: "app-testimonial",
-	imports: [CommonModule, TableModule, ButtonModule, PaginatorModule, ProgressSpinnerModule, SimpleTableComponent, DynamicDialogModule],
+	imports: [
+		CommonModule,
+		TableModule,
+		ButtonModule,
+		PaginatorModule,
+		ProgressSpinnerModule,
+		SimpleTableComponent,
+		DynamicDialogModule,
+	],
 	templateUrl: "./testimonial.component.html",
 	styleUrl: "./testimonial.component.scss",
 })
@@ -25,8 +33,21 @@ export class TestimonialComponent {
 
 	columns = [
 		{
+			field: "image",
+			header: "Image",
+			disableSort: true,
+			fieldType: FieldsType.Image,
+			width: "70px",
+		},
+		{
 			field: "customerName",
 			header: "Customer Name",
+			disableSort: false,
+			fieldType: FieldsType.Text,
+		},
+		{
+			field: "designation",
+			header: "Designation",
 			disableSort: false,
 			fieldType: FieldsType.Text,
 		},

@@ -1,5 +1,13 @@
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
+import {
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	OnInit,
+	ViewChild,
+	ViewEncapsulation,
+} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { GoogleMapsModule } from "@angular/google-maps";
 import { MatDialog } from "@angular/material/dialog";
@@ -7,11 +15,11 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { DefaultRenderer, MarkerClusterer, SuperClusterAlgorithm } from "@googlemaps/markerclusterer";
+import { ActivatedRoute, RouterModule } from "@angular/router";
+import { MarkerClusterer, SuperClusterAlgorithm } from "@googlemaps/markerclusterer";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
-import { InterestedUserComponent } from "../../../components/dialogs/interested-user/interested-user.component";
+
 import { PropertyComponent } from "../../../components/property/property.component";
 import { sortTypes } from "../../../consts/DefaultTypes";
 import { stringiFy } from "../../../consts/Utility";
@@ -146,22 +154,22 @@ export class MapComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	openDialog(property: PropertyModel) {
-		const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
-			width: "50%",
-			height: "auto",
-			disableClose: true,
-			autoFocus: false,
-			restoreFocus: false,
-			hasBackdrop: true,
-			data: property,
-		});
-
-		userDialog.afterClosed().subscribe((result) => {
-			if (result) {
-				this.redirectToDetail(property);
-			}
-		});
+	openUserSignupDialog(property: PropertyModel) {
+		// TODO: OPen user Signup dialog
+		// const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
+		// 	width: "50%",
+		// 	height: "auto",
+		// 	disableClose: true,
+		// 	autoFocus: false,
+		// 	restoreFocus: false,
+		// 	hasBackdrop: true,
+		// 	data: property,
+		// });
+		// userDialog.afterClosed().subscribe((result) => {
+		// 	if (result) {
+		// 		this.redirectToDetail(property);
+		// 	}
+		// });
 	}
 
 	async openInfoWindow(marker: google.maps.Marker, content: string, properties: PropertyModel[] = []) {
@@ -257,7 +265,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 			: "";
 		const officeName = property.ListOfficeName || "N/A";
 		const mls = property.ListingKey || "N/A";
-		const modificationDate = property.ModificationTimestamp ? new Date(property.ModificationTimestamp).toLocaleDateString() : "N/A";
+		const modificationDate = property.ModificationTimestamp
+			? new Date(property.ModificationTimestamp).toLocaleDateString()
+			: "N/A";
 
 		const width = "300px";
 		const imgHeight = "200px";
@@ -297,13 +307,13 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 	selectProperty = (property: PropertyModel): void => {
 		if (property.IsFeatureListing) {
-			this.openDialog(property);
+			this.openUserSignupDialog(property);
 		} else {
-			this.redirectToDetail(property);
+			this.openPropertyDetails(property);
 		}
 	};
 
-	redirectToDetail(property: PropertyModel): void {
+	openPropertyDetails(property: PropertyModel): void {
 		// const currentTemplate = this.router.url.split("/")[1];
 		// this.router.navigate([`/${currentTemplate}`, "property-detail"], {
 		// 	relativeTo: this.route,
@@ -480,7 +490,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 									? cluster.markers
 											.map((m: any) => m.get("property") as PropertyModel)
 											.filter((p: PropertyModel | undefined) => p)
-									: [cluster.markers[0].get("property") as PropertyModel].filter((p: PropertyModel | undefined) => p)
+									: [cluster.markers[0].get("property") as PropertyModel].filter(
+											(p: PropertyModel | undefined) => p
+									  )
 							);
 						});
 

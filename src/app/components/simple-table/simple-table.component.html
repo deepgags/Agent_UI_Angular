@@ -49,16 +49,15 @@
 					'text-right': col.isNumeric
 				}">
 				@if (
-				col.field != 'Action' &&
-				col.field != 'action' &&
-				col.field != 'Photo' &&
-				col.field != 'Image'
+				col.fieldType != fieldTypes.Action &&
+				col.fieldType != fieldTypes.Image
 				) {
 				<p-columnFilter type="text"
 								[field]="col.field"
 								[matchMode]="'contains'">
 				</p-columnFilter>
 				}
+
 			</th>
 			}
 		</tr>
@@ -154,6 +153,7 @@
 				{{ rowData[col.field] ? rowData[col.field] : '-' }}
 			</td>
 			}
+
 			@if (
 			col.fieldType == fieldTypes.Capitalize
 			) {
@@ -173,6 +173,7 @@
 				{{ rowData[col.field] ? (rowData[col.field] | camelCaseToCapitalize) : '-' }}
 			</td>
 			}
+
 			@if (col.fieldType == fieldTypes.Telephone) {
 			<td [ngStyle]="{
 						width: col.width,
@@ -190,6 +191,7 @@
 				{{ rowData[col.field] | phoneNumber }}
 			</td>
 			}
+
 			@if (col.fieldType == fieldTypes.Date) {
 			<td [ngStyle]="{
 						width: col.width,
@@ -204,6 +206,7 @@
 				{{ rowData[col.field] | date : 'dd-MMM-yyyy' }}
 			</td>
 			}
+
 			@if (col.fieldType == fieldTypes.Number) {
 			<td [ngStyle]="{
 						width: col.width,
@@ -257,6 +260,23 @@
 						[label]="col.header"
 						class="p-0 cursor-pointer p-button-text"
 						(click)="col.onClick(rowData)"></button>
+			</td>
+			}
+
+			@if (col.fieldType == fieldTypes.Image) {
+			<td [ngStyle]="{
+						width: col.width,
+						'max-width': col.width,
+						'min-width': col.width
+					}"
+				[ngClass]="{
+						'text-left': !col.isNumeric,
+						'text-right': col.isNumeric
+					}"
+				class="py-2">
+				<img [src]="rowData[col.field]"
+					 style="height:50px; width:50px; border-radius: 50%;"
+					 onError="this.src = '/images/Nologo.png'" />
 			</td>
 			}
 			}

@@ -33,13 +33,13 @@ export class PropertyService {
 			sort,
 			city,
 		} = propertyParams;
-
 		return this.http
 			.get<PropertyModel[]>(
-				`${this.Apiurl}/properties?page=${page}&pageSize=${pageSize}&address=${address}&city=${city}
-      &property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(
-					property_subtype
-				)}&bedrooms=${bedrooms}
+				`${this.Apiurl}/properties?page=${page}&pageSize=${pageSize}&address=${encodeURIComponent(
+					address
+				)}&city=${encodeURIComponent(city)}&property_type=${encodeURIComponent(
+					property_type
+				)}&property_subtype=${encodeURIComponent(property_subtype)}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
       &max_price=${max_price}&min_area=${sqFt}&brokerageType=${
 					brokerageType ? brokerageType : ""
@@ -99,6 +99,7 @@ export class PropertyService {
 								ListingContractDate: property.ListingContractDate,
 								IsFeatureListing: false,
 								ModificationTimestamp: property.ModificationTimestamp,
+								PropertyFeedType: property.PropertyFeedType,
 							};
 						});
 					}
@@ -194,6 +195,7 @@ export class PropertyService {
 								ListingContractDate: property.ListingContractDate,
 								IsFeatureListing: false,
 								ModificationTimestamp: property.ModificationTimestamp,
+								PropertyFeedType: property.PropertyFeedType,
 							};
 						});
 					}

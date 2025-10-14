@@ -19,6 +19,17 @@
 		</div>
 
 		<div class="mb-3">
+			<label for="designation"
+				   class="form-label">Designation</label>
+			<input type="text"
+				   pInputText
+				   formControlName="designation"
+				   placeholder="Designation"
+				   class="form-control"
+				   id="designation" />
+		</div>
+
+		<div class="mb-3">
 			<label for="message"
 				   class="form-label">Testimonial Message</label>
 			<textarea pTextarea
@@ -44,6 +55,46 @@
 				  *ngIf="date?.invalid && (date?.dirty || date?.touched)">
 				<span *ngIf="date?.errors?.['required']">Date is required</span>
 			</span>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-6 col-12">
+				<div class="bg-white shadow-sm">
+					<h6 class="text-muted d-flex align-items-center">
+						<i class="fas fa-user-tie text-muted me-2"></i>
+						Testimonial Image
+					</h6>
+					<div class="upload-container p-3 border rounded bg-light">
+						<input type="file"
+							   #testimonialImageUpload
+							   (change)="onTestimonialImageChange($event)"
+							   class="form-control upload-btn w-100"
+							   id="testimonialImageUpload"
+							   accept="image/*" />
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-12">
+				@if (testimonialImageObservable | async; as testimonialImage) {
+				<div class="mt-3 p-2 border rounded bg-white shadow-sm position-relative">
+					<button type="button"
+							class="btn btn-sm position-absolute top-0 end-0 mt-1 me-1 p-0"
+							style="background: none; border: none; color: #dc3545; font-size: 18px;"
+							(click)="removeTestimonialImage()"
+							title="Remove Image">
+						<i class="bi bi-x-circle-fill"></i>
+					</button>
+					<div class="text-center">
+						<h6 class="text-dark fw-bold mb-2">Testimonial Image Preview</h6>
+						<img [src]="testimonialImage"
+							 class="rounded border image-preview"
+							 style="width: 150px; height: 150px; object-fit: cover;"
+							 alt="Testimonial Image Preview" />
+					</div>
+				</div>
+				}
+			</div>
 		</div>
 
 		<button type="submit"

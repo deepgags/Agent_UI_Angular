@@ -40,11 +40,12 @@ export interface SiteConfig {
 		brokerageImage: string;
 	};
 
-	brokerage: {
-		name: string;
-		alternateName: string;
-		logoPath: string;
-	};
+	brokerageTypeId: string;
+	// brokerage: {
+	// 	name: string;
+	// 	alternateName: string;
+	// 	logoPath: string;
+	// };
 	secondaryAgent?: {
 		enableSecondaryAgent: boolean;
 		firstName: string;

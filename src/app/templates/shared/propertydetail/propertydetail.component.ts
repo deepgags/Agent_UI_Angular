@@ -1,4 +1,3 @@
-import { BreakpointObserver } from "@angular/cdk/layout";
 import { CommonModule, Location } from "@angular/common";
 import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -18,6 +17,7 @@ import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
 import { BehaviorSubject } from "rxjs";
@@ -34,7 +34,6 @@ import { PublicService } from "../../../services/public.service";
 import { SharedDataService } from "../../../services/shareddata.service";
 declare var window: any;
 declare var google: any;
-
 @Component({
 	selector: "app-propertydetail",
 	imports: [
@@ -43,12 +42,10 @@ declare var google: any;
 		FormsModule,
 		ReactiveFormsModule,
 		MatDialogModule,
-		// SearchComponent,
 		MatFormFieldModule,
 		MatInputModule,
 		GoogleMapsModule,
 		RouterModule,
-		// GalleryModule,
 		PhoneNumberPipe,
 		AccordionModule,
 		IftaLabelModule,
@@ -61,6 +58,7 @@ declare var google: any;
 		GalleriaModule,
 		PropertyComponent,
 		TabsModule,
+		ProgressSpinnerModule,
 	],
 	providers: [provideAnimations(), NgbCarouselConfig, DialogService],
 	templateUrl: "./propertydetail.component.html",
@@ -70,11 +68,10 @@ declare var google: any;
 })
 export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	imageUrl = environment.imageUrl;
-	property: PropertyModel | undefined;
+	property: PropertyModel | any = {} as PropertyModel;
 	Latitude: number = 0;
 	Longitude: number = 0;
-	private loadingSubject = new BehaviorSubject<boolean>(false);
-	loading$ = this.loadingSubject.asObservable();
+	loading = false;
 	requestShowingForm: FormGroup;
 	propertyHistoryForm: FormGroup;
 	recentSaleInAreaForm: FormGroup;
@@ -334,35 +331,25 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	}
 
 	getPropertyInformation(): void {
-		this.property = undefined;
-		this.loadingSubject.next(true);
+		this.property = null;
+		this.loading = true;
 		this.propertyService.getPropertyDetails(this.propertyId, this.mlsId).subscribe({
 			next: (response) => {
 				this.property = response;
 				this.center.lat = this.property.Latitude;
 				this.center.lng = this.property.Longitude;
-				// if (this.galleryRef && this.property.Media) {
-				// 	this.property?.Media?.forEach((x) => {
-				// 		this.galleryRef?.add(
-				// 			new ImageItem({
-				// 				src: `${this.imageUrl}${x.Media_url}`,
-				// 				thumb: `${this.imageUrl}${x.Media_url}`,
-				// 			})
-				// 		);
-				// 	});
-				// }
 				this.getRoomDetails();
 				this.getSimilarProperties();
 				setTimeout(() => {
 					this.loadWalkScore();
-				}, 1500);
+				}, 100);
+				this.loading = false;
 			},
 			error: (err) => {
-				// this.notificationService.showNotification("Error occurred while getting property information");
-				this.loadingSubject.next(false);
+				this.loading = false;
 			},
 			complete: () => {
-				this.loadingSubject.next(false);
+				this.loading = false;
 			},
 		});
 	}
@@ -372,7 +359,8 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		const { address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } = selectedFilters;
+		const { address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } =
+			selectedFilters;
 		this.router.navigate(["/t2", searchByMap ? "map" : "search"], {
 			queryParams: {
 				address,
@@ -413,7 +401,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	}
 
 	submitRequestShowingForm() {
-		console.log(this.requestShowingForm);
 		if (this.requestShowingForm.invalid) {
 			this.requestShowingForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
@@ -614,21 +601,15 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	}
 
 	getRoomDetails() {
-		this.loadingSubject.next(true);
 		const feedType = this.property?.PropertyFeedType ?? "";
 		this.propertyService.getRoomDetails(this.mlsId, feedType).subscribe({
 			next: (response) => {
-				console.log("room details", response);
 				this.roomDetails = response;
-				this.loadingSubject.next(false);
 			},
 			error: (err) => {
-				this.loadingSubject.next(false);
 				// this.notificationService.showNotification("Error occurred while getting property information");
 			},
-			complete: () => {
-				this.loadingSubject.next(false);
-			},
+			complete: () => {},
 		});
 	}
 
@@ -644,10 +625,10 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.similarProperties = response;
 			},
 			error: (err) => {
-				this.loadingSubject.next(false);
+				// this.loadingSubject.next(false);
 			},
 			complete: () => {
-				this.loadingSubject.next(false);
+				// this.loadingSubject.next(false);
 			},
 		});
 	}
@@ -676,9 +657,19 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		const controlDiv = document.createElement("div");
 		controlDiv.className = "custom-map-controls";
 
-		const drawControl = this.createMapButton("fas fa-pencil-alt", () => this.toggleDrawingMode(googleMap), "Draw Region", false);
+		const drawControl = this.createMapButton(
+			"fas fa-pencil-alt",
+			() => this.toggleDrawingMode(googleMap),
+			"Draw Region",
+			false
+		);
 
-		const amenitiesControl = this.createMapButton("fas fa-info", () => this.toggleAmenities(googleMap), "Amenities", true);
+		const amenitiesControl = this.createMapButton(
+			"fas fa-info",
+			() => this.toggleAmenities(googleMap),
+			"Amenities",
+			true
+		);
 
 		const locationControl = this.createMapButton(
 			"fas fa-location-arrow",

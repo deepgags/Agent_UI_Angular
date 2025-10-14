@@ -9,11 +9,10 @@ import { CustomerModel } from "../models/CustomerModel";
 	providedIn: "root",
 })
 export class CustomerService {
-	private customers: CustomerModel[] = [];
 	query = signal<string>("");
 	private baseUrl: string = environment.baseUrl;
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
 	register(params: CustomerModel): Observable<any> {
 		return this.http.post(`${this.baseUrl}/customer/register`, params);
@@ -85,5 +84,23 @@ export class CustomerService {
 		localStorage.removeItem("user");
 		sessionStorage.removeItem("token");
 		sessionStorage.removeItem("user");
+	}
+
+	loginUser(params: { email: string; password: string }): Observable<any> {
+		return this.http.post(`${this.baseUrl}/users/login`, params);
+	}
+
+	registerUser(params: {
+		name: string;
+		email: string;
+		password: string;
+		mobile: number;
+		siteId: string;
+	}): Observable<any> {
+		return this.http.post(`${this.baseUrl}/users/register`, params);
+	}
+
+	forgetPasswordUser(params: { email: string }): Observable<any> {
+		return this.http.post(`${this.baseUrl}/users/forgot-password`, params);
 	}
 }
