@@ -1,3 +1,84 @@
+@if (property.PropertyFeedType == 'VOW' && !isUserLoggedIn) {
+<div class="text-decoration-none py-3 property-wrapper"
+	 (click)="onPropertyClick(property)">
+	<div class="card h-100 property-card border border-light-subtle blurred-backdrop">
+		<div class="image-container">
+			@if(property && property.Media && property.Media.length>0){
+			<div>
+				<img [src]="imageUrl + property.Media[0].Media_url"
+					 alt="No property image to display"
+					 onerror="this.src = '/images/commercial_no_Image.jpg'" />
+			</div>
+			} @else {
+			<img src="/images/commercial_no_Image.jpg"
+				 class="card-img-top"
+				 alt="No property image to display" />
+			}
+		</div>
+
+		<div class="card-body pt-1"
+			 (click)="onPropertyClick(property)">
+			<div class="d-flex justify-content-between align-items-center">
+				<p class="mb-1 fs-4 fw-semibold">xxxxx.xxx
+					<span>{{property.ListPriceUnit}}</span>
+				</p>
+				<span class="fw-semibold">
+					{{property.PropertySubType}}
+				</span>
+			</div>
+			<span class="badge text_bg rounded-pill">
+				{{property.TransactionType}}
+			</span>
+			<span class="text_bg2 text-white"
+				  [ngClass]="{ 'location': property.IsFeatureListing }"
+				  style="width: 25px;">
+			</span>
+			<p class="card-text  mb-1 d-flex py-1"><i class="fa-solid fa-location-dot info mt-1 me-1"></i>
+				xxxxxxxxxxxxxxx xxxxxx xxxxxxxx
+			</p>
+			<div class="d-flex justify-content-between align-items-center">
+				<div class="d-flex align-items-center">
+					<div class="me-3"
+						 *ngIf="property.BedroomsTotal && property.BedroomsTotal > 0">
+						<p class="card-text "><span class="info fw-semibold">Bed </span> xx </p>
+					</div>
+					@if(property.BathroomsTotalInteger && property.BathroomsTotalInteger > 0){
+					<div class="me-3">
+						<p class="card-text ">
+							<span class="info fw-semibold">Bath </span> xx
+						</p>
+					</div>
+					<div class="me-3">
+						<p class="card-text ">
+							<span class="info fw-semibold"> </span> {{property.ArchitecturalStyle}}
+						</p>
+					</div>
+
+					}
+					@if (property.BuildingAreaTotal && property.BuildingAreaTotal > 0) {
+					<div>
+						<p class="card-text "><span class="info fw-semibold">Area </span> {{property.BuildingAreaTotal}} {{property.BuildingAreaUnits}}</p>
+					</div>
+					}
+				</div>
+
+				<p class="info  pt-2 mb-0 fw-semibold">MLS® xxxxxx</p>
+			</div>
+
+			<div class="d-flex justify-content-between align-items-center">
+				<p class="info pt-2 mb-0 fw-semibold">{{property.ListOfficeName}}</p>
+				<small class="text-muted">{{property.ModificationTimestamp | timeAgo}}</small>
+			</div>
+		</div>
+	</div>
+	<div class="vip-overlay">
+		<p class="mb-1 fs-6 fw-semibold">
+			VIP Account required to view additional property information. <b>Sign Up Now.</b>
+		</p>
+		<span class="badge bg-primary">{{property.PropertySubType}}</span>
+	</div>
+</div>
+} @else {
 <div class="text-decoration-none py-3">
 	<div class="card h-100 property-card border border-light-subtle">
 		<div class="image-container">
@@ -109,3 +190,4 @@
 		</div>
 	</div>
 </div>
+}

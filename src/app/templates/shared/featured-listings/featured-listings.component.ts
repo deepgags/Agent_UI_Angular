@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
@@ -16,7 +15,6 @@ import { PropertyModel } from "../../../models/PropertyModel";
 import { LoadingService } from "../../../services/loading.service";
 import { PropertyService } from "../../../services/property.service";
 import { SharedDataService } from "../../../services/shareddata.service";
-import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
 @Component({
@@ -62,12 +60,10 @@ export class FeaturedListingsComponent implements OnInit {
 	};
 
 	constructor(
-		private _interestedUserDialog: MatDialog,
 		private propertyService: PropertyService,
 		public loadingService: LoadingService,
 		private titleService: Title,
 		private sharedDataService: SharedDataService,
-		private dialogService: DialogService,
 		private cdr: ChangeDetectorRef
 	) {
 		this.titleService.setTitle("Search Properties");
@@ -80,47 +76,48 @@ export class FeaturedListingsComponent implements OnInit {
 		this.searchProperties({});
 	}
 
-	openUserSignupDialog(property: PropertyModel) {
-		// TODO: OPen user Signup dialog
-		const ref = this.dialogService.open(PropertyDetailComponent, {
-			header: `Login Requierd`,
-			width: "70%",
-			maximizable: false,
-			closable: true,
-			modal: true,
-			data: {},
-		});
-		ref.onClose.subscribe((isUserLoggedIn: boolean) => {
-			if (isUserLoggedIn) {
-				this.openPropertyDetails(property);
-			}
-		});
-	}
+	// openUserSignupDialog(property: PropertyModel) {
+	// 	// TODO: OPen user Signup dialog
+	// 	const ref = this.dialogService.open(PropertyDetailComponent, {
+	// 		header: `Login Requierd`,
+	// 		width: "70%",
+	// 		maximizable: false,
+	// 		closable: true,
+	// 		modal: true,
+	// 		data: {},
+	// 	});
+	// 	ref.onClose.subscribe((isUserLoggedIn: boolean) => {
+	// 		if (isUserLoggedIn) {
+	// 			this.openPropertyDetails(property);
+	// 		}
+	// 	});
+	// }
 
 	selectProperty = (property: PropertyModel): void => {
-		if (property.IsFeatureListing) {
-			this.openUserSignupDialog(property);
-		} else {
-			this.openPropertyDetails(property);
-		}
+		this.propertyService.selectProperty(property, this.selectedFilters);
+		// if (property.IsFeatureListing) {
+		// 	this.openUserSignupDialog(property);
+		// } else {
+		// 	this.openPropertyDetails(property);
+		// }
 	};
 
-	openPropertyDetails = (property: PropertyModel): void => {
-		this.dialogService.open(PropertyDetailComponent, {
-			header: `Property Information`,
-			width: "70%",
-			maximizable: true,
-			closable: true,
-			modal: true,
-			data: {
-				propertyId: property._id,
-				mlsId: property.ListingKey,
-				address: stringiFy(this.selectedFilters.address),
-				property_type: stringiFy(this.selectedFilters.property_type),
-				property_subtype: stringiFy(this.selectedFilters.property_subtype),
-			},
-		});
-	};
+	// openPropertyDetails = (property: PropertyModel): void => {
+	// 	this.dialogService.open(PropertyDetailComponent, {
+	// 		header: `Property Information`,
+	// 		width: "70%",
+	// 		maximizable: true,
+	// 		closable: true,
+	// 		modal: true,
+	// 		data: {
+	// 			propertyId: property._id,
+	// 			mlsId: property.ListingKey,
+	// 			address: stringiFy(this.selectedFilters.address),
+	// 			property_type: stringiFy(this.selectedFilters.property_type),
+	// 			property_subtype: stringiFy(this.selectedFilters.property_subtype),
+	// 		},
+	// 	});
+	// };
 
 	searchProperties = (selectedFilters: any, event?: PageEvent) => {
 		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;

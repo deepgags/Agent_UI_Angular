@@ -5,8 +5,18 @@ import { SiteConfig } from "../models/SiteConfig";
 	providedIn: "root",
 })
 export class SharedDataService {
+	private _userToken = signal("");
 	private _siteId = signal("");
 	private _siteData = signal<SiteConfig | any>({} as SiteConfig);
+
+	constructor() {
+		console.log("share data initiated");
+		const _userToken = localStorage.getItem("USER_TOKEN");
+		console.log(_userToken);
+		if (_userToken) {
+			this.setUserToken(_userToken);
+		}
+	}
 
 	setSiteId(_siteId: string) {
 		this._siteId.set(_siteId);
@@ -22,5 +32,18 @@ export class SharedDataService {
 
 	get siteData() {
 		return this._siteData;
+	}
+
+	setUserToken(_userToken: string) {
+		this._userToken.set(_userToken);
+	}
+
+	get userToken() {
+		return this._userToken;
+	}
+
+	setUserTokenInStorage(_userToken: string) {
+		localStorage.setItem("USER_TOKEN", _userToken);
+		this.setUserToken(_userToken);
 	}
 }

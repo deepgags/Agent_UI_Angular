@@ -154,23 +154,23 @@ export class MapComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	openUserSignupDialog(property: PropertyModel) {
-		// TODO: OPen user Signup dialog
-		// const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
-		// 	width: "50%",
-		// 	height: "auto",
-		// 	disableClose: true,
-		// 	autoFocus: false,
-		// 	restoreFocus: false,
-		// 	hasBackdrop: true,
-		// 	data: property,
-		// });
-		// userDialog.afterClosed().subscribe((result) => {
-		// 	if (result) {
-		// 		this.redirectToDetail(property);
-		// 	}
-		// });
-	}
+	// openUserSignupDialog(property: PropertyModel) {
+	// TODO: OPen user Signup dialog
+	// const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
+	// 	width: "50%",
+	// 	height: "auto",
+	// 	disableClose: true,
+	// 	autoFocus: false,
+	// 	restoreFocus: false,
+	// 	hasBackdrop: true,
+	// 	data: property,
+	// });
+	// userDialog.afterClosed().subscribe((result) => {
+	// 	if (result) {
+	// 		this.redirectToDetail(property);
+	// 	}
+	// });
+	// }
 
 	async openInfoWindow(marker: google.maps.Marker, content: string, properties: PropertyModel[] = []) {
 		if (this.previousInfoWindow) {
@@ -306,46 +306,30 @@ export class MapComponent implements OnInit, AfterViewInit {
 	}
 
 	selectProperty = (property: PropertyModel): void => {
-		if (property.IsFeatureListing) {
-			this.openUserSignupDialog(property);
-		} else {
-			this.openPropertyDetails(property);
-		}
+		this.propertyService.selectProperty(property, this.selectedFilters);
+		// if (property.IsFeatureListing) {
+		// 	this.openUserSignupDialog(property);
+		// } else {
+		// 	this.openPropertyDetails(property);
+		// }
 	};
 
-	openPropertyDetails(property: PropertyModel): void {
-		// const currentTemplate = this.router.url.split("/")[1];
-		// this.router.navigate([`/${currentTemplate}`, "property-detail"], {
-		// 	relativeTo: this.route,
-		// 	queryParams: {
-		// 		address: this.selectedFilters["address"],
-		// 		property_type: this.selectedFilters["property_type"],
-		// 		bedrooms: this.selectedFilters["bedrooms"],
-		// 		bathrooms: this.selectedFilters["bathrooms"],
-		// 		min_price: this.selectedFilters["min_price"],
-		// 		max_price: this.selectedFilters["max_price"],
-		// 		property_status: this.selectedFilters["property_status"],
-		// 		sqFt: this.selectedFilters["sqFt"],
-		// 		propertyId: property._id,
-		// 		mlsId: property.ListingKey,
-		// 	},
-		// 	queryParamsHandling: "replace",
-		// });
-		this.dialogService.open(PropertyDetailComponent, {
-			header: `Property Information`,
-			width: "70%",
-			maximizable: true,
-			closable: true,
-			modal: true,
-			data: {
-				propertyId: property._id,
-				mlsId: property.ListingKey,
-				address: stringiFy(this.selectedFilters.address),
-				property_type: stringiFy(this.selectedFilters.property_type),
-				property_subtype: stringiFy(this.selectedFilters.property_subtype),
-			},
-		});
-	}
+	// openPropertyDetails(property: PropertyModel): void {
+	// 	this.dialogService.open(PropertyDetailComponent, {
+	// 		header: `Property Information`,
+	// 		width: "70%",
+	// 		maximizable: true,
+	// 		closable: true,
+	// 		modal: true,
+	// 		data: {
+	// 			propertyId: property._id,
+	// 			mlsId: property.ListingKey,
+	// 			address: stringiFy(this.selectedFilters.address),
+	// 			property_type: stringiFy(this.selectedFilters.property_type),
+	// 			property_subtype: stringiFy(this.selectedFilters.property_subtype),
+	// 		},
+	// 	});
+	// }
 
 	zoomToFitMarkers(markers: { position: { lat: number; lng: number }; property: PropertyModel }[] = []): void {
 		const bounds = new google.maps.LatLngBounds();
@@ -391,6 +375,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 			latitude: this.Latitude,
 			longitude: this.Longitude,
 			sort: sort,
+			city: "",
 		};
 
 		this.loadingService.loadingOn();

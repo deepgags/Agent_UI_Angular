@@ -2,22 +2,30 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { PasswordModule } from "primeng/password";
 import { TabsModule } from "primeng/tabs";
 import { CustomerService } from "../../services/customer.service";
 import { NotificationService } from "../../services/notification.service";
 import { SharedDataService } from "../../services/shareddata.service";
-
 @Component({
 	selector: "app-user-login-dialog",
-	imports: [CommonModule, ReactiveFormsModule, TabsModule, InputTextModule, PasswordModule, RouterModule],
+	imports: [
+		CommonModule,
+		ReactiveFormsModule,
+		TabsModule,
+		InputTextModule,
+		InputMaskModule,
+		PasswordModule,
+		RouterModule,
+	],
 	templateUrl: "./user-login-dialog.component.html",
 	styleUrl: "./user-login-dialog.component.scss",
 })
 export class UserLoginDialogComponent {
 	activeTab = 0;
-
 	loginForm: FormGroup;
 	registerForm: FormGroup;
 	forgetPasswordForm: FormGroup;
@@ -25,7 +33,8 @@ export class UserLoginDialogComponent {
 	constructor(
 		private customerService: CustomerService,
 		private notificationService: NotificationService,
-		private sharedDataService: SharedDataService
+		private sharedDataService: SharedDataService,
+		private ref: DynamicDialogRef
 	) {
 		this.loginForm = new FormGroup({
 			email: new FormControl("", [Validators.required, Validators.email]),
@@ -48,8 +57,9 @@ export class UserLoginDialogComponent {
 		if (this.loginForm.valid) {
 			const { email, password } = this.loginForm.value;
 			this.customerService.loginUser({ email, password }).subscribe({
-				next: (response: any) => {
-					localStorage.setItem("user_token", response.token);
+				next: (res: any) => {
+					this.sharedDataService.setUserTokenInStorage(res.token);
+					this.ref.close(true);
 				},
 				error: (error: any) => {
 					this.notificationService.showError(error.error.message);
@@ -88,12 +98,13 @@ export class UserLoginDialogComponent {
 					name,
 					email,
 					password,
-					mobile: +phone,
+					phone,
 					siteId: this.sharedDataService.siteId(),
 				})
 				.subscribe({
-					next: (response: any) => {
+					next: (res: any) => {
 						this.notificationService.showSuccess("Registration successful!");
+						this.switchToLogin();
 					},
 					error: (error: any) => {
 						this.notificationService.showError(error.error.message);
@@ -114,7 +125,7 @@ export class UserLoginDialogComponent {
 		if (this.forgetPasswordForm.valid) {
 			const { email } = this.forgetPasswordForm.value;
 			this.customerService.forgetPasswordUser({ email }).subscribe({
-				next: (response: any) => {
+				next: (res: any) => {
 					this.notificationService.showSuccess("Password reset instructions sent to your email!");
 					this.switchToLogin();
 				},
