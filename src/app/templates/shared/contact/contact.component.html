@@ -12,21 +12,23 @@
 <section class="container-fluid py-5 bg-light search-container">
 	<div class="container">
 		<div class="row py-5 justify-content-around align-items-center">
-			<div class="col-lg-5 col-12 mb-4 mb-lg-0">
-				<div class="card p-3 shadow-sm border-0 rounded">
-					<img class="w-25"
+			<div class="col-lg-6 col-12 mb-4 mb-lg-0">
+				<div class="shadow-sm rounded p-3 mb-3">
+								<img class="logo"
 						 [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
 						 alt="No brokerage logo" />
 
-					<h6 class="card-head ">{{ siteConfig.brokerageTypeId }}</h6>
+					<h6 class="">{{ siteConfig.brokerageTypeId }}</h6>
+				</div>
 
+				<div class="card p-3 shadow-sm border-0 rounded">
 					<h4 class="card-head ">
 
 						{{ siteConfig.firstName }} {{ siteConfig.lastName }}
 					</h4>
 					<p class="fw-semibold fs-6">{{ siteConfig.designation}}</p>
 
-					<p class="mb-2">
+					<p class="mb-2 fw-semibold">
 						<i class="bi bi-geo-alt-fill info me-2"></i>
 						{{ siteConfig.websiteSettings.contactInfo.address}}
 					</p>
@@ -53,7 +55,7 @@
 						</h5>
 						<p class="fw-semibold fs-6">{{ siteConfig.secondaryAgent.designation }}</p>
 
-						<p class="mb-2">
+						<p class="mb-2 fw-semibold">
 							<i class="bi bi-geo-alt-fill info me-2"></i>
 							{{ siteConfig.websiteSettings.contactInfo.address}}
 						</p>
