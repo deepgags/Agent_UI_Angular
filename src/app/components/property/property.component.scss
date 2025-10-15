@@ -1,0 +1,38 @@
+.blurred-backdrop {
+	filter: blur(8px);
+}
+
+.image-container {
+	position: relative;
+	min-height: 250px;
+}
+
+.property-wrapper {
+	position: relative;
+}
+
+.vip-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.3);
+	color: white;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 20px;
+}
+
+.vip-overlay .badge {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.card-body {
+	min-height: 180px;
+}

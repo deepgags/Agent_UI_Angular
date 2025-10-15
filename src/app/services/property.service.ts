@@ -1,8 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { DOCUMENT, Inject, Injectable, signal } from "@angular/core";
+import { DialogService } from "primeng/dynamicdialog";
 import { catchError, map, Observable, throwError } from "rxjs";
+import { UserLoginDialogComponent } from "../components/user-login-dialog/user-login-dialog.component";
+import { stringiFy } from "../consts/Utility";
 import { environment } from "../environments/environment.development";
 import { PropertyModel } from "../models/PropertyModel";
+import { PropertyDetailComponent } from "../templates/shared/propertydetail/propertydetail.component";
+import { SharedDataService } from "./shareddata.service";
 
 @Injectable({
 	providedIn: "root",
@@ -11,7 +16,12 @@ export class PropertyService {
 	query = signal<string>("");
 	private Apiurl: string = environment.baseUrl;
 
-	constructor(private http: HttpClient, @Inject(DOCUMENT) private document: Document) {}
+	constructor(
+		private http: HttpClient,
+		@Inject(DOCUMENT) private document: Document,
+		private sharedDataService: SharedDataService,
+		private dialogService: DialogService
+	) {}
 
 	searchProperties(propertyParams: any): Observable<PropertyModel[]> {
 		const hostname = this.document.location.hostname;
@@ -329,4 +339,47 @@ export class PropertyService {
 			})
 		);
 	}
+
+	private _openUserSignupDialog(property: PropertyModel, selectedFilters: any) {
+		// TODO: OPen user Signup dialog
+		const ref = this.dialogService.open(UserLoginDialogComponent, {
+			header: `Login Requierd`,
+			width: "50%",
+			maximizable: false,
+			closable: true,
+			modal: true,
+			data: {},
+		});
+		ref.onClose.subscribe((isUserLoggedIn: boolean) => {
+			if (isUserLoggedIn) {
+				this.selectProperty(property, selectedFilters);
+			}
+		});
+	}
+
+	private _openPropertyDetails1(property: PropertyModel, selectedFilters: any): void {
+		this.dialogService.open(PropertyDetailComponent, {
+			header: `Property Information`,
+			width: "70%",
+			maximizable: true,
+			closable: true,
+			modal: true,
+			data: {
+				propertyId: property._id,
+				mlsId: property.ListingKey,
+				city: property.City,
+				town: property.Town,
+				property_type: stringiFy(selectedFilters.property_type ?? ""),
+				property_subtype: stringiFy(selectedFilters.property_subtype ?? ""),
+			},
+		});
+	}
+
+	selectProperty = (property: PropertyModel, selectedFilters: any): void => {
+		if (property.PropertyFeedType == "VOW" && !this.sharedDataService.userToken()) {
+			this._openUserSignupDialog(property, selectedFilters);
+		} else {
+			this._openPropertyDetails1(property, selectedFilters);
+		}
+	};
 }

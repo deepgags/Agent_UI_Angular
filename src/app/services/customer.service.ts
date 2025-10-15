@@ -94,7 +94,7 @@ export class CustomerService {
 		name: string;
 		email: string;
 		password: string;
-		mobile: number;
+		phone: string | number;
 		siteId: string;
 	}): Observable<any> {
 		return this.http.post(`${this.baseUrl}/users/register`, params);

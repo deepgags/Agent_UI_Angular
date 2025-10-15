@@ -1,17 +1,14 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { RouterModule } from "@angular/router";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
-
 import { PropertyComponent } from "../../../components/property/property.component";
 import { environment } from "../../../environments/environment.development";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { PropertyService } from "../../../services/property.service";
-import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 
 @Component({
 	selector: "app-featured-properties",
@@ -30,72 +27,15 @@ export class FeaturedPropertiesComponent implements OnInit {
 	pageIndex: number = 1;
 	pageSize: number = 6;
 
-	constructor(
-		private _interestedUserDialog: MatDialog,
-		private propertyService: PropertyService,
-		private dialogService: DialogService
-	) {}
+	constructor(private propertyService: PropertyService) {}
 
 	ngOnInit(): void {
 		this.searchProperties();
 	}
 
 	selectProperty = (property: PropertyModel): void => {
-		if (property.IsFeatureListing) {
-			this.openUserSignupDialog(property);
-		} else {
-			this.openPropertyDetails(property);
-		}
+		this.propertyService.selectProperty(property, {});
 	};
-
-	openUserSignupDialog(property: PropertyModel) {
-		// TODO: OPen user Signup dialog
-		// const userDialog = this._interestedUserDialog.open(InterestedUserComponent, {
-		// 	width: "50%",
-		// 	height: "auto",
-		// 	disableClose: true,
-		// 	autoFocus: false,
-		// 	restoreFocus: false,
-		// 	hasBackdrop: true,
-		// 	data: property,
-		// });
-		// userDialog.afterClosed().subscribe((result) => {
-		// 	if (result) {
-		// 		this.openPropertyDetails(property);
-		// 	}
-		// });
-	}
-
-	openPropertyDetails(property: PropertyModel): void {
-		// const currentTemplate = this.router.url.split("/")[1];
-		// this.router.navigate([`/${currentTemplate}`, "property-detail"], {
-		// 	relativeTo: this.activatedRoute,
-		// 	queryParams: {
-		// 		address: "",
-		// 		property_type: "",
-		// 		bedrooms: "",
-		// 		bathrooms: "",
-		// 		min_price: "",
-		// 		max_price: "",
-		// 		property_status: "",
-		// 		sqFt: "",
-		// 		propertyId: property._id,
-		// 		mlsId: property.ListingKey,
-		// 	},
-		// 	queryParamsHandling: "replace",
-		// });
-		this.dialogService.open(PropertyDetailComponent, {
-			header: `Property Information`,
-			width: "70%",
-			maximizable: true,
-			closable: true,
-			modal: true,
-			data: {
-				propertyId: property._id,
-				mlsId: property.ListingKey,
-			},
-		});
-	}
 
 	searchProperties = () => {
 		const userInfo: any = {};
@@ -116,6 +56,7 @@ export class FeaturedPropertiesComponent implements OnInit {
 			brokerageType: userInfo?.brokerage?.alternateName,
 			// propertyFeedType: "IDX",
 			sort: "",
+			city: "",
 		};
 
 		this.propertyService.featuredProperties(params).subscribe({

@@ -26,11 +26,18 @@ export class LeadsComponent implements OnInit {
 			header: "Customer Name",
 			disableSort: false,
 			fieldType: FieldsType.Text,
-			width: '190px'
+			// width: "190px",
 		},
 		{
 			field: "email",
 			header: "Email",
+			disableSort: false,
+			fieldType: FieldsType.Text,
+			// width: '180px'
+		},
+		{
+			field: "phone",
+			header: "Phone",
 			disableSort: false,
 			fieldType: FieldsType.Text,
 			// width: '180px'
@@ -95,7 +102,7 @@ export class LeadsComponent implements OnInit {
 
 	private leadsService = inject(LeadsService);
 
-	constructor() { }
+	constructor() {}
 
 	ngOnInit() {
 		this.getLeads();
@@ -136,7 +143,7 @@ export class LeadsComponent implements OnInit {
 			accept: () => {
 				this._confirmDeleteLead(lead, index);
 			},
-			reject: () => { },
+			reject: () => {},
 		});
 	};
 

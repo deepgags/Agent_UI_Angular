@@ -64,16 +64,10 @@ export class SearchPageComponent implements OnInit {
 	sortDropDown = sortTypes;
 
 	constructor(
-		private _interestedUserDialog: MatDialog,
 		private route: ActivatedRoute,
 		private propertyService: PropertyService,
 		public loadingService: LoadingService,
-		private titleService: Title,
-		// private notificationService: NotificationService,
-		// private storageService: StorageService,
-		// private router: Router,
-		// private activatedRoute: ActivatedRoute,
-		private dialogService: DialogService
+		private titleService: Title
 	) {
 		this.titleService.setTitle("Search Properties");
 	}
@@ -90,48 +84,9 @@ export class SearchPageComponent implements OnInit {
 		});
 	}
 
-	openUserSignupDialog(property: PropertyModel) {
-		// TODO: OPen user Signup dialog
-		const ref = this.dialogService.open(UserLoginDialogComponent, {
-			header: `Login Requierd`,
-			width: "50%",
-			maximizable: false,
-			closable: true,
-			modal: true,
-			data: {},
-		});
-		ref.onClose.subscribe((isUserLoggedIn: boolean) => {
-			if (isUserLoggedIn) {
-				this.openPropertyDetails(property);
-			}
-		});
-	}
-
 	selectProperty = (property: PropertyModel): void => {
-		if (property.PropertyFeedType == "VOW") {
-			this.openUserSignupDialog(property);
-		} else {
-			this.openPropertyDetails(property);
-		}
+		this.propertyService.selectProperty(property, this.selectedFilters);
 	};
-
-	openPropertyDetails(property: PropertyModel): void {
-		this.dialogService.open(PropertyDetailComponent, {
-			header: `Property Information`,
-			width: "70%",
-			maximizable: true,
-			closable: true,
-			modal: true,
-			data: {
-				propertyId: property._id,
-				mlsId: property.ListingKey,
-				city: property.City,
-				town: property.Town,
-				property_type: stringiFy(this.selectedFilters.property_type),
-				property_subtype: stringiFy(this.selectedFilters.property_subtype),
-			},
-		});
-	}
 
 	sortChange(sort: any): void {
 		this.selectedFilters.sort = sort;

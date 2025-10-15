@@ -1,12 +1,11 @@
 <div class="col mt-3">
-	<h2>Testimonials</h2>
+	<div class="d-flex gap-2 justify-content-between mb-3">
+		<h2>Testimonials</h2>
+		<button class="btn btn-primary"
+				(click)="addTestimonial()">Add Testimonial</button>
+	</div>
 	<div class="border rounded">
-		<div class="p-4">
-			<div class="d-flex gap-2 justify-content-end mb-3">
-				<button class="btn btn-primary"
-						(click)="addTestimonial()">Add Testimonial</button>
-			</div>
-
+		<div class="">
 			<!-- Loading State -->
 			<div *ngIf="loading"
 				 class="text-center py-4">
