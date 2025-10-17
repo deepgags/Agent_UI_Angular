@@ -1,14 +1,12 @@
 @if (property.PropertyFeedType == 'VOW' && !isUserLoggedIn) {
-<div class="text-decoration-none py-3 property-wrapper"
+<div class="text-decoration-none property-wrapper"
 	 (click)="onPropertyClick(property)">
 	<div class="card h-100 property-card border border-light-subtle blurred-backdrop">
 		<div class="image-container">
 			@if(property && property.Media && property.Media.length>0){
-			<div>
-				<img [src]="imageUrl + property.Media[0].Media_url"
-					 alt="No property image to display"
-					 onerror="this.src = '/images/commercial_no_Image.jpg'" />
-			</div>
+			<img [src]="imageUrl + property.Media[0].Media_url"
+				 alt="No property image to display"
+				 onerror="this.src = '/images/commercial_no_Image.jpg'" />
 			} @else {
 			<img src="/images/commercial_no_Image.jpg"
 				 class="card-img-top"
@@ -79,7 +77,7 @@
 	</div>
 </div>
 } @else {
-<div class="text-decoration-none py-3">
+<div class="text-decoration-none">
 	<div class="card h-100 property-card border border-light-subtle">
 		<div class="image-container">
 			@if(property && property.Media && property.Media.length>0){
