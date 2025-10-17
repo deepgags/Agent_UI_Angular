@@ -135,7 +135,15 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	roomDetails: any[] = [];
 	similarProperties: any[] = [];
 	siteConfig: SiteConfig = {} as SiteConfig;
-	private readonly _defaultMessage = "I would like more information regarding a property";
+
+	// private readonly _defaultMessage = "I would like more information regarding a property";
+
+	requestShowingText = "";
+	propertyHistooryText = "";
+	recentSalesinAreaText = "";
+	haveAQuestionText = "";
+	askAboutThisHomecommentText = "";
+
 	constructor(
 		private propertyService: PropertyService,
 		private titleService: Title,
@@ -161,7 +169,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
 			date: new FormControl(""),
-			message: new FormControl(this._defaultMessage, Validators.required),
+			message: new FormControl(this.requestShowingText, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
@@ -170,7 +178,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
-			message: new FormControl(this._defaultMessage, Validators.required),
+			message: new FormControl(this.propertyHistooryText, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
@@ -179,7 +187,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
-			message: new FormControl(this._defaultMessage, Validators.required),
+			message: new FormControl(this.recentSalesinAreaText, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
@@ -188,7 +196,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
-			message: new FormControl(this._defaultMessage, Validators.required),
+			message: new FormControl(this.haveAQuestionText, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
@@ -197,7 +205,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
-			message: new FormControl(this._defaultMessage, Validators.required),
+			message: new FormControl(this.askAboutThisHomecommentText, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
@@ -344,6 +352,21 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 					this.loadWalkScore();
 				}, 100);
 				this.loading = false;
+
+				this.requestShowingText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}. I would like to schedule an appointment to further discuss this property.
+				Thank you.`;
+
+				this.propertyHistooryText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}. I am interested in the history of this property.
+				Thank you.`;
+
+				this.recentSalesinAreaText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}. I am interested in any recently sold listings in the area of this property.
+				Thank you.`;
+
+				this.haveAQuestionText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}. Please send me more information about this listing.
+				Thank you.`;
+
+				this.askAboutThisHomecommentText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}, MLS Id #${this.property.ListingKey}. Please send me more information about this listing.
+				Thank you.`;
 			},
 			error: (err) => {
 				this.loading = false;
@@ -418,7 +441,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.requestShowingForm.reset();
 				this.requestShowingForm.patchValue({
-					message: this._defaultMessage,
+					message: this.requestShowingText,
 				});
 			},
 			error: () => {
@@ -445,7 +468,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.propertyHistoryForm.reset();
 				this.propertyHistoryForm.patchValue({
-					message: this._defaultMessage,
+					message: this.propertyHistooryText,
 				});
 			},
 			error: () => {
@@ -472,7 +495,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.recentSaleInAreaForm.reset();
 				this.recentSaleInAreaForm.patchValue({
-					message: this._defaultMessage,
+					message: this.recentSalesinAreaText,
 				});
 			},
 			error: () => {
@@ -499,7 +522,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.haveQuestionForm.reset();
 				this.haveQuestionForm.patchValue({
-					message: this._defaultMessage,
+					message: this.haveAQuestionText,
 				});
 			},
 			error: () => {
@@ -526,7 +549,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.contactForm.reset();
 				this.contactForm.patchValue({
-					message: this._defaultMessage,
+					message: this.askAboutThisHomecommentText,
 				});
 			},
 			error: () => {
