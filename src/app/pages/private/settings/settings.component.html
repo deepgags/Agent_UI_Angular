@@ -24,7 +24,7 @@
 											   placeholder="Website URL"
 											   class="form-control"
 											   id="siteUrl"
-											   required />
+											   readobly />
 										<label for="siteUrl">Website URL</label>
 									</p-iftalabel>
 									@if (siteUrl?.invalid && (siteUrl?.dirty || siteUrl?.touched)) {
@@ -46,7 +46,8 @@
 											<p-inputmask mask="999-999-9999"
 														 formControlName="phoneNumber"
 														 styleClass="form-control"
-														 inputId="phoneNumber"></p-inputmask>
+														 inputId="phoneNumber"
+														 required></p-inputmask>
 											<label for="phoneNumber">Phone Number</label>
 										</p-iftalabel>
 										@if (phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)) {
@@ -236,13 +237,13 @@
 												   required />
 											<label for="lastName">Last Name</label>
 										</p-iftalabel>
-										@if (lastName?.invalid && (lastName?.dirty || lastName?.touched)) {
+										<!-- @if (lastName?.invalid && (lastName?.dirty || lastName?.touched)) {
 										<span class="error">
 											@if (lastName?.errors?.['required']) {
 											<span>Last Name is required</span>
 											}
 										</span>
-										}
+										} -->
 									</div>
 								</div>
 							</div>
@@ -255,9 +256,17 @@
 												   formControlName="websiteEmail"
 												   placeholder="Website Email"
 												   class="form-control"
-												   id="websiteEmail" />
+												   id="websiteEmail"
+												   required />
 											<label for="websiteEmail">Email (Displayed on Website)</label>
 										</p-iftalabel>
+										@if (websiteEmail?.invalid && (websiteEmail?.dirty || websiteEmail?.touched)) {
+										<span class="error">
+											@if (websiteEmail?.errors?.['required']) {
+											<span>Email is required</span>
+											}
+										</span>
+										}
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -267,9 +276,20 @@
 														 formControlName="websitePhone"
 														 styleClass="form-control"
 														 placeholder="Website Phone"
-														 id="websitePhone"></p-inputmask>
+														 id="websitePhone"
+														 required></p-inputmask>
 											<label for="websitePhone">Phone (Displayed on Website)</label>
 										</p-iftalabel>
+										@if (websitePhone?.invalid && (websitePhone?.dirty || websitePhone?.touched)) {
+										<span class="error">
+											@if (websitePhone?.errors?.['required']) {
+											<span>Phone is required</span>
+											}
+											@if (phoneNumber?.errors?.['pattern']) {
+											<span>Phone is invalid</span>
+											}
+										</span>
+										}
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -283,6 +303,13 @@
 												   id="designation" />
 											<label for="designation">Designation (Displayed on Website)</label>
 										</p-iftalabel>
+										@if (designation?.invalid && (designation?.dirty || designation?.touched)) {
+										<span class="error">
+											@if (designation?.errors?.['required']) {
+											<span>Designation is required</span>
+											}
+										</span>
+										}
 									</div>
 								</div>
 							</div>
@@ -335,7 +362,8 @@
 									<div class="mb-3 d-flex gap-2">
 										<label for="enableSecondaryAgent">Enable Secondary Agent</label>
 										<p-toggleswitch formControlName="enableSecondaryAgent"
-														id="enableSecondaryAgent" />
+														id="enableSecondaryAgent"
+														(onChange)="setSecondryAgentVelidations($event)" />
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -349,6 +377,14 @@
 												   id="secondaryFirstName" />
 											<label for="secondaryFirstName">First Name</label>
 										</p-iftalabel>
+										@if(agentForm.get('secondaryAgent.firstName')?.invalid && (agentForm.get('secondaryAgent.firstName')?.dirty ||
+										agentForm.get('secondaryAgent.firstName')?.touched)){
+										<span class="error">
+											@if(agentForm.get('secondaryAgent.firstName')?.errors?.['required']){
+											<span>First Name is required</span>
+											}
+										</span>
+										}
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -376,6 +412,14 @@
 														 id="secondaryWebsitePhone"></p-inputmask>
 											<label for="secondaryWebsitePhone">Phone (Displayed on Website)</label>
 										</p-iftalabel>
+										@if(agentForm.get('secondaryAgent.websitePhone')?.invalid && (agentForm.get('secondaryAgent.websitePhone')?.dirty ||
+										agentForm.get('secondaryAgent.websitePhone')?.touched)){
+										<span class="error">
+											@if(agentForm.get('secondaryAgent.websitePhone')?.errors?.['required']){
+											<span>Phone is required</span>
+											}
+										</span>
+										}
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -389,6 +433,17 @@
 												   id="secondaryWebsiteEmail" />
 											<label for="secondaryWebsiteEmail">Website Email</label>
 										</p-iftalabel>
+										@if(agentForm.get('secondaryAgent.websiteEmail')?.invalid && (agentForm.get('secondaryAgent.websiteEmail')?.dirty ||
+										agentForm.get('secondaryAgent.websiteEmail')?.touched)){
+										<span class="error">
+											@if(agentForm.get('secondaryAgent.websiteEmail')?.errors?.['required']){
+											<span>Email is required</span>
+											}
+											@if(agentForm.get('secondaryAgent.websiteEmail')?.errors?.['email']){
+											<span>Email is invalid</span>
+											}
+										</span>
+										}
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -402,6 +457,14 @@
 												   id="designation" />
 											<label for="designation">Designation (Displayed on Website)</label>
 										</p-iftalabel>
+										@if(agentForm.get('secondaryAgent.designation')?.invalid && (agentForm.get('secondaryAgent.designation')?.dirty ||
+										agentForm.get('secondaryAgent.designation')?.touched)){
+										<span class="error">
+											@if(agentForm.get('secondaryAgent.designation')?.errors?.['required']){
+											<span>Designation is required</span>
+											}
+										</span>
+										}
 									</div>
 								</div>
 							</div>

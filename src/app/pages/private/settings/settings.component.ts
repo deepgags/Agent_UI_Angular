@@ -97,11 +97,57 @@ export class SettingsComponent {
 		this.secondaryAgentProfileImageObservable = this.secondaryAgentProfileImage.asObservable();
 	}
 
+	ngOnInit() {
+		this.agentForm = this.fb.group({
+			businessName: new FormControl("", Validators.required),
+			brokerageType: new FormControl("", Validators.required),
+			firstName: new FormControl("", Validators.required),
+			lastName: new FormControl(""),
+			phoneNumber: new FormControl("", [Validators.required]),
+			designation: new FormControl("", [Validators.required]),
+			emailAddress: new FormControl("", [Validators.required, Validators.email]),
+			address: new FormControl(""),
+			logoImage: new FormControl(""),
+			logoImagePath: new FormControl(""),
+			profileImage: new FormControl(""),
+			profileImagePath: new FormControl(""),
+			siteUrl: new FormControl({ value: "", disabled: true }, [
+				Validators.required,
+				// Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?"),
+			]),
+			// Website Settings Form Controls
+			primaryColor: new FormControl(""),
+			secondaryColor: new FormControl(""),
+			facebook: new FormControl(""),
+			twitter: new FormControl(""),
+			instagram: new FormControl(""),
+			linkedin: new FormControl(""),
+			youtube: new FormControl(""),
+			websiteEmail: new FormControl(""),
+			websitePhone: new FormControl("", [Validators.required]),
+			secondaryAgent: this.fb.group({
+				enableSecondaryAgent: new FormControl(false),
+				firstName: new FormControl(""),
+				lastName: new FormControl(""),
+				websitePhone: new FormControl(""),
+				websiteEmail: new FormControl(""),
+				profileImage: new FormControl(""),
+				designation: new FormControl(""),
+			}),
+		});
+
+		this.getBrokerageTypes();
+	}
+
 	get emailAddress() {
 		return this.agentForm.get("emailAddress");
 	}
 	get phoneNumber() {
 		return this.agentForm.get("phoneNumber");
+	}
+
+	get designation() {
+		return this.agentForm.get("designation");
 	}
 
 	get businessName() {
@@ -116,57 +162,20 @@ export class SettingsComponent {
 		return this.agentForm.get("firstName");
 	}
 
-	get lastName() {
-		return this.agentForm.get("lastName");
-	}
+	// get lastName() {
+	// 	return this.agentForm.get("lastName");
+	// }
 
 	get siteUrl() {
 		return this.agentForm.get("siteUrl");
 	}
 
-	ngOnInit() {
-		this.agentForm = this.fb.group({
-			businessName: new FormControl("", Validators.required),
-			brokerageType: new FormControl("", Validators.required),
-			firstName: new FormControl("", Validators.required),
-			lastName: new FormControl("", Validators.required),
-			phoneNumber: new FormControl("", [
-				Validators.required,
-				Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"),
-			]),
-			designation: new FormControl(""),
-			emailAddress: new FormControl("", [Validators.required, Validators.email]),
-			address: new FormControl(""),
-			logoImage: new FormControl(""),
-			logoImagePath: new FormControl(""),
-			profileImage: new FormControl(""),
-			profileImagePath: new FormControl(""),
-			siteUrl: new FormControl("", [
-				Validators.required,
-				// Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?"),
-			]),
-			// Website Settings Form Controls
-			primaryColor: new FormControl(""),
-			secondaryColor: new FormControl(""),
-			facebook: new FormControl(""),
-			twitter: new FormControl(""),
-			instagram: new FormControl(""),
-			linkedin: new FormControl(""),
-			youtube: new FormControl(""),
-			websiteEmail: new FormControl(""),
-			websitePhone: new FormControl(""),
-			secondaryAgent: this.fb.group({
-				enableSecondaryAgent: new FormControl(false),
-				firstName: new FormControl(""),
-				lastName: new FormControl(""),
-				websitePhone: new FormControl(""),
-				websiteEmail: new FormControl(""),
-				profileImage: new FormControl(""),
-				designation: new FormControl(""),
-			}),
-		});
+	get websiteEmail() {
+		return this.agentForm.get("websiteEmail");
+	}
 
-		this.getBrokerageTypes();
+	get websitePhone() {
+		return this.agentForm.get("websitePhone");
 	}
 
 	getProfile() {
@@ -232,7 +241,9 @@ export class SettingsComponent {
 							this.secondaryAgentProfileImage.next(response.data.secondaryAgent.profileImage);
 						}
 					}
-
+					this.setSecondryAgentVelidations({
+						checked: this.agentForm.get("secondaryAgent.enableSecondaryAgent")?.value,
+					});
 					this.emailAddress?.disable();
 					this.phoneNumber?.disable();
 				}
@@ -270,8 +281,8 @@ export class SettingsComponent {
 	// }
 
 	save() {
-		const { valid } = this.agentForm;
-		if (valid) {
+		console.log(this.agentForm.controls);
+		if (this.agentForm.valid) {
 			// this.profileImage = this.profileImageSource ?? "";
 			// this.logoImage = this.logoImageSource ?? "";
 			// this.agentData.logoImagePath = this.logoImagePath;
@@ -282,7 +293,7 @@ export class SettingsComponent {
 				lastName,
 				address,
 				brokerageType,
-				siteUrl,
+				// siteUrl,
 				primaryColor,
 				secondaryColor,
 				facebook,
@@ -304,7 +315,7 @@ export class SettingsComponent {
 				brokerageTypeId: brokerageType,
 				designation,
 				websiteSettings: {
-					siteUrl: siteUrl,
+					// siteUrl: siteUrl,
 					primaryColor,
 					secondaryColor,
 					socialLinks: {
@@ -444,4 +455,30 @@ export class SettingsComponent {
 			return item.toLowerCase().indexOf(event.query.toLowerCase()) > -1;
 		});
 	};
+
+	setSecondryAgentVelidations(e: any) {
+		const isEnabled = e.checked;
+		const secondaryAgentForm = this.agentForm.get("secondaryAgent") as FormGroup;
+		const firstName = secondaryAgentForm.get("firstName");
+		const websiteEmail = secondaryAgentForm.get("websiteEmail");
+		const websitePhone = secondaryAgentForm.get("websitePhone");
+		const designation = secondaryAgentForm.get("designation");
+
+		if (isEnabled) {
+			firstName?.setValidators([Validators.required]);
+			websiteEmail?.setValidators([Validators.required, Validators.email]);
+			websitePhone?.setValidators([Validators.required]);
+			designation?.setValidators([Validators.required]);
+		} else {
+			firstName?.clearValidators();
+			websiteEmail?.clearValidators();
+			websitePhone?.clearValidators();
+			designation?.clearValidators();
+		}
+
+		firstName?.updateValueAndValidity();
+		websiteEmail?.updateValueAndValidity();
+		websitePhone?.updateValueAndValidity();
+		designation?.updateValueAndValidity();
+	}
 }
