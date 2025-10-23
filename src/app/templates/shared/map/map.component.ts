@@ -1,9 +1,12 @@
 import { CommonModule } from "@angular/common";
 import {
 	AfterViewInit,
+	ApplicationRef,
 	ChangeDetectionStrategy,
 	Component,
+	ComponentFactoryResolver,
 	ElementRef,
+	Injector,
 	OnInit,
 	ViewChild,
 	ViewEncapsulation,
@@ -29,6 +32,8 @@ import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 import { StorageService } from "../../../services/storage.service";
+import { CustomInfoWindowComponent } from "../custom-info-window/custom-info-window.component";
+import { CustomOverlay } from "../custom-info-window/custom-overlay";
 import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
@@ -44,6 +49,7 @@ import { SearchComponent } from "../search/search.component";
 		MatProgressSpinnerModule,
 		GoogleMapsModule,
 		PropertyComponent,
+		CustomInfoWindowComponent,
 	],
 	templateUrl: "./map.component.html",
 	styleUrl: "./map.component.scss",
@@ -70,6 +76,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 	preventClose: boolean = false;
 	map!: google.maps.Map;
 	markerClusterer: MarkerClusterer | null = null;
+	private currentOverlay: CustomOverlay | null = null;
 
 	markers = [{ position: { lat: 56.1304, lng: 106.3468 }, property: new PropertyModel() }]; // Center of Canada
 
@@ -98,7 +105,10 @@ export class MapComponent implements OnInit, AfterViewInit {
 		// private router: Router,
 		private titleService: Title,
 		private route: ActivatedRoute,
-		private dialogService: DialogService
+		private dialogService: DialogService,
+		private componentFactoryResolver: ComponentFactoryResolver,
+		private appRef: ApplicationRef,
+		private injector: Injector
 	) {
 		this.titleService.setTitle("Properties on map");
 	}
@@ -173,56 +183,24 @@ export class MapComponent implements OnInit, AfterViewInit {
 	// }
 
 	async openInfoWindow(marker: google.maps.Marker, content: string, properties: PropertyModel[] = []) {
-		if (this.previousInfoWindow) {
-			this.previousInfoWindow.close();
+		if (this.currentOverlay) {
+			this.currentOverlay.setMap(null);
 		}
-		const informationwindow = new google.maps.InfoWindow({
-			content: content,
-			maxWidth: 360,
-		});
-		google.maps.event.addListener(informationwindow, "domready", () => {
-			const iwOuter = document.querySelector(".gm-style-iw") as HTMLElement;
-			if (iwOuter) {
-				iwOuter.addEventListener("mouseenter", () => {
-					this.preventClose = true;
-				});
-				iwOuter.addEventListener("mouseleave", () => {
-					this.preventClose = false;
-					informationwindow.close();
-				});
-			}
-			const buttons = document.querySelectorAll("[data-action]");
-			buttons.forEach((btn) => {
-				btn.addEventListener("click", (e) => {
-					const action = btn.getAttribute("data-action");
-					const cid = btn.getAttribute("data-carousel");
-					const img = document.getElementById(`img-${cid}`) as HTMLImageElement;
-					if (img) {
-						const images = JSON.parse(img.getAttribute("data-images") || "[]");
-						let current = parseInt(img.getAttribute("data-current") || "0");
-						if (action === "next") {
-							current = (current + 1) % images.length;
-						} else if (action === "prev") {
-							current = (current - 1 + images.length) % images.length;
-						}
-						img.src = this.imageUrl + images[current];
-						img.setAttribute("data-current", current.toString());
-					}
-				});
-			});
-			const propertyDivs = document.querySelectorAll("[data-index]");
-			propertyDivs.forEach((div) => {
-				const index = parseInt(div.getAttribute("data-index") || "0");
-				const property = properties[index];
-				if (property) {
-					div.addEventListener("click", () => {
-						this.selectProperty(property);
-					});
-				}
-			});
-		});
-		informationwindow.open(this.map, marker);
-		this.previousInfoWindow = informationwindow;
+
+		const infoWindowContent = {
+			property: properties[0],
+			html: content,
+		};
+
+		this.currentOverlay = new CustomOverlay(
+			marker.getPosition()!,
+			infoWindowContent,
+			this.componentFactoryResolver,
+			this.appRef,
+			this.injector
+		);
+
+		this.currentOverlay.setMap(this.map);
 	}
 
 	// toggleHighlight(markerView:any) {
@@ -249,19 +227,19 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 		const controls =
 			images.length > 1
-				? `<button data-action="prev" data-carousel="${carouselId}" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><i class="bi bi-chevron-left"></i></button>
-				<button data-action="next" data-carousel="${carouselId}" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><i class="bi bi-chevron-right"></i></button>`
+				? `<button data-action="prev" data-carousel="${carouselId}" class="carousel-control prev"><i class="bi bi-chevron-left"></i></button>
+				   <button data-action="next" data-carousel="${carouselId}" class="carousel-control next"><i class="bi bi-chevron-right"></i></button>`
 				: "";
 
 		const priceFormatted = property.ListPrice ? `$${property.ListPrice.toLocaleString()}` : "Price not available";
 		const beds = property.BedroomsTotal
-			? `<div style="margin-right: 1rem;"><span style="font-weight: 600;">Bed ·</span> ${property.BedroomsTotal}</div>`
+			? `<div class="info-item"><span>Bed ·</span> ${property.BedroomsTotal}</div>`
 			: "";
 		const baths = property.BathroomsTotalInteger
-			? `<div style="margin-right: 1rem;"><span style="font-weight: 600;">Bath ·</span> ${property.BathroomsTotalInteger}</div>`
+			? `<div class="info-item"><span>Bath ·</span> ${property.BathroomsTotalInteger}</div>`
 			: "";
 		const area = property.BuildingAreaTotal
-			? `<div><span style="font-weight: 600;">Area ·</span> ${property.BuildingAreaTotal} ${property.BuildingAreaUnits}</div>`
+			? `<div class="info-item"><span>Area ·</span> ${property.BuildingAreaTotal} ${property.BuildingAreaUnits}</div>`
 			: "";
 		const officeName = property.ListOfficeName || "N/A";
 		const mls = property.ListingKey || "N/A";
@@ -269,40 +247,34 @@ export class MapComponent implements OnInit, AfterViewInit {
 			? new Date(property.ModificationTimestamp).toLocaleDateString()
 			: "N/A";
 
-		const width = "300px";
-		const imgHeight = "200px";
-		const fontSize = "1.5rem";
-		const padding = "1rem";
-		const marginBottom = "10px";
-
-		return `<div data-index="${index}" style="width: ${width}; font-family: Arial, sans-serif; border: 1px solid #dee2e6; border-radius: 0.375rem; overflow: hidden; margin-bottom: ${marginBottom};">
-		<div style="position: relative;"">
-		<img id="img-${carouselId}" src="${currentSrc}" data-images='${imagesJson}' data-current="0" alt="Property image" onerror="this.src='/images/commercial_no_Image.jpg'" style="width: 100%; height: ${imgHeight}; object-fit: cover;">
-				${controls}
-		</div>
-		<div style="padding: ${padding};">
-				<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-					<p style="margin: 0; font-size: ${fontSize}; font-weight: 600;">${priceFormatted}</p>
-					<span style="font-weight: 600;">${property.PropertySubType || "N/A"}</span>
-					</div>
-					<span style="display: inline-block; padding: 0.25rem 0.5rem; background-color: #007bff; color: white; border-radius: 0.25rem; font-size: 0.875rem;">${
-						property.TransactionType || "N/A"
-					}</span>
-			<p style="margin: 0.25rem 0; display: flex; align-items: center;"><i class="fa-solid fa-location-dot" style="margin-right: 0.5rem;"></i>
-			 ${property.UnparsedAddress || "N/A"}
-			 </p>
-			<div style="display: flex; justify-content: space-between; align-items: center;">
-				<div style="display: flex; align-items: center;">
-						${beds}${baths}${area}
+		return `
+			<div class="property-card" data-index="${index}">
+				<div class="image-container">
+					<img id="img-${carouselId}" src="${currentSrc}" data-images='${imagesJson}' data-current="0" alt="Property image" onerror="this.src='/images/commercial_no_Image.jpg'">
+					${controls}
 				</div>
-				<p style="margin: 0; padding-top: 0.5rem; font-weight: 600;">MLS® ${mls}</p>
+				<div class="property-details">
+					<div class="price-subtype">
+						<p class="price">${priceFormatted}</p>
+						<span class="subtype">${property.PropertySubType || "N/A"}</span>
+					</div>
+					<span class="transaction-type">${property.TransactionType || "N/A"}</span>
+					<p class="address"><i class="fa-solid fa-location-dot"></i> ${property.UnparsedAddress || "N/A"}</p>
+					<div class="info-row">
+						<div class="beds-baths-area">
+							${beds}
+							${baths}
+							${area}
+						</div>
+						<p class="mls">MLS® ${mls}</p>
+					</div>
+					<div class="office-date">
+						<p class="office">${officeName}</p>
+						<small class="date">${modificationDate}</small>
+					</div>
+				</div>
 			</div>
-			<div style="display: flex; justify-content: space-between; align-items: center;">
-					<p style="margin: 0; padding-top: 0.5rem; font-weight: 600;">${officeName}</p>
-					<small style="color: #6c757d;">${modificationDate}</small>
-			</div>
-		</div>
-	</div>`;
+		`;
 	}
 
 	selectProperty = (property: PropertyModel): void => {
@@ -491,7 +463,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
 						clusterMarker.addListener("click", () => {
 							if (count > 1) {
-								map.fitBounds(cluster.bounds);
+								// map.fitBounds(cluster.bounds);
 							}
 						});
 

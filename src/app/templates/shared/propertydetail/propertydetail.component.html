@@ -330,8 +330,8 @@
 												[position]="{ lat: property.Latitude, lng: property.Longitude }"
 												[label]="property.ListOfficeName"
 												[title]="property.PropertyUse"
-												(mapClick)="openInfoWindow(property, mapMarker)"></map-marker>
-									<map-info-window #mapMarkerLarge>
+												(mapClick)="openInfoWindow(mapMarker)"></map-marker>
+									<map-info-window [options]="infoWindowOptions">
 										<div>
 											<h5>{{ property.ListingKey }}</h5>
 											<p>

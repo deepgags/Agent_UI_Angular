@@ -82,6 +82,9 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
 	@ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 	@ViewChild("map", { static: false }) map!: GoogleMap;
+	infoWindowOptions: google.maps.InfoWindowOptions = {
+		pixelOffset: new google.maps.Size(0, -30), // Default offset
+	};
 	zoom = 14;
 	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Canada
 
@@ -332,8 +335,44 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		this.addMapControls();
 	}
 
-	openInfoWindow(property: PropertyModel, marker: MapMarker): void {
+	openInfoWindow(marker: MapMarker): void {
 		if (this.infoWindow) {
+			const map = this.map.googleMap;
+			if (map) {
+				const mapBounds = map.getBounds();
+				const projection = map.getProjection();
+
+				if (mapBounds && projection) {
+					const markerPosition = marker.getPosition();
+					if (markerPosition) {
+						const markerPoint = projection.fromLatLngToPoint(markerPosition);
+						const mapWidth = this.map.width;
+						const mapHeight = this.map.height;
+
+						if (markerPoint && typeof mapWidth === "number" && typeof mapHeight === "number") {
+							const infoWindowWidth = 200; // Approximate width of the info window
+							const infoWindowHeight = 150; // Approximate height of the info window
+
+							let offsetX = 0;
+							let offsetY = -40;
+
+							// Check horizontal space
+							if (markerPoint.x * map.getZoom()! + infoWindowWidth > mapWidth) {
+								offsetX = -infoWindowWidth;
+							}
+
+							// Check vertical space
+							if (markerPoint.y * map.getZoom()! - infoWindowHeight < 0) {
+								offsetY = 0;
+							}
+
+							this.infoWindowOptions = {
+								pixelOffset: new google.maps.Size(offsetX, offsetY),
+							};
+						}
+					}
+				}
+			}
 			this.infoWindow.open(marker);
 		}
 	}

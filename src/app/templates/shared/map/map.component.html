@@ -20,6 +20,14 @@
 
 <div class="container-fluid mt-3 search-container">
   <div class="row vh-100">
+    <div class="col-lg-6 col-12 p-0 position-sticky top-0"
+         style="height: 100vh;">
+      <div style="height: 70%;">
+        <div #mapComponent
+             id="mapComponent"
+             style="height: 100%; width: 100%;"></div>
+      </div>
+    </div>
     @if (propertiesList && propertiesList.length>0) {
     <div class="col-lg-6 col-12 overflow-auto px-4"
          style="height: 100vh; background: #f8f9fa;">
@@ -44,7 +52,7 @@
           </select>
         </div>
       </div>
-      <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="row row-cols-1 row-cols-md-2 g-3">
         @for (property of propertiesList; track property) {
         <!-- <div class="col">
           <div class="card h-100 border-0 shadow-lg rounded-3"
@@ -95,13 +103,6 @@
                      aria-label="Select page"></mat-paginator>
     </div>
     }
-    <div class="col-lg-6 col-12 p-0 position-sticky top-0"
-         style="height: 100vh;">
-      <div style="height: 70%;">
-        <div #mapComponent
-             id="mapComponent"
-             style="height: 100%; width: 100%;"></div>
-      </div>
-    </div>
+
   </div>
 </div>
