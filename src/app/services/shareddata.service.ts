@@ -10,9 +10,7 @@ export class SharedDataService {
 	private _siteData = signal<SiteConfig | any>({} as SiteConfig);
 
 	constructor() {
-		console.log("share data initiated");
 		const _userToken = localStorage.getItem("USER_TOKEN");
-		console.log(_userToken);
 		if (_userToken) {
 			this.setUserToken(_userToken);
 		}
