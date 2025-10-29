@@ -9,6 +9,8 @@
 					  name="brokerageForm"
 					  class="w-100"
 					  (ngSubmit)="save()">
+
+
 					<!-- About and Contact Text Areas -->
 					<div class="mb-4">
 						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
@@ -19,6 +21,43 @@
 							Add a description about your website and a contact message. This information will be
 							displayed on your website's About and Contact sections.
 						</small>
+
+						<div class="row mb-4 ">
+							<div class="col-12 mb-2">
+								<div class="d-flex gap-2 items-center">
+									<p-checkbox inputId="showHomeWorthPage"
+												[binary]="true"
+												name="showHomeWorthPage"
+												formControlName="showHomeWorthPage" />
+
+									<label for="showHomeWorthPage"
+										   class="ml-2"> Display How much Your Home Worth Landing Page </label>
+								</div>
+							</div>
+							<div class="col-12 mb-2">
+								<div class="d-flex gap-2 items-center">
+									<p-checkbox inputId="showSellingInNeighbourHooddPage"
+												[binary]="true"
+												name="showSellingInNeighbourHooddPage"
+												formControlName="showSellingInNeighbourHooddPage" />
+
+									<label for="showSellingInNeighbourHooddPage"
+										   class="ml-2"> Display Selling in neighbour hood Landing Page </label>
+								</div>
+							</div>
+							<div class="col-12 mb-2">
+								<div class="d-flex gap-2 items-center">
+									<p-checkbox inputId="showFindDreamHomePage"
+												[binary]="true"
+												name="showFindDreamHomePage"
+												formControlName="showFindDreamHomePage" />
+
+									<label for="showFindDreamHomePage"
+										   class="ml-2"> Display Find Your Home Landing Page </label>
+								</div>
+							</div>
+						</div>
+
 						<div class="row mb-4 d-flex flex-column gap-4">
 							<div class="col-md-12 field">
 								<label for="aboutText"

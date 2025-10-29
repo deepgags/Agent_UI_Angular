@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { CheckboxModule } from "primeng/checkbox";
 import { EditorModule } from "primeng/editor";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
@@ -23,6 +24,7 @@ import { NotificationService } from "../../../services/notification.service";
 		IftaLabelModule,
 		TextareaModule,
 		EditorModule,
+		CheckboxModule,
 	],
 	templateUrl: "./manager.component.html",
 	styleUrls: ["./manager.component.scss"],
@@ -339,6 +341,9 @@ export class ManagerComponent {
 			renovatingForResellText: new FormControl(""),
 			commonSellingMistakeText: new FormControl(""),
 			buyerText: new FormControl(""),
+			showHomeWorthPage: new FormControl(false),
+			showSellingInNeighbourHooddPage: new FormControl(""),
+			showFindDreamHomePage: new FormControl(""),
 		});
 
 		this.getProfile();
@@ -349,13 +354,27 @@ export class ManagerComponent {
 			next: (response: any) => {
 				if (response.status) {
 					if (response.data.websiteSettings) {
+						const {
+							aboutText,
+							contactText,
+							sellingYourHouseText,
+							renovatingForResellText,
+							commonSellingMistakeText,
+							buyerText,
+							showHomeWorthPage,
+							showSellingInNeighbourHooddPage,
+							showFindDreamHomePage,
+						} = response.data.websiteSettings;
 						this.agentForm.patchValue({
-							aboutText: response.data.websiteSettings.aboutText || this.defaultABoutText,
-							contactText: response.data.websiteSettings.contactText || this.defaultContactText,
-							sellingYourHouseText: response.data.websiteSettings.sellingYourHouseText || this.defaultSellerText,
-							renovatingForResellText: response.data.websiteSettings.renovatingForResellText || this.defaultSeller2Text,
-							commonSellingMistakeText: response.data.websiteSettings.commonSellingMistakeText || this.defaultSeller3Text,
-							buyerText: response.data.websiteSettings.buyerText || this.defaultBuyerText,
+							aboutText: aboutText || this.defaultABoutText,
+							contactText: contactText || this.defaultContactText,
+							sellingYourHouseText: sellingYourHouseText || this.defaultSellerText,
+							renovatingForResellText: renovatingForResellText || this.defaultSeller2Text,
+							commonSellingMistakeText: commonSellingMistakeText || this.defaultSeller3Text,
+							buyerText: buyerText || this.defaultBuyerText,
+							showHomeWorthPage: showHomeWorthPage,
+							showSellingInNeighbourHooddPage: showSellingInNeighbourHooddPage,
+							showFindDreamHomePage: showFindDreamHomePage,
 						});
 					}
 				}
@@ -371,21 +390,36 @@ export class ManagerComponent {
 		const { valid } = this.agentForm;
 		if (valid) {
 			this.loadingService.loadingOn();
-
+			const {
+				aboutText,
+				contactText,
+				sellingYourHouseText,
+				renovatingForResellText,
+				commonSellingMistakeText,
+				buyerText,
+				showHomeWorthPage,
+				showSellingInNeighbourHooddPage,
+				showFindDreamHomePage,
+			} = this.agentForm.value;
 			const params = {
 				websiteSettings: {
-					aboutText: this.agentForm.get("aboutText")?.value || "",
-					contactText: this.agentForm.get("contactText")?.value || "",
-					sellingYourHouseText: this.agentForm.get("sellingYourHouseText")?.value || "",
-					renovatingForResellText: this.agentForm.get("renovatingForResellText")?.value || "",
-					commonSellingMistakeText: this.agentForm.get("commonSellingMistakeText")?.value || "",
-					buyerText: this.agentForm.get("buyerText")?.value || "",
+					aboutText: aboutText,
+					contactText: contactText,
+					sellingYourHouseText: sellingYourHouseText,
+					renovatingForResellText: renovatingForResellText,
+					commonSellingMistakeText: commonSellingMistakeText,
+					buyerText: buyerText,
+					showHomeWorthPage,
+					showSellingInNeighbourHooddPage,
+					showFindDreamHomePage,
 				},
 			};
 			this.customerService.updatePageContent(params).subscribe({
 				next: (v) => {},
 				error: (e) => {
-					this.notificationService.showError(e.error.message || "Something went wrong while updating content.");
+					this.notificationService.showError(
+						e.error.message || "Something went wrong while updating content."
+					);
 				},
 				complete: () => {
 					this.notificationService.showSuccess("Page content updated.");
