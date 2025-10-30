@@ -10,6 +10,7 @@ import { providePrimeNG } from "primeng/config";
 import { DialogService } from "primeng/dynamicdialog";
 import { tap } from "rxjs";
 import { routes } from "./app.routes";
+import { AgentInterceptor } from "./interceptors/agent.interceptor";
 import { AuthInterceptor } from "./interceptors/auth.interceptor";
 import { NotFoundComponent } from "./pages/public/not-found/not-found.component";
 import { RoutesConfigService } from "./services/routes-config.service";
@@ -21,7 +22,11 @@ const initializeApp = (router: Router, routesConfigService: RoutesConfigService)
 				.loadSiteConfiguration()
 				.pipe(
 					tap((dynamicRoutes: any) => {
-						const newRoutes: Routes = [{ path: "", redirectTo: "/home", pathMatch: "full" }, dynamicRoutes, ...routes];
+						const newRoutes: Routes = [
+							{ path: "", redirectTo: "/home", pathMatch: "full" },
+							dynamicRoutes,
+							...routes,
+						];
 						router.resetConfig(newRoutes);
 					})
 				)
@@ -32,7 +37,7 @@ const initializeApp = (router: Router, routesConfigService: RoutesConfigService)
 export const appConfig: ApplicationConfig = {
 	providers: [
 		provideZoneChangeDetection({ eventCoalescing: true }),
-		provideHttpClient(withFetch(), withInterceptors([AuthInterceptor])),
+		provideHttpClient(withFetch(), withInterceptors([AuthInterceptor, AgentInterceptor])),
 		AngularSvgIconModule,
 		provideAnimations(),
 		provideAngularSvgIcon(),
