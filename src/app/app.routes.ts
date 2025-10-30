@@ -20,6 +20,9 @@ import { UserLoginComponent } from "./pages/public/user-login/user-login.compone
 import { UserSignupComponent } from "./pages/public/user-signup/user-signup.component";
 import { VerifyEmailComponent } from "./pages/public/verify-email/verify-email.component";
 import { AgentComponent } from "./pages/public/agent-details/agent-details.component";
+import { WorthComponent } from "./pages/public/home-worth/home-worth.component";
+import { DreamComponent } from "./pages/public/dream-home/dream-home.component";
+import { DreamHomeComponent } from "./pages/public/home-detail/home-detail.component";
 
 export const routes: Routes = [
 	// { path: "", redirectTo: '/loading', pathMatch: "full" },
@@ -33,6 +36,9 @@ export const routes: Routes = [
 	{ path: "user-login", component: UserLoginComponent },
 	{ path: "user-signup", component: UserSignupComponent },
 	{ path: "agent-details", component: AgentComponent },
+	{ path: "home-worth", component: WorthComponent },
+	{ path: "dream-home", component: DreamComponent },
+	{ path: "home-detail", component: DreamHomeComponent},
 	{
 		path: "",
 		component: PrivateComponent,

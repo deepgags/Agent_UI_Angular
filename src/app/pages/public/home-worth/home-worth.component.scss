@@ -1,0 +1,11 @@
+ .home-bg {
+      background: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e') no-repeat center center/cover;
+      min-height: 100vh;
+      position: relative;
+      color: #fff;
+    }
+    .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+    }
