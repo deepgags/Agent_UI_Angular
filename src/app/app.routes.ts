@@ -23,6 +23,7 @@ import { AgentComponent } from "./pages/public/agent-details/agent-details.compo
 import { WorthComponent } from "./pages/public/home-worth/home-worth.component";
 import { DreamComponent } from "./pages/public/dream-home/dream-home.component";
 import { DreamHomeComponent } from "./pages/public/home-detail/home-detail.component";
+import { NeighboursComponent } from "./pages/public/neighbours-detail/neighbours-detail.component";
 
 export const routes: Routes = [
 	// { path: "", redirectTo: '/loading', pathMatch: "full" },
@@ -39,6 +40,7 @@ export const routes: Routes = [
 	{ path: "home-worth", component: WorthComponent },
 	{ path: "dream-home", component: DreamComponent },
 	{ path: "home-detail", component: DreamHomeComponent},
+	{ path: "neighbours-detail", component: NeighboursComponent},
 	{
 		path: "",
 		component: PrivateComponent,
