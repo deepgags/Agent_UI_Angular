@@ -3,17 +3,27 @@
   <div class="bg-overlay"></div>
 
   <div class="position-relative container">
-    <div class="mx-auto" style="max-width: 700px;">
-      <img src="https://via.placeholder.com/150x100?text=LOGO" class="img-fluid mb-4" alt="Logo">
+    <div class="mx-auto"
+         style="max-width: 700px;">
+      <img src="https://via.placeholder.com/150x100?text=LOGO"
+           class="img-fluid mb-4"
+           alt="Logo">
       <h1 class="display-5 fw-semibold mb-3 text-capitalize">What is your House Really Worth?</h1>
       <p class="mb-4 fw-medium">Home Prices are Up 19%</p>
 
+
+      <app-google-place [placeholder]="'Type your address and submit'"
+                        [onPlaceSelect]="onPlaceSelect" />
+
       <form class="input-group mb-4 shadow-sm rounded-pill overflow-hidden">
-        <input type="text" class="form-control border-0 py-3 ps-4" placeholder="Type your address and submit">
-        <a href="/home-review" class="btn btn-warning fw-semibold text-uppercase px-4">Submit</a>
+        <input type="text"
+               placeholder="">
+        <a href="/home-review"
+           class="btn btn-warning fw-semibold text-uppercase px-4">Submit</a>
       </form>
 
-      <a href="#" class="btn btn-outline-light rounded-3 px-4 py-2">Back To Home Page</a>
+      <a href="#"
+         class="btn btn-outline-light rounded-3 px-4 py-2">Back To Home Page</a>
     </div>
   </div>
 

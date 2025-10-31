@@ -11,20 +11,20 @@ import { SettingsComponent } from "./pages/private/settings/settings.component";
 import { TemplateComponent } from "./pages/private/template/template.component";
 import { TestimonialComponent } from "./pages/private/testimonial/testimonial.component";
 import { UsersComponent } from "./pages/private/users/users.component";
+import { AgentComponent } from "./pages/public/agent-details/agent-details.component";
+import { DreamComponent } from "./pages/public/dream-home/dream-home.component";
 import { ForgotComponent } from "./pages/public/forgot/forgot.component";
+import { HomeDetailComponent } from "./pages/public/home-detail/home-detail.component";
+import { HomeReviewComponent } from "./pages/public/home-review/home-review.component";
+import { WorthComponent } from "./pages/public/home-worth/home-worth.component";
 import { LoginComponent } from "./pages/public/login/login.component";
+import { NeighboursDetailComponent } from "./pages/public/neighbours-detail/neighbours-detail.component";
 import { NotFoundComponent } from "./pages/public/not-found/not-found.component";
 import { RegisterComponent } from "./pages/public/register/register.component";
 import { TemplatesComponent } from "./pages/public/templates/templates.component";
 import { UserLoginComponent } from "./pages/public/user-login/user-login.component";
 import { UserSignupComponent } from "./pages/public/user-signup/user-signup.component";
 import { VerifyEmailComponent } from "./pages/public/verify-email/verify-email.component";
-import { AgentComponent } from "./pages/public/agent-details/agent-details.component";
-import { WorthComponent } from "./pages/public/home-worth/home-worth.component";
-import { DreamComponent } from "./pages/public/dream-home/dream-home.component";
-import { DreamHomeComponent } from "./pages/public/home-detail/home-detail.component";
-import { NeighboursComponent } from "./pages/public/neighbours-detail/neighbours-detail.component";
-import { HomeReviewComponent } from "./pages/public/home-review/home-review.component";
 
 export const routes: Routes = [
 	// { path: "", redirectTo: '/loading', pathMatch: "full" },
@@ -40,9 +40,9 @@ export const routes: Routes = [
 	{ path: "agent-details", component: AgentComponent },
 	{ path: "home-worth", component: WorthComponent },
 	{ path: "dream-home", component: DreamComponent },
-	{ path: "home-detail", component: DreamHomeComponent},
-	{ path: "neighbours-detail", component: NeighboursComponent},
-	{ path: "home-review", component: HomeReviewComponent},
+	{ path: "home-detail", component: HomeDetailComponent },
+	{ path: "neighbours-detail", component: NeighboursDetailComponent },
+	{ path: "home-review", component: HomeReviewComponent },
 	{
 		path: "",
 		component: PrivateComponent,
