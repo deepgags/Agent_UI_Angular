@@ -215,6 +215,66 @@
 	</div>
 </div>
 
+<section class="hero-bg position-relative py-5 overflow-hidden text-white">
+	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
+
+    <div class="container position-relative">
+        <div class="row justify-content-center g-4">
+
+            @if(siteConfig.websiteSettings.showHomeWorthPage){
+            <div class="col-12 col-sm-6 col-lg-4"  >
+                <div class="magic-card" data-tilt data-tilt-max="8" data-tilt-glare="true">
+                    <div class="card-inner">
+                        <div class="icon-part">
+                            <i class="bi bi-house-heart-fill icon-gradient"></i>
+                        </div>
+                        <div class="text-part">
+                            <h5>Home Evaluation</h5>
+                            <p>Get instant insights on what your home is worth.</p>
+                            <a href="/home-worth" class="btn btn-holo">Check Worth</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+            @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
+            <div class="col-12 col-sm-6 col-lg-4" >
+                <div class="magic-card" data-tilt data-tilt-max="8" data-tilt-glare="true">
+                    <div class="card-inner">
+                        <div class="icon-part">
+                            <i class="bi bi-pin-map-fill icon-gradient"></i>
+                        </div>
+                        <div class="text-part">
+                            <h5>Neighbourhood Watch</h5>
+                            <p>Get alerts when neighbours list homes for sale.</p>
+                            <a href="/neighbours-detail" class="btn btn-holo">Get Alerts</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+            @if(siteConfig.websiteSettings.showFindDreamHomePage){
+            <div class="col-12 col-sm-6 col-lg-4"  >
+                <div class="magic-card" data-tilt data-tilt-max="8" data-tilt-glare="true">
+                    <div class="card-inner">
+                        <div class="icon-part">
+                            <i class="bi bi-search-heart fs-2 icon-gradient"></i>
+                        </div>
+                        <div class="text-part">
+                            <h5>Dream Home Finder</h5>
+                            <p>Explore listings and find your dream home today.</p>
+                            <a href="/dream-home" class="btn btn-holo">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+</section>
 
 
 <div class="container-fluid sec-3 search-container">

@@ -89,3 +89,45 @@
     width: 190px;
   }
 }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.07);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .glass-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.4);
+    }
+    .icon-wrapper {
+        width: 70px;
+        height: 70px;
+    }
+    .btn-gradient {
+        background: linear-gradient(45deg, #007bff, #42a5f5);
+        color: #fff;
+        border: none;
+    }
+    .btn-gradient:hover {
+        background: linear-gradient(45deg, #42a5f5, #007bff);
+    }
+    .btn-gradient-warning {
+        background: linear-gradient(45deg, #fbb034, #ffdd00);
+        color: #222;
+        border: none;
+    }
+    .btn-gradient-success {
+        background: linear-gradient(45deg, #00c985, #48e5c2);
+        color: #fff;
+        border: none;
+    }
+    @media (max-width: 575.98px) {
+        .glass-card {
+            padding: 2rem;
+        }
+    }
+    .hero-bg {
+      background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      min-height: 60vh;
+    }

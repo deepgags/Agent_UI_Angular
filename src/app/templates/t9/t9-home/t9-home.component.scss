@@ -82,3 +82,95 @@ $info:#003580;
     --bs-btn-disabled-bg: #042758;
     --bs-btn-disabled-border-color: #042758;
 }
+
+
+    .hero-bg {
+      background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      min-height: 60vh;
+    }
+    
+
+    .magic-card {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        padding: 25px;
+        transition: all 0.4s ease-in-out;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .magic-card:hover {
+        box-shadow: 0px 18px 60px rgba(0, 255, 195, 0.4);
+        transform: translateY(-10px);
+    }
+
+    .card-inner {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .icon-part {
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+        padding-right: 15px;
+    }
+
+    .text-part h5 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .text-part p {
+        font-size: 0.8rem;
+        opacity: 0.75;
+    }
+
+    .icon-gradient {
+        font-size: 3rem;
+        background: linear-gradient(45deg, #00c6ff, #0072ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .btn-holo {
+        background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.12));
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 30px;
+        color: #fff;
+        padding: 8px 20px;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+    .btn-holo:before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+        transition: all 0.4s;
+        transform: scale(0);
+    }
+    .btn-holo:hover:before {
+        transform: scale(1);
+    }
+    .btn-holo:hover {
+        color: #00ffc3;
+        border-color: #00ffc3;
+    }
+
+    @media (max-width: 575.98px) {
+        .card-inner {
+            flex-direction: column;
+        }
+        .icon-part {
+            border: none;
+            padding: 0;
+        }
+    }
