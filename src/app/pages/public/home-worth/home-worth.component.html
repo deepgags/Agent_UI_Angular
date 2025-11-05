@@ -5,22 +5,20 @@
   <div class="position-relative container">
     <div class="mx-auto"
          style="max-width: 700px;">
-      <img src="https://via.placeholder.com/150x100?text=LOGO"
-           class="img-fluid mb-4"
+      <img [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+           height="100"
            alt="Logo">
-      <h1 class="display-5 fw-semibold mb-3 text-capitalize">What is your House Really Worth?</h1>
+      <h1 class="display-5 fw-semibold mt-4 mb-4 text-capitalize">What is your House Really Worth?</h1>
+
       <p class="mb-4 fw-medium">Home Prices are Up 19%</p>
 
-
-      <app-google-place [placeholder]="'Type your address and submit'"
-                        [onPlaceSelect]="onPlaceSelect" />
-
-      <form class="input-group mb-4 shadow-sm rounded-pill overflow-hidden">
-        <input type="text"
-               placeholder="">
-        <a href="/home-review"
-           class="btn btn-warning fw-semibold text-uppercase px-4">Submit</a>
-      </form>
+      <div class="d-flex mb-4 shadow-sm rounded-pill overflow-hidden">
+        <app-google-place [placeholder]="'Type your address and submit'"
+                          [onPlaceSelect]="onPlaceSelect"
+                          class="w-100" />
+        <button (click)="submitAddress()"
+                class="btn btn-warning fw-semibold text-uppercase p-2">Submit</button>
+      </div>
 
       <a href="#"
          class="btn btn-outline-light rounded-3 px-4 py-2">Back To Home Page</a>

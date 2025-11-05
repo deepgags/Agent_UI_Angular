@@ -18,7 +18,7 @@ import { HomeDetailComponent } from "./pages/public/home-detail/home-detail.comp
 import { HomeReviewComponent } from "./pages/public/home-review/home-review.component";
 import { WorthComponent } from "./pages/public/home-worth/home-worth.component";
 import { LoginComponent } from "./pages/public/login/login.component";
-import { NeighboursDetailComponent } from "./pages/public/neighbours-detail/neighbours-detail.component";
+import { NeighborDetailComponent } from "./pages/public/neighbor-detail/neighbor-detail.component";
 import { NotFoundComponent } from "./pages/public/not-found/not-found.component";
 import { RegisterComponent } from "./pages/public/register/register.component";
 import { TemplatesComponent } from "./pages/public/templates/templates.component";
@@ -41,7 +41,7 @@ export const routes: Routes = [
 	{ path: "home-worth", component: WorthComponent },
 	{ path: "dream-home", component: DreamComponent },
 	{ path: "home-detail", component: HomeDetailComponent },
-	{ path: "neighbours-detail", component: NeighboursDetailComponent },
+	{ path: "neighbor-detail", component: NeighborDetailComponent },
 	{ path: "home-review", component: HomeReviewComponent },
 	{
 		path: "",

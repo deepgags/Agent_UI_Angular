@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { GoogleMapsModule } from "@angular/google-maps";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
@@ -12,27 +13,43 @@ import { SharedDataService } from "../../../services/shareddata.service";
 
 @Component({
 	selector: "app-home-detail",
-	imports: [CommonModule, RouterModule, ReactiveFormsModule, InputMaskModule, InputTextModule, IftaLabelModule],
+	imports: [
+		CommonModule,
+		RouterModule,
+		ReactiveFormsModule,
+		InputMaskModule,
+		InputTextModule,
+		IftaLabelModule,
+		GoogleMapsModule,
+	],
 	templateUrl: "./home-detail.component.html",
 	styleUrl: "./home-detail.component.scss",
 })
 export class HomeDetailComponent implements OnInit {
 	homeDetailForm: FormGroup;
 	siteConfig: SiteConfig = {} as SiteConfig;
+	selectedAddress: string = "";
+	latitude!: number;
+	longitude!: number;
+	mapOptions: google.maps.MapOptions = {
+		center: { lat: this.latitude, lng: this.longitude },
+		zoom: 15,
+	};
+	markerOptions: google.maps.MarkerOptions = { position: { lat: this.latitude, lng: this.longitude } };
 
 	constructor(
 		private fb: FormBuilder,
 		private publicService: PublicService,
 		private notificationService: NotificationService,
-		private sharedDataService: SharedDataService
+		private sharedDataService: SharedDataService,
+		private route: ActivatedRoute
 	) {
 		this.homeDetailForm = this.fb.group({
 			homeType: new FormControl("", Validators.required),
 			radius: new FormControl("", Validators.required),
 			bed: new FormControl("", Validators.required),
 			bath: new FormControl("", Validators.required),
-			firstName: new FormControl("", Validators.required),
-			lastName: new FormControl("", Validators.required),
+			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", Validators.required),
 		});
@@ -40,6 +57,23 @@ export class HomeDetailComponent implements OnInit {
 
 	ngOnInit() {
 		this.siteConfig = this.sharedDataService.siteData();
+
+		this.route.queryParams.subscribe((params) => {
+			if (params["address"]) {
+				this.selectedAddress = params["address"];
+				this.latitude = +params["lat"];
+				this.longitude = +params["lng"];
+
+				this.mapOptions = {
+					center: { lat: this.latitude, lng: this.longitude },
+					zoom: 15,
+				};
+
+				this.markerOptions = {
+					position: { lat: this.latitude, lng: this.longitude },
+				};
+			}
+		});
 	}
 
 	get homeType() {
@@ -54,11 +88,8 @@ export class HomeDetailComponent implements OnInit {
 	get bath() {
 		return this.homeDetailForm.get("bath");
 	}
-	get firstName() {
-		return this.homeDetailForm.get("firstName");
-	}
-	get lastName() {
-		return this.homeDetailForm.get("lastName");
+	get name() {
+		return this.homeDetailForm.get("name");
 	}
 	get email() {
 		return this.homeDetailForm.get("email");
@@ -74,10 +105,23 @@ export class HomeDetailComponent implements OnInit {
 			return;
 		}
 
+		const { homeType, radius, bed, bath, name, email, phone } = this.homeDetailForm.value;
 		const params = {
-			...this.homeDetailForm.value,
-			leadSource: "homeDetailForm",
+			name,
+			email,
+			phone,
+			leadSource: "findDreamHome",
 			siteId: this.siteConfig?.id,
+			leadMetaData: {
+				address: this.selectedAddress,
+				latitude: this.latitude,
+				longitude: this.longitude,
+				homeType,
+				radius,
+				bed,
+				bath,
+			},
+			message: "I would like to know about any property available in this location.",
 		};
 
 		this.publicService.submitContactForm(params).subscribe({

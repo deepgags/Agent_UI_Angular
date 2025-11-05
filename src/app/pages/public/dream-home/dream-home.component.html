@@ -3,32 +3,35 @@
   <section class="hero-section d-flex flex-column justify-content-between">
     <div class="overlay"></div>
     <div class="container position-relative py-4 d-flex justify-content-between align-items-center">
-      <div>
-    
-    
-    </div>
-
-      <a href="#" class="btn btn-success px-4 fw-semibold">Back To Website</a>
-    </div>
-
-    <div data-aos="flip-up" class="container text-center position-relative my-auto">
-      <h1 class="fw-bold display-5">Finding your <span class="text-success">Dream Home</span> has never been this easy!</h1>
-      <p class="lead mt-3">Type your preferred location to get started.</p>
-
-      <div class="d-flex justify-content-center mt-4">
-        <div class="input-group w-75 w-md-50 shadow rounded-pill overflow-hidden">
-          <span class="input-group-text bg-white border-0">
-            <i class="bi bi-geo-alt text-secondary"></i>
-          </span>
-          <input type="text" class="form-control border-0 py-3" placeholder="Type your dream home's location...">
-          <a href="/home-detail" class="btn btn-success fw-semibold px-4">Give Me Updates</a>
-        </div>
+      <div class="container position-relative py-4 d-flex justify-content-between align-items-center">
+        <img [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+             height="60"
+             alt="Logo">
+        <a href="#"
+           class="btn btn-success fw-semibold px-4">Back To Home</a>
       </div>
     </div>
 
-    <div class="container position-relative text-end py-3">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Logo_placeholder.svg" alt="Only Agents" height="50">
+    <div data-aos="flip-up"
+         class="container text-center position-relative my-auto">
+      <h1 class="fw-bold display-5">Finding your <span class="text-success">Dream Home</span> has never been this easy!</h1>
+      <p class="lead mt-3">Type your preferred location to get started.</p>
+
+      <div class="d-flex mb-4 shadow-sm rounded-pill overflow-hidden">
+        <app-google-place [placeholder]="'Type your dream home\'s location...'"
+                          [onPlaceSelect]="onPlaceSelect"
+                          class="w-100" />
+        <button (click)="submitAddress()"
+                class="btn btn-success fw-semibold px-4">Give Me Updates</button>
+      </div>
+
     </div>
+
+    <!-- <div class="container position-relative text-end py-3">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Logo_placeholder.svg"
+           alt="Only Agents"
+           height="50">
+    </div> -->
   </section>
 
 </div>
