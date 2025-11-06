@@ -12,18 +12,26 @@
       </div>
     </div>
 
-    <div data-aos="flip-up"
-         class="container text-center position-relative my-auto">
+    <div class="container text-center position-relative my-auto">
       <h1 class="fw-bold display-5">Finding your <span class="text-success">Dream Home</span> has never been this easy!</h1>
       <p class="lead mt-3">Type your preferred location to get started.</p>
 
-      <div class="d-flex mb-4 shadow-sm rounded-pill overflow-hidden">
-        <app-google-place [placeholder]="'Type your dream home\'s location...'"
-                          [onPlaceSelect]="onPlaceSelect"
-                          class="w-100" />
-        <button (click)="submitAddress()"
-                class="btn btn-success fw-semibold px-4">Give Me Updates</button>
-      </div>
+     <div class="input-group mb-4 shadow-sm rounded-pill overflow-hidden">
+  <app-google-place
+    [placeholder]="'Type your dream home\'s location...'"
+    [onPlaceSelect]="onPlaceSelect"
+    class="form-control border-0"
+  ></app-google-place>
+
+  <button
+    (click)="submitAddress()"
+    class="btn btn-success fw-semibold px-4 text-wrap"
+    type="button"
+  >
+    Give Me Updates
+  </button>
+</div>
+
 
     </div>
 

@@ -11,7 +11,7 @@
   </div>
 
   <!-- Main Content -->
-  <div class="container position-relative my-auto text-center text-white">
+  <div class="container position-relative pb-5 text-center text-white">
     <h2 class="fw-bold mb-2">Good News! We found multiple properties in your selected area.</h2>
     <p class="lead">{{ selectedAddress }}</p>
 
@@ -44,7 +44,7 @@
 
               <div class="col-md-6">
                 <label class="form-label small">Radius:</label>
-                <select class="form-select bg-dark text-white border-0 rounded-pill"
+                <select class="form-select  border-0 rounded-pill"
                         formControlName="radius"
                         required
                         (change)="updateCircle()">
@@ -63,7 +63,7 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label small">Type of Home :</label>
-                <select class="form-select bg-dark text-white border-0 rounded-pill"
+                <select class="form-select border-0 rounded-pill"
                         formControlName="homeType"
                         required>
                   <option value=""
@@ -90,7 +90,7 @@
                 <input type="text"
                        pInputText
                        formControlName="name"
-                       class="form-control bg-dark text-white border-0 rounded-pill"
+                       class="form-control border-0 rounded-pill"
                        placeholder="Name"
                        required />
                 <span class="error"
@@ -104,7 +104,7 @@
                 <input type="email"
                        pInputText
                        formControlName="email"
-                       class="form-control bg-dark text-white border-0 rounded-pill"
+                       class="form-control border-0 rounded-pill"
                        placeholder="E-mail"
                        required />
                 <span class="error"

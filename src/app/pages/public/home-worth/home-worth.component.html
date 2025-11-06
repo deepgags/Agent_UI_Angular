@@ -12,13 +12,21 @@
 
       <p class="mb-4 fw-medium">Home Prices are Up 19%</p>
 
-      <div class="d-flex mb-4 shadow-sm rounded-pill overflow-hidden">
-        <app-google-place [placeholder]="'Type your address and submit'"
-                          [onPlaceSelect]="onPlaceSelect"
-                          class="w-100" />
-        <button (click)="submitAddress()"
-                class="btn btn-warning fw-semibold text-uppercase p-2">Submit</button>
-      </div>
+     <div class="input-group mb-4 shadow-sm">
+  <app-google-place
+    [placeholder]="'Type your address and submit'"
+    [onPlaceSelect]="onPlaceSelect"
+    class="form-control border-0 py-0"
+  ></app-google-place>
+  <button
+    (click)="submitAddress()"
+    class="btn btn-warning fw-semibold text-uppercase"
+    type="button"
+  >
+    Submit
+  </button>
+</div>
+
 
       <a href="#"
          class="btn btn-outline-light rounded-3 px-4 py-2">Back To Home Page</a>
