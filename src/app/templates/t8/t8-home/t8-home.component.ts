@@ -8,7 +8,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
 import { SharedDataService } from "../../../services/shareddata.service";
 import { StorageService } from "../../../services/storage.service";
@@ -27,7 +27,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 		MatFormFieldModule,
 		MatInputModule,
 		HeroContactFormComponent,
-		PhoneNumberPipe,
+		PhoneNumberFormatPipe,
 	],
 	templateUrl: "./t8-home.component.html",
 	styleUrls: ["./t8-home.component.scss", "../t8.component.scss"],
@@ -36,7 +36,11 @@ import { SearchComponent } from "../../shared/search/search.component";
 export class T8HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
-	constructor(private titleService: Title, private sharedDataService: SharedDataService, private searchService: SearchService) {}
+	constructor(
+		private titleService: Title,
+		private sharedDataService: SharedDataService,
+		private searchService: SearchService
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");

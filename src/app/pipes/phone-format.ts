@@ -1,19 +1,17 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-	name: "phoneNumber",
-	standalone: true,
+	name: "phone",
 })
-export class PhoneNumberPipe implements PipeTransform {
-	transform(value: string): string {
+export class PhoneNumberFormatPipe implements PipeTransform {
+	transform(value: any): any {
 		if (!value) {
-			return "";
+			return value;
+		}
+		if (!value.toString().includes("+1")) {
+			return "+1 " + value;
 		}
 
-		const areaCode = value.slice(0, 3);
-		const firstPart = value.slice(3, 6);
-		const secondPart = value.slice(6, 10);
-
-		return `(${areaCode}) ${firstPart}-${secondPart}`;
+		return value;
 	}
 }

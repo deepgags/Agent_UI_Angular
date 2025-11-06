@@ -4,7 +4,7 @@ import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
 import { SharedDataService } from "../../../services/shareddata.service";
 import { StorageService } from "../../../services/storage.service";
@@ -14,7 +14,13 @@ import { SearchComponent } from "../../shared/search/search.component";
 @Component({
 	selector: "app-t15-home",
 	standalone: true,
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, HeroContactFormComponent, PhoneNumberPipe],
+	imports: [
+		RouterModule,
+		SearchComponent,
+		FeaturedPropertiesComponent,
+		HeroContactFormComponent,
+		PhoneNumberFormatPipe,
+	],
 	templateUrl: "./t15-home.component.html",
 	styleUrls: ["./t15-home.component.scss", "../t15.component.scss"],
 	providers: [Title, StorageService],
@@ -23,7 +29,11 @@ export class T15HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
 
-	constructor(private titleService: Title, private sharedDataService: SharedDataService, private searchService: SearchService) {}
+	constructor(
+		private titleService: Title,
+		private sharedDataService: SharedDataService,
+		private searchService: SearchService
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");

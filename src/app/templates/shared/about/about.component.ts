@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SharedDataService } from "../../../services/shareddata.service";
 import { TestimonialService } from "../../../services/testimonial.service";
 
 @Component({
 	selector: "app-about",
-	imports: [RouterModule, PhoneNumberPipe],
+	imports: [RouterModule, PhoneNumberFormatPipe],
 	templateUrl: "./about.component.html",
 	styleUrl: "./about.component.scss",
 })

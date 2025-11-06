@@ -6,7 +6,8 @@ import { UserLoginDialogComponent } from "../components/user-login-dialog/user-l
 import { stringiFy } from "../consts/Utility";
 import { environment } from "../environments/environment.development";
 import { PropertyModel } from "../models/PropertyModel";
-import { PropertyDetailComponent } from "../templates/shared/propertydetail/propertydetail.component";
+
+import { PropertyDetailComponent } from "../components/propertydetail/propertydetail.component";
 import { SharedDataService } from "./shareddata.service";
 
 @Injectable({

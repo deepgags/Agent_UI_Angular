@@ -3,11 +3,11 @@ import { AngularSvgIconModule } from "angular-svg-icon";
 
 import { RouterModule } from "@angular/router";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 
 @Component({
 	selector: "app-t7-footer",
-	imports: [PhoneNumberPipe, AngularSvgIconModule, RouterModule],
+	imports: [PhoneNumberFormatPipe, AngularSvgIconModule, RouterModule],
 	templateUrl: "./t7-footer.component.html",
 	styleUrls: ["./t7-footer.component.scss", "../t7.component.scss"],
 })

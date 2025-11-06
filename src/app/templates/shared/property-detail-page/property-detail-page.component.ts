@@ -1,17 +1,17 @@
 import { CommonModule, Location } from "@angular/common";
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from "@angular/google-maps";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { Title } from "@angular/platform-browser";
-import { provideAnimations } from "@angular/platform-browser/animations";
-import { Router, RouterModule } from "@angular/router";
-import { NgbCarouselConfig, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AccordionModule } from "primeng/accordion";
 import { CarouselModule } from "primeng/carousel";
-import { DialogService, DynamicDialogConfig } from "primeng/dynamicdialog";
+
 import { GalleriaModule } from "primeng/galleria";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
@@ -20,13 +20,12 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
-import { BehaviorSubject } from "rxjs";
 import { PropertyComponent } from "../../../components/property/property.component";
 import { environment } from "../../../environments/environment.development";
 import { InterestedUserModel } from "../../../models/InterestedUserModel";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { TimeAgo } from "../../../pipes/time-ago";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
@@ -34,8 +33,9 @@ import { PublicService } from "../../../services/public.service";
 import { SharedDataService } from "../../../services/shareddata.service";
 declare var window: any;
 declare var google: any;
+
 @Component({
-	selector: "app-propertydetail",
+	selector: "app-property-detail-page",
 	imports: [
 		CommonModule,
 		NgbModule,
@@ -46,7 +46,7 @@ declare var google: any;
 		MatInputModule,
 		GoogleMapsModule,
 		RouterModule,
-		PhoneNumberPipe,
+		PhoneNumberFormatPipe,
 		AccordionModule,
 		IftaLabelModule,
 		InputMaskModule,
@@ -60,13 +60,12 @@ declare var google: any;
 		TabsModule,
 		ProgressSpinnerModule,
 	],
-	providers: [provideAnimations(), NgbCarouselConfig, DialogService],
-	templateUrl: "./propertydetail.component.html",
-	encapsulation: ViewEncapsulation.None,
-	styleUrls: ["./propertydetail.component.scss"],
-	standalone: true,
+	templateUrl: "./property-detail-page.component.html",
+	styleUrl: "./property-detail-page.component.scss",
+	// providers: [provideAnimations(), NgbCarouselConfig],
+	// encapsulation: ViewEncapsulation.None,
 })
-export class PropertyDetailComponent implements OnInit, AfterViewInit {
+export class PropertyDetailPageComponent {
 	imageUrl = environment.imageUrl;
 	property: PropertyModel | any = {} as PropertyModel;
 	Latitude: number = 0;
@@ -136,13 +135,14 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	similarProperties: any[] = [];
 	siteConfig: SiteConfig = {} as SiteConfig;
 
-	// private readonly _defaultMessage = "I would like more information regarding a property";
-
 	requestShowingText = "";
 	propertyHistooryText = "";
 	recentSalesinAreaText = "";
 	haveAQuestionText = "";
 	askAboutThisHomecommentText = "";
+
+	propertyShareUrlBase = window.location.origin;
+	propertyShareUrl = "";
 
 	constructor(
 		private propertyService: PropertyService,
@@ -150,19 +150,20 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		private location: Location,
 		private router: Router,
 		private sharedDataService: SharedDataService,
-		private dialogConfig: DynamicDialogConfig,
 		private notificationService: NotificationService,
-		private publicService: PublicService
+		private publicService: PublicService,
+		private route: ActivatedRoute
 	) {
 		this.titleService.setTitle("Property Detail");
-
-		const { mlsId, propertyId, address, property_type, property_subtype } = this.dialogConfig.data;
-		this.mlsId = mlsId;
-		this.propertyId = propertyId;
-
-		if (this.propertyId && this.mlsId) {
-			this.getPropertyInformation();
-		}
+		this.route.queryParams.subscribe((params) => {
+			const { mlsId, id: propertyId } = params;
+			if (mlsId && propertyId) {
+				this.mlsId = mlsId;
+				this.propertyId = propertyId;
+				this.getPropertyShareUrl();
+				this.getPropertyInformation();
+			}
+		});
 
 		this.requestShowingForm = new FormGroup({
 			name: new FormControl("", Validators.required),
@@ -209,23 +210,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
 		});
-
-		// this.galleryConfig$ = breakpointObserver.observe([Breakpoints.HandsetPortrait]).pipe(
-		// 	map((res) => {
-		// 		if (res.matches) {
-		// 			return {
-		// 				thumbPosition: ThumbnailsPosition.Top,
-		// 				thumbWidth: 80,
-		// 				thumbHeight: 80,
-		// 			};
-		// 		}
-		// 		return {
-		// 			thumbPosition: ThumbnailsPosition.Left,
-		// 			thumbWidth: 120,
-		// 			thumbHeight: 90,
-		// 		};
-		// 	})
-		// );
 	}
 
 	get requestShowingName() {
@@ -309,26 +293,13 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	}
 
 	ngOnInit(): void {
-		// this.galleryRef = this.gallery.ref("propertyGallery");
-
-		// this.route.queryParams.subscribe((params) => {
-		// 	if (Object.keys(params).length > 0) {
-		// 		this.selectedFilters = {
-		// 			...this.selectedFilters,
-		// 			...params,
-		// 		};
-		// 		this.getPropertyInformation();
-		// 	}
-		// });
-
 		this.siteConfig = this.sharedDataService.siteData();
-
 		this.getLocation();
 		this.getLeadTypeDropdown();
-		this.getPropertyInformation();
 	}
 
 	ngAfterViewInit(): void {
+		this.initShareWidget();
 		this.addMapControls();
 	}
 
@@ -354,19 +325,19 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.loading = false;
 
 				this.requestShowingText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}. I would like to schedule an appointment to further discuss this property.
-				Thank you.`;
+        Thank you.`;
 
 				this.propertyHistooryText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}. I am interested in the history of this property.
-				Thank you.`;
+        Thank you.`;
 
 				this.recentSalesinAreaText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}. I am interested in any recently sold listings in the area of this property.
-				Thank you.`;
+        Thank you.`;
 
 				this.haveAQuestionText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}. Please send me more information about this listing.
-				Thank you.`;
+        Thank you.`;
 
 				this.askAboutThisHomecommentText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}, MLS Id #${this.property.ListingKey}. Please send me more information about this listing.
-				Thank you.`;
+        Thank you.`;
 			},
 			error: (err) => {
 				this.loading = false;
@@ -380,23 +351,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	back() {
 		this.location.back();
 	}
-
-	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
-		const { address, property_type, bedrooms, bathrooms, min_price, max_price, property_status, sqFt } =
-			selectedFilters;
-		this.router.navigate(["/t2", searchByMap ? "map" : "search"], {
-			queryParams: {
-				address,
-				property_type,
-				bedrooms,
-				bathrooms,
-				min_price,
-				max_price,
-				property_status,
-				sqFt,
-			},
-		});
-	};
 
 	getLocation(): void {
 		if (navigator.geolocation) {
@@ -661,6 +615,8 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		this.propertyId = property._id;
 
 		if (this.propertyId && this.mlsId) {
+			this.initShareWidget();
+			this.getPropertyShareUrl();
 			this.getPropertyInformation();
 		}
 	};
@@ -893,4 +849,16 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			this.notificationService.showError("Geolocation is not supported by this browser.");
 		}
 	}
+
+	initShareWidget() {
+		setTimeout(() => {
+			if ((window as any).a2a && typeof (window as any).a2a.init === "function") {
+				(window as any).a2a.init();
+			}
+		}, 1000);
+	}
+
+	getPropertyShareUrl = () => {
+		this.propertyShareUrl = `${this.propertyShareUrlBase}/property-detail?id=${this.propertyId}&mlsId=${this.mlsId}`;
+	};
 }

@@ -5,14 +5,14 @@ import { Table, TableModule } from "primeng/table";
 import { TooltipModule } from "primeng/tooltip";
 import { FieldsType } from "../../enums/fields-type.enum";
 import { CamelCaseToCapitalize } from "../../pipes/camelCaseToCapitalize";
-import { PhoneNumberPipe } from "../../pipes/phone-format";
+import { PhoneNumberFormatPipe } from "../../pipes/phone-format";
 
 @Component({
 	selector: "app-simple-table",
 	templateUrl: "./simple-table.component.html",
 	styleUrls: ["./simple-table.component.scss"],
 	standalone: true,
-	imports: [CommonModule, TableModule, TooltipModule, ButtonModule, PhoneNumberPipe, CamelCaseToCapitalize],
+	imports: [CommonModule, TableModule, TooltipModule, ButtonModule, PhoneNumberFormatPipe, CamelCaseToCapitalize],
 })
 export class SimpleTableComponent {
 	selected: any = [];
@@ -27,25 +27,25 @@ export class SimpleTableComponent {
 	@Input("showActions") showActions: boolean = false;
 
 	@Input("showEditAction") showEditAction: boolean = false;
-	@Input("onEdit") onEdit: Function = () => { };
+	@Input("onEdit") onEdit: Function = () => {};
 
 	@Input("showDeleteAction") showDeleteAction: boolean = false;
-	@Input("onDelete") onDelete: Function = () => { };
+	@Input("onDelete") onDelete: Function = () => {};
 
 	@Input("showExtraAction") showExtraAction: boolean = false;
 	@Input("extraActionToolTip") extraActionToolTip: string = "";
 	@Input("extraActionIcon") extraActionIcon: string = "";
-	@Input("onExtraAction") onExtraAction: Function = () => { };
+	@Input("onExtraAction") onExtraAction: Function = () => {};
 
 	@Input("showFirstAction") showFirstAction: boolean = false;
 	@Input("firstActionToolTip") firstActionToolTip: string = "";
 	@Input("firstActionIcon") firstActionIcon: string = "";
-	@Input("onFirstActionClick") onFirstActionClick: Function = () => { };
+	@Input("onFirstActionClick") onFirstActionClick: Function = () => {};
 
 	@Input("showSecondAction") showSecondAction: boolean = false;
 	@Input("secondActionToolTip") secondActionToolTip: string = "";
 	@Input("secondActionIcon") secondActionIcon: string = "";
-	@Input("onSecondActionClick") onSecondActionClick: Function = () => { };
+	@Input("onSecondActionClick") onSecondActionClick: Function = () => {};
 	@Input("exportFileName") exportFileName: string = "download";
 
 	@Input("highlightRow") highlightRow: boolean = false;
@@ -59,7 +59,7 @@ export class SimpleTableComponent {
 
 	@Output("selectedData") selectedData: any;
 
-	constructor() { }
+	constructor() {}
 
 	get fieldTypes() {
 		return FieldsType;

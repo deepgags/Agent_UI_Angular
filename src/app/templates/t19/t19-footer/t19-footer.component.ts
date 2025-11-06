@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 
 @Component({
 	selector: "app-t19-footer",
-	imports: [PhoneNumberPipe, AngularSvgIconModule, RouterModule],
+	imports: [PhoneNumberFormatPipe, AngularSvgIconModule, RouterModule],
 	templateUrl: "./t19-footer.component.html",
 	styleUrls: ["./t19-footer.component.scss", "../t19.component.scss"],
 })

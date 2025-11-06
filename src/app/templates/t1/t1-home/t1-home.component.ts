@@ -3,7 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
 import { SharedDataService } from "../../../services/shareddata.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
@@ -11,7 +11,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 
 @Component({
 	selector: "app-t1-home",
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberPipe],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberFormatPipe],
 	templateUrl: "./t1-home.component.html",
 	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./t1-home.component.scss", "../t1.component.scss"],
@@ -21,7 +21,11 @@ export class T1HomeComponent implements OnInit {
 	siteConfig: SiteConfig = {} as SiteConfig;
 	siteConfigSubscription: any;
 
-	constructor(private titleService: Title, private sharedDataService: SharedDataService, private searchService: SearchService) {}
+	constructor(
+		private titleService: Title,
+		private sharedDataService: SharedDataService,
+		private searchService: SearchService
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");

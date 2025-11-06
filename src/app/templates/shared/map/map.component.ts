@@ -26,10 +26,7 @@ import { stringiFy } from "../../../consts/Utility";
 import { environment } from "../../../environments/environment.development";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { LoadingService } from "../../../services/loading.service";
-import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
-import { StorageService } from "../../../services/storage.service";
-import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
 @Component({

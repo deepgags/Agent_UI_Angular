@@ -9,7 +9,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
 import { SharedDataService } from "../../../services/shareddata.service";
@@ -22,7 +22,7 @@ import { SharedDataService } from "../../../services/shareddata.service";
 		FormsModule,
 		ReactiveFormsModule,
 		RouterModule,
-		PhoneNumberPipe,
+		PhoneNumberFormatPipe,
 		IftaLabelModule,
 		InputMaskModule,
 		InputTextModule,

@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
@@ -10,13 +9,11 @@ import { ActivatedRoute, RouterModule } from "@angular/router";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
 import { PropertyComponent } from "../../../components/property/property.component";
-import { UserLoginDialogComponent } from "../../../components/user-login-dialog/user-login-dialog.component";
 import { sortTypes } from "../../../consts/DefaultTypes";
 import { stringiFy } from "../../../consts/Utility";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { LoadingService } from "../../../services/loading.service";
 import { PropertyService } from "../../../services/property.service";
-import { PropertyDetailComponent } from "../propertydetail/propertydetail.component";
 import { SearchComponent } from "../search/search.component";
 
 @Component({

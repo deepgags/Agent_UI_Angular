@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { PhoneNumberPipe } from "../../../pipes/phoneSearch";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 
 @Component({
 	selector: "app-t15-header",
-	imports: [AngularSvgIconModule, PhoneNumberPipe, RouterModule],
+	imports: [AngularSvgIconModule, PhoneNumberFormatPipe, RouterModule],
 	templateUrl: "./t15-header.component.html",
 	styleUrls: ["./t15-header.component.scss", "../t15.component.scss"],
 })

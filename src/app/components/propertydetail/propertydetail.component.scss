@@ -1,0 +1,139 @@
+.p-accordioncontent-content {
+	background-color: #ffffff !important;
+}
+
+.form-card {
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+	padding: 20px;
+}
+
+#map {
+	.map-container {
+		width: 100% !important;
+		height: auto !important;
+		aspect-ratio: 16 / 9;
+		border-radius: 7px !important;
+		@media (min-width: 768px) {
+			max-width: 406px;
+			height: 214px !important;
+		}
+	}
+}
+
+span,
+p {
+	font-size: 14px !important;
+	color: #000;
+}
+li {
+	font-size: 14px;
+}
+
+@media (max-width: 575.98px) {
+	li,
+	span,
+	p {
+		font-size: 12px !important;
+	}
+}
+
+.info {
+	color: var(--primary-color);
+}
+
+.search_btn {
+	color: white;
+	background-color: #0d6efd !important;
+	border-radius: 10px;
+
+	&:hover {
+		background-color: #0c57c8 !important;
+		color: white;
+	}
+}
+
+.p-accordioncontent-content {
+	color: black !important;
+}
+
+.gallery-image {
+	width: 100%;
+	max-height: 450px;
+	object-fit: cover;
+}
+
+.thumbnail {
+	max-height: 60px;
+	height: auto;
+	width: 60px;
+	object-fit: cover;
+}
+
+#tab {
+	/* Tabs container */
+	#score-tabs {
+		gap: 8px;
+	}
+
+	/* Tab buttons */
+	#score-tabs .nav-link {
+		flex: 1; /* make all tabs equal width */
+		text-align: center;
+		border-radius: 12px 12px 0 0;
+		background: #f8f9fa;
+		color: #6c757d;
+		font-weight: 600;
+		letter-spacing: 1px;
+		padding: 12px 10px;
+		border: 1px solid #dee2e6;
+		border-bottom: none;
+		transition: all 0.3s ease;
+		white-space: nowrap; /* keep text in single line */
+	}
+
+	/* Hover effect */
+	#score-tabs .nav-link:hover {
+		color: #000;
+		background: #e9ecef;
+	}
+
+	/* Active tab */
+	#score-tabs .nav-link.active {
+		background: var(--primary-color); /* teal highlight */
+		color: #fff !important;
+		border-color: #20c997;
+	}
+
+	/* Tab content card */
+	#score-tabs-content {
+		animation: fadeIn 0.3s ease-in-out;
+	}
+
+	/* Fade animation */
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
+
+.walkscore-container {
+	position: relative;
+	width: 100%;
+	min-height: 200px; /* adjust to avoid overlap */
+	overflow: hidden;
+	z-index: 1;
+}
+
+#ws-walkscore-tile iframe {
+	width: 100% !important;
+	min-height: 200px !important; /* force proper height */
+	border: none !important;
+	display: block;
+}
