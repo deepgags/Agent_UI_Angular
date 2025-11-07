@@ -1,16 +1,20 @@
-import { Component } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SharedDataService } from "../../../services/shareddata.service";
+import { CommonModule } from "@angular/common";
 
 @Component({
-	selector: "app-buyer",
-	imports: [],
-	templateUrl: "./buyer.component.html",
-	styleUrl: "./buyer.component.scss",
+  selector: "app-buyer",
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: "./buyer.component.html",
+  styleUrls: ["./buyer.component.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
-export class BuyerComponent {
-	siteConfig: SiteConfig = {} as SiteConfig;
-	buyerText = `
+export class BuyerComponent implements OnInit {
+  siteConfig: SiteConfig = {} as SiteConfig;
+
+  buyerText = `
 <div class="container search-container">
   <section class="bg-light py-5">
     <div class="container">
@@ -32,42 +36,37 @@ export class BuyerComponent {
               Be realistic about your budget. A trusted real estate professional can help you evaluate what fits within your financial comfort zone.
             </p>
           </div>
+
           <!-- New Component: FAQ Accordion -->
-          <div class="accordion mb-5"
-               id="faqAccordion">
+          <div class="accordion mb-5" id="faqAccordion">
             <h4 class="info fw-bold mb-4">Frequently Asked Questions</h4>
-            <h5 class="info fw-bold mb-2">
-              What is the buying process?
-            </h5>
+            <h5 class="info fw-bold mb-2">What is the buying process?</h5>
             <p class="accordion-body">
               The buying process typically includes property selection, making an offer, meeting conditions, and closing the deal with legal documentation.
             </p>
 
-            <h5 class="info fw-bold mb-2">
-              How do I evaluate properties?
-            </h5>
+            <h5 class="info fw-bold mb-2">How do I evaluate properties?</h5>
             <p class="accordion-body">
               Evaluate properties based on location, condition, price, and amenities. Hire an inspector for deeper insights.
             </p>
           </div>
 
+          <!-- Section: What’s Out There -->
           <div class="mb-5">
             <h4 class="info fw-bold mb-2">What’s Out There?</h4>
             <p class="text-muted">
-              While the market includes new and resale homes, resale properties are often located in established neighborhoods with mature landscaping and nearby
-              amenities.
+              While the market includes new and resale homes, resale properties are often located in established neighborhoods with mature landscaping and nearby amenities.
             </p>
             <p class="text-muted">
               Keep in mind, resale homes have weathered time — with potential signs of aging like settling or minor wear.
             </p>
             <p class="text-muted">
-              MLS® systems make your search easier. Realtors can generate lists based on your criteria, complete with photos, area maps, and even interior views. You
-              can also explore listings at <strong>mls.ca</strong>.
+              MLS® systems make your search easier. Realtors can generate lists based on your criteria, complete with photos, area maps, and even interior views. You can also explore listings at <strong>mls.ca</strong>.
             </p>
           </div>
-          <div id="testimonialCarousel"
-               class="carousel slide mb-5"
-               data-bs-ride="carousel">
+
+          <!-- Section: Testimonials Carousel -->
+          <div id="testimonialCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
             <h4 class="info fw-bold mb-2">Client Testimonials</h4>
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -80,23 +79,16 @@ export class BuyerComponent {
                 <p class="text-muted">"Professional and efficient service." - Adam Johnson</p>
               </div>
             </div>
-            <button class="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#testimonialCarousel"
-                    data-bs-slide="prev">
-              <span class="carousel-control-prev-icon"
-                    aria-hidden="true"></span>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next"
-                    type="button"
-                    data-bs-target="#testimonialCarousel"
-                    data-bs-slide="next">
-              <span class="carousel-control-next-icon"
-                    aria-hidden="true"></span>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
           </div>
+
           <!-- Section: Touring a House -->
           <div class="mb-5">
             <h4 class="info fw-bold mb-2">Touring a House</h4>
@@ -112,12 +104,11 @@ export class BuyerComponent {
               If you’re unsure what to look for, consider hiring a professional home inspector — it’s a worthwhile investment.
             </p>
           </div>
+
           <!-- Section: Making an Offer -->
           <div class="mb-4">
             <h4 class="info fw-bold mb-2">Making an Offer</h4>
-            <p class="text-muted">
-              Your offer should outline:
-            </p>
+            <p class="text-muted">Your offer should outline:</p>
             <ul class="text-muted">
               <li>Your proposed purchase price</li>
               <li>Preferred closing date</li>
@@ -136,9 +127,9 @@ export class BuyerComponent {
 </div>
 `;
 
-	constructor(private sharedDataService: SharedDataService) {}
+  constructor(private sharedDataService: SharedDataService) {}
 
-	ngOnInit() {
-		this.siteConfig = this.sharedDataService.siteData();
-	}
+  ngOnInit(): void {
+    this.siteConfig = this.sharedDataService.siteData();
+  }
 }
