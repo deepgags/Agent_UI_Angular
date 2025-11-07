@@ -64,8 +64,6 @@ $info: #1EA69A;
   } 
 }
 
-
-
     .hero-bg {
       background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       min-height: 60vh;
@@ -82,7 +80,6 @@ $info: #1EA69A;
         box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
     }
     .magic-card:hover {
-        box-shadow: 0px 18px 60px rgba(0, 255, 195, 0.4);
         transform: translateY(-10px);
     }
 
@@ -141,10 +138,6 @@ $info: #1EA69A;
     }
     .btn-holo:hover:before {
         transform: scale(1);
-    }
-    .btn-holo:hover {
-        color: #00ffc3;
-        border-color: #00ffc3;
     }
 
     @media (max-width: 575.98px) {

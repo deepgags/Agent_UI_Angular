@@ -207,6 +207,11 @@
 	</div>
 </div>
 
+@if(
+  siteConfig.websiteSettings.showHomeWorthPage ||
+  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+  siteConfig.websiteSettings.showFindDreamHomePage
+){
 <section class="py-5 position-relative hero-bg text-white">
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
 
@@ -220,7 +225,7 @@
                         <i class="bi bi-house-heart-fill fs-2"></i>
                     </div>
                     <h5 class="fw-bold text-uppercase mb-3">Home Evaluation</h5>
-                    <p class="small opacity-75 mb-4">Find out how much your home is worth — for free, instantly.</p>
+                    <p class="small opacity-75 mb-4">Find out how much your home is worth for free</p>
                     <a href="/home-worth" target="_blank" class="btn btn-gradient px-4 py-2 rounded-pill">Check Worth</a>
                 </div>
             </div>
@@ -256,6 +261,7 @@
     </div>
 </section>
 
+}
 <div class="container-fluid sec-3 search-container">
 	<div class="container">
 		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">

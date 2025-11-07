@@ -154,6 +154,11 @@
 		<app-featured-properties />
 	</div>
 </div>
+@if(
+  siteConfig.websiteSettings.showHomeWorthPage ||
+  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+  siteConfig.websiteSettings.showFindDreamHomePage
+){
 <section class="py-5 position-relative hero-bg">
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
     <div class="container">
@@ -201,7 +206,7 @@
         </div>
     </div>
 </section>
-
+}
 <div class="container py-lg-5 p-lg-0 p-4">
 	<div class="row p-lg-4 p-3 estate-border">
 		<p class="fs-2 text-center mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>

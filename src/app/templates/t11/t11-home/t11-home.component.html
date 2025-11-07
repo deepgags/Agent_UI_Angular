@@ -212,6 +212,11 @@
 	</div>
 </div>
 
+@if(
+  siteConfig.websiteSettings.showHomeWorthPage ||
+  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+  siteConfig.websiteSettings.showFindDreamHomePage
+){
 <section class="py-5 position-relative hero-bg">
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
     <div class="container">
@@ -259,6 +264,7 @@
         </div>
     </div>
 </section>
+}
 
 <div class="container-fluid sec-3 search-container">
 	<div class="container">

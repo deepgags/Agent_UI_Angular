@@ -83,6 +83,11 @@
 	</div>
 </div>
 
+@if(
+  siteConfig.websiteSettings.showHomeWorthPage ||
+  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+  siteConfig.websiteSettings.showFindDreamHomePage
+){
 <section class="hero-bg d-flex justify-content-center align-items-center position-relative py-5">
 		<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
 
@@ -138,7 +143,7 @@
 			</div>
 		</div>
 	</section>
-
+}
 <div class="container-fluid search-container">
 
 	<div class="container py-lg-5 p-lg-0 p-4">

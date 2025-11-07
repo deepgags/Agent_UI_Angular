@@ -72,6 +72,12 @@
 	</div>
 </div>
 
+
+@if(
+  siteConfig.websiteSettings.showHomeWorthPage ||
+  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+  siteConfig.websiteSettings.showFindDreamHomePage
+){
 <section class="py-5 bg-dark text-white">
     <div class="container">
         <div class="row justify-content-center g-4">
@@ -112,7 +118,7 @@
         </div>
     </div>
 </section>
-
+}
 <div class="container-fluid search-container">
 	<div class="container py-lg-5 p-lg-0 p-4">
 		<p class="text text-center py-3 fw-semibold">

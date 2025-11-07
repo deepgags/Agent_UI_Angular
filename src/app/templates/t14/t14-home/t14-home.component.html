@@ -215,7 +215,12 @@
 	</div>
 </div>
 
-<section class="hero-bg position-relative py-5 overflow-hidden text-white">
+@if(
+  siteConfig.websiteSettings.showHomeWorthPage ||
+  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+  siteConfig.websiteSettings.showFindDreamHomePage
+){
+<section class="hero-bg position-relative py-5 overflow-hidden text-white d-flex justify-content-center align-items-center">
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
 
     <div class="container position-relative">
@@ -230,7 +235,7 @@
                         </div>
                         <div class="text-part">
                             <h5>Home Evaluation</h5>
-                            <p>Get instant insights on what your home is worth.</p>
+                            <p>Get insights on what your home is worth.</p>
                             <a href="/home-worth" class="btn btn-holo">Check Worth</a>
                         </div>
                     </div>
@@ -275,7 +280,7 @@
         </div>
     </div>
 </section>
-
+}
 
 <div class="container-fluid sec-3 search-container">
 	<div class="container">

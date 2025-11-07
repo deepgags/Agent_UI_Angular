@@ -174,7 +174,6 @@ $info:#06A788;
         box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
     }
     .magic-card:hover {
-        box-shadow: 0px 18px 60px rgba(0, 255, 195, 0.4);
         transform: translateY(-10px);
     }
 
@@ -234,11 +233,7 @@ $info:#06A788;
     .btn-holo:hover:before {
         transform: scale(1);
     }
-    .btn-holo:hover {
-        color: #00ffc3;
-        border-color: #00ffc3;
-    }
-
+   
     @media (max-width: 575.98px) {
         .card-inner {
             flex-direction: column;
