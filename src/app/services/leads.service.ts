@@ -4,11 +4,14 @@ import { Observable } from "rxjs";
 import { environment } from "../environments/environment.development";
 
 export interface Lead {
-	sno: number;
-	pageName: string;
-	pageTitle: string;
-	pageIndex: number;
-	dated: string;
+	_id: string;
+	name: string;
+	email: string;
+	phone: string;
+	message: string;
+	leadSource: string;
+	createdAt: string;
+	leadMetaData?: Record<string, any>;
 }
 
 @Injectable({
@@ -19,6 +22,10 @@ export class LeadsService {
 
 	getLeads(): Observable<Lead[]> {
 		return this.http.get<Lead[]>(`${environment.baseUrl}/leads`);
+	}
+
+	getLeadDetails(leadId: any): Observable<Lead> {
+		return this.http.get<Lead>(`${environment.baseUrl}/leads/${leadId}`);
 	}
 
 	deleteLead(id: string | number): Observable<any> {

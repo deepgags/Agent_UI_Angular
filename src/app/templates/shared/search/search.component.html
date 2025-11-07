@@ -1,3 +1,50 @@
+<p-dialog header="Search Filters"
+		  [modal]="true"
+		  [(visible)]="showFilterDialog"
+		  [style]="{ width: '600px' }">
+
+	<div class="row g-4">
+		<div class="col-md-6">
+			<p-inputnumber [(ngModel)]="filters.min_price"
+						   mode="decimal"
+						   [minFractionDigits]="0"
+						   [maxFractionDigits]="2"
+						   prefix="$"
+						   placeholder="Min. Price"
+						   class="w-100" />
+		</div>
+		<div class="col-md-6">
+			<p-inputnumber [(ngModel)]="filters.max_price"
+						   mode="decimal"
+						   [minFractionDigits]="0"
+						   [maxFractionDigits]="2"
+						   prefix="$"
+						   placeholder="Max. Price"
+						   class="w-100" />
+		</div>
+
+		<div class="col-md-6">
+			<p-select [options]="sqFtTypesDropDown"
+					  [(ngModel)]="filters.sqFt"
+					  optionLabel="label"
+					  optionValue="value"
+					  placeholder="Select Area"
+					  appendTo="body"
+					  class="w-100" />
+		</div>
+	</div>
+	<div class="mt-4 d-flex gap-1 justify-content-end">
+		<button type="button"
+				class="btn btn-secondary btn-sm rounded-3 me-2"
+				(click)="resetMoreFilters()">Reset</button>
+		<!-- <button type="button"
+				class="btn btn-secondary rounded-3 btn-sm">Close</button> -->
+		<button type="button"
+				class="btn search_btn btn-sm"
+				(click)="searchProperties()">Apply</button>
+	</div>
+</p-dialog>
+
 <div class="row justify-content-around search-container align-items-center">
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
 		<!-- <input type="text"
@@ -65,65 +112,9 @@
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<span><i class="fa-solid fa-filter info fs-6 cursor"
-			   data-bs-toggle="modal"
-			   data-bs-target="#moreFilter"></i></span>
-		<div class="modal fade"
-			 id="moreFilter">
-			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-				<div class="modal-content">
-					<div class="modal-header head-bg text-white">
-						<h4 class="modal-title"
-							id="exampleModalLabel">Search Filters</h4>
-						<button type="button"
-								class="btn-close btn-close-white"
-								data-bs-dismiss="modal"
-								aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<div class="row g-4">
-							<div class="col-md-6">
-								<select [(ngModel)]="filters.min_price"
-										class="form-select">
-									@for (price of minPricesDropDown; track price) {
-									<option [value]="price.value">{{price.label}}</option>
-									}
-								</select>
-							</div>
-							<div class="col-md-6">
-								<select [(ngModel)]="filters.max_price"
-										class="form-select">
-									@for (price of maxPricesDropDown; track price) {
-									<option [value]="price.value">{{price.label}}</option>
-									}
-								</select>
-							</div>
-
-							<div class="col-md-6">
-								<select [(ngModel)]="filters.sqFt"
-										class="form-select">
-									@for (area of sqFtTypesDropDown; track area) {
-									<option [value]="area.value">{{area.label}}</option>
-									}
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button"
-								class="btn btn-secondary btn-sm rounded-3 me-2"
-								(click)="resetMoreFilters()">Reset</button>
-						<button type="button"
-								class="btn btn-secondary rounded-3 btn-sm"
-								data-bs-dismiss="modal">Close</button>
-						<button type="button"
-								class="btn search_btn btn-sm"
-								data-bs-dismiss="modal"
-								(click)="searchProperties()">Apply</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		<span (click)="openFilterDialog()">
+			<i class="fa-solid fa-filter info fs-6 cursor"></i>
+		</span>
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex align-items-center gap-2">

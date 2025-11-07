@@ -67,7 +67,7 @@
 				 let-rowData
 				 let-columns="columns"
 				 let-rowIndex="rowIndex">
-		<tr (click)="onEdit(rowData.UID, rowData, rowIndex)"
+		<tr (click)="onEdit(rowData, rowIndex)"
 			[class]="highlightRow && rowData[highlightCheckKey] == highlightCheckValue ? highlightActiveClass : '' ">
 			@for (col of columns; track col) {
 			@if (showActions && col.fieldType == fieldTypes.Action) {

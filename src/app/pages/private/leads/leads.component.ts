@@ -2,9 +2,11 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import { ConfirmationService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
+import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
 import { PaginatorModule } from "primeng/paginator";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
+import { LeadDetailComponent } from "../../../components/dialogs/lead-detail/lead-detail.component";
 import { SimpleTableComponent } from "../../../components/simple-table/simple-table.component";
 import { FieldsType } from "../../../enums/fields-type.enum";
 import { Lead, LeadsService } from "../../../services/leads.service";
@@ -13,9 +15,18 @@ import { NotificationService } from "../../../services/notification.service";
 @Component({
 	selector: "app-leads",
 	standalone: true,
-	imports: [CommonModule, TableModule, ButtonModule, PaginatorModule, ProgressSpinnerModule, SimpleTableComponent],
+	imports: [
+		CommonModule,
+		TableModule,
+		ButtonModule,
+		PaginatorModule,
+		ProgressSpinnerModule,
+		DynamicDialogModule,
+		SimpleTableComponent,
+	],
 	templateUrl: "./leads.component.html",
 	styleUrls: ["./leads.component.scss"],
+	providers: [DialogService],
 })
 export class LeadsComponent implements OnInit {
 	leads: Lead[] = [];
@@ -102,6 +113,8 @@ export class LeadsComponent implements OnInit {
 
 	private leadsService = inject(LeadsService);
 
+	private dialogService = inject(DialogService);
+
 	constructor() {}
 
 	ngOnInit() {
@@ -149,7 +162,7 @@ export class LeadsComponent implements OnInit {
 
 	private _confirmDeleteLead = (lead: any, index: number) => {
 		this.loading = true;
-		this.leadsService.deleteLead(lead.id || lead.sno).subscribe({
+		this.leadsService.deleteLead(lead._id).subscribe({
 			next: () => {
 				this.leads.splice(index, 1);
 				this.loading = false;
@@ -159,6 +172,26 @@ export class LeadsComponent implements OnInit {
 				this.loading = false;
 				console.error("Error deleting lead:", error);
 				this.notificationService.showSuccess("Unable to remove lead.");
+			},
+		});
+	};
+
+	openLeadDetails = (data: any, index: number) => {
+		const leadId = data._id;
+
+		if (!leadId) {
+			this.notificationService.showError("Lead ID not found");
+			return;
+		}
+
+		this.dialogService.open(LeadDetailComponent, {
+			header: "Lead Details",
+			width: "600px",
+			modal: true,
+			closable: true,
+			closeOnEscape: true,
+			data: {
+				leadId: leadId,
 			},
 		});
 	};

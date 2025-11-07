@@ -2,14 +2,24 @@ import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from "primeng/autocomplete";
+import { DialogModule } from "primeng/dialog";
+import { InputNumberModule } from "primeng/inputnumber";
 import { SelectModule } from "primeng/select";
-import { bathTypes, bedTypes, maxPrices, minPrices, sqFitTypes, statusTypes, storyTypes } from "../../../consts/DefaultTypes";
+import {
+	bathTypes,
+	bedTypes,
+	maxPrices,
+	minPrices,
+	sqFitTypes,
+	statusTypes,
+	storyTypes,
+} from "../../../consts/DefaultTypes";
 import { LoadingService } from "../../../services/loading.service";
 import { PropertyService } from "../../../services/property.service";
 
 @Component({
 	selector: "app-search",
-	imports: [FormsModule, AutoCompleteModule, SelectModule],
+	imports: [FormsModule, AutoCompleteModule, SelectModule, InputNumberModule, DialogModule],
 	templateUrl: "./search.component.html",
 	styleUrls: ["./search.component.scss"],
 	encapsulation: ViewEncapsulation.None,
@@ -26,7 +36,7 @@ export class SearchComponent implements OnInit {
 		property_subtype: "",
 		bedrooms: "0",
 		bathrooms: "0",
-		min_price: "",
+		min_price: 0,
 		max_price: "",
 		property_status: "",
 		sqFt: "",
@@ -48,50 +58,14 @@ export class SearchComponent implements OnInit {
 	maxPricesDropDown = maxPrices;
 	sqFtTypesDropDown = sqFitTypes;
 
+	showFilterDialog: boolean = false;
+
 	constructor(
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
 		private propertyService: PropertyService,
 		public loadingService: LoadingService
 	) {}
-
-	searchProperties = (searchByMap: boolean = false) => {
-		const currentUrl = this.router.url.split("/")[1];
-		const filtersWithValue = Object.fromEntries(
-			Object.entries(this.filters)
-				.filter(([key, value]) => value !== "" && value !== null && value !== undefined)
-				.map((entry) => {
-					return entry;
-				})
-		);
-
-		filtersWithValue["searchByMap"] = searchByMap;
-		// const filters = {
-		// 	address: filtersWithValue['address'],
-		// 	property_type: filtersWithValue['property_type'],
-		// 	bedrooms: filtersWithValue['bedrooms'],
-		// 	bathrooms: filtersWithValue['bathrooms'],
-		// 	min_price: filtersWithValue['min_price'],
-		// 	max_price: filtersWithValue['max_price'],
-		// 	property_status: filtersWithValue['property_status'],
-		// 	sqFt: filtersWithValue['sqFt'],
-		// 	distance: filtersWithValue['distance']
-		// }
-
-		if (searchByMap) {
-			this.router.navigate(["/map"], {
-				queryParams: filtersWithValue,
-				queryParamsHandling: "replace",
-			});
-		} else {
-			this.router.navigate([], {
-				relativeTo: this.activatedRoute,
-				queryParams: filtersWithValue,
-				queryParamsHandling: "replace",
-			});
-			this.onSearch(filtersWithValue);
-		}
-	};
 
 	ngOnInit(): void {
 		this.getPropertyTypeDropdowns();
@@ -153,7 +127,9 @@ export class SearchComponent implements OnInit {
 	filterPropertySubType() {
 		for (const propertyType of this.propertyTypesDropDown) {
 			if (propertyType.LookupValue == this.filters.property_type) {
-				const _subTypeDropDown = this._allPropertySubTypes.filter((_subType: any) => _subType.parent == propertyType._id);
+				const _subTypeDropDown = this._allPropertySubTypes.filter(
+					(_subType: any) => _subType.parent == propertyType._id
+				);
 				this.propertySubTypesDropDown = [{ LookupValue: "All", _id: "" }, ..._subTypeDropDown];
 				this.filters.property_subtype = this.propertySubTypesDropDown[0].LookupValue;
 				break;
@@ -188,7 +164,50 @@ export class SearchComponent implements OnInit {
 		});
 	};
 
-	setPropetyType() {}
+	searchProperties = (searchByMap: boolean = false) => {
+		this.closeFilterDialog();
+		const currentUrl = this.router.url.split("/")[1];
+		const filtersWithValue = Object.fromEntries(
+			Object.entries(this.filters)
+				.filter(([key, value]) => value !== "" && value !== null && value !== undefined)
+				.map((entry) => {
+					return entry;
+				})
+		);
 
-	setPropertySubType() {}
+		filtersWithValue["searchByMap"] = searchByMap;
+		// const filters = {
+		// 	address: filtersWithValue['address'],
+		// 	property_type: filtersWithValue['property_type'],
+		// 	bedrooms: filtersWithValue['bedrooms'],
+		// 	bathrooms: filtersWithValue['bathrooms'],
+		// 	min_price: filtersWithValue['min_price'],
+		// 	max_price: filtersWithValue['max_price'],
+		// 	property_status: filtersWithValue['property_status'],
+		// 	sqFt: filtersWithValue['sqFt'],
+		// 	distance: filtersWithValue['distance']
+		// }
+
+		if (searchByMap) {
+			this.router.navigate(["/map"], {
+				queryParams: filtersWithValue,
+				queryParamsHandling: "replace",
+			});
+		} else {
+			this.router.navigate([], {
+				relativeTo: this.activatedRoute,
+				queryParams: filtersWithValue,
+				queryParamsHandling: "replace",
+			});
+			this.onSearch(filtersWithValue);
+		}
+	};
+
+	openFilterDialog() {
+		this.showFilterDialog = true;
+	}
+
+	closeFilterDialog() {
+		this.showFilterDialog = false;
+	}
 }
