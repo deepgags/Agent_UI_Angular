@@ -5,6 +5,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
+import { AutoCompleteModule } from "primeng/autocomplete";
 import { DialogService } from "primeng/dynamicdialog";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
@@ -32,6 +33,7 @@ import { NotificationService } from "../../../services/notification.service";
 		InputTextModule,
 		PasswordModule,
 		IftaLabelModule,
+		AutoCompleteModule,
 	],
 	templateUrl: "./register.component.html",
 	styleUrl: "./register.component.scss",
@@ -40,7 +42,8 @@ import { NotificationService } from "../../../services/notification.service";
 export class RegisterComponent implements OnInit {
 	customerForm!: FormGroup;
 
-	brokerageTypes: BrokerageTypeModel[] = [];
+	brokerageTypes: string[] = [];
+	_brokerageTypesCopy: string[] = [];
 
 	newSelectedProfileImage: BehaviorSubject<string>;
 	newSelectedProfileImageObservable: Observable<string>;
@@ -99,11 +102,17 @@ export class RegisterComponent implements OnInit {
 			brokerageType: new FormControl("", Validators.required),
 			firstName: new FormControl("", Validators.required),
 			lastName: new FormControl("", Validators.required),
-			phoneNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
+			phoneNumber: new FormControl("", [
+				Validators.required,
+				Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$"),
+			]),
 			// cellNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			address: new FormControl(""),
-			password: new FormControl("", [Validators.required, Validators.pattern("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$")]),
+			password: new FormControl("", [
+				Validators.required,
+				Validators.pattern("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"),
+			]),
 			confirmPassword: new FormControl("", Validators.required),
 		});
 
@@ -114,10 +123,10 @@ export class RegisterComponent implements OnInit {
 		this.loadingService.loadingOn();
 		this.brokerageTypeService.getBrokerageTypes().subscribe({
 			next: (response: any) => {
-				this.brokerageTypes = response.data;
+				this._brokerageTypesCopy = response.data;
 			},
 			error: () => {
-				this.notificationService.showSuccess("Error occurred while getting brokerage types");
+				// this.notificationService.showSuccess("Error occurred while getting brokerage types");
 			},
 			complete: () => {
 				this.loadingService.loadingOff();
@@ -125,10 +134,18 @@ export class RegisterComponent implements OnInit {
 		});
 	}
 
-	brokerageChange(selectedBrokerageId: string): void {
-		const selectedBrokerage = this.brokerageTypes.filter((brokerage: BrokerageTypeModel) => brokerage._id == selectedBrokerageId)[0];
-		this.newSelectedLogoImage = selectedBrokerage.logoPath;
-	}
+	// brokerageChange(selectedBrokerageId: string): void {
+	// 	const selectedBrokerage = this.brokerageTypes.filter(
+	// 		(brokerage: BrokerageTypeModel) => brokerage._id == selectedBrokerageId
+	// 	)[0];
+	// 	this.newSelectedLogoImage = selectedBrokerage.logoPath;
+	// }
+
+	searchBrokerage = (event: any) => {
+		this.brokerageTypes = this._brokerageTypesCopy.filter((item) => {
+			return item.toLowerCase().indexOf(event.query.toLowerCase()) > -1;
+		});
+	};
 
 	onProfileImageChange(event: Event): void {
 		const ref = this.dialogService.open(ImageDialogComponent, {
@@ -202,12 +219,12 @@ export class RegisterComponent implements OnInit {
 				},
 				error: (error: any) => {
 					this.loadingService.loadingOff();
-					this.notificationService.showSuccess(error.error.message);
+					this.notificationService.showError(error.error.message);
 				},
 			});
 		} else {
 			this.customerForm.markAllAsTouched();
-			this.notificationService.showSuccess("One or more required fields are missing or invalid.");
+			this.notificationService.showError("One or more required fields are missing or invalid.");
 		}
 	}
 
