@@ -131,3 +131,201 @@
       background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       min-height: 60vh;
     }
+.floating-menu {
+  position: fixed;
+  bottom: 2rem;
+  right: 1rem;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transition: all 0.3s ease;
+
+  .floating-btn {
+    background: linear-gradient(135deg, #007bff, #00bcd4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .floating-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .floating-options {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+    min-width: 12rem;
+  }
+
+  &.open .floating-options {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .hover-bg:hover {
+    background-color: #f8f9fa;
+  }
+}
+
+/* Responsive touch fix */
+@media (max-width: 768px) {
+  .floating-menu {
+    bottom: 1rem;
+    right: 1rem;
+
+    .floating-options {
+      position: absolute;
+      right: 0;
+      bottom: 4rem;
+    }
+  }
+}
+
+.buy-sell-section {
+  background-color: #fff;
+
+  .buy-card,
+  .sell-card {
+    cursor: pointer;
+    height: 350px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+
+    img {
+      transition: transform 0.4s ease;
+      filter: brightness(0.8);
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.4);
+      transition: background 0.3s ease;
+    }
+
+    .icon-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    .line {
+      width: 50px;
+      height: 3px;
+      border-radius: 2px;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+      img {
+        transform: scale(1.05);
+        filter: brightness(1);
+      }
+
+      .overlay {
+        background: rgba(0, 0, 0, 0.55);
+      }
+    }
+  }
+
+  .or-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  @media (max-width: 992px) {
+    .buy-card,
+    .sell-card {
+      height: 250px;
+    }
+
+    .or-circle {
+      margin: 1rem 0;
+    }
+  }
+}
+
+#card1 {
+  /* From Uiverse.io by Daniel1227k */ 
+.card {
+  position: relative;
+      cursor: pointer;
+  height: 376px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // filter: blur(30px);
+}
+
+.card img {
+  position: absolute;
+  z-index: 3;
+  scale: 0.9;
+  transition: 0.5s;
+  border-radius: 10px;
+}
+
+.card:hover img {
+  scale: 0.5;
+  opacity: 0.9;
+  transform: translateY(-70px);
+}
+
+.card .content {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(0);
+  transition: 0.5s;
+}
+
+.card:hover .content {
+  transform: scale(1);
+  bottom: 25px;
+}
+
+.content .title {
+  position: relative;
+  color: #000;
+  font-weight: 500;
+  line-height: 1em;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+}

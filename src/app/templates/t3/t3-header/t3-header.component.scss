@@ -8,3 +8,11 @@
 a {
 	font-size: 14px;
 }
+.quick-link {
+  transition: all 0.2s ease-in-out;
+}
+
+.quick-link:hover {
+  background-color: #f5f7fa;
+  transform: translateX(3px);
+}
