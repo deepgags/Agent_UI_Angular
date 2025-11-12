@@ -24,7 +24,7 @@
 											   placeholder="Website URL"
 											   class="form-control"
 											   id="siteUrl"
-											   readobly />
+											   readonly />
 										<label for="siteUrl">Website URL</label>
 									</p-iftalabel>
 									@if (siteUrl?.invalid && (siteUrl?.dirty || siteUrl?.touched)) {
@@ -363,7 +363,7 @@
 										<label for="enableSecondaryAgent">Enable Secondary Agent</label>
 										<p-toggleswitch formControlName="enableSecondaryAgent"
 														id="enableSecondaryAgent"
-														(onChange)="setSecondryAgentVelidations($event)" />
+														(onChange)="setSecondaryAgentValidations($event)" />
 									</div>
 								</div>
 								<div class="col-md-6">

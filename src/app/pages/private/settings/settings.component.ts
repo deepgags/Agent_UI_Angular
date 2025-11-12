@@ -16,9 +16,9 @@ import { TextareaModule } from "primeng/textarea";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
 
-import { AutoCompleteCompleteEvent, AutoCompleteModule } from "primeng/autocomplete";
+import { AutoCompleteModule } from "primeng/autocomplete";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
-import { BrokerageTypeModel } from "../../../models/BrokerageTypeModel";
+
 import { CustomerModel } from "../../../models/CustomerModel";
 import { BrokerageTypeService } from "../../../services/brokerage.service";
 import { CustomerService } from "../../../services/customer.service";
@@ -241,7 +241,7 @@ export class SettingsComponent {
 							this.secondaryAgentProfileImage.next(response.data.secondaryAgent.profileImage);
 						}
 					}
-					this.setSecondryAgentVelidations({
+					this.setSecondaryAgentValidations({
 						checked: this.agentForm.get("secondaryAgent.enableSecondaryAgent")?.value,
 					});
 					this.emailAddress?.disable();
@@ -456,7 +456,7 @@ export class SettingsComponent {
 		});
 	};
 
-	setSecondryAgentVelidations(e: any) {
+	setSecondaryAgentValidations(e: any) {
 		const isEnabled = e.checked;
 		const secondaryAgentForm = this.agentForm.get("secondaryAgent") as FormGroup;
 		const firstName = secondaryAgentForm.get("firstName");
