@@ -36,15 +36,15 @@
 
     <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end align-items-center gap-3">
       @if (siteConfig) {
-        <a [routerLink]="['home']">
-          <img
-            [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-            alt="No brokerage logo"
-            height="66px" />
-        </a>
+      <a [routerLink]="['home']">
+        <img [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+             alt="No brokerage logo"
+             height="66px" />
+      </a>
       }
 
-      <button class="btn btn-outline-primary" type="button"
+      <button class="btn btn-outline-primary"
+              type="button"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasRight"
               aria-controls="offcanvasRight">
@@ -54,114 +54,139 @@
   </div>
 </div>
 
-<div class="container-fluid p-0">
- <nav class="navbar navbar-expand-lg nav_bg" aria-label="Offcanvas navbar large">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasNavbar2"
-            aria-controls="offcanvasNavbar2">
-      <span><i class="fa-solid fa-bars text-white"></i></span>
-    </button>
+<app-menu />
+<!-- <div class="container-fluid p-0">
+  <nav class="navbar navbar-expand-lg nav_bg"
+       aria-label="Offcanvas navbar large">
+    <div class="container-fluid">
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasNavbar2"
+              aria-controls="offcanvasNavbar2">
+        <span><i class="fa-solid fa-bars text-white"></i></span>
+      </button>
 
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1"
-         id="offcanvasNavbar2"
-         aria-labelledby="offcanvasNavbar2Label">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">
-          <i class="fa-solid fa-building-user me-2"></i> Brokers
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
-      </div>
+      <div class="offcanvas offcanvas-end text-bg-dark"
+           tabindex="-1"
+           id="offcanvasNavbar2"
+           aria-labelledby="offcanvasNavbar2Label">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title"
+              id="offcanvasNavbar2Label">
+            <i class="fa-solid fa-building-user me-2"></i> Brokers
+          </h5>
+          <button type="button"
+                  class="btn-close btn-close-white"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"></button>
+        </div>
 
-      <div class="offcanvas-body">
-        <ul class="navbar-nav flex-grow-1 pe-3 home_nav">
-          <li class="nav-item">
-            <a class="nav-link nav_content" [routerLink]="['home']">
-              <i class="fa-solid fa-house me-2"></i> Home
-            </a>
-          </li>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav flex-grow-1 pe-3 home_nav">
+            <li class="nav-item">
+              <a class="nav-link nav_content"
+                 [routerLink]="['home']">
+                <i class="fa-solid fa-house me-2"></i> Home
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link nav_content" [routerLink]="['about']">
-              <i class="fa-solid fa-circle-info me-2"></i> About
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link nav_content"
+                 [routerLink]="['about']">
+                <i class="fa-solid fa-circle-info me-2"></i> About
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link nav_content" [routerLink]="['seller']">
-              <i class="fa-solid fa-handshake me-2"></i> Seller
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link nav_content"
+                 [routerLink]="['seller']">
+                <i class="fa-solid fa-handshake me-2"></i> Seller
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link nav_content" [routerLink]="['buyer']">
-              <i class="fa-solid fa-user-tag me-2"></i> Buyer
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link nav_content"
+                 [routerLink]="['buyer']">
+                <i class="fa-solid fa-user-tag me-2"></i> Buyer
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link nav_content" [routerLink]="['featured-listings']">
-              <i class="fa-solid fa-star me-2"></i> Featured Listings
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link nav_content"
+                 [routerLink]="['featured-listings']">
+                <i class="fa-solid fa-star me-2"></i> Featured Listings
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link nav_content" [routerLink]="['calculator']">
-              <i class="fa-solid fa-calculator me-2"></i> Calculators
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link nav_content"
+                 [routerLink]="['calculator']">
+                <i class="fa-solid fa-calculator me-2"></i> Calculators
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link nav_content" [routerLink]="['contact']">
-              <i class="fa-solid fa-envelope me-2"></i> Contact
-            </a>
-          </li>
-        </ul>
+            <li class="nav-item">
+              <a class="nav-link nav_content"
+                 [routerLink]="['contact']">
+                <i class="fa-solid fa-envelope me-2"></i> Contact
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</div> -->
 
-</div>
-
-<div class="offcanvas offcanvas-end shadow-lg rounded-start-4" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+<div class="offcanvas offcanvas-end shadow-lg rounded-start-4"
+     tabindex="-1"
+     id="offcanvasRight"
+     aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header border-bottom">
-    <h5 class="offcanvas-title fw-semibold" id="offcanvasRightLabel">
+    <h5 class="offcanvas-title fw-semibold"
+        id="offcanvasRightLabel">
       <i class="fa-solid fa-bolt me-2 text-primary"></i> Quick Menu
     </h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
   </div>
 
   <div class="offcanvas-body px-3">
     <ul class="list-unstyled mb-0">
       <li class="mb-3">
-        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link" [routerLink]="['profile']">
+        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+           [routerLink]="['profile']">
           <i class="fa-solid fa-user-circle me-3 text-primary"></i> My Profile
         </a>
       </li>
 
       <li class="mb-3">
-        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link" [routerLink]="['favorites']">
+        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+           [routerLink]="['favorites']">
           <i class="fa-solid fa-heart me-3 text-danger"></i> Saved Listings
         </a>
       </li>
 
       <li class="mb-3">
-        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link" [routerLink]="['settings']">
+        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+           [routerLink]="['settings']">
           <i class="fa-solid fa-gear me-3 text-secondary"></i> Settings
         </a>
       </li>
 
-      <li><hr class="my-3"></li>
+      <li>
+        <hr class="my-3">
+      </li>
 
       <li>
-        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-danger quick-link" [routerLink]="['logout']">
+        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-danger quick-link"
+           [routerLink]="['logout']">
           <i class="fa-solid fa-right-from-bracket me-3"></i> Logout
         </a>
       </li>
     </ul>
   </div>
 </div>
-

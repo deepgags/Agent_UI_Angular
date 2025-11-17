@@ -59,7 +59,7 @@ export class VerifyEmailComponent implements OnInit {
 				},
 				error: (error: any) => {
 					this.loadingService.loadingOff();
-					this.notificationService.showSuccess(error.error.message);
+					this.notificationService.showError(error.error.message);
 				},
 			});
 		}

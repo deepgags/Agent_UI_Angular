@@ -171,7 +171,7 @@ export class LeadsComponent implements OnInit {
 			error: (error) => {
 				this.loading = false;
 				console.error("Error deleting lead:", error);
-				this.notificationService.showSuccess("Unable to remove lead.");
+				this.notificationService.showError("Unable to remove lead.");
 			},
 		});
 	};

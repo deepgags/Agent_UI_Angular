@@ -380,7 +380,7 @@ export class ManagerComponent {
 				}
 			},
 			error: () => {
-				this.notificationService.showSuccess("An error has occurred while getting customer information");
+				this.notificationService.showError("An error has occurred while getting customer information");
 			},
 			complete: () => {},
 		});

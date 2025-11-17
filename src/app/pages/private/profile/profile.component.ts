@@ -79,7 +79,7 @@ export class ProfileComponent {
 		private loadingService: LoadingService,
 		private titleService: Title,
 		private templateService: TemplateService,
-		public dialogService: DialogService,
+		public dialogService: DialogService
 	) {
 		this.titleService.setTitle("Profile");
 		this.items = [
@@ -199,8 +199,16 @@ export class ProfileComponent {
 			next: (response: any) => {
 				if (response.status) {
 					this.agentData = response.data;
-					const { businessName, firstName, lastName, emailAddress, phoneNumber, brokerageTypeId, websiteSettings, brokerage } =
-						response.data;
+					const {
+						businessName,
+						firstName,
+						lastName,
+						emailAddress,
+						phoneNumber,
+						brokerageTypeId,
+						websiteSettings,
+						brokerage,
+					} = response.data;
 
 					const {
 						templateId,
@@ -262,9 +270,9 @@ export class ProfileComponent {
 				}
 			},
 			error: () => {
-				this.notificationService.showSuccess("An error has occurred while getting customer information");
+				this.notificationService.showError("An error has occurred while getting customer information");
 			},
-			complete: () => { },
+			complete: () => {},
 		});
 	}
 
@@ -276,7 +284,7 @@ export class ProfileComponent {
 				this.getProfile();
 			},
 			error: () => {
-				this.notificationService.showSuccess("Error occurred while getting brokerage types");
+				this.notificationService.showError("Error occurred while getting brokerage types");
 			},
 			complete: () => {
 				this.loadingService.loadingOff();
@@ -307,7 +315,7 @@ export class ProfileComponent {
 				}
 			},
 			error: (error) => {
-				this.notificationService.showSuccess("Error occurred while getting templates");
+				this.notificationService.showError("Error occurred while getting templates");
 			},
 		});
 	}
@@ -370,7 +378,9 @@ export class ProfileComponent {
 						phone: websitePhone,
 						// address: websiteAddress,
 					},
-					profileImage: this.primaryAgentProfileImage.value ? this.primaryAgentProfileImage.value : this.existingProfileImage,
+					profileImage: this.primaryAgentProfileImage.value
+						? this.primaryAgentProfileImage.value
+						: this.existingProfileImage,
 					brokerageImage: this.brokerageImage.value,
 					logoImage: this.logoImage.value,
 				},
@@ -380,9 +390,11 @@ export class ProfileComponent {
 				},
 			};
 			this.customerService.update(params).subscribe({
-				next: (v) => { },
+				next: (v) => {},
 				error: (e) => {
-					this.notificationService.showSuccess(e.error.message || "Something went wrong while updating information.");
+					this.notificationService.showError(
+						e.error.message || "Something went wrong while updating information."
+					);
 				},
 				complete: () => {
 					this.notificationService.showSuccess("Profile updated successfully");
@@ -453,5 +465,4 @@ export class ProfileComponent {
 			}
 		});
 	}
-
 }

@@ -58,7 +58,7 @@ export class TemplateComponent implements OnInit {
 				}
 			},
 			error: (error) => {
-				this.notificationService.showSuccess("Error occurred while getting templates");
+				this.notificationService.showError("Error occurred while getting templates");
 			},
 			complete: () => {
 				this.loadingService.loadingOff();
@@ -77,7 +77,9 @@ export class TemplateComponent implements OnInit {
 					this.selectedTemplate = template.templateKey;
 				},
 				error: (e) => {
-					this.notificationService.showSuccess(e.error.message || "Something went wrong while changing template.");
+					this.notificationService.showError(
+						e.error.message || "Something went wrong while changing template."
+					);
 				},
 				complete: () => {
 					this.notificationService.showSuccess("Template changed successfully");

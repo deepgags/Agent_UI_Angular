@@ -5,6 +5,7 @@ import { ChangePasswordComponent } from "./pages/private/change-password/change-
 import { AdminComponent } from "./pages/private/dashboard/dashboard.component";
 import { LeadsComponent } from "./pages/private/leads/leads.component";
 import { ManagerComponent } from "./pages/private/manager/manager.component";
+import { MenuManagerComponent } from "./pages/private/menu-manager/menu-manager.component";
 import { PaymentComponent } from "./pages/private/payment/payment.component";
 import { PrivateComponent } from "./pages/private/private.component";
 import { SettingsComponent } from "./pages/private/settings/settings.component";
@@ -52,6 +53,7 @@ export const routes: Routes = [
 			{ path: "testimonial", component: TestimonialComponent },
 			{ path: "settings", component: SettingsComponent },
 			{ path: "page-manager", component: ManagerComponent },
+			{ path: "menu-manager", component: MenuManagerComponent },
 			{ path: "change-password", component: ChangePasswordComponent },
 			{ path: "template", component: TemplateComponent },
 			{ path: "payment", component: PaymentComponent },

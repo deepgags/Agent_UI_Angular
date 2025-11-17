@@ -125,7 +125,7 @@ export class ManageTestimonialComponent {
 				error: (error) => {
 					// this.loading = false;
 					console.error("Error deleting Testimonial:", error);
-					this.notificationService.showSuccess("Unable to remove Testimonial.");
+					this.notificationService.showError("Unable to remove Testimonial.");
 				},
 			});
 		}

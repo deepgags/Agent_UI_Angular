@@ -47,7 +47,7 @@ export class TemplatesComponent {
 				}
 			},
 			error: (error) => {
-				this.notificationService.showSuccess("Error occurred while getting templates");
+				this.notificationService.showError("Error occurred while getting templates");
 			},
 			complete: () => {
 				this.loadingService.loadingOff();

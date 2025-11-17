@@ -249,7 +249,7 @@ export class SettingsComponent {
 				}
 			},
 			error: () => {
-				this.notificationService.showSuccess("An error has occurred while getting customer information");
+				this.notificationService.showError("An error has occurred while getting customer information");
 			},
 			complete: () => {},
 		});
@@ -263,7 +263,7 @@ export class SettingsComponent {
 				this.getProfile();
 			},
 			error: () => {
-				this.notificationService.showSuccess("Error occurred while getting brokerage types");
+				this.notificationService.showError("Error occurred while getting brokerage types");
 			},
 			complete: () => {
 				this.loadingService.loadingOff();

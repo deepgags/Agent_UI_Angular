@@ -1,5 +1,7 @@
 import { BrokerageTypeModel } from "./BrokerageTypeModel";
 
+import { MenuItem } from "./MenuItem";
+
 export interface CustomerModel {
 	_id?: string;
 	brokerageTypeId: string;
@@ -14,10 +16,21 @@ export interface CustomerModel {
 	confirmPassword: string;
 	role?: string;
 	siteUrl?: string;
-	logoImage?: string;
 	profileImage: string;
 	brokerage?: BrokerageTypeModel | undefined;
-	websiteSettings: any;
+	websiteSettings: {
+		logoImage?: string;
+		aboutText?: string;
+		contactText?: string;
+		sellingYourHouseText?: string;
+		renovatingForResellText?: string;
+		commonSellingMistakeText?: string;
+		buyerText?: string;
+		showHomeWorthPage?: boolean;
+		showSellingInNeighbourHooddPage?: boolean;
+		showFindDreamHomePage?: boolean;
+		menuItems?: MenuItem[];
+	};
 	secondaryAgent?: {
 		firstName: string;
 		lastName: string;
