@@ -166,7 +166,7 @@ export class MenuManagerComponent implements OnInit {
 				pageKey: formValue.pageKey,
 				linkUrl: formValue.linkUrl,
 				order: this.editingItem?.order || this._menuItemsCore.length,
-				parentId: formValue.parentId || undefined,
+				parentId: formValue.parentId || "",
 			};
 
 			this.loadingService.loadingOn();
@@ -307,11 +307,13 @@ export class MenuManagerComponent implements OnInit {
 
 	private buildChildren(parentId: string, childrenMap: Map<string, MenuItem[]>): MenuItem[] {
 		const children = childrenMap.get(parentId) || [];
-		return children.map((child) => ({
-			...child,
-			children: this.buildChildren(child._id, childrenMap),
-			isExpanded: child.isExpanded || false,
-		}));
+		return children
+			.sort((a, b) => a.order - b.order)
+			.map((child) => ({
+				...child,
+				children: this.buildChildren(child._id, childrenMap),
+				isExpanded: child.isExpanded || false,
+			}));
 	}
 
 	private convertToTreeNodes(items: MenuItem[]): TreeNode<MenuItem>[] {
@@ -320,6 +322,7 @@ export class MenuManagerComponent implements OnInit {
 			data: item,
 			// icon: "bi bi-caret-right-fill",
 			expanded: item.isExpanded || false,
+			leaf: !item.children || item.children.length === 0,
 			children: item.children ? this.convertToTreeNodes(item.children) : [],
 		}));
 	}
@@ -372,6 +375,13 @@ export class MenuManagerComponent implements OnInit {
 
 	toggleExpand(item: MenuItem) {
 		item.isExpanded = !item.isExpanded;
+	}
+
+	toggleNodeExpansion(node: TreeNode<MenuItem>) {
+		node.expanded = !node.expanded;
+		if (node.data) {
+			node.data.isExpanded = node.expanded;
+		}
 	}
 
 	cancelDialog() {

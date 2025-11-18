@@ -22,12 +22,12 @@
 									 pTemplate="default">
 							<div class="d-flex justify-content-between align-items-center w-100 py-2">
 								<div class="d-flex align-items-center flex-grow-1 me-3">
-									<button *ngIf="node.children && node.children.length > 0"
+									<!-- <button *ngIf="node.children && node.children.length > 0"
 											class="btn btn-sm btn-link p-0 me-2"
-											(click)="node.expanded = !node.expanded">
+											(click)="toggleNodeExpansion(node)">
 										<i class="bi"
 										   [class]="node.expanded ? 'bi-chevron-down' : 'bi-chevron-right'"></i>
-									</button>
+									</button> -->
 									<div class="d-flex flex-column gap-1 justify-content-start">
 										<span class="fw-bold">{{node.label}}</span>
 										<span class="capitalize badge bg-warning text-dark w-auto align-self-start">
@@ -52,11 +52,6 @@
 					</p-tree>
 				</div>
 			</div>
-		</div>
-
-		<div class="mt-3 text-muted small">
-			<i class="pi pi-info-circle me-1"></i>
-			Drag and drop menu items to reorder them. Changes are saved automatically.
 		</div>
 	</div>
 
