@@ -10,7 +10,7 @@ import { SimpleTableComponent } from "../../../components/simple-table/simple-ta
 import { FieldsType } from "../../../enums/fields-type.enum";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { NotificationService } from "../../../services/notification.service";
-import { SharedDataService } from "../../../services/shareddata.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 import { Testimonial, TestimonialService } from "../../../services/testimonial.service";
 import { ManageTestimonialComponent } from "../manage-testimonial/manage-testimonial.component";
 

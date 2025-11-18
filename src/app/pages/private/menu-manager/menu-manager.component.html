@@ -12,47 +12,80 @@
 			</p-button>
 		</div>
 
-		<div class="row">
-			<div class="col-12">
-				<div class="menu-tree"
-					 style="max-height: 400px; overflow-y: auto;">
-					<p-tree [value]="treeNodes()"
-							class="w-full md:w-[30rem]">
-						<ng-template let-node
-									 pTemplate="default">
-							<div class="d-flex justify-content-between align-items-center w-100 py-2">
-								<div class="d-flex align-items-center flex-grow-1 me-3">
-									<!-- <button *ngIf="node.children && node.children.length > 0"
-											class="btn btn-sm btn-link p-0 me-2"
-											(click)="toggleNodeExpansion(node)">
-										<i class="bi"
-										   [class]="node.expanded ? 'bi-chevron-down' : 'bi-chevron-right'"></i>
-									</button> -->
-									<div class="d-flex flex-column gap-1 justify-content-start">
-										<span class="fw-bold">{{node.label}}</span>
-										<span class="capitalize badge bg-warning text-dark w-auto align-self-start">
-											{{node.data?.menuType }}
-										</span>
+		<p-tabs value="0">
+			<p-tablist>
+				<p-tab value="0">Main Menu</p-tab>
+				<p-tab value="1">Side Menu</p-tab>
+			</p-tablist>
+			<p-tabpanels>
+				<p-tabpanel value="0">
+					<div class="menu-tree"
+						 style="max-height: 400px; overflow-y: auto;">
+						<p-tree [value]="mainTreeNodes"
+								class="w-full md:w-[30rem]">
+							<ng-template let-node
+										 pTemplate="default">
+								<div class="d-flex justify-content-between align-items-center w-100 py-2">
+									<div class="d-flex align-items-center flex-grow-1 me-3">
+										<div class="d-flex flex-column gap-1 justify-content-start">
+											<span class="fw-bold">{{node.label}}</span>
+											<span class="capitalize badge bg-warning text-dark w-auto align-self-start">
+												{{node.data?.menuType }}
+											</span>
+										</div>
+									</div>
+									<div class="d-flex gap-2 flex-shrink-0">
+										<p-button icon="bi bi-pencil-square"
+												  styleClass="p-button-text p-button-sm"
+												  (onClick)="openEditMenuDialog(node.data!)"
+												  pTooltip="Edit">
+										</p-button>
+										<p-button icon="bi bi-trash3"
+												  styleClass="p-button-text p-button-danger p-button-sm"
+												  (onClick)="deleteMenuItem(node.data!)"
+												  pTooltip="Delete">
+										</p-button>
 									</div>
 								</div>
-								<div class="d-flex gap-2 flex-shrink-0">
-									<p-button icon="bi bi-pencil-square"
-											  styleClass="p-button-text p-button-sm"
-											  (onClick)="openEditMenuDialog(node.data!)"
-											  pTooltip="Edit">
-									</p-button>
-									<p-button icon="bi bi-trash3"
-											  styleClass="p-button-text p-button-danger p-button-sm"
-											  (onClick)="deleteMenuItem(node.data!)"
-											  pTooltip="Delete">
-									</p-button>
+							</ng-template>
+						</p-tree>
+					</div>
+				</p-tabpanel>
+				<p-tabpanel value="1">
+					<div class="menu-tree"
+						 style="max-height: 400px; overflow-y: auto;">
+						<p-tree [value]="sideTreeNodes"
+								class="w-full md:w-[30rem]">
+							<ng-template let-node
+										 pTemplate="default">
+								<div class="d-flex justify-content-between align-items-center w-100 py-2">
+									<div class="d-flex align-items-center flex-grow-1 me-3">
+										<div class="d-flex flex-column gap-1 justify-content-start">
+											<span class="fw-bold">{{node.label}}</span>
+											<span class="capitalize badge bg-warning text-dark w-auto align-self-start">
+												{{node.data?.menuType }}
+											</span>
+										</div>
+									</div>
+									<div class="d-flex gap-2 flex-shrink-0">
+										<p-button icon="bi bi-pencil-square"
+												  styleClass="p-button-text p-button-sm"
+												  (onClick)="openEditMenuDialog(node.data!)"
+												  pTooltip="Edit">
+										</p-button>
+										<p-button icon="bi bi-trash3"
+												  styleClass="p-button-text p-button-danger p-button-sm"
+												  (onClick)="deleteMenuItem(node.data!)"
+												  pTooltip="Delete">
+										</p-button>
+									</div>
 								</div>
-							</div>
-						</ng-template>
-					</p-tree>
-				</div>
-			</div>
-		</div>
+							</ng-template>
+						</p-tree>
+					</div>
+				</p-tabpanel>
+			</p-tabpanels>
+		</p-tabs>
 	</div>
 
 	<!-- Menu Item Dialog -->
@@ -95,13 +128,27 @@
 					</p-select>
 				</div>
 
+				<!-- Menu Category -->
+				<div class="col-12">
+					<label for="menuCategory"
+						   class="form-label fw-semibold">Menu Category *</label>
+					<p-select id="menuCategory"
+							  formControlName="menuCategory"
+							  [options]="menuCategories"
+							  optionLabel="label"
+							  optionValue="value"
+							  placeholder="Select menu category"
+							  class="w-100">
+					</p-select>
+				</div>
+
 				<!-- Parent Menu Item -->
 				<div class="col-12">
 					<label for="parentId"
 						   class="form-label fw-semibold">Parent Menu Item</label>
 					<p-select id="parentId"
 							  formControlName="parentId"
-							  [options]="getAvailableParents()"
+							  [options]="getAvailableParents(menuForm.get('menuCategory')?.value)"
 							  optionLabel="label"
 							  optionValue="value"
 							  placeholder="Select parent (optional)"

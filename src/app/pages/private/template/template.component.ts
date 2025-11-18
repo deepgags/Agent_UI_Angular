@@ -14,7 +14,7 @@ import { TemplateModel } from "../../../models/TemplateModel";
 import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
-import { SharedDataService } from "../../../services/shareddata.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 import { TemplateService } from "../../../services/template.service";
 
 @Component({

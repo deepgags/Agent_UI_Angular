@@ -5,6 +5,7 @@ export interface MenuItem {
 	metaDescription?: string;
 	keywords?: string;
 	menuType: MenuType;
+	menuCategory: "main" | "side";
 	pageKey?: string;
 	linkUrl?: string;
 	order: number;

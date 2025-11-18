@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { SharedDataService } from "../../../services/shareddata.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 @Component({
 	selector: "app-sellerdetail",

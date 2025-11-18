@@ -1,37 +1,34 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { SharedDataService } from "../../../services/shareddata.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 @Component({
-  selector: "app-seller",
-  standalone: true,
-  imports: [],
-  templateUrl: "./seller.component.html",
-  styleUrls: ["./seller.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+	selector: "app-seller",
+	standalone: true,
+	imports: [],
+	templateUrl: "./seller.component.html",
+	styleUrls: ["./seller.component.scss"],
+	encapsulation: ViewEncapsulation.None,
 })
 export class SellerComponent implements OnInit {
-  siteConfig: SiteConfig = {} as SiteConfig;
+	siteConfig: SiteConfig = {} as SiteConfig;
 
-  constructor(
-    private router: Router,
-    private sharedDataService: SharedDataService
-  ) {}
+	constructor(private router: Router, private sharedDataService: SharedDataService) {}
 
-  ngOnInit(): void {
-    this.siteConfig = this.sharedDataService.siteData();
-  }
+	ngOnInit(): void {
+		this.siteConfig = this.sharedDataService.siteData();
+	}
 
-  goToSellerDetail() {
-    this.router.navigate(["/sellerdetails"]);
-  }
+	goToSellerDetail() {
+		this.router.navigate(["/sellerdetails"]);
+	}
 
-  goToReSellDetail() {
-    this.router.navigate(["/sellerdetails2"]);
-  }
+	goToReSellDetail() {
+		this.router.navigate(["/sellerdetails2"]);
+	}
 
-  goToSellerCommonSellingMistake() {
-    this.router.navigate(["/sellerdetails3"]);
-  }
+	goToSellerCommonSellingMistake() {
+		this.router.navigate(["/sellerdetails3"]);
+	}
 }

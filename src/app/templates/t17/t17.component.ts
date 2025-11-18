@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { Subscription } from "rxjs";
 import { SiteConfig } from "../../models/SiteConfig";
-import { SharedDataService } from "../../services/shareddata.service";
+import { SharedDataService } from "../../services/shared-data.service";
 import { t17FooterComponent } from "./t17-footer/t17-footer.component";
 import { t17HeaderComponent } from "./t17-header/t17-header.component";
 

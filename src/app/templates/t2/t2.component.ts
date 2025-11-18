@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SiteConfig } from "../../models/SiteConfig";
+import { SharedDataService } from "../../services/shared-data.service";
 import { T2FooterComponent } from "./t2-footer/t2-footer.component";
 import { T2HeaderComponent } from "./t2-header/t2-header.component";
-import { SharedDataService } from "../../services/shareddata.service";
 
 @Component({
 	selector: "app-t2",

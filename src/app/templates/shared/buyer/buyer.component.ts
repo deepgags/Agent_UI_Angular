@@ -1,20 +1,20 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { SiteConfig } from "../../../models/SiteConfig";
-import { SharedDataService } from "../../../services/shareddata.service";
-import { CommonModule } from "@angular/common";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 @Component({
-  selector: "app-buyer",
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: "./buyer.component.html",
-  styleUrls: ["./buyer.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+	selector: "app-buyer",
+	standalone: true,
+	imports: [CommonModule],
+	templateUrl: "./buyer.component.html",
+	styleUrls: ["./buyer.component.scss"],
+	encapsulation: ViewEncapsulation.None,
 })
 export class BuyerComponent implements OnInit {
-  siteConfig: SiteConfig = {} as SiteConfig;
+	siteConfig: SiteConfig = {} as SiteConfig;
 
-  buyerText = `
+	buyerText = `
 <div class="container search-container">
   <section class="bg-light py-5">
     <div class="container">
@@ -127,9 +127,9 @@ export class BuyerComponent implements OnInit {
 </div>
 `;
 
-  constructor(private sharedDataService: SharedDataService) {}
+	constructor(private sharedDataService: SharedDataService) {}
 
-  ngOnInit(): void {
-    this.siteConfig = this.sharedDataService.siteData();
-  }
+	ngOnInit(): void {
+		this.siteConfig = this.sharedDataService.siteData();
+	}
 }

@@ -9,7 +9,8 @@ export class SharedDataService {
 	private _userToken = signal("");
 	private _siteId = signal("");
 	private _siteData = signal<SiteConfig | any>({} as SiteConfig);
-	private _siteMenu = signal<MenuItem[] | any[]>({} as MenuItem[]);
+	private _mainMenu = signal<MenuItem[] | any[]>({} as MenuItem[]);
+	private _sideMenu = signal<MenuItem[] | any[]>({} as MenuItem[]);
 
 	constructor() {
 		const _userToken = localStorage.getItem("USER_TOKEN");
@@ -26,8 +27,12 @@ export class SharedDataService {
 		this._siteData.set(_siteData);
 	}
 
-	setSiteMenu(_siteMenu: any[]) {
-		this._siteMenu.set(_siteMenu);
+	setMainMenu(_mainMenu: any[]) {
+		this._mainMenu.set(_mainMenu);
+	}
+
+	setSideMenu(_sideMenu: any[]) {
+		this._sideMenu.set(_sideMenu);
 	}
 
 	get siteId() {
@@ -38,8 +43,12 @@ export class SharedDataService {
 		return this._siteData;
 	}
 
-	get siteMenu() {
-		return this._siteMenu;
+	get mainMenu() {
+		return this._mainMenu;
+	}
+
+	get sideMenu() {
+		return this._sideMenu;
 	}
 
 	setUserToken(_userToken: string) {

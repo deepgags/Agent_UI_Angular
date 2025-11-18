@@ -28,13 +28,15 @@ export class MenuService {
 		);
 	}
 
-	getMenu(): Observable<MenuItem[]> {
-		return this.http.get<MenuItem[]>(`${this.baseUrl}/menu/`).pipe(
+	getMenu(): Observable<{ mainMenu: MenuItem[]; sideMenu: MenuItem[] }> {
+		return this.http.get<{ mainMenu: MenuItem[]; sideMenu: MenuItem[] }>(`${this.baseUrl}/menu/`).pipe(
 			map((result: any) => {
 				if (result && result.data) {
-					return result.data.sort((a: MenuItem, b: MenuItem) => a.order - b.order);
+					const mainMenu = (result.data.mainMenu || []).sort((a: MenuItem, b: MenuItem) => a.order - b.order);
+					const sideMenu = (result.data.sideMenu || []).sort((a: MenuItem, b: MenuItem) => a.order - b.order);
+					return { mainMenu, sideMenu };
 				}
-				return [];
+				return { mainMenu: [], sideMenu: [] };
 			}),
 			catchError((error) => {
 				console.error("Error fetching menu items:", error);

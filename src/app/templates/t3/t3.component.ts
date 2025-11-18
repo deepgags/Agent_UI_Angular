@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SiteConfig } from "../../models/SiteConfig";
-import { SharedDataService } from "../../services/shareddata.service";
+import { SharedDataService } from "../../services/shared-data.service";
 import { T3FooterComponent } from "./t3-footer/t3-footer.component";
 import { T3HeaderComponent } from "./t3-header/t3-header.component";
 
