@@ -30,7 +30,7 @@ import { TimeAgo } from "../../pipes/time-ago";
 import { NotificationService } from "../../services/notification.service";
 import { PropertyService } from "../../services/property.service";
 import { PublicService } from "../../services/public.service";
-import { SharedDataService } from "../../services/shareddata.service";
+import { SharedDataService } from "../../services/shared-data.service";
 declare var window: any;
 declare var google: any;
 @Component({

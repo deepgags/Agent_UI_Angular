@@ -14,7 +14,7 @@ import { MatInputModule } from "@angular/material/input";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SearchService } from "../../../services/search.service";
-import { SharedDataService } from "../../../services/shareddata.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 @Component({
 	selector: "app-t11-home",
@@ -28,7 +28,11 @@ export class T11HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
 
-	constructor(private titleService: Title, private searchService: SearchService, private sharedDataService: SharedDataService) {}
+	constructor(
+		private titleService: Title,
+		private searchService: SearchService,
+		private sharedDataService: SharedDataService
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");

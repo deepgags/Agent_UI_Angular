@@ -8,7 +8,7 @@ import { environment } from "../environments/environment.development";
 import { PropertyModel } from "../models/PropertyModel";
 
 import { PropertyDetailComponent } from "../components/propertydetail/propertydetail.component";
-import { SharedDataService } from "./shareddata.service";
+import { SharedDataService } from "./shared-data.service";
 
 @Injectable({
 	providedIn: "root",

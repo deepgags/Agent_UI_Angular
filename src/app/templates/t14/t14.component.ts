@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SiteConfig } from "../../models/SiteConfig";
+import { SharedDataService } from "../../services/shared-data.service";
 import { T14FooterComponent } from "./t14-footer/t14-footer.component";
 import { T14HeaderComponent } from "./t14-header/t14-header.component";
-import { SharedDataService } from "../../services/shareddata.service";
 
 @Component({
 	selector: "app-t14",

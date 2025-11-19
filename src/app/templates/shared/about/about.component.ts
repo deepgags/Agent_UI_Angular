@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
-import { SharedDataService } from "../../../services/shareddata.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 import { TestimonialService } from "../../../services/testimonial.service";
 
 @Component({

@@ -3,7 +3,7 @@ import { GalleriaModule } from "primeng/galleria";
 import { environment } from "../../environments/environment.development";
 import { PropertyModel } from "../../models/PropertyModel";
 import { TimeAgo } from "../../pipes/time-ago";
-import { SharedDataService } from "../../services/shareddata.service";
+import { SharedDataService } from "../../services/shared-data.service";
 @Component({
 	selector: "app-property",
 	imports: [TimeAgo, GalleriaModule],

@@ -12,7 +12,7 @@ import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
-import { SharedDataService } from "../../../services/shareddata.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 @Component({
 	selector: "app-contact",

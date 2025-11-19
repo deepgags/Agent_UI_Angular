@@ -6,7 +6,7 @@ import { HeroContactFormComponent } from "../../../components/hero-contact-form/
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SearchService } from "../../../services/search.service";
-import { SharedDataService } from "../../../services/shareddata.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
@@ -22,7 +22,11 @@ import { SearchComponent } from "../../shared/search/search.component";
 export class T7HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
-	constructor(private titleService: Title, private sharedDataService: SharedDataService, private searchService: SearchService) {}
+	constructor(
+		private titleService: Title,
+		private sharedDataService: SharedDataService,
+		private searchService: SearchService
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");

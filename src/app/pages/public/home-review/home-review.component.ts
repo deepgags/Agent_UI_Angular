@@ -9,7 +9,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
-import { SharedDataService } from "../../../services/shareddata.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 @Component({
 	selector: "app-home-review",

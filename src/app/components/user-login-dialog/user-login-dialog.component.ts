@@ -9,7 +9,7 @@ import { PasswordModule } from "primeng/password";
 import { TabsModule } from "primeng/tabs";
 import { CustomerService } from "../../services/customer.service";
 import { NotificationService } from "../../services/notification.service";
-import { SharedDataService } from "../../services/shareddata.service";
+import { SharedDataService } from "../../services/shared-data.service";
 @Component({
 	selector: "app-user-login-dialog",
 	imports: [

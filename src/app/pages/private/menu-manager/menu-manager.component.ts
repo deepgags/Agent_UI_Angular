@@ -1,13 +1,14 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, signal, Signal } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ConfirmationService, TreeNode } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DialogModule } from "primeng/dialog";
 import { InputTextModule } from "primeng/inputtext";
-import { OrderListModule } from "primeng/orderlist";
+
 import { SelectModule } from "primeng/select";
+import { TabsModule } from "primeng/tabs";
 import { TextareaModule } from "primeng/textarea";
 import { ToastModule } from "primeng/toast";
 import { TreeModule } from "primeng/tree";
@@ -26,8 +27,8 @@ import { NotificationService } from "../../../services/notification.service";
 		ButtonModule,
 		InputTextModule,
 		SelectModule,
+		TabsModule,
 		TextareaModule,
-		OrderListModule,
 		ConfirmDialogModule,
 		ToastModule,
 		TreeModule,
@@ -37,15 +38,22 @@ import { NotificationService } from "../../../services/notification.service";
 	providers: [ConfirmationService],
 })
 export class MenuManagerComponent implements OnInit {
-	_menuItemsCore: MenuItem[] = [];
-	menuItems = signal<MenuItem[]>([]);
-	treeNodes = signal<TreeNode<MenuItem>[]>([]);
+	_mainMenuItems: MenuItem[] = [];
+	_sideMenuItems: MenuItem[] = [];
+	mainMenuItems: MenuItem[] = [];
+	mainTreeNodes: TreeNode<MenuItem>[] = [];
+	sideMenuItems: MenuItem[] = [];
+	sideTreeNodes: TreeNode<MenuItem>[] = [];
 	menuDialogVisible = false;
 	menuForm!: FormGroup;
 	editingItem: MenuItem | null = null;
 	menuTypes = [
 		{ label: "Page", value: MenuType.PAGE },
 		{ label: "Link", value: MenuType.LINK },
+	];
+	menuCategories = [
+		{ label: "Main Menu", value: "main" },
+		{ label: "Side Menu", value: "side" },
 	];
 
 	constructor(
@@ -69,6 +77,7 @@ export class MenuManagerComponent implements OnInit {
 			metaDescription: new FormControl(""),
 			keywords: new FormControl(""),
 			menuType: new FormControl(MenuType.PAGE, [Validators.required]),
+			menuCategory: new FormControl("main", [Validators.required]),
 			pageKey: new FormControl(""),
 			linkUrl: new FormControl(""),
 			parentId: new FormControl(""),
@@ -99,9 +108,10 @@ export class MenuManagerComponent implements OnInit {
 
 	private loadMenuItems() {
 		this.menuService.getMenu().subscribe({
-			next: (menuItems: MenuItem[]) => {
-				this._menuItemsCore = menuItems;
-				this.buildMenu();
+			next: (menuData: { mainMenu: MenuItem[]; sideMenu: MenuItem[] }) => {
+				this._mainMenuItems = menuData.mainMenu;
+				this._sideMenuItems = menuData.sideMenu;
+				this.buildMenus();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to load menu items");
@@ -122,9 +132,10 @@ export class MenuManagerComponent implements OnInit {
 		});
 	}
 
-	getAvailableParents(): { label: string; value: string }[] {
+	getAvailableParents(menuCategory: string): { label: string; value: string }[] {
 		const options = [{ label: "No Parent (Top Level)", value: "" }];
-		this._menuItemsCore.forEach((item) => {
+		const menuItems = menuCategory === "main" ? this._mainMenuItems : this._sideMenuItems;
+		menuItems.forEach((item) => {
 			if (this.editingItem && item._id === this.editingItem._id) return;
 			options.push({ label: item.name, value: item._id });
 		});
@@ -147,6 +158,7 @@ export class MenuManagerComponent implements OnInit {
 			metaDescription: item.metaDescription || "",
 			keywords: item.keywords || "",
 			menuType: item.menuType,
+			menuCategory: item.menuCategory,
 			pageKey: item.pageKey || "",
 			linkUrl: item.linkUrl || "",
 			parentId: item.parentId || "",
@@ -163,10 +175,13 @@ export class MenuManagerComponent implements OnInit {
 				metaDescription: formValue.metaDescription,
 				keywords: formValue.keywords,
 				menuType: formValue.menuType,
+				menuCategory: formValue.menuCategory,
 				pageKey: formValue.pageKey,
 				linkUrl: formValue.linkUrl,
-				order: this.editingItem?.order || this._menuItemsCore.length,
-				parentId: formValue.parentId || undefined,
+				order:
+					this.editingItem?.order ||
+					(formValue.menuCategory === "main" ? this._mainMenuItems.length : this._sideMenuItems.length),
+				parentId: formValue.parentId || "",
 			};
 
 			this.loadingService.loadingOn();
@@ -175,11 +190,18 @@ export class MenuManagerComponent implements OnInit {
 				// Update existing item
 				this.menuService.updateMenuItem(this.editingItem._id, menuItem).subscribe({
 					next: (updatedItem) => {
-						const index = this._menuItemsCore.findIndex((item) => item._id === this.editingItem!._id);
-						if (index !== -1) {
-							this._menuItemsCore[index] = updatedItem;
+						if (updatedItem.menuCategory === "main") {
+							const index = this._mainMenuItems.findIndex((item) => item._id === this.editingItem!._id);
+							if (index !== -1) {
+								this._mainMenuItems[index] = updatedItem;
+							}
+						} else {
+							const index = this._sideMenuItems.findIndex((item) => item._id === this.editingItem!._id);
+							if (index !== -1) {
+								this._sideMenuItems[index] = updatedItem;
+							}
 						}
-						this.buildMenu();
+						this.buildMenus();
 						this.notificationService.showSuccess("Menu item updated successfully");
 						this.loadingService.loadingOff();
 						this.menuDialogVisible = false;
@@ -193,8 +215,12 @@ export class MenuManagerComponent implements OnInit {
 				// Create new item
 				this.menuService.createMenuItem(menuItem).subscribe({
 					next: (createdItem) => {
-						this._menuItemsCore.push(createdItem);
-						this.buildMenu();
+						if (createdItem.menuCategory === "main") {
+							this._mainMenuItems.push(createdItem);
+						} else {
+							this._sideMenuItems.push(createdItem);
+						}
+						this.buildMenus();
 						this.notificationService.showSuccess("Menu item created successfully");
 						this.loadingService.loadingOff();
 						this.menuDialogVisible = false;
@@ -236,9 +262,12 @@ export class MenuManagerComponent implements OnInit {
 		this.loadingService.loadingOn();
 		this.menuService.deleteMenuItem(item._id).subscribe({
 			next: () => {
-				this._menuItemsCore = this._menuItemsCore.filter((menuItem) => menuItem._id !== item._id);
-				this.updateOrderNumbers();
-				this.buildMenu();
+				if (item.menuCategory === "main") {
+					this._mainMenuItems = this._mainMenuItems.filter((menuItem) => menuItem._id !== item._id);
+				} else {
+					this._sideMenuItems = this._sideMenuItems.filter((menuItem) => menuItem._id !== item._id);
+				}
+				this.buildMenus();
 				this.notificationService.showSuccess("Menu item deleted successfully");
 				this.loadingService.loadingOff();
 			},
@@ -249,38 +278,19 @@ export class MenuManagerComponent implements OnInit {
 		});
 	}
 
-	onReorder(event: any) {
-		this.updateOrderNumbers();
-		this.saveMenu();
+	private buildMenus() {
+		this.buildMenuForCategory(this._mainMenuItems, this.mainMenuItems, this.mainTreeNodes);
+		this.buildMenuForCategory(this._sideMenuItems, this.sideMenuItems, this.sideTreeNodes);
 	}
 
-	private updateOrderNumbers() {
-		this._menuItemsCore.forEach((item, index) => {
-			item.order = index;
-		});
-	}
-
-	private saveMenu() {
-		this.loadingService.loadingOn();
-		const flatMenuItems = this.flattenTree(this.menuItems());
-
-		this.menuService.reorderMenuItems({ items: flatMenuItems }).subscribe({
-			next: () => {
-				this.notificationService.showSuccess("Menu updated successfully");
-				this.loadingService.loadingOff();
-			},
-			error: (error) => {
-				this.notificationService.showError(error.error?.message || "Failed to update menu");
-				this.loadingService.loadingOff();
-			},
-		});
-	}
-
-	private buildMenu() {
+	private buildMenuForCategory(
+		menuItems: MenuItem[],
+		menuItemsArray: MenuItem[],
+		treeNodesArray: TreeNode<MenuItem>[]
+	) {
 		const childrenMap = new Map<string, MenuItem[]>();
-
 		// Build children map
-		for (const item of this._menuItemsCore) {
+		for (const item of menuItems) {
 			if (item.parentId) {
 				if (!childrenMap.has(item.parentId)) {
 					childrenMap.set(item.parentId, []);
@@ -291,7 +301,7 @@ export class MenuManagerComponent implements OnInit {
 
 		// Build tree for root items
 		const _processedMenuItems: MenuItem[] = [];
-		for (const item of this._menuItemsCore) {
+		for (const item of menuItems) {
 			if (!item.parentId) {
 				_processedMenuItems.push({
 					...item,
@@ -301,17 +311,19 @@ export class MenuManagerComponent implements OnInit {
 			}
 		}
 
-		this.menuItems.set(_processedMenuItems);
-		this.treeNodes.set(this.convertToTreeNodes(_processedMenuItems));
+		menuItemsArray.splice(0, menuItemsArray.length, ..._processedMenuItems);
+		treeNodesArray.splice(0, treeNodesArray.length, ...this.convertToTreeNodes(_processedMenuItems));
 	}
 
 	private buildChildren(parentId: string, childrenMap: Map<string, MenuItem[]>): MenuItem[] {
 		const children = childrenMap.get(parentId) || [];
-		return children.map((child) => ({
-			...child,
-			children: this.buildChildren(child._id, childrenMap),
-			isExpanded: child.isExpanded || false,
-		}));
+		return children
+			.sort((a, b) => a.order - b.order)
+			.map((child) => ({
+				...child,
+				children: this.buildChildren(child._id, childrenMap),
+				isExpanded: child.isExpanded || false,
+			}));
 	}
 
 	private convertToTreeNodes(items: MenuItem[]): TreeNode<MenuItem>[] {
@@ -320,43 +332,9 @@ export class MenuManagerComponent implements OnInit {
 			data: item,
 			// icon: "bi bi-caret-right-fill",
 			expanded: item.isExpanded || false,
+			leaf: !item.children || item.children.length === 0,
 			children: item.children ? this.convertToTreeNodes(item.children) : [],
 		}));
-	}
-
-	onNodeDrop(event: any) {
-		console.log("Node dropped:", event);
-		// Update the menu structure based on the drag-drop event
-		// This will require updating parentId relationships
-		this.updateMenuFromTreeNodes();
-		this.saveMenu();
-	}
-
-	private updateMenuFromTreeNodes() {
-		// Convert treeNodes back to flat menuItems with updated parent relationships
-		const flatItems = this.flattenTreeNodes(this.treeNodes());
-		this._menuItemsCore = flatItems;
-		this.buildMenu();
-	}
-
-	private flattenTreeNodes(nodes: TreeNode<MenuItem>[], parentId?: string): MenuItem[] {
-		let flat: MenuItem[] = [];
-
-		nodes.forEach((node, index) => {
-			const menuItem = {
-				...node.data!,
-				parentId: parentId,
-				order: index,
-				children: undefined, // Remove children for flat structure
-			};
-			flat.push(menuItem);
-
-			if (node.children && node.children.length > 0) {
-				flat = flat.concat(this.flattenTreeNodes(node.children, menuItem._id));
-			}
-		});
-
-		return flat;
 	}
 
 	private flattenTree(items: MenuItem[]): MenuItem[] {
@@ -372,6 +350,13 @@ export class MenuManagerComponent implements OnInit {
 
 	toggleExpand(item: MenuItem) {
 		item.isExpanded = !item.isExpanded;
+	}
+
+	toggleNodeExpansion(node: TreeNode<MenuItem>) {
+		node.expanded = !node.expanded;
+		if (node.data) {
+			node.data.isExpanded = node.expanded;
+		}
 	}
 
 	cancelDialog() {

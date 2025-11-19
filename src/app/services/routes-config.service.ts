@@ -5,7 +5,7 @@ import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { environment } from "../environments/environment.development";
 import { templates } from "../templates";
-import { SharedDataService } from "./shareddata.service";
+import { SharedDataService } from "./shared-data.service";
 
 @Injectable({
 	providedIn: "root",
@@ -21,7 +21,7 @@ export class RoutesConfigService {
 		const hostname = this.document.location.hostname;
 		return this.http.get(`${environment.baseUrl}/customer/web`, { params: { domain: hostname } }).pipe(
 			map((response: any) => {
-				const { customer, menus } = response.data;
+				const { customer, mainMenu, sideMenu } = response.data;
 
 				const templateId = customer.websiteSettings.templateId;
 				if (customer.websiteSettings.primaryColor) {
@@ -39,7 +39,13 @@ export class RoutesConfigService {
 
 				this.sharedDataService.setSiteData(customer);
 				this.sharedDataService.setSiteId(customer.id);
-				this.sharedDataService.setSiteMenu(menus);
+				if (mainMenu) {
+					this.sharedDataService.setMainMenu(mainMenu);
+				}
+
+				if (sideMenu) {
+					this.sharedDataService.setSideMenu(sideMenu);
+				}
 				return templates[templateId];
 			}),
 			catchError((error: any) => {

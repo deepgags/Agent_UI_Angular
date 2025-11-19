@@ -30,6 +30,7 @@ export interface CustomerModel {
 		showSellingInNeighbourHooddPage?: boolean;
 		showFindDreamHomePage?: boolean;
 		menuItems?: MenuItem[];
+		templateId: string;
 	};
 	secondaryAgent?: {
 		firstName: string;

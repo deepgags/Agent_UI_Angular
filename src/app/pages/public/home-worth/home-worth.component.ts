@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { GooglePlaceComponent } from "../../../components/google-place/google-place.component";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { NotificationService } from "../../../services/notification.service";
-import { SharedDataService } from "../../../services/shareddata.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 @Component({
 	selector: "app-home-worth",

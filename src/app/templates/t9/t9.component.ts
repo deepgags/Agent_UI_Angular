@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SiteConfig } from "../../models/SiteConfig";
-import { SharedDataService } from "../../services/shareddata.service";
+import { SharedDataService } from "../../services/shared-data.service";
 import { T9FooterComponent } from "./t9-footer/t9-footer.component";
 import { T9HeaderComponent } from "./t9-header/t9-header.component";
 

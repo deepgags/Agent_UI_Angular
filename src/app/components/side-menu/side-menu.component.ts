@@ -4,16 +4,16 @@ import { RouterModule } from "@angular/router";
 import { SharedDataService } from "../../services/shared-data.service";
 
 @Component({
-	selector: "app-menu",
+	selector: "app-side-menu",
 	imports: [CommonModule, RouterModule],
-	templateUrl: "./menu.component.html",
-	styleUrl: "./menu.component.scss",
+	templateUrl: "./side-menu.component.html",
+	styleUrl: "./side-menu.component.scss",
 })
-export class MenuComponent {
-	siteMainMenu: any;
+export class SideMenuComponent {
+	siteSideMenu: any;
 	constructor(private sharedDataService: SharedDataService) {}
 
 	ngOnInit(): void {
-		this.siteMainMenu = this.sharedDataService.mainMenu();
+		this.siteSideMenu = this.sharedDataService.sideMenu();
 	}
 }
