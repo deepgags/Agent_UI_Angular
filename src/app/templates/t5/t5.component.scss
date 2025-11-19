@@ -74,7 +74,58 @@ p {
 }
 
 .city_card {
-	cursor: pointer;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    transition: transform .3s, box-shadow .3s;
+}
+
+.city_card img {
+    border-radius: 20px;
+}
+
+.city_card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(31, 31, 31, 0.85);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.content *{
+    transform: translateY(-70%);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.content h2{
+    font-size: 35px;
+    margin: 15px;
+    font-weight: 700;
+}
+
+.content h3{
+    font-size: 23px;
+    text-transform: uppercase;
+}
+
+.card:hover .content{
+    opacity: 1;
+}
+
+.card:hover .content *{
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .pro_card {
