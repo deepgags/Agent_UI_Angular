@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { MenuItem } from "../../models/MenuItem";
 import { SharedDataService } from "../../services/shared-data.service";
 
 @Component({
@@ -10,7 +11,7 @@ import { SharedDataService } from "../../services/shared-data.service";
 	styleUrl: "./menu.component.scss",
 })
 export class MenuComponent {
-	siteMainMenu: any;
+	siteMainMenu: MenuItem[] | any[] = {} as MenuItem[];
 	constructor(private sharedDataService: SharedDataService) {}
 
 	ngOnInit(): void {

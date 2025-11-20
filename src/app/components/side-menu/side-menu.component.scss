@@ -13,3 +13,43 @@
 	gap: 46px;
 	font-weight: 600;
 }
+
+.hover-dropdown:hover .dropdown-menu {
+	display: block;
+}
+
+.dropdown-menu {
+	background-color: var(--primary-color);
+	border: none;
+}
+
+.dropdown-item {
+	color: white !important;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.dropdown-item:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+	color: white !important;
+}
+
+.quick-link:hover {
+	background-color: rgba(0, 123, 255, 0.1);
+}
+
+.child-link:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.chevron-icon {
+	transition: transform 0.3s ease;
+}
+
+.collapsed .chevron-icon {
+	transform: rotate(0deg);
+}
+
+:not(.collapsed) .chevron-icon {
+	transform: rotate(90deg);
+}

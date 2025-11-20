@@ -30,7 +30,35 @@
 						<div class="offcanvas-body">
 							<ul class="navbar-nav flex-grow-1 pe-3 home_nav">
 								@for (menu of siteMainMenu; track $index) {
-								@if(menu.menuType == 'page'){
+								@if(menu.children && menu.children.length > 0){
+								<li class="nav-item dropdown hover-dropdown">
+									<a class="nav-link nav_content dropdown-toggle"
+									   href="#"
+									   role="button">
+										{{menu.name}}
+									</a>
+									<ul class="dropdown-menu">
+										@for (child of menu.children; track child._id) {
+										@if(child.menuType == 'page'){
+										<li>
+											<a class="dropdown-item"
+											   [routerLink]="[child.pageKey]">
+												{{child.name}}
+											</a>
+										</li>
+										}@else {
+										<li>
+											<a class="dropdown-item"
+											   [href]="[child.linkUrl]"
+											   target="_blank">
+												{{child.name}}
+											</a>
+										</li>
+										}
+										}
+									</ul>
+								</li>
+								}@else if(menu.menuType == 'page'){
 								<li class="nav-item">
 									<a class="nav-link nav_content"
 									   [routerLink]="[menu.pageKey]">

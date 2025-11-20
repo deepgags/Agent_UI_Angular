@@ -31,7 +31,35 @@
 						<div class="offcanvas-body">
 							<ul class="navbar-nav flex-grow-1 pe-3 home_nav">
 								@for (menu of siteSideMenu; track $index) {
-								@if(menu.menuType == 'page'){
+								@if(menu.children && menu.children.length > 0){
+								<li class="nav-item dropdown hover-dropdown">
+									<a class="nav-link nav_content dropdown-toggle"
+									   href="#"
+									   role="button">
+										{{menu.name}}
+									</a>
+									<ul class="dropdown-menu">
+										@for (child of menu.children; track child._id) {
+										@if(child.menuType == 'page'){
+										<li>
+											<a class="dropdown-item"
+											   [routerLink]="[child.pageKey]">
+												{{child.name}}
+											</a>
+										</li>
+										}@else {
+										<li>
+											<a class="dropdown-item"
+											   [href]="[child.linkUrl]"
+											   target="_blank">
+												{{child.name}}
+											</a>
+										</li>
+										}
+										}
+									</ul>
+								</li>
+								}@else if(menu.menuType == 'page'){
 								<li class="nav-item">
 									<a class="nav-link nav_content"
 									   [routerLink]="[menu.pageKey]">
@@ -111,7 +139,41 @@
 	<div class="offcanvas-body px-3">
 		<ul class="list-unstyled mb-0">
 			@for (menu of siteSideMenu; track $index) {
-			@if(menu.menuType == 'page'){
+			@if(menu.children && menu.children.length > 0){
+			<li class="mb-3">
+				<a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+				   href="#"
+				   data-bs-toggle="collapse"
+				   [attr.data-bs-target]="'#collapse-' + menu._id"
+				   aria-expanded="false">
+					<i class="fa-solid fa-chevron-right me-2 text-primary chevron-icon"></i>
+					{{menu.name}}
+				</a>
+				<div class="collapse mt-2 ms-3"
+					 [id]="'collapse-' + menu._id">
+					<ul class="list-unstyled">
+						@for (child of menu.children; track child._id) {
+						@if(child.menuType == 'page'){
+						<li class="mb-2">
+							<a class="d-flex align-items-center p-2 rounded text-decoration-none text-muted child-link"
+							   [routerLink]="[child.pageKey]">
+								{{child.name}}
+							</a>
+						</li>
+						}@else {
+						<li class="mb-2">
+							<a class="d-flex align-items-center p-2 rounded text-decoration-none text-muted child-link"
+							   [href]="[child.linkUrl]"
+							   target="_blank">
+								{{child.name}}
+							</a>
+						</li>
+						}
+						}
+					</ul>
+				</div>
+			</li>
+			}@else if(menu.menuType == 'page'){
 			<li class="mb-3">
 				<a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
 				   [routerLink]="[menu.pageKey]">
