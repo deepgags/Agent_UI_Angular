@@ -1,5 +1,4 @@
 @if(siteSideMenu){
-
 <div class="container-fluid p-0">
 	<nav class="navbar navbar-expand-lg nav_bg"
 		 aria-label="Offcanvas navbar large">
@@ -138,62 +137,55 @@
 
 	<div class="offcanvas-body px-3">
 		<ul class="list-unstyled mb-0">
-			@for (menu of siteSideMenu; track $index) {
-			@if(menu.children && menu.children.length > 0){
 			<li class="mb-3">
 				<a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
-				   href="#"
-				   data-bs-toggle="collapse"
-				   [attr.data-bs-target]="'#collapse-' + menu._id"
-				   aria-expanded="false">
-					<i class="fa-solid fa-chevron-right me-2 text-primary chevron-icon"></i>
-					{{menu.name}}
-				</a>
-				<div class="collapse mt-2 ms-3"
-					 [id]="'collapse-' + menu._id">
-					<ul class="list-unstyled">
-						@for (child of menu.children; track child._id) {
-						@if(child.menuType == 'page'){
-						<li class="mb-2">
-							<a class="d-flex align-items-center p-2 rounded text-decoration-none text-muted child-link"
-							   [routerLink]="[child.pageKey]">
-								{{child.name}}
-							</a>
-						</li>
-						}@else {
-						<li class="mb-2">
-							<a class="d-flex align-items-center p-2 rounded text-decoration-none text-muted child-link"
-							   [href]="[child.linkUrl]"
-							   target="_blank">
-								{{child.name}}
-							</a>
-						</li>
-						}
-						}
-					</ul>
-				</div>
-			</li>
-			}@else if(menu.menuType == 'page'){
-			<li class="mb-3">
-				<a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
-				   [routerLink]="[menu.pageKey]">
+				   [routerLink]="['home']">
 					<!-- <i class="fa-solid fa-user-circle me-3 text-primary"></i> -->
-					{{menu.name}}
+					Home
 				</a>
 			</li>
-			}@else {
 			<li class="mb-3">
 				<a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
-				   [href]="[menu.linkUrl]">
+				   [routerLink]="['about']">
 					<!-- <i class="fa-solid fa-user-circle me-3 text-primary"></i> -->
-					{{menu.name}}
+					About
 				</a>
 			</li>
-			}
-			}
-			<!-- <li>
-        <hr class="my-3">
-      </li> -->
+			<li class="mb-3">
+				<a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+				   [routerLink]="['seller']">
+					<!-- <i class="fa-solid fa-user-circle me-3 text-primary"></i> -->
+					Seller
+				</a>
+			</li>
+			<li class="mb-3">
+				<a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+				   [routerLink]="['buyer']">
+					<!-- <i class="fa-solid fa-user-circle me-3 text-primary"></i> -->
+					Buyer
+				</a>
+			</li>
+			<li class="mb-3">
+				<a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+				   [routerLink]="['featured-listings']">
+					<!-- <i class="fa-solid fa-user-circle me-3 text-primary"></i> -->
+					Featured Listings
+				</a>
+			</li>
+			<li class="mb-3">
+				<a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+				   [routerLink]="['calculator']">
+					<!-- <i class="fa-solid fa-user-circle me-3 text-primary"></i> -->
+					Calculators
+				</a>
+			</li>
+			<li class="mb-3">
+				<a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+				   [routerLink]="['contact']">
+					<!-- <i class="fa-solid fa-user-circle me-3 text-primary"></i> -->
+					Contact
+				</a>
+			</li>
 		</ul>
 	</div>
 </div>}
