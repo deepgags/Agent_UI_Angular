@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, AfterViewInit,ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { CustomerModel } from "../../../models/CustomerModel";
@@ -9,6 +9,8 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
 
+declare var bootstrap: any;
+
 @Component({
 	selector: "app-t3-home",
 	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberFormatPipe],
@@ -16,7 +18,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./t3-home.component.scss", "../t3.component.scss"],
 })
-export class T3HomeComponent implements OnInit {
+export class T3HomeComponent implements OnInit ,AfterViewInit{
 	customer: CustomerModel | undefined;
 	siteConfig: SiteConfig = {} as SiteConfig;
 	siteConfigSubscription: any;
@@ -31,6 +33,18 @@ export class T3HomeComponent implements OnInit {
 		this.titleService.setTitle("Home");
 		this.siteConfig = this.sharedDataService.siteData();
 	}
+
+	 ngAfterViewInit(): void {
+    const carouselEl = document.querySelector("#carouselExampleAutoplaying");
+    if (carouselEl) {
+      new bootstrap.Carousel(carouselEl, {
+        interval: 2500,
+        ride: "carousel",
+        pause: false, 
+        wrap: true,   
+      });
+    }
+  }
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
 		this.searchService.goToSearch(selectedFilters, searchByMap);

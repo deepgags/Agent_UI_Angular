@@ -16,3 +16,10 @@ a {
   background-color: #f5f7fa;
   transform: translateX(3px);
 }
+.hover-dropdown:hover .dropdown-menu {
+  display: block !important;
+}
+
+.hover-dropdown .dropdown-menu {
+  margin-top: 0;
+}
