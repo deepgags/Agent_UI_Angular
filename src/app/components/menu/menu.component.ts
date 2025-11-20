@@ -11,7 +11,7 @@ import { SharedDataService } from "../../services/shared-data.service";
 	styleUrl: "./menu.component.scss",
 })
 export class MenuComponent {
-	siteMainMenu: MenuItem[] | any[] = {} as MenuItem[];
+	siteMainMenu: MenuItem[] | any[] = [];
 	constructor(private sharedDataService: SharedDataService) {}
 
 	ngOnInit(): void {

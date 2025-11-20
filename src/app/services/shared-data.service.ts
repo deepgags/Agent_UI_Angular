@@ -9,8 +9,8 @@ export class SharedDataService {
 	private _userToken = signal("");
 	private _siteId = signal("");
 	private _siteData = signal<SiteConfig | any>({} as SiteConfig);
-	private _mainMenu = signal<MenuItem[] | any[]>({} as MenuItem[]);
-	private _sideMenu = signal<MenuItem[] | any[]>({} as MenuItem[]);
+	private _mainMenu = signal<MenuItem[] | any[]>([]);
+	private _sideMenu = signal<MenuItem[] | any[]>([]);
 
 	constructor() {
 		const _userToken = localStorage.getItem("USER_TOKEN");
