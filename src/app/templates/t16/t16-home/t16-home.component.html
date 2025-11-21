@@ -20,93 +20,51 @@
 	</div>
 </div>
 
-<section class="py-5">
-    <div class="container">
-        <div class="row justify-content-center g-4">
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="feature-card h-100 text-center" >
-                    <div class="icon-wrap">
-                        <i class="bi bi-house-heart-fill"></i>
-                    </div>
-                    <h5>Home Evaluation</h5>
-                    <p>Get instant insights on what your home is worth.</p>
-                    <a href="/home-worth" class="btn btn-outline-primary">Check Worth</a>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="feature-card h-100 text-center" >
-                    <div class="icon-wrap">
-                        <i class="bi bi-pin-map-fill"></i>
-                    </div>
-                    <h5>Neighbourhood Watch</h5>
-                    <p>Get alerts when neighbours list homes for sale.</p>
-                    <a href="/neighbor-detail" class="btn btn-outline-primary">Get Alerts</a>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="feature-card h-100 text-center" >
-                    <div class="icon-wrap">
-                        <i class="bi bi-search-heart"></i>
-                    </div>
-                    <h5>Dream Home Finder</h5>
-                    <p>Explore listings and find your dream home today.</p>
-                    <a href="/dream-home" class="btn btn-outline-primary">Explore</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
 @if(
   siteConfig.websiteSettings.showHomeWorthPage ||
   siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
   siteConfig.websiteSettings.showFindDreamHomePage
 ){
-<section class="py-5 position-relative hero-bg text-white">
-	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
-
+<section class="py-5 position-relative hero-bg">
+	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
     <div class="container">
         <div class="row justify-content-center g-4">
 
             @if(siteConfig.websiteSettings.showHomeWorthPage){
-            <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-duration="800">
-                <div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
-                    <div class="icon-wrapper bg-primary bg-opacity-25 text-primary mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
-                        <i class="bi bi-house-heart-fill fs-2"></i>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
+                    <div class="icon-wrapper bg-primary bg-opacity-10 text-primary mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center" style="width:60px; height:60px;">
+                        <i class="bi bi-house-door-fill fs-3"></i>
                     </div>
-                    <h5 class="fw-bold text-uppercase mb-3">Home Evaluation</h5>
-                    <p class="small opacity-75 mb-4">Find out how much your home is worth for free</p>
-                    <a href="/home-worth" target="_blank" class="btn btn-gradient px-4 py-2 rounded-pill">Check Worth</a>
+                    <h5 class="fw-bold text-uppercase">Home Evaluation</h5>
+                    <p class="text-muted small mb-4">Get instant insights on what your home is worth, for free.</p>
+                    <a href="/home-worth" target="_blank" class="btn btn-primary rounded-pill px-4">Check Now</a>
                 </div>
             </div>
             }
 
             @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
-            <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">
-                <div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
-                    <div class="icon-wrapper bg-warning bg-opacity-25 text-warning mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
-                        <i class="bi bi-pin-map-fill fs-2"></i>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
+                    <div class="icon-wrapper bg-warning bg-opacity-10 text-warning mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center" style="width:60px; height:60px;">
+                        <i class="bi bi-binoculars-fill fs-3"></i>
                     </div>
-                    <h5 class="fw-bold text-uppercase mb-3">Neighbourhood Watch</h5>
-                    <p class="small opacity-75 mb-4">Get alerts when neighbours list their homes for sale.</p>
-                    <a href="/neighbor-detail" target="_blank" class="btn btn-gradient-warning px-4 py-2 rounded-pill">Get Alerts</a>
+                    <h5 class="fw-bold text-uppercase">Neighbourhood Watch</h5>
+                    <p class="text-muted small mb-4">Stay alerted when neighbours put homes on the market.</p>
+                    <a href="/neighbor-detail" target="_blank" class="btn btn-warning rounded-pill px-4 text-white">Get Alerts</a>
                 </div>
             </div>
             }
 
             @if(siteConfig.websiteSettings.showFindDreamHomePage){
-            <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
-                <div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
-                    <div class="icon-wrapper bg-success bg-opacity-25 text-success mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
-                        <i class="bi bi-search-heart fs-2"></i>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
+                    <div class="icon-wrapper bg-success bg-opacity-10 text-success mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center" style="width:60px; height:60px;">
+                        <i class="bi bi-search-heart-fill fs-3"></i>
                     </div>
-                    <h5 class="fw-bold text-uppercase mb-3">Dream Home Finder</h5>
-                    <p class="small opacity-75 mb-4">Search million-dollar listings and hidden gems alike.</p>
-                    <a href="/dream-home" target="_blank" class="btn btn-gradient-success px-4 py-2 rounded-pill">Explore</a>
+                    <h5 class="fw-bold text-uppercase">Find Your Dream Home</h5>
+                    <p class="text-muted small mb-4">Explore listings and find the perfect home that fits you.</p>
+                    <a href="/dream-home" target="_blank" class="btn btn-success rounded-pill px-4 text-white">Start Exploring</a>
                 </div>
             </div>
             }
@@ -163,7 +121,7 @@
 		</p>
 		<div class="row">
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
+				<div class="image-container card-simple w-100"
 					 (click)="searchProperties({ city:'Toronto'})">
 					<img class="w-100 rounded-3"
 						 src="t8/images/proToronto.png"
@@ -173,7 +131,7 @@
 			</div>
 
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
+				<div class="image-container card-simple w-100"
 					 (click)="searchProperties({ city:'Mississauga'})">
 					<img class="w-100 rounded-3"
 						 src="t8/images/proMississuaga.png"
@@ -183,7 +141,7 @@
 			</div>
 
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
+				<div class="image-container card-simple w-100"
 					 (click)="searchProperties({ city:'Brampton'})">
 					<img class="w-100 rounded-3"
 						 src="t8/images/proBrampton.png"
@@ -192,7 +150,7 @@
 				</div>
 			</div>
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
+				<div class="image-container card-simple w-100"
 					 (click)="searchProperties({ city:'Milton'})">
 					<img class="w-100 rounded-3"
 						 src="t8/images/proMilton.png"
@@ -205,7 +163,7 @@
 
 		<div class="row mt-3">
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
+				<div class="image-container card-simple w-100"
 					 (click)="searchProperties({ city:'Ottawa'})">
 					<img class="w-100 rounded-3"
 						 src="t8/images/proOttawa.png"
@@ -215,7 +173,7 @@
 			</div>
 
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
+				<div class="image-container card-simple w-100"
 					 (click)="searchProperties({ city:'Montreal'})">
 					<img class="w-100 rounded-3"
 						 src="t8/images/proMontreal.png"
@@ -225,7 +183,7 @@
 			</div>
 
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
+				<div class="image-container card-simple w-100"
 					 (click)="searchProperties({ city:'Milton'})">
 					<img class="w-100 rounded-3"
 						 src="t8/images/pro2.png"
@@ -234,7 +192,7 @@
 				</div>
 			</div>
 			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
+				<div class="image-container card-simple w-100"
 					 (click)="searchProperties({ city:'Brampton'})">
 					<img class="w-100 rounded-3"
 						 src="t8/images/pro2.png"

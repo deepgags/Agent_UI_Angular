@@ -116,8 +116,67 @@
 					</div>
 				</div>
 			</nav>
+		 <button class="btn btn-light"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRight"
+              aria-controls="offcanvasRight">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 		</div>
 	</nav>
+</div>
+
+<div class="offcanvas offcanvas-end shadow-lg rounded-start-4"
+     tabindex="-1"
+     id="offcanvasRight"
+     aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title fw-semibold"
+        id="offcanvasRightLabel">
+      <i class="fa-solid fa-bolt me-2 text-primary"></i> Quick Menu
+    </h5>
+    <button type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+  </div>
+
+  <div class="offcanvas-body px-3">
+    <ul class="list-unstyled mb-0">
+      <li class="mb-3">
+        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+           [routerLink]="['profile']">
+          <i class="fa-solid fa-user-circle me-3 text-primary"></i> My Profile
+        </a>
+      </li>
+
+      <li class="mb-3">
+        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+           [routerLink]="['favorites']">
+          <i class="fa-solid fa-heart me-3 text-danger"></i> Saved Listings
+        </a>
+      </li>
+
+      <li class="mb-3">
+        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-dark quick-link"
+           [routerLink]="['settings']">
+          <i class="fa-solid fa-gear me-3 text-secondary"></i> Settings
+        </a>
+      </li>
+
+      <li>
+        <hr class="my-3">
+      </li>
+
+      <li>
+        <a class="d-flex align-items-center p-2 rounded text-decoration-none text-danger quick-link"
+           [routerLink]="['logout']">
+          <i class="fa-solid fa-right-from-bracket me-3"></i> Logout
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
 }
 @else {

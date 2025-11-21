@@ -141,3 +141,15 @@ $info: #E86822;
         font-size: 2rem;
         color: #00ffc3;
     }
+
+    .content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(31, 31, 31, 0.85);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.3s ease;
+}

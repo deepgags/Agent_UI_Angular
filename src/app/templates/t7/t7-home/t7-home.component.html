@@ -60,48 +60,77 @@
 	</p>
 	<div class="row">
 		<div class="col-lg-8 col-12">
-			<div class="row position-relative"
-				 (click)="searchProperties({ city:'Toronto'})">
-				<img src="./t7/images/proToronto.png"
-					 alt="">
-				<span class="badge bg-dark position-absolute bottom-0 m-2 w-75">Toronto</span>
-			</div>
+			<div class="row card city-card"
+     (click)="searchProperties({ city:'Toronto'})">
+
+    <img src="./t7/images/proToronto.png" alt="" class="w-100">
+
+    <div class="content p-0">
+        <h2>Toronto</h2>
+        <h3>View Properties</h3>
+    </div>
+</div>
+
 			<div class="row mt-3">
-				<div class="col d-flex position-relative">
-					<div class="w-100 position-relative"
-						 (click)="searchProperties({ city:'Milton'})">
-						<img class="w-100"
-							 src="/t7/images/proMilton.png"
-							 alt="">
-						<span class="badge bg-dark position-absolute bottom-0 start-0 m-2">Milton</span>
-					</div>
-				</div>
-				<div class="col d-flex position-relative">
-					<div class="w-100 position-relative"
-						 (click)="searchProperties({ city:'Brampton'})">
-						<img class="w-100"
-							 src="/t7/images/proBrampton.png"
-							 alt="">
-						<span class="badge bg-dark position-absolute bottom-0 start-0 m-2">Brampton</span>
-					</div>
-				</div>
+			<div class="col d-flex position-relative">
+	<div class="w-100 position-relative card city-card"
+		 (click)="searchProperties({ city:'Milton'})">
+
+		<img class="w-100" src="/t7/images/proMilton.png" alt="">
+
+		<!-- Hover Content -->
+		<div class="content">
+			<h2>Milton</h2>
+			<h3>View Properties</h3>
+		</div>
+
+	</div>
+</div>
+
+<div class="col d-flex position-relative">
+	<div class="w-100 position-relative card city-card"
+		 (click)="searchProperties({ city:'Brampton'})">
+
+		<img class="w-100" src="/t7/images/proBrampton.png" alt="">
+
+		<!-- Hover Content -->
+		<div class="content">
+			<h2>Brampton</h2>
+			<h3>View Properties</h3>
+		</div>
+
+	</div>
+</div>
+
 			</div>
 		</div>
 		<div class="col-lg-4 col-12 mt-3 mt-lg-0">
-			<div class="position-relative"
-				 (click)="searchProperties({ city:'Mississauga'})">
-				<img class="w-100"
-					 src="/t7/images/proMississuaga.png"
-					 alt="">
-				<span class="badge bg-dark position-absolute bottom-0 start-0 m-2">Mississauga</span>
-			</div>
-			<div class="mt-3 position-relative"
-				 (click)="searchProperties({ city:'Montreal'})">
-				<img class="w-100"
-					 src="/t7/images/proMontreal.png"
-					 alt="">
-				<span class="badge bg-dark position-absolute bottom-0 start-0 m-2">Montreal</span>
-			</div>
+			<div class="position-relative card city-card"
+     (click)="searchProperties({ city:'Mississauga'})">
+
+    <img class="w-100" src="/t7/images/proMississuaga.png" alt="">
+
+    <!-- Hover Overlay -->
+    <div class="content">
+        <h2>Mississauga</h2>
+        <h3>View Properties</h3>
+    </div>
+
+</div>
+
+<div class="mt-3 position-relative card city-card"
+     (click)="searchProperties({ city:'Montreal'})">
+
+    <img class="w-100" src="/t7/images/proMontreal.png" alt="">
+
+    <!-- Hover Overlay -->
+    <div class="content">
+        <h2>Montreal</h2>
+        <h3>View Properties</h3>
+    </div>
+
+</div>
+
 		</div>
 	</div>
 </div>

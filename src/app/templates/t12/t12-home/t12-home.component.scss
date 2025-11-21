@@ -87,3 +87,44 @@ $info:#06A788;
   position: absolute;
   max-height: 400px;
 }
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(31, 31, 31, 0.85);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.content * {
+    transform: translateY(-70%);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.content h2 {
+    font-size: 35px;
+    margin: 15px;
+    font-weight: 700;
+}
+
+.content h3 {
+    font-size: 23px;
+    text-transform: uppercase;
+}
+
+.city-card:hover .content {
+    opacity: 1;
+    color: white;
+}
+
+.city-card:hover .content * {
+    opacity: 1;
+    transform: translateY(0);
+}

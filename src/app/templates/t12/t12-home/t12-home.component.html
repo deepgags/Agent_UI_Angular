@@ -144,76 +144,83 @@
 		</div>
 	</section>
 }
-<div class="container-fluid search-container">
+<div class="container py-lg-5 p-lg-0 p-4 search-container">
+	<p class="text text-center fw-semibold">
+		Find Properties in These Cities
+	</p>
+	<div class="row">
+		<div class="col-lg-8 col-12">
+			<div class="row card city-card"
+     (click)="searchProperties({ city:'Toronto'})">
 
-	<div class="container py-lg-5 p-lg-0 p-4">
-		<p class="text text-center py-3 fw-semibold">
-			Find Properties in These Cities
-		</p>
+    <img src="./t7/images/proToronto.png" alt="" class="w-100">
 
-		<div class="row">
-			<div class="col-lg-6 col-12">
-				<div class="image-container w-100"
-					 (click)="searchProperties({ city:'Toronto'})">
-					<img class="w-100"
-						 src="t8/images/proToronto.png"
-						 alt="">
-					<div class="image-text">Toronto</div>
-				</div>
-			</div>
+    <div class="content p-0">
+        <h2>Toronto</h2>
+        <h3>View Properties</h3>
+    </div>
+</div>
 
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({ city:'Milton'})">
-					<img class="w-100"
-						 src="t8/images/proMilton.png"
-						 alt="">
-					<div class="image-text">Milton</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({ city:'Brampton'})">
-					<img class="w-100"
-						 src="t8/images/proBrampton.png"
-						 alt="">
-					<div class="image-text">Brampton</div>
+			<div class="row mt-3">
+			<div class="col d-flex position-relative">
+	<div class="w-100 position-relative card city-card"
+		 (click)="searchProperties({ city:'Milton'})">
 
-				</div>
+		<img class="w-100" src="/t7/images/proMilton.png" alt="">
+
+		<!-- Hover Content -->
+		<div class="content">
+			<h2>Milton</h2>
+			<h3>View Properties</h3>
+		</div>
+
+	</div>
+</div>
+
+<div class="col d-flex position-relative">
+	<div class="w-100 position-relative card city-card"
+		 (click)="searchProperties({ city:'Brampton'})">
+
+		<img class="w-100" src="/t7/images/proBrampton.png" alt="">
+
+		<!-- Hover Content -->
+		<div class="content">
+			<h2>Brampton</h2>
+			<h3>View Properties</h3>
+		</div>
+
+	</div>
+</div>
+
 			</div>
 		</div>
-		<div class="row mt-3">
+		<div class="col-lg-4 col-12 mt-3 mt-lg-0">
+			<div class="position-relative card city-card"
+     (click)="searchProperties({ city:'Mississauga'})">
 
-			<div class="col-lg-3 col-12">
-				<div class="image-container w-100"
-					 (click)="searchProperties({ city:'Mississauga'})">
-					<img class="w-100"
-						 src="t8/images/proMississuaga.png"
-						 alt="">
-					<div class="image-text">Mississauga</div>
+    <img class="w-100" src="/t7/images/proMississuaga.png" alt="">
 
-				</div>
-			</div>
-			<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({ city:'Montreal'})">
-					<img class="w-100"
-						 src="t8/images/proMontreal.png"
-						 alt="">
-					<div class="image-text">Montreal</div>
+    <!-- Hover Overlay -->
+    <div class="content">
+        <h2>Mississauga</h2>
+        <h3>View Properties</h3>
+    </div>
 
-				</div>
-			</div>
-			<div class="col-lg-6 col-12 mt-lg-0 mt-3">
-				<div class="image-container w-100"
-					 (click)="searchProperties({ city:'Ottawa'})">
-					<img class="w-100"
-						 src="t8/images/proOttawa.png"
-						 alt="">
-					<div class="image-text">Ottawa</div>
+</div>
 
-				</div>
-			</div>
+<div class="mt-3 position-relative card city-card"
+     (click)="searchProperties({ city:'Montreal'})">
+
+    <img class="w-100" src="/t7/images/proMontreal.png" alt="">
+
+    <!-- Hover Overlay -->
+    <div class="content">
+        <h2>Montreal</h2>
+        <h3>View Properties</h3>
+    </div>
+
+</div>
+
 		</div>
 	</div>
 </div>

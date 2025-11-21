@@ -97,3 +97,13 @@ cursor:pointer ;
       background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       min-height: 60vh;
     }
+
+      .card-simple {
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(6px);
+        transition: transform 0.2s ease-in-out;
+    }
+    .card-simple:hover {
+        transform: translateY(-5px);
+    }
