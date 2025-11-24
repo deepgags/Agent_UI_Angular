@@ -1,0 +1,232 @@
+<div class="background-container">
+	<div class="container pt-2 search-container">
+		<div class="top-padding">
+			<div class="row justify-content-center">
+				<p class="text fw-semibold pt-3">Search Your Dream Home</p>
+				<p class="text-white text-center">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and
+					extraordinary services to our worldwide clients.</p>
+				<div class="col-12 bg-white p-4 mb-5">
+					<app-search [onSearch]="searchProperties" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid p-5 search-container">
+
+	<div class="container">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-start justify-content-center">
+				<div class="">
+
+					<div class="position-relative d-inline-block">
+
+						<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
+							 alt="No profile image"
+							 class=" mob_pic"
+							 style=" height: 367px;">
+					</div>
+
+				</div>
+			</div>
+			<div class="col-lg-6 col-12">
+				<p class="fs-2 mb-0 fw-semibold ">
+					Hi, I’m {{siteConfig.firstName}} {{siteConfig.lastName}}
+				</p>
+				<p class="fs-4 info">{{ siteConfig.designation}}</p>
+				<p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to
+					insure that they are always in a position to make informed decisions.</p>
+				<p class="fw-semibold">
+					Every engagement is an opportunity to create a lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving
+					in real estate with the reputation of
+					providing quality services and keeping excellent relations with the clients. </p>
+
+
+				<a class="btn search_btn"
+				   [routerLink]="['/contact']">
+					Get in Touch
+				</a>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container p-lg-0 p-4">
+	<p class="text text-center mb-0 fw-semibold">Find Properties in These Cities</p>
+	<p class="text-center fw-normal"></p>
+	<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+		<div class="col">
+			<div class="pro_card"
+				 (click)="searchProperties({ city: 'Toronto' })">
+				<div class="content text-center">
+					<img class="img-fluid rounded mb-2"
+						 src="/t2/images/Group 2.png"
+						 alt="" />
+					<p class="pro-card-text">Toronto</p>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="pro_card"
+				 (click)="searchProperties({ city:'Milton' })">
+				<div class="content text-center">
+					<img class="img-fluid rounded mb-2"
+						 src="/t2/images/Group 3.png"
+						 alt="" />
+					<p class="pro-card-text">Milton</p>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="pro_card"
+				 (click)="searchProperties({ city:'Brampton' })">
+				<div class="content text-center">
+					<img class="img-fluid rounded mb-2"
+						 src="/t2/images/Group 4.png"
+						 alt="" />
+					<p class="pro-card-text">Brampton</p>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="pro_card"
+				 (click)="searchProperties({ city:'Mississauga' })">
+				<div class="content text-center">
+					<img class="img-fluid rounded mb-2"
+						 src="/t2/images/Group 5.png"
+						 alt="" />
+					<p class="pro-card-text">Mississauga</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid  py-5">
+	<div class="container bg-white">
+		<div class="row p-lg-4 p-3 ">
+			<p class="text mb-0 fw-semibold">
+				"Enjoy a clear and simple home-buying experience"
+			</p>
+			<div class="col">
+				<p class="estate text-center">Real Estate {{ siteConfig.designation }} {{siteConfig.firstName}} {{siteConfig.lastName}}</p>
+				<p class="text-center fw-semibold">
+					I believe every client has the right to be treated fairly,
+					honestly and with integrity. My aim is to educate and prepare my
+					clients to insure that they are always in a position to make
+					informed decisions.Every engagement is an opportunity to create a
+					lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving
+					in real estate with the reputation of providing quality services
+					and keeping excellent relations with the clients. My intend to
+					provide our clients with the best personalized real estate
+					experience from beginning to end. I enjoy sharing my expertise by
+					giving you the scoop on the local real estate market. My aim is to
+					guide & prepare our clients to ensure that they are always in a
+					position to make informed decision. I put our client’s interest
+					above everything. I am professionally trained and licensed
+					realtors who work for seeking to experience satisfaction and feel
+					good emotionss.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="container-fluid ">
+	<div class="container pb-5">
+		<p class="text text-center py-3 fw-semibold">Featured Properties</p>
+
+		<app-featured-properties />
+	</div>
+</div>
+
+
+<section class="hero-bg position-relative py-5 overflow-hidden text-white d-flex justify-content-center align-items-center">
+	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
+
+    <div class="container position-relative">
+        <div class="row justify-content-center g-4">
+
+            @if(siteConfig.websiteSettings.showHomeWorthPage){
+            <div class="col-12 col-sm-6 col-lg-4"  >
+                <div class="magic-card" data-tilt data-tilt-max="8" data-tilt-glare="true">
+                    <div class="card-inner">
+                        <div class="icon-part">
+                            <i class="bi bi-house-heart-fill icon-gradient"></i>
+                        </div>
+                        <div class="text-part">
+                            <h5>Home Evaluation</h5>
+                            <p>Get instant insights on what your home is worth.</p>
+                            <a href="/home-worth" class="btn btn-holo">Check Worth</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+            @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
+            <div class="col-12 col-sm-6 col-lg-4" >
+                <div class="magic-card" data-tilt data-tilt-max="8" data-tilt-glare="true">
+                    <div class="card-inner">
+                        <div class="icon-part">
+                            <i class="bi bi-pin-map-fill icon-gradient"></i>
+                        </div>
+                        <div class="text-part">
+                            <h5>Neighbourhood Watch</h5>
+                            <p>Get alerts when neighbours list homes for sale.</p>
+                            <a href="/neighbor-detail" class="btn btn-holo">Get Alerts</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+            @if(siteConfig.websiteSettings.showFindDreamHomePage){
+            <div class="col-12 col-sm-6 col-lg-4"  >
+                <div class="magic-card" data-tilt data-tilt-max="8" data-tilt-glare="true">
+                    <div class="card-inner">
+                        <div class="icon-part">
+                            <i class="bi bi-search-heart fs-2 icon-gradient"></i>
+                        </div>
+                        <div class="text-part">
+                            <h5>Dream Home Finder</h5>
+                            <p>Explore listings and find your dream home today.</p>
+                            <a href="/dream-home" class="btn btn-holo">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid sec-4 search-container">
+	<div class="container">
+		<div class="row  align-items-center justify-content-around mx-0">
+			<div class="col-lg-7 col-12">
+				<div class="">
+					<h1 class="fw-semibold text-white">Get In Touch </h1>
+					<p class="fw-semibold text-white">
+						Your way to better real estate software starts here. For 35 years, we’ve proudly delivered the gold standard in real estate software to businesses of all
+						shapes, sizes, and structures, and we’d be honored to partner with your organization today.
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-4">
+				<div class="card shadow">
+					<div class="card-body">
+						<app-hero-contact-form />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

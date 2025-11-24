@@ -6,7 +6,6 @@ import { ContactComponent } from "./templates/shared/contact/contact.component";
 import { FeaturedListingsComponent } from "./templates/shared/featured-listings/featured-listings.component";
 import { MapComponent } from "./templates/shared/map/map.component";
 import { MortgageCalculatorComponent } from "./templates/shared/mortgage-calculator/mortgage-calculator.component";
-
 import { SearchPageComponent } from "./templates/shared/search-page/search-page.component";
 import { SellerComponent } from "./templates/shared/seller/seller.component";
 import { SellerdetailComponent } from "./templates/shared/sellerdetail/sellerdetail.component";
@@ -51,6 +50,8 @@ import { T8Component } from "./templates/t8/t8.component";
 import { T9HomeComponent } from "./templates/t9/t9-home/t9-home.component";
 import { T9Component } from "./templates/t9/t9.component";
 import { PropertyDetailPageComponent } from "./templates/shared/property-detail-page/property-detail-page.component";
+import { T20Component } from "./templates/t20/t20.component";
+import { T20HomeComponent } from "./templates/t20/t20-home/t20-home.component";
 
 export interface TemplateRoute {
 	path: string;
@@ -447,6 +448,26 @@ export const templates: TemplateRoutes = {
 		children: [
 			{ path: "", redirectTo: "/home", pathMatch: "full" },
 			{ path: "home", component: T19HomeComponent },
+			{ path: "search", component: SearchPageComponent },
+			{ path: "featured-listings", component: FeaturedListingsComponent },
+			{ path: "property-detail", component: PropertyDetailPageComponent },
+			{ path: "map", component: MapComponent },
+			{ path: "buyer", component: BuyerComponent },
+			{ path: "contact", component: ContactComponent },
+			{ path: "calculator", component: CalculatorComponent },
+			{ path: "seller", component: SellerComponent },
+			{ path: "sellerdetails", component: SellerdetailComponent },
+			{ path: "sellerdetails2", component: Sellerdetail2Component },
+			{ path: "sellerdetails3", component: Sellerdetail3Component },
+			{ path: "about", component: AboutComponent },
+			{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+		],
+	},t20: {
+		path: "",
+		component: T20Component,
+		children: [
+			{ path: "", redirectTo: "/home", pathMatch: "full" },
+			{ path: "home", component: T20HomeComponent },
 			{ path: "search", component: SearchPageComponent },
 			{ path: "featured-listings", component: FeaturedListingsComponent },
 			{ path: "property-detail", component: PropertyDetailPageComponent },
