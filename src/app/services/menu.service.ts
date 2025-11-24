@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { environment } from "../environments/environment.development";
-import { MenuItem, PredefinedPage } from "../models/MenuItem";
+import { MenuItem } from "../models/MenuItem";
 
 @Injectable({
 	providedIn: "root",
@@ -12,21 +12,6 @@ export class MenuService {
 	private baseUrl: string = environment.baseUrl;
 
 	constructor(private http: HttpClient) {}
-
-	getPredefinedPages(): Observable<PredefinedPage[]> {
-		return this.http.get<PredefinedPage[]>(`${this.baseUrl}/menu/pages/predefined`).pipe(
-			map((result: any) => {
-				if (result && result.data) {
-					return result.data;
-				}
-				return [];
-			}),
-			catchError((error) => {
-				console.error("Error fetching predefined pages:", error);
-				return throwError(() => error);
-			})
-		);
-	}
 
 	getMenu(): Observable<{ mainMenu: MenuItem[]; sideMenu: MenuItem[] }> {
 		return this.http.get<{ mainMenu: MenuItem[]; sideMenu: MenuItem[] }>(`${this.baseUrl}/menu/`).pipe(

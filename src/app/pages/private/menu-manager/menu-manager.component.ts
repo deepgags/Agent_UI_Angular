@@ -12,10 +12,12 @@ import { TabsModule } from "primeng/tabs";
 import { TextareaModule } from "primeng/textarea";
 import { ToastModule } from "primeng/toast";
 import { TreeModule } from "primeng/tree";
-import { MenuItem, MenuType, PredefinedPage } from "../../../models/MenuItem";
+import { MenuItem, MenuType } from "../../../models/MenuItem";
+import { Page } from "../../../models/Page";
 import { LoadingService } from "../../../services/loading.service";
 import { MenuService } from "../../../services/menu.service";
 import { NotificationService } from "../../../services/notification.service";
+import { PageService } from "../../../services/page.service";
 
 @Component({
 	selector: "app-menu-manager",
@@ -56,10 +58,13 @@ export class MenuManagerComponent implements OnInit {
 		{ label: "Side Menu", value: "side" },
 	];
 
+	pages: Page[] = [];
+
 	constructor(
 		private fb: FormBuilder,
 		private loadingService: LoadingService,
 		private menuService: MenuService,
+		private pageService: PageService,
 		private notificationService: NotificationService,
 		private confirmationService: ConfirmationService
 	) {}
@@ -67,15 +72,12 @@ export class MenuManagerComponent implements OnInit {
 	ngOnInit() {
 		this.initializeForm();
 		this.loadMenuItems();
-		this.loadPredefinedPages();
+		this.getPages();
 	}
 
 	private initializeForm() {
 		this.menuForm = this.fb.group({
 			name: new FormControl("", [Validators.required]),
-			pageMetaTitle: new FormControl(""),
-			metaDescription: new FormControl(""),
-			keywords: new FormControl(""),
 			menuType: new FormControl(MenuType.PAGE, [Validators.required]),
 			menuCategory: new FormControl("main", [Validators.required]),
 			pageKey: new FormControl(""),
@@ -119,17 +121,25 @@ export class MenuManagerComponent implements OnInit {
 		});
 	}
 
-	predefinedPages: PredefinedPage[] = [];
-
-	private loadPredefinedPages() {
-		this.menuService.getPredefinedPages().subscribe({
-			next: (pages: PredefinedPage[]) => {
-				this.predefinedPages = pages;
+	private getPages() {
+		this.pageService.getPages().subscribe({
+			next: (pages: Page[]) => {
+				this.pages = pages;
+				this.loadingService.loadingOff();
 			},
 			error: () => {
-				this.notificationService.showError("Failed to load predefined pages");
+				this.notificationService.showError("Failed to load pages");
+				this.loadingService.loadingOff();
 			},
 		});
+		// this.pageService.getPages().subscribe({
+		// 	next: (pages: PredefinedPage[]) => {
+		// 		this.pages = pages;
+		// 	},
+		// 	error: () => {
+		// 		this.notificationService.showError("Failed to load predefined pages");
+		// 	},
+		// });
 	}
 
 	getAvailableParents(menuCategory: string): { label: string; value: string }[] {
@@ -154,9 +164,6 @@ export class MenuManagerComponent implements OnInit {
 		this.editingItem = item;
 		this.menuForm.patchValue({
 			name: item.name,
-			pageMetaTitle: item.pageMetaTitle || "",
-			metaDescription: item.metaDescription || "",
-			keywords: item.keywords || "",
 			menuType: item.menuType,
 			menuCategory: item.menuCategory,
 			pageKey: item.pageKey || "",
@@ -171,9 +178,6 @@ export class MenuManagerComponent implements OnInit {
 			const formValue = this.menuForm.value;
 			const menuItem = {
 				name: formValue.name,
-				pageMetaTitle: formValue.pageMetaTitle,
-				metaDescription: formValue.metaDescription,
-				keywords: formValue.keywords,
 				menuType: formValue.menuType,
 				menuCategory: formValue.menuCategory,
 				pageKey: formValue.pageKey,

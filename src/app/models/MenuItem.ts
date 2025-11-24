@@ -1,9 +1,6 @@
 export interface MenuItem {
 	_id: string;
 	name: string;
-	pageMetaTitle?: string;
-	metaDescription?: string;
-	keywords?: string;
 	menuType: MenuType;
 	menuCategory: "main" | "side";
 	pageKey?: string;
@@ -19,8 +16,8 @@ export enum MenuType {
 	LINK = "link",
 }
 
-export interface PredefinedPage {
-	key: string;
-	name: string;
-	hasCustomContent: boolean;
-}
+// export interface PredefinedPage {
+// 	key: string;
+// 	name: string;
+// 	hasCustomContent: boolean;
+// }

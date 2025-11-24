@@ -128,35 +128,6 @@
 					</p-select>
 				</div>
 
-				<!-- Menu Category -->
-				<div class="col-12">
-					<label for="menuCategory"
-						   class="form-label fw-semibold">Menu Category *</label>
-					<p-select id="menuCategory"
-							  formControlName="menuCategory"
-							  [options]="menuCategories"
-							  optionLabel="label"
-							  optionValue="value"
-							  placeholder="Select menu category"
-							  class="w-100">
-					</p-select>
-				</div>
-
-				<!-- Parent Menu Item -->
-				<div class="col-12">
-					<label for="parentId"
-						   class="form-label fw-semibold">Parent Menu Item</label>
-					<p-select id="parentId"
-							  formControlName="parentId"
-							  [options]="getAvailableParents(menuForm.get('menuCategory')?.value)"
-							  optionLabel="label"
-							  optionValue="value"
-							  placeholder="Select parent (optional)"
-							  class="w-100">
-					</p-select>
-					<small class="text-muted">Leave empty for top-level menu item</small>
-				</div>
-
 				<!-- Page Selection (when menuType is PAGE) -->
 				<div class="col-12"
 					 *ngIf="menuForm.get('menuType')?.value === 'page'">
@@ -164,8 +135,8 @@
 						   class="form-label fw-semibold">Select Page *</label>
 					<p-select id="pageKey"
 							  formControlName="pageKey"
-							  [options]="predefinedPages"
-							  optionLabel="name"
+							  [options]="pages"
+							  optionLabel="title"
 							  optionValue="key"
 							  placeholder="Select a page"
 							  class="w-100"
@@ -194,42 +165,37 @@
 					</small>
 				</div>
 
-				<!-- SEO Fields -->
-				<div class="col-12">
-					<h6 class="border-bottom pb-2 mb-3">SEO Settings (Optional)</h6>
-				</div>
 
+				<!-- Menu Category -->
 				<div class="col-12">
-					<label for="pageMetaTitle"
-						   class="form-label">Page Meta Title</label>
-					<input pInputText
-						   id="pageMetaTitle"
-						   formControlName="pageMetaTitle"
-						   placeholder="Custom meta title for this page"
-						   class="w-100" />
-				</div>
-
-				<div class="col-12">
-					<label for="metaDescription"
-						   class="form-label">Meta Description</label>
-					<textarea pInputTextarea
-							  id="metaDescription"
-							  formControlName="metaDescription"
-							  placeholder="Custom meta description for this page"
-							  rows="3"
+					<label for="menuCategory"
+						   class="form-label fw-semibold">Menu Category *</label>
+					<p-select id="menuCategory"
+							  formControlName="menuCategory"
+							  [options]="menuCategories"
+							  optionLabel="label"
+							  optionValue="value"
+							  placeholder="Select menu category"
 							  class="w-100">
-        </textarea>
+					</p-select>
 				</div>
 
+				<!-- Parent Menu Item -->
 				<div class="col-12">
-					<label for="keywords"
-						   class="form-label">Keywords</label>
-					<input pInputText
-						   id="keywords"
-						   formControlName="keywords"
-						   placeholder="Comma-separated keywords"
-						   class="w-100" />
+					<label for="parentId"
+						   class="form-label fw-semibold">Parent Menu Item</label>
+					<p-select id="parentId"
+							  formControlName="parentId"
+							  [options]="getAvailableParents(menuForm.get('menuCategory')?.value)"
+							  optionLabel="label"
+							  optionValue="value"
+							  placeholder="Select parent (optional)"
+							  class="w-100"
+							  appendTo="body">
+					</p-select>
+					<small class="text-muted">Leave empty for top-level menu item</small>
 				</div>
+
 			</div>
 		</form>
 
