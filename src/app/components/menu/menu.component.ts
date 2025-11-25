@@ -12,10 +12,12 @@ import { SideMenuComponent } from "../side-menu/side-menu.component";
 	styleUrl: "./menu.component.scss",
 })
 export class MenuComponent {
-	siteMainMenu: MenuItem[] | any[] = [];
+	mainMenu: MenuItem[] | any[] = [];
+	sideMenu: MenuItem[] | any[] = [];
 	constructor(private sharedDataService: SharedDataService) {}
 
 	ngOnInit(): void {
-		this.siteMainMenu = this.sharedDataService.mainMenu();
+		this.mainMenu = this.sharedDataService.mainMenu();
+		this.sideMenu = this.sharedDataService.sideMenu();
 	}
 }

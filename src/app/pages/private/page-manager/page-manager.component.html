@@ -148,10 +148,11 @@
 							</span>
 						</ng-template>
 					</p-editor>
-					<small class="text-danger"
-						   *ngIf="pageForm.get('content')?.invalid && pageForm.get('content')?.touched">
+					@if(pageForm.get('content')?.invalid && pageForm.get('content')?.touched){
+					<small class="text-danger">
 						Content is required
 					</small>
+					}
 				</div>
 
 				<!-- SEO Settings -->

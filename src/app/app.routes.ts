@@ -4,6 +4,7 @@ import { authGuard } from "./guards/auth.guard";
 import { ChangePasswordComponent } from "./pages/private/change-password/change-password.component";
 import { AdminComponent } from "./pages/private/dashboard/dashboard.component";
 import { LeadsComponent } from "./pages/private/leads/leads.component";
+import { ManagerComponent } from "./pages/private/manager/manager.component";
 import { MenuManagerComponent } from "./pages/private/menu-manager/menu-manager.component";
 import { PageManagerComponent } from "./pages/private/page-manager/page-manager.component";
 import { PaymentComponent } from "./pages/private/payment/payment.component";
@@ -52,6 +53,7 @@ export const routes: Routes = [
 			{ path: "leads", component: LeadsComponent },
 			{ path: "testimonial", component: TestimonialComponent },
 			{ path: "settings", component: SettingsComponent },
+			{ path: "old-manager", component: ManagerComponent },
 			{ path: "page-manager", component: PageManagerComponent },
 			{ path: "menu-manager", component: MenuManagerComponent },
 			{ path: "change-password", component: ChangePasswordComponent },
