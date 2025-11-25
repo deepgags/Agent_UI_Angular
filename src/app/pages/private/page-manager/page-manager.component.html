@@ -8,8 +8,7 @@
 			<p-button label="Create Page"
 					  icon="pi pi-plus"
 					  (onClick)="openAddPageDialog()"
-					  styleClass="p-button-success">
-			</p-button>
+					  styleClass="p-button-success"></p-button>
 		</div>
 
 		<!-- Pages Table -->
@@ -20,7 +19,6 @@
 				 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} pages"
 				 [rowsPerPageOptions]="[5, 10, 25]"
 				 styleClass="p-datatable-striped">
-
 			<ng-template pTemplate="header">
 				<tr>
 					<th>Title</th>
@@ -41,34 +39,31 @@
 					<td>
 						<span class="badge"
 							  [ngClass]="{
-    'bg-info': getStatusBadge(page).severity === 'info',
-    'bg-warning': getStatusBadge(page).severity === 'warning',
-    'bg-success': getStatusBadge(page).severity === 'success'
-  }">
+								'bg-info': getStatusBadge(page).severity === 'info',
+								'bg-warning': getStatusBadge(page).severity === 'warning',
+								'bg-success': getStatusBadge(page).severity === 'success'
+							}">
 							{{ getStatusBadge(page).label }}
 						</span>
 					</td>
-					<td>{{ page.createdAt | date:'short' }}</td>
+					<td>{{ page.createdAt | date : "short" }}</td>
 					<td>
 						<div class="d-flex gap-2">
 							<p-button icon="bi bi-eye"
 									  styleClass="p-button-text p-button-info p-button-sm"
 									  pTooltip="Preview"
 									  [routerLink]="['/page', page.slug]"
-									  target="_blank">
-							</p-button>
+									  target="_blank"></p-button>
 							<p-button icon="bi bi-pencil"
 									  styleClass="p-button-text p-button-sm"
 									  pTooltip="Edit"
 									  (onClick)="openEditPageDialog(page)"
-									  [disabled]="!page.isEditable">
-							</p-button>
+									  [disabled]="!page.isEditable"></p-button>
 							<p-button icon="bi bi-trash"
 									  styleClass="p-button-text p-button-danger p-button-sm"
 									  pTooltip="Delete"
 									  (onClick)="deletePage(page)"
-									  [disabled]="!page.isDeletable">
-							</p-button>
+									  [disabled]="!page.isDeletable"></p-button>
 						</div>
 					</td>
 				</tr>
@@ -86,21 +81,21 @@
 	</div>
 
 	<!-- Page Dialog -->
-	<p-dialog header="{{editingPage ? 'Edit Page' : 'Create New Page'}}"
+	<p-dialog header="{{ editingPage ? 'Edit Page' : 'Create New Page' }}"
 			  [(visible)]="pageDialogVisible"
 			  [modal]="true"
-			  [style]="{width: '800px'}"
+			  [style]="{ width: '800px' }"
 			  [closable]="true"
 			  [maximizable]="true">
-
 		<form [formGroup]="pageForm"
 			  (ngSubmit)="savePage()">
 			<div class="row g-3">
-
 				<!-- Title -->
 				<div class="col-12">
 					<label for="title"
-						   class="form-label fw-semibold">Page Title *</label>
+						   class="form-label fw-semibold">
+						Page Title *
+					</label>
 					<input pInputText
 						   id="title"
 						   formControlName="title"
@@ -113,14 +108,14 @@
 					</small>
 				</div>
 
-
-
 				<!-- Content (Rich Text Editor) -->
 				<div class="col-12">
 					<label for="content"
-						   class="form-label fw-semibold">Page Content *</label>
+						   class="form-label fw-semibold">
+						Page Content *
+					</label>
 					<p-editor formControlName="content"
-							  [style]="{'height':'300px'}"
+							  [style]="{ height: '300px' }"
 							  [disabled]="!editingPage?.isEditable"
 							  placeholder="Enter your page content here...">
 						<ng-template pTemplate="header">
@@ -136,7 +131,9 @@
 								<select class="ql-size">
 									<option value="small">Small</option>
 									<option value="normal"
-											selected>Normal</option>
+											selected>
+										Normal
+									</option>
 									<option value="large">Large</option>
 									<option value="huge">Huge</option>
 								</select>
@@ -164,7 +161,9 @@
 
 				<div class="col-12">
 					<label for="metaTitle"
-						   class="form-label">Meta Title</label>
+						   class="form-label">
+						Meta Title
+					</label>
 					<input pInputText
 						   id="metaTitle"
 						   formControlName="metaTitle"
@@ -175,20 +174,23 @@
 
 				<div class="col-12">
 					<label for="metaDescription"
-						   class="form-label">Meta Description</label>
+						   class="form-label">
+						Meta Description
+					</label>
 					<textarea pInputTextarea
 							  id="metaDescription"
 							  formControlName="metaDescription"
 							  placeholder="Meta description for search engines"
 							  rows="3"
-							  class="w-100">
-        </textarea>
+							  class="w-100"></textarea>
 					<small class="text-muted">Recommended: 150-160 characters</small>
 				</div>
 
 				<div class="col-12">
 					<label for="keywords"
-						   class="form-label">Keywords</label>
+						   class="form-label">
+						Keywords
+					</label>
 					<input pInputText
 						   id="keywords"
 						   formControlName="keywords"
@@ -202,19 +204,14 @@
 		<ng-template pTemplate="footer">
 			<p-button label="Cancel"
 					  styleClass="p-button-text"
-					  (onClick)="cancelDialog()">
-			</p-button>
+					  (onClick)="cancelDialog()"></p-button>
 			<p-button label="Save Page"
 					  styleClass="p-button-success"
 					  (onClick)="savePage()"
-					  [disabled]="pageForm.invalid">
-			</p-button>
+					  [disabled]="pageForm.invalid"></p-button>
 		</ng-template>
 	</p-dialog>
 
 	<!-- Confirmation Dialog -->
-	<p-confirmDialog></p-confirmDialog>
-
-	<!-- Toast Messages -->
-	<p-toast></p-toast>
+	<p-confirmDialog />
 </div>

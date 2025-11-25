@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { DOCUMENT, Inject, Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { environment } from "../environments/environment.development";
@@ -11,7 +11,7 @@ import { CreatePageRequest, Page, UpdatePageRequest } from "../models/Page";
 export class PageService {
 	private baseUrl: string = environment.baseUrl;
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient, @Inject(DOCUMENT) private document: Document) {}
 
 	getPages(): Observable<Page[]> {
 		return this.http.get<Page[]>(`${this.baseUrl}/page`).pipe(
@@ -43,7 +43,8 @@ export class PageService {
 		);
 	}
 
-	getPageBySlug(slug: string, domain?: string): Observable<Page> {
+	getPageBySlug(slug: string): Observable<Page> {
+		const domain = this.document.location.hostname;
 		const params = domain ? `?domain=${domain}` : "";
 		return this.http.get<Page>(`${this.baseUrl}/page/slug/${slug}${params}`).pipe(
 			map((result: any) => {

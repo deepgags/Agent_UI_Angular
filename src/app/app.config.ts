@@ -12,7 +12,6 @@ import { tap } from "rxjs";
 import { routes } from "./app.routes";
 import { AgentInterceptor } from "./interceptors/agent.interceptor";
 import { AuthInterceptor } from "./interceptors/auth.interceptor";
-import { NotFoundComponent } from "./pages/public/not-found/not-found.component";
 import { RoutesConfigService } from "./services/routes-config.service";
 
 const initializeApp = (router: Router, routesConfigService: RoutesConfigService): (() => Promise<void>) => {

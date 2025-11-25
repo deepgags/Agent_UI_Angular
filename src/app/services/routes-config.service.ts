@@ -46,7 +46,7 @@ export class RoutesConfigService {
 				if (sideMenu) {
 					this.sharedDataService.setSideMenu(sideMenu);
 				}
-				return templates[templateId];
+				return templates[templateId] || templates["t1"];
 			}),
 			catchError((error: any) => {
 				console.error("Failed to load site configuration:", error);
