@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
 import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
@@ -11,22 +12,23 @@ import { FeaturedPropertiesComponent } from "../../shared/featured-properties/fe
 import { SearchComponent } from "../../shared/search/search.component";
 
 @Component({
-	selector: "app-t20-home",
+	selector: "app-t15-home",
 	standalone: true,
 	imports: [
 		RouterModule,
 		SearchComponent,
 		FeaturedPropertiesComponent,
 		HeroContactFormComponent,
+		PhoneNumberFormatPipe,
 	],
-	templateUrl: "./t20-home.component.html",
-	styleUrls: ["./t20-home.component.scss", "../t20.component.scss"],
+	templateUrl: "./t15-home.component.html",
+	styleUrls: ["./t15-home.component.scss", "../t15.component.scss"],
 	providers: [Title, StorageService],
 })
-export class T20HomeComponent implements OnInit {
+export class T15HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
-	siteConfigSubscription: any;
+
 	constructor(
 		private titleService: Title,
 		private sharedDataService: SharedDataService,
@@ -35,7 +37,6 @@ export class T20HomeComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
-
 		this.siteConfig = this.sharedDataService.siteData();
 	}
 

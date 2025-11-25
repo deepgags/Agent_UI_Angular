@@ -4,11 +4,10 @@ import { AngularSvgIconModule } from "angular-svg-icon";
 import { MenuComponent } from "../../../components/menu/menu.component";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
-import { SideMenuComponent } from "../../../components/side-menu/side-menu.component";
 
 @Component({
 	selector: "app-t18-header",
-	imports: [AngularSvgIconModule, PhoneNumberFormatPipe, RouterModule, MenuComponent, SideMenuComponent],
+	imports: [AngularSvgIconModule, PhoneNumberFormatPipe, RouterModule, MenuComponent, ],
 	templateUrl: "./t18-header.component.html",
 	styleUrls: ["./t18-header.component.scss", "../t18.component.scss"],
 })
