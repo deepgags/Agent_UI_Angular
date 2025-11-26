@@ -1,5 +1,5 @@
 @if(siteSideMenu){
-<div>
+<div class="hide-mobile">
 	<ul class="list-unstyled mb-0">
 		@for (menu of siteSideMenu; track $index) {
 		@if(menu.children && menu.children.length > 0){

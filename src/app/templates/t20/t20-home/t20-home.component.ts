@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
+import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
 import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
@@ -17,6 +18,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 		RouterModule,
 		SearchComponent,
 		FeaturedPropertiesComponent,
+		PhoneNumberFormatPipe,
 		HeroContactFormComponent,
 	],
 	templateUrl: "./t20-home.component.html",
@@ -25,8 +27,8 @@ import { SearchComponent } from "../../shared/search/search.component";
 })
 export class T20HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
+
 	siteConfig: SiteConfig = {} as SiteConfig;
-	siteConfigSubscription: any;
 	constructor(
 		private titleService: Title,
 		private sharedDataService: SharedDataService,

@@ -24,6 +24,12 @@
 }
 
 .dropdown-item {
+	@media (max-width: 576px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
 	color: white !important;
 	font-size: 14px;
 	font-weight: 600;
@@ -52,4 +58,10 @@
 
 :not(.collapsed) .chevron-icon {
 	transform: rotate(90deg);
+}
+
+@media (max-width: 576px) {
+  .hide-mobile {
+    display: none !important;
+  }
 }

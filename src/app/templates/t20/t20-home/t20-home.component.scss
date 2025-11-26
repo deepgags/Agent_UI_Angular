@@ -1,14 +1,14 @@
-$info:#003580;
+$info:#06A788;
 
 .top-padding{
-    padding-top: 100px;
+    padding-top: 111px;
 }
 
   .background-container {
     position: relative;
     width: 100%;
     height: 70vh;
-    background-image: url('/t9/images/banner.png');
+    background-image: url('/t13/images/banner.webp');
     background-size: cover;
     background-position: center;
   }
@@ -23,9 +23,16 @@ $info:#003580;
   cursor: pointer;
 }
 
+.menu-bg {
+    backdrop-filter: blur(2px);
+    background-color: #FFFFFF33;
+    border: 1px solid #b9b9b9;
+    border-radius: 10px;
+}
+
 .image-text {
   position: absolute;
-  bottom: 10px;
+  top: 10px;
   left: 10px;
   background: rgba(0, 0, 0, 0.5);
   color: white;
@@ -34,8 +41,14 @@ $info:#003580;
   font-weight: bold;
 }
 
+.pro-3{
+  position: absolute;
+    right: 310px;
+    top: 1724px;
+}
  .btn_outline{
     border: $info 1px solid !important;
+    background-color: white;
     color: $info;
   }
   .btn_outline:hover{
@@ -52,120 +65,140 @@ $info:#003580;
     font-weight: 600;
   }
 
-
-.mob_pic{
-  top: 50%;
+  @media (max-width: 768px) {
+.top-padding{
+    padding-top: 0px;
 }
-@media (max-width: 768px) {
-  .mob_pic {
-    top: 52% !important;
-  } 
-
-    .mobile-view{
- margin-top: 100px;
-    } 
-} 
-
-.btn-primary {
-    --bs-btn-color: #fff;
-    --bs-btn-bg: #042758;
-    --bs-btn-border-color: #042758;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #04275a;
-    --bs-btn-hover-border-color: #04275a;
-    --bs-btn-focus-shadow-rgb: 49, 132, 253;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #04275a;
-    --bs-btn-active-border-color: #0a53be;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #fff;
-    --bs-btn-disabled-bg: #042758;
-    --bs-btn-disabled-border-color: #042758;
+.overlay-image{
+    width: 330px;
+}
+}
+.pro-3{
+  position: absolute;
+     right: 427px;
+    top: 1681px;
+}
+.man-card{
+  bottom:0px;
+  right: 70px;
+  background-color: #00000066;
+  backdrop-filter: blur(2px);
+  border: 1px solid #FFFFFF;
 }
 
+ .sonoma-bg {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+}
 
-    .hero-bg {
+  .hero-bg {
       background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       min-height: 60vh;
     }
-    
 
-    .magic-card {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 16px;
-        backdrop-filter: blur(10px);
-        padding: 25px;
-        transition: all 0.4s ease-in-out;
-        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
-    }
-    .magic-card:hover {
-        transform: translateY(-10px);
-    }
+    .buy-sell-section {
+  background-color: #fff;
 
-    .card-inner {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 1.5rem;
+  .buy-card,
+  .sell-card {
+    cursor: pointer;
+    height: 350px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+
+    img {
+      transition: transform 0.4s ease;
+      filter: brightness(0.8);
     }
 
-    .icon-part {
-        border-right: 1px solid rgba(255, 255, 255, 0.2);
-        padding-right: 15px;
+    .overlay {
+      background: rgba(0, 0, 0, 0.4);
+      transition: background 0.3s ease;
     }
 
-    .text-part h5 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+    .icon-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
     }
 
-    .text-part p {
-        font-size: 0.8rem;
-        opacity: 0.75;
+    .line {
+      width: 50px;
+      height: 3px;
+      border-radius: 2px;
     }
 
-    .icon-gradient {
-        font-size: 3rem;
-        background: linear-gradient(45deg, #00c6ff, #0072ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+      img {
+        transform: scale(1.05);
+        filter: brightness(1);
+      }
+
+      .overlay {
+        background: rgba(0, 0, 0, 0.55);
+      }
+    }
+  }
+
+  .or-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  @media (max-width: 992px) {
+    .buy-card,
+    .sell-card {
+      height: 250px;
     }
 
-    .btn-holo {
-        background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.12));
-        border: 1px solid rgba(255,255,255,0.25);
-        border-radius: 30px;
-        color: #fff;
-        padding: 8px 20px;
-        letter-spacing: 0.5px;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s;
+    .or-circle {
+      margin: 1rem 0;
     }
-    .btn-holo:before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
-        transition: all 0.4s;
-        transform: scale(0);
-    }
-    .btn-holo:hover:before {
-        transform: scale(1);
-    }
+  }
+}
 
-    @media (max-width: 575.98px) {
-        .card-inner {
-            flex-direction: column;
-        }
-        .icon-part {
-            border: none;
-            padding: 0;
-        }
-    }
+  .city-card {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.city-card img {
+  transition: transform 0.5s ease;
+}
+
+.city-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Black overlay filter */
+.city-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.city-card:hover .overlay {
+  opacity: 1;
+}
+
+/* City name hidden by default */
+.city-card .city-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.city-card:hover .city-name {
+  opacity: 1;
+}
