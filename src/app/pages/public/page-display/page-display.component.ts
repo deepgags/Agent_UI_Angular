@@ -30,7 +30,6 @@ export class PageDisplayComponent implements OnInit {
 			const slug = params["slug"];
 			this.pageService.getPageBySlug(slug).subscribe({
 				next: (res) => {
-					console.log(res);
 					this.loading = false;
 					this.page.set(res);
 					this.updateMetaTags(res);

@@ -77,7 +77,8 @@
 										<span class="error">
 											@if (emailAddress?.errors?.['required']) {
 											<span>Email Address is required</span>
-											} @if (emailAddress?.errors?.['email']) {
+											}
+											@if (emailAddress?.errors?.['email']) {
 											<span>Enter a valid email address</span>
 											}
 										</span>
@@ -263,8 +264,12 @@
 										@if (websiteEmail?.invalid && (websiteEmail?.dirty || websiteEmail?.touched)) {
 										<span class="error">
 											@if (websiteEmail?.errors?.['required']) {
-											<span>Email is required</span>
+											<span>Email Address is required</span>
 											}
+											@if (websiteEmail?.errors?.['email']) {
+											<span>Enter a valid email address</span>
+											}
+
 										</span>
 										}
 									</div>
@@ -437,10 +442,10 @@
 										agentForm.get('secondaryAgent.websiteEmail')?.touched)){
 										<span class="error">
 											@if(agentForm.get('secondaryAgent.websiteEmail')?.errors?.['required']){
-											<span>Email is required</span>
+											<span>Email Address is required</span>
 											}
 											@if(agentForm.get('secondaryAgent.websiteEmail')?.errors?.['email']){
-											<span>Email is invalid</span>
+											<span>Enter a valid email address</span>
 											}
 										</span>
 										}

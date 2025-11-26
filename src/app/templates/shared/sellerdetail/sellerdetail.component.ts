@@ -1,104 +1,60 @@
-import { Component } from "@angular/core";
-import { SiteConfig } from "../../../models/SiteConfig";
-import { SharedDataService } from "../../../services/shared-data.service";
+import { CommonModule } from "@angular/common";
+import { Component, inject, signal } from "@angular/core";
+import { DomSanitizer, Meta, Title } from "@angular/platform-browser";
+import { Router } from "@angular/router";
+import { ButtonModule } from "primeng/button";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { Page } from "../../../models/Page";
+import { PageService } from "../../../services/page.service";
 
 @Component({
 	selector: "app-sellerdetail",
-	imports: [],
+	imports: [CommonModule, ButtonModule, ProgressSpinnerModule],
 	templateUrl: "./sellerdetail.component.html",
 	styleUrl: "./sellerdetail.component.scss",
 })
 export class SellerdetailComponent {
-	siteConfig: SiteConfig = {} as SiteConfig;
-	sellerText = `<div class="container pb-5 search-container">
-		<h2 class="my-5 mb-4 info">Completing a Listing Agreement</h2>
-		<hr>
-		<h3 class="info">What is a Listing Agreement?</h3>
-		<p>A listing agreement is a contract between you and the brokerage company that the agent represents. It is a framework for subsequent forms and negotiations. It’s important
-			the agreement accurately reflects your property and clearly spells out the rights and obligations of all parties, including what is included or excluded in the deal.</p>
-		<h3 class="info">What Happens?</h3>
-		<p>Both you and the listing agent sign the agreement and each receive a copy. The agreement binds both parties to its terms and conditions. Whether or not you wish your lawyer
-			to review the agreement, you should inform them that you’re selling your home.</p>
-		<h3 class="info">The Fine Print</h3>
-		<ul>
-			<li>Appointment of the brokerage company as your agent</li>
-			<li>Duration of the agreement</li>
-			<li>Compensation details (typically paid upon closing)</li>
-			<li>Listing price</li>
-			<li>Property description: lot size, building size and style, materials, room sizes, heating/cooling systems</li>
-			<li>Inclusions and exclusions (fixtures usually stay; chattels usually go)</li>
-			<li>Financial details: mortgage balance, monthly payments, due dates, property taxes, easements, liens</li>
-		</ul>
-		<h3 class="info">Types of Listings</h3>
-		<p><strong>Open Listing:</strong> Authority to sell is given to multiple REALTORS. You can also sell the property yourself without owing commission.</p>
-		<p><strong>Exclusive Listing:</strong> You appoint one firm to exclusively sell your property.</p>
-		<p><strong>MLS® Listing:</strong> A type of exclusive listing that allows broader exposure through the MLS® system and may involve commission sharing.</p>
-		<h3 class="info">What is the MLS® System?</h3>
-		<p>The MLS® system is a cooperative listing service operated by local real estate boards. It provides exposure to REALTORS and buyers across the country and internationally
-			through MLS.ca.</p>
-		<h3 class="info">Setting the Asking Price</h3>
-		<p>While you may estimate your home’s value, a professional appraisal ensures accuracy. Avoid pricing too high or too low.</p>
-		<h3 class="info">Marketing Your Home</h3>
-		<p><strong>Open Houses:</strong></p>
-		<ul>
-			<li><strong>Agent's Open House:</strong> For brokers and REALTORS</li>
-			<li><strong>Public Open House:</strong> Open to the general public</li>
-		</ul>
-		<p><strong>Tips:</strong></p>
-		<ul>
-			<li>Leave the property during the open house</li>
-			<li>Secure valuables</li>
-			<li>Keep out of the way if you stay</li>
-			<li>Minimize distractions (TV, pets, etc.)</li>
-			<li>Direct inquiries to your agent</li>
-		</ul>
-		<p><strong>Other Tools:</strong></p>
-		<ul>
-			<li>"For Sale" signs</li>
-			<li>Advertising in newspapers and local real estate boards</li>
-		</ul>
-		<h3 class="info">Renewing the Listing</h3>
-		<p>If the home doesn’t sell quickly:</p>
-		<ul>
-			<li>Review location, condition, and price</li>
-			<li>Adjust strategy accordingly</li>
-			<li>Discuss with your agent: showings, feedback, market conditions</li>
-		</ul>
-		<h3 class="info">The Offer</h3>
-		<p>An offer outlines:</p>
-		<ul>
-			<li>Price</li>
-			<li>Possession date</li>
-			<li>Conditions</li>
-			<li>Expiry date</li>
-		</ul>
-		<p>A deposit is usually included to show seriousness. Offers can include low offers and conditions. You can counteroffer. Once signed by all parties, it becomes a binding
-			contract. Review terms carefully and consult a lawyer if needed.</p>
-		<h3 class="info">Before Closing</h3>
-		<p>You may need to provide:</p>
-		<ul>
-			<li>A current survey or property report</li>
-			<li>Proof of property ownership</li>
-			<li>Health inspection certificate (for septic systems)</li>
-			<li>Engineer inspection (if requested)</li>
-		</ul>
-		<h3 class="info">Closing the Sale</h3>
-		<ul>
-			<li>Lawyers handle trust accounts, mortgage payouts, and deed transfers</li>
-			<li>You provide legal documents and keys</li>
-			<li>Lawyers manage reimbursements for prepaid expenses</li>
-			<li>Some mortgages are portable to a new home</li>
-		</ul>
-		<h3 class="info">Final Notes</h3>
-		<ul>
-			<li>Capital gains from selling your primary residence are tax-exempt</li>
-			<li>Keep insurance active until closing</li>
-		</ul>
-		</div>`;
+	private router = inject(Router);
+	private pageService = inject(PageService);
+	private titleService = inject(Title);
+	private metaService = inject(Meta);
+	private sanitizer = inject(DomSanitizer);
 
-	constructor(private sharedDataService: SharedDataService) {}
+	page = signal<Page | null>(null);
+	loading = true;
+	error: string | null = null;
 
-	ngOnInit() {
-		this.siteConfig = this.sharedDataService.siteData();
+	constructor() {}
+
+	ngOnInit(): void {
+		const preDefinedPage = this.router.url.replaceAll("/", "");
+		if (preDefinedPage) {
+			this.pageService.getPredefinedPageContent(preDefinedPage).subscribe({
+				next: (res) => {
+					this.loading = false;
+					this.page.set(res);
+
+					const title = res.metaTitle || res.title;
+					this.titleService.setTitle(title);
+
+					if (res.metaDescription) {
+						this.metaService.updateTag({ name: "description", content: res.metaDescription });
+					} else {
+						this.metaService.updateTag({ name: "description", content: res.content });
+					}
+
+					if (res.keywords) {
+						this.metaService.updateTag({ name: "keywords", content: res.keywords });
+					}
+				},
+				error: (err) => {
+					this.loading = false;
+				},
+			});
+		}
+	}
+
+	getSafeHtml(content: string | undefined) {
+		return this.sanitizer.bypassSecurityTrustHtml(content ?? "");
 	}
 }

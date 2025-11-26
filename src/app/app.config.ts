@@ -12,6 +12,7 @@ import { tap } from "rxjs";
 import { routes } from "./app.routes";
 import { AgentInterceptor } from "./interceptors/agent.interceptor";
 import { AuthInterceptor } from "./interceptors/auth.interceptor";
+import { SiteIdInterceptor } from "./interceptors/site-id.interceptor";
 import { RoutesConfigService } from "./services/routes-config.service";
 
 const initializeApp = (router: Router, routesConfigService: RoutesConfigService): (() => Promise<void>) => {
@@ -36,7 +37,7 @@ const initializeApp = (router: Router, routesConfigService: RoutesConfigService)
 export const appConfig: ApplicationConfig = {
 	providers: [
 		provideZoneChangeDetection({ eventCoalescing: true }),
-		provideHttpClient(withFetch(), withInterceptors([AuthInterceptor, AgentInterceptor])),
+		provideHttpClient(withFetch(), withInterceptors([AuthInterceptor, AgentInterceptor, SiteIdInterceptor])),
 		AngularSvgIconModule,
 		provideAnimations(),
 		provideAngularSvgIcon(),

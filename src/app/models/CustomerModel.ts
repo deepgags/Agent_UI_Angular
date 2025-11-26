@@ -20,6 +20,7 @@ export interface CustomerModel {
 	brokerage?: BrokerageTypeModel | undefined;
 	websiteSettings: {
 		logoImage?: string;
+		profileImage: string;
 		aboutText?: string;
 		contactText?: string;
 		sellingYourHouseText?: string;

@@ -44,47 +44,58 @@
             </span>
             }
           </div>
-          <div class="mb-3">
-            <p-iftalabel>
-
-              <input type="text"
-                     pInputText
-                     formControlName="businessName"
-                     placeholder="Business Name *"
-                     class="form-control"
-                     id="businessName" />
-              <label for="businessName">Business Name</label>
-            </p-iftalabel>
-            @if (businessName?.invalid && (businessName?.dirty || businessName?.touched)) {
-            <span class="error">
-              @if (businessName?.errors?.['required']) {
-              <span>Business Name is required</span>
+          <div class="row mb-3">
+            <div class="col-6">
+              <p-iftalabel>
+                <input type="text"
+                       pInputText
+                       formControlName="businessName"
+                       placeholder="Business Name *"
+                       class="form-control"
+                       id="businessName" />
+                <label for="businessName">Business Name</label>
+              </p-iftalabel>
+              @if (businessName?.invalid && (businessName?.dirty || businessName?.touched)) {
+              <span class="error">
+                @if (businessName?.errors?.['required']) {
+                <span>Business Name is required</span>
+                }
+              </span>
               }
-            </span>
-            }
+            </div>
+            <div class="col-6">
+              <p-iftalabel>
+                <input type="text"
+                       pInputText
+                       formControlName="address"
+                       placeholder="Enter brokerage address"
+                       class="form-control"
+                       id="address" />
+                <label for="Brokerage Address">Brokerage Address</label>
+              </p-iftalabel>
+            </div>
           </div>
+
           <div class="mb-3">
             <p-iftalabel>
-
               <input type="text"
                      pInputText
-                     formControlName="address"
-                     placeholder="Enter brokerage address"
+                     formControlName="designation"
+                     placeholder="Enter Your Designation"
                      class="form-control"
-                     id="address" />
-              <label for="Brokerage Address">Brokerage Address</label>
+                     id="designation" />
+              <label for="designation">Designation</label>
             </p-iftalabel>
           </div>
         </div>
 
         <!-- Personal Information Section -->
         <div class="mb-3">
-          <h6 class="text-muted mb-3 border-bottom pb-1">Personal Information</h6>
+          <h6 class="text-muted mb-3 border-bottom pb-1">Account Information</h6>
           <div class="row">
             <div class="col-md-6">
               <div class="mb-3">
                 <p-iftalabel>
-
                   <input type="text"
                          pInputText
                          formControlName="firstName"
@@ -126,27 +137,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Contact Information Section -->
-        <div class="mb-3">
-          <h6 class="text-muted mb-3 border-bottom pb-1">Contact Information</h6>
-          <!-- <div class="mb-3">
-          <input
-            type="email"
-            pInputText
-            formControlName="emailAddress"
-            placeholder="Enter email address"
-            class="form-control"
-            id="emailAddress"
-            required />
-          <span
-            class="error"
-            *ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)">
-            <span *ngIf="emailAddress?.errors?.['required']">Email Address is required</span>
-            <span *ngIf="emailAddress?.errors?.['email']">Enter a valid email address</span>
-          </span>
-        </div> -->
           <div class="row">
             <div class="col-md-6">
               <div class="mb-3">
@@ -200,11 +190,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Security Section -->
-        <div class="mb-3">
-          <h6 class="text-muted mb-3 border-bottom pb-1">Security</h6>
           <div class="row">
             <div class="col-md-6">
               <div class="mb-3">
@@ -261,23 +246,7 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Images Section -->
-        <div class="mb-3">
-          <h6 class="text-muted mb-3 border-bottom pb-1">Upload Images</h6>
           <div class="row">
-            <!-- <div class="col-md-6">
-          <div class="upload-container p-3 border rounded mb-3 mb-md-0">
-            <label class="form-label fw-semibold lable_font d-block me-3">Company Logo</label>
-            <input
-              type="file"
-              (change)="onLogoImageChange($event)"
-              class="form-control upload-btn w-50 lable_font"
-              id="logoImageUpload"
-              accept="image/*" />
-          </div>
-        </div> -->
             <div class="col-md-12">
               <div class="upload-container p-3 border rounded">
                 <label class="form-label fw-semibold lable_font me-3 d-block">Profile Picture</label>

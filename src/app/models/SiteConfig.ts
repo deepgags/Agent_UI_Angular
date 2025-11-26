@@ -17,12 +17,6 @@ export interface SiteConfig {
 			phone: string;
 			address: string;
 		};
-		aboutText: string;
-		contactText: string;
-		sellingYourHouseText: string;
-		renovatingForResellText: string;
-		commonSellingMistakeText: string;
-		buyerText: string;
 		socialLinks: {
 			facebook: string;
 			twitter: string;

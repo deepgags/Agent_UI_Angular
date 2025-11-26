@@ -98,4 +98,19 @@ export class PageService {
 			})
 		);
 	}
+
+	getPredefinedPageContent(pageKey: string): Observable<Page> {
+		return this.http.get<Page>(`${this.baseUrl}/page/key/${pageKey}`).pipe(
+			map((result: any) => {
+				if (result && result.data) {
+					return result.data;
+				}
+				throw new Error("Page not found");
+			}),
+			catchError((error) => {
+				console.error("Error fetching page by slug:", error);
+				return throwError(() => error);
+			})
+		);
+	}
 }

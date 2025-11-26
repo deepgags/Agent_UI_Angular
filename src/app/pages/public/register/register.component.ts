@@ -72,6 +72,10 @@ export class RegisterComponent implements OnInit {
 		return this.customerForm.get("businessName");
 	}
 
+	get designation() {
+		return this.customerForm.get("designation");
+	}
+
 	get firstName() {
 		return this.customerForm.get("firstName");
 	}
@@ -100,6 +104,7 @@ export class RegisterComponent implements OnInit {
 		this.customerForm = this.fb.group({
 			businessName: new FormControl("", Validators.required),
 			brokerageType: new FormControl("", Validators.required),
+			designation: new FormControl("", Validators.required),
 			firstName: new FormControl("", Validators.required),
 			lastName: new FormControl("", Validators.required),
 			phoneNumber: new FormControl("", [
@@ -186,6 +191,7 @@ export class RegisterComponent implements OnInit {
 			const {
 				businessName,
 				brokerageType,
+				designation,
 				firstName,
 				lastName,
 				phoneNumber,
@@ -203,12 +209,11 @@ export class RegisterComponent implements OnInit {
 				lastName: lastName,
 				emailAddress: emailAddress,
 				phoneNumber: phoneNumber,
-				// cellNumber: cellNumber,
 				password: password,
 				confirmPassword: confirmPassword,
 				profileImage: this.newSelectedProfileImage.value,
 				logoImage: this.newSelectedLogoImage,
-				// logoImagePath: this.logoImagePath,
+				designation: designation,
 			};
 
 			this.loadingService.loadingOn();

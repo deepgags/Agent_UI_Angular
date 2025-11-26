@@ -23,7 +23,7 @@
 				<tr>
 					<th>Title</th>
 					<th>Slug</th>
-					<th>Status</th>
+					<th>Page Type</th>
 					<th>Created</th>
 					<th>Actions</th>
 				</tr>
@@ -52,8 +52,7 @@
 							<p-button icon="bi bi-eye"
 									  styleClass="p-button-text p-button-info p-button-sm"
 									  pTooltip="Preview"
-									  [routerLink]="['/page', page.slug]"
-									  target="_blank"></p-button>
+									  (onClick)="previewPage(page)"></p-button>
 							<p-button icon="bi bi-pencil"
 									  styleClass="p-button-text p-button-sm"
 									  pTooltip="Edit"
@@ -116,7 +115,6 @@
 					</label>
 					<p-editor formControlName="content"
 							  [style]="{ height: '300px' }"
-							  [disabled]="!editingPage?.isEditable"
 							  placeholder="Enter your page content here...">
 						<ng-template pTemplate="header">
 							<span class="ql-formats">

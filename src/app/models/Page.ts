@@ -6,6 +6,8 @@ export interface Page {
 	metaTitle?: string;
 	metaDescription?: string;
 	keywords?: string;
+	pageKey?: string;
+	isPredefined: boolean;
 	isEditable: boolean;
 	isDeletable: boolean;
 	siteId: string;

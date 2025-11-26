@@ -1,7 +1,7 @@
 import { CommonModule, DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { ConfirmationService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
@@ -12,6 +12,7 @@ import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TextareaModule } from "primeng/textarea";
 import { ToastModule } from "primeng/toast";
+import { TooltipModule } from "primeng/tooltip";
 import { CreatePageRequest, Page, UpdatePageRequest } from "../../../models/Page";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
@@ -34,6 +35,7 @@ import { PageService } from "../../../services/page.service";
 		TableModule,
 		EditorModule,
 		DatePipe,
+		TooltipModule,
 	],
 	templateUrl: "./page-manager.component.html",
 	styleUrl: "./page-manager.component.scss",
@@ -50,7 +52,8 @@ export class PageManagerComponent implements OnInit {
 		private loadingService: LoadingService,
 		private pageService: PageService,
 		private notificationService: NotificationService,
-		private confirmationService: ConfirmationService
+		private confirmationService: ConfirmationService,
+		private router: Router
 	) {}
 
 	ngOnInit() {
@@ -90,19 +93,27 @@ export class PageManagerComponent implements OnInit {
 
 	openEditPageDialog(page: Page) {
 		this.editingPage = page;
-		this.pageForm.patchValue({
-			title: page.title,
-			content: page.content,
-			metaTitle: page.metaTitle || "",
-			metaDescription: page.metaDescription || "",
-			keywords: page.keywords || "",
-		});
 		this.pageDialogVisible = true;
+
+		setTimeout(() => {
+			this.pageForm.patchValue({
+				title: page.title,
+				content: page.content,
+				metaTitle: page.metaTitle || "",
+				metaDescription: page.metaDescription || "",
+				keywords: page.keywords || "",
+			});
+			if (page.isEditable) {
+				this.pageForm.get("content")?.disable();
+			} else {
+				this.pageForm.get("content")?.enable();
+			}
+		}, 150);
 	}
 
 	savePage() {
 		if (this.pageForm.valid) {
-			const formValue = this.pageForm.value;
+			const formValue = this.pageForm.getRawValue();
 			const pageData: CreatePageRequest | UpdatePageRequest = {
 				title: formValue.title,
 				content: formValue.content,
@@ -197,8 +208,19 @@ export class PageManagerComponent implements OnInit {
 	}
 
 	getStatusBadge(page: Page) {
-		if (!page.isEditable) return { label: "Read Only", severity: "info" };
-		if (!page.isDeletable) return { label: "Protected", severity: "warning" };
-		return { label: "Editable", severity: "success" };
+		if (!page.isEditable) {
+			return { label: "Read Only", severity: "warning" };
+		} else {
+			// if (!page.isDeletable) return { label: "Protected", severity: "warning" };
+			return { label: "Editable", severity: "success" };
+		}
+	}
+
+	previewPage(page: Page) {
+		if (page.isPredefined) {
+			window.open(this.router.serializeUrl(this.router.createUrlTree([page.pageKey])), "_blank");
+		} else {
+			this.router.navigate(["/page", page.slug]);
+		}
 	}
 }

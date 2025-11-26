@@ -1,7 +1,10 @@
-import { Component } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { Component, inject, signal } from "@angular/core";
+import { DomSanitizer, Meta, Title } from "@angular/platform-browser";
+import { Router, RouterModule } from "@angular/router";
+import { Page } from "../../../models/Page";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
+import { PageService } from "../../../services/page.service";
 import { SharedDataService } from "../../../services/shared-data.service";
 import { TestimonialService } from "../../../services/testimonial.service";
 
@@ -19,13 +22,51 @@ export class AboutComponent {
 	testimonials: any[] = [];
 	siteId: string = "";
 
-	constructor(private sharedDataService: SharedDataService, private testimonialService: TestimonialService) {}
+	private router = inject(Router);
+	private pageService = inject(PageService);
+	private titleService = inject(Title);
+	private metaService = inject(Meta);
+	private sanitizer = inject(DomSanitizer);
+	private sharedDataService = inject(SharedDataService);
+	private testimonialService = inject(TestimonialService);
+
+	page = signal<Page | null>(null);
+	loading = true;
+	error: string | null = null;
+
+	constructor() {}
 
 	ngOnInit(): void {
 		this.siteConfig = this.sharedDataService.siteData();
 		this.siteId = this.sharedDataService.siteId();
 
 		this.getTestimonials();
+
+		const preDefinedPage = this.router.url.replaceAll("/", "");
+		if (preDefinedPage) {
+			this.pageService.getPredefinedPageContent(preDefinedPage).subscribe({
+				next: (res) => {
+					this.loading = false;
+					this.page.set(res);
+
+					const title = res.metaTitle || res.title;
+					this.titleService.setTitle(title);
+
+					if (res.metaDescription) {
+						this.metaService.updateTag({ name: "description", content: res.metaDescription });
+					} else {
+						this.metaService.updateTag({ name: "description", content: res.content });
+					}
+
+					if (res.keywords) {
+						this.metaService.updateTag({ name: "keywords", content: res.keywords });
+					}
+				},
+				error: (err) => {
+					this.loading = false;
+				},
+			});
+		}
 	}
 
 	getTestimonials() {
@@ -37,5 +78,9 @@ export class AboutComponent {
 				console.error("Error loading testimonial:", error);
 			},
 		});
+	}
+
+	getSafeHtml(content: string | undefined) {
+		return this.sanitizer.bypassSecurityTrustHtml(content ?? "");
 	}
 }

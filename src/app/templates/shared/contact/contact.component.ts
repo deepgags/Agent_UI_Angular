@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { DomSanitizer, Meta, Title } from "@angular/platform-browser";
+import { Router, RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
@@ -11,8 +12,10 @@ import { SelectModule } from "primeng/select";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { NotificationService } from "../../../services/notification.service";
+import { PageService } from "../../../services/page.service";
 import { PublicService } from "../../../services/public.service";
 import { SharedDataService } from "../../../services/shared-data.service";
+import { Page } from "../../../models/Page";
 
 @Component({
 	selector: "app-contact",
@@ -37,8 +40,7 @@ export class ContactComponent {
 	contactForm!: FormGroup;
 	siteConfig: SiteConfig = {} as SiteConfig;
 
-	contactText =
-		"Your way to better real estate software starts here. For 35 years, we’ve proudly delivered the gold standard in real estate software to businesses of all shapes, sizes, and structures, and we’d be honored to partner with your organization today.";
+	page = signal<Page | null>(null);
 
 	userTypes = [
 		{
@@ -59,11 +61,16 @@ export class ContactComponent {
 		},
 	];
 
-	constructor(
-		private sharedDataService: SharedDataService,
-		private notificationService: NotificationService,
-		private publicService: PublicService
-	) {
+	private router = inject(Router);
+	private pageService = inject(PageService);
+	private titleService = inject(Title);
+	private metaService = inject(Meta);
+	private sanitizer = inject(DomSanitizer);
+	private sharedDataService = inject(SharedDataService);
+	private notificationService = inject(NotificationService);
+	private publicService = inject(PublicService);
+
+	constructor() {
 		this.contactForm = new FormGroup({
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
@@ -92,6 +99,29 @@ export class ContactComponent {
 
 	ngOnInit(): void {
 		this.siteConfig = this.sharedDataService.siteData();
+
+		const preDefinedPage = this.router.url.replaceAll("/", "");
+		if (preDefinedPage) {
+			this.pageService.getPredefinedPageContent(preDefinedPage).subscribe({
+				next: (res) => {
+					this.page.set(res);
+
+					const title = res.metaTitle || res.title;
+					this.titleService.setTitle(title);
+
+					if (res.metaDescription) {
+						this.metaService.updateTag({ name: "description", content: res.metaDescription });
+					} else {
+						this.metaService.updateTag({ name: "description", content: res.content });
+					}
+
+					if (res.keywords) {
+						this.metaService.updateTag({ name: "keywords", content: res.keywords });
+					}
+				},
+				error: (err) => {},
+			});
+		}
 	}
 
 	submitContactForm() {
@@ -115,5 +145,9 @@ export class ContactComponent {
 				this.notificationService.showError("Failed to submit request. Please try again later.");
 			},
 		});
+	}
+
+	getSafeHtml(content: string | undefined) {
+		return this.sanitizer.bypassSecurityTrustHtml(content ?? "");
 	}
 }

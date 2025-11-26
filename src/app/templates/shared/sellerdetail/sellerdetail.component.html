@@ -1,27 +1,37 @@
+@if (loading) {
+<div class="d-flex justify-content-center align-items-center py-5">
+  <p-progress-spinner strokeWidth="4"
+                      animationDuration=".8s" />
+</div>
+}
+@else if (!loading && !error) {
 <div class="container-fluid p-0 search-container">
   <div class="position-relative">
     <img class="banner w-100"
          src="/images/banner3.png"
          alt="Banner Image">
     <div class="position-absolute top-50 start-50 translate-middle text-center">
-      <h1 class="text-white fw-bold baner-text">Seller Details</h1>
+      <h1 class="text-white fw-bold baner-text">
+        {{ page()?.title }}
+      </h1>
     </div>
   </div>
 </div>
-
-
-
-@if (!siteConfig.websiteSettings.sellingYourHouseText) {
-<div class="container"
-     [innerHTML]="sellerText">
+<div class="container">
+  @if (page()) {
+  <div class="p-4"
+       [innerHTML]="getSafeHtml(page()?.content)"></div>
+  }
+</div>
+} @else {
+<div class="error-container">
+  <div class="d-flex flex-column justify-content-center align-items-center min-vh-50 text-center">
+    <div class="mb-4">
+      <i class="bi bi-exclamation-triangle text-warning"
+         style="font-size: 4rem;"></i>
     </div>
-}
-
-
-@if (siteConfig.websiteSettings.sellingYourHouseText) {
-  <div class="container">
-    <div>
-      <p [innerHTML]="siteConfig.websiteSettings.sellingYourHouseText"></p>
-    </div>
+    <h2 class="mb-3">Page Not Found</h2>
+    <p class="text-muted mb-4">{{ error }}</p>
   </div>
+</div>
 }
