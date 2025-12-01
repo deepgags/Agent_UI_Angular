@@ -27,6 +27,7 @@ import { TemplatesComponent } from "./pages/public/templates/templates.component
 import { UserLoginComponent } from "./pages/public/user-login/user-login.component";
 import { UserSignupComponent } from "./pages/public/user-signup/user-signup.component";
 import { VerifyEmailComponent } from "./pages/public/verify-email/verify-email.component";
+import { AgentlistComponent } from "./pages/public/agent-list/agent-list.component";
 
 export const routes: Routes = [
 	// { path: "", redirectTo: '/loading', pathMatch: "full" },
@@ -40,6 +41,7 @@ export const routes: Routes = [
 	{ path: "user-login", component: UserLoginComponent },
 	{ path: "user-signup", component: UserSignupComponent },
 	{ path: "agent-details", component: AgentComponent },
+	{ path: "agent-list", component: AgentlistComponent },
 	{ path: "home-worth", component: WorthComponent },
 	{ path: "dream-home", component: DreamComponent },
 	{ path: "home-detail", component: HomeDetailComponent },

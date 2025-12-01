@@ -26,10 +26,11 @@
 .dropdown-item {
 	// color: white !important;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .dropdown-item:hover {
+	font-weight: 600;
 	background-color: rgba(255, 255, 255, 0.1);
 	// color: white !important;
 }

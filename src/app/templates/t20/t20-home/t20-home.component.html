@@ -1,4 +1,8 @@
 <div class="background-container search-container">
+	<div class="">
+		<!-- <app-t20-header></app-t20-header> -->
+	</div>
+
 	<div class="container pt-2 search-container">
 		<div class="top-padding">
 			<h1 class="display-1 text-white">Innovative Living <br> Spaces</h1>
@@ -16,7 +20,6 @@
 					<div class=" d-flex">
 						<div class="">
 							<i class="fa-solid fa-phone info"></i>
-
 						</div>
 						<div class="ms-2">
 							<p class="mb-0">
@@ -287,6 +290,47 @@
 </section>
 }
 
+<div class="container py-5">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Agent Card -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="premium-card">
+        <div class="premium-img-wrapper">
+          <img src="/t1/images/profile.png" class="premium-img" alt="Agent Photo">
+        </div>
+
+        <div class="premium-body">
+          <h5 class="premium-name">Raj Mahat</h5>
+          <div class="premium-divider"></div>
+          <p class="premium-phone">647-640-9124</p>
+          <p class="premium-title">Broker Of Record</p>
+
+          <a href="#" class="premium-btn">View Details</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Duplicate for other agents -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="premium-card">
+        <div class="premium-img-wrapper">
+          <img src="/t1/images/profile.png" class="premium-img" alt="">
+        </div>
+        <div class="premium-body">
+          <h5 class="premium-name">Rishi Gaire</h5>
+          <div class="premium-divider"></div>
+          <p class="premium-phone">647-296-8205</p>
+          <p class="premium-title">Real Estate Broker</p>
+          <a href="#" class="premium-btn">View Details</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 <div class="container-fluid sec-3 search-container">
 	<div class="container">
 		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
@@ -297,7 +341,7 @@
 			</div> -->
 			<div class="col-lg-4 col-12">
 				<div class="card border-0 text-center p-4"
-					 style="background-color: #f9f5f1;">
+					 style="background-color: transparent;">
 					<!-- <img src="agent-image.jpg" alt="Agent Image" class="img-fluid mb-3" /> -->
 					<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
 						 alt="No profile image"
