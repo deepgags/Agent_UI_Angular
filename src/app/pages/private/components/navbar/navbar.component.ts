@@ -5,6 +5,7 @@ import { MenuItem } from "primeng/api";
 import { MenuModule } from "primeng/menu";
 import { CustomerModel } from "../../../../models/CustomerModel";
 import { CustomerService } from "../../../../services/customer.service";
+import { SharedDataService } from "../../../../services/shared-data.service";
 
 @Component({
 	selector: "app-navbar",
@@ -17,7 +18,11 @@ export class NavbarComponent {
 	items: MenuItem[] | undefined;
 	agentData!: CustomerModel;
 
-	constructor(private router: Router, private customerService: CustomerService) {
+	constructor(
+		private router: Router,
+		private customerService: CustomerService,
+		private sharedDataService: SharedDataService
+	) {
 		this.items = [
 			{
 				label: "Account Options",
@@ -50,6 +55,7 @@ export class NavbarComponent {
 			next: (response: any) => {
 				if (response.status) {
 					this.agentData = response.data;
+					this.sharedDataService.setUserData(response.data);
 				}
 			},
 			error: () => {},

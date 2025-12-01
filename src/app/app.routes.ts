@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { ThankyouComponent } from "./components/thankyou/thankyou.component";
 import { authGuard } from "./guards/auth.guard";
+import { brokerGuard } from "./guards/broker.guard";
 import { ChangePasswordComponent } from "./pages/private/change-password/change-password.component";
 import { AdminComponent } from "./pages/private/dashboard/dashboard.component";
 import { LeadsComponent } from "./pages/private/leads/leads.component";
@@ -10,10 +11,12 @@ import { PageManagerComponent } from "./pages/private/page-manager/page-manager.
 import { PaymentComponent } from "./pages/private/payment/payment.component";
 import { PrivateComponent } from "./pages/private/private.component";
 import { SettingsComponent } from "./pages/private/settings/settings.component";
+import { TeamComponent } from "./pages/private/team/team.component";
 import { TemplateComponent } from "./pages/private/template/template.component";
 import { TestimonialComponent } from "./pages/private/testimonial/testimonial.component";
 import { UsersComponent } from "./pages/private/users/users.component";
 import { AgentComponent } from "./pages/public/agent-details/agent-details.component";
+import { AgentlistComponent } from "./pages/public/agent-list/agent-list.component";
 import { DreamComponent } from "./pages/public/dream-home/dream-home.component";
 import { ForgotComponent } from "./pages/public/forgot/forgot.component";
 import { HomeDetailComponent } from "./pages/public/home-detail/home-detail.component";
@@ -27,7 +30,6 @@ import { TemplatesComponent } from "./pages/public/templates/templates.component
 import { UserLoginComponent } from "./pages/public/user-login/user-login.component";
 import { UserSignupComponent } from "./pages/public/user-signup/user-signup.component";
 import { VerifyEmailComponent } from "./pages/public/verify-email/verify-email.component";
-import { AgentlistComponent } from "./pages/public/agent-list/agent-list.component";
 
 export const routes: Routes = [
 	// { path: "", redirectTo: '/loading', pathMatch: "full" },
@@ -62,6 +64,7 @@ export const routes: Routes = [
 			{ path: "template", component: TemplateComponent },
 			{ path: "payment", component: PaymentComponent },
 			{ path: "users", component: UsersComponent },
+			{ path: "team", component: TeamComponent, canActivate: [brokerGuard] },
 		],
 		canActivate: [authGuard],
 	},

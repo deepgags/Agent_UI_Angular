@@ -1,0 +1,20 @@
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { TeamMemberModel } from "../../models/TeamMemberModel";
+import { SharedDataService } from "../../services/shared-data.service";
+
+@Component({
+	selector: "app-team-card",
+	imports: [CommonModule, RouterModule],
+	templateUrl: "./team-card.component.html",
+	styleUrl: "./team-card.component.scss",
+})
+export class TeamCardComponent {
+	team: TeamMemberModel[] | any[] = [];
+	constructor(private sharedDataService: SharedDataService) {}
+
+	ngOnInit(): void {
+		this.team = this.sharedDataService.team();
+	}
+}

@@ -1,0 +1,108 @@
+/* Team Management Component Styles */
+
+:host {
+	display: block;
+	width: 100%;
+}
+
+/* Dialog specific styles */
+::ng-deep .p-dialog .p-dialog-content {
+	padding: 1.5rem;
+}
+
+::ng-deep .p-dialog .p-dialog-footer {
+	padding: 1rem 1.5rem;
+	border-top: 1px solid #e9ecef;
+}
+
+/* Form styling */
+.form-label {
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+}
+
+.text-danger {
+	font-size: 0.875rem;
+}
+
+.text-muted {
+	font-size: 0.875rem;
+	color: #6c757d;
+}
+
+/* Table styling */
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+	padding: 0.75rem;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+	padding: 0.75rem;
+	background-color: #f8f9fa;
+	font-weight: 600;
+	border-bottom: 2px solid #dee2e6;
+}
+
+/* Button styling */
+::ng-deep .p-button.p-button-success {
+	background-color: #198754;
+	border-color: #198754;
+}
+
+::ng-deep .p-button.p-button-success:hover {
+	background-color: #157347;
+	border-color: #146c43;
+}
+
+/* Empty state styling */
+.text-center {
+	text-align: center;
+}
+
+.py-4 {
+	padding-top: 1.5rem !important;
+	padding-bottom: 1.5rem !important;
+}
+
+/* Image upload and preview styles */
+.upload-container {
+	position: relative;
+}
+
+.upload-btn {
+	cursor: pointer;
+}
+
+.image-preview {
+	max-width: 100%;
+	height: auto;
+	max-height: 200px;
+	object-fit: cover;
+}
+
+/* Error styling */
+.error {
+	color: #dc3545;
+	font-size: 0.875rem;
+	margin-top: 0.25rem;
+	display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	::ng-deep .p-dialog {
+		width: 95vw !important;
+		max-width: none !important;
+	}
+
+	.row.g-3 {
+		--bs-gutter-x: 1rem;
+	}
+
+	.col-md-6 {
+		margin-bottom: 1rem;
+	}
+
+	.image-preview {
+		max-height: 150px;
+	}
+}

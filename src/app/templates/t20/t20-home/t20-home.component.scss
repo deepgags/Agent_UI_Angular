@@ -1,290 +1,205 @@
-$info:#06A788;
+$info: #06a788;
 
-.top-padding{
-    padding-top: 111px;
+.top-padding {
+	padding-top: 111px;
 }
 
-  .background-container {
-    position: relative;
-    width: 100%;
-    height: 70vh;
-    background-image: url('/t13/images/banner.webp');
-    background-size: cover;
-    background-position: center;
-  }
-  .overlay-image {
-    position: absolute;
-    bottom: 0px;
-    right: 20px;
-    width: 465px;
-  }
+.background-container {
+	position: relative;
+	width: 100%;
+	height: 70vh;
+	background-image: url("/t13/images/banner.webp");
+	background-size: cover;
+	background-position: center;
+}
+.overlay-image {
+	position: absolute;
+	bottom: 0px;
+	right: 20px;
+	width: 465px;
+}
 .image-container {
-  position: relative;
-  cursor: pointer;
+	position: relative;
+	cursor: pointer;
 }
 
 .menu-bg {
-    backdrop-filter: blur(2px);
-    background-color: #FFFFFF33;
-    border: 1px solid #b9b9b9;
-    border-radius: 10px;
+	backdrop-filter: blur(2px);
+	background-color: #ffffff33;
+	border: 1px solid #b9b9b9;
+	border-radius: 10px;
 }
 
 .image-text {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-weight: bold;
 }
 
-.pro-3{
-  position: absolute;
-    right: 310px;
-    top: 1724px;
+.pro-3 {
+	position: absolute;
+	right: 310px;
+	top: 1724px;
 }
- .btn_outline{
-    border: $info 1px solid !important;
-    background-color: white;
-    color: $info;
-  }
-  .btn_outline:hover{
-    border: $info 1px solid !important;
-    background-color: $info;
-    color: white;
-  }
-.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
-  color: $info !important;
+.btn_outline {
+	border: $info 1px solid !important;
+	background-color: white;
+	color: $info;
 }
-.text-2{
-    color:$info ;
-    font-size: 25px;
-    font-weight: 600;
-  }
-
-  @media (max-width: 768px) {
-.top-padding{
-    padding-top: 0px;
+.btn_outline:hover {
+	border: $info 1px solid !important;
+	background-color: $info;
+	color: white;
 }
-.overlay-image{
-    width: 330px;
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {
+	color: $info !important;
 }
-}
-.pro-3{
-  position: absolute;
-     right: 427px;
-    top: 1681px;
-}
-.man-card{
-  bottom:0px;
-  right: 70px;
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
+.text-2 {
+	color: $info;
+	font-size: 25px;
+	font-weight: 600;
 }
 
- .sonoma-bg {
-  height: 300px;
-  background-size: cover;
-  background-position: center;
+@media (max-width: 768px) {
+	.top-padding {
+		padding-top: 0px;
+	}
+	.overlay-image {
+		width: 330px;
+	}
+}
+.pro-3 {
+	position: absolute;
+	right: 427px;
+	top: 1681px;
+}
+.man-card {
+	bottom: 0px;
+	right: 70px;
+	background-color: #00000066;
+	backdrop-filter: blur(2px);
+	border: 1px solid #ffffff;
 }
 
-  .hero-bg {
-      background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      min-height: 60vh;
-    }
-
-    .buy-sell-section {
-  background-color: #fff;
-
-  .buy-card,
-  .sell-card {
-    cursor: pointer;
-    height: 350px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 10px;
-
-    img {
-      transition: transform 0.4s ease;
-      filter: brightness(0.8);
-    }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.4);
-      transition: background 0.3s ease;
-    }
-
-    .icon-circle {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-    }
-
-    .line {
-      width: 50px;
-      height: 3px;
-      border-radius: 2px;
-    }
-
-    &:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-
-      img {
-        transform: scale(1.05);
-        filter: brightness(1);
-      }
-
-      .overlay {
-        background: rgba(0, 0, 0, 0.55);
-      }
-    }
-  }
-
-  .or-circle {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-  }
-
-  @media (max-width: 992px) {
-    .buy-card,
-    .sell-card {
-      height: 250px;
-    }
-
-    .or-circle {
-      margin: 1rem 0;
-    }
-  }
+.sonoma-bg {
+	height: 300px;
+	background-size: cover;
+	background-position: center;
 }
 
-  .city-card {
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 10px;
+.hero-bg {
+	background: url("https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80")
+		center/cover no-repeat;
+	min-height: 60vh;
+}
+
+.buy-sell-section {
+	background-color: #fff;
+
+	.buy-card,
+	.sell-card {
+		cursor: pointer;
+		height: 350px;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		border-radius: 10px;
+
+		img {
+			transition: transform 0.4s ease;
+			filter: brightness(0.8);
+		}
+
+		.overlay {
+			background: rgba(0, 0, 0, 0.4);
+			transition: background 0.3s ease;
+		}
+
+		.icon-circle {
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+		}
+
+		.line {
+			width: 50px;
+			height: 3px;
+			border-radius: 2px;
+		}
+
+		&:hover {
+			transform: scale(1.02);
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+			img {
+				transform: scale(1.05);
+				filter: brightness(1);
+			}
+
+			.overlay {
+				background: rgba(0, 0, 0, 0.55);
+			}
+		}
+	}
+
+	.or-circle {
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+	}
+
+	@media (max-width: 992px) {
+		.buy-card,
+		.sell-card {
+			height: 250px;
+		}
+
+		.or-circle {
+			margin: 1rem 0;
+		}
+	}
+}
+
+.city-card {
+	cursor: pointer;
+	overflow: hidden;
+	border-radius: 10px;
 }
 
 .city-card img {
-  transition: transform 0.5s ease;
+	transition: transform 0.5s ease;
 }
 
 .city-card:hover img {
-  transform: scale(1.08);
+	transform: scale(1.08);
 }
 
 /* Black overlay filter */
 .city-card .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	transition: opacity 0.4s ease;
 }
 
 .city-card:hover .overlay {
-  opacity: 1;
+	opacity: 1;
 }
 
 /* City name hidden by default */
 .city-card .city-name {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	transition: opacity 0.4s ease;
 }
 
 .city-card:hover .city-name {
-  opacity: 1;
-}
-
-/* Premium Card Base */
-.premium-card {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(14px);
-    border-radius: 26px;
-    overflow: hidden;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-    transition: all .35s ease;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    position: relative;
-}
-
-/* Hover Elevation */
-.premium-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 55px rgba(0,0,0,0.18);
-}
-
-/* Image Section */
-.premium-img-wrapper {
-    height: 300px;
-    background: linear-gradient(135deg, #eceefe 0%, #fafafa 100%);
-}
-
-.premium-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Body */
-.premium-body {
-    padding: 26px 20px 32px;
-    text-align: center;
-}
-
-/* Name */
-.premium-name {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1c1c1c;
-    margin-bottom: 6px;
-}
-
-/* Gold Divider Line */
-.premium-divider {
-    width: 52px;
-    height: 3px;
-    background: linear-gradient(90deg, #d6af59, #f7d794);
-    margin: 10px auto 20px;
-    border-radius: 10px;
-}
-
-/* Phone */
-.premium-phone {
-    color: #4d4d4d;
-    font-size: 1rem;
-    margin-bottom: 6px;
-}
-
-/* Title */
-.premium-title {
-    font-size: 0.95rem;
-    color: #777;
-    margin-bottom: 22px;
-}
-
-/* Premium Button */
-.premium-btn {
-    display: inline-block;
-    padding: 10px 22px;
-    background: linear-gradient(135deg, #2b5876, #4e4376);
-    color: #fff;
-    border-radius: 14px;
-    text-decoration: none;
-    font-weight: 500;
-    box-shadow: 0 6px 20px rgba(76, 71, 107, 0.3);
-    transition: .3s ease;
-}
-
-.premium-btn:hover {
-    background: linear-gradient(135deg, #4e4376, #2b5876);
-    color: #fff;
-    transform: translateY(-3px);
+	opacity: 1;
 }

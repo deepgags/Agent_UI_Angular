@@ -21,7 +21,7 @@ export class RoutesConfigService {
 		const hostname = this.document.location.hostname;
 		return this.http.get(`${environment.baseUrl}/customer/web`, { params: { domain: hostname } }).pipe(
 			map((response: any) => {
-				const { customer, mainMenu, sideMenu } = response.data;
+				const { customer, mainMenu, sideMenu, team } = response.data;
 
 				const templateId = customer.websiteSettings.templateId;
 				if (customer.websiteSettings.primaryColor) {
@@ -45,6 +45,10 @@ export class RoutesConfigService {
 
 				if (sideMenu) {
 					this.sharedDataService.setSideMenu(sideMenu);
+				}
+
+				if (team) {
+					this.sharedDataService.setTeam(team);
 				}
 				return templates[templateId] || templates["t1"];
 			}),

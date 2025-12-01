@@ -1,0 +1,312 @@
+<div class="col mt-3">
+	<h2>Team Management</h2>
+	<p class="">Manage your team members and display them on your website</p>
+
+	<div class="p-4">
+		<div class="d-flex justify-content-between align-items-center mb-4">
+			<h5 class="mb-0">Team Members</h5>
+			<p-button label="Add Team Member"
+					  icon="pi pi-plus"
+					  (onClick)="openAddMemberDialog()"
+					  styleClass="p-button-success"></p-button>
+		</div>
+
+		<p-table [value]="teamMembers"
+				 [paginator]="true"
+				 [rows]="10"
+				 [showCurrentPageReport]="true"
+				 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} team members"
+				 [rowsPerPageOptions]="[5, 10, 25]"
+				 styleClass="p-datatable-striped">
+			<ng-template pTemplate="header">
+				<tr>
+					<th>Name</th>
+					<th>Designation</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>Actions</th>
+				</tr>
+			</ng-template>
+
+			<ng-template pTemplate="body"
+						 let-member>
+				<tr>
+					<td>{{ member.firstName }} {{ member.lastName || '' }}</td>
+					<td>{{ member.designation }}</td>
+					<td>{{ member.emailAddress }}</td>
+					<td>{{ member.phoneNumber }}</td>
+					<td>
+						<div class="d-flex gap-2">
+							<p-button icon="bi bi-pencil"
+									  styleClass="p-button-text p-button-sm"
+									  pTooltip="Edit"
+									  (onClick)="openEditMemberDialog(member)"></p-button>
+							<p-button icon="bi bi-trash"
+									  styleClass="p-button-text p-button-danger p-button-sm"
+									  pTooltip="Delete"
+									  (onClick)="deleteMember(member)"></p-button>
+						</div>
+					</td>
+				</tr>
+			</ng-template>
+
+			<ng-template pTemplate="emptymessage">
+				<tr>
+					<td colspan="5"
+						class="text-center py-4">
+						<p class="text-muted mb-3">No team members found</p>
+					</td>
+				</tr>
+			</ng-template>
+		</p-table>
+	</div>
+
+	<p-dialog header="{{ editingMember ? 'Edit Team Member' : 'Add New Team Member' }}"
+			  [(visible)]="teamDialogVisible"
+			  [modal]="true"
+			  [style]="{ width: '800px' }"
+			  [closable]="true"
+			  [maximizable]="true">
+		<form [formGroup]="teamForm"
+			  (ngSubmit)="saveMember()">
+			<div class="row g-3">
+
+				<div class="col-md-6">
+					<div class="mb-3">
+						<p-iftalabel>
+							<input type="text"
+								   pInputText
+								   formControlName="firstName"
+								   placeholder="First Name"
+								   class="form-control"
+								   id="firstName"
+								   required />
+							<label for="firstName">First Name</label>
+						</p-iftalabel>
+						@if (firstName?.invalid && (firstName?.dirty || firstName?.touched)) {
+						<span class="error">
+							@if (firstName?.errors?.['required']) {
+							<span>First Name is required</span>
+							}
+						</span>
+						}
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="mb-3">
+						<p-iftalabel>
+							<input type="text"
+								   pInputText
+								   formControlName="lastName"
+								   placeholder="Last Name"
+								   class="form-control"
+								   id="lastName" />
+							<label for="lastName">Last Name</label>
+						</p-iftalabel>
+					</div>
+				</div>
+
+
+				<div class="col-md-6">
+					<div class="mb-3">
+						<p-iftalabel>
+							<input type="text"
+								   pInputText
+								   formControlName="designation"
+								   placeholder="Enter Designation"
+								   class="form-control"
+								   id="designation"
+								   required />
+							<label for="designation">Designation</label>
+						</p-iftalabel>
+						@if (designation?.invalid && (designation?.dirty || designation?.touched)) {
+						<span class="error">
+							@if (designation?.errors?.['required']) {
+							<span>Designation is required</span>
+							}
+						</span>
+						}
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="mb-3">
+						<p-iftalabel>
+							<input type="email"
+								   pInputText
+								   formControlName="emailAddress"
+								   placeholder="Enter email address"
+								   class="form-control"
+								   id="emailAddress"
+								   required />
+							<label for="emailAddress">Email Address</label>
+						</p-iftalabel>
+						@if (emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)) {
+						<span class="error">
+							@if (emailAddress?.errors?.['required']) {
+							<span>Email Address is required</span>
+							} @if (emailAddress?.errors?.['email']) {
+							<span>Enter a valid email address</span>
+							}
+						</span>
+						}
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="mb-3">
+						<p-iftalabel>
+							<p-inputmask mask="999-999-9999"
+										 formControlName="phoneNumber"
+										 styleClass="form-control"
+										 inputId="phoneNumber"
+										 required></p-inputmask>
+							<label for="phoneNumber">Phone Number</label>
+						</p-iftalabel>
+						@if (phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)) {
+						<span class="error">
+							@if (phoneNumber?.errors?.['required']) {
+							<span>Phone Number is required</span>
+							} @if (phoneNumber?.errors?.['pattern']) {
+							<span>Enter a valid phone number</span>
+							}
+						</span>
+						}
+					</div>
+				</div>
+
+				<div class="col-lg-6 col-12">
+					<div class="bg-white shadow-sm">
+						<h6 class="text-muted d-flex align-items-center">
+							<i class="fas fa-user-tie text-muted me-2"></i>
+							Profile Picture
+						</h6>
+						<div class="upload-container p-3 border rounded bg-light">
+							<label class="form-label fw-semibold d-block"
+								   style="font-size: 14px">
+								<i class="fas fa-user-circle me-2"></i>
+								Profile Picture
+							</label>
+							<input type="file"
+								   #profileImageUpload
+								   (change)="onProfileImageChange($event)"
+								   class="form-control upload-btn w-100"
+								   id="profileImageUpload"
+								   accept="image/*" />
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6 col-12">
+					@if (profileImageObservable | async; as profileImage) {
+					<div class="mt-3 p-2 border rounded bg-white shadow-sm">
+						<div class="text-center">
+							<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
+							<img [src]="profileImage"
+								 class="rounded border image-preview"
+								 alt="Profile Picture Preview" />
+						</div>
+					</div>
+					}
+				</div>
+
+				<div class="col-12">
+					<div class="mb-3">
+						<p-iftalabel>
+							<input type="url"
+								   pInputText
+								   formControlName="siteUrl"
+								   placeholder="https://example.com"
+								   class="form-control"
+								   id="siteUrl" />
+							<label for="siteUrl">Personal Website URL</label>
+						</p-iftalabel>
+						@if (siteUrl?.invalid && (siteUrl?.dirty || siteUrl?.touched)) {
+						<span class="error">
+							@if (siteUrl?.errors?.['pattern']) {
+							<span>Enter a valid website URL</span>
+							}
+						</span>
+						}
+					</div>
+				</div>
+
+				<div class="col-12">
+					<h6 class="border-bottom pb-2 mb-3">Social Media Links (Optional)</h6>
+				</div>
+
+				<div class="col-md-6">
+					<label for="facebook"
+						   class="form-label">
+						Facebook
+					</label>
+					<input pInputText
+						   id="facebook"
+						   formControlName="facebook"
+						   placeholder="https://facebook.com/username"
+						   class="w-100" />
+				</div>
+
+				<div class="col-md-6">
+					<label for="twitter"
+						   class="form-label">
+						Twitter
+					</label>
+					<input pInputText
+						   id="twitter"
+						   formControlName="twitter"
+						   placeholder="https://twitter.com/username"
+						   class="w-100" />
+				</div>
+
+				<div class="col-md-6">
+					<label for="instagram"
+						   class="form-label">
+						Instagram
+					</label>
+					<input pInputText
+						   id="instagram"
+						   formControlName="instagram"
+						   placeholder="https://instagram.com/username"
+						   class="w-100" />
+				</div>
+
+				<div class="col-md-6">
+					<label for="linkedin"
+						   class="form-label">
+						LinkedIn
+					</label>
+					<input pInputText
+						   id="linkedin"
+						   formControlName="linkedin"
+						   placeholder="https://linkedin.com/in/username"
+						   class="w-100" />
+				</div>
+
+				<div class="col-md-6">
+					<label for="youtube"
+						   class="form-label">
+						YouTube
+					</label>
+					<input pInputText
+						   id="youtube"
+						   formControlName="youtube"
+						   placeholder="https://youtube.com/channel/..."
+						   class="w-100" />
+				</div>
+			</div>
+		</form>
+
+		<ng-template pTemplate="footer">
+			<p-button label="Cancel"
+					  styleClass="p-button-text"
+					  (onClick)="cancelDialog()" />
+			<p-button label="Save Member"
+					  styleClass="p-button-success"
+					  (onClick)="saveMember()" />
+		</ng-template>
+	</p-dialog>
+
+	<p-confirmDialog />
+</div>

@@ -14,7 +14,8 @@ export interface CustomerModel {
 	address: string;
 	password: string;
 	confirmPassword: string;
-	role?: string;
+	role: string;
+	brokerId?: string;
 	siteUrl?: string;
 	profileImage: string;
 	brokerage?: BrokerageTypeModel | undefined;

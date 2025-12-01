@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
@@ -20,6 +21,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 		FeaturedPropertiesComponent,
 		PhoneNumberFormatPipe,
 		HeroContactFormComponent,
+		TeamCardComponent,
 	],
 	templateUrl: "./t20-home.component.html",
 	styleUrls: ["./t20-home.component.scss", "../t20.component.scss"],
