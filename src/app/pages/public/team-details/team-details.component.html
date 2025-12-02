@@ -1,0 +1,92 @@
+@if (loading) {
+<div class="container py-5">
+  <div class="text-center py-5">
+    <p>Loading team member details...</p>
+  </div>
+</div>
+} @else if (teamMember) {
+<div class="container py-5">
+  <div class="row g-4">
+
+    <div class="col-lg-8">
+      <div class="d-flex align-items-center mb-4">
+        <div>
+          <img [src]="teamMember.profileImage"
+               class="rounded-circle me-3"
+               width="110"
+               height="110"
+               [alt]="teamMember.firstName">
+        </div>
+
+        <div>
+          <h2 class="fw-bold mb-0">{{teamMember.firstName}} {{teamMember.lastName}}</h2>
+          <div class="text-muted small mt-1">{{teamMember.designation}}</div>
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <h5 class="fw-bold mb-3"><i class="bi bi-person-circle me-2 text-primary"></i>About Me</h5>
+          <p class="text-muted">{{teamMember.about}}</p>
+
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <h6 class="fw-bold mb-3">Office Location</h6>
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.google.com/maps?q=373+Steeles+Ave+W+Unit+202+Brampton,+ON+L6Y0P8&output=embed"
+                    allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="sticky-sidebar">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+
+            <h5 class="fw-bold mb-3"><i class="bi bi-telephone-outbound me-2 text-primary"></i>Contact Agent</h5>
+
+            <p class="mb-2"><i class="bi bi-envelope me-2 text-primary"></i><strong>Email:</strong> {{teamMember.emailAddress}}</p>
+            <p class="mb-2"><i class="bi bi-phone me-2 text-primary"></i><strong>Mobile:</strong> {{teamMember.phoneNumber}}</p>
+            <p class="mb-3"><i class="bi bi-geo-alt me-2 text-primary"></i><strong>Address:</strong><br>
+              {{teamMember.address}}
+            </p>
+
+            <form>
+              <input type="text"
+                     class="form-control mb-3"
+                     placeholder="Your Name">
+              <input type="email"
+                     class="form-control mb-3"
+                     placeholder="Email Address">
+              <input type="text"
+                     class="form-control mb-3"
+                     placeholder="Phone Number">
+              <textarea class="form-control mb-3"
+                        rows="4"
+                        placeholder="Your Message"></textarea>
+
+              <button type="submit"
+                      class="btn btn-primary w-100 fw-semibold">Send Message</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+} @else {
+<div class="container py-5">
+  <div class="text-center py-5">
+    <p>Team member not found.</p>
+    <a [routerLink]="['/team']"
+       class="btn btn-primary">Back to Team</a>
+  </div>
+</div>
+}

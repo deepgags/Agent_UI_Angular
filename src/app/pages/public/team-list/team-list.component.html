@@ -1,0 +1,60 @@
+<div class="p-0 container-fluid">
+	<div class="position-relative">
+		<img class="banner w-100"
+			 src="/images/banner3.png"
+			 alt="Banner Image" />
+		<div class="text-center position-absolute top-50 start-50 translate-middle">
+			<h1 class="text-white fw-bold baner-text">Our Team</h1>
+		</div>
+	</div>
+</div>
+
+<div class="container py-5">
+	<div class="row g-4">
+		@for (_team of teamMembers; track $index) {
+		<div class="col-6">
+			<div class="glass-card d-flex flex-column flex-md-row">
+				<div class="glass-img-wrapper">
+					<img [src]="_team.profileImage"
+						 class="glass-img"
+						 [alt]="_team.firstName" />
+
+					<div class="glass-social">
+						<i class="fab fa-facebook-f"></i>
+						<i class="fab fa-twitter"></i>
+						<i class="fab fa-linkedin-in"></i>
+						<i class="fab fa-instagram"></i>
+					</div>
+				</div>
+
+				<div class="p-4 flex-grow-1">
+					<h3 class="glass-name">{{ _team.firstName }} {{ _team.lastName }}</h3>
+					<p class="glass-role">{{ _team.designation }}</p>
+					<p>
+						<strong>Email:</strong>
+						{{ _team.emailAddress }}
+					</p>
+					<p>
+						<strong>Mobile:</strong>
+						{{ _team.phoneNumber }}
+					</p>
+
+					<p class="mb-3">
+						<strong>Visit My Site:</strong>
+						<a [href]="_team.siteUrl"
+						   target="_blank"
+						   class="ms-2 text-danger fs-5">
+							<i class="fa-solid fa-arrow-up-right-from-square"></i>
+						</a>
+					</p>
+
+					<a [routerLink]="['/team', _team._id]"
+					   class="">
+						View Details
+					</a>
+				</div>
+			</div>
+		</div>
+		}
+	</div>
+</div>

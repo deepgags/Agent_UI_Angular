@@ -15,8 +15,6 @@ import { TeamComponent } from "./pages/private/team/team.component";
 import { TemplateComponent } from "./pages/private/template/template.component";
 import { TestimonialComponent } from "./pages/private/testimonial/testimonial.component";
 import { UsersComponent } from "./pages/private/users/users.component";
-import { AgentComponent } from "./pages/public/agent-details/agent-details.component";
-import { AgentlistComponent } from "./pages/public/agent-list/agent-list.component";
 import { DreamComponent } from "./pages/public/dream-home/dream-home.component";
 import { ForgotComponent } from "./pages/public/forgot/forgot.component";
 import { HomeDetailComponent } from "./pages/public/home-detail/home-detail.component";
@@ -26,6 +24,8 @@ import { LoginComponent } from "./pages/public/login/login.component";
 import { NeighborDetailComponent } from "./pages/public/neighbor-detail/neighbor-detail.component";
 import { NotFoundComponent } from "./pages/public/not-found/not-found.component";
 import { RegisterComponent } from "./pages/public/register/register.component";
+import { TeamDetailComponent } from "./pages/public/team-details/team-details.component";
+import { TeamListComponent } from "./pages/public/team-list/team-list.component";
 import { TemplatesComponent } from "./pages/public/templates/templates.component";
 import { UserLoginComponent } from "./pages/public/user-login/user-login.component";
 import { UserSignupComponent } from "./pages/public/user-signup/user-signup.component";
@@ -42,8 +42,8 @@ export const routes: Routes = [
 	{ path: "thanks", component: ThankyouComponent },
 	{ path: "user-login", component: UserLoginComponent },
 	{ path: "user-signup", component: UserSignupComponent },
-	{ path: "agent-details", component: AgentComponent },
-	{ path: "agent-list", component: AgentlistComponent },
+	{ path: "team/:memberId", component: TeamDetailComponent },
+	{ path: "team", component: TeamListComponent },
 	{ path: "home-worth", component: WorthComponent },
 	{ path: "dream-home", component: DreamComponent },
 	{ path: "home-detail", component: HomeDetailComponent },

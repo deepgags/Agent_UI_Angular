@@ -8,6 +8,8 @@ export interface TeamMemberModel {
 	phoneNumber: string;
 	profileImage: string;
 	siteUrl?: string;
+	about?: string;
+	address?: string;
 	socialLinks: {
 		facebook: string;
 		twitter: string;

@@ -84,6 +84,8 @@ export class TeamComponent implements OnInit {
 			siteUrl: new FormControl("", [
 				Validators.pattern(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/),
 			]),
+			about: new FormControl(""),
+			address: new FormControl(""),
 			facebook: new FormControl(""),
 			twitter: new FormControl(""),
 			instagram: new FormControl(""),
@@ -128,6 +130,8 @@ export class TeamComponent implements OnInit {
 				phoneNumber: member.phoneNumber,
 				profileImage: member.profileImage,
 				siteUrl: member.siteUrl || "",
+				about: member.about || "",
+				address: member.address || "",
 				facebook: member.socialLinks?.facebook || "",
 				twitter: member.socialLinks?.twitter || "",
 				instagram: member.socialLinks?.instagram || "",
@@ -149,6 +153,8 @@ export class TeamComponent implements OnInit {
 				phoneNumber: formValue.phoneNumber,
 				profileImage: formValue.profileImage,
 				siteUrl: formValue.siteUrl,
+				about: formValue.about,
+				address: formValue.address,
 				socialLinks: {
 					facebook: formValue.facebook,
 					twitter: formValue.twitter,
@@ -299,5 +305,13 @@ export class TeamComponent implements OnInit {
 
 	get siteUrl() {
 		return this.teamForm.get("siteUrl");
+	}
+
+	get about() {
+		return this.teamForm.get("about");
+	}
+
+	get address() {
+		return this.teamForm.get("address");
 	}
 }

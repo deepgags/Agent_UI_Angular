@@ -12,8 +12,24 @@ export class TeamService {
 
 	constructor(private http: HttpClient) {}
 
+	getTeamMembersPublic(): Observable<{ status: boolean; message: string; data: TeamMemberModel[] }> {
+		return this.http.get<{ status: boolean; message: string; data: TeamMemberModel[] }>(
+			`${this.baseUrl}/team/public`
+		);
+	}
+
+	getTeamMemberDetailsPublic(id: string): Observable<{ status: boolean; message: string; data: TeamMemberModel }> {
+		return this.http.get<{ status: boolean; message: string; data: TeamMemberModel }>(
+			`${this.baseUrl}/team/details/${id}`
+		);
+	}
+
 	getTeamMembers(): Observable<{ status: boolean; message: string; data: TeamMemberModel[] }> {
 		return this.http.get<{ status: boolean; message: string; data: TeamMemberModel[] }>(`${this.baseUrl}/team`);
+	}
+
+	getTeamMemberById(id: string): Observable<{ status: boolean; message: string; data: TeamMemberModel }> {
+		return this.http.get<{ status: boolean; message: string; data: TeamMemberModel }>(`${this.baseUrl}/team/${id}`);
 	}
 
 	addTeamMember(
