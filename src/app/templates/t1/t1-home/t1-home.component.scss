@@ -1,19 +1,23 @@
-.background-container {
-    width: 100%;
-    position: relative;
-    height: 70vh;
-    background-image: url('/t1/images/banner.png');
-    background-size: cover;
-    background-position: center;
-  }
+#carouselExampleAutoplaying {
+  height: 70vh; 
+  overflow: hidden;
+  position: relative;
+}
+
+#carouselExampleAutoplaying .carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
   .overlay-image {
     position: absolute;
     bottom:0px;
     right: 20px;
     width: 465px;
   }
-
-      .hero-bg {
+  
+  .hero-bg {
       background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       min-height: 60vh;
     }

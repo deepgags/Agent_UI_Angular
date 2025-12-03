@@ -10,9 +10,10 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 
 @Component({
-	selector: "app-t15-home",
+	selector: "app-t21-home",
 	standalone: true,
 	imports: [
 		RouterModule,
@@ -20,12 +21,13 @@ import { SearchComponent } from "../../shared/search/search.component";
 		FeaturedPropertiesComponent,
 		HeroContactFormComponent,
 		PhoneNumberFormatPipe,
+		TeamCardComponent
 	],
-	templateUrl: "./t15-home.component.html",
-	styleUrls: ["./t15-home.component.scss", "../t15.component.scss"],
+	templateUrl: "./t21-home.component.html",
+	styleUrls: ["./t21-home.component.scss", "../t21.component.scss"],
 	providers: [Title, StorageService],
 })
-export class T15HomeComponent implements OnInit {
+export class T21HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
 

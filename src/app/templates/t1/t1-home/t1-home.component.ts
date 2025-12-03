@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation,AfterViewInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { CustomerModel } from "../../../models/CustomerModel";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
@@ -9,14 +10,16 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
 
+declare var bootstrap: any;
+
 @Component({
 	selector: "app-t1-home",
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberFormatPipe],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberFormatPipe,TeamCardComponent],
 	templateUrl: "./t1-home.component.html",
 	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./t1-home.component.scss", "../t1.component.scss"],
 })
-export class T1HomeComponent implements OnInit {
+export class T1HomeComponent implements OnInit ,AfterViewInit {
 	customer: CustomerModel | undefined;
 	siteConfig: SiteConfig = {} as SiteConfig;
 	siteConfigSubscription: any;
@@ -31,6 +34,18 @@ export class T1HomeComponent implements OnInit {
 		this.titleService.setTitle("Home");
 		this.siteConfig = this.sharedDataService.siteData();
 	}
+
+	 ngAfterViewInit(): void {
+    const carouselEl = document.querySelector("#carouselExampleAutoplaying");
+    if (carouselEl) {
+      new bootstrap.Carousel(carouselEl, {
+        interval: 2500,
+        ride: "carousel",
+        pause: false, 
+        wrap: true,   
+      });
+    }
+  }
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
 		this.searchService.goToSearch(selectedFilters, searchByMap);

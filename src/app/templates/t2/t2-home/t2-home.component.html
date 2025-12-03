@@ -1,4 +1,17 @@
-<div class="background-container search-container">
+	<div class=" search-container position-relative">
+	<div id="carouselExampleAutoplaying" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/t3/images/banner2.jpg" class="d-block w-100" alt="/t3/images/banner2.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="/t2/images/banner.png" class="d-block w-100" alt="/t3/images/banner2.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="/t4/images/banner.jpg" class="d-block w-100" alt="/t3/images/banner2.jpg">
+    </div>
+  </div>
+ </div>
 	<div class="first">
 		<img [src]="siteConfig.websiteSettings.profileImage ? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
 			 alt="No profile image"
@@ -207,7 +220,10 @@
     </div>
 </section>
 }
-<div class="container py-lg-5 p-lg-0 p-4">
+
+<app-team-card />
+
+<div class="container ">
 	<div class="row p-lg-4 p-3 estate-border">
 		<p class="fs-2 text-center mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
 		<div class="col">

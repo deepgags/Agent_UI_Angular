@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit,ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 import { RouterModule } from "@angular/router";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
@@ -13,7 +14,7 @@ declare var bootstrap: any;
 
 @Component({
 	selector: "app-t3-home",
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberFormatPipe],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberFormatPipe,TeamCardComponent],
 	templateUrl: "./t3-home.component.html",
 	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./t3-home.component.scss", "../t3.component.scss"],

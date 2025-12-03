@@ -5,6 +5,7 @@ import { HeroContactFormComponent } from "../../../components/hero-contact-form/
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SearchService } from "../../../services/search.service";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
@@ -13,7 +14,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 @Component({
 	selector: "app-t4-home",
 	standalone: true,
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, HeroContactFormComponent],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, HeroContactFormComponent,TeamCardComponent],
 	templateUrl: "./t4-home.component.html",
 	styleUrls: ["./t4-home.component.scss", "../t4.component.scss"],
 	providers: [Title, StorageService],

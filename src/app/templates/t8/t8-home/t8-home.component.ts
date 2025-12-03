@@ -14,6 +14,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 
 @Component({
 	selector: "app-t8-home",
@@ -28,6 +29,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 		MatInputModule,
 		HeroContactFormComponent,
 		PhoneNumberFormatPipe,
+		TeamCardComponent
 	],
 	templateUrl: "./t8-home.component.html",
 	styleUrls: ["./t8-home.component.scss", "../t8.component.scss"],

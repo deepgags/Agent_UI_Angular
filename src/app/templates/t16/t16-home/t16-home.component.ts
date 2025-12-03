@@ -8,11 +8,12 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 
 @Component({
 	selector: "app-t16-home",
 	standalone: true,
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent,TeamCardComponent],
 	templateUrl: "./t16-home.component.html",
 	styleUrls: ["./t16-home.component.scss", "../t16.component.scss"],
 	providers: [Title, StorageService],

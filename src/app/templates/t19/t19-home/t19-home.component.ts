@@ -10,6 +10,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 
 @Component({
 	selector: "app-t19-home",
@@ -20,6 +21,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 		FeaturedPropertiesComponent,
 		HeroContactFormComponent,
 		PhoneNumberFormatPipe,
+		TeamCardComponent,
 	],
 	templateUrl: "./t19-home.component.html",
 	styleUrls: ["./t19-home.component.scss", "../t19.component.scss"],

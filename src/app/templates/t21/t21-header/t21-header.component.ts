@@ -6,12 +6,12 @@ import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 
 @Component({
-	selector: "app-t15-header",
+	selector: "app-t21-header",
 	imports: [AngularSvgIconModule, PhoneNumberFormatPipe, RouterModule, MenuComponent, ],
-	templateUrl: "./t15-header.component.html",
-	styleUrls: ["./t15-header.component.scss", "../t15.component.scss"],
+	templateUrl: "./t21-header.component.html",
+	styleUrls: ["./t21-header.component.scss", "../t21.component.scss"],
 })
-export class T15HeaderComponent implements OnInit {
+export class T21HeaderComponent implements OnInit {
 	@Input("siteConfig") siteConfig: SiteConfig | any;
 
 	constructor() {}

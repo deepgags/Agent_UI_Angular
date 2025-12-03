@@ -10,11 +10,12 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 
 @Component({
 	selector: "app-t7-home",
 	standalone: true,
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, NgbModule, HeroContactFormComponent],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, NgbModule, HeroContactFormComponent,TeamCardComponent],
 	templateUrl: "./t7-home.component.html",
 	styleUrls: ["./t7-home.component.scss", "../t7.component.scss"],
 	providers: [Title, StorageService],

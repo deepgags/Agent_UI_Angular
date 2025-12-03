@@ -15,6 +15,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 
 @Component({
 	selector: "app-t17-home",
@@ -25,6 +26,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 		FeaturedPropertiesComponent,
 		PhoneNumberFormatPipe,
 		HeroContactFormComponent,
+		TeamCardComponent
 	],
 	templateUrl: "./t17-home.component.html",
 	styleUrls: ["./t17-home.component.scss", "../t17.component.scss"],

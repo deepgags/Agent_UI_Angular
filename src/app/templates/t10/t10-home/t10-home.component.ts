@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,AfterViewInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -15,6 +15,10 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
+
+
+declare var bootstrap: any;
 
 @Component({
 	selector: "app-t10-home",
@@ -25,12 +29,13 @@ import { SearchComponent } from "../../shared/search/search.component";
 		FeaturedPropertiesComponent,
 		HeroContactFormComponent,
 		PhoneNumberFormatPipe,
+		TeamCardComponent
 	],
 	templateUrl: "./t10-home.component.html",
 	styleUrls: ["./t10-home.component.scss", "../t10.component.scss"],
 	providers: [Title, StorageService],
 })
-export class T10HomeComponent implements OnInit {
+export class T10HomeComponent implements OnInit,AfterViewInit {
 	customer!: CustomerModel | null;
 	userForm!: FormGroup;
 	siteConfig: SiteConfig = {} as SiteConfig;
@@ -45,6 +50,17 @@ export class T10HomeComponent implements OnInit {
 		this.titleService.setTitle("Home");
 		this.siteConfig = this.sharedDataService.siteData();
 	}
+	 ngAfterViewInit(): void {
+    const carouselEl = document.querySelector("#carouselExampleAutoplaying");
+    if (carouselEl) {
+      new bootstrap.Carousel(carouselEl, {
+        interval: 2500,
+        ride: "carousel",
+        pause: false, 
+        wrap: true,   
+      });
+    }
+  }
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
 		this.searchService.goToSearch(selectedFilters, searchByMap);

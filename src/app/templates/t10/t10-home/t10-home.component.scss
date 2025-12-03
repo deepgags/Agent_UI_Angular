@@ -202,3 +202,21 @@ cursor:pointer ;
     .card-simple:hover {
         transform: translateY(-5px);
     }
+    #social{
+      p,a{
+        font-size: 11px;
+      }
+    }
+
+    #carouselExampleAutoplaying {
+  height: 70vh; 
+  overflow: hidden;
+  position: relative;
+}
+
+#carouselExampleAutoplaying .carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}

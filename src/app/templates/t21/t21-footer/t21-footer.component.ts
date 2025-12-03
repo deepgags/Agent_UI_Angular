@@ -5,12 +5,12 @@ import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 
 @Component({
-	selector: "app-t15-footer",
+	selector: "app-t21-footer",
 	imports: [PhoneNumberFormatPipe, AngularSvgIconModule, RouterModule],
-	templateUrl: "./t15-footer.component.html",
-	styleUrls: ["./t15-footer.component.scss", "../t15.component.scss"],
+	templateUrl: "./t21-footer.component.html",
+	styleUrls: ["./t21-footer.component.scss", "../t21.component.scss"],
 })
-export class T15FooterComponent implements OnInit {
+export class T21FooterComponent implements OnInit {
 	@Input("siteConfig") siteConfig: SiteConfig | null = null;
 
 	constructor() {}

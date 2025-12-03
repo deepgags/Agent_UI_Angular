@@ -3,6 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { CustomerModel } from "../../../models/CustomerModel";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
@@ -20,6 +21,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 		FeaturedPropertiesComponent,
 		HeroContactFormComponent,
 		PhoneNumberFormatPipe,
+		TeamCardComponent,
 	],
 	templateUrl: "./t5-home.component.html",
 	styleUrls: ["./t5-home.component.scss", "../t5.component.scss"],

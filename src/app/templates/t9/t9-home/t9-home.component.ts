@@ -9,11 +9,12 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 
 @Component({
 	selector: "app-t9-home",
 	standalone: true,
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, HeroContactFormComponent],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, HeroContactFormComponent,TeamCardComponent],
 	templateUrl: "./t9-home.component.html",
 	styleUrls: ["./t9-home.component.scss", "../t9.component.scss"],
 	providers: [Title, StorageService],
