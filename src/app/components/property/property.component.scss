@@ -8,6 +8,8 @@
 	img {
 		max-height: 250px;
 		width: 100%;
+		scale: 1.5;
+		object-fit: cover;
 	}
 }
 
@@ -37,6 +39,3 @@
 	right: 10px;
 }
 
-.card-body {
-	min-height: 180px;
-}
