@@ -64,7 +64,7 @@ export const routes: Routes = [
 			{ path: "template", component: TemplateComponent },
 			{ path: "payment", component: PaymentComponent },
 			{ path: "users", component: UsersComponent },
-			{ path: "team", component: TeamComponent, canActivate: [brokerGuard] },
+			{ path: "manage-team", component: TeamComponent, canActivate: [brokerGuard] },
 		],
 		canActivate: [authGuard],
 	},

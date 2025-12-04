@@ -45,6 +45,11 @@ export class RegisterComponent implements OnInit {
 	brokerageTypes: string[] = [];
 	_brokerageTypesCopy: string[] = [];
 
+	userRoles = [
+		{ label: "Agent", value: "Agent" },
+		{ label: "Broker", value: "Broker" },
+	];
+
 	newSelectedProfileImage: BehaviorSubject<string>;
 	newSelectedProfileImageObservable: Observable<string>;
 	newSelectedLogoImage: string = "";
@@ -100,6 +105,10 @@ export class RegisterComponent implements OnInit {
 		return this.customerForm.get("confirmPassword");
 	}
 
+	get role() {
+		return this.customerForm.get("role");
+	}
+
 	ngOnInit() {
 		this.customerForm = this.fb.group({
 			businessName: new FormControl("", Validators.required),
@@ -114,6 +123,7 @@ export class RegisterComponent implements OnInit {
 			// cellNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			address: new FormControl(""),
+			role: new FormControl("", Validators.required),
 			password: new FormControl("", [
 				Validators.required,
 				Validators.pattern("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"),
@@ -198,6 +208,7 @@ export class RegisterComponent implements OnInit {
 				// cellNumber,
 				emailAddress,
 				address,
+				role,
 				password,
 				confirmPassword,
 			} = this.customerForm.value;
@@ -209,6 +220,7 @@ export class RegisterComponent implements OnInit {
 				lastName: lastName,
 				emailAddress: emailAddress,
 				phoneNumber: phoneNumber,
+				role: role,
 				password: password,
 				confirmPassword: confirmPassword,
 				profileImage: this.newSelectedProfileImage.value,

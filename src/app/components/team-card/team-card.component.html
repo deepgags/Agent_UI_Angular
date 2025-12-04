@@ -24,7 +24,7 @@
 					<p class="premium-phone">{{_team.phoneNumber}}</p>
 					<p class="premium-title">{{_team.designation}}</p>
 
-					<a href="#"
+					<a [routerLink]="['/team', _team._id]"
 					   class="premium-btn">View Details</a>
 				</div>
 			</div>

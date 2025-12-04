@@ -92,6 +92,24 @@
         <!-- Personal Information Section -->
         <div class="mb-3">
           <h6 class="text-muted mb-3 border-bottom pb-1">Account Information</h6>
+          <div class="mb-3">
+            <p-iftalabel>
+              <p-select formControlName="role"
+                        [options]="userRoles"
+                        optionLabel="label"
+                        optionValue="value"
+                        placeholder="Select your role *"
+                        styleClass="w-100" />
+              <label for="role">Select your account role</label>
+            </p-iftalabel>
+            @if (role?.invalid && (role?.dirty || role?.touched)) {
+            <span class="error">
+              @if (role?.errors?.['required']) {
+              <span>Role is required</span>
+              }
+            </span>
+            }
+          </div>
           <div class="row">
             <div class="col-md-6">
               <div class="mb-3">
