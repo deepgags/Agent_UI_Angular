@@ -6,7 +6,8 @@
 			@if(property && property.Media && property.Media.length>0){
 			<img [src]="imageUrl + property.Media[0].Media_url"
 				 alt="No property image to display"
-				 onerror="this.src = '/images/commercial_no_Image.jpg'" />
+				 onerror="this.src = '/images/commercial_no_Image.jpg'"
+				  class="property-img" />
 			} @else {
 			<img src="/images/commercial_no_Image.jpg"
 				 class="card-img-top"
@@ -30,9 +31,10 @@
 				  [ngClass]="{ 'location': property.IsFeatureListing }"
 				  style="width: 25px;">
 			</span>
-			<p class="card-text  mb-1 d-flex py-1"><i class="fa-solid fa-location-dot info mt-1 me-1"></i>
-				xxxxxxxxxxxxxxx xxxxxx xxxxxxxx
-			</p>
+		<p class="card-text mb-1 d-flex py-1 text-truncate" style="max-width: 100%;">
+    <i class="fa-solid fa-location-dot info mt-1 me-1"></i>
+    <span class="text-truncate">{{ property.UnparsedAddress }}</span>
+</p>
 			<div class="d-flex justify-content-between align-items-center">
 				<div class="d-flex align-items-center">
 					<div class="me-3"
@@ -59,11 +61,12 @@
 					}
 				</div>
 
-				<p class="info  pt-2 mb-0 fw-semibold">MLS® xxxxxx</p>
 			</div>
 
 			<div class="d-flex justify-content-between align-items-center">
-				<p class="info pt-2 mb-0 fw-semibold">{{property.ListOfficeName}}</p>
+				<!-- <p class="info pt-2 mb-0 fw-semibold">{{property.ListOfficeName}}</p> -->
+				<p class="info  pt-2 mb-0 fw-semibold">MLS® xxxxxx</p>
+
 				<small class="text-muted">{{property.ModificationTimestamp | timeAgo}}</small>
 			</div>
 		</div>
@@ -90,10 +93,12 @@
 				<ng-template let-media
 							 #item>
 					<div>
-						<img [src]="imageUrl + media.Media_url"
-							 alt="No property image to display"
-							 onerror="this.src = '/images/commercial_no_Image.jpg'"
-							 (click)="onPropertyClick(property)" />
+					<img [src]="imageUrl + media.Media_url"
+     alt="No property image to display"
+     onerror="this.src = '/images/commercial_no_Image.jpg'"
+     (click)="onPropertyClick(property)"
+     class="property-img" />
+
 
 						<button type="button"
 								role="navigation"
@@ -136,13 +141,13 @@
 				 (click)="onPropertyClick(property)" />
 			}
 		</div>
-		<div class="card-body"
+		<div class="card-body pt-1"
 			 (click)="onPropertyClick(property)">
 			<div class="d-flex justify-content-between align-items-center">
-				<p class="mb-1 fs-4 fw-semibold">{{property.ListPrice | currency: 'USD' : '$': '1.0-0'}}
+				<p class="mb-1 fs-6 fw-semibold">{{property.ListPrice | currency: 'USD' : '$': '1.0-0'}}
 					<span>{{property.ListPriceUnit}}</span>
 				</p>
-				<span class="fw-semibold">{{property.PropertySubType}}</span>
+				<p class="mb-0 fw-semibold" style="font-size: 10px;">{{property.PropertySubType}}</p>
 			</div>
 			<span class="badge text_bg rounded-pill">{{property.TransactionType}}</span>
 			<span class="text_bg2 text-white"
