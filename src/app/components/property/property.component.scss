@@ -6,6 +6,7 @@
 	position: relative;
 
 }
+
 .property-img {
     height: 200px;          
     width: 100%;            
@@ -17,7 +18,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 
 .property-wrapper {
 	position: relative;
@@ -49,4 +49,8 @@
 	span,p{
 		font-size: 12px !important;
 	}
+}
+
+.border-light-subtle{
+    border-color: #e9ecef8a !important;
 }
