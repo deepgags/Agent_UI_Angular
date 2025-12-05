@@ -50,17 +50,31 @@
 			   [(ngModel)]="filters.address"
 			   class="search-bar"
 			   placeholder="City, Address, Postal Code, MLS®#" /> -->
-		<!-- <input type="text"
-			   [(ngModel)]="filters.address"
-			   class="search-bar"
-			   placeholder="City, Address, Postal Code, MLS®#" /> -->
 		<p-autocomplete [(ngModel)]="filters.address"
-						[suggestions]="cities"
-						optionLabel="city"
-						optionValue="city"
-						placeholder="Search City"
+						[suggestions]="propertiesSuggestions"
+						optionLabel="address"
+						optionValue="address"
+						placeholder="Search City, Address, Postal Code, MLS#"
 						appendTo="body"
-						(completeMethod)="searchCityProvince($event)" />
+						[lazy]="true"
+						(completeMethod)="searchCityProvince($event)">
+			<ng-template let-property
+						 #item>
+				<div class="d-flex align-items-center gap-3 p-2 border-bottom">
+					<img [src]="imageUrl+property.image"
+						 class="rounded"
+						 style="width: 40px; height: 40px; object-fit: cover;" />
+					<div class="flex-grow-1">
+						<strong>{{ property.address }}</strong>
+						<br>
+						<small class="text-muted">MLS®# {{ property.mls }}</small>
+					</div>
+				</div>
+			</ng-template>
+			<ng-template #header>
+				<div class="font-medium px-3 py-2">Available Properties</div>
+			</ng-template>
+		</p-autocomplete>
 
 	</div>
 

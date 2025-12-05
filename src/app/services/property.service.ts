@@ -383,4 +383,8 @@ export class PropertyService {
 			this._openPropertyDetails1(property, selectedFilters);
 		}
 	};
+
+	findPropertyFromMlsOrAddress(query: string): Observable<any> {
+		return this.http.get(`${environment.baseUrl}/properties/find?q=${query}&limit=50`);
+	}
 }

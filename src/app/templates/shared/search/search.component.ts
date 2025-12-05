@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectorRef, Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from "primeng/autocomplete";
@@ -17,20 +17,33 @@ import {
 import { LoadingService } from "../../../services/loading.service";
 import { PropertyService } from "../../../services/property.service";
 
+import { InputGroupModule } from "primeng/inputgroup";
+import { InputGroupAddonModule } from "primeng/inputgroupaddon";
+import { environment } from "../../../environments/environment.development";
 @Component({
 	selector: "app-search",
-	imports: [FormsModule, AutoCompleteModule, SelectModule, InputNumberModule, DialogModule],
+	imports: [
+		FormsModule,
+		AutoCompleteModule,
+		SelectModule,
+		InputNumberModule,
+		DialogModule,
+		InputGroupModule,
+		InputGroupAddonModule,
+	],
 	templateUrl: "./search.component.html",
 	styleUrls: ["./search.component.scss"],
 	encapsulation: ViewEncapsulation.None,
 	standalone: true,
 })
 export class SearchComponent implements OnInit {
+	imageUrl = environment.imageUrl;
 	@Input("onSearch") onSearch: Function = () => {};
 
 	@Input("showMapSearch") showMapSearch = true;
 
 	_filtersDefault: any = {
+		searchUsing: "ADDRESS",
 		address: "",
 		property_type: "",
 		property_subtype: "",
@@ -45,8 +58,9 @@ export class SearchComponent implements OnInit {
 
 	@Input("filters") filters: any = { ...this._filtersDefault };
 
-	private _cities: any = [];
-	cities: any = [];
+	// private _cities: any = [];
+	// cities: any = [];
+	propertiesSuggestions: any = [];
 	propertyTypesDropDown: any = [];
 	propertySubTypesDropDown: any = [];
 	private _allPropertySubTypes: any = [];
@@ -64,7 +78,8 @@ export class SearchComponent implements OnInit {
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
 		private propertyService: PropertyService,
-		public loadingService: LoadingService
+		public loadingService: LoadingService,
+		private cdr: ChangeDetectorRef
 	) {}
 
 	ngOnInit(): void {
@@ -110,7 +125,7 @@ export class SearchComponent implements OnInit {
 	getPropertyTypeDropdowns() {
 		this.propertyService.getPropertyTypes().subscribe({
 			next: (response) => {
-				this._cities = response.cities;
+				// this._cities = response.cities;
 				this.propertyTypesDropDown = response.propertyTypes;
 				this._allPropertySubTypes = response.propertySubTypes;
 				this.filters.property_type = response.propertyTypes[0].LookupValue;
@@ -138,10 +153,21 @@ export class SearchComponent implements OnInit {
 	}
 
 	searchCityProvince(event: AutoCompleteCompleteEvent) {
-		this.cities = this._cities.filter((item: any) =>
-			// item.province_name?.toLowerCase().startsWith(event.query.toLowerCase()) ||
-			item.city?.toLowerCase().startsWith(event.query.toLowerCase())
-		);
+		// this.propertiesSuggestions = [];
+		// this.cities = this._cities.filter((item: any) =>
+		// 	// item.province_name?.toLowerCase().startsWith(event.query.toLowerCase()) ||
+		// 	item.city?.toLowerCase().startsWith(event.query.toLowerCase())
+		// );
+		if (event.query && event.query.length > 3) {
+			this.propertyService.findPropertyFromMlsOrAddress(event.query.toLowerCase()).subscribe({
+				next: (res) => {
+					this.propertiesSuggestions = res.data;
+					this.cdr.detectChanges();
+				},
+				error: (err) => {},
+				complete: () => {},
+			});
+		}
 	}
 
 	setFiltersFromQueryParams = () => {
