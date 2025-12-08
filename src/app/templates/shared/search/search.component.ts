@@ -128,7 +128,7 @@ export class SearchComponent implements OnInit {
 				// this._cities = response.cities;
 				this.propertyTypesDropDown = response.propertyTypes;
 				this._allPropertySubTypes = response.propertySubTypes;
-				this.filters.property_type = response.propertyTypes[0].LookupValue;
+				// this.filters.property_type = response.propertyTypes[0].LookupValue;
 				this.filterPropertySubType();
 				setTimeout(() => {
 					this.setFiltersFromQueryParams();
