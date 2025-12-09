@@ -57,7 +57,8 @@
 						placeholder="Search City, Address, Postal Code, MLS#"
 						appendTo="body"
 						[lazy]="true"
-						(completeMethod)="searchCityProvince($event)">
+						(completeMethod)="searchCityProvince($event)"
+						(onSelect)="onSuggestionSelect()">
 			<ng-template let-property
 						 #item>
 				<div class="d-flex align-items-center gap-3 p-2 border-bottom">

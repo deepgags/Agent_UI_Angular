@@ -236,4 +236,8 @@ export class SearchComponent implements OnInit {
 	closeFilterDialog() {
 		this.showFilterDialog = false;
 	}
+
+	onSuggestionSelect() {
+		this.searchProperties();
+	}
 }
