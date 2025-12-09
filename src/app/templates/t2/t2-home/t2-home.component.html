@@ -149,24 +149,6 @@
 		</div>
 	</div>
 </div>
-
-<div class="container-fluid menu_img">
-	<div class="container">
-		<div class="row justify-content-center">
-			<p class="fs-1 text-center fw-semibold pb-3 pt-5">Search Your Dream Home</p>
-			<div class="col-12 bg-white p-4 mb-5">
-				<app-search [onSearch]="searchProperties" />
-			</div>
-		</div>
-	</div>
-</div>
-<div class="container-fluid sec-3">
-	<div class="container py-lg-5 p-lg-0 p-4">
-		<p class="fs-1 text-center mb-0 fw-semibold">Featured Properties</p>
-		<p class="text-center fw-normal"></p>
-		<app-featured-properties />
-	</div>
-</div>
 @if(
   siteConfig.websiteSettings.showHomeWorthPage ||
   siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
@@ -221,13 +203,32 @@
 </section>
 }
 
+<div class="container-fluid menu_img">
+	<div class="container">
+		<div class="row justify-content-center">
+			<p class="fs-1 text-center fw-semibold pb-3 pt-5">Search Your Dream Home</p>
+			<div class="col-12 bg-white p-4 mb-5">
+				<app-search [onSearch]="searchProperties" />
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid sec-3">
+	<div class="container py-lg-5 p-lg-0 p-4">
+		<p class="fs-1 text-center mb-0 fw-semibold">Featured Properties</p>
+		<p class="text-center fw-normal"></p>
+		<app-featured-properties />
+	</div>
+</div>
+
+
 <app-team-card />
 
 <div class="container ">
 	<div class="row p-lg-4 p-3 estate-border">
 		<p class="fs-2 text-center mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
 		<div class="col">
-			<p class="estate fs-2 text-center">Real Estate {{ siteConfig.designation }} {{siteConfig.firstName}} {{siteConfig.lastName}} </p>
+			<p class="estate fs-2 text-center">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
 			<p class="text-center fw-semibold small text-secondary">
 				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my
 				clients to insure that they are always in a position to make informed decisions.Every engagement is an opportunity to create

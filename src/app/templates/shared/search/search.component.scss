@@ -27,13 +27,26 @@
     width: 300px;
 }
 
+.placeholder{
+  color: black !important;
+}
+
+span,li{
+  font-size: 12px !important;
+}
+
 .mat-mdc-paginator-page-size-label {
     font-size: 13px;
-  }
-  .mat-mdc-paginator-range-label {
-    font-size: 13px;
-  }
+}
 
-  .cursor{
+.mat-mdc-paginator-range-label {
+    font-size: 13px;
+}
+
+.cursor{
     cursor: pointer;
-  }
+}
+
+.wid input {
+  width: 90px !important;
+}

@@ -185,16 +185,6 @@
 	</div>
 </div>
 
-<app-team-card />
-
-
-<div class="container-fluid search-container">
-	<div class="container pb-5">
-		<p class="text text-center py-3 fw-semibold">Featured Properties</p>
-		<app-featured-properties />
-	</div>
-</div>
-
 @if(
   siteConfig.websiteSettings.showHomeWorthPage ||
   siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
@@ -241,6 +231,16 @@
     </div>
 </section>
 }
+<app-team-card />
+
+
+<div class="container-fluid search-container">
+	<div class="container pb-5">
+		<p class="text text-center py-3 fw-semibold">Featured Properties</p>
+		<app-featured-properties />
+	</div>
+</div>
+
 
 <div class="container text-center py-5">
 	<p class="text text-center fw-semibold">Find Properties in These Cities</p>
@@ -287,7 +287,7 @@
 			<h2 class=" fw-semibold">
 				"Enjoy a clear and simple <br> home-buying experience"
 			</h2>
-			<p class="info fs-4">Real Estate {{ siteConfig.designation }} {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+			<p class="info fs-4">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
 			<p class=" fw-normal">
 				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
 				educate and prepare my clients to insure that they are always in a position to make informed decisions.

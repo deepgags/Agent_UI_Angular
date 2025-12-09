@@ -5,39 +5,21 @@
 
 	<div class="row g-4">
 		<div class="col-md-6">
-			<p-inputnumber [(ngModel)]="filters.min_price"
-						   mode="decimal"
-						   [minFractionDigits]="0"
-						   [maxFractionDigits]="2"
-						   prefix="$"
-						   placeholder="Min. Price"
-						   class="w-100" />
+		
 		</div>
 		<div class="col-md-6">
-			<p-inputnumber [(ngModel)]="filters.max_price"
-						   mode="decimal"
-						   [minFractionDigits]="0"
-						   [maxFractionDigits]="2"
-						   prefix="$"
-						   placeholder="Max. Price"
-						   class="w-100" />
+			
 		</div>
-		<div class="col-md-6">
-			<p-select [options]="sqFtTypesDropDown"
-					  [(ngModel)]="filters.sqFt"
-					  optionLabel="label"
-					  optionValue="value"
-					  placeholder="Select Area"
-					  appendTo="body"
-					  class="w-100" />
+		<div class="col-md-2">
+		
 		</div>
 	</div>
 	<div class="mt-4 d-flex gap-1 justify-content-end">
 		<button type="button"
 				class="btn btn-secondary btn-sm rounded-3 me-2"
 				(click)="resetMoreFilters()">Reset</button>
-		<!-- <button type="button"
-				class="btn btn-secondary rounded-3 btn-sm">Close</button> -->
+		<button type="button"
+				class="btn btn-secondary rounded-3 btn-sm">Close</button>
 		<button type="button"
 				class="btn search_btn btn-sm"
 				(click)="searchProperties()">Apply</button>
@@ -80,11 +62,40 @@
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+				<p-select [options]="sqFtTypesDropDown"
+					  [(ngModel)]="filters.sqFt"
+					  optionLabel="label"
+					  optionValue="value"
+					  placeholder="Select Area"
+					  appendTo="body"
+					  class=""/>
+	</div>
+
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+			<p-inputnumber [(ngModel)]="filters.min_price"
+						   mode="decimal"
+						   [minFractionDigits]="0"
+						   [maxFractionDigits]="2"
+						   prefix="$"
+						   placeholder="Min. Price"
+						    class="wid"/>
+	</div>
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+<p-inputnumber [(ngModel)]="filters.max_price"
+						   mode="decimal"
+						   [minFractionDigits]="0"
+						   [maxFractionDigits]="2"
+						   prefix="$"
+						   placeholder="Max. Price"
+						   class="wid" />
+							</div>
+
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
 		<p-select [options]="propertyTypesDropDown"
 				  [(ngModel)]="filters.property_type"
 				  optionLabel="LookupValue"
 				  optionValue="LookupValue"
-				  placeholder="Select Property Type"
+				  placeholder="Select Property"
 				  appendTo="body"
 				  (onChange)="filterPropertySubType()" />
 	</div>
@@ -125,11 +136,11 @@
 				  appendTo="body" />
 	</div>
 
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<!-- <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
 		<span (click)="openFilterDialog()">
 			<i class="fa-solid fa-filter info fs-6 cursor"></i>
 		</span>
-	</div>
+	</div> -->
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex align-items-center gap-2">
 		<button type="button"
@@ -138,12 +149,12 @@
 
 		<button type="button"
 				class="btn search_btn btn-sm"
-				(click)="searchProperties()">Search</button>
+				(click)="searchProperties()"><i class="bi bi-search"></i></button>
 
 		@if (showMapSearch==true) {
 		<button type="button"
 				class="btn search_btn btn-sm"
-				(click)="searchProperties(true)">Map Search</button>
+				(click)="searchProperties(true)"><i class="bi bi-compass"></i></button>
 		}
 	</div>
 

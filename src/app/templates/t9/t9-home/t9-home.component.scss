@@ -169,3 +169,19 @@ $info:#003580;
             padding: 0;
         }
     }
+
+     .card-simple {
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(6px);
+        transition: transform 0.2s ease-in-out;
+    }
+    .card-simple:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    .card-icon {
+        font-size: 2rem;
+        color: #00ffc3;
+    }
