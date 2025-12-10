@@ -136,6 +136,15 @@ export class NeighborDetailComponent implements OnInit {
 		return this.neighborDetailForm.get("phone");
 	}
 
+	get beds() {
+  return this.neighborDetailForm.get('beds');
+}
+
+get baths() {
+  return this.neighborDetailForm.get('baths');
+}
+
+
 	submitNeighborDetailForm() {
 		if (this.neighborDetailForm.invalid) {
 			this.neighborDetailForm.markAllAsTouched();
