@@ -109,6 +109,60 @@
 	</div>
 </div>
 
+@if(
+  siteConfig.websiteSettings.showHomeWorthPage ||
+  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+  siteConfig.websiteSettings.showFindDreamHomePage
+){
+<section class="py-5 position-relative hero-bg text-white">
+	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
+
+    <div class="container">
+        <div class="row justify-content-center g-4">
+
+            @if(siteConfig.websiteSettings.showHomeWorthPage){
+            <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-duration="800">
+                <div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
+                    <div class="icon-wrapper bg-primary bg-opacity-25 text-primary mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
+                        <i class="bi bi-house-heart-fill fs-2"></i>
+                    </div>
+                    <h5 class="fw-bold text-uppercase mb-3">Home Evaluation</h5>
+                    <p class="small opacity-75 mb-4">Find out how much your home is worth for free</p>
+                    <a href="/home-worth" target="_blank" class="btn btn-gradient px-4 py-2 rounded-pill">Check Worth</a>
+                </div>
+            </div>
+            }
+
+            @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
+            <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">
+                <div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
+                    <div class="icon-wrapper bg-warning bg-opacity-25 text-warning mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
+                        <i class="bi bi-pin-map-fill fs-2"></i>
+                    </div>
+                    <h5 class="fw-bold text-uppercase mb-3">Neighbourhood Watch</h5>
+                    <p class="small opacity-75 mb-4">Get alerts when neighbours list their homes for sale.</p>
+                    <a href="/neighbor-detail" target="_blank" class="btn btn-gradient-warning px-4 py-2 rounded-pill">Get Alerts</a>
+                </div>
+            </div>
+            }
+
+            @if(siteConfig.websiteSettings.showFindDreamHomePage){
+            <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+                <div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
+                    <div class="icon-wrapper bg-success bg-opacity-25 text-success mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
+                        <i class="bi bi-search-heart fs-2"></i>
+                    </div>
+                    <h5 class="fw-bold text-uppercase mb-3">Dream Home Finder</h5>
+                    <p class="small opacity-75 mb-4">Search million-dollar listings and hidden gems alike.</p>
+                    <a href="/dream-home" target="_blank" class="btn btn-gradient-success px-4 py-2 rounded-pill">Explore</a>
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+</section>
+}
 <div class="container">
 	<div class="py-5">
 		<h2 class="text-center">Find Properties in These Cities</h2>
@@ -240,7 +294,7 @@
 			<h1 class="display-6 fw-semibold">
 				"Enjoy a clear and simple home-buying experience"
 			</h1>
-			<p class="text-2 info fs-4">Real Estate {{ siteConfig.designation }} {{siteConfig.firstName}} {{siteConfig.lastName}}</p>
+			<p class="text-2 info fs-4">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
 			<p class=" fw-normal">
 				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always
 				in a position to make informed decisions. Every engagement is an opportunity to create a lasting impression and a forever client.
@@ -269,60 +323,6 @@
 </div>
 
 
-@if(
-  siteConfig.websiteSettings.showHomeWorthPage ||
-  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-  siteConfig.websiteSettings.showFindDreamHomePage
-){
-<section class="py-5 position-relative hero-bg text-white">
-	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
-
-    <div class="container">
-        <div class="row justify-content-center g-4">
-
-            @if(siteConfig.websiteSettings.showHomeWorthPage){
-            <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-duration="800">
-                <div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
-                    <div class="icon-wrapper bg-primary bg-opacity-25 text-primary mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
-                        <i class="bi bi-house-heart-fill fs-2"></i>
-                    </div>
-                    <h5 class="fw-bold text-uppercase mb-3">Home Evaluation</h5>
-                    <p class="small opacity-75 mb-4">Find out how much your home is worth for free</p>
-                    <a href="/home-worth" target="_blank" class="btn btn-gradient px-4 py-2 rounded-pill">Check Worth</a>
-                </div>
-            </div>
-            }
-
-            @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
-            <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">
-                <div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
-                    <div class="icon-wrapper bg-warning bg-opacity-25 text-warning mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
-                        <i class="bi bi-pin-map-fill fs-2"></i>
-                    </div>
-                    <h5 class="fw-bold text-uppercase mb-3">Neighbourhood Watch</h5>
-                    <p class="small opacity-75 mb-4">Get alerts when neighbours list their homes for sale.</p>
-                    <a href="/neighbor-detail" target="_blank" class="btn btn-gradient-warning px-4 py-2 rounded-pill">Get Alerts</a>
-                </div>
-            </div>
-            }
-
-            @if(siteConfig.websiteSettings.showFindDreamHomePage){
-            <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
-                <div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
-                    <div class="icon-wrapper bg-success bg-opacity-25 text-success mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
-                        <i class="bi bi-search-heart fs-2"></i>
-                    </div>
-                    <h5 class="fw-bold text-uppercase mb-3">Dream Home Finder</h5>
-                    <p class="small opacity-75 mb-4">Search million-dollar listings and hidden gems alike.</p>
-                    <a href="/dream-home" target="_blank" class="btn btn-gradient-success px-4 py-2 rounded-pill">Explore</a>
-                </div>
-            </div>
-            }
-
-        </div>
-    </div>
-</section>
-}
 
 <app-team-card />
 

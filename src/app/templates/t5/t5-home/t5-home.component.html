@@ -96,7 +96,7 @@
 		<div class="row p-lg-4 p-3">
 			<p class="text mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
 			<div class="col">
-				<p class="estate text-center">Real Estate {{ siteConfig.designation }} {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+				<p class="estate text-center">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
 				<p class="text-center fw-semibold">
 					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare
 					my clients to insure that they are always in a position to make informed decisions.Every engagement is an opportunity to
@@ -111,6 +111,52 @@
 		</div>
 	</div>
 </div>
+@if(
+  siteConfig.websiteSettings.showHomeWorthPage ||
+  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+  siteConfig.websiteSettings.showFindDreamHomePage
+){
+<section class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="row justify-content-center g-4">
+
+            @if(siteConfig.websiteSettings.showHomeWorthPage){
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card-simple text-center p-4">
+                    <i class="bi bi-house-heart-fill card-icon mb-3"></i>
+                    <h5 class="fw-bold text-uppercase mb-2">Home Evaluation</h5>
+                    <p class="small opacity-75 mb-3">Find out your home’s worth instantly.</p>
+                    <a href="/home-worth" class="btn btn-outline-light btn-sm px-4 rounded-pill">Check Worth</a>
+                </div>
+            </div>
+            }
+
+            @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card-simple text-center p-4">
+                    <i class="bi bi-pin-map-fill card-icon mb-3"></i>
+                    <h5 class="fw-bold text-uppercase mb-2">Neighbourhood Watch</h5>
+                    <p class="small opacity-75 mb-3">Get alerts when neighbours sell.</p>
+                    <a href="/neighbor-detail" class="btn btn-outline-light btn-sm px-4 rounded-pill">Get Alerts</a>
+                </div>
+            </div>
+            }
+
+            @if(siteConfig.websiteSettings.showFindDreamHomePage){
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card-simple text-center p-4">
+                    <i class="bi bi-search-heart card-icon mb-3"></i>
+                    <h5 class="fw-bold text-uppercase mb-2">Dream Home Finder</h5>
+                    <p class="small opacity-75 mb-3">Search and find your dream home.</p>
+                    <a href="/dream-home" class="btn btn-outline-light btn-sm px-4 rounded-pill">Explore</a>
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+</section>
+}
 
 <div class="container-fluid menu_img pt-2 search-container">
 	<div class="container">
@@ -191,52 +237,7 @@
 	</div>
 </div>
 
-@if(
-  siteConfig.websiteSettings.showHomeWorthPage ||
-  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-  siteConfig.websiteSettings.showFindDreamHomePage
-){
-<section class="py-5 bg-dark text-white">
-    <div class="container">
-        <div class="row justify-content-center g-4">
 
-            @if(siteConfig.websiteSettings.showHomeWorthPage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card-simple text-center p-4">
-                    <i class="bi bi-house-heart-fill card-icon mb-3"></i>
-                    <h5 class="fw-bold text-uppercase mb-2">Home Evaluation</h5>
-                    <p class="small opacity-75 mb-3">Find out your home’s worth instantly.</p>
-                    <a href="/home-worth" class="btn btn-outline-light btn-sm px-4 rounded-pill">Check Worth</a>
-                </div>
-            </div>
-            }
-
-            @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card-simple text-center p-4">
-                    <i class="bi bi-pin-map-fill card-icon mb-3"></i>
-                    <h5 class="fw-bold text-uppercase mb-2">Neighbourhood Watch</h5>
-                    <p class="small opacity-75 mb-3">Get alerts when neighbours sell.</p>
-                    <a href="/neighbor-detail" class="btn btn-outline-light btn-sm px-4 rounded-pill">Get Alerts</a>
-                </div>
-            </div>
-            }
-
-            @if(siteConfig.websiteSettings.showFindDreamHomePage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card-simple text-center p-4">
-                    <i class="bi bi-search-heart card-icon mb-3"></i>
-                    <h5 class="fw-bold text-uppercase mb-2">Dream Home Finder</h5>
-                    <p class="small opacity-75 mb-3">Search and find your dream home.</p>
-                    <a href="/dream-home" class="btn btn-outline-light btn-sm px-4 rounded-pill">Explore</a>
-                </div>
-            </div>
-            }
-
-        </div>
-    </div>
-</section>
-}
 
 <app-team-card />
 
