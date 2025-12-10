@@ -82,11 +82,11 @@ export const statusTypes = [
 	{ label: "For Sale", value: "For Sale", text: "For Sale" },
 	{ label: "For Lease", value: "For Lease", text: "For Lease" },
 	{ label: "For Sub-Lease", value: "For Sub-Lease", text: "For Sub-Lease" },
-	{ label: "Leased Conditional", value: "Leased Conditional", text: "Leased Conditional" },
-	{ label: "Sold Conditional", value: "Sold Conditional", text: "Sold Conditional" },
-	{ label: "Sold Conditional Escape", value: "Sold Conditional Escape", text: "Sold Conditional Escape" },
-	{ label: "Suspended", value: "Suspended", text: "Suspended" },
-	{ label: "Terminated", value: "Terminated", text: "Terminated" },
+	// { label: "Leased Conditional", value: "Leased Conditional", text: "Leased Conditional" },
+	// { label: "Sold Conditional", value: "Sold Conditional", text: "Sold Conditional" },
+	// { label: "Sold Conditional Escape", value: "Sold Conditional Escape", text: "Sold Conditional Escape" },
+	// { label: "Suspended", value: "Suspended", text: "Suspended" },
+	// { label: "Terminated", value: "Terminated", text: "Terminated" },
 ];
 
 export const minPrices = [
@@ -120,6 +120,8 @@ export const minPrices = [
 	{ label: "$50000", value: "50000", text: "$50000" },
 	{ label: "$75000", value: "75000", text: "$75000" },
 	{ label: "$100000", value: "100000", text: "$100000" },
+	{ label: "$150000", value: "150000", text: "$150000" },
+	{ label: "$300000", value: "300000", text: "$300000" },
 ];
 
 export const maxPrices = [
@@ -153,6 +155,12 @@ export const maxPrices = [
 	{ label: "$50000", value: "50000", text: "$50000" },
 	{ label: "$75000", value: "75000", text: "$75000" },
 	{ label: "$100000", value: "100000", text: "$100000" },
+	{ label: "$100000", value: "100000", text: "$100000" },
+	{ label: "$150000", value: "150000", text: "$150000" },
+	{ label: "$300000", value: "300000", text: "$300000" },
+	{ label: "$400000", value: "400000", text: "$400000" },
+	{ label: "$800000", value: "800000", text: "$800000" },
+	{ label: "Max", value: "300000000", text: "Max" },
 ];
 
 export const sqFitTypes = [
