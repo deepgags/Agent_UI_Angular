@@ -97,8 +97,19 @@
 		}
 	</div>
 </div>
+
+<div class="container-fluid menu_img">
+	<div class="">
+		<div class="row justify-content-center">
+			<p class="fs-1 text-center fw-semibold py-3 mb-0">Search Your Dream Home</p>
+			<div class="col-12 bg-white p-4 mb-5">
+				<app-search [onSearch]="searchProperties" />
+			</div>
+		</div>
+	</div>
+</div>
 <div class="container p-lg-0 p-4">
-	<div class="pt-lg-5 p-lg-0 p-4">
+	<div class="">
 		<p class="text text-center mb-0 fw-semibold">Find Properties in These Cities</p>
 		<p class="text-center fw-normal"></p>
 	</div>
@@ -203,18 +214,8 @@
 </section>
 }
 
-<div class="container-fluid menu_img">
-	<div class="container">
-		<div class="row justify-content-center">
-			<p class="fs-1 text-center fw-semibold pb-3 pt-5">Search Your Dream Home</p>
-			<div class="col-12 bg-white p-4 mb-5">
-				<app-search [onSearch]="searchProperties" />
-			</div>
-		</div>
-	</div>
-</div>
 <div class="container-fluid sec-3">
-	<div class=" ">
+	<div class="py-4">
 		<p class="fs-1 text-center mb-0 fw-semibold">Featured Properties</p>
 		<p class="text-center fw-normal"></p>
 		<app-featured-properties />
