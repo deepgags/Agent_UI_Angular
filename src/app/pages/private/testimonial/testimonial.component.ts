@@ -8,6 +8,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { TableModule } from "primeng/table";
 import { SimpleTableComponent } from "../../../components/simple-table/simple-table.component";
 import { FieldsType } from "../../../enums/fields-type.enum";
+import { environment } from "../../../environments/environment.development";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { NotificationService } from "../../../services/notification.service";
 import { SharedDataService } from "../../../services/shared-data.service";
@@ -38,6 +39,7 @@ export class TestimonialComponent {
 			disableSort: true,
 			fieldType: FieldsType.Image,
 			width: "70px",
+			imageBaseUrl: environment.localImageUrl,
 		},
 		{
 			field: "customerName",
@@ -119,7 +121,7 @@ export class TestimonialComponent {
 			width: "50%",
 			data: {},
 		});
-		ref.onClose.subscribe((refresh: boolean) => {
+		ref?.onClose.subscribe((refresh: boolean) => {
 			if (refresh) {
 				this.getTestimonial();
 			}

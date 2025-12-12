@@ -22,8 +22,8 @@ export class TestimonialService {
 		return this.http.get<Testimonial[]>(`${environment.baseUrl}/testimonials?siteId=${siteId}`);
 	}
 
-	addTestimonial(params: Partial<Testimonial>): Observable<Testimonial> {
-		return this.http.post<Testimonial>(`${environment.baseUrl}/testimonials`, params);
+	addTestimonial(formData: FormData): Observable<Testimonial> {
+		return this.http.post<Testimonial>(`${environment.baseUrl}/testimonials`, formData);
 	}
 
 	deleteTestimonial(id: string): Observable<any> {

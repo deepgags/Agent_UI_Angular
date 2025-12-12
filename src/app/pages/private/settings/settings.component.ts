@@ -15,10 +15,12 @@ import { SelectModule } from "primeng/select";
 import { TextareaModule } from "primeng/textarea";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
+import { BlobToUrlPipe } from "../../../pipes/blob-to-url";
 
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 
+import { environment } from "../../../environments/environment.development";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { BrokerageTypeService } from "../../../services/brokerage.service";
 import { CustomerService } from "../../../services/customer.service";
@@ -43,6 +45,7 @@ import { NotificationService } from "../../../services/notification.service";
 		EditorModule,
 		ToggleSwitchModule,
 		AutoCompleteModule,
+		BlobToUrlPipe,
 	],
 	templateUrl: "./settings.component.html",
 	styleUrl: "./settings.component.scss",
@@ -58,20 +61,18 @@ export class SettingsComponent {
 	_brokerageTypesCopy: string[] = [];
 
 	existingProfileImage = "";
+	existingSecondaryProfileImage = "";
+	primaryAgentProfileImage: BehaviorSubject<Blob | null>;
+	primaryAgentProfileImageObservable: Observable<Blob | null>;
 
-	// brokerageImage: BehaviorSubject<string>;
-	// brokerageImageObservable: Observable<string>;
+	brokerageLogoImage: BehaviorSubject<Blob | null>;
+	brokerageLogoImageObservable: Observable<Blob | null>;
 
-	primaryAgentProfileImage: BehaviorSubject<string>;
-	primaryAgentProfileImageObservable: Observable<string>;
-
-	brokerageLogoImage: BehaviorSubject<string>;
-	brokerageLogoImageObservable: Observable<string>;
-
-	secondaryAgentProfileImage: BehaviorSubject<string>;
-	secondaryAgentProfileImageObservable: Observable<string>;
+	secondaryAgentProfileImage: BehaviorSubject<Blob | null>;
+	secondaryAgentProfileImageObservable: Observable<Blob | null>;
 
 	readonly dialog = inject(MatDialog);
+	localImageBaseUrl = environment.localImageUrl;
 
 	constructor(
 		private fb: FormBuilder,
@@ -87,13 +88,13 @@ export class SettingsComponent {
 		// this.brokerageImage = new BehaviorSubject("");
 		// this.brokerageImageObservable = this.brokerageImage.asObservable();
 
-		this.brokerageLogoImage = new BehaviorSubject("");
+		this.brokerageLogoImage = new BehaviorSubject<Blob | null>(null);
 		this.brokerageLogoImageObservable = this.brokerageLogoImage.asObservable();
 
-		this.primaryAgentProfileImage = new BehaviorSubject("");
+		this.primaryAgentProfileImage = new BehaviorSubject<Blob | null>(null);
 		this.primaryAgentProfileImageObservable = this.primaryAgentProfileImage.asObservable();
 
-		this.secondaryAgentProfileImage = new BehaviorSubject("");
+		this.secondaryAgentProfileImage = new BehaviorSubject<Blob | null>(null);
 		this.secondaryAgentProfileImageObservable = this.secondaryAgentProfileImage.asObservable();
 	}
 
@@ -207,7 +208,7 @@ export class SettingsComponent {
 
 					this.existingProfileImage = profileImage;
 					// this.brokerageImage.next(brokerage.logoPath);
-					this.primaryAgentProfileImage.next(profileImage);
+					// this.primaryAgentProfileImage.next(profileImage);
 					this.brokerageLogoImage.next(brokerageImage);
 
 					this.agentForm.patchValue({
@@ -238,7 +239,7 @@ export class SettingsComponent {
 							this.agentForm.get("secondaryAgent")?.patchValue({
 								...response.data.secondaryAgent,
 							});
-							this.secondaryAgentProfileImage.next(response.data.secondaryAgent.profileImage);
+							this.existingSecondaryProfileImage = response.data.secondaryAgent.profileImage;
 						}
 					}
 					this.setSecondaryAgentValidations({
@@ -283,9 +284,6 @@ export class SettingsComponent {
 	save() {
 		console.log(this.agentForm.controls);
 		if (this.agentForm.valid) {
-			// this.profileImage = this.profileImageSource ?? "";
-			// this.logoImage = this.logoImageSource ?? "";
-			// this.agentData.logoImagePath = this.logoImagePath;
 			this.loadingService.loadingOn();
 			const {
 				businessName,
@@ -307,43 +305,59 @@ export class SettingsComponent {
 				// websiteAddress,
 			} = this.agentForm.getRawValue();
 
-			const params = {
-				businessName: businessName,
-				firstName: firstName,
-				lastName: lastName,
+			const formData = new FormData();
+			formData.append("businessName", businessName);
+			formData.append("firstName", firstName);
+			formData.append("lastName", lastName);
+			if (address) formData.append("address", address);
+			formData.append("brokerageTypeId", brokerageType);
+			if (designation) formData.append("designation", designation);
 
-				brokerageTypeId: brokerageType,
-				designation,
-				websiteSettings: {
-					// siteUrl: siteUrl,
-					primaryColor,
-					secondaryColor,
-					socialLinks: {
-						facebook,
-						twitter,
-						instagram,
-						linkedin,
-						youtube,
-					},
-					contactInfo: {
-						email: websiteEmail,
-						phone: websitePhone,
-						address: address,
-					},
-					profileImage: this.primaryAgentProfileImage.value
-						? this.primaryAgentProfileImage.value
-						: this.existingProfileImage,
-					brokerageImage: this.brokerageLogoImage.value,
-					// logoImage: this.brokerageLogoImage.value,
-				},
-				secondaryAgent: {
-					...this.agentForm.value.secondaryAgent,
-					profileImage: this.secondaryAgentProfileImage.value,
-				},
-			};
-			// console.log(params);
-			// return;
-			this.customerService.update(params).subscribe({
+			// Website settings
+			if (primaryColor) formData.append("primaryColor", primaryColor);
+			if (secondaryColor) formData.append("secondaryColor", secondaryColor);
+			if (facebook) formData.append("facebook", facebook);
+			if (twitter) formData.append("twitter", twitter);
+			if (instagram) formData.append("instagram", instagram);
+			if (linkedin) formData.append("linkedin", linkedin);
+			if (youtube) formData.append("youtube", youtube);
+			if (websiteEmail) formData.append("websiteEmail", websiteEmail);
+			if (websitePhone) formData.append("websitePhone", websitePhone);
+
+			// Images
+			if (this.primaryAgentProfileImage.value) {
+				formData.append("profileImage", this.primaryAgentProfileImage.value, "profile-image.png");
+			} else if (this.existingProfileImage) {
+				formData.append("existingProfileImage", this.existingProfileImage);
+			}
+
+			if (this.brokerageLogoImage.value) {
+				formData.append("brokerageImage", this.brokerageLogoImage.value, "brokerage-logo.png");
+			}
+
+			// Secondary agent
+			const secondaryAgent = this.agentForm.value.secondaryAgent;
+			if (secondaryAgent && secondaryAgent.enableSecondaryAgent) {
+				if (secondaryAgent.firstName) formData.append("secondaryAgent.firstName", secondaryAgent.firstName);
+				if (secondaryAgent.lastName) formData.append("secondaryAgent.lastName", secondaryAgent.lastName);
+				if (secondaryAgent.designation)
+					formData.append("secondaryAgent.designation", secondaryAgent.designation);
+				if (secondaryAgent.websiteEmail)
+					formData.append("secondaryAgent.websiteEmail", secondaryAgent.websiteEmail);
+				if (secondaryAgent.websitePhone)
+					formData.append("secondaryAgent.websitePhone", secondaryAgent.websitePhone);
+				if (this.secondaryAgentProfileImage.value) {
+					formData.append(
+						"secondaryAgent.profileImage",
+						this.secondaryAgentProfileImage.value,
+						"secondary-profile.png"
+					);
+				} else if (this.existingSecondaryProfileImage) {
+					formData.append("existingSecondaryProfileImage", this.existingSecondaryProfileImage);
+				}
+			}
+
+			this.customerService.update(formData).subscribe({
 				next: (v) => {},
 				error: (e) => {
 					this.notificationService.showError(
@@ -379,11 +393,11 @@ export class SettingsComponent {
 				imageChangedEvent: event,
 			},
 		});
-		ref.onClose.subscribe((croppedImage: string) => {
+		ref?.onClose.subscribe((croppedImage: Blob | null) => {
 			if (croppedImage) {
 				this.primaryAgentProfileImage.next(croppedImage);
 			} else {
-				this.primaryAgentProfileImage.next("");
+				this.primaryAgentProfileImage.next(null);
 			}
 		});
 	}
@@ -407,17 +421,17 @@ export class SettingsComponent {
 				freeSelection: true,
 			},
 		});
-		ref.onClose.subscribe((croppedImage: string) => {
+		ref?.onClose.subscribe((croppedImage: Blob | null) => {
 			if (croppedImage) {
 				this.brokerageLogoImage.next(croppedImage);
 			} else {
-				this.brokerageLogoImage.next("");
+				this.brokerageLogoImage.next(null);
 			}
 		});
 	}
 
 	removeBrokerageLogoImage(): void {
-		this.brokerageLogoImage.next("");
+		this.brokerageLogoImage.next(null);
 		if (this.brokerageLogoUpload) {
 			this.brokerageLogoUpload.nativeElement.value = "";
 		}
@@ -441,11 +455,11 @@ export class SettingsComponent {
 				imageChangedEvent: event,
 			},
 		});
-		ref.onClose.subscribe((croppedImage: string) => {
+		ref?.onClose.subscribe((croppedImage: Blob | null) => {
 			if (croppedImage) {
 				this.secondaryAgentProfileImage.next(croppedImage);
 			} else {
-				this.secondaryAgentProfileImage.next("");
+				this.secondaryAgentProfileImage.next(null);
 			}
 		});
 	}

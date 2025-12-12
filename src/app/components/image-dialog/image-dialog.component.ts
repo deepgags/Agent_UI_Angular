@@ -12,7 +12,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 })
 export class ImageDialogComponent {
 	imageChangedEvent: any;
-	croppedImage: any;
+	croppedImage: Blob | null = null;
 	image: any;
 	isImageCroppingInProgress = false;
 	maintainRatio = true;
@@ -24,7 +24,6 @@ export class ImageDialogComponent {
 		if (freeSelection) {
 			this.maintainRatio = false;
 		}
-		// }
 	}
 
 	fileChangeEvent(event: any): void {
@@ -32,7 +31,7 @@ export class ImageDialogComponent {
 	}
 
 	imageCropped(event: ImageCroppedEvent) {
-		this.croppedImage = event.base64;
+		this.croppedImage = event.blob || null;
 	}
 
 	confirmImage = () => {

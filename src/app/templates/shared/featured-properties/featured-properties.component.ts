@@ -21,11 +21,11 @@ import { PropertyService } from "../../../services/property.service";
 	providers: [DialogService],
 })
 export class FeaturedPropertiesComponent implements OnInit {
-	imageUrl = environment.imageUrl;
+	propertyImageUrl = environment.propertyImageUrl;
 	private propertiesSubject = new BehaviorSubject<PropertyModel[]>([]);
 	properties$ = this.propertiesSubject.asObservable();
 	pageIndex: number = 1;
-	pageSize: number = 6;
+	pageSize: number = 8;
 
 	constructor(private propertyService: PropertyService) {}
 

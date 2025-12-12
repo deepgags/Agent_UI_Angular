@@ -274,7 +274,7 @@
 						'text-right': col.isNumeric
 					}"
 				class="py-2">
-				<img [src]="rowData[col.field]"
+				<img [src]="col.imageBaseUrl + rowData[col.field]"
 					 style="height:50px; width:50px; border-radius: 50%;"
 					 onError="this.src = '/images/Nologo.png'" />
 			</td>

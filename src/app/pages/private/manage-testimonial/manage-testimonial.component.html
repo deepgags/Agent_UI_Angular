@@ -87,7 +87,7 @@
 					</button>
 					<div class="text-center">
 						<h6 class="text-dark fw-bold mb-2">Testimonial Image Preview</h6>
-						<img [src]="testimonialImage"
+						<img [src]="testimonialImage | blobToUrl"
 							 class="rounded border image-preview"
 							 style="width: 150px; height: 150px; object-fit: cover;"
 							 alt="Testimonial Image Preview" />

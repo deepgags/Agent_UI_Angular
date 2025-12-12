@@ -5,13 +5,13 @@
 
 	<div class="row g-4">
 		<div class="col-md-6">
-		
+
 		</div>
 		<div class="col-md-6">
-			
+
 		</div>
 		<div class="col-md-2">
-		
+
 		</div>
 	</div>
 	<div class="mt-4 d-flex gap-1 justify-content-end">
@@ -44,7 +44,7 @@
 			<ng-template let-property
 						 #item>
 				<div class="d-flex align-items-center gap-3 p-2 border-bottom">
-					<img [src]="imageUrl+property.image"
+					<img [src]="propertyImageUrl+property.image"
 						 class="rounded"
 						 style="width: 40px; height: 40px; object-fit: cover;" />
 					<div class="flex-grow-1">
@@ -62,33 +62,33 @@
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-				<p-select [options]="sqFtTypesDropDown"
-					  [(ngModel)]="filters.sqFt"
-					  optionLabel="label"
-					  optionValue="value"
-					  placeholder="Select Area"
-					  appendTo="body"
-					  class=""/>
+		<p-select [options]="sqFtTypesDropDown"
+				  [(ngModel)]="filters.sqFt"
+				  optionLabel="label"
+				  optionValue="value"
+				  placeholder="Select Area"
+				  appendTo="body"
+				  class="" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-			<p-inputnumber [(ngModel)]="filters.min_price"
-						   mode="decimal"
-						   [minFractionDigits]="0"
-						   [maxFractionDigits]="2"
-						   prefix="$"
-						   placeholder="Min. Price"
-						    class="wid"/>
+		<p-inputnumber [(ngModel)]="filters.min_price"
+					   mode="decimal"
+					   [minFractionDigits]="0"
+					   [maxFractionDigits]="2"
+					   prefix="$"
+					   placeholder="Min. Price"
+					   class="wid" />
 	</div>
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-<p-inputnumber [(ngModel)]="filters.max_price"
-						   mode="decimal"
-						   [minFractionDigits]="0"
-						   [maxFractionDigits]="2"
-						   prefix="$"
-						   placeholder="Max. Price"
-						   class="wid" />
-							</div>
+		<p-inputnumber [(ngModel)]="filters.max_price"
+					   mode="decimal"
+					   [minFractionDigits]="0"
+					   [maxFractionDigits]="2"
+					   prefix="$"
+					   placeholder="Max. Price"
+					   class="wid" />
+	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
 		<p-select [options]="propertyTypesDropDown"

@@ -14,8 +14,8 @@ export class CustomerService {
 
 	constructor(private http: HttpClient) {}
 
-	register(params: CustomerModel): Observable<any> {
-		return this.http.post(`${this.baseUrl}/customer/register`, params);
+	register(formData: FormData): Observable<any> {
+		return this.http.post(`${this.baseUrl}/customer/register`, formData);
 	}
 
 	verifyEmail(params: { emailAddress: string; authCode: string }): Observable<any> {
@@ -30,8 +30,8 @@ export class CustomerService {
 		return this.http.post(this.baseUrl + "/save", customer);
 	}
 
-	update(params: any) {
-		return this.http.patch(this.baseUrl + "/customer/update", params);
+	update(formData: FormData) {
+		return this.http.patch(this.baseUrl + "/customer/update", formData);
 	}
 
 	updatePageContent(params: any) {

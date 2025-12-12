@@ -37,7 +37,7 @@ import { environment } from "../../../environments/environment.development";
 	standalone: true,
 })
 export class SearchComponent implements OnInit {
-	imageUrl = environment.imageUrl;
+	propertyImageUrl = environment.propertyImageUrl;
 	@Input("onSearch") onSearch: Function = () => {};
 
 	@Input("showMapSearch") showMapSearch = true;

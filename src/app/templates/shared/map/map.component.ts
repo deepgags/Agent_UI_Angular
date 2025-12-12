@@ -50,7 +50,7 @@ import { SearchComponent } from "../search/search.component";
 	providers: [DialogService],
 })
 export class MapComponent implements OnInit, AfterViewInit {
-	imageUrl = environment.imageUrl;
+	propertyImageUrl = environment.propertyImageUrl;
 	propertiesList: PropertyModel[] | undefined;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
@@ -202,7 +202,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 						} else if (action === "prev") {
 							current = (current - 1 + images.length) % images.length;
 						}
-						img.src = this.imageUrl + images[current];
+						img.src = this.propertyImageUrl + images[current];
 						img.setAttribute("data-current", current.toString());
 					}
 				});
@@ -241,7 +241,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 		const media = property.Media || [];
 		const carouselId = `carousel-${property.ListingKey || "default"}`;
 		const images = media.length > 0 ? media.map((m) => m.Media_url) : ["/images/commercial_no_Image.jpg"];
-		const currentSrc = this.imageUrl + images[0];
+		const currentSrc = this.propertyImageUrl + images[0];
 		const imagesJson = JSON.stringify(images);
 
 		const controls =

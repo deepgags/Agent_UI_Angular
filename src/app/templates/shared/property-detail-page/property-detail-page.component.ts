@@ -66,7 +66,7 @@ declare var google: any;
 	// encapsulation: ViewEncapsulation.None,
 })
 export class PropertyDetailPageComponent {
-	imageUrl = environment.imageUrl;
+	propertyImageUrl = environment.propertyImageUrl;
 	property: PropertyModel | any = {} as PropertyModel;
 	Latitude: number = 0;
 	Longitude: number = 0;

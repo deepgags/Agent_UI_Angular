@@ -16,7 +16,9 @@ import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
+import { environment } from "../../../environments/environment.development";
 import { TeamMemberModel } from "../../../models/TeamMemberModel";
+import { BlobToUrlPipe } from "../../../pipes/blob-to-url";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { TeamService } from "../../../services/team.service";
@@ -39,6 +41,7 @@ import { TeamService } from "../../../services/team.service";
 		TooltipModule,
 		DynamicDialogModule,
 		IftaLabelModule,
+		BlobToUrlPipe,
 	],
 	templateUrl: "./team.component.html",
 	styleUrl: "./team.component.scss",
@@ -52,9 +55,12 @@ export class TeamComponent implements OnInit {
 	teamDialogVisible = false;
 	teamForm!: FormGroup;
 	editingMember: TeamMemberModel | null = null;
+	existingProfileImage = "";
 
-	profileImage: BehaviorSubject<string>;
-	profileImageObservable: Observable<string>;
+	profileImage: BehaviorSubject<Blob | null>;
+	profileImageObservable: Observable<Blob | null>;
+
+	localImageBaseUrl = environment.localImageUrl;
 
 	constructor(
 		private fb: FormBuilder,
@@ -64,7 +70,7 @@ export class TeamComponent implements OnInit {
 		private confirmationService: ConfirmationService,
 		public dialogService: DialogService
 	) {
-		this.profileImage = new BehaviorSubject("");
+		this.profileImage = new BehaviorSubject<Blob | null>(null);
 		this.profileImageObservable = this.profileImage.asObservable();
 	}
 
@@ -113,12 +119,13 @@ export class TeamComponent implements OnInit {
 	openAddMemberDialog() {
 		this.editingMember = null;
 		this.teamForm.reset();
-		this.profileImage.next("");
+		this.profileImage.next(null);
 		this.teamDialogVisible = true;
 	}
 
 	openEditMemberDialog(member: TeamMemberModel) {
 		this.editingMember = member;
+		this.existingProfileImage = member.profileImage;
 		this.teamDialogVisible = true;
 
 		setTimeout(() => {
@@ -138,36 +145,37 @@ export class TeamComponent implements OnInit {
 				linkedin: member.socialLinks?.linkedin || "",
 				youtube: member.socialLinks?.youtube || "",
 			});
-			this.profileImage.next(member.profileImage);
+			// For editing, we don't set the BehaviorSubject since the image is already uploaded
+			// The form will show the existing image URL
 		}, 150);
 	}
 
 	saveMember() {
 		if (this.teamForm.valid) {
 			const formValue = this.teamForm.getRawValue();
-			const memberData = {
-				firstName: formValue.firstName,
-				lastName: formValue.lastName,
-				designation: formValue.designation,
-				emailAddress: formValue.emailAddress,
-				phoneNumber: formValue.phoneNumber,
-				profileImage: formValue.profileImage,
-				siteUrl: formValue.siteUrl,
-				about: formValue.about,
-				address: formValue.address,
-				socialLinks: {
-					facebook: formValue.facebook,
-					twitter: formValue.twitter,
-					instagram: formValue.instagram,
-					linkedin: formValue.linkedin,
-					youtube: formValue.youtube,
-				},
-			};
+			const formData = new FormData();
+
+			formData.append("firstName", formValue.firstName);
+			if (formValue.lastName) formData.append("lastName", formValue.lastName);
+			formData.append("designation", formValue.designation);
+			formData.append("emailAddress", formValue.emailAddress);
+			formData.append("phoneNumber", formValue.phoneNumber);
+			if (this.profileImage.value) {
+				formData.append("profileImage", this.profileImage.value, "profile-image.png");
+			}
+			if (formValue.siteUrl) formData.append("siteUrl", formValue.siteUrl);
+			if (formValue.about) formData.append("about", formValue.about);
+			if (formValue.address) formData.append("address", formValue.address);
+			if (formValue.facebook) formData.append("facebook", formValue.facebook);
+			if (formValue.twitter) formData.append("twitter", formValue.twitter);
+			if (formValue.instagram) formData.append("instagram", formValue.instagram);
+			if (formValue.linkedin) formData.append("linkedin", formValue.linkedin);
+			if (formValue.youtube) formData.append("youtube", formValue.youtube);
 
 			this.loadingService.loadingOn();
 
 			if (this.editingMember) {
-				this.teamService.updateTeamMember(this.editingMember._id!, memberData).subscribe({
+				this.teamService.updateTeamMember(this.editingMember._id!, formData).subscribe({
 					next: (response) => {
 						if (response.status) {
 							const index = this.teamMembers.findIndex((m) => m._id === this.editingMember!._id);
@@ -185,7 +193,7 @@ export class TeamComponent implements OnInit {
 					},
 				});
 			} else {
-				this.teamService.addTeamMember(memberData).subscribe({
+				this.teamService.addTeamMember(formData).subscribe({
 					next: (response) => {
 						if (response.status) {
 							this.teamMembers.push(response.data);
@@ -267,13 +275,13 @@ export class TeamComponent implements OnInit {
 				imageChangedEvent: event,
 			},
 		});
-		ref.onClose.subscribe((croppedImage: string) => {
+		ref?.onClose.subscribe((croppedImage: Blob | null) => {
 			if (croppedImage) {
 				this.profileImage.next(croppedImage);
 				this.teamForm.patchValue({ profileImage: croppedImage });
 			} else {
-				this.profileImage.next("");
-				this.teamForm.patchValue({ profileImage: "" });
+				this.profileImage.next(null);
+				this.teamForm.patchValue({ profileImage: null });
 			}
 		});
 	}

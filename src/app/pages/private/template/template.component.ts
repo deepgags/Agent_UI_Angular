@@ -101,7 +101,7 @@ export class TemplateComponent implements OnInit {
 				template: template,
 			},
 		});
-		ref.onClose.subscribe((setTemplate: boolean) => {
+		ref?.onClose.subscribe((setTemplate: boolean) => {
 			if (setTemplate) {
 				this.setTemplate(template);
 			}

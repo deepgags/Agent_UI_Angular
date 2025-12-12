@@ -38,11 +38,11 @@ import { SearchComponent } from "../search/search.component";
 	providers: [DialogService],
 })
 export class FeaturedListingsComponent implements OnInit {
-	imageUrl = environment.imageUrl;
+	propertyImageUrl = environment.propertyImageUrl;
 	propertiesList: PropertyModel[] | null = null;
 	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
-	pageSize: number = 12;
+	pageSize: number = 8;
 
 	siteId: string = "";
 	selectedFilters: any = {

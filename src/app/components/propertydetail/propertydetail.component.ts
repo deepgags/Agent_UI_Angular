@@ -66,7 +66,7 @@ declare var google: any;
 	standalone: true,
 })
 export class PropertyDetailComponent implements OnInit, AfterViewInit {
-	imageUrl = environment.imageUrl;
+	propertyImageUrl = environment.propertyImageUrl;
 	property: PropertyModel | any = {} as PropertyModel;
 	Latitude: number = 0;
 	Longitude: number = 0;

@@ -11,7 +11,7 @@ import { SharedDataService } from "../../services/shared-data.service";
 	styleUrl: "./property.component.scss",
 })
 export class PropertyComponent {
-	imageUrl = environment.imageUrl;
+	propertyImageUrl = environment.propertyImageUrl;
 	isUserLoggedIn = false;
 	@Input("property") property!: PropertyModel;
 	@Input("onPropertyClick") onPropertyClick: Function = () => {};

@@ -277,7 +277,7 @@
                 <div class="mt-3 p-2 border rounded bg-white shadow-sm">
                   <div class="text-center">
                     <h6 class="text-dark fw-bold mb-2">Preview</h6>
-                    <img [src]="newSelectedProfileImage"
+                    <img [src]="newSelectedProfileImage | blobToUrl"
                          class="rounded border image-preview"
                          alt="Profile Picture Preview" />
                   </div>

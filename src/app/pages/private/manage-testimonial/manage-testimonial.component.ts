@@ -10,6 +10,7 @@ import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
+import { BlobToUrlPipe } from "../../../pipes/blob-to-url";
 import { NotificationService } from "../../../services/notification.service";
 import { TestimonialService } from "../../../services/testimonial.service";
 
@@ -24,6 +25,7 @@ import { TestimonialService } from "../../../services/testimonial.service";
 		DatePickerModule,
 		DialogModule,
 		DynamicDialogModule,
+		BlobToUrlPipe,
 	],
 	templateUrl: "./manage-testimonial.component.html",
 	styleUrl: "./manage-testimonial.component.scss",
@@ -34,8 +36,8 @@ export class ManageTestimonialComponent {
 	@ViewChild("testimonialImageUpload", { static: false }) testimonialImageUpload!: ElementRef<HTMLInputElement>;
 
 	form: FormGroup;
-	testimonialImage: BehaviorSubject<string>;
-	testimonialImageObservable: Observable<string>;
+	testimonialImage: BehaviorSubject<Blob | null>;
+	testimonialImageObservable: Observable<Blob | null>;
 
 	private notificationService = inject(NotificationService);
 	private ref = inject(DynamicDialogRef);
@@ -43,7 +45,7 @@ export class ManageTestimonialComponent {
 	private testimonialService = inject(TestimonialService);
 
 	constructor(public dialogService: DialogService) {
-		this.testimonialImage = new BehaviorSubject("");
+		this.testimonialImage = new BehaviorSubject<Blob | null>(null);
 		this.testimonialImageObservable = this.testimonialImage.asObservable();
 
 		this.form = new FormGroup({
@@ -91,17 +93,17 @@ export class ManageTestimonialComponent {
 				imageChangedEvent: event,
 			},
 		});
-		ref.onClose.subscribe((croppedImage: string) => {
+		ref?.onClose.subscribe((croppedImage: Blob | null) => {
 			if (croppedImage) {
 				this.testimonialImage.next(croppedImage);
 			} else {
-				this.testimonialImage.next("");
+				this.testimonialImage.next(null);
 			}
 		});
 	}
 
 	removeTestimonialImage(): void {
-		this.testimonialImage.next("");
+		this.testimonialImage.next(null);
 		if (this.testimonialImageUpload) {
 			this.testimonialImageUpload.nativeElement.value = "";
 		}
@@ -112,12 +114,18 @@ export class ManageTestimonialComponent {
 		if (this.form.invalid) {
 			return;
 		} else {
-			const data = {
-				...this.form.value,
-				date: dayjs(this.form.value.date).format("DD-MMM-YYYY"),
-				image: this.testimonialImage.value,
-			};
-			this.testimonialService.addTestimonial(data).subscribe({
+			const formData = new FormData();
+			formData.append("name", this.form.value.name);
+			formData.append("message", this.form.value.message);
+			formData.append("date", dayjs(this.form.value.date).format("DD-MMM-YYYY"));
+			if (this.form.value.designation) {
+				formData.append("designation", this.form.value.designation);
+			}
+			if (this.testimonialImage.value) {
+				formData.append("image", this.testimonialImage.value, "testimonial-image.png");
+			}
+
+			this.testimonialService.addTestimonial(formData).subscribe({
 				next: () => {
 					this.notificationService.showSuccess("Testimonial Added.");
 					this.ref.close(true);

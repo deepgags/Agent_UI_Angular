@@ -351,7 +351,7 @@ export class PropertyService {
 			modal: true,
 			data: {},
 		});
-		ref.onClose.subscribe((isUserLoggedIn: boolean) => {
+		ref?.onClose.subscribe((isUserLoggedIn: boolean) => {
 			if (isUserLoggedIn) {
 				this.selectProperty(property, selectedFilters);
 			}

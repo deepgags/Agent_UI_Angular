@@ -32,25 +32,20 @@ export class TeamService {
 		return this.http.get<{ status: boolean; message: string; data: TeamMemberModel }>(`${this.baseUrl}/team/${id}`);
 	}
 
-	addTeamMember(
-		member: Omit<
-			TeamMemberModel,
-			"_id" | "brokerId" | "createdAt" | "updatedAt" | "isDeleted" | "createdBy" | "updatedBy"
-		>
-	): Observable<{ status: boolean; message: string; data: TeamMemberModel }> {
+	addTeamMember(formData: FormData): Observable<{ status: boolean; message: string; data: TeamMemberModel }> {
 		return this.http.post<{ status: boolean; message: string; data: TeamMemberModel }>(
 			`${this.baseUrl}/team`,
-			member
+			formData
 		);
 	}
 
 	updateTeamMember(
 		id: string,
-		member: Partial<TeamMemberModel>
+		formData: FormData
 	): Observable<{ status: boolean; message: string; data: TeamMemberModel }> {
 		return this.http.patch<{ status: boolean; message: string; data: TeamMemberModel }>(
 			`${this.baseUrl}/team/${id}`,
-			member
+			formData
 		);
 	}
 

@@ -16,6 +16,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
 import { Pages } from "../../../enums/pages";
 import { BrokerageTypeModel } from "../../../models/BrokerageTypeModel";
+import { BlobToUrlPipe } from "../../../pipes/blob-to-url";
 import { BrokerageTypeService } from "../../../services/brokerage.service";
 import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
@@ -34,6 +35,7 @@ import { NotificationService } from "../../../services/notification.service";
 		PasswordModule,
 		IftaLabelModule,
 		AutoCompleteModule,
+		BlobToUrlPipe,
 	],
 	templateUrl: "./register.component.html",
 	styleUrl: "./register.component.scss",
@@ -50,8 +52,8 @@ export class RegisterComponent implements OnInit {
 		{ label: "Broker", value: "Broker" },
 	];
 
-	newSelectedProfileImage: BehaviorSubject<string>;
-	newSelectedProfileImageObservable: Observable<string>;
+	newSelectedProfileImage: BehaviorSubject<Blob | null>;
+	newSelectedProfileImageObservable: Observable<Blob | null>;
 	newSelectedLogoImage: string = "";
 
 	constructor(
@@ -65,7 +67,7 @@ export class RegisterComponent implements OnInit {
 		public dialogService: DialogService
 	) {
 		this.titleService.setTitle("Register");
-		this.newSelectedProfileImage = new BehaviorSubject("");
+		this.newSelectedProfileImage = new BehaviorSubject<Blob | null>(null);
 		this.newSelectedProfileImageObservable = this.newSelectedProfileImage.asObservable();
 	}
 
@@ -174,8 +176,12 @@ export class RegisterComponent implements OnInit {
 				imageChangedEvent: event,
 			},
 		});
-		ref.onClose.subscribe((croppedImage: string) => {
-			this.newSelectedProfileImage.next(croppedImage);
+		ref?.onClose.subscribe((croppedImage: Blob | null) => {
+			if (croppedImage) {
+				this.newSelectedProfileImage.next(croppedImage);
+			} else {
+				this.newSelectedProfileImage.next(null);
+			}
 		});
 	}
 
@@ -212,24 +218,29 @@ export class RegisterComponent implements OnInit {
 				password,
 				confirmPassword,
 			} = this.customerForm.value;
-			const params: any = {
-				brokerageTypeId: brokerageType,
-				businessName: businessName,
-				address: address,
-				firstName: firstName,
-				lastName: lastName,
-				emailAddress: emailAddress,
-				phoneNumber: phoneNumber,
-				role: role,
-				password: password,
-				confirmPassword: confirmPassword,
-				profileImage: this.newSelectedProfileImage.value,
-				logoImage: this.newSelectedLogoImage,
-				designation: designation,
-			};
+
+			const formData = new FormData();
+			formData.append("brokerageTypeId", brokerageType);
+			formData.append("businessName", businessName);
+			if (address) formData.append("address", address);
+			formData.append("firstName", firstName);
+			formData.append("lastName", lastName);
+			formData.append("emailAddress", emailAddress);
+			formData.append("phoneNumber", phoneNumber);
+			formData.append("role", role);
+			formData.append("password", password);
+			formData.append("confirmPassword", confirmPassword);
+			if (this.newSelectedProfileImage.value) {
+				formData.append("profileImage", this.newSelectedProfileImage.value, "profile-image.png");
+			}
+			// Logo image functionality is currently disabled
+			// if (this.newSelectedLogoImage) {
+			//   formData.append("logoImage", this.newSelectedLogoImage, "logo-image.png");
+			// }
+			if (designation) formData.append("designation", designation);
 
 			this.loadingService.loadingOn();
-			this.customerService.register(params).subscribe({
+			this.customerService.register(formData).subscribe({
 				next: () => {
 					this.loadingService.loadingOff();
 					this.router.navigate([Pages.VERIFY_EMAIL], { queryParams: { email: emailAddress } });
