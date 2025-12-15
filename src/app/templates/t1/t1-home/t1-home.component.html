@@ -1,103 +1,110 @@
 <div>
 	<div class=" search-container position-relative">
-	<div id="carouselExampleAutoplaying" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/t3/images/banner2.jpg" class="d-block w-100" alt="/t3/images/banner2.jpg">
-    </div>
-    <div class="carousel-item">
-      <img src="/t2/images/banner.png" class="d-block w-100" alt="/t3/images/banner2.jpg">
-    </div>
-    <div class="carousel-item">
-      <img src="/t4/images/banner.jpg" class="d-block w-100" alt="/t3/images/banner2.jpg">
-    </div>
-  </div>
- </div>
-	<div class="first">
-		<img [src]="siteConfig.websiteSettings.profileImage ? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
-			 alt="No profile image"
-			 class="overlay-image" />
-		<div class="card position-absolute man-card"
-			 style="width: 15rem">
-			<div class="card-body">
-				<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-				<p class="card-text text-white">{{ siteConfig.designation}}</p>
-				<div class="d-flex">
-					<div class="">
-						<i class="fa-solid fa-phone info"></i>
-
-					</div>
-					<div class="ms-2">
-						<p class="mb-0">
-							<a class="text-white fw-semibold text-decoration-none"
-							   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
-								{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-							</a>
-						</p>
-					</div>
+		<div id="carouselExampleAutoplaying"
+			 class="carousel slide">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="/t3/images/banner2.jpg"
+						 class="d-block w-100"
+						 alt="/t3/images/banner2.jpg">
 				</div>
-				<div class="d-flex">
-					<div class="">
-						<i class="fa-solid fa-envelope info"></i>
+				<div class="carousel-item">
+					<img src="/t2/images/banner.png"
+						 class="d-block w-100"
+						 alt="/t3/images/banner2.jpg">
+				</div>
+				<div class="carousel-item">
+					<img src="/t4/images/banner.jpg"
+						 class="d-block w-100"
+						 alt="/t3/images/banner2.jpg">
+				</div>
+			</div>
+		</div>
+		<div class="first">
+			<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
+				 alt="No profile image"
+				 class="overlay-image" />
+			<div class="card position-absolute man-card"
+				 style="width: 15rem">
+				<div class="card-body">
+					<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
+					<p class="card-text text-white">{{ siteConfig.designation}}</p>
+					<div class="d-flex">
+						<div class="">
+							<i class="fa-solid fa-phone info"></i>
 
+						</div>
+						<div class="ms-2">
+							<p class="mb-0">
+								<a class="text-white fw-semibold text-decoration-none"
+								   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+									{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+								</a>
+							</p>
+						</div>
 					</div>
-					<div class="ms-2 mt-1">
-						<p>
-							<a class="text-white fw-semibold text-decoration-none"
-							   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
-								{{ siteConfig.websiteSettings.contactInfo.email }}
-							</a>
-						</p>
+					<div class="d-flex">
+						<div class="">
+							<i class="fa-solid fa-envelope info"></i>
+
+						</div>
+						<div class="ms-2 mt-1">
+							<p>
+								<a class="text-white fw-semibold text-decoration-none"
+								   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+									{{ siteConfig.websiteSettings.contactInfo.email }}
+								</a>
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="second">
-		@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
+		<div class="second">
+			@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
 
-		<img [src]="siteConfig.secondaryAgent.profileImage ? siteConfig.secondaryAgent.profileImage : '/images/Nologo.png'"
-			 alt="No profile image"
-			 class="overlay-image2" />
-		<div class="card position-absolute man_card2"
-			 style="width: 15rem">
-			<div class="card-body">
-				<h5 class="card-head text-white">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</h5>
-				<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation}}</p>
-				<div class="d-flex">
-					<div class="">
-						<i class="fa-solid fa-phone info"></i>
+			<img [src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
+				 alt="No profile image"
+				 class="overlay-image2" />
+			<div class="card position-absolute man_card2"
+				 style="width: 15rem">
+				<div class="card-body">
+					<h5 class="card-head text-white">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</h5>
+					<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation}}</p>
+					<div class="d-flex">
+						<div class="">
+							<i class="fa-solid fa-phone info"></i>
 
+						</div>
+						<div class="ms-2">
+							<p class="mb-0">
+								<a class="text-white fw-semibold text-decoration-none"
+								   [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+									{{ siteConfig.secondaryAgent.websitePhone | phone }}
+								</a>
+							</p>
+						</div>
 					</div>
-					<div class="ms-2">
-						<p class="mb-0">
-							<a class="text-white fw-semibold text-decoration-none"
-							   [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
-								{{ siteConfig.secondaryAgent.websitePhone | phone }}
-							</a>
-						</p>
-					</div>
-				</div>
-				<div class="d-flex">
-					<div class="">
-						<i class="fa-solid fa-envelope info"></i>
+					<div class="d-flex">
+						<div class="">
+							<i class="fa-solid fa-envelope info"></i>
 
-					</div>
-					<div class="ms-2 mt-1">
-						<p>
-							<a class="text-white fw-semibold text-decoration-none"
-							   [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
-								{{ siteConfig.secondaryAgent.websiteEmail }}
-							</a>
-						</p>
+						</div>
+						<div class="ms-2 mt-1">
+							<p>
+								<a class="text-white fw-semibold text-decoration-none"
+								   [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+									{{ siteConfig.secondaryAgent.websiteEmail }}
+								</a>
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
+			}
 		</div>
-		}
 	</div>
-</div>
 
 	<div class="container-fluid ">
 		<div class="">
@@ -109,66 +116,66 @@
 			</div>
 		</div>
 	</div>
-	
-@if(
-  siteConfig.websiteSettings.showHomeWorthPage ||
-  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-  siteConfig.websiteSettings.showFindDreamHomePage
-){
-<section class="hero-bg d-flex justify-content-center align-items-center position-relative py-5">
-  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
 
-  <div class="container position-relative">
-    <div class="row justify-content-center g-4">
-      @if(siteConfig.websiteSettings.showHomeWorthPage){
-      <div class="col-12 col-sm-6 col-lg-4 d-flex">
-        <div class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
-          <h2 class="fw-bold text-uppercase mb-3">Free Home Evaluation</h2>
-          <p class="fs-5 mb-4">
-            Find out what your home is
-            <span class="text-warning fw-semibold fst-italic">WORTH</span> — for
-            <span class="text-warning fw-semibold">FREE</span>
-          </p>
+	@if(
+	siteConfig.websiteSettings.showHomeWorthPage ||
+	siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+	siteConfig.websiteSettings.showFindDreamHomePage
+	){
+	<section class="hero-bg d-flex justify-content-center align-items-center position-relative py-5">
+		<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
 
-          <a href="/home-worth"
-             target="_blank"
-             class="btn btn-warning fw-semibold px-4 py-2 rounded-3">Get Started</a>
-        </div>
-      </div>}
-      
-      @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
-      <div class="col-12 col-sm-6 col-lg-4 d-flex">
-        <div class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
-          <h2 class="fw-bold text-uppercase mb-3">Neighborhood Watch</h2>
-          <p class="fs-5 mb-4">
-            Get updated as soon as your
-            <span class="text-danger fw-semibold">NEIGHBORS</span> are
-            <span class="text-danger fw-semibold fst-italic">SELLING</span>
-          </p>
-          <a href="/neighbor-detail"
-             target="_blank"
-             class="btn btn-danger fw-semibold px-4 py-2 rounded-3">Get Started</a>
-        </div>
-      </div>}
-      
-      @if(siteConfig.websiteSettings.showFindDreamHomePage){
-      <div class="col-12 col-sm-6 col-lg-4 d-flex">
-        <div class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
-          <h2 class="fw-bold text-uppercase mb-3">Find Your Dream Home</h2>
-          <p class="fs-5 mb-4">
-            Start your search and
-            <span class="text-success fw-semibold fst-italic">FIND</span> your
-            <span class="text-success fw-semibold">DREAM HOME</span> today.
-          </p>
-          <a href="/dream-home"
-             target="_blank"
-             class="btn btn-success fw-semibold px-4 py-2 rounded-3">Get Started</a>
-        </div>
-      </div>}
-    </div>
-  </div>
-</section>
-}
+		<div class="container position-relative">
+			<div class="row justify-content-center g-4">
+				@if(siteConfig.websiteSettings.showHomeWorthPage){
+				<div class="col-12 col-sm-6 col-lg-4 d-flex">
+					<div class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
+						<h2 class="fw-bold text-uppercase mb-3">Free Home Evaluation</h2>
+						<p class="fs-5 mb-4">
+							Find out what your home is
+							<span class="text-warning fw-semibold fst-italic">WORTH</span> — for
+							<span class="text-warning fw-semibold">FREE</span>
+						</p>
+
+						<a href="/home-worth"
+						   target="_blank"
+						   class="btn btn-warning fw-semibold px-4 py-2 rounded-3">Get Started</a>
+					</div>
+				</div>}
+
+				@if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
+				<div class="col-12 col-sm-6 col-lg-4 d-flex">
+					<div class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
+						<h2 class="fw-bold text-uppercase mb-3">Neighborhood Watch</h2>
+						<p class="fs-5 mb-4">
+							Get updated as soon as your
+							<span class="text-danger fw-semibold">NEIGHBORS</span> are
+							<span class="text-danger fw-semibold fst-italic">SELLING</span>
+						</p>
+						<a href="/neighbor-detail"
+						   target="_blank"
+						   class="btn btn-danger fw-semibold px-4 py-2 rounded-3">Get Started</a>
+					</div>
+				</div>}
+
+				@if(siteConfig.websiteSettings.showFindDreamHomePage){
+				<div class="col-12 col-sm-6 col-lg-4 d-flex">
+					<div class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
+						<h2 class="fw-bold text-uppercase mb-3">Find Your Dream Home</h2>
+						<p class="fs-5 mb-4">
+							Start your search and
+							<span class="text-success fw-semibold fst-italic">FIND</span> your
+							<span class="text-success fw-semibold">DREAM HOME</span> today.
+						</p>
+						<a href="/dream-home"
+						   target="_blank"
+						   class="btn btn-success fw-semibold px-4 py-2 rounded-3">Get Started</a>
+					</div>
+				</div>}
+			</div>
+		</div>
+	</section>
+	}
 
 	<div class="container py-lg-5 p-lg-0 p-4">
 		<div class="row p-lg-4 p-3 estate-border">
@@ -248,7 +255,7 @@
 		</div>
 	</div>
 
-<app-team-card />
+	<app-team-card />
 
 
 </div>

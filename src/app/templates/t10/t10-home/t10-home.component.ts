@@ -1,4 +1,5 @@
 import { Component, OnInit,AfterViewInit } from "@angular/core";
+import { environment } from "../../../environments/environment.development";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -39,6 +40,7 @@ export class T10HomeComponent implements OnInit,AfterViewInit {
 	customer!: CustomerModel | null;
 	userForm!: FormGroup;
 	siteConfig: SiteConfig = {} as SiteConfig;
+localImageUrl = environment.localImageUrl;
 
 	constructor(
 		private titleService: Title,

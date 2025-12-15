@@ -4,16 +4,17 @@ import { AngularSvgIconModule } from "angular-svg-icon";
 import { MenuComponent } from "../../../components/menu/menu.component";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
+import { environment } from "../../../environments/environment.development";
 
 @Component({
 	selector: "app-t10-header",
-	imports: [AngularSvgIconModule, PhoneNumberFormatPipe, RouterModule, MenuComponent, ],
+	imports: [AngularSvgIconModule, PhoneNumberFormatPipe, RouterModule, MenuComponent],
 	templateUrl: "./t10-header.component.html",
 	styleUrls: ["./t10-header.component.scss", "../t10.component.scss"],
 })
 export class T10HeaderComponent implements OnInit {
 	@Input("siteConfig") siteConfig: SiteConfig | any;
-
+	localImageUrl = environment.localImageUrl;
 	constructor() {}
 
 	ngOnInit(): void {}

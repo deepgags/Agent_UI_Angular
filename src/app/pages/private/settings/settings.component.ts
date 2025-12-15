@@ -62,6 +62,7 @@ export class SettingsComponent {
 
 	existingProfileImage = "";
 	existingSecondaryProfileImage = "";
+	existingBrokerageImage = "";
 	primaryAgentProfileImage: BehaviorSubject<Blob | null>;
 	primaryAgentProfileImageObservable: Observable<Blob | null>;
 
@@ -205,11 +206,10 @@ export class SettingsComponent {
 						profileImage,
 						siteUrl,
 					} = websiteSettings;
-
+					debugger;
 					this.existingProfileImage = profileImage;
+					this.existingBrokerageImage = brokerageImage;
 					// this.brokerageImage.next(brokerage.logoPath);
-					// this.primaryAgentProfileImage.next(profileImage);
-					this.brokerageLogoImage.next(brokerageImage);
 
 					this.agentForm.patchValue({
 						businessName: businessName,

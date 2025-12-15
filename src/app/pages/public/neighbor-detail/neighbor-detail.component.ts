@@ -7,6 +7,7 @@ import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { GooglePlaceComponent } from "../../../components/google-place/google-place.component";
+import { environment } from "../../../environments/environment.development";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
@@ -34,6 +35,7 @@ export class NeighborDetailComponent implements OnInit {
 	selectedAddress: string = "";
 	latitude: number = 43.6532; // Toronto
 	longitude: number = -79.3832;
+	localImageUrl = environment.localImageUrl;
 	mapOptions: google.maps.MapOptions = {
 		center: { lat: this.latitude, lng: this.longitude },
 		zoom: 15,
@@ -137,13 +139,12 @@ export class NeighborDetailComponent implements OnInit {
 	}
 
 	get beds() {
-  return this.neighborDetailForm.get('beds');
-}
+		return this.neighborDetailForm.get("beds");
+	}
 
-get baths() {
-  return this.neighborDetailForm.get('baths');
-}
-
+	get baths() {
+		return this.neighborDetailForm.get("baths");
+	}
 
 	submitNeighborDetailForm() {
 		if (this.neighborDetailForm.invalid) {

@@ -1,13 +1,13 @@
 <div class="background-container">
 	<div class="container-fluid search-container">
-				<div class="top-padding1">
-					<div class="row justify-content-center">
-						<p class="text fs-1 text-white fw-semibold pt-3">Search Your Dream Home</p>
-						<div class="col-12 bg-white p-4 mb-5">
-							<app-search [onSearch]="searchProperties" />
-						</div>
-					</div>
+		<div class="top-padding1">
+			<div class="row justify-content-center">
+				<p class="text fs-1 text-white fw-semibold pt-3">Search Your Dream Home</p>
+				<div class="col-12 bg-white p-4 mb-5">
+					<app-search [onSearch]="searchProperties" />
 				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -22,7 +22,7 @@
 					 style="max-width: 540px">
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
-							<img [src]="siteConfig.secondaryAgent.profileImage ? siteConfig.secondaryAgent.profileImage : '/images/Nologo.png'"
+							<img [src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
 								 alt="No profile image"
 								 class="overlay-image w-100" />
 						</div>
@@ -104,11 +104,7 @@
 					 style="max-width: 540px">
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
-							<img [src]="
-									siteConfig.websiteSettings.profileImage
-										? siteConfig.websiteSettings.profileImage
-										: '/images/Nologo.png'
-								"
+							<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
 								 alt="No profile image"
 								 class="overlay-image w-100" />
 						</div>
@@ -184,49 +180,52 @@
 </div>
 
 @if(
-  siteConfig.websiteSettings.showHomeWorthPage ||
-  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-  siteConfig.websiteSettings.showFindDreamHomePage
+siteConfig.websiteSettings.showHomeWorthPage ||
+siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+siteConfig.websiteSettings.showFindDreamHomePage
 ){
 <section class="py-5">
-    <div class="container">
-        <div class="row justify-content-center g-4">
+	<div class="container">
+		<div class="row justify-content-center g-4">
 
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="feature-card h-100 text-center" >
-                    <div class="icon-wrap">
-                        <i class="bi bi-house-heart-fill"></i>
-                    </div>
-                    <h5>Home Evaluation</h5>
-                    <p>Get instant insights on what your home is worth.</p>
-                    <a href="/home-worth" class="btn btn-outline-primary">Check Worth</a>
-                </div>
-            </div>
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="feature-card h-100 text-center">
+					<div class="icon-wrap">
+						<i class="bi bi-house-heart-fill"></i>
+					</div>
+					<h5>Home Evaluation</h5>
+					<p>Get instant insights on what your home is worth.</p>
+					<a href="/home-worth"
+					   class="btn btn-outline-primary">Check Worth</a>
+				</div>
+			</div>
 
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="feature-card h-100 text-center" >
-                    <div class="icon-wrap">
-                        <i class="bi bi-pin-map-fill"></i>
-                    </div>
-                    <h5>Neighbourhood Watch</h5>
-                    <p>Get alerts when neighbours list homes for sale.</p>
-                    <a href="/neighbor-detail" class="btn btn-outline-primary">Get Alerts</a>
-                </div>
-            </div>
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="feature-card h-100 text-center">
+					<div class="icon-wrap">
+						<i class="bi bi-pin-map-fill"></i>
+					</div>
+					<h5>Neighbourhood Watch</h5>
+					<p>Get alerts when neighbours list homes for sale.</p>
+					<a href="/neighbor-detail"
+					   class="btn btn-outline-primary">Get Alerts</a>
+				</div>
+			</div>
 
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="feature-card h-100 text-center" >
-                    <div class="icon-wrap">
-                        <i class="bi bi-search-heart"></i>
-                    </div>
-                    <h5>Dream Home Finder</h5>
-                    <p>Explore listings and find your dream home today.</p>
-                    <a href="/dream-home" class="btn btn-outline-primary">Explore</a>
-                </div>
-            </div>
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="feature-card h-100 text-center">
+					<div class="icon-wrap">
+						<i class="bi bi-search-heart"></i>
+					</div>
+					<h5>Dream Home Finder</h5>
+					<p>Explore listings and find your dream home today.</p>
+					<a href="/dream-home"
+					   class="btn btn-outline-primary">Explore</a>
+				</div>
+			</div>
 
-        </div>
-    </div>
+		</div>
+	</div>
 </section>
 }
 

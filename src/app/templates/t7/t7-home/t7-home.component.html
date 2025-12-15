@@ -42,7 +42,7 @@
 
 					<div class="position-relative d-inline-block">
 
-						<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
+						<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
 							 alt="No profile image"
 							 class=" mob_pic"
 							 style=" height: 367px;">
@@ -55,49 +55,52 @@
 </div>
 
 @if(
-  siteConfig.websiteSettings.showHomeWorthPage ||
-  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-  siteConfig.websiteSettings.showFindDreamHomePage
+siteConfig.websiteSettings.showHomeWorthPage ||
+siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+siteConfig.websiteSettings.showFindDreamHomePage
 ){
 <section class="py-5">
-    <div class="container">
-        <div class="row justify-content-center g-4">
+	<div class="container">
+		<div class="row justify-content-center g-4">
 
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="feature-card h-100 text-center" >
-                    <div class="icon-wrap">
-                        <i class="bi bi-house-heart-fill"></i>
-                    </div>
-                    <h5>Home Evaluation</h5>
-                    <p>Get instant insights on what your home is worth.</p>
-                    <a href="/home-worth" class="btn btn-outline-primary">Check Worth</a>
-                </div>
-            </div>
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="feature-card h-100 text-center">
+					<div class="icon-wrap">
+						<i class="bi bi-house-heart-fill"></i>
+					</div>
+					<h5>Home Evaluation</h5>
+					<p>Get instant insights on what your home is worth.</p>
+					<a href="/home-worth"
+					   class="btn btn-outline-primary">Check Worth</a>
+				</div>
+			</div>
 
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="feature-card h-100 text-center" >
-                    <div class="icon-wrap">
-                        <i class="bi bi-pin-map-fill"></i>
-                    </div>
-                    <h5>Neighbourhood Watch</h5>
-                    <p>Get alerts when neighbours list homes for sale.</p>
-                    <a href="/neighbor-detail" class="btn btn-outline-primary">Get Alerts</a>
-                </div>
-            </div>
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="feature-card h-100 text-center">
+					<div class="icon-wrap">
+						<i class="bi bi-pin-map-fill"></i>
+					</div>
+					<h5>Neighbourhood Watch</h5>
+					<p>Get alerts when neighbours list homes for sale.</p>
+					<a href="/neighbor-detail"
+					   class="btn btn-outline-primary">Get Alerts</a>
+				</div>
+			</div>
 
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="feature-card h-100 text-center" >
-                    <div class="icon-wrap">
-                        <i class="bi bi-search-heart"></i>
-                    </div>
-                    <h5>Dream Home Finder</h5>
-                    <p>Explore listings and find your dream home today.</p>
-                    <a href="/dream-home" class="btn btn-outline-primary">Explore</a>
-                </div>
-            </div>
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="feature-card h-100 text-center">
+					<div class="icon-wrap">
+						<i class="bi bi-search-heart"></i>
+					</div>
+					<h5>Dream Home Finder</h5>
+					<p>Explore listings and find your dream home today.</p>
+					<a href="/dream-home"
+					   class="btn btn-outline-primary">Explore</a>
+				</div>
+			</div>
 
-        </div>
-    </div>
+		</div>
+	</div>
 </section>
 }
 
@@ -108,75 +111,85 @@
 	<div class="row">
 		<div class="col-lg-8 col-12">
 			<div class="row card city-card"
-     (click)="searchProperties({ city:'Toronto'})">
+				 (click)="searchProperties({ city:'Toronto'})">
 
-    <img src="./t7/images/proToronto.png" alt="" class="w-100">
+				<img src="./t7/images/proToronto.png"
+					 alt=""
+					 class="w-100">
 
-    <div class="content p-0">
-        <h2>Toronto</h2>
-        <h3>View Properties</h3>
-    </div>
-</div>
+				<div class="content p-0">
+					<h2>Toronto</h2>
+					<h3>View Properties</h3>
+				</div>
+			</div>
 
 			<div class="row mt-3">
-			<div class="col d-flex position-relative">
-	<div class="w-100 position-relative card city-card"
-		 (click)="searchProperties({ city:'Milton'})">
+				<div class="col d-flex position-relative">
+					<div class="w-100 position-relative card city-card"
+						 (click)="searchProperties({ city:'Milton'})">
 
-		<img class="w-100" src="/t7/images/proMilton.png" alt="">
+						<img class="w-100"
+							 src="/t7/images/proMilton.png"
+							 alt="">
 
-		<!-- Hover Content -->
-		<div class="content">
-			<h2>Milton</h2>
-			<h3>View Properties</h3>
-		</div>
+						<!-- Hover Content -->
+						<div class="content">
+							<h2>Milton</h2>
+							<h3>View Properties</h3>
+						</div>
 
-	</div>
-</div>
+					</div>
+				</div>
 
-<div class="col d-flex position-relative">
-	<div class="w-100 position-relative card city-card"
-		 (click)="searchProperties({ city:'Brampton'})">
+				<div class="col d-flex position-relative">
+					<div class="w-100 position-relative card city-card"
+						 (click)="searchProperties({ city:'Brampton'})">
 
-		<img class="w-100" src="/t7/images/proBrampton.png" alt="">
+						<img class="w-100"
+							 src="/t7/images/proBrampton.png"
+							 alt="">
 
-		<!-- Hover Content -->
-		<div class="content">
-			<h2>Brampton</h2>
-			<h3>View Properties</h3>
-		</div>
+						<!-- Hover Content -->
+						<div class="content">
+							<h2>Brampton</h2>
+							<h3>View Properties</h3>
+						</div>
 
-	</div>
-</div>
+					</div>
+				</div>
 
 			</div>
 		</div>
 		<div class="col-lg-4 col-12 mt-3 mt-lg-0">
 			<div class="position-relative card city-card"
-     (click)="searchProperties({ city:'Mississauga'})">
+				 (click)="searchProperties({ city:'Mississauga'})">
 
-    <img class="w-100" src="/t7/images/proMississuaga.png" alt="">
+				<img class="w-100"
+					 src="/t7/images/proMississuaga.png"
+					 alt="">
 
-    <!-- Hover Overlay -->
-    <div class="content">
-        <h2>Mississauga</h2>
-        <h3>View Properties</h3>
-    </div>
+				<!-- Hover Overlay -->
+				<div class="content">
+					<h2>Mississauga</h2>
+					<h3>View Properties</h3>
+				</div>
 
-</div>
+			</div>
 
-<div class="mt-3 position-relative card city-card"
-     (click)="searchProperties({ city:'Montreal'})">
+			<div class="mt-3 position-relative card city-card"
+				 (click)="searchProperties({ city:'Montreal'})">
 
-    <img class="w-100" src="/t7/images/proMontreal.png" alt="">
+				<img class="w-100"
+					 src="/t7/images/proMontreal.png"
+					 alt="">
 
-    <!-- Hover Overlay -->
-    <div class="content">
-        <h2>Montreal</h2>
-        <h3>View Properties</h3>
-    </div>
+				<!-- Hover Overlay -->
+				<div class="content">
+					<h2>Montreal</h2>
+					<h3>View Properties</h3>
+				</div>
 
-</div>
+			</div>
 
 		</div>
 	</div>

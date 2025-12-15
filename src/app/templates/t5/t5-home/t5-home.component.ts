@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
-import { CustomerModel } from "../../../models/CustomerModel";
 import { TeamCardComponent } from "../../../components/team-card/team-card.component";
+import { environment } from "../../../environments/environment.development";
+import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
@@ -30,6 +31,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 export class T5HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
+	localImageUrl = environment.localImageUrl;
 	constructor(
 		private titleService: Title,
 		private sharedDataService: SharedDataService,
