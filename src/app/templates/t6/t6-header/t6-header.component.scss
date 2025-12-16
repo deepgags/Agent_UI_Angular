@@ -17,3 +17,36 @@
 a {
 	font-size: 14px;
 }
+
+
+.agent-block {
+  line-height: 1.2;
+}
+
+.brokerage-wrap img {
+  filter: grayscale(10%);
+  transition: transform 0.3s ease;
+}
+
+.brokerage-wrap img:hover {
+  transform: scale(1.05);
+}
+
+.contact-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 30px;
+  border: 1px solid #e5e5e5;
+  background: #fafafa;
+  transition: all 0.2s ease;
+}
+
+.contact-chip a {
+  color: #111;
+}
+
+.contact-chip:hover {
+  background: #f3f3f3;
+}

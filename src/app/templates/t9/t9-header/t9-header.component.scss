@@ -22,3 +22,97 @@ a{
 .nav_content{
     color: black !important;
 }
+
+/* HEADER BASE */
+.editorial-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* SHRINK STATE */
+.editorial-header.shrink {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.header-inner {
+  transition: all 0.3s ease;
+}
+
+/* AGENT */
+.agent-name {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.agent-role {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* CONTACT */
+.contact-editorial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+}
+
+/* CTA */
+.cta-editorial {
+  padding: 8px 18px;
+  border: 1px solid #111;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #111;
+  transition: all 0.25s ease;
+}
+
+.cta-editorial:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* BROKERAGE */
+.brokerage-editorial img {
+  transition: transform 0.25s ease;
+}
+
+.brokerage-editorial img:hover {
+  transform: translateY(-2px);
+}
+
+/* MOBILE REDESIGN */
+@media (max-width: 991px) {
+  .agent-name {
+    font-size: 20px;
+  }
+
+  .contact-editorial {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cta-editorial {
+    width: 100%;
+    text-align: center;
+  }
+}

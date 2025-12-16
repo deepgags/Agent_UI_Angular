@@ -18,4 +18,83 @@
 }
 a{
     font-size:14px;
+}/* GLASS HEADER */
+.glass-header {
+  background: rgba(12, 12, 12, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* CONTACT */
+.contact-item a {
+  color: #fff;
+}
+
+.contact-item i {
+  margin-right: 4px;
+}
+
+/* SOCIAL PILLS */
+.social-pill {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.social-pill:hover {
+  background: #c9a14a;
+  color: #000;
+  box-shadow: 0 0 12px rgba(201, 161, 74, 0.8);
+  transform: translateY(-2px);
+}
+
+/* MOBILE TOGGLE */
+.social-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  color: #fff;
+}
+
+/* MOBILE DRAWER */
+.mobile-social-drawer {
+  position: fixed;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  background: rgba(12, 12, 12, 0.85);
+  padding: 14px 20px;
+  border-radius: 40px;
+  backdrop-filter: blur(14px);
+  transition: bottom 0.35s ease;
+  z-index: 999;
+}
+
+.mobile-social-drawer.active {
+  bottom: 20px;
+}
+
+.mobile-social-drawer a {
+  color: #fff;
+  font-size: 16px;
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+  .social-pills {
+    display: none;
+  }
 }

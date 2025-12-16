@@ -17,3 +17,91 @@
 a {
 	font-size: 14px;
 }
+/* GLASS HEADER */
+.glass-header {
+  background: rgba(12, 12, 12, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* AGENT */
+.agent-brand {
+  line-height: 1.15;
+}
+
+/* CONTACT PILLS */
+.contact-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.12);
+  transition: all 0.25s ease;
+}
+
+.contact-pill a {
+  color: #fff;
+}
+
+.contact-pill:hover {
+  background: #c9a14a;
+}
+
+.contact-pill:hover a,
+.contact-pill:hover i {
+  color: #000;
+}
+
+/* MINI SEARCH */
+.mini-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  width: 140px;
+}
+
+.mini-search i {
+  color: #bbb;
+}
+
+.mini-search input::placeholder {
+  color: #aaa;
+}
+
+/* BROKERAGE */
+.brokerage-badge img {
+  transition: transform 0.3s ease;
+}
+
+.brokerage-badge img:hover {
+  transform: scale(1.05);
+}
+
+/* ANIMATED UNDERLINE */
+.scroll-underline {
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #c9a14a, #ffffff);
+  transition: width 0.4s ease;
+}
+
+/* MOBILE STACK */
+@media (max-width: 991px) {
+  .center-stack {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mini-search {
+    width: 100%;
+    max-width: 260px;
+  }
+}

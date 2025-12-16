@@ -1,75 +1,70 @@
-<div class="container search-container">
-  <div class="row py-2 align-items-center justify-content-center">
-    <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-      <div class="d-flex align-items-center">
-        <div class="">
-          <!-- <a
-          [routerLink]="['home']"
-          *ngIf="siteConfig">
-          <img
-            [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'"
-            [alt]="siteConfig.firstName + ' ' + siteConfig.lastName"
-            height="66px" />
-        </a> -->
+<header class="search-container stripe-header">
+  <div class="container">
+    <div class="row align-items-stretch">
+
+      <!-- STRIPE -->
+      <div class="col-lg-1 d-none d-lg-flex stripe-column">
+        <span class="stripe-text">REAL ESTATE</span>
       </div>
-     <div class="">
-          <h4 class="fw-semibold info mb-0">
-            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-          </h4>
-          <p class="text-center fw-semibold fs-6 mb-0">{{ siteConfig.designation }}</p>
+
+      <!-- MAIN CONTENT -->
+      <div class="col-lg-11 col-12">
+        <div class="row py-4 align-items-center">
+
+          <!-- Name / Role -->
+          <div class="col-lg-5 col-12 mb-3 mb-lg-0">
+            <div class="agent-block">
+              <h2 class="agent-title info">
+                {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
+              </h2>
+              <p class="agent-subtitle">
+                {{ siteConfig?.designation }}
+              </p>
+
+              <a class="editorial-cta" href="#">
+                Book a Showing →
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div class="col-lg-4 col-12 mb-3 mb-lg-0">
+            <div class="contact-block">
+
+              <a
+                class="contact-row pop"
+                [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+                <i class="fa-solid fa-phone info"></i>
+                <span>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}</span>
+              </a>
+
+              <a
+                class="contact-row pop"
+                [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+                <i class="fa-solid fa-envelope info"></i>
+                <span>{{ siteConfig?.websiteSettings?.contactInfo?.email }}</span>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Brokerage -->
+          <div class="col-lg-3 col-12 d-flex justify-content-lg-end justify-content-start">
+            @if (siteConfig) {
+              <a [routerLink]="['home']" class="brokerage-block">
+                <img
+                  [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+                  height="52"
+                  alt="Brokerage Logo" />
+              </a>
+            }
+          </div>
 
         </div>
+      </div>
 
     </div>
   </div>
-
-    <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-    @if (siteConfig) {
-      <a
-        [routerLink]="['home']"
-        >
-        <img
-          [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-          alt="No brokerage logo"
-          height="66px" />
-      </a>
-    }
-  </div>
-
-  <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-end">
-    <div class="d-flex justify-content-center">
-      <div class="">
-        <i class="fa-solid fa-phone info"></i>
-
-      </div>
-      <div class="ms-2">
-        <p class="mb-0">
-          <a
-            class="text-dark fw-semibold small text-decoration-none pop"
-            [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-            {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-          </a>
-        </p>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center ms-5">
-      <div class="">
-        <i class="fa-solid fa-envelope info"></i>
-
-      </div>
-      <div class="ms-2">
-        <p class="mb-0">
-          <a
-            class="text-dark fw-semibold small text-decoration-none pop"
-            [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-            {{ siteConfig?.websiteSettings?.contactInfo?.email }}
-          </a>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+</header>
 
 <app-menu />
-

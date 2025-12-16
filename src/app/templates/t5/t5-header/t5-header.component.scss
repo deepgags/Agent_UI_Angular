@@ -17,3 +17,81 @@
 a {
 	font-size: 14px;
 }
+/* GLASS HEADER */
+.glass-header {
+  background: rgba(15, 15, 15, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+/* SHRINK STATE */
+.glass-header.shrink {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.header-inner {
+  transition: all 0.3s ease;
+}
+
+.glass-header.shrink .header-inner {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.broker-logo {
+  transition: all 0.3s ease;
+}
+
+.glass-header.shrink .broker-logo {
+  height: 38px;
+}
+
+/* SEARCH BAR */
+.search-glass {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.search-glass i {
+  color: #aaa;
+}
+
+.search-glass input {
+  color: #fff;
+}
+
+.search-glass input::placeholder {
+  color: #bbb;
+}
+
+/* ICON PILLS */
+.icon-pill {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.25s ease;
+}
+
+.icon-pill:hover {
+  background: #c9a14a; /* luxury gold */
+  color: #000;
+}
+
+/* AGENT */
+.agent-info {
+  line-height: 1.1;
+}

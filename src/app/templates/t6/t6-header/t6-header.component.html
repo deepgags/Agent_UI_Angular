@@ -1,73 +1,56 @@
 <div class="container search-container">
-  <div class="row py-2 align-items-center justify-content-center">
-    <div class="col-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
-      <div class="d-flex align-items-center">
-        <div class="">
-          <!-- <a
-          [routerLink]="['home']"
-          *ngIf="siteConfig">
+  <div class="row align-items-center py-3 g-3">
+
+    <!-- Agent Info -->
+    <div class="col-lg-4 col-12 d-flex justify-content-center justify-content-lg-start">
+      <div class="agent-block text-center text-lg-start">
+        <h5 class="fw-bold mb-0 text-uppercase info">
+          {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
+        </h5>
+        <small class="text-muted fw-semibold">
+          {{ siteConfig?.designation }}
+        </small>
+      </div>
+    </div>
+
+    <!-- Brokerage Logo (Center Focus) -->
+    <div class="col-lg-4 col-12 d-flex justify-content-center">
+      @if (siteConfig) {
+        <a [routerLink]="['home']" class="brokerage-wrap">
           <img
-            [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'"
-            [alt]="siteConfig.firstName + ' ' + siteConfig.lastName"
-            height="66px" />
-        </a> -->
-      </div>
-<div class="">
-          <h4 class="fw-semibold info mb-0">
-            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-          </h4>
-          <p class="text-center fw-semibold fs-6 mb-0">{{ siteConfig.designation }}</p>
-
-        </div>
-
+            [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+            alt="Brokerage Logo"
+            height="60" />
+        </a>
+      }
     </div>
-  </div>
-  <div class="col-12 col-lg-4 d-flex justify-content-center justify-content-lg-center">
-    @if (siteConfig) {
-      <a
-        [routerLink]="['home']"
-        >
-        <img
-          [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-          alt="No brokerage logo"
-          height="66px" />
-      </a>
-    }
-  </div>
 
-  <div class="col-12 col-lg-4 d-flex py-lg-0 py-4 justify-content-end">
-    <div class="d-flex justify-content-center">
-      <div class="">
+    <!-- Contact Info -->
+    <div class="col-lg-4 col-12 d-flex justify-content-center justify-content-lg-end gap-4 flex-wrap">
+
+      <!-- Phone -->
+      <div class="contact-chip">
         <i class="fa-solid fa-phone info"></i>
+        <a
+          class="text-decoration-none fw-semibold small"
+          [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+          {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+        </a>
+      </div>
 
-      </div>
-      <div class="ms-2">
-        <p class="mb-0">
-          <a
-            class="text-dark fw-semibold small text-decoration-none pop"
-            [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-            {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-          </a>
-        </p>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center ms-5">
-      <div class="">
+      <!-- Email -->
+      <div class="contact-chip">
         <i class="fa-solid fa-envelope info"></i>
+        <a
+          class="text-decoration-none fw-semibold small"
+          [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+          {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        </a>
+      </div>
 
-      </div>
-      <div class="ms-2">
-        <p class="mb-0">
-          <a
-            class="text-dark fw-semibold small text-decoration-none pop"
-            [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-            {{ siteConfig?.websiteSettings?.contactInfo?.email }}
-          </a>
-        </p>
-      </div>
     </div>
+
   </div>
-</div>
 </div>
 
 <app-menu />

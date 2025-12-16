@@ -1,74 +1,69 @@
-<div class="container search-container">
-  <div class="row py-2 align-items-center justify-content-center">
-    <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-      <div class="d-flex align-items-center">
-        <div class="">
-          <!-- <a
-          [routerLink]="['home']"
-          *ngIf="siteConfig">
-          <img
-            [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'"
-            [alt]="siteConfig.firstName + ' ' + siteConfig.lastName"
-            height="66px" />
-        </a> -->
-      </div>
-  <div class="">
-          <h4 class="fw-semibold info mb-0">
-            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-          </h4>
-          <p class="text-center fw-semibold fs-6 mb-0">{{ siteConfig.designation }}</p>
+<div class="container-fluid search-container">
+  <div class="container py-2">
+    <div class="row align-items-center">
 
-        </div>
-
-    </div>
-  </div>
-
-    <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-    @if (siteConfig) {
-      <a
-        [routerLink]="['home']"
-        >
+      <div class="col-lg-4 col-md-6 col-12 d-flex align-items-center justify-content-center justify-content-lg-start">
         <img
-          [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-          alt="No brokerage logo"
-          height="66px" />
-      </a>
-    }
-  </div>
+          src="/images/profile.png"
+          class="rounded-circle me-3"
+          width="60"
+          height="60"
+          alt="Agent" />
 
-  <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-end">
-    <div class="d-flex justify-content-center">
-      <div class="">
-        <i class="fa-solid fa-phone info"></i>
-
+        <div>
+          <h6 class="fw-bold mb-0 text-uppercase">
+            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
+          </h6>
+          <small class="text-muted fw-semibold">
+            {{ siteConfig?.designation }}
+          </small>
+        </div>
       </div>
-      <div class="ms-2">
-        <p class="mb-0">
+
+      <div class="col-lg-5 col-md-6 col-12 d-flex justify-content-center gap-4 my-3 my-lg-0">
+
+        <div class="d-flex align-items-center gap-2">
+          <i class="fa-solid fa-phone info"></i>
           <a
-            class="text-dark fw-semibold small text-decoration-none pop"
+            class="text-dark fw-semibold small text-decoration-none"
             [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
             {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
           </a>
-        </p>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center ms-5">
-      <div class="">
-        <i class="fa-solid fa-envelope info"></i>
+        </div>
 
-      </div>
-      <div class="ms-2">
-        <p class="mb-0">
+        <div class="vr d-none d-lg-block"></div>
+
+        <div class="d-flex align-items-center gap-2">
+          <i class="fa-solid fa-envelope info"></i>
           <a
-            class="text-dark fw-semibold small text-decoration-none pop"
+            class="text-dark fw-semibold small text-decoration-none"
             [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
             {{ siteConfig?.websiteSettings?.contactInfo?.email }}
           </a>
-        </p>
+        </div>
+
       </div>
+
+      <div class="col-lg-3 col-12 d-flex align-items-center justify-content-center justify-content-lg-end gap-3">
+
+        <a href="#" class="text-dark fs-6"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="text-dark fs-6"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="text-dark fs-6"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" class="text-dark fs-6"><i class="fa-brands fa-instagram"></i></a>
+
+        @if (siteConfig) {
+          <a [routerLink]="['home']" class="ms-3">
+            <img
+              [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+              height="42"
+              alt="Brokerage Logo" />
+          </a>
+        }
+
+      </div>
+
     </div>
   </div>
-</div>
 </div>
 
 
