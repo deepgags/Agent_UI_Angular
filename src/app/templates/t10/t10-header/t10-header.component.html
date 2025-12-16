@@ -1,5 +1,4 @@
-<header class="search-container stripe-header">
-  <div class="container">
+<header class="container-fluid search-container stripe-header">
     <div class="row align-items-stretch">
 
       <!-- STRIPE -->
@@ -54,7 +53,7 @@
               <a [routerLink]="['home']" class="brokerage-block">
                 <img
                   [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-                  height="52"
+                  height="80"
                   alt="Brokerage Logo" />
               </a>
             }
@@ -64,7 +63,6 @@
       </div>
 
     </div>
-  </div>
 </header>
 
 <app-menu />

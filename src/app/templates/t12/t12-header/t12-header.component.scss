@@ -21,3 +21,94 @@ a {
 .nav_content {
 	color: black !important;
 }
+
+/* ---------- HEADER ---------- */
+.editorial-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 999;
+  transition: padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ---------- AGENT ---------- */
+.agent-name {
+  letter-spacing: 0.4px;
+}
+
+.agent-role {
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* ---------- UNDERLINE ---------- */
+.scroll-underline {
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  margin-top: 6px;
+  transition: width 0.4s ease;
+}
+
+/* activated on scroll */
+.editorial-header.scrolled .scroll-underline {
+  width: 64px;
+}
+
+/* ---------- CONTACT ---------- */
+.contact-pill {
+  font-size: 12px;
+  text-decoration: none;
+  color: #222;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.03);
+  transition: all 0.25s ease;
+}
+
+.contact-pill:hover {
+  background: rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+/* ---------- BROKERAGE ---------- */
+.brokerage-logo img {
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.brokerage-logo:hover img {
+  opacity: 1;
+}
+
+/* ---------- SCROLL SHRINK ---------- */
+.editorial-header.scrolled {
+  padding: 6px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.editorial-header.scrolled .agent-name {
+  font-size: 22px;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 991px) {
+  .agent-name {
+    font-size: 24px;
+  }
+
+  .scroll-underline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-pill {
+    font-size: 11px;
+  }
+}

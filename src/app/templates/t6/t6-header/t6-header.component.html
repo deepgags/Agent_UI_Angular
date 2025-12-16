@@ -18,7 +18,7 @@
       @if (siteConfig) {
         <a [routerLink]="['home']" class="brokerage-wrap">
           <img
-            [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+            [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl +siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
             alt="Brokerage Logo"
             height="60" />
         </a>

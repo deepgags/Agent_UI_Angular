@@ -2,7 +2,6 @@
   <div class="container">
     <div class="row align-items-center py-3 header-inner">
 
-      <!-- Agent Brand -->
       <div class="col-lg-5 col-12 order-2 order-lg-1">
         <div class="agent-editorial text-center text-lg-start">
           <h3 class="agent-name info mb-0">
@@ -14,7 +13,6 @@
         </div>
       </div>
 
-      <!-- Contact + CTA -->
       <div class="col-lg-4 col-12 order-3 order-lg-2">
         <div class="contact-editorial">
 
@@ -32,7 +30,6 @@
             <span>{{ siteConfig?.websiteSettings?.contactInfo?.email }}</span>
           </a>
 
-          <!-- CTA -->
           <a class="cta-editorial" href="#">
             Book a Showing
           </a>
@@ -40,12 +37,11 @@
         </div>
       </div>
 
-      <!-- Brokerage -->
       <div class="col-lg-3 col-12 order-1 order-lg-3 d-flex justify-content-center justify-content-lg-end">
         @if (siteConfig) {
           <a [routerLink]="['home']" class="brokerage-editorial">
             <img
-              [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
               height="56"
               alt="Brokerage Logo" />
           </a>

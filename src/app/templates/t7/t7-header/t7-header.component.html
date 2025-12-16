@@ -54,7 +54,7 @@
         @if (siteConfig) {
           <a [routerLink]="['home']" class="brokerage-badge">
             <img
-              [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
               height="54"
               alt="Brokerage Logo" />
           </a>
