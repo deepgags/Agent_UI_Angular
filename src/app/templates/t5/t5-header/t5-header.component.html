@@ -4,14 +4,14 @@
 
       <!-- Brokerage -->
       <div class="col-lg-3 col-12 d-flex justify-content-center justify-content-lg-start">
+    
         @if (siteConfig) {
-        <a [routerLink]="['home']">
-          <img
-            [src]="siteConfig?.websiteSettings?.brokerageImage ? localImageUrl +siteConfig?.websiteSettings?.brokerageImage : '/images/Nologo.png'"
-            height="48"
-            alt="Brokerage Logo"
-            class="broker-logo" />
-        </a>
+          <a [routerLink]="['home']" class="">
+            <img
+              [src]="siteConfig.websiteSettings.brokerageImage ? + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+              alt="Brokerage logo"
+              height="70" />
+          </a>
         }
       </div>
 
