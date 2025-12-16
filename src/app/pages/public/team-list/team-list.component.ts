@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { environment } from "../../../environments/environment.development";
 import { RouterModule } from "@angular/router";
 import { TeamMemberModel } from "../../../models/TeamMemberModel";
 import { TeamService } from "../../../services/team.service";
@@ -11,6 +12,7 @@ import { TeamService } from "../../../services/team.service";
 	styleUrl: "./team-list.component.scss",
 })
 export class TeamListComponent implements OnInit {
+localImageUrl = environment.localImageUrl;
 	teamMembers: TeamMemberModel[] = [];
 	loading = true;
 

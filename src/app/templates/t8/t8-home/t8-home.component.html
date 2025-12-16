@@ -9,7 +9,7 @@
 				</div>
 			</div>
 			<div class="first">
-				<img [src]="siteConfig.websiteSettings.profileImage ? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
+				<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
 					 alt="No profile image"
 					 class="overlay-image" />
 				<div class="card position-absolute man-card"
@@ -49,7 +49,7 @@
 
 			@if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
 			<div class="second">
-				<img [src]="siteConfig.secondaryAgent.profileImage ? siteConfig.secondaryAgent.profileImage : '/images/Nologo.png'"
+				<img [src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
 					 alt="No profile image"
 					 class="overlay-image2" />
 				<div class="card position-absolute man_card2"

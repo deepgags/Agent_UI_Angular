@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { environment } from "../../environments/environment.development";
 import { TeamMemberModel } from "../../models/TeamMemberModel";
 import { SharedDataService } from "../../services/shared-data.service";
 
@@ -12,6 +13,7 @@ import { SharedDataService } from "../../services/shared-data.service";
 })
 export class TeamCardComponent {
 	team: TeamMemberModel[] | any[] = [];
+	localImageUrl = environment.localImageUrl;
 	constructor(private sharedDataService: SharedDataService) {}
 
 	ngOnInit(): void {

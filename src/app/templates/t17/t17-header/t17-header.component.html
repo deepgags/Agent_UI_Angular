@@ -60,7 +60,7 @@
         [routerLink]="['home']"
         >
         <img
-          [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+          [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
           alt="No brokerage logo"
           height="66px" />
       </a>

@@ -9,13 +9,14 @@ import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
+import { Page } from "../../../models/Page";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { NotificationService } from "../../../services/notification.service";
 import { PageService } from "../../../services/page.service";
 import { PublicService } from "../../../services/public.service";
 import { SharedDataService } from "../../../services/shared-data.service";
-import { Page } from "../../../models/Page";
+import { environment } from "../../../environments/environment.development";
 
 @Component({
 	selector: "app-contact",
@@ -39,7 +40,7 @@ import { Page } from "../../../models/Page";
 export class ContactComponent {
 	contactForm!: FormGroup;
 	siteConfig: SiteConfig = {} as SiteConfig;
-
+	localImageUrl = environment.localImageUrl;
 	page = signal<Page | null>(null);
 
 	userTypes = [

@@ -22,7 +22,7 @@
 
 					<div class="position-relative d-inline-block">
 
-						<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
+						<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
 							 alt="No profile image"
 							 class=" mob_pic"
 							 style=" height: 367px;">
@@ -54,49 +54,52 @@
 	</div>
 </div>
 @if(
-  siteConfig.websiteSettings.showHomeWorthPage ||
-  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-  siteConfig.websiteSettings.showFindDreamHomePage
+siteConfig.websiteSettings.showHomeWorthPage ||
+siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+siteConfig.websiteSettings.showFindDreamHomePage
 ){
 <section class="py-5 bg-dark text-white">
-    <div class="container">
-        <div class="row justify-content-center g-4">
+	<div class="container">
+		<div class="row justify-content-center g-4">
 
-            @if(siteConfig.websiteSettings.showHomeWorthPage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card-simple text-center p-4">
-                    <i class="bi bi-house-heart-fill card-icon mb-3"></i>
-                    <h5 class="fw-bold text-uppercase mb-2">Home Evaluation</h5>
-                    <p class="small opacity-75 mb-3">Find out your home’s worth instantly.</p>
-                    <a href="/home-worth" class="btn btn-outline-light btn-sm px-4 rounded-pill">Check Worth</a>
-                </div>
-            </div>
-            }
+			@if(siteConfig.websiteSettings.showHomeWorthPage){
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="card-simple text-center p-4">
+					<i class="bi bi-house-heart-fill card-icon mb-3"></i>
+					<h5 class="fw-bold text-uppercase mb-2">Home Evaluation</h5>
+					<p class="small opacity-75 mb-3">Find out your home’s worth instantly.</p>
+					<a href="/home-worth"
+					   class="btn btn-outline-light btn-sm px-4 rounded-pill">Check Worth</a>
+				</div>
+			</div>
+			}
 
-            @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card-simple text-center p-4">
-                    <i class="bi bi-pin-map-fill card-icon mb-3"></i>
-                    <h5 class="fw-bold text-uppercase mb-2">Neighbourhood Watch</h5>
-                    <p class="small opacity-75 mb-3">Get alerts when neighbours sell.</p>
-                    <a href="/neighbor-detail" class="btn btn-outline-light btn-sm px-4 rounded-pill">Get Alerts</a>
-                </div>
-            </div>
-            }
+			@if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="card-simple text-center p-4">
+					<i class="bi bi-pin-map-fill card-icon mb-3"></i>
+					<h5 class="fw-bold text-uppercase mb-2">Neighbourhood Watch</h5>
+					<p class="small opacity-75 mb-3">Get alerts when neighbours sell.</p>
+					<a href="/neighbor-detail"
+					   class="btn btn-outline-light btn-sm px-4 rounded-pill">Get Alerts</a>
+				</div>
+			</div>
+			}
 
-            @if(siteConfig.websiteSettings.showFindDreamHomePage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card-simple text-center p-4">
-                    <i class="bi bi-search-heart card-icon mb-3"></i>
-                    <h5 class="fw-bold text-uppercase mb-2">Dream Home Finder</h5>
-                    <p class="small opacity-75 mb-3">Search and find your dream home.</p>
-                    <a href="/dream-home" class="btn btn-outline-light btn-sm px-4 rounded-pill">Explore</a>
-                </div>
-            </div>
-            }
+			@if(siteConfig.websiteSettings.showFindDreamHomePage){
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="card-simple text-center p-4">
+					<i class="bi bi-search-heart card-icon mb-3"></i>
+					<h5 class="fw-bold text-uppercase mb-2">Dream Home Finder</h5>
+					<p class="small opacity-75 mb-3">Search and find your dream home.</p>
+					<a href="/dream-home"
+					   class="btn btn-outline-light btn-sm px-4 rounded-pill">Explore</a>
+				</div>
+			</div>
+			}
 
-        </div>
-    </div>
+		</div>
+	</div>
 </section>
 }
 

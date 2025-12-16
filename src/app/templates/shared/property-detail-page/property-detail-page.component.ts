@@ -21,7 +21,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
 import { PropertyComponent } from "../../../components/property/property.component";
-import { environment } from "../../../environments/environment.development";
+import { environment } from "../../../environments/environment";
 import { InterestedUserModel } from "../../../models/InterestedUserModel";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { SiteConfig } from "../../../models/SiteConfig";
@@ -66,6 +66,7 @@ declare var google: any;
 	// encapsulation: ViewEncapsulation.None,
 })
 export class PropertyDetailPageComponent {
+	localImageUrl = environment.localImageUrl;
 	propertyImageUrl = environment.propertyImageUrl;
 	property: PropertyModel | any = {} as PropertyModel;
 	Latitude: number = 0;

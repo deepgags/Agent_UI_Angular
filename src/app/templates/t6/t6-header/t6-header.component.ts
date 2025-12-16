@@ -4,6 +4,7 @@ import { AngularSvgIconModule } from "angular-svg-icon";
 import { MenuComponent } from "../../../components/menu/menu.component";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
+import { environment } from "../../../environments/environment.development";
 
 @Component({
 	selector: "app-t6-header",
@@ -13,7 +14,7 @@ import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 })
 export class T6HeaderComponent implements OnInit {
 	@Input("siteConfig") siteConfig: SiteConfig | any;
-
+	localImageUrl = environment.localImageUrl;
 	constructor() {}
 
 	ngOnInit(): void {}

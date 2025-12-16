@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation,AfterViewInit } from "@angular/core";
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
-import { CustomerModel } from "../../../models/CustomerModel";
 import { TeamCardComponent } from "../../../components/team-card/team-card.component";
+import { environment } from "../../../environments/environment.development";
+import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
@@ -14,15 +15,16 @@ declare var bootstrap: any;
 
 @Component({
 	selector: "app-t1-home",
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberFormatPipe,TeamCardComponent],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberFormatPipe, TeamCardComponent],
 	templateUrl: "./t1-home.component.html",
 	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./t1-home.component.scss", "../t1.component.scss"],
 })
-export class T1HomeComponent implements OnInit ,AfterViewInit {
+export class T1HomeComponent implements OnInit, AfterViewInit {
 	customer: CustomerModel | undefined;
 	siteConfig: SiteConfig = {} as SiteConfig;
 	siteConfigSubscription: any;
+	localImageUrl = environment.localImageUrl;
 
 	constructor(
 		private titleService: Title,
@@ -35,17 +37,17 @@ export class T1HomeComponent implements OnInit ,AfterViewInit {
 		this.siteConfig = this.sharedDataService.siteData();
 	}
 
-	 ngAfterViewInit(): void {
-    const carouselEl = document.querySelector("#carouselExampleAutoplaying");
-    if (carouselEl) {
-      new bootstrap.Carousel(carouselEl, {
-        interval: 2500,
-        ride: "carousel",
-        pause: false, 
-        wrap: true,   
-      });
-    }
-  }
+	ngAfterViewInit(): void {
+		const carouselEl = document.querySelector("#carouselExampleAutoplaying");
+		if (carouselEl) {
+			new bootstrap.Carousel(carouselEl, {
+				interval: 2500,
+				ride: "carousel",
+				pause: false,
+				wrap: true,
+			});
+		}
+	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
 		this.searchService.goToSearch(selectedFilters, searchByMap);

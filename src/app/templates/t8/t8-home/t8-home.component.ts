@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { environment } from "../../../environments/environment.development";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -38,6 +39,7 @@ import { TeamCardComponent } from "../../../components/team-card/team-card.compo
 export class T8HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
+localImageUrl = environment.localImageUrl;
 	constructor(
 		private titleService: Title,
 		private sharedDataService: SharedDataService,

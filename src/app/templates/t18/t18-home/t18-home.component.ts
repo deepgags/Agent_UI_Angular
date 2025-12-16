@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { environment } from "../../../environments/environment.development";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
@@ -23,6 +24,7 @@ export class T18HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 
 	siteConfig: SiteConfig = {} as SiteConfig;
+localImageUrl = environment.localImageUrl;
 	siteConfigSubscription: any;
 	constructor(
 		private titleService: Title,
