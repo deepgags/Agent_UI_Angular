@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { environment } from "../../../environments/environment.development";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { CustomerModel } from "../../../models/CustomerModel";
@@ -22,6 +23,7 @@ import { TeamCardComponent } from "../../../components/team-card/team-card.compo
 export class T11HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
+localImageUrl = environment.localImageUrl;
 
 	constructor(
 		private titleService: Title,

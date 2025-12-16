@@ -3,6 +3,7 @@ import { RouterModule } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
+import { environment } from "../../../environments/environment.development";
 
 @Component({
 	selector: "app-t17-footer",
@@ -12,6 +13,7 @@ import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 })
 export class t17FooterComponent implements OnInit {
 	@Input("siteConfig") siteConfig: SiteConfig | null = null;
+	localImageUrl = environment.localImageUrl;
 
 	constructor() {}
 

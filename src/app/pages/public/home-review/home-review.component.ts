@@ -6,6 +6,7 @@ import { ActivatedRoute, RouterModule } from "@angular/router";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
+import { environment } from "../../../environments/environment.development";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { NotificationService } from "../../../services/notification.service";
 import { PublicService } from "../../../services/public.service";
@@ -31,6 +32,7 @@ export class HomeReviewComponent implements OnInit {
 	selectedAddress: string = "";
 	latitude!: number;
 	longitude!: number;
+	localImageUrl = environment.localImageUrl;
 	mapOptions: google.maps.MapOptions = {
 		center: { lat: this.latitude, lng: this.longitude },
 		zoom: 15,

@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { MenuItem } from "primeng/api";
 import { MenuModule } from "primeng/menu";
+import { environment } from "../../../../environments/environment.development";
 import { CustomerModel } from "../../../../models/CustomerModel";
 import { CustomerService } from "../../../../services/customer.service";
 import { SharedDataService } from "../../../../services/shared-data.service";
@@ -15,6 +16,7 @@ import { SharedDataService } from "../../../../services/shared-data.service";
 	styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent {
+	localImageUrl = environment.localImageUrl;
 	items: MenuItem[] | undefined;
 	agentData!: CustomerModel;
 

@@ -15,7 +15,7 @@
 			<div class="col-lg-6 col-12 mb-4 mb-lg-0">
 				<div class="shadow-sm rounded p-3 mb-3">
 					<img class="logo"
-						 [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+						 [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
 						 alt="No brokerage logo" />
 
 					<h6 class="">{{ siteConfig.brokerageTypeId }}</h6>

@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { GooglePlaceComponent } from "../../../components/google-place/google-place.component";
+import { environment } from "../../../environments/environment.development";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SharedDataService } from "../../../services/shared-data.service";
 
@@ -13,6 +14,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 export class DreamComponent {
 	siteConfig: SiteConfig = {} as SiteConfig;
 	selectedPlace: any = null;
+	localImageUrl = environment.localImageUrl;
 
 	constructor(private router: Router, private sharedDataService: SharedDataService) {}
 

@@ -1045,11 +1045,7 @@
 						<div class="row align-items-center">
 							<div class="col-4">
 								<div class="">
-									<img [src]="
-												siteConfig.websiteSettings.profileImage
-													? siteConfig.websiteSettings.profileImage
-													: '/images/Nologo.png'
-											"
+									<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
 										 alt=""
 										 height="120px" />
 								</div>
@@ -1072,11 +1068,7 @@
 						<div class="row align-items-center">
 							<div class="col-4">
 								<div class="">
-									<img [src]="
-													 siteConfig.secondaryAgent.profileImage
-														 ? siteConfig.secondaryAgent.profileImage
-														 : '/images/Nologo.png'
-												 "
+									<img [src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
 										 alt=""
 										 height="120px" />
 								</div>

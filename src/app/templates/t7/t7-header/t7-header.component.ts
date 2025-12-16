@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { MenuComponent } from "../../../components/menu/menu.component";
+import { environment } from "../../../environments/environment.development";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 
@@ -13,7 +14,7 @@ import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 })
 export class T7HeaderComponent implements OnInit {
 	@Input("siteConfig") siteConfig: SiteConfig | any;
-
+	localImageUrl = environment.localImageUrl;
 	constructor() {}
 
 	ngOnInit(): void {}

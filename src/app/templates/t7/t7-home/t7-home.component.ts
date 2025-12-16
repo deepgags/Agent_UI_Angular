@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { environment } from "../../../environments/environment.development";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -23,6 +24,7 @@ import { TeamCardComponent } from "../../../components/team-card/team-card.compo
 export class T7HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
+localImageUrl = environment.localImageUrl;
 	constructor(
 		private titleService: Title,
 		private sharedDataService: SharedDataService,

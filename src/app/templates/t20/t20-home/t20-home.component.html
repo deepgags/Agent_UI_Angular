@@ -8,7 +8,7 @@
 			<h1 class="display-1 text-white">Innovative Living <br> Spaces</h1>
 		</div>
 		<div class="">
-			<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
+			<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
 				 alt="No profile image"
 				 class="overlay-image">
 			<div class="card position-absolute  man-card "
@@ -325,14 +325,14 @@ siteConfig.websiteSettings.showFindDreamHomePage
 		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
 			<!-- <div class="col-lg-6 col-12">
 				<div class="">
-					<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'" alt="No profile image" class="">
+					<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage" alt="No profile image" class="">
 				</div>
 			</div> -->
 			<div class="col-lg-4 col-12">
 				<div class="card border-0 text-center p-4"
 					 style="background-color: transparent;">
 					<!-- <img src="agent-image.jpg" alt="Agent Image" class="img-fluid mb-3" /> -->
-					<img [src]="siteConfig.websiteSettings.profileImage? siteConfig.websiteSettings.profileImage : '/images/Nologo.png'"
+					<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
 						 alt="No profile image"
 						 class="img-fluid  mb-3">
 					<h5 class="fw-bold mb-0">{{siteConfig.firstName}} {{siteConfig.lastName}}</h5>

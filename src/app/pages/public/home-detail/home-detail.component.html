@@ -2,7 +2,7 @@
   <div class="overlay"></div>
 
   <div class="container position-relative py-4 d-flex justify-content-between align-items-center">
-  <img [src]="siteConfig.websiteSettings.brokerageImage ? siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+  <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
          height="60">
     <a href="/home"
        class="btn btn-success fw-semibold px-4">Back To Home</a>
