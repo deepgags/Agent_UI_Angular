@@ -7,7 +7,7 @@
 }
 .dropdown:hover .dropdown-menu {
 	display: block;
-	margin-top: 0; /* optional: remove any jump */
+	margin-top: 0; 
 }
 .dropdown-menu {
 	margin-top: 0;
@@ -21,7 +21,6 @@ a {
 .nav_content {
 	color: black !important;
 }
-/* ---------- HEADER ---------- */
 .monogram-header {
   position: sticky;
   top: 0;
@@ -34,7 +33,6 @@ a {
   box-shadow: 0 14px 40px rgba(0,0,0,0.05);
 }
 
-/* ---------- MONOGRAM ---------- */
 .monogram-block {
   display: flex;
   align-items: center;
@@ -54,8 +52,7 @@ a {
 }
 
 .monogram-name {
-  font-family: "Playfair Display", serif;
-  font-size: 30px;
+  font-size: 32px;
   letter-spacing: 0.6px;
 }
 
@@ -71,7 +68,6 @@ a {
   opacity: 0.6;
 }
 
-/* ---------- META ---------- */
 .monogram-meta {
   font-size: 12px;
   align-items: center;
@@ -84,6 +80,7 @@ a {
   align-items: center;
   gap: 6px;
   opacity: 0.8;
+  font-size: 16px;
   transition: opacity 0.25s ease;
 }
 
@@ -91,7 +88,6 @@ a {
   opacity: 1;
 }
 
-/* ---------- BADGE ---------- */
 .trust-badge {
   font-size: 10px;
   letter-spacing: 1px;
@@ -102,9 +98,8 @@ a {
   opacity: 0.6;
 }
 
-/* ---------- CTA ---------- */
 .quiet-cta {
-  font-size: 11px;
+  font-size: 15px;
   letter-spacing: 1.4px;
   text-transform: uppercase;
   text-decoration: none;

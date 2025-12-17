@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row align-items-center py-3 header-inner">
 
-      <div class="col-lg-5 col-12 order-2 order-lg-1">
+      <div class="col-lg-4 col-12 order-2 order-lg-1">
         <div class="agent-editorial text-center text-lg-start">
           <h3 class="agent-name info mb-0">
             {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
@@ -37,12 +37,12 @@
         </div>
       </div>
 
-      <div class="col-lg-3 col-12 order-1 order-lg-3 d-flex justify-content-center justify-content-lg-end">
+      <div class="col-lg-4 col-12 order-1 order-lg-3 d-flex justify-content-center justify-content-lg-end">
         @if (siteConfig) {
           <a [routerLink]="['home']" class="brokerage-editorial">
             <img
               [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-              height="56"
+              height="100"
               alt="Brokerage Logo" />
           </a>
         }

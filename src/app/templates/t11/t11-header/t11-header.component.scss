@@ -23,7 +23,6 @@ a {
 }
 
 
-/* ---------- BASE ---------- */
 .editorial-header {
   background: #ffffff;
   padding: 22px 0;
@@ -35,14 +34,11 @@ a {
   max-width: 1400px;
 }
 
-/* ---------- AGENT ---------- */
 .agent-title {
-  font-family: "Playfair Display", serif;
   font-size: 34px;
   letter-spacing: 0.5px;
 }
 
-/* ---------- MARKET ---------- */
 .market-snapshot {
   font-size: 12px;
   letter-spacing: 0.4px;
@@ -60,7 +56,6 @@ a {
   color: #333;
 }
 
-/* ---------- CONTACT ---------- */
 .contact-stack {
   display: flex;
   flex-direction: column;
@@ -68,7 +63,7 @@ a {
 }
 
 .contact-row {
-  font-size: 12px;
+  font-size: 16px;
   text-decoration: none;
   color: #222;
   display: inline-flex;
@@ -82,7 +77,6 @@ a {
   opacity: 1;
 }
 
-/* ---------- CTA ---------- */
 .editorial-cta {
   font-size: 12px;
   letter-spacing: 1.2px;
@@ -111,7 +105,6 @@ a {
   transform: scaleX(1);
 }
 
-/* ---------- STICKY SHRINK ---------- */
 .editorial-header.shrink {
   padding: 10px 0;
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
@@ -121,7 +114,6 @@ a {
   font-size: 26px;
 }
 
-/* ---------- MOBILE ---------- */
 @media (max-width: 991px) {
   .editorial-header {
     border-radius: 18px;

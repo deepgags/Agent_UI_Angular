@@ -2,12 +2,10 @@
   <div class="container">
     <div class="row py-3 align-items-center">
 
-      <!-- Contact + Social -->
       <div class="col-12 col-lg-4 d-flex align-items-center gap-4 flex-wrap">
 
-        <!-- Phone -->
         <div class="d-flex align-items-center contact-item">
-          <i class="fa-solid fa-phone info"></i>
+          <i class="fa-solid fa-phone text-white"></i>
           <a
             class="fw-semibold small text-decoration-none pop ms-2"
             [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
@@ -15,50 +13,69 @@
           </a>
         </div>
 
-        <!-- Email -->
         <div class="d-flex align-items-center contact-item">
-          <i class="fa-solid fa-envelope info"></i>
+          <i class="fa-solid fa-envelope text-white"></i>
           <a
             class="fw-semibold small text-decoration-none pop ms-2"
             [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
             {{ siteConfig?.websiteSettings?.contactInfo?.email }}
           </a>
         </div>
+					<div class="d-flex gap-2">
 
-        <!-- Social Pills (Desktop) -->
-        <div class="d-none d-lg-flex gap-2 social-pills">
-          <a href="#" class="social-pill"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="social-pill"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="social-pill"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" class="social-pill"><i class="fa-brands fa-x-twitter"></i></a>
-        </div>
+						@if (siteConfig.websiteSettings.socialLinks.facebook) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.facebook"
+						   target="_blank"
+						   rel="noopener noreferrer"
+						   class="social-pill">
+							<i class="bi bi-facebook "></i>
+						</a>
+						}
 
-        <!-- Mobile Social Toggle -->
-        <button
-          class="d-lg-none btn social-toggle"
-          onclick="toggleSocialDrawer()">
-          <i class="fa-solid fa-share-nodes"></i>
-        </button>
+						@if (siteConfig.websiteSettings.socialLinks.twitter) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.twitter"
+						   target="_blank"
+						   rel="noopener noreferrer"
+						   class="social-pill">
+							<i class="bi bi-twitter "></i>
+						</a>
+						}
 
+						@if (siteConfig.websiteSettings.socialLinks.instagram) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.instagram"
+						   target="_blank"
+						   rel="noopener noreferrer"
+						   class="social-pill">
+							<i class="bi bi-instagram "></i>
+						</a>
+						}
+
+						@if (siteConfig.websiteSettings.socialLinks.linkedin) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
+						   target="_blank"
+						   rel="noopener noreferrer"
+						   class="social-pill">
+							<i class="bi bi-linkedin "></i>
+						</a>
+						}
+					</div>
       </div>
 
-      <!-- Agent -->
       <div class="col-12 col-lg-4 text-center my-2 my-lg-0">
-        <h5 class="fw-bold info mb-0 text-uppercase">
+        <h3 class="fw-bold text-white mb-0 text-uppercase">
           {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-        </h5>
-        <small class="text-muted fw-semibold">
+        </h3>
+        <small class="text-white fw-semibold">
           {{ siteConfig?.designation }}
         </small>
       </div>
 
-      <!-- Brokerage -->
       <div class="col-12 col-lg-4 d-flex justify-content-center justify-content-lg-end">
         @if (siteConfig) {
           <a [routerLink]="['home']">
             <img
               [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-              height="56"
+              height="100"
               alt="Brokerage Logo" />
           </a>
         }

@@ -1,72 +1,53 @@
-<div class="container search-container">
-  <div class="row py-2 align-items-center justify-content-center">
-    <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-      <div class="d-flex align-items-center">
-        <div class="">
-          <!-- <a
-          [routerLink]="['home']"
-          *ngIf="siteConfig">
-          <img
-            [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'"
-            [alt]="siteConfig.firstName + ' ' + siteConfig.lastName"
-            height="100px" />
-        </a> -->
-      </div>
-     <div class="">
-          <h4 class="fw-semibold info mb-0">
-            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-          </h4>
-          <p class="text-center fw-semibold fs-6 mb-0">{{ siteConfig.designation }}</p>
+<header class="editorial-header sticky-top">
+  <div class="container-fluid search-container">
+    <div class="row align-items-center g-3">
 
+      <div class="col-12 col-lg-3 text-center text-lg-start">
+          @if (siteConfig) {
+              <a [routerLink]="['home']" class="brokerage-block">
+                <img
+                  [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+                  height="100"
+                  alt="Brokerage Logo" />
+              </a>
+            }
+      </div>
+
+      <div class="col-12 col-lg-6 text-center">
+        <h1 class="agent-title info mb-1">
+          {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
+        </h1>
+
+        <div class="market-snapshot">
+          <span class="label">Market</span>
+          <span class="value">Toronto · Updated Weekly</span>
         </div>
-
-    </div>
-  </div>
-  <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
-    <div class="d-flex justify-content-center">
-      <div class="">
-        <i class="fa-solid fa-phone info"></i>
-
       </div>
-      <div class="ms-2">
-        <p class="mb-0">
+
+      <div class="col-12 col-lg-3 text-center text-lg-end">
+        <div class="contact-stack mb-2">
           <a
-            class="text-dark fw-semibold small text-decoration-none pop"
+            class="contact-row"
             [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+            <i class="fa-solid fa-phone info"></i>
             {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
           </a>
-        </p>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center ms-5">
-      <div class="">
-        <i class="fa-solid fa-envelope info"></i>
 
-      </div>
-      <div class="ms-2">
-        <p class="mb-0">
           <a
-            class="text-dark fw-semibold small text-decoration-none pop"
+            class="contact-row"
             [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+            <i class="fa-solid fa-envelope info"></i>
             {{ siteConfig?.websiteSettings?.contactInfo?.email }}
           </a>
-        </p>
+        </div>
+
+        <a href="/contact" class="editorial-cta">
+          Book a Private Showing
+        </a>
       </div>
+
     </div>
   </div>
-  <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-    @if (siteConfig) {
-      <a
-        [routerLink]="['home']"
-        >
-        <img
-          [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-          alt="No brokerage logo"
-          height="100px" />
-      </a>
-    }
-  </div>
-</div>
-</div>
+</header>
 
 <app-menu />

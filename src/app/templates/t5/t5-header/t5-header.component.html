@@ -2,7 +2,6 @@
   <div class="container">
     <div class="row align-items-center py-3 header-inner">
 
-      <!-- Brokerage -->
       <div class="col-lg-3 col-12 d-flex justify-content-center justify-content-lg-start">
     
         @if (siteConfig) {
@@ -10,25 +9,23 @@
             <img
               [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
               alt="Brokerage logo"
-              height="70" />
+              height="100" />
           </a>
         }
       </div>
 
-      <!-- Search -->
       <div class="col-lg-4 col-12 my-3 my-lg-0">
 
       </div>
 
-      <!-- Agent + Contact -->
       <div class="col-lg-5 col-12">
         <div class="d-flex justify-content-center justify-content-lg-end align-items-center gap-4 flex-wrap">
 
           <div class="text-end agent-info">
-            <div class="fw-bold text-uppercase text-white">
+            <h3 class="fw-bold text-uppercase text-white">
               {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-            </div>
-            <small class="text-muted">
+            </h3>
+            <small class="text-white">
               {{ siteConfig?.designation }}
             </small>
           </div>

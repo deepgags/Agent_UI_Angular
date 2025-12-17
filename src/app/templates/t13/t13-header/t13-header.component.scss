@@ -7,7 +7,7 @@
 }
 .dropdown:hover .dropdown-menu {
 	display: block;
-	margin-top: 0; /* optional: remove any jump */
+	margin-top: 0; 
 }
 .dropdown-menu {
 	margin-top: 0;
@@ -17,7 +17,6 @@
 a {
 	font-size: 14px;
 }
-/* ---------- HEADER ---------- */
 .premium-header {
   position: sticky;
   top: 0;
@@ -26,19 +25,15 @@ a {
   transition: all 0.3s ease;
 }
 
-/* shrink + shadow on scroll */
 .premium-header.scrolled {
   box-shadow: 0 12px 30px rgba(0,0,0,0.06);
 }
 
-/* ---------- NAME ---------- */
 .agent-name {
-  font-family: "Playfair Display", serif;
-  font-size: 28px;
+  font-size: 32px;
   letter-spacing: 0.4px;
 }
 
-/* ---------- DIVIDER ---------- */
 .lux-divider {
   display: block;
   width: 42px;
@@ -52,13 +47,12 @@ a {
   width: 64px;
 }
 
-/* ---------- CONTACT ---------- */
 .contact-wrap {
   flex-wrap: wrap;
 }
 
 .contact-pill {
-  font-size: 12px;
+  font-size: 16px;
   text-decoration: none;
   color: #222;
   display: inline-flex;
@@ -75,9 +69,8 @@ a {
   transform: translateY(-1px);
 }
 
-/* ---------- CTA ---------- */
 .inline-cta {
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
@@ -103,7 +96,6 @@ a {
   transform: scaleX(1);
 }
 
-/* ---------- LOGO ---------- */
 .brokerage-logo img {
   opacity: 0.9;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -114,7 +106,6 @@ a {
   transform: scale(1.03);
 }
 
-/* ---------- MOBILE ---------- */
 @media (max-width: 991px) {
   .agent-name {
     font-size: 24px;

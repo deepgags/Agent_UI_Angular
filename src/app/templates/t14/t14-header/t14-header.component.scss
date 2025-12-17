@@ -7,7 +7,7 @@
 }
 .dropdown:hover .dropdown-menu {
 	display: block;
-	margin-top: 0; /* optional: remove any jump */
+	margin-top: 0; 
 }
 .dropdown-menu {
 	margin-top: 0;
@@ -21,7 +21,6 @@ a {
 .nav_content {
 	color: black !important;
 }
-/* ---------- HEADER ---------- */
 .signature-header {
   position: sticky;
   top: 0;
@@ -30,7 +29,6 @@ a {
   transition: box-shadow 0.3s ease, padding 0.3s ease;
 }
 
-/* ---------- SIGNATURE ---------- */
 .signature-block {
   display: inline-block;
   position: relative;
@@ -53,14 +51,8 @@ a {
   letter-spacing: 0.6px;
 }
 
-.signature-role {
-  font-size: 13px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  opacity: 0.65;
-}
 
-/* ---------- META ---------- */
+
 .signature-meta {
   font-size: 12px;
   letter-spacing: 0.3px;
@@ -80,7 +72,6 @@ a {
   opacity: 1;
 }
 
-/* ---------- LOGO ---------- */
 .signature-logo img {
   opacity: 0.85;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -91,7 +82,6 @@ a {
   transform: translateY(-2px);
 }
 
-/* ---------- SCROLL ---------- */
 .signature-header.scrolled {
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
@@ -100,7 +90,6 @@ a {
   height: 70%;
 }
 
-/* ---------- MOBILE ---------- */
 @media (max-width: 991px) {
   .signature-block {
     padding-left: 0;

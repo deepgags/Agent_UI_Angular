@@ -4,9 +4,9 @@
     <!-- Agent Info -->
     <div class="col-lg-4 col-12 d-flex justify-content-center justify-content-lg-start">
       <div class="agent-block text-center text-lg-start">
-        <h5 class="fw-bold mb-0 text-uppercase info">
+        <h3 class="fw-bold mb-0 text-uppercase info">
           {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-        </h5>
+        </h3>
         <small class="text-muted fw-semibold">
           {{ siteConfig?.designation }}
         </small>
@@ -20,7 +20,7 @@
           <img
             [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl +siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
             alt="Brokerage Logo"
-            height="60" />
+            height="100" />
         </a>
       }
     </div>

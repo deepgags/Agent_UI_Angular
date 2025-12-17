@@ -19,5 +19,114 @@ a {
 }
 
 .nav_content {
-	color: rgb(255, 255, 255) !important;
+	color: black !important;
+}
+.stripe-header {
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.stripe-column {
+  background: #111;
+  justify-content: center;
+  align-items: center;
+}
+
+.stripe-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.agent-title {
+  font-family: "Playfair Display", serif;
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.agent-subtitle {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #777;
+  text-transform: uppercase;
+}
+
+.editorial-cta {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  position: relative;
+}
+
+.editorial-cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 40px;
+  height: 1px;
+  background: #111;
+  transition: width 0.3s ease;
+}
+
+.editorial-cta:hover::after {
+  width: 100%;
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+}
+span{
+  font-size: 16px !important;
+}
+
+.brokerage-block img {
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.brokerage-block img:hover {
+  transform: translateY(-3px);
+  opacity: 1;
+}
+
+/* MOBILE = CARD */
+@media (max-width: 991px) {
+  .stripe-header {
+    border-bottom: none;
+  }
+
+  .agent-title {
+    font-size: 26px;
+  }
+
+  .contact-block {
+    padding-top: 12px;
+  }
+
+  .editorial-cta {
+    margin-top: 18px;
+  }
 }

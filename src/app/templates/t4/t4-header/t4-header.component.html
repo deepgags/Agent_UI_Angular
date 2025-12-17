@@ -2,30 +2,29 @@
   <div class="container py-2">
     <div class="row align-items-center">
 
-      <div class="col-lg-4 col-md-6 col-12 d-flex align-items-center justify-content-center justify-content-lg-start">
-        <img
-          src="/images/profile.png"
-          class="rounded-circle me-3"
-          width="60"
-          height="60"
-          alt="Agent" />
+      <div class="col-lg-4 col-md-6 col-12 d-flex align-items-center justify-content-center justify-content-lg-start">  
+          	<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
+							 alt="No profile image"
+							 class=" rounded-circle me-3"
+							    width="60"
+          height="60" />
 
         <div>
-          <h6 class="fw-bold mb-0 text-uppercase">
+          <h3 class="fw-bold mb-0 info">
             {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-          </h6>
+          </h3>
           <small class="text-muted fw-semibold">
             {{ siteConfig?.designation }}
           </small>
         </div>
       </div>
 
-      <div class="col-lg-5 col-md-6 col-12 d-flex justify-content-center gap-4 my-3 my-lg-0">
+      <div class="col-lg-4 col-md-6 col-12 d-flex justify-content-center gap-4 my-3 my-lg-0">
 
         <div class="d-flex align-items-center gap-2">
           <i class="fa-solid fa-phone info"></i>
           <a
-            class="text-dark fw-semibold small text-decoration-none"
+            class="text-dark fw-semibold  text-decoration-none"
             [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
             {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
           </a>
@@ -36,7 +35,7 @@
         <div class="d-flex align-items-center gap-2">
           <i class="fa-solid fa-envelope info"></i>
           <a
-            class="text-dark fw-semibold small text-decoration-none"
+            class="text-dark fw-semibold  text-decoration-none"
             [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
             {{ siteConfig?.websiteSettings?.contactInfo?.email }}
           </a>
@@ -44,18 +43,51 @@
 
       </div>
 
-      <div class="col-lg-3 col-12 d-flex align-items-center justify-content-center justify-content-lg-end gap-3">
+      <div class="col-lg-4 col-12 d-flex align-items-center justify-content-center justify-content-lg-end gap-3">
 
-        <a href="#" class="text-dark fs-6"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" class="text-dark fs-6"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#" class="text-dark fs-6"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#" class="text-dark fs-6"><i class="fa-brands fa-instagram"></i></a>
+					<div class="d-flex gap-2">
 
+						@if (siteConfig.websiteSettings.socialLinks.facebook) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.facebook"
+						   target="_blank"
+						   rel="noopener noreferrer"
+						   class="btn btn-light border">
+							<i class="bi bi-facebook info"></i>
+						</a>
+						}
+
+						@if (siteConfig.websiteSettings.socialLinks.twitter) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.twitter"
+						   target="_blank"
+						   rel="noopener noreferrer"
+						   class="btn btn-light border">
+							<i class="bi bi-twitter info"></i>
+						</a>
+						}
+
+						@if (siteConfig.websiteSettings.socialLinks.instagram) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.instagram"
+						   target="_blank"
+						   rel="noopener noreferrer"
+						   class="btn btn-light border">
+							<i class="bi bi-instagram info"></i>
+						</a>
+						}
+
+						@if (siteConfig.websiteSettings.socialLinks.linkedin) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
+						   target="_blank"
+						   rel="noopener noreferrer"
+						   class="btn btn-light border">
+							<i class="bi bi-linkedin info"></i>
+						</a>
+						}
+					</div>
         @if (siteConfig) {
           <a [routerLink]="['home']" class="ms-3">
             <img
               [src]="siteConfig.websiteSettings.brokerageImage ?localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-              height="42"
+              height="100"
               alt="Brokerage Logo" />
           </a>
         }

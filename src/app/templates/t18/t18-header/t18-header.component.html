@@ -1,72 +1,46 @@
-<div class="container search-container">
-  <div class="row py-2 align-items-center justify-content-center">
-    <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-      <div class="d-flex align-items-center">
-        <div class="">
-          <!-- <a
-          [routerLink]="['home']"
-          *ngIf="siteConfig">
-          <img
-            [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'"
-            [alt]="siteConfig.firstName + ' ' + siteConfig.lastName"
-            height="100px" />
-        </a> -->
-      </div>
-     <div class="">
-          <h4 class="fw-semibold info mb-0">
-            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-          </h4>
-          <p class="text-center fw-semibold fs-6 mb-0">{{ siteConfig.designation }}</p>
+<header class="editorial-header" id="editorialHeader">
+  <div class="container search-container">
+    <div class="row align-items-center py-3">
 
-        </div>
-
-    </div>
-  </div>
-  <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
-    <div class="d-flex justify-content-center">
-      <div class="">
-        <i class="fa-solid fa-phone info"></i>
-
-      </div>
-      <div class="ms-2">
-        <p class="mb-0">
-          <a
-            class="text-dark fw-semibold small text-decoration-none pop"
-            [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-            {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-          </a>
+      <div class="col-12 col-lg-4 text-center text-lg-start mb-3 mb-lg-0">
+        <h3 class="agent-name info mb-0">
+          {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
+        </h3>
+        <p class="agent-role mb-0">
+          {{ siteConfig.designation }}
         </p>
+        <span class="scroll-underline"></span>
       </div>
-    </div>
-    <div class="d-flex justify-content-center ms-5">
-      <div class="">
-        <i class="fa-solid fa-envelope info"></i>
 
+      <div class="col-12 col-lg-4 d-flex justify-content-center gap-4">
+        <a
+          class="contact-pill"
+          [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+          <i class="fa-solid fa-phone info"></i>
+          {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+        </a>
+
+        <a
+          class="contact-pill"
+          [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+          <i class="fa-solid fa-envelope info"></i>
+          {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        </a>
       </div>
-      <div class="ms-2">
-        <p class="mb-0">
-          <a
-            class="text-dark fw-semibold small text-decoration-none pop"
-            [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-            {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+
+      <div class="col-12 col-lg-4 text-center text-lg-end mt-3 mt-lg-0">
+        @if (siteConfig) {
+          <a [routerLink]="['home']" class="brokerage-logo">
+            <img
+              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+              alt="Brokerage logo"
+              height="100" />
           </a>
-        </p>
+        }
       </div>
+
     </div>
   </div>
-  <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-    @if (siteConfig) {
-      <a
-        [routerLink]="['home']"
-        >
-        <img
-          [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-          alt="No brokerage logo"
-          height="100px" />
-      </a>
-    }
-  </div>
-</div>
-</div>
+</header>
 
 <app-menu />

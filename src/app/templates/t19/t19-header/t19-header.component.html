@@ -1,72 +1,53 @@
-<div class="container search-container">
-  <div class="row py-2 align-items-center justify-content-center">
-    <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-      <div class="d-flex align-items-center">
-        <div class="">
-          <!-- <a
-          [routerLink]="['home']"
-          *ngIf="siteConfig">
-          <img
-            [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'"
-            [alt]="siteConfig.firstName + ' ' + siteConfig.lastName"
-            height="100px" />
-        </a> -->
-      </div>
-     <div class="">
-          <h4 class="fw-semibold info mb-0">
+<header class="premium-header" id="premiumHeader">
+  <div class="container search-container">
+    <div class="row py-3 align-items-center justify-content-center">
+
+      <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
+        <div>
+          <h4 class="fw-semibold info mb-0 agent-name">
             {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
           </h4>
-          <p class="text-center fw-semibold fs-6 mb-0">{{ siteConfig.designation }}</p>
+          <p class="fw-semibold fs-6 mb-1 text-center text-lg-start">
+            {{ siteConfig.designation }}
+          </p>
 
+          <span class="lux-divider"></span>
         </div>
-
-    </div>
-  </div>
-  <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
-    <div class="d-flex justify-content-center">
-      <div class="">
-        <i class="fa-solid fa-phone info"></i>
-
       </div>
-      <div class="ms-2">
-        <p class="mb-0">
-          <a
-            class="text-dark fw-semibold small text-decoration-none pop"
-            [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-            {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+
+      <div class="col-12 col-lg-6 d-flex py-lg-0 py-3 justify-content-center gap-4 contact-wrap">
+        <a
+          class="contact-pill"
+          [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+          <i class="fa-solid fa-phone info"></i>
+          {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+        </a>
+
+        <a
+          class="contact-pill"
+          [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+          <i class="fa-solid fa-envelope info"></i>
+          {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        </a>
+
+        <a href="/contact" class="inline-cta">
+          Book a Private Showing
+        </a>
+      </div>
+
+      <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
+        @if (siteConfig) {
+          <a [routerLink]="['home']" class="brokerage-logo">
+            <img
+              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+              alt="No brokerage logo"
+              height="100" />
           </a>
-        </p>
+        }
       </div>
-    </div>
-    <div class="d-flex justify-content-center ms-5">
-      <div class="">
-        <i class="fa-solid fa-envelope info"></i>
 
-      </div>
-      <div class="ms-2">
-        <p class="mb-0">
-          <a
-            class="text-dark fw-semibold small text-decoration-none pop"
-            [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-            {{ siteConfig?.websiteSettings?.contactInfo?.email }}
-          </a>
-        </p>
-      </div>
     </div>
   </div>
-  <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-    @if (siteConfig) {
-      <a
-        [routerLink]="['home']"
-        >
-        <img
-          [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-          alt="No brokerage logo"
-          height="100px" />
-      </a>
-    }
-  </div>
-</div>
-</div>
+</header>
 
 <app-menu />

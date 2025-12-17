@@ -1,24 +1,111 @@
-$info: #ffffff;
 .nav_bg {
-    background-color: $info;
+	background-color: var(--primary-color);
 }
 
-.logo{
-    width: 17px;
+.logo {
+	width: 17px;
 }
 .dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0; /* optional: remove any jump */
+	display: block;
+	margin-top: 0; 
 }
 .dropdown-menu {
-    margin-top: 0;
-    display: none;
-    margin-left: 65px;
+	margin-top: 0;
+	display: none;
+	margin-left: 65px;
 }
-a{
-    font-size:14px;
+a {
+	font-size: 14px;
 }
 
-.nav_content{
-    color: black !important;
+.nav_content {
+	color: black !important;
+}
+.signature-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 999;
+  transition: box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+.signature-block {
+  display: inline-block;
+  position: relative;
+  padding-left: 18px;
+}
+
+.signature-line {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 2px;
+  height: 100%;
+  background: #000;
+  transition: height 0.4s ease;
+}
+
+.signature-name {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  letter-spacing: 0.6px;
+}
+
+
+
+.signature-meta {
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+.meta-link {
+  text-decoration: none;
+  color: #222;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.8;
+  transition: opacity 0.25s ease;
+}
+
+.meta-link:hover {
+  opacity: 1;
+}
+
+.signature-logo img {
+  opacity: 0.85;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.signature-logo:hover img {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.signature-header.scrolled {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.signature-header.scrolled .signature-line {
+  height: 70%;
+}
+
+@media (max-width: 991px) {
+  .signature-block {
+    padding-left: 0;
+  }
+
+  .signature-line {
+    display: none;
+  }
+
+  .signature-name {
+    font-size: 26px;
+  }
+
+  .signature-meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
 }

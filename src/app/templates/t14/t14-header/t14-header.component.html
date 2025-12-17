@@ -2,75 +2,54 @@
   <div class="container search-container">
     <div class="row align-items-center py-3">
 
-      <!-- LEFT : SIGNATURE -->
-      <div class="col-12 col-lg-5 mb-3 mb-lg-0">
+      <div class="col-12 col-lg-4 mb-3 mb-lg-0">
         <div class="signature-block">
 
-          <!-- vertical line -->
           <span class="signature-line"></span>
 
           <h2 class="signature-name info mb-1">
             {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
           </h2>
 
-          <p class="signature-role mb-1">
+          <p class="fs-6 mb-1">
             {{ siteConfig.designation }}
           </p>
 
-          <!-- NEW : service area -->
-          <p class="service-area">
+          <p class="fs-6">
             Serving Toronto & GTA
           </p>
 
         </div>
       </div>
 
-      <!-- CENTER : META -->
       <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center gap-4 signature-meta">
 
-        <a
-          class="meta-link"
-          [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+        <a class="meta-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
           <i class="fa-solid fa-phone info"></i>
           {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
         </a>
 
-        <a
-          class="meta-link"
-          [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+        <a class="meta-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
           <i class="fa-solid fa-envelope info"></i>
           {{ siteConfig?.websiteSettings?.contactInfo?.email }}
         </a>
 
       </div>
 
-      <!-- RIGHT : LOGO + CTA -->
-      <div class="col-12 col-lg-3 text-center text-lg-end mt-3 mt-lg-0">
+      <div class="col-12 col-lg-4 text-center text-lg-end mt-3 mt-lg-0">
 
         @if (siteConfig) {
-          <a [routerLink]="['home']" class="signature-logo d-block mb-2">
-            <img
-              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-              alt="Brokerage logo"
-              height="70" />
-          </a>
+        <a [routerLink]="['home']" class="signature-logo d-block mb-2">
+          <img
+            [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+            alt="Brokerage logo" height="100" />
+        </a>
         }
 
       </div>
 
     </div>
 
-    <!-- MOBILE ONLY : quick actions -->
-    <div class="mobile-actions d-lg-none">
-      <a
-        [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-        Call
-      </a>
-      <a
-        [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-        Email
-      </a>
-    </div>
 
   </div>
 </header>

@@ -7,7 +7,7 @@
 }
 .dropdown:hover .dropdown-menu {
 	display: block;
-	margin-top: 0; /* optional: remove any jump */
+	margin-top: 0; 
 }
 .dropdown-menu {
 	margin-top: 0;
@@ -20,4 +20,138 @@ a {
 
 .nav_content {
 	color: black !important;
+}
+.monogram-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 999;
+  transition: box-shadow 0.35s ease;
+}
+
+.monogram-header.scrolled {
+  box-shadow: 0 14px 40px rgba(0,0,0,0.05);
+}
+
+.monogram-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.monogram {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.monogram-name {
+  font-size: 32px;
+  letter-spacing: 0.6px;
+}
+
+.monogram-role {
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.trust-line {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.monogram-meta {
+  font-size: 12px;
+  align-items: center;
+}
+
+.meta-item {
+  text-decoration: none;
+  color: #222;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.8;
+  font-size: 16px;
+  transition: opacity 0.25s ease;
+}
+
+.meta-item:hover {
+  opacity: 1;
+}
+
+.trust-badge {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid #000;
+  border-radius: 999px;
+  opacity: 0.6;
+}
+
+.quiet-cta {
+  font-size: 15px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  position: relative;
+}
+
+.quiet-cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.quiet-cta:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------- LOGO ---------- */
+.monogram-logo img {
+  opacity: 0.85;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.monogram-logo:hover img {
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 991px) {
+  .monogram-block {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .monogram {
+    display: none;
+  }
+
+  .monogram-name {
+    font-size: 26px;
+  }
+
+  .monogram-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
 }

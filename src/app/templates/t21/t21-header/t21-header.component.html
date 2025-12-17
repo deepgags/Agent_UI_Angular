@@ -1,67 +1,68 @@
-<div class="container search-container">
-  <div class="row py-2 align-items-center justify-content-center">
-    <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-      <div class="d-flex align-items-center">
-        <div class="">
-          <!-- <a
-          [routerLink]="['home']"
-          *ngIf="siteConfig">
-          <img
-            [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'"
-            [alt]="siteConfig.firstName + ' ' + siteConfig.lastName"
-            height="100px" />
-        </a> -->
-        </div>
-        <div class="">
-          <h4 class="fw-semibold info mb-0">
-            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-          </h4>
-          <p class="text-center fw-semibold fs-6 mb-0">{{ siteConfig.designation }}</p>
+<header class="monogram-header " id="monogramHeader">
+  <div class="container border-bottom search-container">
+    <div class="row align-items-center py-4">
+
+      <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+        <div class="monogram-block">
+
+          <div class="monogram">
+            {{ siteConfig?.firstName?.charAt(0) }}{{ siteConfig?.lastName?.charAt(0) }}
+          </div>
+
+          <div>
+            <h2 class="monogram-name info mb-0">
+              {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
+            </h2>
+            <p class="monogram-role mb-1">
+              {{ siteConfig.designation }}
+            </p>
+            <p class="trust-line">
+              Residential · Luxury · Advisory
+            </p>
+          </div>
 
         </div>
-
       </div>
-    </div>
-    <div class="col-12 col-lg-6 d-flex py-lg-0 py-4 justify-content-center">
-      <div class="d-flex justify-content-center">
-        <div class="">
+
+      <div class="col-12 col-lg-4 d-flex justify-content-center gap-4 monogram-meta">
+
+        <a
+          class="meta-item"
+          [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
           <i class="fa-solid fa-phone info"></i>
+          {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+        </a>
 
-        </div>
-        <div class="ms-2">
-          <p class="mb-0">
-            <a class="text-dark fw-semibold small text-decoration-none pop"
-               [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-              {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-            </a>
-          </p>
-        </div>
-      </div>
-      <div class="d-flex justify-content-center ms-5">
-        <div class="">
+        <a
+          class="meta-item"
+          [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
           <i class="fa-solid fa-envelope info"></i>
+          {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        </a>
 
-        </div>
-        <div class="ms-2">
-          <p class="mb-0">
-            <a class="text-dark fw-semibold small text-decoration-none pop"
-               [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-              {{ siteConfig?.websiteSettings?.contactInfo?.email }}
-            </a>
-          </p>
-        </div>
+       
+
       </div>
-    </div>
-    <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-      @if (siteConfig) {
-      <a [routerLink]="['home']">
-        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl+siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-             alt="No brokerage logo"
-             height="100px" />
-      </a>
-      }
+
+      <div class="col-12 col-lg-4 text-center text-lg-end mt-3 mt-lg-0">
+
+        @if (siteConfig) {
+          <a [routerLink]="['home']" class="monogram-logo d-block mb-2">
+            <img
+              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+              alt="Brokerage logo"
+              height="100" />
+          </a>
+        }
+
+        <a href="/contact" class="quiet-cta">
+          Request a Consultation
+        </a>
+
+      </div>
+
     </div>
   </div>
-</div>
+</header>
 
 <app-menu />

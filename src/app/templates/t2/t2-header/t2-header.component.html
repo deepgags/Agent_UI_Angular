@@ -7,27 +7,27 @@
           <img
             [src]="siteConfig.websiteSettings.logoImage ? siteConfig.websiteSettings.logoImage : '/images/Nologo.png'"
             [alt]="siteConfig.firstName + ' ' + siteConfig.lastName"
-            height="100px" />
+            height="66px" />
         </a> -->
       </div>
       <div class="ms-3 text-center text-lg-start">
-        <h4 class="fw-semibold info mb-0">
+        <h3 class="fw-semibold info mb-0">
           {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-        </h4>
+        </h3>
         <p class="fw-semibold fs-6 mb-0">{{ siteConfig.designation }}</p>
       </div>
     </div>
     <div class="col-12 col-lg-6 d-flex flex-column flex-lg-row justify-content-center align-items-center py-lg-0 py-4">
       <div class="d-flex align-items-center mb-2 mb-lg-0">
         <i class="fa-solid fa-phone info"></i>
-        <a class="text-dark fw-semibold small text-decoration-none pop ms-2"
+        <a class="text-dark fw-semibold  text-decoration-none pop ms-2"
            [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
           {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
         </a>
       </div>
       <div class="d-flex align-items-center ms-lg-5">
         <i class="fa-solid fa-envelope info"></i>
-        <a class="text-dark fw-semibold small text-decoration-none pop ms-2"
+        <a class="text-dark fw-semibold  text-decoration-none pop ms-2"
            [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
           {{ siteConfig?.websiteSettings?.contactInfo?.email }}
         </a>
