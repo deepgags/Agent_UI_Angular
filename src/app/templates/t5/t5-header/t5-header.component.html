@@ -8,7 +8,7 @@
         @if (siteConfig) {
           <a [routerLink]="['home']" class="">
             <img
-              [src]="siteConfig.websiteSettings.brokerageImage ? + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
               alt="Brokerage logo"
               height="70" />
           </a>

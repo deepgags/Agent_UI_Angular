@@ -9,12 +9,12 @@
 	<div class="search-container">
 		<div class="row justify-content-center align-items-center pt-4 pb-3">
 			<!-- <h2 class=" fw-semibold text-center mt-3">Search Your Dream Home</h2>-->
-			<div class="col-9">
+			<div class="col-auto">
 				<app-search [filters]="selectedFilters"
 							[onSearch]="searchProperties"
 							class="search-container" />
 			</div>
-			<div class="col-2">
+			<div class="col-auto">
 				<select (ngModelChange)="sortChange($event)"
 						[(ngModel)]="selectedFilters.sort"
 						class="form-select custom-select">
