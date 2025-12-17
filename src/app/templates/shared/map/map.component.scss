@@ -7,3 +7,51 @@
     max-width: 100%;
     max-height: 100%;
 }
+div.mat-mdc-select-panel {
+  background-color: white !important;
+}
+
+
+.property-card {
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.property-card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
+  border: none;
+  padding: 10px !important;
+
+}
+
+.mat-mdc-paginator .mat-mdc-select {
+  padding:0px 7px !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+  border: none;
+  padding: 10px !important;
+}
+
+.mdc-text-field--outlined .mdc-notched-outline {
+ border: 1px #dee2e6 solid;
+ border-radius: 6px;
+}
+
+.mdc-list-item__primary-text{
+  font-size: 13px !important;
+}
+
+.mat-mdc-tootip-surface{
+  font-size: 13px !important;
+
+}
+
+.mat-mdc-tooltip-panel-above .mat-mdc-tooltip::before{
+  background-color: rgb(234, 234, 234) !important;
+  border-radius: 7px;
+  font-size: 13px !important;
+}
