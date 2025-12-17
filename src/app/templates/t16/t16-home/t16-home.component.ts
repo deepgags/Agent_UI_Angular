@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { environment } from "../../../environments/environment.development";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
+import { environment } from "../../../environments/environment.development";
+import { City } from "../../../models/City";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { SearchService } from "../../../services/search.service";
@@ -9,12 +11,11 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
-import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 
 @Component({
 	selector: "app-t16-home",
 	standalone: true,
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent,TeamCardComponent],
+	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, TeamCardComponent],
 	templateUrl: "./t16-home.component.html",
 	styleUrls: ["./t16-home.component.scss", "../t16.component.scss"],
 	providers: [Title, StorageService],
@@ -22,7 +23,7 @@ import { TeamCardComponent } from "../../../components/team-card/team-card.compo
 export class T16HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
-localImageUrl = environment.localImageUrl;
+	localImageUrl = environment.localImageUrl;
 	siteConfigSubscription: any;
 	constructor(
 		private titleService: Title,
@@ -33,6 +34,10 @@ localImageUrl = environment.localImageUrl;
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
 		this.siteConfig = this.sharedDataService.siteData();
+	}
+
+	get cities(): City[] {
+		return this.sharedDataService.cities();
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

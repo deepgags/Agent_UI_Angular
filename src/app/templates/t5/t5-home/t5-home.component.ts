@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 import { environment } from "../../../environments/environment.development";
+import { City } from "../../../models/City";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
@@ -41,6 +42,10 @@ export class T5HomeComponent implements OnInit {
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
 		this.siteConfig = this.sharedDataService.siteData();
+	}
+
+	get cities(): City[] {
+		return this.sharedDataService.cities();
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

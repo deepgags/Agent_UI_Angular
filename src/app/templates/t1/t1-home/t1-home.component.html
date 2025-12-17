@@ -202,45 +202,45 @@
 		<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
 			<div class="col">
 				<div class="pro_card"
-					 (click)="searchProperties({ city: 'Toronto' })">
+					 (click)="searchProperties({ city: cities[0].name })">
 					<div class="content text-center">
 						<img class="img-fluid rounded mb-2"
-							 src="/t2/images/Group 2.png"
+							 [src]="localImageUrl+cities[0].image"
 							 alt="" />
-						<p class="pro-card-text">Toronto</p>
+						<p class="pro-card-text">{{cities[0].name}}</p>
 					</div>
 				</div>
 			</div>
 			<div class="col">
 				<div class="pro_card"
-					 (click)="searchProperties({ city: 'Milton' })">
+					 (click)="searchProperties({ city: cities[1].name })">
 					<div class="content text-center">
 						<img class="img-fluid rounded mb-2"
-							 src="/t2/images/Group 3.png"
+							 [src]="localImageUrl+cities[1].image"
 							 alt="" />
-						<p class="pro-card-text">Milton</p>
+						<p class="pro-card-text">{{cities[1].name }}</p>
 					</div>
 				</div>
 			</div>
 			<div class="col">
 				<div class="pro_card"
-					 (click)="searchProperties({ city: 'Brampton' })">
+					 (click)="searchProperties({ city: cities[2].name })">
 					<div class="content text-center">
 						<img class="img-fluid rounded mb-2"
-							 src="/t2/images/Group 4.png"
+							 [src]="localImageUrl+cities[2].image"
 							 alt="" />
-						<p class="pro-card-text">Brampton</p>
+						<p class="pro-card-text"> {{cities[2].name}} </p>
 					</div>
 				</div>
 			</div>
 			<div class="col">
 				<div class="pro_card"
-					 (click)="searchProperties({ city: 'Mississauga' })">
+					 (click)="searchProperties({ city: cities[3].name })">
 					<div class="content text-center">
 						<img class="img-fluid rounded mb-2"
-							 src="/t2/images/Group 5.png"
+							 [src]="localImageUrl+cities[3].image"
 							 alt="" />
-						<p class="pro-card-text">Mississauga</p>
+						<p class="pro-card-text">{{ cities[3].name }}</p>
 					</div>
 				</div>
 			</div>

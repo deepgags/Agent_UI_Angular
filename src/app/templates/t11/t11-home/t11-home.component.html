@@ -3,7 +3,8 @@
 		<div class="top-padding">
 			<div class="row justify-content-center">
 				<p class="text text-center fw-semibold pt-3">Search Your Dream Home</p>
-				<p class="text-white text-center ">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and extraordinary
+				<p class="text-white text-center ">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and
+					extraordinary
 					services to our worldwide clients.</p>
 				<div class="col-12 menu-bg p-4 mb-5">
 					<app-search [onSearch]="searchProperties" />
@@ -15,89 +16,98 @@
 
 
 <div class="container sec-31 py-5 my-5 rounded-4 search-container">
-		<div class="row justify-content-center align-items-center">
+	<div class="row justify-content-center align-items-center">
 
-			<div class="col-lg-6 col-12">
-				<p class="fs-2 mb-0 fw-semibold">Hi, I’m {{siteConfig.firstName}} {{siteConfig.lastName}}</p>
-				<p class="info fw-bold fs-5">{{ siteConfig.designation}}</p>
-				<p class="fw-semibold mb-0">
-					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are
-					always in a position to make informed decisions.
-				</p>
-				<p class="fw-semibold">
-					Every engagement is an opportunity to create a lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is well serving in
-					real estate with the reputation of providing
-					quality services and keeping excellent relations with the clients.
-				</p>
+		<div class="col-lg-6 col-12">
+			<p class="fs-2 mb-0 fw-semibold">Hi, I’m {{siteConfig.firstName}} {{siteConfig.lastName}}</p>
+			<p class="info fw-bold fs-5">{{ siteConfig.designation}}</p>
+			<p class="fw-semibold mb-0">
+				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are
+				always in a position to make informed decisions.
+			</p>
+			<p class="fw-semibold">
+				Every engagement is an opportunity to create a lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is well serving in
+				real estate with the reputation of providing
+				quality services and keeping excellent relations with the clients.
+			</p>
 
 
 
-				<a class="btn search_btn"
-				   [routerLink]="['/contact']">
-					Get in Touch
-				</a>
+			<a class="btn search_btn"
+			   [routerLink]="['/contact']">
+				Get in Touch
+			</a>
 
-			</div>
-
-			<div class="col-lg-6 col-12 mt-lg-0 mt-5 d-flex justify-content-lg-end justify-content-center">
-				<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-					 alt="No profile image"
-					 class="profile-img" />
-			</div>
 		</div>
+
+		<div class="col-lg-6 col-12 mt-lg-0 mt-5 d-flex justify-content-lg-end justify-content-center">
+			<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
+				 alt="No profile image"
+				 class="profile-img" />
+		</div>
+	</div>
 </div>
 
 @if(
-  siteConfig.websiteSettings.showHomeWorthPage ||
-  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-  siteConfig.websiteSettings.showFindDreamHomePage
+siteConfig.websiteSettings.showHomeWorthPage ||
+siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+siteConfig.websiteSettings.showFindDreamHomePage
 ){
 <section class="py-5 position-relative hero-bg">
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
-    <div class="container">
-        <div class="row justify-content-center g-4">
+	<div class="container">
+		<div class="row justify-content-center g-4">
 
-            @if(siteConfig.websiteSettings.showHomeWorthPage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
-                    <div class="icon-wrapper bg-primary bg-opacity-10 text-primary mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center" style="width:60px; height:60px;">
-                        <i class="bi bi-house-door-fill fs-3"></i>
-                    </div>
-                    <h5 class="fw-bold text-uppercase">Home Evaluation</h5>
-                    <p class="text-muted small mb-4">Get instant insights on what your home is worth, for free.</p>
-                    <a href="/home-worth" target="_blank" class="btn btn-primary rounded-pill px-4">Check Now</a>
-                </div>
-            </div>
-            }
+			@if(siteConfig.websiteSettings.showHomeWorthPage){
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
+					<div class="icon-wrapper bg-primary bg-opacity-10 text-primary mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center"
+						 style="width:60px; height:60px;">
+						<i class="bi bi-house-door-fill fs-3"></i>
+					</div>
+					<h5 class="fw-bold text-uppercase">Home Evaluation</h5>
+					<p class="text-muted small mb-4">Get instant insights on what your home is worth, for free.</p>
+					<a href="/home-worth"
+					   target="_blank"
+					   class="btn btn-primary rounded-pill px-4">Check Now</a>
+				</div>
+			</div>
+			}
 
-            @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
-                    <div class="icon-wrapper bg-warning bg-opacity-10 text-warning mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center" style="width:60px; height:60px;">
-                        <i class="bi bi-binoculars-fill fs-3"></i>
-                    </div>
-                    <h5 class="fw-bold text-uppercase">Neighbourhood Watch</h5>
-                    <p class="text-muted small mb-4">Stay alerted when neighbours put homes on the market.</p>
-                    <a href="/neighbor-detail" target="_blank" class="btn btn-warning rounded-pill px-4 text-white">Get Alerts</a>
-                </div>
-            </div>
-            }
+			@if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
+					<div class="icon-wrapper bg-warning bg-opacity-10 text-warning mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center"
+						 style="width:60px; height:60px;">
+						<i class="bi bi-binoculars-fill fs-3"></i>
+					</div>
+					<h5 class="fw-bold text-uppercase">Neighbourhood Watch</h5>
+					<p class="text-muted small mb-4">Stay alerted when neighbours put homes on the market.</p>
+					<a href="/neighbor-detail"
+					   target="_blank"
+					   class="btn btn-warning rounded-pill px-4 text-white">Get Alerts</a>
+				</div>
+			</div>
+			}
 
-            @if(siteConfig.websiteSettings.showFindDreamHomePage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
-                    <div class="icon-wrapper bg-success bg-opacity-10 text-success mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center" style="width:60px; height:60px;">
-                        <i class="bi bi-search-heart-fill fs-3"></i>
-                    </div>
-                    <h5 class="fw-bold text-uppercase">Find Your Dream Home</h5>
-                    <p class="text-muted small mb-4">Explore listings and find the perfect home that fits you.</p>
-                    <a href="/dream-home" target="_blank" class="btn btn-success rounded-pill px-4 text-white">Start Exploring</a>
-                </div>
-            </div>
-            }
+			@if(siteConfig.websiteSettings.showFindDreamHomePage){
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
+					<div class="icon-wrapper bg-success bg-opacity-10 text-success mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center"
+						 style="width:60px; height:60px;">
+						<i class="bi bi-search-heart-fill fs-3"></i>
+					</div>
+					<h5 class="fw-bold text-uppercase">Find Your Dream Home</h5>
+					<p class="text-muted small mb-4">Explore listings and find the perfect home that fits you.</p>
+					<a href="/dream-home"
+					   target="_blank"
+					   class="btn btn-success rounded-pill px-4 text-white">Start Exploring</a>
+				</div>
+			</div>
+			}
 
-        </div>
-    </div>
+		</div>
+	</div>
 </section>
 }
 <div class="container">
@@ -107,18 +117,18 @@
 	<div class="row">
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
-				 (click)="searchProperties({ city:'Toronto'})">
+				 (click)="searchProperties({ city: cities[0]?.name })">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
-							<img src="./t10/images/proToronto.png"
+							<img [src]="localImageUrl + cities[0]?.image"
 								 class="img-fluid prop-img rounded-start "
 								 alt="...">
 						</div>
 					</div>
 					<div class="col-md-7 d-flex align-items-center justify-content-center">
 						<div class="card-body text-center">
-							<h4 class="card-title m-0">Toronto</h4>
+							<h4 class="card-title m-0">{{ cities[0]?.name }}</h4>
 						</div>
 					</div>
 				</div>
@@ -127,18 +137,18 @@
 		</div>
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
-				 (click)="searchProperties({ city:'Brampton'})">
+				 (click)="searchProperties({ city: cities[1]?.name })">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
-							<img src="./t10/images/proBrampton.png"
+							<img [src]="localImageUrl + cities[1]?.image"
 								 class="img-fluid prop-img rounded-start"
 								 alt="...">
 						</div>
 					</div>
 					<div class="col-md-7 d-flex align-items-center justify-content-center">
 						<div class="card-body text-center">
-							<h4 class="card-title m-0">Brampton</h4>
+							<h4 class="card-title m-0">{{ cities[1]?.name }}</h4>
 						</div>
 					</div>
 				</div>
@@ -146,18 +156,18 @@
 		</div>
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
-				 (click)="searchProperties({ city:'Milton'})">
+				 (click)="searchProperties({ city: cities[2]?.name })">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
-							<img src="./t10/images/proMilton.png"
+							<img [src]="localImageUrl + cities[2]?.image"
 								 class="img-fluid prop-img rounded-start"
 								 alt="...">
 						</div>
 					</div>
 					<div class="col-md-7 d-flex align-items-center justify-content-center">
 						<div class="card-body text-center">
-							<h4 class="card-title m-0">Milton</h4>
+							<h4 class="card-title m-0">{{ cities[2]?.name }}</h4>
 						</div>
 					</div>
 				</div>
@@ -168,18 +178,18 @@
 	<div class="row">
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
-				 (click)="searchProperties({ city:'Mississauga'})">
+				 (click)="searchProperties({ city: cities[3]?.name })">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
-							<img src="./t10/images/proMississuaga.png"
+							<img [src]="localImageUrl + cities[3]?.image"
 								 class="img-fluid prop-img rounded-start"
 								 alt="...">
 						</div>
 					</div>
 					<div class="col-md-7 d-flex align-items-center justify-content-center">
 						<div class="card-body text-center">
-							<h4 class="card-title m-0">Mississauga</h4>
+							<h4 class="card-title m-0">{{ cities[3]?.name }}</h4>
 						</div>
 					</div>
 				</div>
@@ -187,18 +197,18 @@
 		</div>
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
-				 (click)="searchProperties({ city:'Montreal'})">
+				 (click)="searchProperties({ city: cities[4]?.name })">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
-							<img src="./t10/images/proMontreal.png"
+							<img [src]="localImageUrl + cities[4]?.image"
 								 class="img-fluid prop-img rounded-start"
 								 alt="...">
 						</div>
 					</div>
 					<div class="col-md-7 d-flex align-items-center justify-content-center">
 						<div class="card-body text-center">
-							<h4 class="card-title m-0">Montreal</h4>
+							<h4 class="card-title m-0">{{ cities[4]?.name }}</h4>
 						</div>
 					</div>
 				</div>
@@ -206,18 +216,18 @@
 		</div>
 		<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
-				 (click)="searchProperties({ city:'Ottawa'})">
+				 (click)="searchProperties({ city: cities[5]?.name })">
 				<div class="row g-0">
 					<div class="col-md-5">
 						<div>
-							<img src="./t10/images/proOttawa.png"
+							<img [src]="localImageUrl + cities[5]?.image"
 								 class="img-fluid prop-img rounded-start"
 								 alt="...">
 						</div>
 					</div>
 					<div class="col-md-7 d-flex align-items-center justify-content-center">
 						<div class="card-body text-center">
-							<h4 class="card-title m-0">Ottawa</h4>
+							<h4 class="card-title m-0">{{ cities[5]?.name }}</h4>
 						</div>
 					</div>
 				</div>

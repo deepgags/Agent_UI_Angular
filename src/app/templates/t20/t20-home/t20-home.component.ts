@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { environment } from "../../../environments/environment.development";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { TeamCardComponent } from "../../../components/team-card/team-card.component";
+import { environment } from "../../../environments/environment.development";
+import { City } from "../../../models/City";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
@@ -32,7 +33,7 @@ export class T20HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 
 	siteConfig: SiteConfig = {} as SiteConfig;
-localImageUrl = environment.localImageUrl;
+	localImageUrl = environment.localImageUrl;
 	constructor(
 		private titleService: Title,
 		private sharedDataService: SharedDataService,
@@ -43,6 +44,10 @@ localImageUrl = environment.localImageUrl;
 		this.titleService.setTitle("Home");
 
 		this.siteConfig = this.sharedDataService.siteData();
+	}
+
+	get cities(): City[] {
+		return this.sharedDataService.cities();
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

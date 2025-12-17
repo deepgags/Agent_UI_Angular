@@ -1,4 +1,5 @@
 import { Injectable, signal } from "@angular/core";
+import { City } from "../models/City";
 import { CustomerModel } from "../models/CustomerModel";
 import { MenuItem } from "../models/MenuItem";
 import { SiteConfig } from "../models/SiteConfig";
@@ -15,6 +16,7 @@ export class SharedDataService {
 	private _mainMenu = signal<MenuItem[] | any[]>([]);
 	private _sideMenu = signal<MenuItem[] | any[]>([]);
 	private _team = signal<TeamMemberModel[]>([]);
+	private _cities = signal<City[]>([]);
 
 	constructor() {
 		const _userToken = localStorage.getItem("USER_TOKEN");
@@ -43,6 +45,10 @@ export class SharedDataService {
 		this._team.set(_team);
 	}
 
+	setCities(_cities: City[]) {
+		this._cities.set(_cities);
+	}
+
 	setUserData(_userData: CustomerModel | null) {
 		this._userData.set(_userData);
 	}
@@ -65,6 +71,10 @@ export class SharedDataService {
 
 	get team() {
 		return this._team;
+	}
+
+	get cities() {
+		return this._cities;
 	}
 
 	get userData() {

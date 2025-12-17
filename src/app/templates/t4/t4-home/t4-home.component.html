@@ -149,59 +149,59 @@ siteConfig.websiteSettings.showFindDreamHomePage
 	<div class="row ">
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3  position-relative">
 			<div class="city_card"
-				 (click)="searchProperties({ city:'Toronto'})">
+				 (click)="searchProperties({ city: cities[0]?.name })">
 				<img class="w-100 "
-					 src="/t4/images/group1.png"
-					 alt="" />
-				<p class="image-label  fs-3">Toronto</p>
+					 [src]="localImageUrl + cities[0]?.image"
+					 [alt]="cities[0]?.name" />
+				<p class="image-label  fs-3">{{ cities[0]?.name }}</p>
 			</div>
 		</div>
 
 		<div class="col-lg-3 col-12   position-relative">
 			<div class="mb-3 city_card "
-				 (click)="searchProperties({ city:'Milton'})">
+				 (click)="searchProperties({ city: cities[1]?.name })">
 				<img class="w-100"
-					 src="/t4/images/g2.png"
-					 alt="">
-				<p class="image-label2  fs-3">Milton</p>
+					 [src]="localImageUrl + cities[1]?.image"
+					 [alt]="cities[1]?.name">
+				<p class="image-label2  fs-3">{{ cities[1]?.name }}</p>
 			</div>
 
 			<div class=" city_card "
-				 (click)="searchProperties({ city:'Brampton'})">
+				 (click)="searchProperties({ city: cities[2]?.name })">
 				<img class="w-100"
-					 src="/t4/images/g2.png"
-					 alt="">
-				<p class="image-label  fs-3">Brampton</p>
+					 [src]="localImageUrl + cities[2]?.image"
+					 [alt]="cities[2]?.name">
+				<p class="image-label  fs-3">{{ cities[2]?.name }}</p>
 
 			</div>
 
 		</div>
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3  position-relative">
 			<div class=" city_card"
-				 (click)="searchProperties({ city:'Ottawa'})">
+				 (click)="searchProperties({ city: cities[3]?.name })">
 				<img class="w-100"
-					 src="/t4/images/group1.png"
-					 alt="" />
-				<p class="image-label  fs-3">Ottawa</p>
+					 [src]="localImageUrl + cities[3]?.image"
+					 [alt]="cities[3]?.name" />
+				<p class="image-label  fs-3">{{ cities[3]?.name }}</p>
 			</div>
 		</div>
 
 		<div class="col-lg-3 col-12   position-relative">
 			<div class="mb-3 city_card"
-				 (click)="searchProperties({ city:'Mississauga'})">
+				 (click)="searchProperties({ city: cities[4]?.name })">
 				<img class="w-100"
-					 src="/t4/images/g2.png"
-					 alt="">
-				<p class="image-label2  fs-3">Mississauga</p>
+					 [src]="localImageUrl + cities[4]?.image"
+					 [alt]="cities[4]?.name">
+				<p class="image-label2  fs-3">{{ cities[4]?.name }}</p>
 
 			</div>
 
 			<div class=" city_card "
-				 (click)="searchProperties({ city:'Calgary'})">
+				 (click)="searchProperties({ city: cities[5]?.name })">
 				<img class="w-100"
-					 src="/t4/images/g2.png"
-					 alt="">
-				<p class="image-label  fs-3">Calgary</p>
+					 [src]="localImageUrl + cities[5]?.image"
+					 [alt]="cities[5]?.name">
+				<p class="image-label  fs-3">{{ cities[5]?.name }}</p>
 
 			</div>
 		</div>

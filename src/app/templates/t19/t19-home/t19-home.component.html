@@ -63,49 +63,52 @@
 </div>
 
 @if(
-  siteConfig.websiteSettings.showHomeWorthPage ||
-  siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-  siteConfig.websiteSettings.showFindDreamHomePage
+siteConfig.websiteSettings.showHomeWorthPage ||
+siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+siteConfig.websiteSettings.showFindDreamHomePage
 ){
 <section class="py-5 bg-dark text-white">
-    <div class="container">
-        <div class="row justify-content-center g-4">
+	<div class="container">
+		<div class="row justify-content-center g-4">
 
-            @if(siteConfig.websiteSettings.showHomeWorthPage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card-simple text-center p-4">
-                    <i class="bi bi-house-heart-fill card-icon mb-3"></i>
-                    <h5 class="fw-bold text-uppercase mb-2">Home Evaluation</h5>
-                    <p class="small opacity-75 mb-3">Find out your home’s worth instantly.</p>
-                    <a href="/home-worth" class="btn btn-outline-light btn-sm px-4 rounded-pill">Check Worth</a>
-                </div>
-            </div>
-            }
+			@if(siteConfig.websiteSettings.showHomeWorthPage){
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="card-simple text-center p-4">
+					<i class="bi bi-house-heart-fill card-icon mb-3"></i>
+					<h5 class="fw-bold text-uppercase mb-2">Home Evaluation</h5>
+					<p class="small opacity-75 mb-3">Find out your home’s worth instantly.</p>
+					<a href="/home-worth"
+					   class="btn btn-outline-light btn-sm px-4 rounded-pill">Check Worth</a>
+				</div>
+			</div>
+			}
 
-            @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card-simple text-center p-4">
-                    <i class="bi bi-pin-map-fill card-icon mb-3"></i>
-                    <h5 class="fw-bold text-uppercase mb-2">Neighbourhood Watch</h5>
-                    <p class="small opacity-75 mb-3">Get alerts when neighbours sell.</p>
-                    <a href="/neighbor-detail" class="btn btn-outline-light btn-sm px-4 rounded-pill">Get Alerts</a>
-                </div>
-            </div>
-            }
+			@if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="card-simple text-center p-4">
+					<i class="bi bi-pin-map-fill card-icon mb-3"></i>
+					<h5 class="fw-bold text-uppercase mb-2">Neighbourhood Watch</h5>
+					<p class="small opacity-75 mb-3">Get alerts when neighbours sell.</p>
+					<a href="/neighbor-detail"
+					   class="btn btn-outline-light btn-sm px-4 rounded-pill">Get Alerts</a>
+				</div>
+			</div>
+			}
 
-            @if(siteConfig.websiteSettings.showFindDreamHomePage){
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card-simple text-center p-4">
-                    <i class="bi bi-search-heart card-icon mb-3"></i>
-                    <h5 class="fw-bold text-uppercase mb-2">Dream Home Finder</h5>
-                    <p class="small opacity-75 mb-3">Search and find your dream home.</p>
-                    <a href="/dream-home" class="btn btn-outline-light btn-sm px-4 rounded-pill">Explore</a>
-                </div>
-            </div>
-            }
+			@if(siteConfig.websiteSettings.showFindDreamHomePage){
+			<div class="col-12 col-sm-6 col-lg-4">
+				<div class="card-simple text-center p-4">
+					<i class="bi bi-search-heart card-icon mb-3"></i>
+					<h5 class="fw-bold text-uppercase mb-2">Dream Home Finder</h5>
+					<p class="small opacity-75 mb-3">Search and find your dream home.</p>
+					<a href="/dream-home"
+					   class="btn btn-outline-light btn-sm px-4 rounded-pill">Explore</a>
+				</div>
+			</div>
+			}
 
-        </div>
-    </div>
+		</div>
+	</div>
 </section>
 }
 
@@ -125,18 +128,18 @@
 		<div class="row">
 			<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city:'Toronto'})">
+					 (click)="searchProperties({ city: cities[0]?.name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img src="./t10/images/proToronto.png"
+								<img [src]="localImageUrl + cities[0]?.image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">Toronto</h4>
+								<h4 class="card-title m-0">{{ cities[0]?.name }}</h4>
 							</div>
 						</div>
 					</div>
@@ -144,18 +147,18 @@
 			</div>
 			<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city:'Brampton'})">
+					 (click)="searchProperties({ city: cities[1]?.name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img src="./t10/images/proBrampton.png"
+								<img [src]="localImageUrl + cities[1]?.image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">Brampton</h4>
+								<h4 class="card-title m-0">{{ cities[1]?.name }}</h4>
 							</div>
 						</div>
 					</div>
@@ -163,18 +166,18 @@
 			</div>
 			<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city:'Milton'})">
+					 (click)="searchProperties({ city: cities[2]?.name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img src="./t10/images/proMilton.png"
+								<img [src]="localImageUrl + cities[2]?.image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">Milton</h4>
+								<h4 class="card-title m-0">{{ cities[2]?.name }}</h4>
 							</div>
 						</div>
 					</div>
@@ -185,18 +188,18 @@
 		<div class="row">
 			<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city:'Mississauga'})">
+					 (click)="searchProperties({ city: cities[3]?.name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img src="./t10/images/proMississuaga.png"
+								<img [src]="localImageUrl + cities[3]?.image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">Mississauga</h4>
+								<h4 class="card-title m-0">{{ cities[3]?.name }}</h4>
 							</div>
 						</div>
 					</div>
@@ -204,18 +207,18 @@
 			</div>
 			<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city:'Montreal'})">
+					 (click)="searchProperties({ city: cities[4]?.name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img src="./t10/images/proMontreal.png"
+								<img [src]="localImageUrl + cities[4]?.image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">Montreal</h4>
+								<h4 class="card-title m-0">{{ cities[4]?.name }}</h4>
 							</div>
 						</div>
 					</div>
@@ -223,18 +226,18 @@
 			</div>
 			<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city:'Ottawa'})">
+					 (click)="searchProperties({ city: cities[5]?.name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img src="./t10/images/proOttawa.png"
+								<img [src]="localImageUrl + cities[5]?.image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">Ottawa</h4>
+								<h4 class="card-title m-0">{{ cities[5]?.name }}</h4>
 							</div>
 						</div>
 					</div>

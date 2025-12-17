@@ -234,34 +234,34 @@ siteConfig.websiteSettings.showFindDreamHomePage
 	<div class="row">
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
 			<div class="image-container"
-				 (click)="searchProperties({ city: 'Toronto' })">
-				<img src="./t6/images/p1.png"
+				 (click)="searchProperties({ city: cities[0]?.name })">
+				<img [src]="localImageUrl + cities[0]?.image"
 					 alt="" />
-				<div class="image-label">Toronto</div>
+				<div class="image-label">{{ cities[0]?.name }}</div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
 			<div class="image-container"
-				 (click)="searchProperties({ city: 'Milton' })">
-				<img src="./t6/images/p2.png"
+				 (click)="searchProperties({ city: cities[1]?.name })">
+				<img [src]="localImageUrl + cities[1]?.image"
 					 alt="" />
-				<div class="image-label">Milton</div>
+				<div class="image-label">{{ cities[1]?.name }}</div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
 			<div class="image-container"
-				 (click)="searchProperties({ city: 'Brampton' })">
-				<img src="./t6/images/p3.png"
+				 (click)="searchProperties({ city: cities[2]?.name })">
+				<img [src]="localImageUrl + cities[2]?.image"
 					 alt="" />
-				<div class="image-label">Brampton</div>
+				<div class="image-label">{{ cities[2]?.name }}</div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
 			<div class="image-container"
-				 (click)="searchProperties({ city: 'Mississauga' })">
-				<img src="./t6/images/p4.png"
+				 (click)="searchProperties({ city: cities[3]?.name })">
+				<img [src]="localImageUrl + cities[3]?.image"
 					 alt="" />
-				<div class="image-label">Mississauga</div>
+				<div class="image-label">{{ cities[3]?.name }}</div>
 			</div>
 		</div>
 	</div>

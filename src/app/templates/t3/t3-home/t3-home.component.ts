@@ -3,6 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 import { environment } from "../../../environments/environment.development";
+import { City } from "../../../models/City";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
@@ -35,6 +36,10 @@ export class T3HomeComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
 		this.siteConfig = this.sharedDataService.siteData();
+	}
+
+	get cities(): City[] {
+		return this.sharedDataService.cities();
 	}
 
 	ngAfterViewInit(): void {

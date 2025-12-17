@@ -1,5 +1,4 @@
-import { Component, OnInit,AfterViewInit } from "@angular/core";
-import { environment } from "../../../environments/environment.development";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -8,6 +7,9 @@ import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
+import { TeamCardComponent } from "../../../components/team-card/team-card.component";
+import { environment } from "../../../environments/environment.development";
+import { City } from "../../../models/City";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
@@ -16,8 +18,6 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
-import { TeamCardComponent } from "../../../components/team-card/team-card.component";
-
 
 declare var bootstrap: any;
 
@@ -30,17 +30,17 @@ declare var bootstrap: any;
 		FeaturedPropertiesComponent,
 		HeroContactFormComponent,
 		PhoneNumberFormatPipe,
-		TeamCardComponent
+		TeamCardComponent,
 	],
 	templateUrl: "./t10-home.component.html",
 	styleUrls: ["./t10-home.component.scss", "../t10.component.scss"],
 	providers: [Title, StorageService],
 })
-export class T10HomeComponent implements OnInit,AfterViewInit {
+export class T10HomeComponent implements OnInit, AfterViewInit {
 	customer!: CustomerModel | null;
 	userForm!: FormGroup;
 	siteConfig: SiteConfig = {} as SiteConfig;
-localImageUrl = environment.localImageUrl;
+	localImageUrl = environment.localImageUrl;
 
 	constructor(
 		private titleService: Title,
@@ -52,17 +52,21 @@ localImageUrl = environment.localImageUrl;
 		this.titleService.setTitle("Home");
 		this.siteConfig = this.sharedDataService.siteData();
 	}
-	 ngAfterViewInit(): void {
-    const carouselEl = document.querySelector("#carouselExampleAutoplaying");
-    if (carouselEl) {
-      new bootstrap.Carousel(carouselEl, {
-        interval: 2500,
-        ride: "carousel",
-        pause: false, 
-        wrap: true,   
-      });
-    }
-  }
+
+	get cities(): City[] {
+		return this.sharedDataService.cities();
+	}
+	ngAfterViewInit(): void {
+		const carouselEl = document.querySelector("#carouselExampleAutoplaying");
+		if (carouselEl) {
+			new bootstrap.Carousel(carouselEl, {
+				interval: 2500,
+				ride: "carousel",
+				pause: false,
+				wrap: true,
+			});
+		}
+	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
 		this.searchService.goToSearch(selectedFilters, searchByMap);

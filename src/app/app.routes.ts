@@ -3,6 +3,7 @@ import { ThankyouComponent } from "./components/thankyou/thankyou.component";
 import { authGuard } from "./guards/auth.guard";
 import { brokerGuard } from "./guards/broker.guard";
 import { ChangePasswordComponent } from "./pages/private/change-password/change-password.component";
+import { CitiesComponent } from "./pages/private/cities/cities.component";
 import { AdminComponent } from "./pages/private/dashboard/dashboard.component";
 import { LeadsComponent } from "./pages/private/leads/leads.component";
 import { ManagerComponent } from "./pages/private/manager/manager.component";
@@ -56,6 +57,7 @@ export const routes: Routes = [
 			{ path: "dashboard", component: AdminComponent },
 			{ path: "leads", component: LeadsComponent },
 			{ path: "testimonial", component: TestimonialComponent },
+			{ path: "cities", component: CitiesComponent },
 			{ path: "settings", component: SettingsComponent },
 			{ path: "old-manager", component: ManagerComponent },
 			{ path: "page-manager", component: PageManagerComponent },

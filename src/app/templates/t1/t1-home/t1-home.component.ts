@@ -1,8 +1,10 @@
+import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 import { environment } from "../../../environments/environment.development";
+import { City } from "../../../models/City";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
@@ -15,7 +17,14 @@ declare var bootstrap: any;
 
 @Component({
 	selector: "app-t1-home",
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberFormatPipe, TeamCardComponent],
+	imports: [
+		RouterModule,
+		SearchComponent,
+		FeaturedPropertiesComponent,
+		PhoneNumberFormatPipe,
+		TeamCardComponent,
+		CommonModule,
+	],
 	templateUrl: "./t1-home.component.html",
 	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./t1-home.component.scss", "../t1.component.scss"],
@@ -35,6 +44,10 @@ export class T1HomeComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
 		this.siteConfig = this.sharedDataService.siteData();
+	}
+
+	get cities(): City[] {
+		return this.sharedDataService.cities();
 	}
 
 	ngAfterViewInit(): void {

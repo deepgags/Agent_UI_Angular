@@ -204,71 +204,68 @@ siteConfig.websiteSettings.showFindDreamHomePage
 		<div class="row mt-3">
 			<div class="col-lg-3 col-12">
 				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city:'Mississauga'})">
+					 (click)="searchProperties({ city: cities[0]?.name })">
 
 					<img class="w-100"
-						 src="t8/images/proMississuaga.png"
+						 [src]="localImageUrl + cities[0]?.image"
 						 alt="">
 
 					<div class="overlay"></div>
 
 					<div class="city-name">
-						<h2 class="fw-medium">Mississauga</h2>
+						<h2 class="fw-medium">{{ cities[0]?.name }}</h2>
 					</div>
 				</div>
 			</div>
 
 			<div class="col-lg-3 col-12">
 				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city:'Brampton'})">
+					 (click)="searchProperties({ city: cities[1]?.name })">
 
 					<img class="w-100"
-						 src="t8/images/proBrampton.png"
+						 [src]="localImageUrl + cities[1]?.image"
 						 alt="">
 
 					<div class="overlay"></div>
 
 					<div class="city-name">
-						<h2 class="fw-medium">Brampton</h2>
+						<h2 class="fw-medium">{{ cities[1]?.name }}</h2>
 					</div>
 				</div>
 			</div>
 
 			<div class="col-lg-3 col-12">
 				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city:'Milton'})">
+					 (click)="searchProperties({ city: cities[2]?.name })">
 
 					<img class="w-100"
-						 src="t8/images/proMilton.png"
+						 [src]="localImageUrl + cities[2]?.image"
 						 alt="">
 
 					<div class="overlay"></div>
 
 					<div class="city-name">
-						<h2 class="fw-medium">Milton</h2>
+						<h2 class="fw-medium">{{ cities[2]?.name }}</h2>
 					</div>
 				</div>
 			</div>
 
 			<div class="col-lg-3 col-12">
 				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city:'Montreal'})">
+					 (click)="searchProperties({ city: cities[3]?.name })">
 					<img class="w-100"
-						 src="t8/images/proMontreal.png"
+						 [src]="localImageUrl + cities[3]?.image"
 						 alt="">
 					<div class="overlay"></div>
 					<div class="city-name">
-						<h2 class="fw-medium">Montreal</h2>
+						<h2 class="fw-medium">{{ cities[3]?.name }}</h2>
 					</div>
 				</div>
-
 
 			</div>
 		</div>
 	</div>
 </div>
-
-
 
 <div class="container-fluid sec-3 search-container">
 	<div class="container">
