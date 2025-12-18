@@ -7,7 +7,7 @@
 }
 .dropdown:hover .dropdown-menu {
 	display: block;
-	margin-top: 0; /* optional: remove any jump */
+	margin-top: 0; 
 }
 .dropdown-menu {
 	margin-top: 0;
@@ -17,9 +17,9 @@
 a {
 	font-size: 16px;
 }
-/* GLASS HEADER */
+
 .glass-header {
-  background: rgba(12, 12, 12, 0.65);
+  background:rgb(235 235 235 / 65%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -28,19 +28,17 @@ a {
   z-index: 1000;
 }
 
-/* AGENT */
 .agent-brand {
   line-height: 1.15;
 }
 
-/* CONTACT PILLS */
 .contact-pill {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
   border-radius: 50px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(42, 35, 35, 0.951);
   transition: all 0.25s ease;
 }
 
@@ -57,26 +55,7 @@ a {
   color: #000;
 }
 
-/* MINI SEARCH */
-.mini-search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.1);
-  width: 140px;
-}
 
-.mini-search i {
-  color: #bbb;
-}
-
-.mini-search input::placeholder {
-  color: #aaa;
-}
-
-/* BROKERAGE */
 .brokerage-badge img {
   transition: transform 0.3s ease;
 }
@@ -85,7 +64,6 @@ a {
   transform: scale(1.05);
 }
 
-/* ANIMATED UNDERLINE */
 .scroll-underline {
   height: 2px;
   width: 0;
@@ -93,7 +71,6 @@ a {
   transition: width 0.4s ease;
 }
 
-/* MOBILE STACK */
 @media (max-width: 991px) {
   .center-stack {
     flex-direction: column;

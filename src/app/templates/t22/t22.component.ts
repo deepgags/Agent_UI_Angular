@@ -2,17 +2,17 @@ import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SiteConfig } from "../../models/SiteConfig";
 import { SharedDataService } from "../../services/shared-data.service";
-import { T21FooterComponent } from "./t21-footer/t21-footer.component";
-import { T21HeaderComponent } from "./t21-header/t21-header.component";
+import { T22FooterComponent } from "./t22-footer/t22-footer.component";
+import { T22HeaderComponent } from "./t22-header/t22-header.component";
 
 @Component({
-	selector: "app-t21",
+	selector: "app-t22",
 	standalone: true,
-	imports: [T21HeaderComponent, T21FooterComponent, RouterModule], 
-	templateUrl: "./t21.component.html",
-	styleUrl: "./t21.component.scss",
+	imports: [T22HeaderComponent, T22FooterComponent, RouterModule], 
+	templateUrl: "./t22.component.html",
+	styleUrl: "./t22.component.scss",
 })
-export class T21Component implements OnInit {
+export class T22Component implements OnInit {
 	siteConfig: SiteConfig = {} as SiteConfig;
 
 	constructor(private sharedDataService: SharedDataService) {}

@@ -53,6 +53,10 @@ import { T8HomeComponent } from "./templates/t8/t8-home/t8-home.component";
 import { T8Component } from "./templates/t8/t8.component";
 import { T9HomeComponent } from "./templates/t9/t9-home/t9-home.component";
 import { T9Component } from "./templates/t9/t9.component";
+import { T21HomeComponent } from "./templates/t21/t21-home/t21-home.component";
+import { T21Component } from "./templates/t21/t21.component";
+import { T22Component } from "./templates/t22/t22.component";
+import { T22HomeComponent } from "./templates/t22/t22-home/t22home.component";
 
 export interface TemplateRoute {
 	path: string;
@@ -185,5 +189,15 @@ export const templates: TemplateRoutes = {
 		path: "",
 		component: T20Component,
 		children: [...generalRoutes, { path: "home", component: T20HomeComponent }],
+	},	
+	t21: {
+		path: "",
+		component: T21Component,
+		children: [...generalRoutes, { path: "home", component: T21HomeComponent }],
+	},
+	t22: {
+		path: "",
+		component: T22Component,
+		children: [...generalRoutes, { path: "home", component: T22HomeComponent }],
 	},
 };

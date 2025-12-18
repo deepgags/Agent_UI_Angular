@@ -7,7 +7,7 @@
 }
 .dropdown:hover .dropdown-menu {
 	display: block;
-	margin-top: 0; /* optional: remove any jump */
+	margin-top: 0; 
 }
 .dropdown-menu {
 	margin-top: 0;
@@ -17,9 +17,8 @@
 a {
 	font-size: 14px;
 }
-/* GLASS HEADER */
 .glass-header {
-  background: rgba(15, 15, 15, 0.65);
+  background:rgb(235 235 235 / 65%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -27,7 +26,6 @@ a {
   z-index: 999;
 }
 
-/* SHRINK STATE */
 .glass-header.shrink {
   padding-top: 4px;
   padding-bottom: 4px;
@@ -50,7 +48,6 @@ a {
   height: 38px;
 }
 
-/* SEARCH BAR */
 .search-glass {
   display: flex;
   align-items: center;
@@ -73,21 +70,20 @@ a {
   color: #bbb;
 }
 
-/* ICON PILLS */
 .icon-pill {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  background:rgba(85, 85, 85, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: white;
   transition: all 0.25s ease;
 }
 
 .icon-pill:hover {
-  background: #c9a14a; /* luxury gold */
+  background: #c9a14a; 
   color: #000;
 }
 
