@@ -139,12 +139,13 @@ siteConfig.websiteSettings.showFindDreamHomePage
 </div>
 
 
+@if(cities.length > 0){
 <div class="container py-lg-5 p-lg-0 p-4 search-container">
 	<p class="text text-center fw-semibold">
 		Find Properties in These Cities
 	</p>
 	<div class="row">
-		<div class="col-lg-8 col-12">
+		@if(cities[0]?.name){<div class="col-lg-8 col-12">
 			<div class="row card city-card"
 				 (click)="searchProperties({ city: cities[0]?.name })">
 
@@ -159,7 +160,7 @@ siteConfig.websiteSettings.showFindDreamHomePage
 			</div>
 
 			<div class="row mt-3">
-				<div class="col d-flex position-relative">
+				@if(cities[1]?.name){<div class="col d-flex position-relative">
 					<div class="w-100 position-relative card city-card"
 						 (click)="searchProperties({ city: cities[1]?.name })">
 
@@ -174,9 +175,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 						</div>
 
 					</div>
-				</div>
-
-				<div class="col d-flex position-relative">
+				</div>}
+				@if(cities[2]?.name){<div class="col d-flex position-relative">
 					<div class="w-100 position-relative card city-card"
 						 (click)="searchProperties({ city: cities[2]?.name })">
 
@@ -191,11 +191,11 @@ siteConfig.websiteSettings.showFindDreamHomePage
 						</div>
 
 					</div>
-				</div>
+				</div>}
 
 			</div>
-		</div>
-		<div class="col-lg-4 col-12 mt-3 mt-lg-0">
+		</div>}
+		@if(cities[3]?.name){<div class="col-lg-4 col-12 mt-3 mt-lg-0">
 			<div class="position-relative card city-card"
 				 (click)="searchProperties({ city: cities[3]?.name })">
 
@@ -226,9 +226,10 @@ siteConfig.websiteSettings.showFindDreamHomePage
 
 			</div>
 
-		</div>
+		</div>}
 	</div>
 </div>
+}
 
 <div class="container-fluid sec-3 search-container">
 	<div class="container">

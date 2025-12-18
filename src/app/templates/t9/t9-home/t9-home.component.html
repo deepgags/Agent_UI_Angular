@@ -104,11 +104,12 @@ siteConfig.websiteSettings.showFindDreamHomePage
 }
 
 
+@if(cities.length > 0){
 <div class="container p-lg-0 p-4">
 	<p class="text text-center fw-semibold pt-3 mb-0">Find Properties in These Cities</p>
 	<p class="text-center fw-normal"></p>
 	<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-		<div class="col">
+		@if(cities[0]?.name){<div class="col">
 			<div class="pro_card"
 				 (click)="searchProperties({ city: cities[0]?.name })">
 				<div class="content text-center">
@@ -118,8 +119,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					<p class="pro-card-text">{{ cities[0]?.name }}</p>
 				</div>
 			</div>
-		</div>
-		<div class="col">
+		</div>}
+		@if(cities[1]?.name){<div class="col">
 			<div class="pro_card"
 				 (click)="searchProperties({ city: cities[1]?.name })">
 				<div class="content text-center">
@@ -129,8 +130,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					<p class="pro-card-text">{{ cities[1]?.name }}</p>
 				</div>
 			</div>
-		</div>
-		<div class="col">
+		</div>}
+		@if(cities[2]?.name){<div class="col">
 			<div class="pro_card"
 				 (click)="searchProperties({ city: cities[2]?.name })">
 				<div class="content text-center">
@@ -140,8 +141,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					<p class="pro-card-text">{{ cities[2]?.name }}</p>
 				</div>
 			</div>
-		</div>
-		<div class="col">
+		</div>}
+		@if(cities[3]?.name){<div class="col">
 			<div class="pro_card"
 				 (click)="searchProperties({ city: cities[3]?.name })">
 				<div class="content text-center">
@@ -151,9 +152,10 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					<p class="pro-card-text">{{ cities[3]?.name }}</p>
 				</div>
 			</div>
-		</div>
+		</div>}
 	</div>
 </div>
+}
 
 <div class="container-fluid ">
 	<div class="container bg-white">

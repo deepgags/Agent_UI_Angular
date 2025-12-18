@@ -69,49 +69,47 @@
 		<form [formGroup]="cityForm"
 			  (ngSubmit)="saveCity()">
 			<div class="row g-3">
-
 				<div class="col-md-6">
-					<div class="mb-3">
-						<p-iftalabel>
-							<input type="text"
-								   pInputText
-								   formControlName="name"
-								   placeholder="City Name"
-								   class="form-control"
-								   id="name"
-								   required />
-							<label for="name">City Name</label>
+					<p-iftalabel>
+						<p-iftalabel class="w-full md:w-56">
+							<p-select [options]="defaultCities"
+									  formControlName="city"
+									  optionLabel="city"
+									  optionValue="city"
+									  inputId="dd-city"
+									  class="w-100"
+									  appendTo="body" />
+							<label for="dd-city">Select City *</label>
 						</p-iftalabel>
-						@if (name?.invalid && (name?.dirty || name?.touched)) {
-						<span class="error">
-							@if (name?.errors?.['required']) {
-							<span>City Name is required</span>
-							}
-						</span>
+					</p-iftalabel>
+					@if (city?.invalid && (city?.dirty || city?.touched)) {
+					<span class="error">
+						@if (city?.errors?.['required']) {
+						<span>City is required</span>
 						}
-					</div>
+					</span>
+					}
 				</div>
 
 				<div class="col-md-6">
-					<div class="mb-3">
-						<p-iftalabel>
-							<input type="file"
-								   #cityImageUpload
-								   (change)="onCityImageChange($event)"
-								   class="form-control upload-btn w-100"
-								   id="cityImageUpload"
-								   accept="image/*"
-								   required />
-							<label for="cityImageUpload">City Image</label>
-						</p-iftalabel>
-						@if (image?.invalid && (image?.dirty || image?.touched)) {
-						<span class="error">
-							@if (image?.errors?.['required']) {
-							<span>City Image is required</span>
-							}
-						</span>
+					<p-iftalabel>
+						<input type="file"
+							   #cityImageUpload
+							   (change)="onCityImageChange($event)"
+							   class="form-control upload-btn w-100"
+							   id="cityImageUpload"
+							   accept="image/*"
+							   required />
+						<label for="cityImageUpload">City Image</label>
+					</p-iftalabel>
+					@if (image?.invalid && (image?.dirty || image?.touched)) {
+					<span class="error">
+						@if (image?.errors?.['required']) {
+						<span>City Image is required</span>
 						}
-					</div>
+					</span>
+					}
+
 				</div>
 
 				<div class="col-12">

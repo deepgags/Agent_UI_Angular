@@ -34,7 +34,7 @@ export class UserLoginComponent {
 	login() {
 		if (this.loginForm.valid) {
 			const { email, password } = this.loginForm.value;
-			this.customerService.login({ emailAddress: email, password }).subscribe({
+			this.customerService.login({ emailAddress: email, password, domain: "" }).subscribe({
 				next: (response: any) => {
 					localStorage.setItem("token", response.token);
 					this.router.navigate([Pages.DASHBOARD]);

@@ -3,12 +3,14 @@ import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { ConfirmationService } from "primeng/api";
+import { AutoCompleteModule } from "primeng/autocomplete";
 import { ButtonModule } from "primeng/button";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DialogModule } from "primeng/dialog";
 import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputTextModule } from "primeng/inputtext";
+import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { BehaviorSubject, Observable } from "rxjs";
@@ -36,6 +38,8 @@ import { NotificationService } from "../../../services/notification.service";
 		DynamicDialogModule,
 		IftaLabelModule,
 		BlobToUrlPipe,
+		AutoCompleteModule,
+		SelectModule,
 	],
 	templateUrl: "./cities.component.html",
 	styleUrl: "./cities.component.scss",
@@ -48,6 +52,8 @@ export class CitiesComponent implements OnInit {
 	cities: City[] = [];
 	cityDialogVisible = false;
 	cityForm!: FormGroup;
+	defaultCities = [];
+	defaultCitiesCopy = [];
 	editingCity: City | null = null;
 
 	cityImage: BehaviorSubject<Blob | null>;
@@ -67,8 +73,8 @@ export class CitiesComponent implements OnInit {
 		this.cityImageObservable = this.cityImage.asObservable();
 	}
 
-	get name() {
-		return this.cityForm.get("name");
+	get city() {
+		return this.cityForm.get("city");
 	}
 
 	get image() {
@@ -82,7 +88,7 @@ export class CitiesComponent implements OnInit {
 
 	private initializeForm() {
 		this.cityForm = this.fb.group({
-			name: new FormControl("", [Validators.required]),
+			city: new FormControl("", [Validators.required]),
 			image: new FormControl("", [Validators.required]),
 		});
 	}
@@ -92,7 +98,9 @@ export class CitiesComponent implements OnInit {
 		this.citiesService.getCities().subscribe({
 			next: (response) => {
 				if (response.status) {
-					this.cities = response.data;
+					this.defaultCities = response.data.cities;
+					this.defaultCitiesCopy = response.data.cities;
+					this.cities = response.data.customerCities;
 				}
 				this.loadingService.loadingOff();
 			},
@@ -110,12 +118,18 @@ export class CitiesComponent implements OnInit {
 		this.cityDialogVisible = true;
 	}
 
+	searchCity = (event: any) => {
+		this.defaultCities = this.defaultCitiesCopy.filter((item: any) => {
+			return item.city.toLowerCase().indexOf(event.query.toLowerCase()) > -1;
+		});
+	};
+
 	saveCity() {
 		if (this.cityForm.valid && this.cities.length < 10) {
 			const formValue = this.cityForm.getRawValue();
 			const formData = new FormData();
 
-			formData.append("name", formValue.name);
+			formData.append("name", formValue.city);
 			if (this.cityImage.value) {
 				formData.append("image", this.cityImage.value);
 			}

@@ -182,12 +182,13 @@ siteConfig.websiteSettings.showFindDreamHomePage
 	</div>
 </section>
 }
+@if(cities.length > 0){
 <div class="container">
 	<div class="py-5">
 		<h2 class="text-center">Find Properties in These Cities</h2>
 	</div>
 	<div class="row">
-		<div class="col-12 col-lg-4 mouse">
+		@if(cities[0]?.name){<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
 				 (click)="searchProperties({ city: cities[0]?.name })">
 				<div class="row g-0">
@@ -205,8 +206,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-12 col-lg-4 mouse">
+		</div>}
+		@if(cities[1]?.name){<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
 				 (click)="searchProperties({ city: cities[1]?.name })">
 				<div class="row g-0">
@@ -224,8 +225,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-12 col-lg-4 mouse">
+		</div>}
+		@if(cities[2]?.name){<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
 				 (click)="searchProperties({ city: cities[2]?.name })">
 				<div class="row g-0">
@@ -243,11 +244,11 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>}
 	</div>
 
 	<div class="row">
-		<div class="col-12 col-lg-4 mouse">
+		@if(cities[3]?.name){<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
 				 (click)="searchProperties({ city: cities[3]?.name })">
 				<div class="row g-0">
@@ -265,8 +266,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-12 col-lg-4 mouse">
+		</div>}
+		@if(cities[4]?.name){<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
 				 (click)="searchProperties({ city: cities[4]?.name })">
 				<div class="row g-0">
@@ -284,8 +285,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-12 col-lg-4 mouse">
+		</div>}
+		@if(cities[5]?.name){<div class="col-12 col-lg-4 mouse">
 			<div class="card mb-3 card-simple"
 				 (click)="searchProperties({ city: cities[5]?.name })">
 				<div class="row g-0">
@@ -303,9 +304,10 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>}
 	</div>
 </div>
+}
 
 <div class="container py-lg-5 p-lg-0 p-4 search-container">
 	<div class="row py-5 align-items-center justify-content-around">

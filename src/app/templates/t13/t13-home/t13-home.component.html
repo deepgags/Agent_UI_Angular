@@ -46,79 +46,79 @@
 	</div>
 </div>
 
+@if(cities.length > 0){
 <div class="container-fluid search-container">
-	<div class=" py-4">
-		<div class="row justify-content-center">
-			<p class="text info fw-semibold ">Search Your Dream Home</p>
-			<div class="col-12 ">
-				<app-search [onSearch]="searchProperties" />
-			</div>
+
+	<div class="container py-lg-5 p-lg-0 p-4">
+		<p class="text text-center fw-semibold">
+			Find Properties in These Cities
+		</p>
+
+		<div class="row mt-3">
+			@if(cities[0]?.name){<div class="col-lg-3 col-12">
+				<div class="city-card position-relative text-white text-center"
+					 (click)="searchProperties({ city: cities[0]?.name })">
+
+					<img class="w-100"
+						 [src]="localImageUrl + cities[0]?.image"
+						 alt="">
+
+					<div class="overlay"></div>
+
+					<div class="city-name">
+						<h2 class="fw-medium">{{ cities[0]?.name }}</h2>
+					</div>
+				</div>
+			</div>}
+
+			@if(cities[1]?.name){<div class="col-lg-3 col-12">
+				<div class="city-card position-relative text-white text-center"
+					 (click)="searchProperties({ city: cities[1]?.name })">
+
+					<img class="w-100"
+						 [src]="localImageUrl + cities[1]?.image"
+						 alt="">
+
+					<div class="overlay"></div>
+
+					<div class="city-name">
+						<h2 class="fw-medium">{{ cities[1]?.name }}</h2>
+					</div>
+				</div>
+			</div>}
+
+			@if(cities[2]?.name){<div class="col-lg-3 col-12">
+				<div class="city-card position-relative text-white text-center"
+					 (click)="searchProperties({ city: cities[2]?.name })">
+
+					<img class="w-100"
+						 [src]="localImageUrl + cities[2]?.image"
+						 alt="">
+
+					<div class="overlay"></div>
+
+					<div class="city-name">
+						<h2 class="fw-medium">{{ cities[2]?.name }}</h2>
+					</div>
+				</div>
+			</div>}
+
+			@if(cities[3]?.name){<div class="col-lg-3 col-12">
+				<div class="city-card position-relative text-white text-center"
+					 (click)="searchProperties({ city: cities[3]?.name })">
+					<img class="w-100"
+						 [src]="localImageUrl + cities[3]?.image"
+						 alt="">
+					<div class="overlay"></div>
+					<div class="city-name">
+						<h2 class="fw-medium">{{ cities[3]?.name }}</h2>
+					</div>
+				</div>
+
+			</div>}
 		</div>
 	</div>
 </div>
-@if(
-siteConfig.websiteSettings.showHomeWorthPage ||
-siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-siteConfig.websiteSettings.showFindDreamHomePage
-){
-<section class="py-5 position-relative hero-bg">
-	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
-	<div class="container">
-		<div class="row justify-content-center g-4">
-
-			@if(siteConfig.websiteSettings.showHomeWorthPage){
-			<div class="col-12 col-sm-6 col-lg-4">
-				<div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
-					<div class="icon-wrapper bg-primary bg-opacity-10 text-primary mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center"
-						 style="width:60px; height:60px;">
-						<i class="bi bi-house-door-fill fs-3"></i>
-					</div>
-					<h5 class="fw-bold text-uppercase">Home Evaluation</h5>
-					<p class="text-muted small mb-4">Get instant insights on what your home is worth, for free.</p>
-					<a href="/home-worth"
-					   target="_blank"
-					   class="btn btn-primary rounded-pill px-4">Check Now</a>
-				</div>
-			</div>
-			}
-
-			@if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
-			<div class="col-12 col-sm-6 col-lg-4">
-				<div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
-					<div class="icon-wrapper bg-warning bg-opacity-10 text-warning mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center"
-						 style="width:60px; height:60px;">
-						<i class="bi bi-binoculars-fill fs-3"></i>
-					</div>
-					<h5 class="fw-bold text-uppercase">Neighbourhood Watch</h5>
-					<p class="text-muted small mb-4">Stay alerted when neighbours put homes on the market.</p>
-					<a href="/neighbor-detail"
-					   target="_blank"
-					   class="btn btn-warning rounded-pill px-4 text-white">Get
-						Alerts</a>
-				</div>
-			</div>
-			}
-
-			@if(siteConfig.websiteSettings.showFindDreamHomePage){
-			<div class="col-12 col-sm-6 col-lg-4">
-				<div class="card border-0 shadow-sm h-100 text-center p-4 hover-zoom">
-					<div class="icon-wrapper bg-success bg-opacity-10 text-success mb-3 mx-auto rounded-circle d-flex justify-content-center align-items-center"
-						 style="width:60px; height:60px;">
-						<i class="bi bi-search-heart-fill fs-3"></i>
-					</div>
-					<h5 class="fw-bold text-uppercase">Find Your Dream Home</h5>
-					<p class="text-muted small mb-4">Explore listings and find the perfect home that fits you.</p>
-					<a href="/dream-home"
-					   target="_blank"
-					   class="btn btn-success rounded-pill px-4 text-white">Start
-						Exploring</a>
-				</div>
-			</div>
-			}
-
-		</div>
-	</div>
-</section>
 }
 
 <app-team-card />

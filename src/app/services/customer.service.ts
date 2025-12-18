@@ -22,7 +22,7 @@ export class CustomerService {
 		return this.http.post(`${this.baseUrl}/customer/verify`, params);
 	}
 
-	login(params: { emailAddress: string; password: string }): Observable<any> {
+	login(params: { emailAddress: string; password: string, domain: string }): Observable<any> {
 		return this.http.post(`${this.baseUrl}/customer/login`, params);
 	}
 
