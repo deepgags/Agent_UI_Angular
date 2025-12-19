@@ -59,6 +59,7 @@ a {
 .contact-stack {
   display: flex;
   flex-direction: column;
+  justify-content: end;
   gap: 4px;
 }
 
@@ -67,6 +68,7 @@ a {
   text-decoration: none;
   color: #222;
   display: inline-flex;
+  justify-content: end;
   align-items: center;
   gap: 8px;
   opacity: 0.85;
