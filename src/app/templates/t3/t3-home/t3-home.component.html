@@ -121,61 +121,79 @@ siteConfig.websiteSettings.showHomeWorthPage ||
 siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
 siteConfig.websiteSettings.showFindDreamHomePage
 ){
-<section class="py-5 position-relative hero-bg text-white">
+<section class="min-vh-25 d-flex align-items-center position-relative hero-bg text-white">
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
 
-	<div class="container">
-		<div class="row justify-content-center g-4">
+	<div class="container position-relative">
+		<div class="row justify-content-center align-items-stretch g-4 text-center">
 
 			@if(siteConfig.websiteSettings.showHomeWorthPage){
-			<div class="col-12 col-sm-6 col-lg-4"
+			<div class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex"
 				 data-aos="fade-up"
 				 data-aos-duration="800">
-				<div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
-					<div class="icon-wrapper bg-primary bg-opacity-25 text-primary mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
-						<i class="bi bi-house-heart-fill fs-2"></i>
+				<div class="glass-card p-4 rounded-4 shadow-lg w-100 d-flex flex-column">
+					<div class="flex-grow-1">
+						<div class="icon-wrapper bg-primary bg-opacity-25 text-primary mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
+							<i class="bi bi-house-heart-fill fs-2"></i>
+						</div>
+						<h5 class="fw-bold text-uppercase mb-3">Home Evaluation</h5>
+						<p class="small opacity-75 mb-4">
+							Find out how much your home is worth for free
+						</p>
 					</div>
-					<h5 class="fw-bold text-uppercase mb-3">Home Evaluation</h5>
-					<p class="small opacity-75 mb-4">Find out how much your home is worth for free</p>
 					<a href="/home-worth"
 					   target="_blank"
-					   class="btn btn-gradient px-4 py-2 rounded-pill">Check Worth</a>
+					   class="btn btn-gradient px-4 py-2 rounded-pill mt-auto">
+						Check Worth
+					</a>
 				</div>
 			</div>
 			}
 
 			@if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
-			<div class="col-12 col-sm-6 col-lg-4"
+			<div class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex"
 				 data-aos="fade-up"
 				 data-aos-delay="150"
 				 data-aos-duration="800">
-				<div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
-					<div class="icon-wrapper bg-warning bg-opacity-25 text-warning mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
-						<i class="bi bi-pin-map-fill fs-2"></i>
+				<div class="glass-card p-4 rounded-4 shadow-lg w-100 d-flex flex-column">
+					<div class="flex-grow-1">
+						<div class="icon-wrapper bg-warning bg-opacity-25 text-warning mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
+							<i class="bi bi-pin-map-fill fs-2"></i>
+						</div>
+						<h5 class="fw-bold text-uppercase mb-3">Neighbourhood Watch</h5>
+						<p class="small opacity-75 mb-4">
+							Get alerts when neighbours are listing homes for sale.
+						</p>
 					</div>
-					<h5 class="fw-bold text-uppercase mb-3">Neighbourhood Watch</h5>
-					<p class="small opacity-75 mb-4">Get alerts when neighbours list their homes for sale.</p>
 					<a href="/neighbor-detail"
 					   target="_blank"
-					   class="btn btn-gradient-warning px-4 py-2 rounded-pill">Get Alerts</a>
+					   class="btn btn-gradient-warning px-4 py-2 rounded-pill mt-auto">
+						Get Alerts
+					</a>
 				</div>
 			</div>
 			}
 
 			@if(siteConfig.websiteSettings.showFindDreamHomePage){
-			<div class="col-12 col-sm-6 col-lg-4"
+			<div class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex"
 				 data-aos="fade-up"
 				 data-aos-delay="300"
 				 data-aos-duration="800">
-				<div class="glass-card text-center p-4 rounded-4 shadow-lg h-100">
-					<div class="icon-wrapper bg-success bg-opacity-25 text-success mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
-						<i class="bi bi-search-heart fs-2"></i>
+				<div class="glass-card p-4 rounded-4 shadow-lg w-100 d-flex flex-column">
+					<div class="flex-grow-1">
+						<div class="icon-wrapper bg-success bg-opacity-25 text-success mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
+							<i class="bi bi-search-heart fs-2"></i>
+						</div>
+						<h5 class="fw-bold text-uppercase mb-3">Dream Home Finder</h5>
+						<p class="small opacity-75 mb-4">
+							Search million-dollar listings and hidden gems alike.
+						</p>
 					</div>
-					<h5 class="fw-bold text-uppercase mb-3">Dream Home Finder</h5>
-					<p class="small opacity-75 mb-4">Search million-dollar listings and hidden gems alike.</p>
 					<a href="/dream-home"
 					   target="_blank"
-					   class="btn btn-gradient-success px-4 py-2 rounded-pill">Explore</a>
+					   class="btn btn-gradient-success px-4 py-2 rounded-pill mt-auto">
+						Explore
+					</a>
 				</div>
 			</div>
 			}
@@ -184,6 +202,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 	</div>
 </section>
 }
+
+
 
 @if(cities.length > 0){
 <div class="container ">
@@ -368,28 +388,11 @@ siteConfig.websiteSettings.showFindDreamHomePage
 
 
 <div class="container-fluid sec-3">
-	<div class="container pb-5">
-		<p class="text text-center mb-0 fw-semibold">Featured Properties</p>
+	<div class="container py-4">
+		<p class="fs-1 text-center mb-0 fw-semibold">Featured Properties</p>
+		<p class="text-center fw-normal"></p>
 		<app-featured-properties />
 	</div>
 </div>
 
 <app-team-card />
-
-<!-- <div class="floating-menu" [class.open]="isMenuOpen"
-     (mouseenter)="toggleMenu(true)" (mouseleave)="toggleMenu(false)">
-
-  <button class="floating-btn shadow-lg">
-    <i class="bi bi-grid-3x3-gap-fill fs-4"></i>
-  </button>
-
-  <div class="floating-options bg-white rounded-4 shadow-lg p-2">
-    @for (item of menuItems; track item.label) {
-      <a [href]="item.link" target="_blank"
-         class="d-flex align-items-center gap-2 text-decoration-none text-dark px-3 py-2 rounded-3 hover-bg">
-        <i class="{{ item.icon }} fs-5"></i>
-        <span class="fw-semibold small">{{ item.label }}</span>
-      </a>
-    }
-  </div>
-</div> -->
