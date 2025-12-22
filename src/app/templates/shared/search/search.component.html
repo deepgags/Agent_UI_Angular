@@ -61,34 +61,7 @@
 
 	</div>
 
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<p-select [options]="sqFtTypesDropDown"
-				  [(ngModel)]="filters.sqFt"
-				  optionLabel="label"
-				  optionValue="value"
-				  placeholder="Select Area"
-				  appendTo="body"
-				  class="" />
-	</div>
 
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<p-inputnumber [(ngModel)]="filters.min_price"
-					   mode="decimal"
-					   [minFractionDigits]="0"
-					   [maxFractionDigits]="2"
-					   prefix="$"
-					   placeholder="Min. Price"
-					   class="wid" />
-	</div>
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
-		<p-inputnumber [(ngModel)]="filters.max_price"
-					   mode="decimal"
-					   [minFractionDigits]="0"
-					   [maxFractionDigits]="2"
-					   prefix="$"
-					   placeholder="Max. Price"
-					   class="wid" />
-	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
 		<p-select [options]="propertyTypesDropDown"
@@ -141,6 +114,35 @@
 			<i class="fa-solid fa-filter info fs-6 cursor"></i>
 		</span>
 	</div> -->
+		<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+		<p-select [options]="sqFtTypesDropDown"
+				  [(ngModel)]="filters.sqFt"
+				  optionLabel="label"
+				  optionValue="value"
+				  placeholder="Select Area"
+				  appendTo="body"
+				  class="" />
+	</div>
+
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+		<p-inputnumber [(ngModel)]="filters.min_price"
+					   mode="decimal"
+					   [minFractionDigits]="0"
+					   [maxFractionDigits]="2"
+					   prefix="$"
+					   placeholder="Min. Price"
+					   class="wid" />
+	</div>
+	
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+		<p-inputnumber [(ngModel)]="filters.max_price"
+					   mode="decimal"
+					   [minFractionDigits]="0"
+					   [maxFractionDigits]="2"
+					   prefix="$"
+					   placeholder="Max. Price"
+					   class="wid" />
+	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex align-items-center gap-2">
 		<button type="button"
