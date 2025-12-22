@@ -26,8 +26,8 @@
 .mat-slider {
     width: 300px;
 }
-.placeholder{
-  color: black !important;
+input::placeholder{
+  font-size: 12px !important;
 }
 
 span,li{
