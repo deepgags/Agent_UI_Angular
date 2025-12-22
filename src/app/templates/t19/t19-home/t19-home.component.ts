@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -18,6 +19,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 	selector: "app-t19-home",
 	standalone: true,
 	imports: [
+		CommonModule,
 		RouterModule,
 		SearchComponent,
 		FeaturedPropertiesComponent,

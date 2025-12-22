@@ -122,6 +122,7 @@ export class ManageTestimonialComponent {
 				formData.append("designation", this.form.value.designation);
 			}
 			if (this.testimonialImage.value) {
+				console.log(this.testimonialImage);
 				formData.append("image", this.testimonialImage.value, "testimonial-image.png");
 			}
 

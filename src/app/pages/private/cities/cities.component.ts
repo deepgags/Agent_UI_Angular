@@ -131,7 +131,7 @@ export class CitiesComponent implements OnInit {
 
 			formData.append("name", formValue.city);
 			if (this.cityImage.value) {
-				formData.append("image", this.cityImage.value);
+				formData.append("image", this.cityImage.value, "city-image.png");
 			}
 
 			this.loadingService.loadingOn();

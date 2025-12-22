@@ -129,84 +129,84 @@ siteConfig.websiteSettings.showFindDreamHomePage
 			Find Properties in These Cities
 		</p>
 		<div class="row">
-			@if(cities[0]?.name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+			@if(cities[0].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container card-simple w-100"
-					 (click)="searchProperties({ city: cities[0]?.name })">
+					 (click)="searchProperties({ city: cities[0].name })">
 					<img class="w-100 rounded-3"
-						 [src]="localImageUrl + cities[0]?.image"
+						 [src]="localImageUrl + cities[0].image"
 						 alt="">
-					<div class="image-text">{{ cities[0]?.name }}</div>
+					<div class="image-text">{{ cities[0].name }}</div>
 				</div>
 			</div>}
 
-			@if(cities[1]?.name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+			@if(cities[1] && cities[1].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container card-simple w-100"
-					 (click)="searchProperties({ city: cities[1]?.name })">
+					 (click)="searchProperties({ city: cities[1].name })">
 					<img class="w-100 rounded-3"
-						 [src]="localImageUrl + cities[1]?.image"
+						 [src]="localImageUrl + cities[1].image"
 						 alt="">
-					<div class="image-text">{{ cities[1]?.name }}</div>
+					<div class="image-text">{{ cities[1].name }}</div>
 				</div>
 			</div>}
 
-			@if(cities[2]?.name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+			@if(cities[2] && cities[2].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container card-simple w-100"
-					 (click)="searchProperties({ city: cities[2]?.name })">
+					 (click)="searchProperties({ city: cities[2].name })">
 					<img class="w-100 rounded-3"
-						 [src]="localImageUrl + cities[2]?.image"
+						 [src]="localImageUrl + cities[2].image"
 						 alt="">
-					<div class="image-text">{{ cities[2]?.name }}</div>
+					<div class="image-text">{{ cities[2].name }}</div>
 				</div>
 			</div>}
-			@if(cities[3]?.name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+			@if(cities[3] && cities[3].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container card-simple w-100"
-					 (click)="searchProperties({ city: cities[3]?.name })">
+					 (click)="searchProperties({ city: cities[3].name })">
 					<img class="w-100 rounded-3"
-						 [src]="localImageUrl + cities[3]?.image"
+						 [src]="localImageUrl + cities[3].image"
 						 alt="">
-					<div class="image-text">{{ cities[3]?.name }}</div>
+					<div class="image-text">{{ cities[3].name }}</div>
 
 				</div>
 			</div>}
 		</div>
 
 		<div class="row mt-3">
-			@if(cities[4]?.name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+			@if(cities[4] && cities[4].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container card-simple w-100"
-					 (click)="searchProperties({ city: cities[4]?.name })">
+					 (click)="searchProperties({ city: cities[4].name })">
 					<img class="w-100 rounded-3"
-						 [src]="localImageUrl + cities[4]?.image"
+						 [src]="localImageUrl + cities[4].image"
 						 alt="">
-					<div class="image-text">{{ cities[4]?.name }}</div>
+					<div class="image-text">{{ cities[4].name }}</div>
 				</div>
 			</div>}
 
-			@if(cities[5]?.name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+			@if(cities[5] && cities[5].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container card-simple w-100"
-					 (click)="searchProperties({ city: cities[5]?.name })">
+					 (click)="searchProperties({ city: cities[5].name })">
 					<img class="w-100 rounded-3"
-						 [src]="localImageUrl + cities[5]?.image"
+						 [src]="localImageUrl + cities[5].image"
 						 alt="">
-					<div class="image-text">{{ cities[5]?.name }}</div>
+					<div class="image-text">{{ cities[5].name }}</div>
 				</div>
 			</div>}
 
-			@if(cities[6]?.name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+			@if(cities[6] && cities[6].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container card-simple w-100"
-					 (click)="searchProperties({ city: cities[6]?.name })">
+					 (click)="searchProperties({ city: cities[6].name })">
 					<img class="w-100 rounded-3"
-						 [src]="localImageUrl + cities[6]?.image"
+						 [src]="localImageUrl + cities[6].image"
 						 alt="">
-					<div class="image-text">{{ cities[6]?.name }}</div>
+					<div class="image-text">{{ cities[6].name }}</div>
 				</div>
 			</div>}
-			@if(cities[7]?.name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
+			@if(cities[7] && cities[7].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container card-simple w-100"
-					 (click)="searchProperties({ city: cities[7]?.name })">
+					 (click)="searchProperties({ city: cities[7].name })">
 					<img class="w-100 rounded-3"
-						 [src]="localImageUrl + cities[7]?.image"
+						 [src]="localImageUrl + cities[7].image"
 						 alt="">
-					<div class="image-text">{{ cities[7]?.name }}</div>
+					<div class="image-text">{{ cities[7].name }}</div>
 
 				</div>
 			</div>}

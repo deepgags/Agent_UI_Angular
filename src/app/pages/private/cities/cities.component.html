@@ -65,7 +65,8 @@
 			  [modal]="true"
 			  [style]="{ width: '600px' }"
 			  [closable]="true"
-			  [maximizable]="true">
+			  [maximizable]="true"
+			  [draggable]="false">
 		<form [formGroup]="cityForm"
 			  (ngSubmit)="saveCity()">
 			<div class="row g-3">
@@ -99,7 +100,8 @@
 							   class="form-control upload-btn w-100"
 							   id="cityImageUpload"
 							   accept="image/*"
-							   required />
+							   required
+							   placeholder="Select Image" />
 						<label for="cityImageUpload">City Image</label>
 					</p-iftalabel>
 					@if (image?.invalid && (image?.dirty || image?.touched)) {

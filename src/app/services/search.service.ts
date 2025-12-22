@@ -20,7 +20,7 @@ export class SearchService {
 			sqFt,
 			city,
 		} = selectedFilters;
-		debugger;
+
 		searchByMap = selectedFilters["searchByMap"] || searchByMap;
 		// this.router.navigate([navigatePath, searchByMap ? "map" : "search"], {
 		this.router.navigate([searchByMap ? "map" : "search"], {

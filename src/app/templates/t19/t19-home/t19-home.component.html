@@ -127,58 +127,58 @@ siteConfig.websiteSettings.showFindDreamHomePage
 			<h2 class="text-center">Find Properties in These Cities</h2>
 		</div>
 		<div class="row">
-			@if(cities[0]?.name){<div class="col-12 col-lg-4 mouse">
+			@if(cities[0].name){<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city: cities[0]?.name })">
+					 (click)="searchProperties({ city: cities[0].name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img [src]="localImageUrl + cities[0]?.image"
+								<img [src]="localImageUrl + cities[0].image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">{{ cities[0]?.name }}</h4>
+								<h4 class="card-title m-0">{{ cities[0].name }}</h4>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>}
-			@if(cities[1]?.name){<div class="col-12 col-lg-4 mouse">
+			@if(cities[1] && cities[1].name){<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city: cities[1]?.name })">
+					 (click)="searchProperties({ city: cities[1].name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img [src]="localImageUrl + cities[1]?.image"
+								<img [src]="localImageUrl + cities[1].image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">{{ cities[1]?.name }}</h4>
+								<h4 class="card-title m-0">{{ cities[1].name }}</h4>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>}
-			@if(cities[2]?.name){<div class="col-12 col-lg-4 mouse">
+			@if(cities[2] && cities[2].name){<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city: cities[2]?.name })">
+					 (click)="searchProperties({ city: cities[2].name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img [src]="localImageUrl + cities[2]?.image"
+								<img [src]="localImageUrl + cities[2].image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">{{ cities[2]?.name }}</h4>
+								<h4 class="card-title m-0">{{ cities[2].name }}</h4>
 							</div>
 						</div>
 					</div>
@@ -187,58 +187,58 @@ siteConfig.websiteSettings.showFindDreamHomePage
 		</div>
 
 		<div class="row">
-			@if(cities[3]?.name){<div class="col-12 col-lg-4 mouse">
+			@if(cities[3] && cities[3].name){<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city: cities[3]?.name })">
+					 (click)="searchProperties({ city: cities[3].name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img [src]="localImageUrl + cities[3]?.image"
+								<img [src]="localImageUrl + cities[3].image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">{{ cities[3]?.name }}</h4>
+								<h4 class="card-title m-0">{{ cities[3].name }}</h4>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>}
-			@if(cities[4]?.name){<div class="col-12 col-lg-4 mouse">
+			@if(cities[4] && cities[4].name){<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city: cities[4]?.name })">
+					 (click)="searchProperties({ city: cities[4].name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img [src]="localImageUrl + cities[4]?.image"
+								<img [src]="localImageUrl + cities[4].image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">{{ cities[4]?.name }}</h4>
+								<h4 class="card-title m-0">{{ cities[4].name }}</h4>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>}
-			@if(cities[5]?.name){<div class="col-12 col-lg-4 mouse">
+			@if(cities[5] && cities[5].name){<div class="col-12 col-lg-4 mouse">
 				<div class="card mb-3 card-simple"
-					 (click)="searchProperties({ city: cities[5]?.name })">
+					 (click)="searchProperties({ city: cities[5].name })">
 					<div class="row g-0">
 						<div class="col-md-5">
 							<div>
-								<img [src]="localImageUrl + cities[5]?.image"
+								<img [src]="localImageUrl + cities[5].image"
 									 class="img-fluid prop-img rounded-start"
 									 alt="...">
 							</div>
 						</div>
 						<div class="col-md-7 d-flex align-items-center justify-content-center">
 							<div class="card-body text-center">
-								<h4 class="card-title m-0">{{ cities[5]?.name }}</h4>
+								<h4 class="card-title m-0">{{ cities[5].name }}</h4>
 							</div>
 						</div>
 					</div>

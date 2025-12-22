@@ -212,7 +212,7 @@
 					</div>
 				</div>
 			</div>}
-			@if(cities[1].name){<div class="col">
+			@if(cities[1] && cities[1].name){<div class="col">
 				<div class="pro_card"
 					 (click)="searchProperties({ city: cities[1].name })">
 					<div class="content text-center">
@@ -223,7 +223,7 @@
 					</div>
 				</div>
 			</div>}
-			@if(cities[2].name){<div class="col">
+			@if(cities[2] && cities[2].name){<div class="col">
 				<div class="pro_card"
 					 (click)="searchProperties({ city: cities[2].name })">
 					<div class="content text-center">
@@ -234,7 +234,7 @@
 					</div>
 				</div>
 			</div>}
-			@if(cities[3].name){
+			@if(cities[3] && cities[3].name){
 			<div class="col">
 				<div class="pro_card"
 					 (click)="searchProperties({ city: cities[3].name })">

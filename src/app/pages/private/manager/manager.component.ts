@@ -53,11 +53,11 @@ export class ManagerComponent {
 			next: (response: any) => {
 				if (response.status) {
 					if (response.data.websiteSettings) {
-						const { showHomeWorthPage, showSellingInNeighbourHooddPage, showFindDreamHomePage } =
+						const { showHomeWorthPage, showSellingInNeighborHoodPage, showFindDreamHomePage } =
 							response.data.websiteSettings;
 						this.agentForm.patchValue({
 							showHomeWorthPage: showHomeWorthPage,
-							showSellingInNeighbourHooddPage: showSellingInNeighbourHooddPage,
+							showSellingInNeighborHoodPage: showSellingInNeighborHoodPage,
 							showFindDreamHomePage: showFindDreamHomePage,
 						});
 					}
@@ -74,11 +74,11 @@ export class ManagerComponent {
 		const { valid } = this.agentForm;
 		if (valid) {
 			this.loadingService.loadingOn();
-			const { showHomeWorthPage, showSellingInNeighbourHooddPage, showFindDreamHomePage } = this.agentForm.value;
+			const { showHomeWorthPage, showSellingInNeighborHoodPage, showFindDreamHomePage } = this.agentForm.value;
 			const params = {
 				websiteSettings: {
 					showHomeWorthPage,
-					showSellingInNeighbourHooddPage,
+					showSellingInNeighborHoodPage,
 					showFindDreamHomePage,
 				},
 			};

@@ -4,43 +4,56 @@
 	<div class="border rounded p-4">
 		<div class="row justify-content-center">
 			<div class="col-12 d-flex justify-content-center">
-				<form [formGroup]="agentForm"
-					  name="brokerageForm"
-					  class="w-100"
-					  (ngSubmit)="save()">
+				<form
+					[formGroup]="agentForm"
+					name="brokerageForm"
+					class="w-100"
+					(ngSubmit)="save()">
 					<div class="mb-4">
-						<div class="row mb-4 ">
+						<div class="row mb-4">
 							<div class="col-12 mb-2">
 								<div class="d-flex gap-2 items-center">
-									<p-checkbox inputId="showHomeWorthPage"
-												[binary]="true"
-												name="showHomeWorthPage"
-												formControlName="showHomeWorthPage" />
+									<p-checkbox
+										inputId="showHomeWorthPage"
+										[binary]="true"
+										name="showHomeWorthPage"
+										formControlName="showHomeWorthPage" />
 
-									<label for="showHomeWorthPage"
-										   class="ml-2"> Display How much Your Home Worth Landing Page </label>
+									<label
+										for="showHomeWorthPage"
+										class="ml-2">
+										Display How much Your Home Worth Landing Page
+									</label>
 								</div>
 							</div>
 							<div class="col-12 mb-2">
 								<div class="d-flex gap-2 items-center">
-									<p-checkbox inputId="showSellingInNeighbourHooddPage"
-												[binary]="true"
-												name="showSellingInNeighbourHooddPage"
-												formControlName="showSellingInNeighbourHooddPage" />
+									<p-checkbox
+										inputId="showSellingInNeighborHoodPage"
+										[binary]="true"
+										name="showSellingInNeighborHoodPage"
+										formControlName="showSellingInNeighborHoodPage" />
 
-									<label for="showSellingInNeighbourHooddPage"
-										   class="ml-2"> Display Selling in neighbour hood Landing Page </label>
+									<label
+										for="showSellingInNeighborHoodPage"
+										class="ml-2">
+										Display Selling in neighborhood Landing Page
+									</label>
 								</div>
 							</div>
 							<div class="col-12 mb-2">
 								<div class="d-flex gap-2 items-center">
-									<p-checkbox inputId="showFindDreamHomePage"
-												[binary]="true"
-												name="showFindDreamHomePage"
-												formControlName="showFindDreamHomePage" />
+									<p-checkbox
+										inputId="showFindDreamHomePage"
+										[binary]="true"
+										name="showFindDreamHomePage"
+										formControlName="showFindDreamHomePage" />
 
-									<label for="showFindDreamHomePage"
-										   class="ml-2"> Display Find Your Home Landing Page </label>
+									<label
+										for="showFindDreamHomePage"
+										class="ml-2">
+										Display Find Your Home Landing Page
+									</label>
 								</div>
 							</div>
 						</div>
@@ -48,8 +61,9 @@
 
 					<div class="d-flex justify-content-end align-items-center">
 						<div class="d-flex align-items-center">
-							<button type="submit"
-									class="btn btn-success px-4">
+							<button
+								type="submit"
+								class="btn btn-success px-4">
 								<i class="fas fa-save me-2"></i>
 								Save Changes
 							</button>

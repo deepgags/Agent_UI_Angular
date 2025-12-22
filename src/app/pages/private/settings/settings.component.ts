@@ -206,7 +206,7 @@ export class SettingsComponent {
 						profileImage,
 						siteUrl,
 					} = websiteSettings;
-					debugger;
+
 					this.existingProfileImage = profileImage;
 					this.existingBrokerageImage = brokerageImage;
 					// this.brokerageImage.next(brokerage.logoPath);
@@ -316,11 +316,6 @@ export class SettingsComponent {
 			// Website settings
 			if (primaryColor) formData.append("primaryColor", primaryColor);
 			if (secondaryColor) formData.append("secondaryColor", secondaryColor);
-			if (facebook) formData.append("facebook", facebook);
-			if (twitter) formData.append("twitter", twitter);
-			if (instagram) formData.append("instagram", instagram);
-			if (linkedin) formData.append("linkedin", linkedin);
-			if (youtube) formData.append("youtube", youtube);
 			if (websiteEmail) formData.append("websiteEmail", websiteEmail);
 			if (websitePhone) formData.append("websitePhone", websitePhone);
 
@@ -335,26 +330,36 @@ export class SettingsComponent {
 				formData.append("brokerageImage", this.brokerageLogoImage.value, "brokerage-logo.png");
 			}
 
+			// social links
+			const socialLinks: any = {};
+			if (facebook) {
+				socialLinks.facebook = facebook;
+			}
+			if (twitter) {
+				socialLinks.twitter = twitter;
+			}
+			if (instagram) {
+				socialLinks.instagram = instagram;
+			}
+			if (linkedin) {
+				socialLinks.linkedin = linkedin;
+			}
+			if (youtube) {
+				socialLinks.youtube = youtube;
+			}
+			formData.append("socialLinks", JSON.stringify(socialLinks));
+
 			// Secondary agent
 			const secondaryAgent = this.agentForm.value.secondaryAgent;
-			if (secondaryAgent && secondaryAgent.enableSecondaryAgent) {
-				if (secondaryAgent.firstName) formData.append("secondaryAgent.firstName", secondaryAgent.firstName);
-				if (secondaryAgent.lastName) formData.append("secondaryAgent.lastName", secondaryAgent.lastName);
-				if (secondaryAgent.designation)
-					formData.append("secondaryAgent.designation", secondaryAgent.designation);
-				if (secondaryAgent.websiteEmail)
-					formData.append("secondaryAgent.websiteEmail", secondaryAgent.websiteEmail);
-				if (secondaryAgent.websitePhone)
-					formData.append("secondaryAgent.websitePhone", secondaryAgent.websitePhone);
-				if (this.secondaryAgentProfileImage.value) {
-					formData.append(
-						"secondaryAgent.profileImage",
-						this.secondaryAgentProfileImage.value,
-						"secondary-profile.png"
-					);
-				} else if (this.existingSecondaryProfileImage) {
-					formData.append("existingSecondaryProfileImage", this.existingSecondaryProfileImage);
-				}
+			formData.append("secondaryAgent", JSON.stringify(secondaryAgent));
+			if (this.secondaryAgentProfileImage.value) {
+				formData.append(
+					"secondaryAgentProfileImage",
+					this.secondaryAgentProfileImage.value,
+					"secondary-profile.png"
+				);
+			} else if (this.existingSecondaryProfileImage) {
+				formData.append("existingSecondaryProfileImage", this.existingSecondaryProfileImage);
 			}
 
 			this.customerService.update(formData).subscribe({

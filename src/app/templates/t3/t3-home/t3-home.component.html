@@ -1,42 +1,48 @@
-<div class=" search-container position-relative">
-	<div id="carouselExampleAutoplaying"
-		 class="carousel slide">
+<div class="search-container position-relative">
+	<div
+		id="carouselExampleAutoplaying"
+		class="carousel slide">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="/t3/images/banner2.jpg"
-					 class="d-block w-100"
-					 alt="/t3/images/banner2.jpg">
+				<img
+					src="/t3/images/banner2.jpg"
+					class="d-block w-100"
+					alt="/t3/images/banner2.jpg" />
 			</div>
 			<div class="carousel-item">
-				<img src="/t2/images/banner.png"
-					 class="d-block w-100"
-					 alt="/t3/images/banner2.jpg">
+				<img
+					src="/t2/images/banner.png"
+					class="d-block w-100"
+					alt="/t3/images/banner2.jpg" />
 			</div>
 			<div class="carousel-item">
-				<img src="/t4/images/banner.jpg"
-					 class="d-block w-100"
-					 alt="/t3/images/banner2.jpg">
+				<img
+					src="/t4/images/banner.jpg"
+					class="d-block w-100"
+					alt="/t3/images/banner2.jpg" />
 			</div>
 		</div>
 	</div>
 	<div class="first">
-		<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-			 alt="No profile image"
-			 class="overlay-image" />
-		<div class="card position-absolute man-card"
-			 style="width: 15rem">
+		<img
+			[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
+			alt="No profile image"
+			class="overlay-image" />
+		<div
+			class="card position-absolute man-card"
+			style="width: 15rem">
 			<div class="card-body">
 				<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-				<p class="card-text text-white">{{ siteConfig.designation}}</p>
+				<p class="card-text text-white">{{ siteConfig.designation }}</p>
 				<div class="d-flex">
 					<div class="">
 						<i class="fa-solid fa-phone info"></i>
-
 					</div>
 					<div class="ms-2">
 						<p class="mb-0">
-							<a class="text-white fw-semibold text-decoration-none"
-							   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+							<a
+								class="text-white fw-semibold text-decoration-none"
+								[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
 								{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
 							</a>
 						</p>
@@ -45,12 +51,12 @@
 				<div class="d-flex">
 					<div class="">
 						<i class="fa-solid fa-envelope info"></i>
-
 					</div>
 					<div class="ms-2 mt-1">
 						<p>
-							<a class="text-white fw-semibold text-decoration-none"
-							   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+							<a
+								class="text-white fw-semibold text-decoration-none"
+								[href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
 								{{ siteConfig.websiteSettings.contactInfo.email }}
 							</a>
 						</p>
@@ -63,23 +69,27 @@
 	<div class="second">
 		@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
 
-		<img [src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
-			 alt="No profile image"
-			 class="overlay-image2" />
-		<div class="card position-absolute man_card2"
-			 style="width: 15rem">
+		<img
+			[src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
+			alt="No profile image"
+			class="overlay-image2" />
+		<div
+			class="card position-absolute man_card2"
+			style="width: 15rem">
 			<div class="card-body">
-				<h5 class="card-head text-white">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</h5>
-				<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation}}</p>
+				<h5 class="card-head text-white">
+					{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
+				</h5>
+				<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation }}</p>
 				<div class="d-flex">
 					<div class="">
 						<i class="fa-solid fa-phone info"></i>
-
 					</div>
 					<div class="ms-2">
 						<p class="mb-0">
-							<a class="text-white fw-semibold text-decoration-none"
-							   [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+							<a
+								class="text-white fw-semibold text-decoration-none"
+								[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
 								{{ siteConfig.secondaryAgent.websitePhone | phone }}
 							</a>
 						</p>
@@ -88,12 +98,12 @@
 				<div class="d-flex">
 					<div class="">
 						<i class="fa-solid fa-envelope info"></i>
-
 					</div>
 					<div class="ms-2 mt-1">
 						<p>
-							<a class="text-white fw-semibold text-decoration-none"
-							   [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+							<a
+								class="text-white fw-semibold text-decoration-none"
+								[href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
 								{{ siteConfig.secondaryAgent.websiteEmail }}
 							</a>
 						</p>
@@ -115,221 +125,213 @@
 	</div>
 </div>
 
-
-@if(
-siteConfig.websiteSettings.showHomeWorthPage ||
-siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-siteConfig.websiteSettings.showFindDreamHomePage
-){
+@if( siteConfig.websiteSettings.showHomeWorthPage || siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+siteConfig.websiteSettings.showFindDreamHomePage ){
 <section class="min-vh-25 d-flex align-items-center position-relative hero-bg text-white">
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
 
 	<div class="container position-relative">
 		<div class="row justify-content-center align-items-stretch g-4 text-center">
-
 			@if(siteConfig.websiteSettings.showHomeWorthPage){
-			<div class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex"
-				 data-aos="fade-up"
-				 data-aos-duration="800">
+			<div
+				class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex"
+				data-aos="fade-up"
+				data-aos-duration="800">
 				<div class="glass-card p-4 rounded-4 shadow-lg w-100 d-flex flex-column">
 					<div class="flex-grow-1">
-						<div class="icon-wrapper bg-primary bg-opacity-25 text-primary mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
+						<div
+							class="icon-wrapper bg-primary bg-opacity-25 text-primary mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
 							<i class="bi bi-house-heart-fill fs-2"></i>
 						</div>
 						<h5 class="fw-bold text-uppercase mb-3">Home Evaluation</h5>
-						<p class="small opacity-75 mb-4">
-							Find out how much your home is worth for free
-						</p>
+						<p class="small opacity-75 mb-4">Find out how much your home is worth for free</p>
 					</div>
-					<a href="/home-worth"
-					   target="_blank"
-					   class="btn btn-gradient px-4 py-2 rounded-pill mt-auto">
+					<a
+						href="/home-worth"
+						target="_blank"
+						class="btn btn-gradient px-4 py-2 rounded-pill mt-auto">
 						Check Worth
 					</a>
 				</div>
 			</div>
-			}
-
-			@if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
-			<div class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex"
-				 data-aos="fade-up"
-				 data-aos-delay="150"
-				 data-aos-duration="800">
+			} @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
+			<div
+				class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex"
+				data-aos="fade-up"
+				data-aos-delay="150"
+				data-aos-duration="800">
 				<div class="glass-card p-4 rounded-4 shadow-lg w-100 d-flex flex-column">
 					<div class="flex-grow-1">
-						<div class="icon-wrapper bg-warning bg-opacity-25 text-warning mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
+						<div
+							class="icon-wrapper bg-warning bg-opacity-25 text-warning mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
 							<i class="bi bi-pin-map-fill fs-2"></i>
 						</div>
 						<h5 class="fw-bold text-uppercase mb-3">Neighbourhood Watch</h5>
-						<p class="small opacity-75 mb-4">
-							Get alerts when neighbours are listing homes for sale.
-						</p>
+						<p class="small opacity-75 mb-4">Get alerts when neighbours are listing homes for sale.</p>
 					</div>
-					<a href="/neighbor-detail"
-					   target="_blank"
-					   class="btn btn-gradient-warning px-4 py-2 rounded-pill mt-auto">
+					<a
+						href="/neighbor-detail"
+						target="_blank"
+						class="btn btn-gradient-warning px-4 py-2 rounded-pill mt-auto">
 						Get Alerts
 					</a>
 				</div>
 			</div>
-			}
-
-			@if(siteConfig.websiteSettings.showFindDreamHomePage){
-			<div class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex"
-				 data-aos="fade-up"
-				 data-aos-delay="300"
-				 data-aos-duration="800">
+			} @if(siteConfig.websiteSettings.showFindDreamHomePage){
+			<div
+				class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex"
+				data-aos="fade-up"
+				data-aos-delay="300"
+				data-aos-duration="800">
 				<div class="glass-card p-4 rounded-4 shadow-lg w-100 d-flex flex-column">
 					<div class="flex-grow-1">
-						<div class="icon-wrapper bg-success bg-opacity-25 text-success mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
+						<div
+							class="icon-wrapper bg-success bg-opacity-25 text-success mb-4 mx-auto rounded-circle d-flex justify-content-center align-items-center">
 							<i class="bi bi-search-heart fs-2"></i>
 						</div>
 						<h5 class="fw-bold text-uppercase mb-3">Dream Home Finder</h5>
-						<p class="small opacity-75 mb-4">
-							Search million-dollar listings and hidden gems alike.
-						</p>
+						<p class="small opacity-75 mb-4">Search million-dollar listings and hidden gems alike.</p>
 					</div>
-					<a href="/dream-home"
-					   target="_blank"
-					   class="btn btn-gradient-success px-4 py-2 rounded-pill mt-auto">
+					<a
+						href="/dream-home"
+						target="_blank"
+						class="btn btn-gradient-success px-4 py-2 rounded-pill mt-auto">
 						Explore
 					</a>
 				</div>
 			</div>
 			}
-
 		</div>
 	</div>
 </section>
-}
-
-
-
-@if(cities.length > 0){
-<div class="container ">
-	<p class="text text-center mb-0 mt-4 fw-semibold">
-		Find Properties in These Cities
-	</p>
+} @if(cities.length > 0){
+<div class="container">
+	<p class="text text-center mb-0 mt-4 fw-semibold">Find Properties in These Cities</p>
 
 	<div class="row pt-lg-5 p-lg-0 p-4">
-		@if(cities[0].name){<div class="col-lg-6 col-12 mb-lg-0 mb-3">
+		@if(cities[0] && cities[0].name){
+		<div class="col-lg-6 col-12 mb-lg-0 mb-3">
 			<div id="card1">
-				<div class="card"
-					 (click)="searchProperties({ city: cities[0].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[0].image"
-						 alt="" />
+				<div
+					class="card"
+					(click)="searchProperties({ city: cities[0].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[0].image"
+						alt="" />
 					<div class="content">
 						<p class="title">{{ cities[0].name }}</p>
 					</div>
 				</div>
 			</div>
-
-		</div>}
-		@if(cities[1].name){<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+		</div>
+		} @if(cities[1] && cities[1].name){
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
-				<div class="card"
-					 (click)="searchProperties({ city: cities[1].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[1].image"
-						 alt="" />
+				<div
+					class="card"
+					(click)="searchProperties({ city: cities[1].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[1].image"
+						alt="" />
 					<div class="content">
 						<p class="title">{{ cities[1].name }}</p>
 					</div>
 				</div>
 			</div>
-		</div>}
-		@if(cities[2].name){<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+		</div>
+		} @if(cities[2] && cities[2].name){
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
-				<div class="card"
-					 (click)="searchProperties({ city: cities[2].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[2].image"
-						 alt="" />
+				<div
+					class="card"
+					(click)="searchProperties({ city: cities[2].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[2].image"
+						alt="" />
 					<div class="content">
 						<p class="title">{{ cities[2].name }}</p>
 					</div>
 				</div>
 			</div>
-		</div>}
+		</div>
+		}
 	</div>
-	<div class="row pt-4 ">
-		@if(cities[3].name){<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+	<div class="row pt-4">
+		@if(cities[3] && cities[3].name){
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
-
-				<div class="card"
-					 (click)="searchProperties({ city: cities[3].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[3].image"
-						 alt="" />
+				<div
+					class="card"
+					(click)="searchProperties({ city: cities[3].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[3].image"
+						alt="" />
 					<div class="content">
 						<p class="title">{{ cities[3].name }}</p>
 					</div>
 				</div>
 			</div>
-		</div>}
-		@if(cities[4].name){<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+		</div>
+		} @if(cities[4] && cities[4].name){
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
-
-				<div class="card"
-					 (click)="searchProperties({ city: cities[4].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[4].image"
-						 alt="" />
+				<div
+					class="card"
+					(click)="searchProperties({ city: cities[4].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[4].image"
+						alt="" />
 					<div class="content">
 						<p class="title">{{ cities[4].name }}</p>
 					</div>
 				</div>
 			</div>
-		</div>}
-		@if(cities[5].name){<div class="col-lg-6 col-12 mb-lg-0 mb-3">
+		</div>
+		} @if(cities[5] && cities[5].name){
+		<div class="col-lg-6 col-12 mb-lg-0 mb-3">
 			<div id="card1">
-
-				<div class="card"
-					 (click)="searchProperties({ city: cities[5].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[5].image"
-						 alt="" />
+				<div
+					class="card"
+					(click)="searchProperties({ city: cities[5].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[5].image"
+						alt="" />
 					<div class="content">
 						<p class="title">{{ cities[5].name }}</p>
 					</div>
 				</div>
 			</div>
-		</div>}
+		</div>
+		}
 	</div>
 </div>
 }
 
 <div class="container-fluid sec-3 py-5">
-	<div class="container ">
-		<div class="row p-lg-4 p-3 ">
-			<p class="text mb-0 fw-semibold">
-				"Enjoy a clear and simple home-buying experience"
-			</p>
+	<div class="container">
+		<div class="row p-lg-4 p-3">
+			<p class="text mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
 			<div class="col">
-				<p class="estate text-center">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
+				<p class="estate text-center">
+					{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
+				</p>
 				<p class="text-center fw-semibold">
-					I believe every client has the right to be treated fairly,
-					honestly and with integrity. My aim is to educate and prepare my
-					clients to insure that they are always in a position to make
-					informed decisions.Every engagement is an opportunity to create a
-					lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving
-					in real estate with the reputation of providing quality services
-					and keeping excellent relations with the clients. My intend to
-					provide our clients with the best personalized real estate
-					experience from beginning to end. I enjoy sharing my expertise by
-					giving you the scoop on the local real estate market. My aim is to
-					guide & prepare our clients to ensure that they are always in a
-					position to make informed decision. I put our client’s interest
-					above everything. I am professionally trained and licensed
-					realtors who work for seeking to experience satisfaction and feel
-					good emotionss.
+					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
+					educate and prepare my clients to insure that they are always in a position to make informed
+					decisions.Every engagement is an opportunity to create a lasting impression and a forever client.
+					{{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving in real estate with the
+					reputation of providing quality services and keeping excellent relations with the clients. My intend
+					to provide our clients with the best personalized real estate experience from beginning to end. I
+					enjoy sharing my expertise by giving you the scoop on the local real estate market. My aim is to
+					guide & prepare our clients to ensure that they are always in a position to make informed decision.
+					I put our client’s interest above everything. I am professionally trained and licensed realtors who
+					work for seeking to experience satisfaction and feel good emotionss.
 				</p>
 			</div>
 		</div>
@@ -340,13 +342,16 @@ siteConfig.websiteSettings.showFindDreamHomePage
 	<div class="container">
 		<div class="row align-items-center justify-content-center g-0 text-center">
 			<div class="col-12 col-lg-5 buy-card position-relative overflow-hidden">
-				<a href="/neighbor-detail"
-				   target="_blank"
-				   class="text-decoration-none d-block position-relative">
-					<img src="/images/buy-home.jpg"
-						 alt="Buy Home"
-						 class="img-fluid w-100 h-100 object-fit-cover" />
-					<div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white">
+				<a
+					href="/neighbor-detail"
+					target="_blank"
+					class="text-decoration-none d-block position-relative">
+					<img
+						src="/images/buy-home.jpg"
+						alt="Buy Home"
+						class="img-fluid w-100 h-100 object-fit-cover" />
+					<div
+						class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white">
 						<div class="icon-circle bg-white shadow-sm mb-3">
 							<i class="bi bi-house-door-fill text-primary fs-2"></i>
 						</div>
@@ -364,13 +369,16 @@ siteConfig.websiteSettings.showFindDreamHomePage
 			</div>
 
 			<div class="col-12 col-lg-5 sell-card position-relative overflow-hidden">
-				<a href="/home-worth"
-				   target="_blank"
-				   class="text-decoration-none d-block position-relative">
-					<img src="/images/sell-home.jpg"
-						 alt="Sell Property"
-						 class="img-fluid w-100 h-100 object-fit-cover" />
-					<div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white">
+				<a
+					href="/home-worth"
+					target="_blank"
+					class="text-decoration-none d-block position-relative">
+					<img
+						src="/images/sell-home.jpg"
+						alt="Sell Property"
+						class="img-fluid w-100 h-100 object-fit-cover" />
+					<div
+						class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white">
 						<div class="icon-circle bg-white shadow-sm mb-3">
 							<i class="bi bi-key-fill text-warning fs-2"></i>
 						</div>
@@ -380,12 +388,9 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					</div>
 				</a>
 			</div>
-
 		</div>
 	</div>
 </section>
-
-
 
 <div class="container-fluid sec-3">
 	<div class="container py-4">

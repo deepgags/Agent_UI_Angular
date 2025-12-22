@@ -18,6 +18,17 @@ import { RoutesConfigService } from "./services/routes-config.service";
 const initializeApp = (router: Router, routesConfigService: RoutesConfigService): (() => Promise<void>) => {
 	return () =>
 		new Promise<void>((resolve) => {
+			const currentPath = document.location.pathname;
+			if (
+				currentPath === "/login" ||
+				currentPath === "/register" ||
+				currentPath === "forgot-password" ||
+				currentPath === "verify"
+			) {
+				resolve();
+				return;
+			}
+
 			routesConfigService
 				.loadSiteConfiguration()
 				.pipe(
