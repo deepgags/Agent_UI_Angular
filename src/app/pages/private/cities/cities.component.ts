@@ -115,6 +115,10 @@ export class CitiesComponent implements OnInit {
 		this.editingCity = null;
 		this.cityForm.reset();
 		this.cityImage.next(null);
+		this.defaultCities = [...this.defaultCitiesCopy];
+		if (this.cityImageUpload) {
+			this.cityImageUpload.nativeElement.value = "";
+		}
 		this.cityDialogVisible = true;
 	}
 
@@ -141,6 +145,8 @@ export class CitiesComponent implements OnInit {
 					if (response.status) {
 						this.cities.push(response.data);
 						this.notificationService.showSuccess("City added successfully");
+						this.cityForm.reset();
+						this.cityImage.next(null);
 					}
 					this.loadingService.loadingOff();
 					this.cityDialogVisible = false;
@@ -199,6 +205,8 @@ export class CitiesComponent implements OnInit {
 	cancelDialog() {
 		this.cityDialogVisible = false;
 		this.editingCity = null;
+		this.cityForm.reset();
+		this.cityImage.next(null);
 	}
 
 	onCityImageChange(event: Event): void {
