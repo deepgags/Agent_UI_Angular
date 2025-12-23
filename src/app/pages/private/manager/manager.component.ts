@@ -41,7 +41,7 @@ export class ManagerComponent {
 	ngOnInit() {
 		this.agentForm = new FormGroup({
 			showHomeWorthPage: new FormControl(false),
-			showSellingInNeighbourHooddPage: new FormControl(""),
+			showSellingInNeighborHoodPage: new FormControl(""),
 			showFindDreamHomePage: new FormControl(""),
 		});
 
