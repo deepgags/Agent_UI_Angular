@@ -207,10 +207,9 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 } @if(cities.length > 0){
 <div class="container">
 	<p class="text text-center mb-0 mt-4 fw-semibold">Find Properties in These Cities</p>
-
 	<div class="row pt-lg-5 p-lg-0 p-4">
 		@if(cities[0] && cities[0].name){
-		<div class="col-lg-6 col-12 mb-lg-0 mb-3">
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
 				<div
 					class="card"
@@ -258,8 +257,6 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 			</div>
 		</div>
 		}
-	</div>
-	<div class="row pt-4">
 		@if(cities[3] && cities[3].name){
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
@@ -276,7 +273,10 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 				</div>
 			</div>
 		</div>
-		} @if(cities[4] && cities[4].name){
+		}
+	</div>
+	<div class="row pt-4">
+		 @if(cities[4] && cities[4].name){
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
 				<div
@@ -292,8 +292,9 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 				</div>
 			</div>
 		</div>
-		} @if(cities[5] && cities[5].name){
-		<div class="col-lg-6 col-12 mb-lg-0 mb-3">
+		} 
+		@if(cities[5] && cities[5].name){
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
 				<div
 					class="card"
@@ -304,6 +305,40 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 						alt="" />
 					<div class="content">
 						<p class="title">{{ cities[5].name }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		}
+		@if(cities[6] && cities[6].name){
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+			<div id="card1">
+				<div
+					class="card"
+					(click)="searchProperties({ city: cities[6].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[6].image"
+						alt="" />
+					<div class="content">
+						<p class="title">{{ cities[6].name }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		}
+		@if(cities[7] && cities[7].name){
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
+			<div id="card1">
+				<div
+					class="card"
+					(click)="searchProperties({ city: cities[7].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[7].image"
+						alt="" />
+					<div class="content">
+						<p class="title">{{ cities[7].name }}</p>
 					</div>
 				</div>
 			</div>
