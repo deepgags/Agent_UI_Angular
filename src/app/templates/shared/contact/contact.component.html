@@ -79,45 +79,48 @@
 
 				<div class="mt-3">
 					<h6 class="fw-bold info">Follow Us</h6>
-					<div class="d-flex gap-2">
 
-						@if (siteConfig.websiteSettings.socialLinks.facebook) {
-						<a [href]="siteConfig.websiteSettings.socialLinks.facebook"
-						   target="_blank"
-						   rel="noopener noreferrer"
-						   class="btn btn-light border">
-							<i class="bi bi-facebook info"></i>
-						</a>
-						}
+  <div class="d-flex gap-2">
 
-						@if (siteConfig.websiteSettings.socialLinks.twitter) {
-						<a [href]="siteConfig.websiteSettings.socialLinks.twitter"
-						   target="_blank"
-						   rel="noopener noreferrer"
-						   class="btn btn-light border">
-							<i class="bi bi-twitter info"></i>
-						</a>
-						}
+    @if (siteConfig.websiteSettings.socialLinks.facebook) {
+    <a [href]="siteConfig.websiteSettings.socialLinks.facebook"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn btn-light border">
+      <i class="bi bi-facebook orig facebook"></i>
+    </a>
+    }
 
-						@if (siteConfig.websiteSettings.socialLinks.instagram) {
-						<a [href]="siteConfig.websiteSettings.socialLinks.instagram"
-						   target="_blank"
-						   rel="noopener noreferrer"
-						   class="btn btn-light border">
-							<i class="bi bi-instagram info"></i>
-						</a>
-						}
+    @if (siteConfig.websiteSettings.socialLinks.twitter) {
+    <a [href]="siteConfig.websiteSettings.socialLinks.twitter"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn btn-light border">
+      <i class="bi bi-twitter orig twitter"></i>
+    </a>
+    }
 
-						@if (siteConfig.websiteSettings.socialLinks.linkedin) {
-						<a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
-						   target="_blank"
-						   rel="noopener noreferrer"
-						   class="btn btn-light border">
-							<i class="bi bi-linkedin info"></i>
-						</a>
-						}
-					</div>
-				</div>
+    @if (siteConfig.websiteSettings.socialLinks.instagram) {
+    <a [href]="siteConfig.websiteSettings.socialLinks.instagram"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn btn-light border">
+      <i class="bi bi-instagram orig instagram"></i>
+    </a>
+    }
+
+    @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+    <a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn btn-light border">
+      <i class="bi bi-linkedin orig linkedin"></i>
+    </a>
+    }
+
+  </div>
+</div>
+
 				<div>
 					<p class="text-muted mt-3"
 					   [innerHTML]="getSafeHtml(page()?.content)">

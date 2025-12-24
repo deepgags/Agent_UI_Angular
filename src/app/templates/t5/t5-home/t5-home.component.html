@@ -165,7 +165,7 @@ siteConfig.websiteSettings.showFindDreamHomePage
 	<div class="">
 		<div class="row justify-content-center">
 			<p class="text fs-1 fw-semibold pt-3">Search Your Dream Home</p>
-			<div class="col-12 rounded p-4 mb-5">
+			<div class="col-12 rounded p-4 ">
 				<app-search [onSearch]="searchProperties" />
 			</div>
 		</div>
@@ -176,11 +176,56 @@ siteConfig.websiteSettings.showFindDreamHomePage
 <div class="container py-lg-5 p-lg-0 p-4">
 	<div class="row align-items-center justify-content-around">
 		<div class="col-lg-4 col-12">
-			<h1 class="fs-2 fw-semibold">Discover Your Dream Home</h1>
-			<a class="btn search_btn"
-			   (click)="searchProperties({address: ''})">
-				Discover
-			</a>
+			<div class="mb-3">
+				<h2 class="fs-2 fw-semibold">Discover Your Dream Home</h2>
+				<a class="btn search_btn"
+				   (click)="searchProperties({address: ''})">
+					Discover
+				</a>
+			</div>
+			<div class="">
+			<p class="lead mb-3">
+        Find the perfect place to live, grow, and belong.
+      </p>
+
+      <p class="mb-4">
+        From cozy starter homes to luxury escapes, we help you find a space that truly feels like home.
+        <strong>Your Journey Starts Here.</strong>
+      </p>
+
+      <p class="mb-4">
+        Buying or renting a home shouldn’t feel overwhelming. With carefully curated listings, expert guidance,
+        and tools that actually make sense, we make the process simple, transparent, and exciting.
+      </p>
+
+      <p class="fw-semibold mb-3">
+        Why Choose Us?
+      </p>
+
+      <ul class="list-unstyled text-start d-inline-block">
+        <li class="mb-2">
+          🏡 <strong>Handpicked Listings</strong> – Homes that match your lifestyle, budget, and goals
+        </li>
+        <li class="mb-2">
+          📍 <strong>Local Expertise</strong> – Deep knowledge of neighborhoods and market trends
+        </li>
+        <li class="mb-2">
+          🤝 <strong>Trusted Support</strong> – Guidance at every step, from search to keys in hand
+        </li>
+        <li class="mb-2">
+          ⏱️ <strong>Save Time</strong> – Smart filters and personalized recommendations
+        </li>
+      </ul>
+
+      <p class="mt-4">
+        Ready to Find Your Dream Home?
+      </p>
+
+      <p class="mb-0">
+        Start exploring today and take the first step toward a place you’ll love coming back to.
+      </p>
+
+			</div>
 		</div>
 
 		<div class="col-lg-6 col-12 mt-3 mt-lg-0">
@@ -236,7 +281,7 @@ siteConfig.websiteSettings.showFindDreamHomePage
 }
 
 <div class="container-fluid sec-3">
-	<div class="container pb-5">
+	<div class="container pb-3">
 		<p class="text text-center py-4 mb-0 fw-semibold">Featured Properties</p>
 		<app-featured-properties />
 	</div>
@@ -250,11 +295,35 @@ siteConfig.websiteSettings.showFindDreamHomePage
 	<div class="container">
 		<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
 			<div class="col-lg-8 col-12">
-				<h3 class="fw-semibold text-white">Get In Touch </h3>
-				<p class="fw-semibold text-white">
-					Your way to better real estate software starts here. For 35 years, we’ve proudly delivered the gold standard in real estate software to businesses of all
-					shapes, sizes, and structures, and we’d be honored to partner with your organization today.
-				</p>
+				<h3 class="fw-bold ">Get In Touch </h3>
+				   <p class="lead mb-3">
+        Homes for Every Canadian Lifestyle
+      </p>
+
+      <p class="mb-3">
+        Looking for:
+      </p>
+
+      <ul class="list-unstyled text-start d-inline-block mb-4">
+        <li class="mb-2">
+          🏙️ <strong>Downtown condos in Toronto</strong>
+        </li>
+        <li class="mb-2">
+          👨‍👩‍👧‍👦 <strong>Family homes</strong> in safe, welcoming communities
+        </li>
+        <li class="mb-2">
+          🌄 <strong>Scenic properties</strong> near lakes, mountains, or countryside
+        </li>
+      </ul>
+
+      <p class="mb-4">
+        Whether you’re buying your first home, upgrading for a growing family, or investing in Canadian real estate,
+        we make the journey clear and stress-free. Explore trusted listings across Canada with guidance you can rely on.
+      </p>
+
+      <p class="mb-0">
+        We connect you with homes that match both your present needs and future plans.
+      </p>
 			</div>
 			<div class="col-lg-4 col-12">
 				<div class="card shadow">

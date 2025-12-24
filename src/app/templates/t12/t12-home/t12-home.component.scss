@@ -119,12 +119,32 @@ $info:#06A788;
     text-transform: uppercase;
 }
 
-.city-card:hover .content {
-    opacity: 1;
-    color: white;
-}
 
-.city-card:hover .content * {
-    opacity: 1;
-    transform: translateY(0);
-}
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image-container img {
+    transition: transform 0.3s ease;
+    width: 100%;
+    display: block;
+  }
+  
+  .image-container:hover img {
+    transform: scale(1.05);
+    z-index: 1;
+  }
+  
+  .image-label {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  
