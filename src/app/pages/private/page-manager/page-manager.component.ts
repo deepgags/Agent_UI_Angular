@@ -7,13 +7,16 @@ import { ButtonModule } from "primeng/button";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DialogModule } from "primeng/dialog";
 import { EditorModule } from "primeng/editor";
+import { FileUploadModule } from "primeng/fileupload";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { TextareaModule } from "primeng/textarea";
 import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
+import { environment } from "../../../environments/environment.development";
 import { CreatePageRequest, Page, UpdatePageRequest } from "../../../models/Page";
+import { BlobToUrlPipe } from "../../../pipes/blob-to-url";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PageService } from "../../../services/page.service";
@@ -34,6 +37,8 @@ import { PageService } from "../../../services/page.service";
 		ToastModule,
 		TableModule,
 		EditorModule,
+		FileUploadModule,
+		BlobToUrlPipe,
 		DatePipe,
 		TooltipModule,
 	],
@@ -46,7 +51,9 @@ export class PageManagerComponent implements OnInit {
 	pageDialogVisible = false;
 	pageForm!: FormGroup;
 	editingPage: Page | null = null;
-
+	heroImages: string[] = [];
+	uploadedFiles: File[] = [];
+	localImageBaseUrl = environment.localImageUrl;
 	constructor(
 		private fb: FormBuilder,
 		private loadingService: LoadingService,
@@ -93,6 +100,8 @@ export class PageManagerComponent implements OnInit {
 
 	openEditPageDialog(page: Page) {
 		this.editingPage = page;
+		this.heroImages = [];
+		this.uploadedFiles = [];
 		this.pageDialogVisible = true;
 
 		setTimeout(() => {
@@ -107,6 +116,11 @@ export class PageManagerComponent implements OnInit {
 				this.pageForm.get("content")?.disable();
 			} else {
 				this.pageForm.get("content")?.enable();
+			}
+
+			// get hero images if editing home page
+			if (page.pageKey === "home") {
+				this.loadHeroImages(page._id);
 			}
 		}, 150);
 	}
@@ -124,39 +138,58 @@ export class PageManagerComponent implements OnInit {
 
 			this.loadingService.loadingOn();
 
-			if (this.editingPage) {
-				this.pageService.updatePage(this.editingPage._id, pageData).subscribe({
-					next: (updatedPage) => {
-						const index = this.pages.findIndex((p) => p._id === this.editingPage!._id);
-						if (index !== -1) {
-							this.pages[index] = updatedPage;
-						}
-						this.notificationService.showSuccess("Page updated successfully");
-						this.loadingService.loadingOff();
-						this.pageDialogVisible = false;
+			// Upload hero images first if editing home page and there are selected files
+			if (this.editingPage?.pageKey === "home" && this.uploadedFiles.length > 0) {
+				this.pageService.uploadHeroImages(this.editingPage._id, this.uploadedFiles).subscribe({
+					next: (images: string[]) => {
+						this.heroImages = images;
+						this.uploadedFiles = [];
+						this._savePageData(pageData);
 					},
 					error: (error) => {
-						this.notificationService.showError(error.error?.message || "Failed to update page");
+						this.notificationService.showError(error.error?.message || "Failed to upload hero images");
 						this.loadingService.loadingOff();
 					},
 				});
 			} else {
-				(pageData as CreatePageRequest).siteId = "current-site"; // TODO: Get from user context
-				this.pageService.createPage(pageData as CreatePageRequest).subscribe({
-					next: (createdPage) => {
-						this.pages.push(createdPage);
-						this.notificationService.showSuccess("Page created successfully");
-						this.loadingService.loadingOff();
-						this.pageDialogVisible = false;
-					},
-					error: (error) => {
-						this.notificationService.showError(error.error?.message || "Failed to create page");
-						this.loadingService.loadingOff();
-					},
-				});
+				this._savePageData(pageData);
 			}
 		} else {
 			this.pageForm.markAllAsTouched();
+		}
+	}
+
+	private _savePageData(pageData: CreatePageRequest | UpdatePageRequest) {
+		if (this.editingPage) {
+			this.pageService.updatePage(this.editingPage._id, pageData).subscribe({
+				next: (updatedPage) => {
+					const index = this.pages.findIndex((p) => p._id === this.editingPage!._id);
+					if (index !== -1) {
+						this.pages[index] = updatedPage;
+					}
+					this.notificationService.showSuccess("Page updated successfully");
+					this.loadingService.loadingOff();
+					this.pageDialogVisible = false;
+				},
+				error: (error) => {
+					this.notificationService.showError(error.error?.message || "Failed to update page");
+					this.loadingService.loadingOff();
+				},
+			});
+		} else {
+			(pageData as CreatePageRequest).siteId = "current-site"; // TODO: Get from user context
+			this.pageService.createPage(pageData as CreatePageRequest).subscribe({
+				next: (createdPage) => {
+					this.pages.push(createdPage);
+					this.notificationService.showSuccess("Page created successfully");
+					this.loadingService.loadingOff();
+					this.pageDialogVisible = false;
+				},
+				error: (error) => {
+					this.notificationService.showError(error.error?.message || "Failed to create page");
+					this.loadingService.loadingOff();
+				},
+			});
 		}
 	}
 
@@ -202,9 +235,117 @@ export class PageManagerComponent implements OnInit {
 		});
 	}
 
+	private loadHeroImages(pageId: string) {
+		this.pageService.getHeroImages(pageId).subscribe({
+			next: (images: string[]) => {
+				this.heroImages = images;
+			},
+			error: (error) => {
+				this.notificationService.showError("Failed to load hero images");
+			},
+		});
+	}
+
+	onFileSelect(event: any) {
+		const files = event.files;
+		if (!files || files.length === 0) {
+			this.notificationService.showError("No files selected");
+			return;
+		}
+
+		const maxSize = 5 * 1024 * 1024; // 5MB
+		const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
+
+		for (const file of files) {
+			if (!file) continue;
+
+			if (file.size > maxSize) {
+				this.notificationService.showError(`File ${file.name} is too large. Maximum size is 5MB.`);
+				return;
+			}
+			if (!allowedTypes.includes(file.type)) {
+				this.notificationService.showError(`File ${file.name} has invalid type. Only images are allowed.`);
+				return;
+			}
+		}
+
+		if (this.heroImages.length + this.uploadedFiles.length + files.length > 5) {
+			this.notificationService.showError("Maximum 5 hero images allowed.");
+			return;
+		}
+
+		this.uploadedFiles = [...this.uploadedFiles, ...files];
+	}
+
+	removeSelectedFile(index: number) {
+		this.uploadedFiles.splice(index, 1);
+	}
+
+	private uploadHeroImages() {
+		if (!this.editingPage || this.uploadedFiles.length === 0) return;
+
+		this.loadingService.loadingOn();
+		this.pageService.uploadHeroImages(this.editingPage._id, this.uploadedFiles).subscribe({
+			next: (images: string[]) => {
+				this.heroImages = images;
+				this.uploadedFiles = [];
+				this.notificationService.showSuccess("Hero images uploaded successfully");
+				this.loadingService.loadingOff();
+			},
+			error: (error) => {
+				this.notificationService.showError(error.error?.message || "Failed to upload hero images");
+				this.loadingService.loadingOff();
+			},
+		});
+	}
+
+	deleteHeroImage(imageIndex: number) {
+		debugger;
+		if (!this.editingPage) return;
+
+		this.confirmationService.confirm({
+			header: "Delete Hero Image",
+			message: "Do you want to delete this hero image?",
+			icon: "bi bi-trash3",
+			rejectLabel: "Cancel",
+			rejectButtonProps: {
+				label: "Cancel",
+				severity: "secondary",
+				outlined: true,
+			},
+			acceptButtonProps: {
+				label: "Delete",
+				severity: "danger",
+			},
+			accept: () => {
+				this._confirmDeleteHeroImage(imageIndex);
+			},
+			reject: () => {},
+		});
+	}
+
+	private _confirmDeleteHeroImage(imageIndex: number) {
+		if (!this.editingPage) return;
+
+		this.loadingService.loadingOn();
+		this.pageService.deleteHeroImage(this.editingPage._id, imageIndex).subscribe({
+			next: (images: string[]) => {
+				this.heroImages = images;
+				this.notificationService.showSuccess("Hero image deleted successfully");
+				this.loadingService.loadingOff();
+			},
+			error: (error) => {
+				this.notificationService.showError(error.error?.message || "Failed to delete hero image");
+				this.loadingService.loadingOff();
+			},
+		});
+	}
+
 	cancelDialog() {
 		this.pageDialogVisible = false;
 		this.editingPage = null;
+		this.heroImages = [];
+		this.uploadedFiles = [];
 	}
 
 	getStatusBadge(page: Page) {

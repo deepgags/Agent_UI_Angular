@@ -5,20 +5,22 @@
 	<div class="p-4">
 		<div class="d-flex justify-content-between align-items-center mb-4">
 			<h5 class="mb-0">Pages</h5>
-			<p-button label="Create Page"
-					  icon="pi pi-plus"
-					  (onClick)="openAddPageDialog()"
-					  styleClass="p-button-success"></p-button>
+			<p-button
+				label="Create Page"
+				icon="pi pi-plus"
+				(onClick)="openAddPageDialog()"
+				styleClass="p-button-success"></p-button>
 		</div>
 
 		<!-- Pages Table -->
-		<p-table [value]="pages"
-				 [paginator]="true"
-				 [rows]="10"
-				 [showCurrentPageReport]="true"
-				 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} pages"
-				 [rowsPerPageOptions]="[5, 10, 25]"
-				 styleClass="p-datatable-striped">
+		<p-table
+			[value]="pages"
+			[paginator]="true"
+			[rows]="25"
+			[showCurrentPageReport]="true"
+			currentPageReportTemplate="Showing {first} to {last} of {totalRecords} pages"
+			[rowsPerPageOptions]="[5, 10, 25]"
+			styleClass="p-datatable-striped">
 			<ng-template pTemplate="header">
 				<tr>
 					<th>Title</th>
@@ -29,16 +31,18 @@
 				</tr>
 			</ng-template>
 
-			<ng-template pTemplate="body"
-						 let-page>
+			<ng-template
+				pTemplate="body"
+				let-page>
 				<tr>
 					<td>{{ page.title }}</td>
 					<td>
 						{{ page.slug }}
 					</td>
 					<td>
-						<span class="badge"
-							  [ngClass]="{
+						<span
+							class="badge"
+							[ngClass]="{
 								'bg-info': getStatusBadge(page).severity === 'info',
 								'bg-warning': getStatusBadge(page).severity === 'warning',
 								'bg-success': getStatusBadge(page).severity === 'success'
@@ -49,20 +53,23 @@
 					<td>{{ page.createdAt | date : "short" }}</td>
 					<td>
 						<div class="d-flex gap-2">
-							<p-button icon="bi bi-eye"
-									  styleClass="p-button-text p-button-info p-button-sm"
-									  pTooltip="Preview"
-									  (onClick)="previewPage(page)"></p-button>
-							<p-button icon="bi bi-pencil"
-									  styleClass="p-button-text p-button-sm"
-									  pTooltip="Edit"
-									  (onClick)="openEditPageDialog(page)"
-									  [disabled]="!page.isEditable"></p-button>
-							<p-button icon="bi bi-trash"
-									  styleClass="p-button-text p-button-danger p-button-sm"
-									  pTooltip="Delete"
-									  (onClick)="deletePage(page)"
-									  [disabled]="!page.isDeletable"></p-button>
+							<p-button
+								icon="bi bi-eye"
+								styleClass="p-button-text p-button-info p-button-sm"
+								pTooltip="Preview"
+								(onClick)="previewPage(page)"></p-button>
+							<p-button
+								icon="bi bi-pencil"
+								styleClass="p-button-text p-button-sm"
+								pTooltip="Edit"
+								(onClick)="openEditPageDialog(page)"
+								[disabled]="!page.isEditable"></p-button>
+							<p-button
+								icon="bi bi-trash"
+								styleClass="p-button-text p-button-danger p-button-sm"
+								pTooltip="Delete"
+								(onClick)="deletePage(page)"
+								[disabled]="!page.isDeletable"></p-button>
 						</div>
 					</td>
 				</tr>
@@ -70,7 +77,8 @@
 
 			<ng-template pTemplate="emptymessage">
 				<tr>
-					<td colspan="5"
+					<td
+						colspan="5"
 						class="text-center py-4">
 						<p class="text-muted mb-3">No pages found</p>
 					</td>
@@ -80,56 +88,67 @@
 	</div>
 
 	<!-- Page Dialog -->
-	<p-dialog header="{{ editingPage ? 'Edit Page' : 'Create New Page' }}"
-			  [(visible)]="pageDialogVisible"
-			  [modal]="true"
-			  [style]="{ width: '800px' }"
-			  [closable]="true"
-			  [maximizable]="true">
-		<form [formGroup]="pageForm"
-			  (ngSubmit)="savePage()">
+	<p-dialog
+		header="{{ editingPage ? 'Edit Page' : 'Create New Page' }}"
+		[(visible)]="pageDialogVisible"
+		[modal]="true"
+		[style]="{ width: '800px' }"
+		[closable]="true"
+		[maximizable]="true">
+		<form
+			[formGroup]="pageForm"
+			(ngSubmit)="savePage()">
 			<div class="row g-3">
 				<!-- Title -->
 				<div class="col-12">
-					<label for="title"
-						   class="form-label fw-semibold">
+					<label
+						for="title"
+						class="form-label fw-semibold">
 						Page Title *
 					</label>
-					<input pInputText
-						   id="title"
-						   formControlName="title"
-						   placeholder="Enter page title"
-						   class="w-100"
-						   [class.ng-invalid]="pageForm.get('title')?.invalid && pageForm.get('title')?.touched" />
-					<small class="text-danger"
-						   *ngIf="pageForm.get('title')?.invalid && pageForm.get('title')?.touched">
+					<input
+						pInputText
+						id="title"
+						formControlName="title"
+						placeholder="Enter page title"
+						class="w-100"
+						[class.ng-invalid]="pageForm.get('title')?.invalid && pageForm.get('title')?.touched" />
+					<small
+						class="text-danger"
+						*ngIf="pageForm.get('title')?.invalid && pageForm.get('title')?.touched">
 						Title is required
 					</small>
 				</div>
 
 				<!-- Content (Rich Text Editor) -->
 				<div class="col-12">
-					<label for="content"
-						   class="form-label fw-semibold">
+					<label
+						for="content"
+						class="form-label fw-semibold">
 						Page Content *
 					</label>
-					<p-editor formControlName="content"
-							  [style]="{ height: '300px' }"
-							  placeholder="Enter your page content here...">
+					<p-editor
+						formControlName="content"
+						[style]="{ height: '300px' }"
+						placeholder="Enter your page content here...">
 						<ng-template pTemplate="header">
 							<span class="ql-formats">
-								<button class="ql-bold"
-										aria-label="Bold"></button>
-								<button class="ql-italic"
-										aria-label="Italic"></button>
-								<button class="ql-underline"
-										aria-label="Underline"></button>
+								<button
+									class="ql-bold"
+									aria-label="Bold"></button>
+								<button
+									class="ql-italic"
+									aria-label="Italic"></button>
+								<button
+									class="ql-underline"
+									aria-label="Underline"></button>
 							</span>
 							<span class="ql-formats">
 								<select class="ql-size">
 									<option value="small">Small</option>
-									<option value="normal"
-											selected>
+									<option
+										value="normal"
+										selected>
 										Normal
 									</option>
 									<option value="large">Large</option>
@@ -137,19 +156,19 @@
 								</select>
 							</span>
 							<span class="ql-formats">
-								<button class="ql-list"
-										value="ordered"
-										aria-label="Ordered List"></button>
-								<button class="ql-list"
-										value="bullet"
-										aria-label="Unordered List"></button>
+								<button
+									class="ql-list"
+									value="ordered"
+									aria-label="Ordered List"></button>
+								<button
+									class="ql-list"
+									value="bullet"
+									aria-label="Unordered List"></button>
 							</span>
 						</ng-template>
 					</p-editor>
 					@if(pageForm.get('content')?.invalid && pageForm.get('content')?.touched){
-					<small class="text-danger">
-						Content is required
-					</small>
+					<small class="text-danger">Content is required</small>
 					}
 				</div>
 
@@ -159,55 +178,141 @@
 				</div>
 
 				<div class="col-12">
-					<label for="metaTitle"
-						   class="form-label">
+					<label
+						for="metaTitle"
+						class="form-label">
 						Meta Title
 					</label>
-					<input pInputText
-						   id="metaTitle"
-						   formControlName="metaTitle"
-						   placeholder="Meta title"
-						   class="w-100" />
+					<input
+						pInputText
+						id="metaTitle"
+						formControlName="metaTitle"
+						placeholder="Meta title"
+						class="w-100" />
 					<small class="text-muted">Leave empty to use page title</small>
 				</div>
 
 				<div class="col-12">
-					<label for="metaDescription"
-						   class="form-label">
+					<label
+						for="metaDescription"
+						class="form-label">
 						Meta Description
 					</label>
-					<textarea pInputTextarea
-							  id="metaDescription"
-							  formControlName="metaDescription"
-							  placeholder="Meta description for search engines"
-							  rows="3"
-							  class="w-100"></textarea>
+					<textarea
+						pInputTextarea
+						id="metaDescription"
+						formControlName="metaDescription"
+						placeholder="Meta description for search engines"
+						rows="3"
+						class="w-100"></textarea>
 					<small class="text-muted">Recommended: 150-160 characters</small>
 				</div>
 
 				<div class="col-12">
-					<label for="keywords"
-						   class="form-label">
+					<label
+						for="keywords"
+						class="form-label">
 						Keywords
 					</label>
-					<input pInputText
-						   id="keywords"
-						   formControlName="keywords"
-						   placeholder="keyword1, keyword2, keyword3"
-						   class="w-100" />
+					<input
+						pInputText
+						id="keywords"
+						formControlName="keywords"
+						placeholder="keyword1, keyword2, keyword3"
+						class="w-100" />
 					<small class="text-muted">Comma-separated keywords</small>
 				</div>
+
+				@if(editingPage?.pageKey === 'home') {
+				<div class="col-12">
+					<h6 class="border-bottom pb-2 mb-3">Hero Images</h6>
+					<small class="text-muted d-block mb-3">
+						Upload up to 5 hero images (max 5MB each). These images will be displayed in the hero carousel
+						on the home page.
+					</small>
+
+					<!-- Existing Hero Images -->
+					@if(heroImages.length > 0) {
+					<div class="row g-3 mb-3">
+						<div class="col-12">
+							<h6 class="mb-3">Current Hero Images</h6>
+						</div>
+						@for(image of heroImages; track image; let i = $index) {
+						<div class="col-md-6 col-lg-4">
+							<div class="card position-relative">
+								<i
+									class="bi bi-x-circle-fill remove-button"
+									pTooltip="Remove image"
+									(click)="deleteHeroImage(i)"></i>
+								<img
+									[src]="localImageBaseUrl + image"
+									class="card-img-top"
+									alt="Hero image {{ i + 1 }}"
+									style="height: 150px; object-fit: cover" />
+							</div>
+						</div>
+						}
+					</div>
+					}
+
+					<!-- Selected Images for Upload -->
+					@if(uploadedFiles.length > 0) {
+					<div class="row g-3 mb-3">
+						<div class="col-12">
+							<h6 class="mb-3">Selected Images (will be uploaded on save)</h6>
+						</div>
+						@for(file of uploadedFiles; track file; let i = $index) {
+						<div class="col-md-6 col-lg-4">
+							<div class="card position-relative">
+								<i
+									class="bi bi-x-circle-fill remove-button"
+									pTooltip="Remove image"
+									(click)="removeSelectedFile(i)"></i>
+								<img
+									[src]="file | blobToUrl"
+									class="card-img-top"
+									alt="Selected image {{ i + 1 }}"
+									style="height: 150px; object-fit: cover" />
+							</div>
+						</div>
+						}
+					</div>
+					}
+
+					<!-- File Upload -->
+					<div class="col-12">
+						<label class="form-label fw-semibold">Select Hero Images</label>
+						<p-fileUpload
+							#fileUpload
+							name="heroImages"
+							[multiple]="true"
+							accept="image/*"
+							[maxFileSize]="5242880"
+							[fileLimit]="5"
+							[showUploadButton]="false"
+							[showCancelButton]="false"
+							chooseLabel="Choose Images"
+							(onSelect)="onFileSelect($event)"
+							[disabled]="heroImages.length + uploadedFiles.length >= 5"></p-fileUpload>
+						<small class="text-muted">
+							{{ heroImages.length + uploadedFiles.length }}/5 images selected
+						</small>
+					</div>
+				</div>
+				}
 			</div>
 		</form>
 
 		<ng-template pTemplate="footer">
-			<p-button label="Cancel"
-					  styleClass="p-button-text"
-					  (onClick)="cancelDialog()"></p-button>
-			<p-button label="Save Page"
-					  styleClass="p-button-success"
-					  (onClick)="savePage()"
-					  [disabled]="pageForm.invalid"></p-button>
+			<p-button
+				label="Cancel"
+				styleClass="p-button-text"
+				(onClick)="cancelDialog()"></p-button>
+			<p-button
+				label="Save Page"
+				styleClass="p-button-success"
+				(onClick)="savePage()"
+				[disabled]="pageForm.invalid"></p-button>
 		</ng-template>
 	</p-dialog>
 

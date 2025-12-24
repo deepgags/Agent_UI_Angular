@@ -113,4 +113,54 @@ export class PageService {
 			})
 		);
 	}
+
+	getHeroImages(pageId: string): Observable<string[]> {
+		return this.http.get<string[]>(`${this.baseUrl}/page/${pageId}/hero-images`).pipe(
+			map((result: any) => {
+				if (result && result.data) {
+					return result.data;
+				}
+				return [];
+			}),
+			catchError((error) => {
+				console.error("Error fetching hero images:", error);
+				return throwError(() => error);
+			})
+		);
+	}
+
+	uploadHeroImages(pageId: string, files: File[]): Observable<string[]> {
+		const formData = new FormData();
+		files.forEach((file, index) => {
+			formData.append("heroImages", file);
+		});
+
+		return this.http.post<string[]>(`${this.baseUrl}/page/${pageId}/hero-images`, formData).pipe(
+			map((result: any) => {
+				if (result && result.data) {
+					return result.data;
+				}
+				return [];
+			}),
+			catchError((error) => {
+				console.error("Error uploading hero images:", error);
+				return throwError(() => error);
+			})
+		);
+	}
+
+	deleteHeroImage(pageId: string, imageIndex: number): Observable<string[]> {
+		return this.http.delete<string[]>(`${this.baseUrl}/page/${pageId}/hero-images/${imageIndex}`).pipe(
+			map((result: any) => {
+				if (result && result.data) {
+					return result.data;
+				}
+				return [];
+			}),
+			catchError((error) => {
+				console.error("Error deleting hero image:", error);
+				return throwError(() => error);
+			})
+		);
+	}
 }

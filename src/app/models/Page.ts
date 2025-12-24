@@ -7,6 +7,7 @@ export interface Page {
 	metaDescription?: string;
 	keywords?: string;
 	pageKey?: string;
+	heroImages?: string[];
 	isPredefined: boolean;
 	isEditable: boolean;
 	isDeletable: boolean;
