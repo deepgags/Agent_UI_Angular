@@ -130,4 +130,10 @@
         color: #00ffc3;
     }
 
-    
+    .image-container img {
+  transition: transform 0.4s ease;
+}
+
+.image-container:hover img {
+  transform: scale(1.05);
+}

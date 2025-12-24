@@ -182,7 +182,7 @@ siteConfig.websiteSettings.showFindDreamHomePage
 
 
 <div class="container-fluid">
-	<div class="container pb-5">
+	<div class="container ">
 		<p class="text text-center py-3 fw-semibold">Featured Properties</p>
 		<app-featured-properties />
 	</div>
@@ -190,7 +190,6 @@ siteConfig.websiteSettings.showFindDreamHomePage
 
 
 <div class="container-fluid ">
-
 	@if(cities.length > 0){
 	<div class="container pb-3">
 		<p class="text text-center py-3 fw-semibold">
@@ -198,7 +197,7 @@ siteConfig.websiteSettings.showFindDreamHomePage
 		</p>
 
 		<div class="row">
-			@if(cities[0].name){<div class="col-lg-6 col-12">
+			@if(cities[0].name){<div class="col-lg-3 col-12">
 				<div class="image-container card-simple  w-100 rounded"
 					 (click)="searchProperties({ city: cities[0].name })">
 					<img class="w-100"
@@ -227,9 +226,6 @@ siteConfig.websiteSettings.showFindDreamHomePage
 
 				</div>
 			</div>}
-		</div>
-		<div class="row mt-3">
-
 			@if(cities[3] && cities[3].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
 				<div class="image-container card-simple w-100 rounded"
 					 (click)="searchProperties({ city: cities[3].name })">
@@ -237,26 +233,6 @@ siteConfig.websiteSettings.showFindDreamHomePage
 						 [src]="localImageUrl + cities[3].image"
 						 alt="">
 					<div class="image-text">{{ cities[3].name }}</div>
-
-				</div>
-			</div>}
-			@if(cities[4] && cities[4].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3">
-				<div class="image-container card-simple w-100 rounded"
-					 (click)="searchProperties({ city: cities[4].name })">
-					<img class="w-100"
-						 [src]="localImageUrl + cities[4].image"
-						 alt="">
-					<div class="image-text">{{ cities[4].name }}</div>
-
-				</div>
-			</div>}
-			@if(cities[5] && cities[5].name){<div class="col-lg-6 col-12 mt-lg-0 mt-3">
-				<div class="image-container card-simple w-100 rounded"
-					 (click)="searchProperties({ city: cities[5].name })">
-					<img class="w-100"
-						 [src]="localImageUrl + cities[5].image"
-						 alt="">
-					<div class="image-text">{{ cities[5].name }}</div>
 
 				</div>
 			</div>}

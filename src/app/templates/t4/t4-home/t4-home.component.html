@@ -148,7 +148,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 		Find Properties in These Cities
 	</p>
 	<div class="row ">
-		@if(cities[0].name){<div class="col-lg-3 col-12 mb-lg-0 mb-3  position-relative">
+		@if(cities[0] && cities[0].name){
+			<div class="col-lg-3 col-12 mb-lg-0 mb-3  position-relative">
 			<div class="city_card"
 				 (click)="searchProperties({ city: cities[0].name })">
 				<img class="w-100 "
@@ -165,6 +166,26 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					 [src]="localImageUrl + cities[1].image"
 					 alt="">
 				<p class="image-label2  fs-3">{{ cities[1].name }}</p>
+			</div>
+
+			<div class=" city_card "
+				 (click)="searchProperties({ city: cities[2]?.name })">
+				<img class="w-100"
+					 [src]="localImageUrl + cities[2]?.image"
+					 [alt]="cities[2]?.name">
+				<p class="image-label  fs-3">{{ cities[2]?.name }}</p>
+
+			</div>
+
+		</div>}
+		
+		@if(cities[2] && cities[2].name){<div class="col-lg-3 col-12   position-relative">
+			<div class="mb-3 city_card "
+				 (click)="searchProperties({ city: cities[2].name })">
+				<img class="w-100"
+					 [src]="localImageUrl + cities[2].image"
+					 alt="">
+				<p class="image-label2  fs-3">{{ cities[2].name }}</p>
 			</div>
 
 			<div class=" city_card "
@@ -213,7 +234,7 @@ siteConfig.websiteSettings.showFindDreamHomePage
 
 <app-team-card />
 
-<div class="container-fluid sec-3 py-5">
+<div class="container-fluid sec-3 py-5 pb-0">
 	<div class="container bg-white">
 		<div class="row p-lg-4 p-3 ">
 			<p class="text mb-0 fw-semibold">
@@ -245,7 +266,7 @@ siteConfig.websiteSettings.showFindDreamHomePage
 
 
 <div class="container-fluid sec-3">
-	<div class="container pb-5">
+	<div class="container pb-3">
 		<p class="text text-center mb-0 py-3 fw-semibold">Featured Properties</p>
 
 		<app-featured-properties />
