@@ -3,10 +3,6 @@
 	[style.background-image]="
 		heroImages && heroImages.length > 0 ? 'url(' + localImageUrl + heroImages[0] + ')' : null
 	">
-	<div class="">
-		<!-- <app-t20-header></app-t20-header> -->
-	</div>
-
 	<div class="container pt-2 search-container">
 		<div class="top-padding">
 			<h1 class="display-1 text-white">
@@ -46,7 +42,7 @@
 							<i class="fa-solid fa-envelope info"></i>
 						</div>
 						<div class="ms-2 mt-1">
-							<p>
+							<p class="mb-0">
 								<a
 									class="text-white fw-semibold text-decoration-none"
 									[href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">

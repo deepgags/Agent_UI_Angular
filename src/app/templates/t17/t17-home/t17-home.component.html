@@ -45,7 +45,7 @@
 											<i class="fa-solid fa-phone info"></i>
 										</div>
 										<div class="ms-2">
-											<p>
+											<p class="mb-0">
 												<a
 													class="text-dark fw-semibold text-decoration-none"
 													[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
@@ -59,7 +59,7 @@
 											<i class="fa-solid fa-envelope info"></i>
 										</div>
 										<div class="ms-2">
-											<p>
+											<p >
 												<a
 													class="text-dark fw-semibold text-decoration-none"
 													[href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
@@ -109,11 +109,7 @@
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
 							<img
-								[src]="
-									siteConfig.websiteSettings.profileImage
-										? siteConfig.websiteSettings.profileImage
-										: '/images/Nologo.png'
-								"
+								[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
 								alt="No profile image"
 								class="overlay-image w-100" />
 						</div>

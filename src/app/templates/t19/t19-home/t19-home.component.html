@@ -29,12 +29,14 @@
 					style="width: 15rem">
 					<div class="card-body">
 						<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
+					<p class="card-text text-white">{{ siteConfig.secondaryAgent.designation }}</p>
+
 						<div class="d-flex">
 							<div class="">
 								<i class="bi bi-telephone-fill info"></i>
 							</div>
 							<div class="ms-2">
-								<p>
+								<p class="mb-0">
 									<a
 										class="text-white fw-semibold text-decoration-none"
 										[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
@@ -48,7 +50,7 @@
 								<i class="bi bi-envelope-at-fill info"></i>
 							</div>
 							<div class="ms-2 mt-1">
-								<p>
+								<p class="mb-0">
 									<a
 										class="text-white fw-semibold text-decoration-none"
 										[href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">

@@ -71,14 +71,12 @@ li {
 }
 
 #tab {
-	/* Tabs container */
 	#score-tabs {
 		gap: 8px;
 	}
 
-	/* Tab buttons */
 	#score-tabs .nav-link {
-		flex: 1; /* make all tabs equal width */
+		flex: 1; 
 		text-align: center;
 		border-radius: 12px 12px 0 0;
 		background: #f8f9fa;
@@ -89,28 +87,23 @@ li {
 		border: 1px solid #dee2e6;
 		border-bottom: none;
 		transition: all 0.3s ease;
-		white-space: nowrap; /* keep text in single line */
+		white-space: nowrap; 
 	}
 
-	/* Hover effect */
 	#score-tabs .nav-link:hover {
 		color: #000;
 		background: #e9ecef;
 	}
 
-	/* Active tab */
 	#score-tabs .nav-link.active {
-		background: var(--primary-color); /* teal highlight */
+		background: var(--primary-color); 
 		color: #fff !important;
-		border-color: #20c997;
 	}
 
-	/* Tab content card */
 	#score-tabs-content {
 		animation: fadeIn 0.3s ease-in-out;
 	}
 
-	/* Fade animation */
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
@@ -126,14 +119,14 @@ li {
 .walkscore-container {
 	position: relative;
 	width: 100%;
-	min-height: 200px; /* adjust to avoid overlap */
+	min-height: 200px;
 	overflow: hidden;
 	z-index: 1;
 }
 
 #ws-walkscore-tile iframe {
 	width: 100% !important;
-	min-height: 200px !important; /* force proper height */
+	min-height: 200px !important;
 	border: none !important;
 	display: block;
 }
