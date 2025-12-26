@@ -168,15 +168,13 @@ siteConfig.websiteSettings.showFindDreamHomePage
 				<p class="image-label2  fs-3">{{ cities[1].name }}</p>
 			</div>
 
-			<div class=" city_card "
-				 (click)="searchProperties({ city: cities[2]?.name })">
+			<!-- <div class=" city_card "
+				 (click)="searchProperties({ city: cities[1]?.name })">
 				<img class="w-100"
-					 [src]="localImageUrl + cities[2]?.image"
-					 [alt]="cities[2]?.name">
-				<p class="image-label  fs-3">{{ cities[2]?.name }}</p>
-
-			</div>
-
+					 [src]="localImageUrl + cities[1]?.image"
+					 [alt]="cities[1]?.name">
+				<p class="image-label  fs-3">{{ cities[1]?.name }}</p>
+			</div> -->
 		</div>}
 		
 		@if(cities[2] && cities[2].name){<div class="col-lg-3 col-12   position-relative">
@@ -188,14 +186,14 @@ siteConfig.websiteSettings.showFindDreamHomePage
 				<p class="image-label2  fs-3">{{ cities[2].name }}</p>
 			</div>
 
-			<div class=" city_card "
+			<!-- <div class=" city_card "
 				 (click)="searchProperties({ city: cities[2]?.name })">
 				<img class="w-100"
 					 [src]="localImageUrl + cities[2]?.image"
 					 [alt]="cities[2]?.name">
 				<p class="image-label  fs-3">{{ cities[2]?.name }}</p>
 
-			</div>
+			</div> -->
 
 		</div>}
 		@if(cities[3] && cities[3].name){<div class="col-lg-3 col-12 mb-lg-0 mb-3  position-relative">
@@ -217,7 +215,7 @@ siteConfig.websiteSettings.showFindDreamHomePage
 				<p class="image-label2  fs-3">{{ cities[4].name }}</p>
 
 			</div>
-
+<!-- 
 			<div class=" city_card "
 				 (click)="searchProperties({ city: cities[5]?.name })">
 				<img class="w-100"
@@ -225,7 +223,7 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					 [alt]="cities[5]?.name">
 				<p class="image-label  fs-3">{{ cities[5]?.name }}</p>
 
-			</div>
+			</div> -->
 		</div>}
 
 	</div>
