@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -15,7 +16,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 @Component({
 	selector: "app-t16-home",
 	standalone: true,
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, TeamCardComponent],
+	imports: [CommonModule, RouterModule, SearchComponent, FeaturedPropertiesComponent, TeamCardComponent],
 	templateUrl: "./t16-home.component.html",
 	styleUrls: ["./t16-home.component.scss", "../t16.component.scss"],
 	providers: [Title, StorageService],
@@ -38,6 +39,10 @@ export class T16HomeComponent implements OnInit {
 
 	get cities(): City[] {
 		return this.sharedDataService.cities();
+	}
+
+	get heroImages(): string[] {
+		return this.sharedDataService.heroImages();
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

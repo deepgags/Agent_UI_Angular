@@ -1,26 +1,39 @@
 <div class="search-container position-relative">
 	<div
-		id="carouselExampleAutoplaying"
-		class="carousel slide">
+		id="heroCarousel"
+		class="carousel slide"
+		data-bs-ride="carousel"
+		data-bs-interval="2500">
 		<div class="carousel-inner">
+			@if (heroImages && heroImages.length > 0) { @for (image of heroImages; track $index) {
+			<div
+				class="carousel-item"
+				[ngClass]="{ active: $index === 0 }">
+				<img
+					[src]="localImageUrl + image"
+					class="d-block w-100"
+					[alt]="'Hero image ' + ($index + 1)" />
+			</div>
+			} } @else {
 			<div class="carousel-item active">
 				<img
 					src="/t3/images/banner2.jpg"
 					class="d-block w-100"
-					alt="/t3/images/banner2.jpg" />
+					alt="Default banner 1" />
 			</div>
 			<div class="carousel-item">
 				<img
 					src="/t2/images/banner.png"
 					class="d-block w-100"
-					alt="/t3/images/banner2.jpg" />
+					alt="Default banner 2" />
 			</div>
 			<div class="carousel-item">
 				<img
 					src="/t4/images/banner.jpg"
 					class="d-block w-100"
-					alt="/t3/images/banner2.jpg" />
+					alt="Default banner 3" />
 			</div>
+			}
 		</div>
 	</div>
 	<div class="first">
@@ -256,8 +269,7 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 				</div>
 			</div>
 		</div>
-		}
-		@if(cities[3] && cities[3].name){
+		} @if(cities[3] && cities[3].name){
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
 				<div
@@ -276,7 +288,7 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 		}
 	</div>
 	<div class="row pt-4">
-		 @if(cities[4] && cities[4].name){
+		@if(cities[4] && cities[4].name){
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
 				<div
@@ -292,8 +304,7 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 				</div>
 			</div>
 		</div>
-		} 
-		@if(cities[5] && cities[5].name){
+		} @if(cities[5] && cities[5].name){
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
 				<div
@@ -309,8 +320,7 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 				</div>
 			</div>
 		</div>
-		}
-		@if(cities[6] && cities[6].name){
+		} @if(cities[6] && cities[6].name){
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
 				<div
@@ -326,8 +336,7 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 				</div>
 			</div>
 		</div>
-		}
-		@if(cities[7] && cities[7].name){
+		} @if(cities[7] && cities[7].name){
 		<div class="col-lg-3 col-12 mb-lg-0 mb-3">
 			<div id="card1">
 				<div

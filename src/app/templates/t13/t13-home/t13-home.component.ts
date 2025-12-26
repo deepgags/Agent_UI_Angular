@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -12,14 +13,13 @@ import { SearchService } from "../../../services/search.service";
 import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
-import { SearchComponent } from "../../shared/search/search.component";
 
 @Component({
 	selector: "app-t13-home",
 	standalone: true,
 	imports: [
+		CommonModule,
 		RouterModule,
-		SearchComponent,
 		FeaturedPropertiesComponent,
 		PhoneNumberFormatPipe,
 		HeroContactFormComponent,
@@ -48,6 +48,10 @@ export class T13HomeComponent implements OnInit {
 
 	get cities(): City[] {
 		return this.sharedDataService.cities();
+	}
+
+	get heroImages(): string[] {
+		return this.sharedDataService.heroImages();
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

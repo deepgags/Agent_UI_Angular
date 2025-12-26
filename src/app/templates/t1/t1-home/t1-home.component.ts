@@ -50,16 +50,17 @@ export class T1HomeComponent implements OnInit, AfterViewInit {
 		return this.sharedDataService.cities();
 	}
 
+	get heroImages(): string[] {
+		return this.sharedDataService.heroImages();
+	}
+
 	ngAfterViewInit(): void {
-		const carouselEl = document.querySelector("#carouselExampleAutoplaying");
-		if (carouselEl) {
-			new bootstrap.Carousel(carouselEl, {
-				interval: 2500,
-				ride: "carousel",
-				pause: false,
-				wrap: true,
-			});
-		}
+		setTimeout(() => {
+			const carouselEl = document.querySelector("#heroCarousel");
+			if (carouselEl) {
+				new bootstrap.Carousel(carouselEl);
+			}
+		}, 200);
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

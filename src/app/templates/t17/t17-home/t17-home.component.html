@@ -1,4 +1,8 @@
-<div class="background-container">
+<div
+	class="background-container"
+	[style.background-image]="
+		heroImages && heroImages.length > 0 ? 'url(' + localImageUrl + heroImages[0] + ')' : null
+	">
 	<div class="container-fluid search-container">
 		<div class="row justify-content-around align-items-center">
 			<div class="top-padding1">
@@ -19,30 +23,32 @@
 		<div class="row">
 			<div class="col-lg-6 col-12">
 				@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-				<div class="card border-0 shadow p-0"
-					 style="max-width: 540px">
+				<div
+					class="card border-0 shadow p-0"
+					style="max-width: 540px">
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
-							<img [src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
-								 alt="No profile image"
-								 class="overlay-image w-100" />
+							<img
+								[src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
+								alt="No profile image"
+								class="overlay-image w-100" />
 						</div>
 						<div class="col-md-6">
 							<div class="card-body">
 								<h5 class="card-title fw-semibold">
 									{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
 								</h5>
-								<p class="card-text fw-semibold">{{ siteConfig.secondaryAgent.designation}}</p>
+								<p class="card-text fw-semibold">{{ siteConfig.secondaryAgent.designation }}</p>
 								<div class="">
 									<div class="d-flex mb-2">
 										<div class="">
 											<i class="fa-solid fa-phone info"></i>
-
 										</div>
 										<div class="ms-2">
 											<p>
-												<a class="text-dark fw-semibold text-decoration-none"
-												   [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+												<a
+													class="text-dark fw-semibold text-decoration-none"
+													[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
 													{{ siteConfig.secondaryAgent.websitePhone | phone }}
 												</a>
 											</p>
@@ -51,12 +57,12 @@
 									<div class="d-flex">
 										<div class="">
 											<i class="fa-solid fa-envelope info"></i>
-
 										</div>
 										<div class="ms-2">
 											<p>
-												<a class="text-dark fw-semibold text-decoration-none"
-												   [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+												<a
+													class="text-dark fw-semibold text-decoration-none"
+													[href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
 													{{ siteConfig.secondaryAgent.websiteEmail }}
 												</a>
 											</p>
@@ -64,35 +70,31 @@
 									</div>
 								</div>
 								<div class="d-flex gap-2">
-
 									@if (siteConfig.websiteSettings.socialLinks.facebook) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.facebook"
-									   target="_blank"
-									   rel="noopener noreferrer"
-									   class="btn btn-light border">
+									<a
+										[href]="siteConfig.websiteSettings.socialLinks.facebook"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="btn btn-light border">
 										<i class="bi bi-facebook info"></i>
 									</a>
-									}
-
-									@if (siteConfig.websiteSettings.socialLinks.twitter) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.twitter"
-									   target="_blank"
-									   rel="noopener noreferrer"
-									   class="btn btn-light border">
+									} @if (siteConfig.websiteSettings.socialLinks.twitter) {
+									<a
+										[href]="siteConfig.websiteSettings.socialLinks.twitter"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="btn btn-light border">
 										<i class="bi bi-twitter info"></i>
 									</a>
-									}
-
-									@if (siteConfig.websiteSettings.socialLinks.instagram) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.instagram"
-									   target="_blank"
-									   rel="noopener noreferrer"
-									   class="btn btn-light border">
+									} @if (siteConfig.websiteSettings.socialLinks.instagram) {
+									<a
+										[href]="siteConfig.websiteSettings.socialLinks.instagram"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="btn btn-light border">
 										<i class="bi bi-instagram info"></i>
 									</a>
 									}
-
-
 								</div>
 							</div>
 						</div>
@@ -101,23 +103,26 @@
 				}
 			</div>
 			<div class="col-lg-6 col-12 mt-5 mt-lg-0">
-				<div class="card border-0 shadow p-0"
-					 style="max-width: 540px">
+				<div
+					class="card border-0 shadow p-0"
+					style="max-width: 540px">
 					<div class="row g-0 justify-content-around">
 						<div class="col-md-6 d-flex justify-content-center align-items-center">
-							<img [src]="
+							<img
+								[src]="
 									siteConfig.websiteSettings.profileImage
 										? siteConfig.websiteSettings.profileImage
 										: '/images/Nologo.png'
 								"
-								 alt="No profile image"
-								 class="overlay-image w-100" />
+								alt="No profile image"
+								class="overlay-image w-100" />
 						</div>
 						<div class="col-md-6">
 							<div class="card-body">
-								<h5 class="card-title fw-semibold">{{ siteConfig.firstName }} {{ siteConfig.lastName }}
+								<h5 class="card-title fw-semibold">
+									{{ siteConfig.firstName }} {{ siteConfig.lastName }}
 								</h5>
-								<p class="card-text fw-semibold">{{ siteConfig.designation}}</p>
+								<p class="card-text fw-semibold">{{ siteConfig.designation }}</p>
 								<div class="">
 									<div class="d-flex">
 										<div class="">
@@ -125,8 +130,9 @@
 										</div>
 										<div class="ms-2">
 											<p class="">
-												<a class="text-dark fw-semibold text-decoration-none"
-												   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+												<a
+													class="text-dark fw-semibold text-decoration-none"
+													[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
 													{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
 												</a>
 											</p>
@@ -138,8 +144,9 @@
 										</div>
 										<div class="ms-2">
 											<p>
-												<a class="text-dark fw-semibold text-decoration-none"
-												   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+												<a
+													class="text-dark fw-semibold text-decoration-none"
+													[href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
 													{{ siteConfig.websiteSettings.contactInfo.email }}
 												</a>
 											</p>
@@ -148,28 +155,27 @@
 								</div>
 								<div class="d-flex gap-2">
 									@if (siteConfig.websiteSettings.socialLinks.facebook) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.facebook"
-									   target="_blank"
-									   rel="noopener noreferrer"
-									   class="btn btn-light border">
+									<a
+										[href]="siteConfig.websiteSettings.socialLinks.facebook"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="btn btn-light border">
 										<i class="bi bi-facebook info"></i>
 									</a>
-									}
-
-									@if (siteConfig.websiteSettings.socialLinks.twitter) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.twitter"
-									   target="_blank"
-									   rel="noopener noreferrer"
-									   class="btn btn-light border">
+									} @if (siteConfig.websiteSettings.socialLinks.twitter) {
+									<a
+										[href]="siteConfig.websiteSettings.socialLinks.twitter"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="btn btn-light border">
 										<i class="bi bi-twitter info"></i>
 									</a>
-									}
-
-									@if (siteConfig.websiteSettings.socialLinks.instagram) {
-									<a [href]="siteConfig.websiteSettings.socialLinks.instagram"
-									   target="_blank"
-									   rel="noopener noreferrer"
-									   class="btn btn-light border">
+									} @if (siteConfig.websiteSettings.socialLinks.instagram) {
+									<a
+										[href]="siteConfig.websiteSettings.socialLinks.instagram"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="btn btn-light border">
 										<i class="bi bi-instagram info"></i>
 									</a>
 									}
@@ -183,15 +189,11 @@
 	</div>
 </div>
 
-@if(
-siteConfig.websiteSettings.showHomeWorthPage ||
-siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-siteConfig.websiteSettings.showFindDreamHomePage
-){
+@if( siteConfig.websiteSettings.showHomeWorthPage || siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+siteConfig.websiteSettings.showFindDreamHomePage ){
 <section class="py-5">
 	<div class="container">
 		<div class="row justify-content-center g-4">
-
 			<div class="col-12 col-sm-6 col-lg-4">
 				<div class="feature-card h-100 text-center">
 					<div class="icon-wrap">
@@ -199,8 +201,11 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					</div>
 					<h5>Home Evaluation</h5>
 					<p>Get instant insights on what your home is worth.</p>
-					<a href="/home-worth"
-					   class="btn btn-outline-primary">Check Worth</a>
+					<a
+						href="/home-worth"
+						class="btn btn-outline-primary">
+						Check Worth
+					</a>
 				</div>
 			</div>
 
@@ -211,8 +216,11 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					</div>
 					<h5>Neighbourhood Watch</h5>
 					<p>Get alerts when neighbours list homes for sale.</p>
-					<a href="/neighbor-detail"
-					   class="btn btn-outline-primary">Get Alerts</a>
+					<a
+						href="/neighbor-detail"
+						class="btn btn-outline-primary">
+						Get Alerts
+					</a>
 				</div>
 			</div>
 
@@ -223,17 +231,18 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					</div>
 					<h5>Dream Home Finder</h5>
 					<p>Explore listings and find your dream home today.</p>
-					<a href="/dream-home"
-					   class="btn btn-outline-primary">Explore</a>
+					<a
+						href="/dream-home"
+						class="btn btn-outline-primary">
+						Explore
+					</a>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </section>
 }
 <app-team-card />
-
 
 <div class="container-fluid search-container">
 	<div class="container">
@@ -242,56 +251,69 @@ siteConfig.websiteSettings.showFindDreamHomePage
 	</div>
 </div>
 
-
 @if(cities.length > 0){
 <div class="container text-center py-5">
 	<p class="text text-center fw-semibold">Find Properties in These Cities</p>
 	<div class="row">
-		@if(cities[0].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div class="image-container"
-				 (click)="searchProperties({ city: cities[0].name })">
-				<img [src]="localImageUrl + cities[0].image"
-					 alt="" />
+		@if(cities[0].name){
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
+			<div
+				class="image-container"
+				(click)="searchProperties({ city: cities[0].name })">
+				<img
+					[src]="localImageUrl + cities[0].image"
+					alt="" />
 				<div class="image-label">{{ cities[0].name }}</div>
 			</div>
-		</div>}
-		@if(cities[1] && cities[1].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div class="image-container"
-				 (click)="searchProperties({ city: cities[1].name })">
-				<img [src]="localImageUrl + cities[1].image"
-					 alt="" />
+		</div>
+		} @if(cities[1] && cities[1].name){
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
+			<div
+				class="image-container"
+				(click)="searchProperties({ city: cities[1].name })">
+				<img
+					[src]="localImageUrl + cities[1].image"
+					alt="" />
 				<div class="image-label">{{ cities[1].name }}</div>
 			</div>
-		</div>}
-		@if(cities[2] && cities[2].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div class="image-container"
-				 (click)="searchProperties({ city: cities[2].name })">
-				<img [src]="localImageUrl + cities[2].image"
-					 alt="" />
+		</div>
+		} @if(cities[2] && cities[2].name){
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
+			<div
+				class="image-container"
+				(click)="searchProperties({ city: cities[2].name })">
+				<img
+					[src]="localImageUrl + cities[2].image"
+					alt="" />
 				<div class="image-label">{{ cities[2].name }}</div>
 			</div>
-		</div>}
-		@if(cities[3] && cities[3].name){<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
-			<div class="image-container"
-				 (click)="searchProperties({ city: cities[3].name })">
-				<img [src]="localImageUrl + cities[3].image"
-					 alt="" />
+		</div>
+		} @if(cities[3] && cities[3].name){
+		<div class="col-lg-3 col-12 mt-lg-0 mt-3 p-0">
+			<div
+				class="image-container"
+				(click)="searchProperties({ city: cities[3].name })">
+				<img
+					[src]="localImageUrl + cities[3].image"
+					alt="" />
 				<div class="image-label">{{ cities[3].name }}</div>
 			</div>
-		</div>}
+		</div>
+		}
 	</div>
 </div>
 }
 
-
 <div class="container py-lg-5 p-lg-0 p-4 search-container">
 	<div class="row align-items-center justify-content-around">
 		<div class="col-lg-5 col-12">
-			<h2 class=" fw-semibold">
-				"Enjoy a clear and simple <br> home-buying experience"
+			<h2 class="fw-semibold">
+				"Enjoy a clear and simple
+				<br />
+				home-buying experience"
 			</h2>
 			<p class="info fs-4">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
-			<p class=" fw-normal">
+			<p class="fw-normal">
 				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
 				educate and prepare my clients to insure that they are always in a position to make informed decisions.
 				Every engagement is an opportunity to create a lasting impression and a forever client.
@@ -299,9 +321,10 @@ siteConfig.websiteSettings.showFindDreamHomePage
 		</div>
 		<div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
 			<div class="">
-				<img class="w-100 rounded"
-					 src="t8/images/real-state.png"
-					 alt="">
+				<img
+					class="w-100 rounded"
+					src="t8/images/real-state.png"
+					alt="" />
 			</div>
 		</div>
 	</div>
@@ -312,9 +335,10 @@ siteConfig.websiteSettings.showFindDreamHomePage
 		<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
 			<div class="col-lg-8 col-12">
 				<div class="">
-					<img class="img-fluid"
-						 src="t6/images/contact-img.png"
-						 alt="" />
+					<img
+						class="img-fluid"
+						src="t6/images/contact-img.png"
+						alt="" />
 				</div>
 			</div>
 			<div class="col-lg-4 col-12 mt-lg-0 mt-3">

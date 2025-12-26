@@ -52,6 +52,10 @@ export class T19HomeComponent implements OnInit {
 		return this.sharedDataService.cities();
 	}
 
+	get heroImages(): string[] {
+		return this.sharedDataService.heroImages();
+	}
+
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
 		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};

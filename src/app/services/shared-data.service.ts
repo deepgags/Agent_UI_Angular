@@ -17,6 +17,7 @@ export class SharedDataService {
 	private _sideMenu = signal<MenuItem[] | any[]>([]);
 	private _team = signal<TeamMemberModel[]>([]);
 	private _cities = signal<City[]>([]);
+	private _heroImages = signal<string[]>([]);
 
 	constructor() {
 		const _userToken = localStorage.getItem("USER_TOKEN");
@@ -53,6 +54,10 @@ export class SharedDataService {
 		this._userData.set(_userData);
 	}
 
+	setHeroImages(_heroImages: string[]) {
+		this._heroImages.set(_heroImages);
+	}
+
 	get siteId() {
 		return this._siteId;
 	}
@@ -79,6 +84,10 @@ export class SharedDataService {
 
 	get userData() {
 		return this._userData;
+	}
+
+	get heroImages() {
+		return this._heroImages;
 	}
 
 	setUserToken(_userToken: string) {

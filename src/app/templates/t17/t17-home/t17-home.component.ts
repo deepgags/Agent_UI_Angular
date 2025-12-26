@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
@@ -19,6 +20,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 	selector: "app-t17-home",
 	standalone: true,
 	imports: [
+		CommonModule,
 		RouterModule,
 		SearchComponent,
 		FeaturedPropertiesComponent,
@@ -49,6 +51,10 @@ export class T17HomeComponent implements OnInit {
 
 	get cities(): City[] {
 		return this.sharedDataService.cities();
+	}
+
+	get heroImages(): string[] {
+		return this.sharedDataService.heroImages();
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

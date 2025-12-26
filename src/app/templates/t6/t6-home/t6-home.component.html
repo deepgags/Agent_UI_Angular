@@ -1,4 +1,8 @@
-<div class="background-container">
+<div
+	class="background-container"
+	[style.background-image]="
+		heroImages && heroImages.length > 0 ? 'url(' + localImageUrl + heroImages[0] + ')' : null
+	">
 	<div class="container-fluid search-container">
 		<div class="top-padding1">
 			<div class="row justify-content-center">
@@ -231,8 +235,7 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 		</div>
 	</div>
 </section>
-}
- @if(cities.length > 0){
+} @if(cities.length > 0){
 <div class="container text-center py-5">
 	<p class="text text-center fw-semibold">Find Properties in These Cities</p>
 	<div class="row">

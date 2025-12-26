@@ -1,15 +1,26 @@
-<div class="background-container">
+<div
+	class="background-container"
+	[style.background-image]="
+		heroImages && heroImages.length > 0 ? 'url(' + localImageUrl + heroImages[0] + ')' : null
+	">
 	<div class="container pt-5 search-container">
-
 		<div class="row justify-content-around align-items-center">
-			<div class="col-12 col-lg-6 ">
+			<div class="col-12 col-lg-6">
 				<div class="">
-					<h2 class="text-white display-3 fw-semibold">Find Your <br> Dream Home</h2>
-					<p class="text-white">We are recognized for exceeding client expectations and delivering great results through dedication,<br> ease of process, and
-						extraordinary services to our worldwide clients.</p>
+					<h2 class="text-white display-3 fw-semibold">
+						Find Your
+						<br />
+						Dream Home
+					</h2>
+					<p class="text-white">
+						We are recognized for exceeding client expectations and delivering great results through
+						dedication,
+						<br />
+						ease of process, and extraordinary services to our worldwide clients.
+					</p>
 				</div>
 			</div>
-			<div class="col-12 col-lg-4 ">
+			<div class="col-12 col-lg-4">
 				<div class="card shadow">
 					<div class="card-body">
 						<app-hero-contact-form />
@@ -21,56 +32,50 @@
 </div>
 
 <div class="container-fluid sec-3 p-5 search-container">
-
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
 			<div class="col-lg-6 col-12">
-				<p class="fs-2 mb-0 fw-semibold ">
-					Hi, I’m {{siteConfig.firstName}} {{siteConfig.lastName}}
-				</p>
+				<p class="fs-2 mb-0 fw-semibold">Hi, I’m {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
 				<p class="fs-4 info">{{ siteConfig.designation }}</p>
-				<p class="fw-semibold mb-0">I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to
-					insure that they are always in a position to make informed decisions.</p>
+				<p class="fw-semibold mb-0">
+					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
+					educate and prepare my clients to insure that they are always in a position to make informed
+					decisions.
+				</p>
 				<p class="fw-semibold">
-					Every engagement is an opportunity to create a lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving
-					in real estate with the reputation of
-					providing quality services and keeping excellent relations with the clients. </p>
+					Every engagement is an opportunity to create a lasting impression and a forever client.
+					{{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving in real estate with the
+					reputation of providing quality services and keeping excellent relations with the clients.
+				</p>
 
-				<a class="btn search_btn"
-				   routerLink="/contact">
+				<a
+					class="btn search_btn"
+					routerLink="/contact">
 					Get in Touch
 				</a>
-
 			</div>
-			<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5  d-flex justify-content-lg-end justify-content-center">
+			<div class="col-lg-6 col-12 mt-lg-0 mt-5 pt-lg-0 pt-5 d-flex justify-content-lg-end justify-content-center">
 				<div class="">
-
 					<div class="position-relative d-inline-block">
-
-						<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-							 alt="No profile image"
-							 class=" mob_pic"
-							 style=" height: 367px;">
+						<img
+							[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
+							alt="No profile image"
+							class="mob_pic"
+							style="height: 367px" />
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-
-@if(
-siteConfig.websiteSettings.showHomeWorthPage ||
-siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
-siteConfig.websiteSettings.showFindDreamHomePage
-){
+@if( siteConfig.websiteSettings.showHomeWorthPage || siteConfig.websiteSettings.showSellingInNeighbourHooddPage ||
+siteConfig.websiteSettings.showFindDreamHomePage ){
 <section class="hero-bg position-relative overflow-hidden text-white d-flex justify-content-center align-items-center">
 	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
 
-	<div class="container ">
+	<div class="container">
 		<div class="row justify-content-center g-4">
-
 			@if(siteConfig.websiteSettings.showHomeWorthPage){
 			<div class="col-12 col-sm-6 col-lg-4">
 				<div class="magic-card h-100">
@@ -81,15 +86,16 @@ siteConfig.websiteSettings.showFindDreamHomePage
 						<div class="text-part">
 							<h5>Home Evaluation</h5>
 							<p>Get insights on what your home is worth.</p>
-							<a href="/home-worth"
-							   class="btn btn-holo">Check Worth</a>
+							<a
+								href="/home-worth"
+								class="btn btn-holo">
+								Check Worth
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			}
-
-			@if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
+			} @if(siteConfig.websiteSettings.showSellingInNeighbourHooddPage){
 			<div class="col-12 col-sm-6 col-lg-4">
 				<div class="magic-card h-100">
 					<div class="card-inner">
@@ -99,15 +105,16 @@ siteConfig.websiteSettings.showFindDreamHomePage
 						<div class="text-part">
 							<h5>Neighbourhood Watch</h5>
 							<p>Get alerts when neighbours list homes for sale.</p>
-							<a href="/neighbor-detail"
-							   class="btn btn-holo">Get Alerts</a>
+							<a
+								href="/neighbor-detail"
+								class="btn btn-holo">
+								Get Alerts
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			}
-
-			@if(siteConfig.websiteSettings.showFindDreamHomePage){
+			} @if(siteConfig.websiteSettings.showFindDreamHomePage){
 			<div class="col-12 col-sm-6 col-lg-4">
 				<div class="magic-card h-100">
 					<div class="card-inner">
@@ -117,14 +124,16 @@ siteConfig.websiteSettings.showFindDreamHomePage
 						<div class="text-part">
 							<h5>Dream Home Finder</h5>
 							<p>Explore listings and find your dream home today.</p>
-							<a href="/dream-home"
-							   class="btn btn-holo">Explore</a>
+							<a
+								href="/dream-home"
+								class="btn btn-holo">
+								Explore
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			}
-
 		</div>
 	</div>
 </section>
@@ -141,31 +150,32 @@ siteConfig.websiteSettings.showFindDreamHomePage
 	</div>
 </div>
 
-
 @if(cities.length > 0){
 <div class="container py-4">
-	<p class="text text-center fw-semibold mb-5">
-		Find Properties in These Cities
-	</p>
-	<div class="row ">
+	<p class="text text-center fw-semibold mb-5">Find Properties in These Cities</p>
+	<div class="row">
 		@if(cities[0] && cities[0].name){
-			<div class="col-lg-3 col-12 mb-lg-0 mb-3  position-relative">
-			<div class="city_card"
-				 (click)="searchProperties({ city: cities[0].name })">
-				<img class="w-100 "
-					 [src]="localImageUrl + cities[0].image"
-					 alt="" />
-				<p class="image-label  fs-3">{{ cities[0].name }}</p>
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3 position-relative">
+			<div
+				class="city_card"
+				(click)="searchProperties({ city: cities[0].name })">
+				<img
+					class="w-100"
+					[src]="localImageUrl + cities[0].image"
+					alt="" />
+				<p class="image-label fs-3">{{ cities[0].name }}</p>
 			</div>
-		</div>}
-
-		@if(cities[1] && cities[1].name){<div class="col-lg-3 col-12   position-relative">
-			<div class="mb-3 city_card "
-				 (click)="searchProperties({ city: cities[1].name })">
-				<img class="w-100"
-					 [src]="localImageUrl + cities[1].image"
-					 alt="">
-				<p class="image-label2  fs-3">{{ cities[1].name }}</p>
+		</div>
+		} @if(cities[1] && cities[1].name){
+		<div class="col-lg-3 col-12 position-relative">
+			<div
+				class="mb-3 city_card"
+				(click)="searchProperties({ city: cities[1].name })">
+				<img
+					class="w-100"
+					[src]="localImageUrl + cities[1].image"
+					alt="" />
+				<p class="image-label2 fs-3">{{ cities[1].name }}</p>
 			</div>
 
 			<!-- <div class=" city_card "
@@ -175,15 +185,17 @@ siteConfig.websiteSettings.showFindDreamHomePage
 					 [alt]="cities[1]?.name">
 				<p class="image-label  fs-3">{{ cities[1]?.name }}</p>
 			</div> -->
-		</div>}
-		
-		@if(cities[2] && cities[2].name){<div class="col-lg-3 col-12   position-relative">
-			<div class="mb-3 city_card "
-				 (click)="searchProperties({ city: cities[2].name })">
-				<img class="w-100"
-					 [src]="localImageUrl + cities[2].image"
-					 alt="">
-				<p class="image-label2  fs-3">{{ cities[2].name }}</p>
+		</div>
+		} @if(cities[2] && cities[2].name){
+		<div class="col-lg-3 col-12 position-relative">
+			<div
+				class="mb-3 city_card"
+				(click)="searchProperties({ city: cities[2].name })">
+				<img
+					class="w-100"
+					[src]="localImageUrl + cities[2].image"
+					alt="" />
+				<p class="image-label2 fs-3">{{ cities[2].name }}</p>
 			</div>
 
 			<!-- <div class=" city_card "
@@ -194,28 +206,31 @@ siteConfig.websiteSettings.showFindDreamHomePage
 				<p class="image-label  fs-3">{{ cities[2]?.name }}</p>
 
 			</div> -->
-
-		</div>}
-		@if(cities[3] && cities[3].name){<div class="col-lg-3 col-12 mb-lg-0 mb-3  position-relative">
-			<div class=" city_card"
-				 (click)="searchProperties({ city: cities[3].name })">
-				<img class="w-100"
-					 [src]="localImageUrl + cities[3].image"
-					 alt="" />
-				<p class="image-label  fs-3">{{ cities[3].name }}</p>
+		</div>
+		} @if(cities[3] && cities[3].name){
+		<div class="col-lg-3 col-12 mb-lg-0 mb-3 position-relative">
+			<div
+				class="city_card"
+				(click)="searchProperties({ city: cities[3].name })">
+				<img
+					class="w-100"
+					[src]="localImageUrl + cities[3].image"
+					alt="" />
+				<p class="image-label fs-3">{{ cities[3].name }}</p>
 			</div>
-		</div>}
-
-		@if(cities[4] && cities[4].name){<div class="col-lg-3 col-12   position-relative">
-			<div class="mb-3 city_card"
-				 (click)="searchProperties({ city: cities[4].name })">
-				<img class="w-100"
-					 [src]="localImageUrl + cities[4].image"
-					 alt="">
-				<p class="image-label2  fs-3">{{ cities[4].name }}</p>
-
+		</div>
+		} @if(cities[4] && cities[4].name){
+		<div class="col-lg-3 col-12 position-relative">
+			<div
+				class="mb-3 city_card"
+				(click)="searchProperties({ city: cities[4].name })">
+				<img
+					class="w-100"
+					[src]="localImageUrl + cities[4].image"
+					alt="" />
+				<p class="image-label2 fs-3">{{ cities[4].name }}</p>
 			</div>
-<!-- 
+			<!--
 			<div class=" city_card "
 				 (click)="searchProperties({ city: cities[5]?.name })">
 				<img class="w-100"
@@ -224,8 +239,8 @@ siteConfig.websiteSettings.showFindDreamHomePage
 				<p class="image-label  fs-3">{{ cities[5]?.name }}</p>
 
 			</div> -->
-		</div>}
-
+		</div>
+		}
 	</div>
 </div>
 }
@@ -234,28 +249,23 @@ siteConfig.websiteSettings.showFindDreamHomePage
 
 <div class="container-fluid sec-3 py-5 pb-0">
 	<div class="container bg-white">
-		<div class="row p-lg-4 p-3 ">
-			<p class="text mb-0 fw-semibold">
-				"Enjoy a clear and simple home-buying experience"
-			</p>
+		<div class="row p-lg-4 p-3">
+			<p class="text mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
 			<div class="col">
-				<p class="estate text-center">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
+				<p class="estate text-center">
+					{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
+				</p>
 				<p class="text-center fw-semibold">
-					I believe every client has the right to be treated fairly,
-					honestly and with integrity. My aim is to educate and prepare my
-					clients to insure that they are always in a position to make
-					informed decisions.Every engagement is an opportunity to create a
-					lasting impression and a forever client. {{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving
-					in real estate with the reputation of providing quality services
-					and keeping excellent relations with the clients. My intend to
-					provide our clients with the best personalized real estate
-					experience from beginning to end. I enjoy sharing my expertise by
-					giving you the scoop on the local real estate market. My aim is to
-					guide & prepare our clients to ensure that they are always in a
-					position to make informed decision. I put our client’s interest
-					above everything. I am professionally trained and licensed
-					realtors who work for seeking to experience satisfaction and feel
-					good emotionss.
+					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
+					educate and prepare my clients to insure that they are always in a position to make informed
+					decisions.Every engagement is an opportunity to create a lasting impression and a forever client.
+					{{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving in real estate with the
+					reputation of providing quality services and keeping excellent relations with the clients. My intend
+					to provide our clients with the best personalized real estate experience from beginning to end. I
+					enjoy sharing my expertise by giving you the scoop on the local real estate market. My aim is to
+					guide & prepare our clients to ensure that they are always in a position to make informed decision.
+					I put our client’s interest above everything. I am professionally trained and licensed realtors who
+					work for seeking to experience satisfaction and feel good emotionss.
 				</p>
 			</div>
 		</div>

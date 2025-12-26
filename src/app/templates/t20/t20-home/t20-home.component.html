@@ -1,43 +1,55 @@
-<div class="background-container search-container">
+<div
+	class="background-container search-container"
+	[style.background-image]="
+		heroImages && heroImages.length > 0 ? 'url(' + localImageUrl + heroImages[0] + ')' : null
+	">
 	<div class="">
 		<!-- <app-t20-header></app-t20-header> -->
 	</div>
 
 	<div class="container pt-2 search-container">
 		<div class="top-padding">
-			<h1 class="display-1 text-white">Innovative Living <br> Spaces</h1>
+			<h1 class="display-1 text-white">
+				Innovative Living
+				<br />
+				Spaces
+			</h1>
 		</div>
 		<div class="">
-			<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-				 alt="No profile image"
-				 class="overlay-image">
-			<div class="card position-absolute  man-card "
-				 style="width: 15rem;">
+			<img
+				[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
+				alt="No profile image"
+				class="overlay-image" />
+			<div
+				class="card position-absolute man-card"
+				style="width: 15rem">
 				<div class="card-body">
-					<h5 class="card-head text-white">{{siteConfig.firstName}} {{siteConfig.lastName}}</h5>
+					<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
 					<p class="fw-semiboldt text-white fs-6">{{ siteConfig.designation }}</p>
 
-					<div class=" d-flex">
+					<div class="d-flex">
 						<div class="">
 							<i class="fa-solid fa-phone info"></i>
 						</div>
 						<div class="ms-2">
 							<p class="mb-0">
-								<a class="text-white fw-semibold text-decoration-none"
-								   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+								<a
+									class="text-white fw-semibold text-decoration-none"
+									[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
 									{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
 								</a>
 							</p>
 						</div>
 					</div>
-					<div class="d-flex ">
+					<div class="d-flex">
 						<div class="">
 							<i class="fa-solid fa-envelope info"></i>
 						</div>
 						<div class="ms-2 mt-1">
 							<p>
-								<a class="text-white fw-semibold text-decoration-none"
-								   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+								<a
+									class="text-white fw-semibold text-decoration-none"
+									[href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
 									{{ siteConfig.websiteSettings.contactInfo.email }}
 								</a>
 							</p>
@@ -51,20 +63,19 @@
 
 @if(cities.length > 0){
 <div class="container-fluid search-container">
-
 	<div class="container py-lg-5 p-lg-0 p-4">
-		<p class="text text-center  fw-semibold">
-			Find Properties in These Cities
-		</p>
+		<p class="text text-center fw-semibold">Find Properties in These Cities</p>
 
 		<div class="row mt-3">
-			@if(cities[0].name){<div class="col-lg-3 col-12">
-				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city: cities[0].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[0].image"
-						 alt="">
+			@if(cities[0].name){
+			<div class="col-lg-3 col-12">
+				<div
+					class="city-card position-relative text-white text-center"
+					(click)="searchProperties({ city: cities[0].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[0].image"
+						alt="" />
 
 					<div class="overlay"></div>
 
@@ -72,15 +83,16 @@
 						<h2 class="fw-medium">{{ cities[0].name }}</h2>
 					</div>
 				</div>
-			</div>}
-
-			@if(cities[1] && cities[1].name){<div class="col-lg-3 col-12">
-				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city: cities[1].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[1].image"
-						 alt="">
+			</div>
+			} @if(cities[1] && cities[1].name){
+			<div class="col-lg-3 col-12">
+				<div
+					class="city-card position-relative text-white text-center"
+					(click)="searchProperties({ city: cities[1].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[1].image"
+						alt="" />
 
 					<div class="overlay"></div>
 
@@ -88,15 +100,16 @@
 						<h2 class="fw-medium">{{ cities[1].name }}</h2>
 					</div>
 				</div>
-			</div>}
-
-			@if(cities[2] && cities[2].name){<div class="col-lg-3 col-12">
-				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city: cities[2].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[2].image"
-						 alt="">
+			</div>
+			} @if(cities[2] && cities[2].name){
+			<div class="col-lg-3 col-12">
+				<div
+					class="city-card position-relative text-white text-center"
+					(click)="searchProperties({ city: cities[2].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[2].image"
+						alt="" />
 
 					<div class="overlay"></div>
 
@@ -104,21 +117,23 @@
 						<h2 class="fw-medium">{{ cities[2].name }}</h2>
 					</div>
 				</div>
-			</div>}
-
-			@if(cities[3] && cities[3].name){<div class="col-lg-3 col-12">
-				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city: cities[3].name })">
-					<img class="w-100"
-						 [src]="localImageUrl + cities[3].image"
-						 alt="">
+			</div>
+			} @if(cities[3] && cities[3].name){
+			<div class="col-lg-3 col-12">
+				<div
+					class="city-card position-relative text-white text-center"
+					(click)="searchProperties({ city: cities[3].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[3].image"
+						alt="" />
 					<div class="overlay"></div>
 					<div class="city-name">
 						<h2 class="fw-medium">{{ cities[3].name }}</h2>
 					</div>
 				</div>
-
-			</div>}
+			</div>
+			}
 		</div>
 	</div>
 </div>
@@ -128,44 +143,48 @@
 	<div class="row align-items-center justify-content-around">
 		<div class="col-lg-5 col-12">
 			<h2 class=" ">
-				"Enjoy a clear and simple <br> home-buying experience"
+				"Enjoy a clear and simple
+				<br />
+				home-buying experience"
 			</h2>
 			<p class="info fs-3">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
-			<p class=" fw-normal">
-				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to educate and prepare my clients to insure that they are always
-				in a position to make informed decisions. Every engagement is an opportunity to create a lasting impression and a forever client.
+			<p class="fw-normal">
+				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
+				educate and prepare my clients to insure that they are always in a position to make informed decisions.
+				Every engagement is an opportunity to create a lasting impression and a forever client.
 			</p>
-
 		</div>
 
 		<div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
 			<div class="">
-				<img class="w-100 rounded"
-					 src="t8/images/real-state.png"
-					 alt="">
+				<img
+					class="w-100 rounded"
+					src="t8/images/real-state.png"
+					alt="" />
 			</div>
 		</div>
-
 	</div>
 </div>
-
 
 <div class="container py-5 search-container">
 	<div class="row align-items-center">
 		<div class="col-lg-6 d-flex justify-content-lg-start">
 			<div class="">
-				<img class="img-fluid rounded-3"
-					 src="./t10/images/pro3.png"
-					 alt="">
+				<img
+					class="img-fluid rounded-3"
+					src="./t10/images/pro3.png"
+					alt="" />
 			</div>
 		</div>
 
 		<div class="col-lg-6">
-			<h2 class=" info  ">Discover Your New Home</h2>
-			<p class=" fs-3">A Place to Live</p>
-			<p class="text-muted fs-5">Group One is excited to present this exceptional property in the prestigious location of Los Angeles City. Designed by Lucy De Vito and built
-				in the 2020 to a very high standard, this spectacular residence has been thoughtfully designed for family living in an uncluttered and special space.</p>
-
+			<h2 class="info">Discover Your New Home</h2>
+			<p class="fs-3">A Place to Live</p>
+			<p class="text-muted fs-5">
+				Group One is excited to present this exceptional property in the prestigious location of Los Angeles
+				City. Designed by Lucy De Vito and built in the 2020 to a very high standard, this spectacular residence
+				has been thoughtfully designed for family living in an uncluttered and special space.
+			</p>
 
 			<div class="row mt-5">
 				<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -181,8 +200,6 @@
 	</div>
 </div>
 
-
-
 <div class="container-fluid search-container">
 	<div class="container">
 		<p class="text text-center py-3 fw-semibold">Featured Properties</p>
@@ -191,21 +208,19 @@
 </div>
 
 <div class="container-fluid search-container">
-
 	<div class="container py-lg-5 p-lg-0 p-4">
-		<p class="text text-center  fw-semibold">
-			Find Properties in These Cities
-		</p>
-
+		<p class="text text-center fw-semibold">Find Properties in These Cities</p>
 
 		<div class="row mt-3">
-			@if(cities[0].name){<div class="col-lg-3 col-12">
-				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city: cities[0].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[0].image"
-						 alt="">
+			@if(cities[0].name){
+			<div class="col-lg-3 col-12">
+				<div
+					class="city-card position-relative text-white text-center"
+					(click)="searchProperties({ city: cities[0].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[0].image"
+						alt="" />
 
 					<div class="overlay"></div>
 
@@ -213,15 +228,16 @@
 						<h2 class="fw-medium">{{ cities[0].name }}</h2>
 					</div>
 				</div>
-			</div>}
-
-			@if(cities[1] && cities[1].name){<div class="col-lg-3 col-12">
-				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city: cities[1].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[1].image"
-						 alt="">
+			</div>
+			} @if(cities[1] && cities[1].name){
+			<div class="col-lg-3 col-12">
+				<div
+					class="city-card position-relative text-white text-center"
+					(click)="searchProperties({ city: cities[1].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[1].image"
+						alt="" />
 
 					<div class="overlay"></div>
 
@@ -229,15 +245,16 @@
 						<h2 class="fw-medium">{{ cities[1].name }}</h2>
 					</div>
 				</div>
-			</div>}
-
-			@if(cities[2] && cities[2].name){<div class="col-lg-3 col-12">
-				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city: cities[2].name })">
-
-					<img class="w-100"
-						 [src]="localImageUrl + cities[2].image"
-						 alt="">
+			</div>
+			} @if(cities[2] && cities[2].name){
+			<div class="col-lg-3 col-12">
+				<div
+					class="city-card position-relative text-white text-center"
+					(click)="searchProperties({ city: cities[2].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[2].image"
+						alt="" />
 
 					<div class="overlay"></div>
 
@@ -245,21 +262,23 @@
 						<h2 class="fw-medium">{{ cities[2].name }}</h2>
 					</div>
 				</div>
-			</div>}
-
-			@if(cities[3] && cities[3].name){<div class="col-lg-3 col-12">
-				<div class="city-card position-relative text-white text-center"
-					 (click)="searchProperties({ city: cities[3].name })">
-					<img class="w-100"
-						 [src]="localImageUrl + cities[3].image"
-						 alt="">
+			</div>
+			} @if(cities[3] && cities[3].name){
+			<div class="col-lg-3 col-12">
+				<div
+					class="city-card position-relative text-white text-center"
+					(click)="searchProperties({ city: cities[3].name })">
+					<img
+						class="w-100"
+						[src]="localImageUrl + cities[3].image"
+						alt="" />
 					<div class="overlay"></div>
 					<div class="city-name">
 						<h2 class="fw-medium">{{ cities[3].name }}</h2>
 					</div>
 				</div>
-
-			</div>}
+			</div>
+			}
 		</div>
 	</div>
 
@@ -267,13 +286,16 @@
 		<div class="container">
 			<div class="row align-items-center justify-content-center g-0 text-center">
 				<div class="col-12 col-lg-5 buy-card position-relative overflow-hidden">
-					<a href="/neighbor-detail"
-					   target="_blank"
-					   class="text-decoration-none d-block position-relative">
-						<img src="/images/buy-home.jpg"
-							 alt="Buy Home"
-							 class="img-fluid w-100 h-100 object-fit-cover" />
-						<div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white">
+					<a
+						href="/neighbor-detail"
+						target="_blank"
+						class="text-decoration-none d-block position-relative">
+						<img
+							src="/images/buy-home.jpg"
+							alt="Buy Home"
+							class="img-fluid w-100 h-100 object-fit-cover" />
+						<div
+							class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white">
 							<div class="icon-circle bg-white shadow-sm mb-3">
 								<i class="bi bi-house-door-fill text-primary fs-2"></i>
 							</div>
@@ -291,13 +313,16 @@
 				</div>
 
 				<div class="col-12 col-lg-5 sell-card position-relative overflow-hidden">
-					<a href="/home-worth"
-					   target="_blank"
-					   class="text-decoration-none d-block position-relative">
-						<img src="/images/sell-home.jpg"
-							 alt="Sell Property"
-							 class="img-fluid w-100 h-100 object-fit-cover" />
-						<div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white">
+					<a
+						href="/home-worth"
+						target="_blank"
+						class="text-decoration-none d-block position-relative">
+						<img
+							src="/images/sell-home.jpg"
+							alt="Sell Property"
+							class="img-fluid w-100 h-100 object-fit-cover" />
+						<div
+							class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white">
 							<div class="icon-circle bg-white shadow-sm mb-3">
 								<i class="bi bi-key-fill text-warning fs-2"></i>
 							</div>
@@ -307,16 +332,12 @@
 						</div>
 					</a>
 				</div>
-
 			</div>
 		</div>
 	</section>
 
-
 	<!-- Team -->
 	<app-team-card />
-
-
 
 	<div class="container-fluid sec-3 search-container">
 		<div class="container">
@@ -327,22 +348,26 @@
 				</div>
 			</div> -->
 				<div class="col-lg-4 col-12">
-					<div class="card border-0 text-center p-4"
-						 style="background-color: transparent;">
+					<div
+						class="card border-0 text-center p-4"
+						style="background-color: transparent">
 						<!-- <img src="agent-image.jpg" alt="Agent Image" class="img-fluid mb-3" /> -->
-						<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-							 alt="No profile image"
-							 class="img-fluid  mb-3">
-						<h5 class="fw-bold mb-0">{{siteConfig.firstName}} {{siteConfig.lastName}}</h5>
+						<img
+							[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
+							alt="No profile image"
+							class="img-fluid mb-3" />
+						<h5 class="fw-bold mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
 						<p class="fw-semibold fs-6">{{ siteConfig.designation }}</p>
 						<div class="mb-2">
-							<i class="bi bi-phone"
-							   style="font-size: 1.2rem;"></i>
-							<div class="text-dark"> {{ siteConfig.websiteSettings.contactInfo.phone | phone }}</div>
+							<i
+								class="bi bi-phone"
+								style="font-size: 1.2rem"></i>
+							<div class="text-dark">{{ siteConfig.websiteSettings.contactInfo.phone | phone }}</div>
 						</div>
 						<div>
-							<i class="bi bi-envelope"
-							   style="font-size: 1.2rem;"></i>
+							<i
+								class="bi bi-envelope"
+								style="font-size: 1.2rem"></i>
 							<div class="text-dark">{{ siteConfig.websiteSettings.contactInfo.email }}</div>
 						</div>
 					</div>
@@ -357,3 +382,4 @@
 			</div>
 		</div>
 	</div>
+</div>

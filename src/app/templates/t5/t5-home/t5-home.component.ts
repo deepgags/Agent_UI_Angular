@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -18,6 +19,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 	selector: "app-t5-home",
 	standalone: true,
 	imports: [
+		CommonModule,
 		RouterModule,
 		SearchComponent,
 		FeaturedPropertiesComponent,
@@ -46,6 +48,10 @@ export class T5HomeComponent implements OnInit {
 
 	get cities(): City[] {
 		return this.sharedDataService.cities();
+	}
+
+	get heroImages(): string[] {
+		return this.sharedDataService.heroImages();
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

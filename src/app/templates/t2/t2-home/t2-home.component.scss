@@ -1,91 +1,90 @@
-#carouselExampleAutoplaying {
-  height: 70vh; 
-  overflow: hidden;
-  position: relative;
+#heroCarousel {
+	height: 70vh;
+	overflow: hidden;
 }
 
-#carouselExampleAutoplaying .carousel-item img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
+#heroCarousel .carousel-item img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
 }
-  .overlay-image {
-    position: absolute;
-    bottom:0px;
-    right: 20px;
-    width: 465px;
-  }
-   .hero-bg {
-      background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      min-height: 40vh;
-    }
-
-  .overlay-image2 {
-    position: absolute;
-    bottom:0px;
-    left: 20px;
-    width: 465px;
-  }
-
-  .man-card{
-  bottom:0px;
-  right: 70px;
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
+.overlay-image {
+	position: absolute;
+	bottom: 0px;
+	right: 20px;
+	width: 465px;
+}
+.hero-bg {
+	background: url("https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80")
+		center/cover no-repeat;
+	min-height: 40vh;
 }
 
-.man_card2{
-  bottom:0px;
-  left: 70px;
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
+.overlay-image2 {
+	position: absolute;
+	bottom: 0px;
+	left: 20px;
+	width: 465px;
+}
+
+.man-card {
+	bottom: 0px;
+	right: 70px;
+	background-color: #00000066;
+	backdrop-filter: blur(2px);
+	border: 1px solid #ffffff;
+}
+
+.man_card2 {
+	bottom: 0px;
+	left: 70px;
+	background-color: #00000066;
+	backdrop-filter: blur(2px);
+	border: 1px solid #ffffff;
 }
 
 @media (max-width: 768px) {
-  h5,a{
-    font-size: 10px;
-  }
-  .icon{
-    width: 10px;
-  }
+	h5,
+	a {
+		font-size: 10px;
+	}
+	.icon {
+		width: 10px;
+	}
 
+	.overlay-image {
+		position: absolute;
+		bottom: 0px;
+		left: 236px;
+		width: 190px;
+	}
 
-  .overlay-image {
-         position: absolute;
-        bottom: 0px;
-        left: 236px;
-        width: 190px;
-    }
-    
-.man_card2{
-  width: auto !important;
-        bottom: 0px;
-  left: 5px;
-        height: 100px;
+	.man_card2 {
+		width: auto !important;
+		bottom: 0px;
+		left: 5px;
+		height: 100px;
 
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
-}
+		background-color: #00000066;
+		backdrop-filter: blur(2px);
+		border: 1px solid #ffffff;
+	}
 
-    
-  .man-card {
-        width: auto !important;
-        bottom: 0px;
-        right: 5px;
-        height: 100px;
-        background-color: rgba(0, 0, 0, 0.4);
-        -webkit-backdrop-filter: blur(2px);
-        backdrop-filter: blur(2px);
-        border: 1px solid #FFFFFF;
-    }
-  .overlay-image2 {
-    position: absolute;
-    bottom:0px;
-    left: -42px;
-    width: 190px;
-  }
+	.man-card {
+		width: auto !important;
+		bottom: 0px;
+		right: 5px;
+		height: 100px;
+		background-color: rgba(0, 0, 0, 0.4);
+		-webkit-backdrop-filter: blur(2px);
+		backdrop-filter: blur(2px);
+		border: 1px solid #ffffff;
+	}
+	.overlay-image2 {
+		position: absolute;
+		bottom: 0px;
+		left: -42px;
+		width: 190px;
+	}
 }

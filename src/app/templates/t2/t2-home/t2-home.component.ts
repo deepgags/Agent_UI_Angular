@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -16,7 +17,14 @@ declare var bootstrap: any;
 
 @Component({
 	selector: "app-t2-home",
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, PhoneNumberFormatPipe, TeamCardComponent],
+	imports: [
+		CommonModule,
+		RouterModule,
+		SearchComponent,
+		FeaturedPropertiesComponent,
+		PhoneNumberFormatPipe,
+		TeamCardComponent,
+	],
 	templateUrl: "./t2-home.component.html",
 	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./t2-home.component.scss", "../t2.component.scss"],
@@ -42,16 +50,17 @@ export class T2HomeComponent implements OnInit, AfterViewInit {
 		return this.sharedDataService.cities();
 	}
 
+	get heroImages(): string[] {
+		return this.sharedDataService.heroImages();
+	}
+
 	ngAfterViewInit(): void {
-		const carouselEl = document.querySelector("#carouselExampleAutoplaying");
-		if (carouselEl) {
-			new bootstrap.Carousel(carouselEl, {
-				interval: 2500,
-				ride: "carousel",
-				pause: false,
-				wrap: true,
-			});
-		}
+		setTimeout(() => {
+			const carouselEl = document.querySelector("#heroCarousel");
+			if (carouselEl) {
+				new bootstrap.Carousel(carouselEl);
+			}
+		}, 200);
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

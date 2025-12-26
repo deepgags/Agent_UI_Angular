@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -25,6 +26,7 @@ declare var bootstrap: any;
 	selector: "app-t10-home",
 	standalone: true,
 	imports: [
+		CommonModule,
 		RouterModule,
 		SearchComponent,
 		FeaturedPropertiesComponent,
@@ -55,6 +57,14 @@ export class T10HomeComponent implements OnInit, AfterViewInit {
 
 	get cities(): City[] {
 		return this.sharedDataService.cities();
+	}
+
+	get heroImages(): string[] {
+		return this.sharedDataService.heroImages();
+	}
+
+	trackByIndex(index: number): number {
+		return index;
 	}
 	ngAfterViewInit(): void {
 		const carouselEl = document.querySelector("#carouselExampleAutoplaying");

@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -16,7 +17,14 @@ import { SearchComponent } from "../../shared/search/search.component";
 @Component({
 	selector: "app-t12-home",
 	standalone: true,
-	imports: [RouterModule, SearchComponent, FeaturedPropertiesComponent, HeroContactFormComponent, TeamCardComponent],
+	imports: [
+		CommonModule,
+		RouterModule,
+		SearchComponent,
+		FeaturedPropertiesComponent,
+		HeroContactFormComponent,
+		TeamCardComponent,
+	],
 	templateUrl: "./t12-home.component.html",
 	styleUrls: ["./t12-home.component.scss", "../t12.component.scss"],
 	providers: [Title, StorageService],
@@ -39,6 +47,10 @@ export class T12HomeComponent implements OnInit {
 
 	get cities(): City[] {
 		return this.sharedDataService.cities();
+	}
+
+	get heroImages(): string[] {
+		return this.sharedDataService.heroImages();
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
