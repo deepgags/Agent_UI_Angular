@@ -7,7 +7,7 @@
 }
 .dropdown:hover .dropdown-menu {
 	display: block;
-	margin-top: 0; /* optional: remove any jump */
+	margin-top: 0; 
 }
 .dropdown-menu {
 	margin-top: 0;
@@ -18,13 +18,11 @@ a {
 	font-size: 14px;
 }
 
-
 .agent-block {
   line-height: 1.2;
 }
 .container-fluid{
-    background:rgb(235 235 235 / 65%);
-
+    background:rgb(235 235 235 / 0%);
 }
 .brokerage-wrap img {
   filter: grayscale(10%);
@@ -34,8 +32,6 @@ a {
 .brokerage-wrap img:hover {
   transform: scale(1.05);
 }
-
-
 
 .contact-chip {
   display: flex;
@@ -73,4 +69,21 @@ a {
 
 .btn:hover .orig {
   opacity: 0.8;
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1050;
+}
+
+.pt-header {
+  padding-top: 127px;
+}
+
+.contact-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }

@@ -19,7 +19,7 @@ a {
 }
 .glass-header {
   background:rgb(235 235 235 / 65%);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.3s ease;

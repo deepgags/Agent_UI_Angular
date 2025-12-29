@@ -24,7 +24,8 @@ a {
 .monogram-header {
   position: sticky;
   top: 0;
-  background: #fff;
+    backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   z-index: 999;
   transition: box-shadow 0.35s ease;
 }
@@ -75,7 +76,7 @@ a {
 
 .meta-item {
   text-decoration: none;
-  color: #222;
+  color: #ffffff;
   display: inline-flex;
   align-items: center;
   gap: 6px;

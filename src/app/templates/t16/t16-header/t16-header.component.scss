@@ -22,7 +22,8 @@ a {
 	color: black !important;
 }
 .stripe-header {
-  background: #fff;
+   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid #ececec;
   position: sticky;
   top: 0;
@@ -53,7 +54,7 @@ a {
 .agent-subtitle {
   font-size: 14px;
   letter-spacing: 1px;
-  color: #777;
+  color: #ffffff;
   text-transform: uppercase;
 }
 
@@ -62,7 +63,7 @@ a {
   margin-top: 14px;
   font-size: 13px;
   font-weight: 600;
-  color: #111;
+  color: #ffffff;
   text-decoration: none;
   position: relative;
 }
@@ -94,7 +95,7 @@ a {
   gap: 10px;
   font-size: 16px;
   font-weight: 600;
-  color: #111;
+  color: #ffffff;
   text-decoration: none;
 }
 span{

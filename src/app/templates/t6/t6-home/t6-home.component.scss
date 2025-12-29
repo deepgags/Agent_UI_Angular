@@ -3,16 +3,17 @@
   }
   
   .top-padding1{
-    padding-top: 100px;
+    padding-top: 300px;
 }
-  .background-container {
-    position: relative;
-    width: 100%;
-    height: 70vh;
-    background-image: url('/t6/images/banner.jpg');
-    background-size: cover;
-    background-position: center;
-  }
+    .background-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin-top: -182px;
+  backdrop-filter: blur(4px);
+  background-size: cover;
+  background-position: center;
+}
   .sec-3{
     background-color: #e0fdff;
   }
