@@ -29,7 +29,7 @@ export interface CustomerModel {
 		commonSellingMistakeText?: string;
 		buyerText?: string;
 		showHomeWorthPage?: boolean;
-		showSellingInNeighbourHooddPage?: boolean;
+		showSellingInNeighborHoodPage?: boolean;
 		showFindDreamHomePage?: boolean;
 		menuItems?: MenuItem[];
 		templateId: string;

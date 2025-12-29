@@ -34,7 +34,7 @@ export interface SiteConfig {
 		brokerageImage: string;
 		showFindDreamHomePage: boolean;
 		showHomeWorthPage: boolean;
-		showSellingInNeighbourHooddPage: boolean;
+		showSellingInNeighborHoodPage: boolean;
 	};
 
 	brokerageTypeId: string;
