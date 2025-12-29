@@ -1,6 +1,7 @@
 import { Injectable, signal } from "@angular/core";
 import { City } from "../models/City";
 import { CustomerModel } from "../models/CustomerModel";
+import { HomeMetaModel } from "../models/HomeMeta";
 import { MenuItem } from "../models/MenuItem";
 import { SiteConfig } from "../models/SiteConfig";
 import { TeamMemberModel } from "../models/TeamMemberModel";
@@ -18,6 +19,7 @@ export class SharedDataService {
 	private _team = signal<TeamMemberModel[]>([]);
 	private _cities = signal<City[]>([]);
 	private _heroImages = signal<string[]>([]);
+	private _homeMeta = signal<HomeMetaModel>({ metaTitle: "", metaDescription: "" });
 
 	constructor() {
 		const _userToken = localStorage.getItem("USER_TOKEN");
@@ -58,6 +60,10 @@ export class SharedDataService {
 		this._heroImages.set(_heroImages);
 	}
 
+	setHomeMeta(_homeMeta: HomeMetaModel) {
+		this._homeMeta.set(_homeMeta);
+	}
+
 	get siteId() {
 		return this._siteId;
 	}
@@ -88,6 +94,10 @@ export class SharedDataService {
 
 	get heroImages() {
 		return this._heroImages;
+	}
+
+	get homeMeta() {
+		return this._homeMeta;
 	}
 
 	setUserToken(_userToken: string) {

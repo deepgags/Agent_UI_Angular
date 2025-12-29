@@ -1,12 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
+import { Meta, Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 import { environment } from "../../../environments/environment.development";
 import { City } from "../../../models/City";
 import { CustomerModel } from "../../../models/CustomerModel";
+import { HomeMetaModel } from "../../../models/HomeMeta";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
@@ -39,12 +40,20 @@ export class T14HomeComponent implements OnInit {
 
 	constructor(
 		private titleService: Title,
+		private metaService: Meta,
 		private sharedDataService: SharedDataService,
 		private searchService: SearchService
 	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
+		const homeMeta: HomeMetaModel = this.sharedDataService.homeMeta();
+		this.titleService.setTitle(homeMeta.metaTitle);
+
+		if (homeMeta.metaDescription) {
+			this.metaService.updateTag({ name: "description", content: homeMeta.metaDescription });
+		}
+
 		this.siteConfig = this.sharedDataService.siteData();
 	}
 

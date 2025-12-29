@@ -300,7 +300,6 @@ export class PageManagerComponent implements OnInit {
 	}
 
 	deleteHeroImage(imageIndex: number) {
-		debugger;
 		if (!this.editingPage) return;
 
 		this.confirmationService.confirm({

@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { Title } from "@angular/platform-browser";
+import { AfterViewInit, Component, inject, OnInit, ViewEncapsulation } from "@angular/core";
+import { Meta, Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { TeamCardComponent } from "../../../components/team-card/team-card.component";
 import { environment } from "../../../environments/environment.development";
 import { City } from "../../../models/City";
 import { CustomerModel } from "../../../models/CustomerModel";
+import { HomeMetaModel } from "../../../models/HomeMeta";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
@@ -34,16 +35,20 @@ export class T1HomeComponent implements OnInit, AfterViewInit {
 	siteConfig: SiteConfig = {} as SiteConfig;
 	siteConfigSubscription: any;
 	localImageUrl = environment.localImageUrl;
+	private titleService = inject(Title);
+	private metaService = inject(Meta);
 
-	constructor(
-		private titleService: Title,
-		private sharedDataService: SharedDataService,
-		private searchService: SearchService
-	) {}
+	constructor(private sharedDataService: SharedDataService, private searchService: SearchService) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
 		this.siteConfig = this.sharedDataService.siteData();
+		const homeMeta: HomeMetaModel = this.sharedDataService.homeMeta();
+		this.titleService.setTitle(homeMeta.metaTitle);
+
+		if (homeMeta.metaDescription) {
+			this.metaService.updateTag({ name: "description", content: homeMeta.metaDescription });
+		}
 	}
 
 	get cities(): City[] {

@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
+import { Component, inject, OnInit } from "@angular/core";
+import { Meta, Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { TeamCardComponent } from "../../../components/team-card/team-card.component";
@@ -14,6 +14,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+import { HomeMetaModel } from "../../../models/HomeMeta";
 
 @Component({
 	selector: "app-t6-home",
@@ -35,16 +36,19 @@ export class T6HomeComponent implements OnInit {
 	customer!: CustomerModel | null;
 	siteConfig: SiteConfig = {} as SiteConfig;
 	localImageUrl = environment.localImageUrl;
-
-	constructor(
-		private titleService: Title,
-		private sharedDataService: SharedDataService,
-		private searchService: SearchService
-	) {}
+	private titleService = inject(Title);
+	private metaService = inject(Meta);
+	constructor(private sharedDataService: SharedDataService, private searchService: SearchService) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");
 		this.siteConfig = this.sharedDataService.siteData();
+		const homeMeta: HomeMetaModel = this.sharedDataService.homeMeta();
+		this.titleService.setTitle(homeMeta.metaTitle);
+
+		if (homeMeta.metaDescription) {
+			this.metaService.updateTag({ name: "description", content: homeMeta.metaDescription });
+		}
 	}
 
 	get cities(): City[] {
