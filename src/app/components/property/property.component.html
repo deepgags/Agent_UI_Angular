@@ -3,7 +3,7 @@
 	<div class="text-decoration-none property-wrapper"
 		 (click)="onPropertyClick(property)">
 		<div class="card h-100 property-card border border-light-subtle blurred-backdrop">
-			<div class="image-container">
+			<div class="image-container" style="width: 100%;">
 				@if(property && property.Media && property.Media.length>0){
 				<img [src]="propertyImageUrl + property.Media[0].Media_url"
 					 alt="No property image to display"
@@ -108,7 +108,7 @@
 							[(activeIndex)]="activeIndex">
 					<ng-template let-media
 								 #item>
-						<div>
+						<div style="width: 100%;">
 							<img [src]="propertyImageUrl + media.Media_url"
 								 alt="No property image to display"
 								 onerror="this.src = '/images/commercial_no_Image.jpg'"

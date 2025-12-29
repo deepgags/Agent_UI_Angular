@@ -25,20 +25,22 @@ a {
 .editorial-header {
   position: sticky;
   top: 0;
-  background: #fff;
+  backdrop-filter: blur(4px);
+  //background: #fff;
   z-index: 999;
   transition: padding 0.3s ease, box-shadow 0.3s ease;
 }
 
 .agent-name {
-  letter-spacing: 0.4px;
+  letter-spacing: 0.6px;
 }
 
 .agent-role {
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0.6px;
   text-transform: uppercase;
   opacity: 0.7;
+  color: #fff;
 }
 
 .scroll-underline {
@@ -57,7 +59,7 @@ a {
 .contact-pill {
   font-size: 16px;
   text-decoration: none;
-  color: #222;
+  color: #fff;
   display: inline-flex;
   align-items: center;
   gap: 8px;
