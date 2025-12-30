@@ -1,24 +1,44 @@
 $info:#06A788;
 
-.top-padding{
-    padding-top: 111px;
+.top-padding1{
+    padding-top: 300px;
 }
 
-  .background-container {
-    position: relative;
-    width: 100%;
-    height: 70vh;
-    background-image: url('/t15/images/Banner.png');
-    background-size: cover;
-    background-position: center;
-  }
+.head{
+  font-size: 86px !important;
+  text-align: center;
+  line-height: 0.95;
+}
+
+ .background-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin-top: -182px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.background-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); 
+  z-index: 1;
+}
+
+.background-container > * {
+  position: relative;
+  z-index: 2;
+}
+
   .overlay-image {
     position: absolute;
     bottom: 0px;
     right: 20px;
-   width: 465px;
+    width: 465px;
   }
-
 .image-container {
   position: relative;
   cursor: pointer;
@@ -33,7 +53,7 @@ $info:#06A788;
 
 .image-text {
   position: absolute;
-  bottom: 10px;
+  top: 10px;
   left: 10px;
   background: rgba(0, 0, 0, 0.5);
   color: white;
@@ -47,7 +67,6 @@ $info:#06A788;
     right: 310px;
     top: 1724px;
 }
-
  .btn_outline{
     border: $info 1px solid !important;
     background-color: white;
@@ -67,38 +86,17 @@ $info:#06A788;
     font-weight: 600;
   }
 
-
-@media (max-width: 768px) {
-  .prop-img  {
-    width: 100%;
-  } 
-  .profile-img {
-    position: static !important;
-    top: auto !important;
-  }
-
+  @media (max-width: 768px) {
+.top-padding{
+    padding-top: 0px;
 }
-
-.profile-img {
-  bottom: 0px;
+}
+.pro-3{
   position: absolute;
-  max-height: 400px;
+     right: 427px;
+    top: 1681px;
 }
- .overlay-image {
-    position: absolute;
-    bottom:0px;
-    right: 20px;
-   width: 465px;
-  }
-
-  .overlay-image2 {
-    position: absolute;
-    bottom:0px;
-    left: 20px;
-   width: 465px;
-  }
-
-  .man-card{
+.man-card{
   bottom:0px;
   right: 70px;
   background-color: #00000066;
@@ -106,81 +104,63 @@ $info:#06A788;
   border: 1px solid #FFFFFF;
 }
 
-.man_card2{
-    bottom: 7px;
-    left: 109px;
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
-}
 
-@media (max-width: 768px) {
-  h5,a{
-    font-size: 10px;
-  }
-  .icon{
-    width: 10px;
-  }
- .background-container {
-    position: relative;
-    width: 100%;
-    height: 60vh;
-    background-image: url('/t15/images/Banner.png');
-    background-size: cover;
-    background-position: center;
-  }
 
-  .overlay-image {
-         position: absolute;
-        bottom: 0px;
-        left: 236px;
-        width: 190px;
+  .hero-bg {
+      background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      min-height: 60vh;
     }
     
-.man_card2{
-  width: auto !important;
-        bottom: 0px;
-  left: 5px;
-        height: 100px;
-
-  background-color: #00000066;
-  backdrop-filter: blur(2px);
-  border: 1px solid #FFFFFF;
+    .city-card {
+  position: relative;
+  height: 260px;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-    
-  .man-card {
-        width: auto !important;
-        bottom: 0px;
-        right: 5px;
-        height: 100px;
-        background-color: rgba(0, 0, 0, 0.4);
-        -webkit-backdrop-filter: blur(2px);
-        backdrop-filter: blur(2px);
-        border: 1px solid #FFFFFF;
-    }
-  .overlay-image2 {
-    position: absolute;
-    bottom:0px;
-    left: -42px;
-    width: 190px;
-  }
+.city-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-  .card-simple {
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(6px);
-        transition: transform 0.2s ease-in-out;
-    }
-    .card-simple:hover {
-        transform: translateY(-5px);
-        border-color: rgba(255, 255, 255, 0.3);
-    }
-    .card-icon {
-        font-size: 2rem;
-        color: #00ffc3;
-    }
+.city-card:hover img {
+  transform: scale(1.08);
+}
 
-    
+/* Overlay */
+.city-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.15)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  color: #fff;
+}
+
+.search-label {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  opacity: 0.85;
+}
+
+.city-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 4px 0 8px;
+}
+
+.city-card button {
+  width: fit-content;
+  font-size: 13px;
+  padding: 6px 14px;
+}
