@@ -50,6 +50,9 @@ export class T7HomeComponent implements OnInit {
 		if (homeMeta.metaDescription) {
 			this.metaService.updateTag({ name: "description", content: homeMeta.metaDescription });
 		}
+		if (homeMeta.keywords) {
+			this.metaService.updateTag({ name: "keywords", content: homeMeta.keywords });
+		}
 	}
 
 	get cities(): City[] {

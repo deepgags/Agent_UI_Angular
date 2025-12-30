@@ -45,9 +45,11 @@ export class T1HomeComponent implements OnInit, AfterViewInit {
 		this.siteConfig = this.sharedDataService.siteData();
 		const homeMeta: HomeMetaModel = this.sharedDataService.homeMeta();
 		this.titleService.setTitle(homeMeta.metaTitle);
-
 		if (homeMeta.metaDescription) {
 			this.metaService.updateTag({ name: "description", content: homeMeta.metaDescription });
+		}
+		if (homeMeta.keywords) {
+			this.metaService.updateTag({ name: "keywords", content: homeMeta.keywords });
 		}
 	}
 

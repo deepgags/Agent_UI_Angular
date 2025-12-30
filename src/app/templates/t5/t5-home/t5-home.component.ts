@@ -7,6 +7,7 @@ import { TeamCardComponent } from "../../../components/team-card/team-card.compo
 import { environment } from "../../../environments/environment.development";
 import { City } from "../../../models/City";
 import { CustomerModel } from "../../../models/CustomerModel";
+import { HomeMetaModel } from "../../../models/HomeMeta";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
@@ -14,7 +15,6 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
-import { HomeMetaModel } from "../../../models/HomeMeta";
 
 @Component({
 	selector: "app-t5-home",
@@ -49,6 +49,9 @@ export class T5HomeComponent implements OnInit {
 
 		if (homeMeta.metaDescription) {
 			this.metaService.updateTag({ name: "description", content: homeMeta.metaDescription });
+		}
+		if (homeMeta.keywords) {
+			this.metaService.updateTag({ name: "keywords", content: homeMeta.keywords });
 		}
 	}
 

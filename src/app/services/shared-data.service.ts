@@ -19,7 +19,7 @@ export class SharedDataService {
 	private _team = signal<TeamMemberModel[]>([]);
 	private _cities = signal<City[]>([]);
 	private _heroImages = signal<string[]>([]);
-	private _homeMeta = signal<HomeMetaModel>({ metaTitle: "", metaDescription: "" });
+	private _homeMeta = signal<HomeMetaModel>({ metaTitle: "", metaDescription: "", keywords: "" });
 
 	constructor() {
 		const _userToken = localStorage.getItem("USER_TOKEN");

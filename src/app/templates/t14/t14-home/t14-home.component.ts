@@ -53,6 +53,9 @@ export class T14HomeComponent implements OnInit {
 		if (homeMeta.metaDescription) {
 			this.metaService.updateTag({ name: "description", content: homeMeta.metaDescription });
 		}
+		if (homeMeta.keywords) {
+			this.metaService.updateTag({ name: "keywords", content: homeMeta.keywords });
+		}
 
 		this.siteConfig = this.sharedDataService.siteData();
 	}
