@@ -3,7 +3,7 @@
   }
   
   .top-padding1{
-    padding-top: 300px;
+    padding-top: 340px;
 }
     .background-container {
   position: relative;
@@ -14,6 +14,20 @@
   background-size: cover;
   background-position: center;
 }
+.background-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); 
+  z-index: 1;
+}
+
+.background-container > * {
+  position: relative;
+  z-index: 2;
+}
+
+
   .sec-3{
     background-color: #e0fdff;
   }
