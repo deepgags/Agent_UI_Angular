@@ -52,7 +52,7 @@ a {
 
 @media (max-width: 768px) {
 	h5,
-	a {
+	a,p,i {
 		font-size: 10px;
 	}
 	.icon {
@@ -63,15 +63,20 @@ a {
 		position: absolute;
 		bottom: 0px;
 		left: 236px;
-		width: 190px;
+		width: 210px;
 	}
+
+	#heroCarousel {
+	height: 30vh;
+	overflow: hidden;
+	/* position: relative; */
+}
 
 	.man_card2 {
 		width: auto !important;
 		bottom: 0px;
 		left: 5px;
 		height: 100px;
-
 		background-color: #00000066;
 		backdrop-filter: blur(2px);
 		border: 1px solid #ffffff;
@@ -91,6 +96,6 @@ a {
 		position: absolute;
 		bottom: 0px;
 		left: -42px;
-		width: 190px;
+		width: 210px;
 	}
 }

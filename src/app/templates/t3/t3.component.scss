@@ -242,9 +242,6 @@ footer {
 	.info {
 		color: var(--primary-color) !important;
 	}
-	p {
-		font-size: 13px;
-	}
 
 	.bg-client {
 		background-color: rgb(255 136 148);
@@ -287,7 +284,11 @@ footer {
 			top: 10px;
 			left: 320px;
 		}
+			p {
+	font-size: 10px;
+}
 	}
+
 	span {
 		font-size: 13px;
 	}
@@ -351,9 +352,7 @@ footer {
 	//   width: 100%;
 	// }
 
-	p {
-		font-size: 12px;
-	}
+	
 
 	.worth {
 		font-size: 30px;

@@ -27,7 +27,7 @@
 </p-dialog>
 
 <div class="row justify-content-center search-container align-items-center gap-2">
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
 		<!-- <input type="text"
 			   [(ngModel)]="filters.address"
 			   class="search-bar"
@@ -61,9 +61,7 @@
 
 	</div>
 
-
-
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
 		<p-select [options]="propertyTypesDropDown"
 				  [(ngModel)]="filters.property_type"
 				  optionLabel="LookupValue"
@@ -73,7 +71,7 @@
 				  (onChange)="filterPropertySubType()" />
 	</div>
 
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
 		<p-select [options]="propertySubTypesDropDown"
 				  [(ngModel)]="filters.property_subtype"
 				  optionLabel="LookupValue"
@@ -82,7 +80,7 @@
 				  appendTo="body" />
 	</div>
 
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
 		<p-select [options]="bedTypesDropDown"
 				  [(ngModel)]="filters.bedrooms"
 				  optionLabel="label"
@@ -91,7 +89,7 @@
 				  appendTo="body" />
 	</div>
 
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
 		<p-select [options]="bathTypesDropDown"
 				  [(ngModel)]="filters.bathrooms"
 				  optionLabel="label"
@@ -100,7 +98,7 @@
 				  appendTo="body" />
 	</div>
 
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
 		<p-select [options]="statusTypesDropDown"
 				  [(ngModel)]="filters.property_status"
 				  optionLabel="label"
@@ -109,12 +107,12 @@
 				  appendTo="body" />
 	</div>
 
-	<!-- <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<!-- <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
 		<span (click)="openFilterDialog()">
 			<i class="fa-solid fa-filter info fs-6 cursor"></i>
 		</span>
 	</div> -->
-		<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+		<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
 		<p-select [options]="sqFtTypesDropDown"
 				  [(ngModel)]="filters.sqFt"
 				  optionLabel="label"
@@ -124,7 +122,7 @@
 				  class="" />
 	</div>
 
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
 		<p-inputnumber [(ngModel)]="filters.min_price"
 					   mode="decimal"
 					   [minFractionDigits]="0"
@@ -134,7 +132,7 @@
 					   class="wid" />
 	</div>
 	
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
 		<p-inputnumber [(ngModel)]="filters.max_price"
 					   mode="decimal"
 					   [minFractionDigits]="0"
@@ -144,7 +142,7 @@
 					   class="wid" />
 	</div>
 
-	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex align-items-center gap-2">
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex align-items-center gap-2 justify-content-center">
 		<button type="button"
 				class="btn btn-secondary btn-sm rounded-3"
 				(click)="resetFilters()">Reset</button>
