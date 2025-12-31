@@ -13,6 +13,19 @@ $info:#95c41f;
   background-size: cover;
   background-position: center;
 }
+
+.background-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); 
+  z-index: 1;
+}
+
+.background-container > * {
+  position: relative;
+  z-index: 2;
+}
   .overlay-image {
     position: absolute;
     bottom: 0px;
@@ -28,7 +41,6 @@ $info:#95c41f;
     backdrop-filter: blur(2px);
     background-color: #FFFFFF33;
     border: 1px solid #b9b9b9;
-    border-radius: 10px;
 }
 
 @media (max-width: 768px) {

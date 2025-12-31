@@ -25,7 +25,7 @@ a,span{
 
 .editorial-header {
   background: #ffffff;
-    background:rgb(235 235 235 / 65%);
+    background:rgba(108, 108, 108, 0.65);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid #e6e6e6;
@@ -52,7 +52,7 @@ a,span{
 
 .agent-role {
   font-size: 14px;
-  color: #666;
+  color: #f2f2f2;
   font-weight: 500;
 }
 
@@ -70,7 +70,7 @@ a,span{
   gap: 8px;
   font-size: 16px;
   font-weight: 600;
-  color: #111;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -81,7 +81,7 @@ a,span{
   border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
-  color: #111;
+  color: #ffffff;
   transition: all 0.25s ease;
 }
 
