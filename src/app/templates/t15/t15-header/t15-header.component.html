@@ -13,10 +13,10 @@
             <h2 class="monogram-name info mb-0">
               {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
             </h2>
-            <p class="monogram-role mb-1 text-white">
+            <p class="monogram-role mb-1 ">
               {{ siteConfig.designation }}
             </p>
-            <p class="trust-line text-white">
+            <p class="trust-line ">
               Residential · Luxury · Advisory
             </p>
           </div>
@@ -29,14 +29,14 @@
         <a
           class="meta-item"
           [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-          <i class="fa-solid fa-phone info"></i>
+         <i class="bi bi-telephone-fill info"></i>
           {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
         </a>
 
         <a
           class="meta-item"
           [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-          <i class="fa-solid fa-envelope info"></i>
+           <i class="bi bi-envelope-at-fill info"></i>
           {{ siteConfig?.websiteSettings?.contactInfo?.email }}
         </a>
 

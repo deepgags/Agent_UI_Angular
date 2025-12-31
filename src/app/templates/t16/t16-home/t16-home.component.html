@@ -23,7 +23,7 @@
 @if( siteConfig.websiteSettings.showHomeWorthPage || siteConfig.websiteSettings.showSellingInNeighborHoodPage ||
 siteConfig.websiteSettings.showFindDreamHomePage ){
 <section class="py-5 position-relative hero-bg">
-	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+	<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
 	<div class="container">
 		<div class="row justify-content-center g-4">
 			@if(siteConfig.websiteSettings.showHomeWorthPage){
@@ -95,9 +95,9 @@ siteConfig.websiteSettings.showFindDreamHomePage ){
 	</div>
 </div>
 
-<div class="container-fluid p-5 search-container">
+<div class="container-fluid  search-container">
 	<div class="container">
-		<div class="row justify-content-center align-items-center">
+		<div class="row border rounded p-3 pb-0 bg-body-secondary justify-content-center align-items-center">
 			<div class="col-lg-6 col-12">
 				<p class="fs-2 mb-0 fw-semibold">Hi, I’m {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
 				<p class="fs-4 info">{{ siteConfig.designation }}</p>

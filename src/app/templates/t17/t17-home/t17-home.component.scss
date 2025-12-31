@@ -1,8 +1,5 @@
 $info:#06A788;
 
-.top-padding{
-    padding-top: 300px;
-}
    .background-container {
   position: relative;
   width: 100%;
@@ -13,9 +10,21 @@ $info:#06A788;
   background-position: center;
 }
 
+.background-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); 
+  z-index: 1;
+}
+
+.background-container > * {
+  position: relative;
+  z-index: 2;
+}
 
     .top-padding1{
-    padding-top: 100px;
+    padding-top: 300px;
 }
   .image-container {
     position: relative;

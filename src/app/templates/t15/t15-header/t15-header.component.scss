@@ -23,8 +23,9 @@ a {
 }
 .monogram-header {
   position: sticky;
+  background-color: #00000094;
   top: 0;
-    backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   z-index: 999;
   transition: box-shadow 0.35s ease;
@@ -43,8 +44,9 @@ a {
 .monogram {
   width: 48px;
   height: 48px;
-  border: 1px solid #000;
+  border: 1px solid #ffffff;
   display: flex;
+  color: #ffffff;
   align-items: center;
   justify-content: center;
   font-family: "Playfair Display", serif;
@@ -60,6 +62,7 @@ a {
 .monogram-role {
   font-size: 13px;
   letter-spacing: 0.6px;
+  color: #ffffff;
   text-transform: uppercase;
   opacity: 0.65;
 }
@@ -67,6 +70,8 @@ a {
 .trust-line {
   font-size: 12px;
   opacity: 0.6;
+  color: #ffffff;
+
 }
 
 .monogram-meta {
@@ -104,7 +109,7 @@ a {
   letter-spacing: 1.4px;
   text-transform: uppercase;
   text-decoration: none;
-  color: #000;
+  color: #ffffff;
   position: relative;
 }
 
@@ -115,7 +120,7 @@ a {
   bottom: -5px;
   width: 100%;
   height: 1px;
-  background: #000;
+  background: #ffffff;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.35s ease;
@@ -125,7 +130,6 @@ a {
   transform: scaleX(1);
 }
 
-/* ---------- LOGO ---------- */
 .monogram-logo img {
   opacity: 0.85;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -136,7 +140,6 @@ a {
   opacity: 1;
 }
 
-/* ---------- MOBILE ---------- */
 @media (max-width: 991px) {
   .monogram-block {
     justify-content: center;

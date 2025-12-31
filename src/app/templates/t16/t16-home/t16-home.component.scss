@@ -4,7 +4,7 @@ $info:#06A788;
     padding-top: 300px;
 }
 
-    .background-container {
+ .background-container {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -13,6 +13,21 @@ $info:#06A788;
   background-size: cover;
   background-position: center;
 }
+
+.background-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); 
+  z-index: 1;
+}
+
+.background-container > * {
+  position: relative;
+  z-index: 2;
+}
+
+
   .overlay-image {
     position: absolute;
     bottom: 0px;
