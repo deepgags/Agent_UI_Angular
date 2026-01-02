@@ -1,5 +1,5 @@
 import { CommonModule, Location } from "@angular/common";
-import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
+import { AfterViewInit, Component, inject, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from "@angular/google-maps";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -20,6 +20,7 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
+import { CaptchaComponent } from "../../components/captcha/captcha.component";
 import { PropertyComponent } from "../../components/property/property.component";
 import { environment } from "../../environments/environment.development";
 import { InterestedUserModel } from "../../models/InterestedUserModel";
@@ -27,6 +28,7 @@ import { PropertyModel } from "../../models/PropertyModel";
 import { SiteConfig } from "../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../pipes/phone-format";
 import { TimeAgo } from "../../pipes/time-ago";
+import { CaptchaService } from "../../services/captcha.service";
 import { NotificationService } from "../../services/notification.service";
 import { PropertyService } from "../../services/property.service";
 import { PublicService } from "../../services/public.service";
@@ -58,6 +60,7 @@ declare var google: any;
 		PropertyComponent,
 		TabsModule,
 		ProgressSpinnerModule,
+		CaptchaComponent,
 	],
 	providers: [provideAnimations(), NgbCarouselConfig, DialogService],
 	encapsulation: ViewEncapsulation.None,
@@ -82,6 +85,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
 	@ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 	@ViewChild("map", { static: false }) map!: GoogleMap;
+	@ViewChild(CaptchaComponent) captchaComponent!: CaptchaComponent;
 	zoom = 14;
 	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Canada
 
@@ -147,16 +151,17 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	propertyShareUrlBase = window.location.origin;
 	propertyShareUrl = "";
 
-	constructor(
-		private propertyService: PropertyService,
-		private titleService: Title,
-		private location: Location,
-		private router: Router,
-		private sharedDataService: SharedDataService,
-		private dialogConfig: DynamicDialogConfig,
-		private notificationService: NotificationService,
-		private publicService: PublicService
-	) {
+	private propertyService = inject(PropertyService);
+	private titleService = inject(Title);
+	private location = inject(Location);
+	private router = inject(Router);
+	private sharedDataService = inject(SharedDataService);
+	private dialogConfig = inject(DynamicDialogConfig);
+	private notificationService = inject(NotificationService);
+	private publicService = inject(PublicService);
+	private captchaService = inject(CaptchaService);
+
+	constructor() {
 		this.titleService.setTitle("Property Detail");
 
 		const { mlsId, propertyId } = this.dialogConfig.data;
@@ -387,6 +392,11 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			return;
 		}
 
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
+			return;
+		}
+
 		const params = {
 			...this.requestShowingForm.value,
 			leadSource: "requestShowing",
@@ -400,6 +410,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.requestShowingForm.patchValue({
 					message: this.requestShowingText,
 				});
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -411,6 +422,44 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		if (this.propertyHistoryForm.invalid) {
 			this.propertyHistoryForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
+			return;
+		}
+
+		const params = {
+			...this.requestShowingForm.value,
+			leadSource: "requestShowing",
+			siteId: this.siteConfig?.id,
+			mlsId: this.mlsId,
+		};
+		this.publicService.submitContactForm(params).subscribe({
+			next: () => {
+				this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.requestShowingForm.reset();
+				this.requestShowingForm.patchValue({
+					message: this.requestShowingText,
+				});
+				this.captchaService.reset();
+			},
+			error: () => {
+				this.notificationService.showError("Failed to send message. Please try again later.");
+			},
+		});
+	}
+
+	submitRecentSalesInAreaForm() {
+		if (this.recentSaleInAreaForm.invalid) {
+			this.recentSaleInAreaForm.markAllAsTouched();
+			this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
 
@@ -427,6 +476,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.propertyHistoryForm.patchValue({
 					message: this.propertyHistooryText,
 				});
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -434,10 +484,15 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		});
 	}
 
-	submitRecentSalesInAreaForm() {
-		if (this.recentSaleInAreaForm.invalid) {
-			this.recentSaleInAreaForm.markAllAsTouched();
+	submitHaveQuestionForm() {
+		if (this.haveQuestionForm.invalid) {
+			this.haveQuestionForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
 
@@ -454,6 +509,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.recentSaleInAreaForm.patchValue({
 					message: this.recentSalesinAreaText,
 				});
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -461,10 +517,15 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		});
 	}
 
-	submitHaveQuestionForm() {
-		if (this.haveQuestionForm.invalid) {
-			this.haveQuestionForm.markAllAsTouched();
+	submitContactForm() {
+		if (this.contactForm.invalid) {
+			this.contactForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
 
@@ -481,33 +542,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.haveQuestionForm.patchValue({
 					message: this.haveAQuestionText,
 				});
-			},
-			error: () => {
-				this.notificationService.showError("Failed to send message. Please try again later.");
-			},
-		});
-	}
-
-	submitContactForm() {
-		if (this.contactForm.invalid) {
-			this.contactForm.markAllAsTouched();
-			this.notificationService.showError("Please fill all required fields correctly.");
-			return;
-		}
-
-		const params = {
-			...this.contactForm.value,
-			leadSource: "contactForm",
-			siteId: this.siteConfig?.id,
-			mlsId: this.mlsId,
-		};
-		this.publicService.submitContactForm(params).subscribe({
-			next: () => {
-				this.notificationService.showSuccess("Your message has been sent successfully.");
-				this.contactForm.reset();
-				this.contactForm.patchValue({
-					message: this.askAboutThisHomecommentText,
-				});
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");

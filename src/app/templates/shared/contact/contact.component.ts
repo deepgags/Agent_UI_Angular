@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DomSanitizer, Meta, Title } from "@angular/platform-browser";
 import { Router, RouterModule } from "@angular/router";
@@ -9,14 +9,16 @@ import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectModule } from "primeng/select";
+import { CaptchaComponent } from "../../../components/captcha/captcha.component";
+import { environment } from "../../../environments/environment.development";
 import { Page } from "../../../models/Page";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
+import { CaptchaService } from "../../../services/captcha.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PageService } from "../../../services/page.service";
 import { PublicService } from "../../../services/public.service";
 import { SharedDataService } from "../../../services/shared-data.service";
-import { environment } from "../../../environments/environment.development";
 
 @Component({
 	selector: "app-contact",
@@ -32,6 +34,7 @@ import { environment } from "../../../environments/environment.development";
 		InputTextModule,
 		SelectModule,
 		MultiSelectModule,
+		CaptchaComponent,
 	],
 	templateUrl: "./contact.component.html",
 	styleUrl: "./contact.component.scss",
@@ -42,6 +45,8 @@ export class ContactComponent {
 	siteConfig: SiteConfig = {} as SiteConfig;
 	localImageUrl = environment.localImageUrl;
 	page = signal<Page | null>(null);
+
+	@ViewChild(CaptchaComponent) captchaComponent!: CaptchaComponent;
 
 	userTypes = [
 		{
@@ -70,6 +75,7 @@ export class ContactComponent {
 	private sharedDataService = inject(SharedDataService);
 	private notificationService = inject(NotificationService);
 	private publicService = inject(PublicService);
+	private captchaService = inject(CaptchaService);
 
 	constructor() {
 		this.contactForm = new FormGroup({
@@ -132,6 +138,11 @@ export class ContactComponent {
 			return;
 		}
 
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
+			return;
+		}
+
 		const params = {
 			...this.contactForm.value,
 			leadSource: "contactForm",
@@ -141,6 +152,7 @@ export class ContactComponent {
 			next: () => {
 				this.notificationService.showSuccess("Your request has been submitted successfully.");
 				this.contactForm.reset();
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to submit request. Please try again later.");

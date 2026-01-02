@@ -1,17 +1,19 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { SiteConfig } from "../../models/SiteConfig";
+import { CaptchaService } from "../../services/captcha.service";
 import { NotificationService } from "../../services/notification.service";
 import { PublicService } from "../../services/public.service";
 import { SharedDataService } from "../../services/shared-data.service";
+import { CaptchaComponent } from "../captcha/captcha.component";
 
 @Component({
 	selector: "app-hero-contact-form",
-	imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, InputMaskModule, InputTextModule],
+	imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, InputMaskModule, InputTextModule, CaptchaComponent],
 	templateUrl: "./hero-contact-form.component.html",
 	styleUrl: "./hero-contact-form.component.scss",
 })
@@ -19,10 +21,13 @@ export class HeroContactFormComponent {
 	heroContactForm: FormGroup;
 	siteConfig: SiteConfig = {} as SiteConfig;
 
+	@ViewChild(CaptchaComponent) captchaComponent!: CaptchaComponent;
+
 	constructor(
 		private publicService: PublicService,
 		private notificationService: NotificationService,
-		private sharedDataService: SharedDataService
+		private sharedDataService: SharedDataService,
+		private captchaService: CaptchaService
 	) {
 		this.heroContactForm = new FormGroup({
 			name: new FormControl("", Validators.required),
@@ -56,6 +61,11 @@ export class HeroContactFormComponent {
 			return;
 		}
 
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
+			return;
+		}
+
 		const params = {
 			...this.heroContactForm.value,
 			leadSource: "heroForm",
@@ -65,6 +75,7 @@ export class HeroContactFormComponent {
 			next: () => {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.heroContactForm.reset();
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");

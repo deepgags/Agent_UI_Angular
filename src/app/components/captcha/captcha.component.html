@@ -1,0 +1,32 @@
+<div class="mb-3">
+	<label class="form-label fw-bold">Verify you're human</label>
+
+	<div class="d-flex align-items-center gap-3 mb-2">
+		<div class="alert alert-info mb-0 px-3 py-2 text-center flex-shrink-0">
+			<div class="fw-bold fs-5 mb-0">{{ getCaptchaQuestion() }}</div>
+		</div>
+
+		<div class="input-group flex-grow-1">
+			<input
+				type="text"
+				pInputText
+				[formControl]="captchaAnswer"
+				placeholder="Enter answer"
+				class="form-control px-3 py-2"
+				(input)="onAnswerInput()" />
+			<button
+				type="button"
+				class="btn btn-outline-secondary"
+				(click)="generateNewProblem()"
+				title="New problem">
+				<i class="bi bi-arrow-clockwise"></i>
+			</button>
+		</div>
+	</div>
+
+	<div
+		*ngIf="errorMessage"
+		class="text-danger small">
+		{{ errorMessage }}
+	</div>
+</div>

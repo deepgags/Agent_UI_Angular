@@ -20,6 +20,7 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
+import { CaptchaComponent } from "../../../components/captcha/captcha.component";
 import { PropertyComponent } from "../../../components/property/property.component";
 import { environment } from "../../../environments/environment";
 import { InterestedUserModel } from "../../../models/InterestedUserModel";
@@ -27,6 +28,7 @@ import { PropertyModel } from "../../../models/PropertyModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { TimeAgo } from "../../../pipes/time-ago";
+import { CaptchaService } from "../../../services/captcha.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 import { PublicService } from "../../../services/public.service";
@@ -59,6 +61,7 @@ declare var google: any;
 		PropertyComponent,
 		TabsModule,
 		ProgressSpinnerModule,
+		CaptchaComponent,
 	],
 	templateUrl: "./property-detail-page.component.html",
 	styleUrl: "./property-detail-page.component.scss",
@@ -82,6 +85,7 @@ export class PropertyDetailPageComponent {
 
 	@ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 	@ViewChild("map", { static: false }) map!: GoogleMap;
+	@ViewChild(CaptchaComponent) captchaComponent!: CaptchaComponent;
 	zoom = 14;
 	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Canada
 
@@ -153,7 +157,8 @@ export class PropertyDetailPageComponent {
 		private sharedDataService: SharedDataService,
 		private notificationService: NotificationService,
 		private publicService: PublicService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private captchaService: CaptchaService
 	) {
 		this.titleService.setTitle("Property Detail");
 		this.route.queryParams.subscribe((params) => {
@@ -385,6 +390,11 @@ export class PropertyDetailPageComponent {
 			return;
 		}
 
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
+			return;
+		}
+
 		const params = {
 			...this.requestShowingForm.value,
 			leadSource: "requestShowing",
@@ -398,6 +408,7 @@ export class PropertyDetailPageComponent {
 				this.requestShowingForm.patchValue({
 					message: this.requestShowingText,
 				});
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -409,6 +420,11 @@ export class PropertyDetailPageComponent {
 		if (this.propertyHistoryForm.invalid) {
 			this.propertyHistoryForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
 
@@ -425,6 +441,7 @@ export class PropertyDetailPageComponent {
 				this.propertyHistoryForm.patchValue({
 					message: this.propertyHistooryText,
 				});
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -436,6 +453,11 @@ export class PropertyDetailPageComponent {
 		if (this.recentSaleInAreaForm.invalid) {
 			this.recentSaleInAreaForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
 
@@ -452,6 +474,7 @@ export class PropertyDetailPageComponent {
 				this.recentSaleInAreaForm.patchValue({
 					message: this.recentSalesinAreaText,
 				});
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -463,6 +486,11 @@ export class PropertyDetailPageComponent {
 		if (this.haveQuestionForm.invalid) {
 			this.haveQuestionForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
 
@@ -479,6 +507,7 @@ export class PropertyDetailPageComponent {
 				this.haveQuestionForm.patchValue({
 					message: this.haveAQuestionText,
 				});
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -490,6 +519,11 @@ export class PropertyDetailPageComponent {
 		if (this.contactForm.invalid) {
 			this.contactForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		if (!this.captchaComponent.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
 
@@ -506,6 +540,7 @@ export class PropertyDetailPageComponent {
 				this.contactForm.patchValue({
 					message: this.askAboutThisHomecommentText,
 				});
+				this.captchaService.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");

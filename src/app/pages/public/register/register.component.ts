@@ -75,9 +75,9 @@ export class RegisterComponent implements OnInit {
 		return this.customerForm.get("brokerageType");
 	}
 
-	get businessName() {
-		return this.customerForm.get("businessName");
-	}
+	// get businessName() {
+	// 	return this.customerForm.get("businessName");
+	// }
 
 	get designation() {
 		return this.customerForm.get("designation");
@@ -107,13 +107,9 @@ export class RegisterComponent implements OnInit {
 		return this.customerForm.get("confirmPassword");
 	}
 
-	get role() {
-		return this.customerForm.get("role");
-	}
-
 	ngOnInit() {
 		this.customerForm = this.fb.group({
-			businessName: new FormControl("", Validators.required),
+			// businessName: new FormControl("", Validators.required),
 			brokerageType: new FormControl("", Validators.required),
 			designation: new FormControl("", Validators.required),
 			firstName: new FormControl("", Validators.required),
@@ -125,7 +121,6 @@ export class RegisterComponent implements OnInit {
 			// cellNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
 			address: new FormControl(""),
-			role: new FormControl("", Validators.required),
 			password: new FormControl("", [
 				Validators.required,
 				Validators.pattern("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"),
@@ -205,29 +200,27 @@ export class RegisterComponent implements OnInit {
 	register() {
 		if (this.customerForm.valid) {
 			const {
-				businessName,
+				// businessName,
 				brokerageType,
 				designation,
 				firstName,
 				lastName,
 				phoneNumber,
-				// cellNumber,
 				emailAddress,
 				address,
-				role,
 				password,
 				confirmPassword,
 			} = this.customerForm.value;
 
 			const formData = new FormData();
 			formData.append("brokerageTypeId", brokerageType);
-			formData.append("businessName", businessName);
+			formData.append("businessName", brokerageType);
 			if (address) formData.append("address", address);
 			formData.append("firstName", firstName);
 			formData.append("lastName", lastName);
 			formData.append("emailAddress", emailAddress);
 			formData.append("phoneNumber", phoneNumber);
-			formData.append("role", role);
+			formData.append("role", "Agent");
 			formData.append("password", password);
 			formData.append("confirmPassword", confirmPassword);
 			if (this.newSelectedProfileImage.value) {
