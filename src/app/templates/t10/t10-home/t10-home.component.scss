@@ -61,9 +61,15 @@ $info:#FF385C;
 .top-padding{
     padding-top: 111px;
 }
+
+
+    #carouselExampleAutoplaying {
+  height: 26vh !important; 
+  overflow: hidden;
+  position: relative;
 }
 
-
+}
 
  .overlay-image {
     position: absolute;
@@ -102,7 +108,6 @@ $info:#FF385C;
   .icon{
     width: 10px;
   }
-
 
   .overlay-image {
          position: absolute;

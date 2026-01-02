@@ -93,6 +93,16 @@ $info:#06A788;
     top: auto !important;
   }
 
+   .background-container {
+  position: relative;
+  width: 100%;
+  height: 137vh;
+  margin-top: -182px;
+  backdrop-filter: blur(4px);
+  background-size: cover;
+  background-position: center;
+}
+
 }
 
 .profile-img {

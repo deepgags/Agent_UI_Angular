@@ -27,15 +27,15 @@
 				<div
 					class="card position-absolute man-card"
 					style="width: 15rem">
-					<div class="card-body">
+					<div class="card-body pt-1">
 						<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-						<p class="card-text text-white">{{ siteConfig.designation }}</p>
+						<p class="card-text text-white mb-0">{{ siteConfig.designation }}</p>
 						<div class="d-flex">
 							<div class="">
 								<i class="bi bi-telephone-fill info"></i>
 							</div>
 							<div class="ms-2">
-								<p>
+								<p class="mb-0">
 									<a
 										class="text-white fw-semibold text-decoration-none"
 										[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">

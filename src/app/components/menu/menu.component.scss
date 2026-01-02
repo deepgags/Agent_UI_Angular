@@ -34,3 +34,37 @@
 	font-weight: 600;
 	background-color: rgba(255, 255, 255, 0.1);
 }
+
+.sidebar_container{
+	height: fit-content;
+}
+
+
+
+@media only screen and (max-width: 768px) and (min-width: 601px) {
+	.sidebar_body{
+		background-color: var(--primary-color);
+		height: calc(100vh - 300px);
+	}
+	.home_nav {
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		height: 100%;
+		overflow-y: auto;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.sidebar_body{
+		background-color: var(--primary-color);
+		height: calc(100vh - 300px);
+	}
+	.home_nav {
+		        align-items: center;
+        justify-content: start;
+        gap: 22px;
+        height: 100%;
+        overflow-y: auto;
+    }
+}

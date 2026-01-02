@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center gap-4 signature-meta">
+      <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center gap-4 signature-meta d-none d-lg-block">
 
         <a class="meta-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
               <i class="bi bi-telephone-fill info"></i>
@@ -36,7 +36,7 @@
 
       </div>
 
-      <div class="col-12 col-lg-4 text-center text-lg-end mt-3 mt-lg-0">
+      <div class="col-12 col-lg-4 text-center text-lg-end ">
 
         @if (siteConfig) {
         <a [routerLink]="['home']" class="signature-logo d-block mb-2">

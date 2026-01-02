@@ -54,3 +54,10 @@ a:hover {
 .btn:hover .orig {
   opacity: 0.8;
 }
+
+
+@media (max-width: 768px) {
+  .top-pad {
+    padding-top: 209px;
+}
+}

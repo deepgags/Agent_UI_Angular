@@ -8,24 +8,23 @@
       <div class="col-lg-11 col-12">
         <div class="row py-4 align-items-center">
 
-          <div class="col-lg-5 col-12 mb-3 mb-lg-0">
+          <div class="col-lg-5 col-12 ">
             <div class="agent-block">
               <h2 class="agent-title info">
                 {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
               </h2>
-              <p class="agent-subtitle">
+              <p class="agent-subtitle mb-1">
                 {{ siteConfig?.designation }}
               </p>
 
-              <a class="editorial-cta" href="/contact">
+              <a class="editorial-cta d-none d-lg-block" href="/contact">
                 Book a Showing →
               </a>
             </div>
           </div>
 
-          <div class="col-lg-4 col-12 mb-3 mb-lg-0">
+          <div class="col-lg-4 col-12 ">
             <div class="contact-block">
-
               <a
                 class="contact-row pop"
                 [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">

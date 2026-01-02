@@ -35,8 +35,15 @@ a {
   padding-top: 110px;
 }
 
+.mob_img{
+  height: 80px;
+}
+
 @media (max-width: 768px) {
   .top-pad {
-    padding-top: 280px;
+    padding-top: 209px;
+}
+.mob_img{
+  width: 170px;
 }
 }

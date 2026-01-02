@@ -71,6 +71,24 @@ $info:#06A788;
 .top-padding{
     padding-top: 0px;
 }
+
+.overlay-image{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 400px;
+}
+
+   .background-container {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  margin-top: -182px;
+  backdrop-filter: blur(4px);
+  background-size: cover;
+  background-position: center;
+}
+
 }
 .pro-3{
   position: absolute;
@@ -84,8 +102,6 @@ $info:#06A788;
   backdrop-filter: blur(2px);
   border: 1px solid #FFFFFF;
 }
-
-
 
   .hero-bg {
       background: url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;

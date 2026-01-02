@@ -87,3 +87,11 @@ a {
   align-items: center;
   gap: 6px;
 }
+
+@media (max-width: 767px) {
+
+.pt-header {
+    padding-top: 273px;
+  }
+
+}
