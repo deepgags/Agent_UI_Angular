@@ -15,17 +15,28 @@
       </div>
     
 
-        <div class="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-center d-none d-lg-block">
-        <div>
-          <p class="fw-semibold info mb-0 agent-name text-center">
-            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
-          </p>
-          <p class="fw-semibold fs-6 mb-1 text-center text-white-50 ">
-            {{ siteConfig.designation }}
-          </p>
-
+        <div class="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-center gap-5">
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="">
+       			<img [src]="localImageUrl + siteConfig.secondaryAgent.profileImage" class="profile-img" alt="Agent"  height="80px"  />
+          </div>
+          <div class="">
+            	<p class="mb-0 info">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
+					<span class="info">{{ siteConfig.secondaryAgent.designation }}</span>
+          </div>
+        </div>
+              <div class="d-flex justify-content-center align-items-center">
+      <div class="">
+			<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage" class="profile-img" alt="Agent" height="80px"/>
+        
+      </div>
+      <div class="">
+        <p class="info mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+					<span class="info">{{ siteConfig.designation }}</span>
+      </div>
         </div>
       </div>
+
 
      <div class="col-12 col-lg-4 d-flex py-lg-0 py-3 justify-content-end gap-4 contact-wrap">
         <a

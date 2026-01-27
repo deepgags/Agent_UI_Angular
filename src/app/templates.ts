@@ -57,6 +57,10 @@ import { T21HomeComponent } from "./templates/t21/t21-home/t21-home.component";
 import { T21Component } from "./templates/t21/t21.component";
 import { T22Component } from "./templates/t22/t22.component";
 import { T22HomeComponent } from "./templates/t22/t22-home/t22home.component";
+import { T23HomeComponent } from "./templates/t23/t23-home/t23home.component";
+import { T24HomeComponent } from "./templates/t24/t24-home/t24home.component";
+import { T24Component } from "./templates/t24/t24.component";
+import { T23Component } from "./templates/t23/t23.component";
 
 export interface TemplateRoute {
 	path: string;
@@ -199,5 +203,13 @@ export const templates: TemplateRoutes = {
 		path: "",
 		component: T22Component,
 		children: [...generalRoutes, { path: "home", component: T22HomeComponent }],
+	},t23: {
+		path: "",
+		component: T23Component,
+		children: [...generalRoutes, { path: "home", component: T23HomeComponent }],
+	},t24: {
+		path: "",
+		component: T24Component,
+		children: [...generalRoutes, { path: "home", component: T24HomeComponent }],
 	},
 };
