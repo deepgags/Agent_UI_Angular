@@ -2,14 +2,19 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, Params } from "@angular/router";
-import moment from "moment";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+import utc from "dayjs/plugin/utc";
 import { type } from "os";
 import { ConfirmationService } from "primeng/api";
 import { ChartModule } from "primeng/chart";
 
+dayjs.extend(utc);
+dayjs.extend(duration);
+
 @Component({
 	selector: "app-mortgage-calculator",
-	imports: [CommonModule, ChartModule, FormsModule],
+	imports: [CommonModule, FormsModule, ChartModule],
 	templateUrl: "./mortgage-calculator.component.html",
 	styleUrl: "./mortgage-calculator.component.scss",
 	providers: [ConfirmationService],
@@ -58,7 +63,10 @@ export class MortgageCalculatorComponent {
 	 */
 	CompoundPeriod: number = 0;
 
-	constructor(private route: ActivatedRoute, private confirmationService: ConfirmationService) {}
+	constructor(
+		private route: ActivatedRoute,
+		private confirmationService: ConfirmationService,
+	) {}
 
 	confirm() {
 		var xmlHttp = new XMLHttpRequest();
@@ -80,7 +88,7 @@ export class MortgageCalculatorComponent {
 					"&ep=" +
 					this.ExtraPayment +
 					"&ea=" +
-					this.ExtraAnnualPayment
+					this.ExtraAnnualPayment,
 			);
 		xmlHttp.open("GET", theUrl, false); // false for synchronous request
 		xmlHttp.send(null);
@@ -271,7 +279,10 @@ export class MortgageCalculatorComponent {
 		 (1 + 0.033)1/6 - 1 = 0.00542587 (equivalently 0.542587%).
 		 */
 		// calculate Interest Rate for each Payment
-		this.InterestRatePerPayment = +((Math.pow(1 + this.InterestRate / 100 / 2, 1 / 6) - 1) * (12 / this.PeriodsPerYear)).toFixed(6);
+		this.InterestRatePerPayment = +(
+			(Math.pow(1 + this.InterestRate / 100 / 2, 1 / 6) - 1) *
+			(12 / this.PeriodsPerYear)
+		).toFixed(6);
 		this.MonthlyInterestRate = +(Math.pow(1 + this.InterestRate / 100 / 2, 1 / 6) - 1).toFixed(6);
 
 		/*
@@ -289,16 +300,19 @@ export class MortgageCalculatorComponent {
 		// Calculate a Monthly Mortgage Payment first
 		//this.MortgagePayment = -(PMT(this.InterestRatePerPayment,this.MortgageAmortizationInMonths,this.MortgageAmount,0,0))/(this.PeriodsPerYear/12);
 		this.MortgagePayment =
-			-this.PMT(this.MonthlyInterestRate, this.MortgageAmortizationInMonths, this.MortgageAmount, 0, 0) / (this.PeriodsPerYear / 12);
+			-this.PMT(this.MonthlyInterestRate, this.MortgageAmortizationInMonths, this.MortgageAmount, 0, 0) /
+			(this.PeriodsPerYear / 12);
 		this.TotalCostofLoan = (this.MortgagePayment * this.MortgageAmortizationInMonths) / (12 / this.PeriodsPerYear);
 		//this.TotalCostofLoan = (this.MortgagePayment * this.TotalNumberofPayments);
 
 		// Then based on the Monthly Mortgage Payment - calculate the Mortgage Payments and Total Cost of Loan (depending on the selection of payment frequency)
 		if (this.PaymentFrequency === "Acc. Bi-Weekly") {
-			this.MortgagePayment = -this.PMT(this.MonthlyInterestRate, this.MortgageAmortizationInMonths, this.MortgageAmount, 0, 0) / 2;
+			this.MortgagePayment =
+				-this.PMT(this.MonthlyInterestRate, this.MortgageAmortizationInMonths, this.MortgageAmount, 0, 0) / 2;
 			this.TotalCostofLoan = ((this.MortgagePayment * 26) / 12) * this.MortgageAmortizationInMonths;
 		} else if (this.PaymentFrequency === "Acc. Weekly") {
-			this.MortgagePayment = -this.PMT(this.MonthlyInterestRate, this.MortgageAmortizationInMonths, this.MortgageAmount, 0, 0) / 4;
+			this.MortgagePayment =
+				-this.PMT(this.MonthlyInterestRate, this.MortgageAmortizationInMonths, this.MortgageAmount, 0, 0) / 4;
 			this.TotalCostofLoan = ((this.MortgagePayment * 26) / 12) * this.MortgageAmortizationInMonths;
 		}
 
@@ -356,32 +370,32 @@ export class MortgageCalculatorComponent {
 
 				if (this.PaymentFrequency === "Semi-Monthly") {
 					if (i % 2 === 1) {
-						finalDate = moment(dueDate)
+						finalDate = dayjs(dueDate)
 							.utc()
 							.add(this.AdjustDateBy * (i - 1), this.AdjustDateByStr)
 							.format("MMMM Do YYYY");
-						finalDate2 = moment(dueDate)
+						finalDate2 = dayjs(dueDate)
 							.utc()
 							.add(this.AdjustDateBy * i, this.AdjustDateByStr)
 							.add(1, "day");
 					} else {
-						finalDate = moment(dueDate)
+						finalDate = dayjs(dueDate)
 							.utc()
 							.add(this.AdjustDateBy * (i - 1), this.AdjustDateByStr)
 							.subtract(2, "weeks")
 							.format("MMMM Do YYYY");
-						finalDate2 = moment(dueDate)
+						finalDate2 = dayjs(dueDate)
 							.utc()
 							.add(this.AdjustDateBy * i, this.AdjustDateByStr)
 							.subtract(2, "weeks")
 							.add(1, "day");
 					}
 				} else {
-					finalDate = moment(dueDate)
+					finalDate = dayjs(dueDate)
 						.utc()
 						.add(this.AdjustDateBy * (i - 1), this.AdjustDateByStr)
 						.format("MMMM Do YYYY");
-					finalDate2 = moment(dueDate)
+					finalDate2 = dayjs(dueDate)
 						.utc()
 						.add(this.AdjustDateBy * i, this.AdjustDateByStr)
 						.add(1, "day");
@@ -389,7 +403,7 @@ export class MortgageCalculatorComponent {
 
 				//if ((this.PaymentFrequency === "Acc. Bi-Weekly") || (this.PaymentFrequency === "Acc. Weekly") ) {
 				if (balance < principal) {
-					finalDate = moment(dueDate)
+					finalDate = dayjs(dueDate)
 						.utc()
 						.add(this.AdjustDateBy * i, this.AdjustDateByStr)
 						.format("MMMM Do YYYY");
@@ -478,14 +492,14 @@ export class MortgageCalculatorComponent {
 			// console.log("a: " + a + " | " + "b: " + b);
 			var dateObj = new Date(Date.parse(finalDate2));
 			this.PayOffDateDiff =
-				moment
-					.duration(moment(dueDate).diff(moment(dateObj)))
+				dayjs
+					.duration(dayjs(dueDate).diff(dayjs(dateObj)))
 					.years()
 					.toString()
 					.replace("-", "") +
 				" yrs, " +
-				moment
-					.duration(moment(dueDate).diff(moment(dateObj)))
+				dayjs
+					.duration(dayjs(dueDate).diff(dayjs(dateObj)))
 					.months()
 					.toString()
 					.replace("-", "") +

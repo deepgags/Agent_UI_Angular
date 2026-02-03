@@ -1,9 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, inject, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
+
 import { Meta, Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -47,7 +45,10 @@ export class T10HomeComponent implements OnInit, AfterViewInit {
 	private titleService = inject(Title);
 	private metaService = inject(Meta);
 
-	constructor(private sharedDataService: SharedDataService, private searchService: SearchService) {}
+	constructor(
+		private sharedDataService: SharedDataService,
+		private searchService: SearchService,
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");

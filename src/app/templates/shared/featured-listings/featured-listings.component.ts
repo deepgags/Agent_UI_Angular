@@ -1,12 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MatIconModule } from "@angular/material/icon";
-import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { DialogService } from "primeng/dynamicdialog";
+import { PaginatorModule } from "primeng/paginator";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { PropertyComponent } from "../../../components/property/property.component";
 import { stringiFy } from "../../../consts/Utility";
@@ -22,11 +20,9 @@ import { SearchComponent } from "../search/search.component";
 	imports: [
 		FormsModule,
 		CommonModule,
-		MatIconModule,
 		SearchComponent,
 		RouterModule,
-		MatPaginatorModule,
-		MatProgressSpinnerModule,
+		PaginatorModule,
 		PropertyComponent,
 		ProgressSpinnerModule,
 	],
@@ -40,7 +36,6 @@ import { SearchComponent } from "../search/search.component";
 export class FeaturedListingsComponent implements OnInit {
 	propertyImageUrl = environment.propertyImageUrl;
 	propertiesList: PropertyModel[] | null = null;
-	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
 	pageSize: number = 8;
 
@@ -64,7 +59,7 @@ export class FeaturedListingsComponent implements OnInit {
 		public loadingService: LoadingService,
 		private titleService: Title,
 		private sharedDataService: SharedDataService,
-		private cdr: ChangeDetectorRef
+		private cdr: ChangeDetectorRef,
 	) {
 		this.titleService.setTitle("Search Properties");
 	}
@@ -80,9 +75,9 @@ export class FeaturedListingsComponent implements OnInit {
 		this.propertyService.selectProperty(property, this.selectedFilters);
 	};
 
-	searchProperties = (selectedFilters: any, event?: PageEvent) => {
-		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;
-		this.pageSize = event?.pageSize ?? this.pageSize;
+	searchProperties = (selectedFilters: any, event?: any) => {
+		this.pageIndex = event ? event.page + 1 : this.pageIndex;
+		this.pageSize = event?.rows ?? this.pageSize;
 		const params = {
 			page: this.pageIndex,
 			pageSize: this.pageSize,

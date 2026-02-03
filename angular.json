@@ -35,10 +35,8 @@
 						],
 						"styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"node_modules/@angular/material/progress-spinner/_progress-spinner-theme.scss",
 							"src/app/styles/styles.scss",
-							"src/app/styles/notification.css",
-							"src/app/styles/material.css"
+							"src/app/styles/notification.css"
 						],
 						"scripts": [
 							"node_modules/chart.js/dist/chart.js"

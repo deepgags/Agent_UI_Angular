@@ -1,52 +1,54 @@
 @if (loading$ | async) {
-<div class="loading-container flex-content-center">
-  <div class="spinner">
-  </div>
-</div>
+	<div class="loading-container flex-content-center">
+		<div class="spinner"></div>
+	</div>
 }
 
 <div class="container-fluid top-padding">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 bg-white py-4">
-        <app-search [filters]="selectedFilters"
-                    [onSearch]="searchProperties"
-                    [showMapSearch]="false"
-                    class="search-container" />
-      </div>
-    </div>
-  </div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 bg-white py-4">
+				<app-search
+					[filters]="selectedFilters"
+					[onSearch]="searchProperties"
+					[showMapSearch]="false"
+					class="search-container" />
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="container-fluid mt-3 search-container">
-  <div class="row vh-100">
-    @if (propertiesList && propertiesList.length>0) {
-    <div class="col-lg-6 col-12 overflow-auto px-4"
-         style="height: 100vh; background: #f8f9fa;">
-      <div class="row align-items-center">
-        <div class="col-9 mt-2">
-          <mat-paginator class="pb-3"
-                         [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
-                         [pageIndex]="pageIndex-1"
-                         (page)="pageEvent = searchProperties(selectedFilters, $event)"
-                         [pageSize]="pageSize"
-                         [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
-                         aria-label="Select page">
-          </mat-paginator>
-        </div>
-        <div class="col-3">
-          <select (ngModelChange)="sortChange($event)"
-                  [(ngModel)]="selectedFilters.sort"
-                  class="form-select custom-select">
-            @for (sort of sortDropDown; track sort) {
-            <option [value]="sort.value">{{sort.label}}</option>
-            }
-          </select>
-        </div>
-      </div>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        @for (property of propertiesList; track property) {
-        <!-- <div class="col">
+	<div class="row vh-100">
+		@if (propertiesList && propertiesList.length > 0) {
+			<div
+				class="col-lg-6 col-12 overflow-auto px-4"
+				style="height: 100vh; background: #f8f9fa">
+				<div class="row align-items-center">
+					<div class="col-9 mt-2">
+						<p-paginator
+							class="pb-3"
+							[totalRecords]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
+							[first]="(pageIndex - 1) * pageSize"
+							[rows]="pageSize"
+							[rowsPerPageOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+							(onPageChange)="searchProperties(selectedFilters, $event)"
+							aria-label="Select page"></p-paginator>
+					</div>
+					<div class="col-3">
+						<select
+							(ngModelChange)="sortChange($event)"
+							[(ngModel)]="selectedFilters.sort"
+							class="form-select custom-select">
+							@for (sort of sortDropDown; track sort) {
+								<option [value]="sort.value">{{ sort.label }}</option>
+							}
+						</select>
+					</div>
+				</div>
+				<div class="row row-cols-1 row-cols-md-3 g-4">
+					@for (property of propertiesList; track property) {
+						<!-- <div class="col">
           <div class="card h-100 border-0 shadow-lg rounded-3"
                style="overflow: hidden;"
                (click)="selectProperty(property)">
@@ -82,26 +84,30 @@
             </div>
           </div>
         </div> -->
-        <app-property [property]="property"
-                      [onPropertyClick]="selectProperty" />
-        }
-      </div>
-      <mat-paginator class="py-3"
-                     [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
-                     [pageIndex]="pageIndex-1"
-                     (page)="pageEvent = searchProperties(selectedFilters, $event)"
-                     [pageSize]="pageSize"
-                     [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
-                     aria-label="Select page"></mat-paginator>
-    </div>
-    }
-    <div class="col-lg-6 col-12 p-0 position-sticky top-0"
-         style="height: 100vh;">
-      <div style="height: 70%;">
-        <div #mapComponent
-             id="mapComponent"
-             style="height: 100%; width: 100%;"></div>
-      </div>
-    </div>
-  </div>
+						<app-property
+							[property]="property"
+							[onPropertyClick]="selectProperty" />
+					}
+				</div>
+				<p-paginator
+					class="py-3"
+					[totalRecords]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
+					[first]="(pageIndex - 1) * pageSize"
+					[rows]="pageSize"
+					[rowsPerPageOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+					(onPageChange)="searchProperties(selectedFilters, $event)"
+					aria-label="Select page"></p-paginator>
+			</div>
+		}
+		<div
+			class="col-lg-6 col-12 p-0 position-sticky top-0"
+			style="height: 100vh">
+			<div style="height: 70%">
+				<div
+					#mapComponent
+					id="mapComponent"
+					style="height: 100%; width: 100%"></div>
+			</div>
+		</div>
+	</div>
 </div>

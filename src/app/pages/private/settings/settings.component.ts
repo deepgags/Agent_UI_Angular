@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, ElementRef, inject, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+
 import { Title } from "@angular/platform-browser";
 import { AngularSvgIconModule } from "angular-svg-icon";
 import { ColorPickerModule } from "primeng/colorpicker";
@@ -34,7 +34,6 @@ import { NotificationService } from "../../../services/notification.service";
 		AngularSvgIconModule,
 		FormsModule,
 		ReactiveFormsModule,
-		MatDialogModule,
 		InputTextModule,
 		SelectModule,
 		InputMaskModule,
@@ -72,7 +71,6 @@ export class SettingsComponent {
 	secondaryAgentProfileImage: BehaviorSubject<Blob | null>;
 	secondaryAgentProfileImageObservable: Observable<Blob | null>;
 
-	readonly dialog = inject(MatDialog);
 	localImageBaseUrl = environment.localImageUrl;
 
 	constructor(
@@ -82,7 +80,7 @@ export class SettingsComponent {
 		private notificationService: NotificationService,
 		private loadingService: LoadingService,
 		private titleService: Title,
-		public dialogService: DialogService
+		public dialogService: DialogService,
 	) {
 		this.titleService.setTitle("Profile");
 
@@ -356,7 +354,7 @@ export class SettingsComponent {
 				formData.append(
 					"secondaryAgentProfileImage",
 					this.secondaryAgentProfileImage.value,
-					"secondary-profile.png"
+					"secondary-profile.png",
 				);
 			} else if (this.existingSecondaryProfileImage) {
 				formData.append("existingSecondaryProfileImage", this.existingSecondaryProfileImage);
@@ -366,7 +364,7 @@ export class SettingsComponent {
 				next: (v) => {},
 				error: (e) => {
 					this.notificationService.showError(
-						e.error.message || "Something went wrong while updating information."
+						e.error.message || "Something went wrong while updating information.",
 					);
 				},
 				complete: () => {

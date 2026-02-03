@@ -10,14 +10,12 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { GoogleMapsModule } from "@angular/google-maps";
-import { MatDialog } from "@angular/material/dialog";
-import { MatIconModule } from "@angular/material/icon";
-import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { MarkerClusterer, SuperClusterAlgorithm } from "@googlemaps/markerclusterer";
 import { DialogService } from "primeng/dynamicdialog";
+import { PaginatorModule } from "primeng/paginator";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { BehaviorSubject } from "rxjs";
 
 import { PropertyComponent } from "../../../components/property/property.component";
@@ -34,11 +32,10 @@ import { SearchComponent } from "../search/search.component";
 	imports: [
 		FormsModule,
 		CommonModule,
-		MatIconModule,
 		SearchComponent,
 		RouterModule,
-		MatPaginatorModule,
-		MatProgressSpinnerModule,
+		PaginatorModule,
+		ProgressSpinnerModule,
 		GoogleMapsModule,
 		PropertyComponent,
 	],
@@ -52,7 +49,6 @@ import { SearchComponent } from "../search/search.component";
 export class MapComponent implements OnInit, AfterViewInit {
 	propertyImageUrl = environment.propertyImageUrl;
 	propertiesList: PropertyModel[] | undefined;
-	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
 	pageSize: number = 100;
 	private loadingSubject = new BehaviorSubject<boolean>(false);
@@ -87,7 +83,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 	sortDropDown = sortTypes;
 
 	constructor(
-		private _interestedUserDialog: MatDialog,
 		private propertyService: PropertyService,
 		public loadingService: LoadingService,
 		// private notificationService: NotificationService,
@@ -95,7 +90,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 		// private router: Router,
 		private titleService: Title,
 		private route: ActivatedRoute,
-		private dialogService: DialogService
+		private dialogService: DialogService,
 	) {
 		this.titleService.setTitle("Properties on map");
 	}
@@ -245,26 +240,28 @@ export class MapComponent implements OnInit, AfterViewInit {
 		const imagesJson = JSON.stringify(images);
 
 		const controls =
-			images.length > 1
-				? `<button data-action="prev" data-carousel="${carouselId}" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><i class="bi bi-chevron-left"></i></button>
+			images.length > 1 ?
+				`<button data-action="prev" data-carousel="${carouselId}" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><i class="bi bi-chevron-left"></i></button>
 				<button data-action="next" data-carousel="${carouselId}" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><i class="bi bi-chevron-right"></i></button>`
-				: "";
+			:	"";
 
 		const priceFormatted = property.ListPrice ? `$${property.ListPrice.toLocaleString()}` : "Price not available";
-		const beds = property.BedroomsTotal
-			? `<div style="margin-right: 1rem;"><span style="font-weight: 600;">Bed ·</span> ${property.BedroomsTotal}</div>`
-			: "";
-		const baths = property.BathroomsTotalInteger
-			? `<div style="margin-right: 1rem;"><span style="font-weight: 600;">Bath ·</span> ${property.BathroomsTotalInteger}</div>`
-			: "";
-		const area = property.BuildingAreaTotal
-			? `<div><span style="font-weight: 600;">Area ·</span> ${property.BuildingAreaTotal} ${property.BuildingAreaUnits}</div>`
-			: "";
+		const beds =
+			property.BedroomsTotal ?
+				`<div style="margin-right: 1rem;"><span style="font-weight: 600;">Bed ·</span> ${property.BedroomsTotal}</div>`
+			:	"";
+		const baths =
+			property.BathroomsTotalInteger ?
+				`<div style="margin-right: 1rem;"><span style="font-weight: 600;">Bath ·</span> ${property.BathroomsTotalInteger}</div>`
+			:	"";
+		const area =
+			property.BuildingAreaTotal ?
+				`<div><span style="font-weight: 600;">Area ·</span> ${property.BuildingAreaTotal} ${property.BuildingAreaUnits}</div>`
+			:	"";
 		const officeName = property.ListOfficeName || "N/A";
 		const mls = property.ListingKey || "N/A";
-		const modificationDate = property.ModificationTimestamp
-			? new Date(property.ModificationTimestamp).toLocaleDateString()
-			: "N/A";
+		const modificationDate =
+			property.ModificationTimestamp ? new Date(property.ModificationTimestamp).toLocaleDateString() : "N/A";
 
 		const width = "300px";
 		const imgHeight = "200px";
@@ -350,9 +347,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 		this.searchProperties(this.selectedFilters);
 	}
 
-	searchProperties = (selectedFilters: any, event?: PageEvent) => {
-		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;
-		this.pageSize = event?.pageSize ?? this.pageSize;
+	searchProperties = (selectedFilters: any, event?: any) => {
+		this.pageIndex = event ? event.page + 1 : this.pageIndex;
+		this.pageSize = event?.rows ?? this.pageSize;
 
 		const sort = selectedFilters.sort && selectedFilters.sort != "" ? selectedFilters.sort : "most";
 
@@ -468,13 +465,13 @@ export class MapComponent implements OnInit, AfterViewInit {
 							await this.openInfoWindow(
 								clusterMarker,
 								content,
-								count > 1
-									? cluster.markers
-											.map((m: any) => m.get("property") as PropertyModel)
-											.filter((p: PropertyModel | undefined) => p)
-									: [cluster.markers[0].get("property") as PropertyModel].filter(
-											(p: PropertyModel | undefined) => p
-									  )
+								count > 1 ?
+									cluster.markers
+										.map((m: any) => m.get("property") as PropertyModel)
+										.filter((p: PropertyModel | undefined) => p)
+								:	[cluster.markers[0].get("property") as PropertyModel].filter(
+										(p: PropertyModel | undefined) => p,
+									),
 							);
 						});
 

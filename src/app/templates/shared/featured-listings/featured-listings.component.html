@@ -1,23 +1,24 @@
 <div class="container-fluid search-container padding-top">
-  <div class="">
-    <div class="row justify-content-center">
-      <h2 class="fw-semibold text-center info mt-3">Featured Properties</h2>
-      <div class="col-12 bg-white pb-4 ">
-        <app-search [filters]="selectedFilters"
-                    [onSearch]="searchProperties"
-                    class="search-container" />
-      </div>
-    </div>
-  </div>
+	<div class="">
+		<div class="row justify-content-center">
+			<h2 class="fw-semibold text-center info mt-3">Featured Properties</h2>
+			<div class="col-12 bg-white pb-4">
+				<app-search
+					[filters]="selectedFilters"
+					[onSearch]="searchProperties"
+					class="search-container" />
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="container-fluid sec-3 search-container">
-  @if (propertiesList && propertiesList.length>0) {
-  <div class="">
-    <div class="row g-4">
-      @for (property of propertiesList; track $index) {
-      <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 mb-3">
-        <!-- <a class="text-decoration-none" (click)="selectProperty(property)">
+	@if (propertiesList && propertiesList.length > 0) {
+		<div class="">
+			<div class="row g-4">
+				@for (property of propertiesList; track $index) {
+					<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 mb-3">
+						<!-- <a class="text-decoration-none" (click)="selectProperty(property)">
               <div class="card h-100 property-card border border-light-subtle">
                 <div class="image-container">
                   <img [src]="property && property.Media && property.Media.length>0 ? imageUrl + property.Media[0].Media_url : '/images/commercial_no_Image.jpg'"
@@ -56,27 +57,30 @@
                 </div>
               </div>
             </a> -->
-        <app-property [property]="property"
-                      [onPropertyClick]="selectProperty" />
-      </div>
-      }
-    </div>
-    <mat-paginator class="py-3"
-                   [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
-                   [pageIndex]="pageIndex - 1"
-                   (page)="pageEvent = searchProperties(selectedFilters, $event)"
-                   [pageSize]="pageSize"
-                   [pageSizeOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
-                   aria-label="Select page"></mat-paginator>
-  </div>
-  } @else if (propertiesList && propertiesList.length==0) {
-  <div class="d-flex justify-content-center align-items-center py-5">
-    <h6>No Featured properties available.</h6>
-  </div>
-  } @else {
-  <div class="d-flex justify-content-center align-items-center py-5">
-    <p-progress-spinner strokeWidth="4"
-                        animationDuration=".8s" />
-  </div>
-  }
+						<app-property
+							[property]="property"
+							[onPropertyClick]="selectProperty" />
+					</div>
+				}
+			</div>
+			<p-paginator
+				class="py-3"
+				[totalRecords]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
+				[first]="(pageIndex - 1) * pageSize"
+				[rows]="pageSize"
+				[rowsPerPageOptions]="[5, 10, 15, 20, 30, 40, 50, 80, 90, 100]"
+				(onPageChange)="searchProperties(selectedFilters, $event)"
+				aria-label="Select page"></p-paginator>
+		</div>
+	} @else if (propertiesList && propertiesList.length == 0) {
+		<div class="d-flex justify-content-center align-items-center py-5">
+			<h6>No Featured properties available.</h6>
+		</div>
+	} @else {
+		<div class="d-flex justify-content-center align-items-center py-5">
+			<p-progress-spinner
+				strokeWidth="4"
+				animationDuration=".8s" />
+		</div>
+	}
 </div>

@@ -1,44 +1,43 @@
-import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Observable, tap } from 'rxjs';
-import { LoadingService } from '../../services/loading.service';
-import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
+import { Component, ContentChild, Input, TemplateRef } from "@angular/core";
+import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from "@angular/router";
+import { Observable, tap } from "rxjs";
+import { LoadingService } from "../../services/loading.service";
 
 @Component({
-  selector: 'loading-indicator',
-  imports: [MatProgressSpinnerModule],
-  templateUrl: './loadingindicator.component.html',
-  styleUrl: './loadingindicator.component.scss'
+	selector: "loading-indicator",
+	imports: [],
+	templateUrl: "./loadingindicator.component.html",
+	styleUrl: "./loadingindicator.component.scss",
 })
 export class LoadingindicatorComponent {
-  loading$: Observable<boolean>;
+	loading$: Observable<boolean>;
 
-  @Input()
-  detectRouteTransitions = false;
+	@Input()
+	detectRouteTransitions = false;
 
-  @ContentChild("loading")
-  customLoadingIndicator: TemplateRef<any> | null = null;
+	@ContentChild("loading")
+	customLoadingIndicator: TemplateRef<any> | null = null;
 
-  constructor(
-  private loadingService: LoadingService, 
-  private router: Router) {
-    this.loading$ = this.loadingService.loading$;
-  }
+	constructor(
+		private loadingService: LoadingService,
+		private router: Router,
+	) {
+		this.loading$ = this.loadingService.loading$;
+	}
 
-  ngOnInit() {
-    if (this.detectRouteTransitions) {
-      this.router.events
-        .pipe(
-          tap((event) => {
-            if (event instanceof RouteConfigLoadStart) {
-              this.loadingService.loadingOn();
-            } else if (event instanceof RouteConfigLoadEnd) {
-              this.loadingService.loadingOff();
-            }
-          })
-        )
-        .subscribe();
-    }
-  }
+	ngOnInit() {
+		if (this.detectRouteTransitions) {
+			this.router.events
+				.pipe(
+					tap((event) => {
+						if (event instanceof RouteConfigLoadStart) {
+							this.loadingService.loadingOn();
+						} else if (event instanceof RouteConfigLoadEnd) {
+							this.loadingService.loadingOff();
+						}
+					}),
+				)
+				.subscribe();
+		}
+	}
 }

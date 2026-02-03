@@ -1,8 +1,7 @@
 @if (loading$ | async) {
-<div class="loading-container flex-content-center">
-	<div class="spinner">
+	<div class="loading-container flex-content-center">
+		<div class="spinner"></div>
 	</div>
-</div>
 }
 
 <div class="container-fluid search-container top-padding">
@@ -10,16 +9,18 @@
 		<div class="row justify-content-center align-items-center pt-4 pb-3">
 			<!-- <h2 class=" fw-semibold text-center mt-3">Search Your Dream Home</h2>-->
 			<div class="col-auto">
-				<app-search [filters]="selectedFilters"
-							[onSearch]="searchProperties"
-							class="search-container" />
+				<app-search
+					[filters]="selectedFilters"
+					[onSearch]="searchProperties"
+					class="search-container" />
 			</div>
 			<div class="col-auto">
-				<select (ngModelChange)="sortChange($event)"
-						[(ngModel)]="selectedFilters.sort"
-						class="form-select custom-select">
+				<select
+					(ngModelChange)="sortChange($event)"
+					[(ngModel)]="selectedFilters.sort"
+					class="form-select custom-select">
 					@for (sort of sortDropDown; track sort) {
-					<option [value]="sort.value">{{sort.label}}</option>
+						<option [value]="sort.value">{{ sort.label }}</option>
 					}
 				</select>
 			</div>
@@ -28,31 +29,31 @@
 </div>
 
 <div class="container-fluid sec-3 search-container">
-	@if (propertiesList && propertiesList.length>0) {
-	<div class="">
-		<div class="row align-items-center justify-content-end">
-			<div class="col-12 col-lg-2 p-0 mb-3 mb-lg-0">
+	@if (propertiesList && propertiesList.length > 0) {
+		<div class="">
+			<div class="row align-items-center justify-content-end">
+				<div class="col-12 col-lg-2 p-0 mb-3 mb-lg-0"></div>
 			</div>
-		</div>
-		<div class="row g-4">
-			@for (property of propertiesList; track property) {
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 mb-3">
-				<app-property [property]="property"
-							  [onPropertyClick]="selectProperty" />
+			<div class="row g-4">
+				@for (property of propertiesList; track property) {
+					<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-2 mb-3">
+						<app-property
+							[property]="property"
+							[onPropertyClick]="selectProperty" />
+					</div>
+				}
 			</div>
-			}
+			<p-paginator
+				class="py-3"
+				[totalRecords]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
+				[first]="(pageIndex - 1) * pageSize"
+				[rows]="pageSize"
+				[rowsPerPageOptions]="[12, 24, 36, 48, 60, 120]"
+				(onPageChange)="searchProperties(selectedFilters, $event)"
+				aria-label="Select page"></p-paginator>
 		</div>
-		<mat-paginator class="py-3"
-					   [length]="propertiesList.length > 0 ? propertiesList[0].TotalRecords : 0"
-					   [pageIndex]="pageIndex-1"
-					   (page)="pageEvent = searchProperties(selectedFilters, $event)"
-					   [pageSize]="pageSize"
-					   [pageSizeOptions]="[12, 24, 36, 48, 60, 120]"
-					   aria-label="Select page">
-		</mat-paginator>
-	</div>
 	}
-	@if (propertiesList && propertiesList.length==0) {
-	<h6>No properties found for selected criteria.</h6>
+	@if (propertiesList && propertiesList.length == 0) {
+		<h6>No properties found for selected criteria.</h6>
 	}
 </div>

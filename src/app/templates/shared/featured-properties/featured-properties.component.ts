@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MatIconModule } from "@angular/material/icon";
+
 import { RouterModule } from "@angular/router";
 import { DialogService } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
@@ -12,7 +12,7 @@ import { PropertyService } from "../../../services/property.service";
 
 @Component({
 	selector: "app-featured-properties",
-	imports: [FormsModule, CommonModule, MatIconModule, RouterModule, PropertyComponent],
+	imports: [FormsModule, CommonModule, RouterModule, PropertyComponent],
 	templateUrl: "./featured-properties.component.html",
 	styleUrl: "./featured-properties.component.scss",
 	encapsulation: ViewEncapsulation.None,

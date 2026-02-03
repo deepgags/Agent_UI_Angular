@@ -1,12 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MatIconModule } from "@angular/material/icon";
-import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { DialogService } from "primeng/dynamicdialog";
+import { PaginatorModule } from "primeng/paginator";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { BehaviorSubject } from "rxjs";
 import { PropertyComponent } from "../../../components/property/property.component";
 import { sortTypes } from "../../../consts/DefaultTypes";
@@ -21,11 +20,10 @@ import { SearchComponent } from "../search/search.component";
 	imports: [
 		FormsModule,
 		CommonModule,
-		MatIconModule,
 		SearchComponent,
 		RouterModule,
-		MatPaginatorModule,
-		MatProgressSpinnerModule,
+		PaginatorModule,
+		ProgressSpinnerModule,
 		PropertyComponent,
 	],
 	templateUrl: "./search-page.component.html",
@@ -37,7 +35,6 @@ import { SearchComponent } from "../search/search.component";
 })
 export class SearchPageComponent implements OnInit {
 	propertiesList: PropertyModel[] | undefined;
-	pageEvent: PageEvent | undefined;
 	pageIndex: number = 1;
 	pageSize: number = 24;
 	private loadingSubject = new BehaviorSubject<boolean>(false);
@@ -64,7 +61,7 @@ export class SearchPageComponent implements OnInit {
 		private route: ActivatedRoute,
 		private propertyService: PropertyService,
 		public loadingService: LoadingService,
-		private titleService: Title
+		private titleService: Title,
 	) {
 		this.titleService.setTitle("Search Properties");
 	}
@@ -90,9 +87,9 @@ export class SearchPageComponent implements OnInit {
 		this.searchProperties(this.selectedFilters);
 	}
 
-	searchProperties = (selectedFilters: any, event?: PageEvent) => {
-		this.pageIndex = event ? event.pageIndex + 1 : this.pageIndex;
-		this.pageSize = event?.pageSize ?? this.pageSize;
+	searchProperties = (selectedFilters: any, event?: any) => {
+		this.pageIndex = event ? event.page + 1 : this.pageIndex;
+		this.pageSize = event?.rows ?? this.pageSize;
 
 		const sort = selectedFilters.sort && selectedFilters.sort != "" ? selectedFilters.sort : "most";
 

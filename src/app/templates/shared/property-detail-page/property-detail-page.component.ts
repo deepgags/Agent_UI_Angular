@@ -2,9 +2,7 @@ import { CommonModule, Location } from "@angular/common";
 import { Component, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from "@angular/google-maps";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
+
 import { Title } from "@angular/platform-browser";
 
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
@@ -43,9 +41,6 @@ declare var google: any;
 		NgbModule,
 		FormsModule,
 		ReactiveFormsModule,
-		MatDialogModule,
-		MatFormFieldModule,
-		MatInputModule,
 		GoogleMapsModule,
 		RouterModule,
 		PhoneNumberFormatPipe,
@@ -158,7 +153,7 @@ export class PropertyDetailPageComponent {
 		private notificationService: NotificationService,
 		private publicService: PublicService,
 		private route: ActivatedRoute,
-		private captchaService: CaptchaService
+		private captchaService: CaptchaService,
 	) {
 		this.titleService.setTitle("Property Detail");
 		this.route.queryParams.subscribe((params) => {
@@ -676,21 +671,21 @@ export class PropertyDetailPageComponent {
 			"fas fa-pencil-alt",
 			() => this.toggleDrawingMode(googleMap),
 			"Draw Region",
-			false
+			false,
 		);
 
 		const amenitiesControl = this.createMapButton(
 			"fas fa-info",
 			() => this.toggleAmenities(googleMap),
 			"Amenities",
-			true
+			true,
 		);
 
 		const locationControl = this.createMapButton(
 			"fas fa-location-arrow",
 			() => this.centerOnUserLocation(googleMap),
 			"My Location",
-			true
+			true,
 		);
 
 		controlDiv.appendChild(drawControl);
@@ -879,7 +874,7 @@ export class PropertyDetailPageComponent {
 				},
 				(error) => {
 					this.notificationService.showError("Unable to get your location. Please enable location services.");
-				}
+				},
 			);
 		} else {
 			this.notificationService.showError("Geolocation is not supported by this browser.");

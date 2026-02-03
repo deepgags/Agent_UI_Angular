@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatDialogModule } from "@angular/material/dialog";
+
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
@@ -28,7 +28,6 @@ import { NotificationService } from "../../../services/notification.service";
 		AngularSvgIconModule,
 		FormsModule,
 		ReactiveFormsModule,
-		MatDialogModule,
 		InputMaskModule,
 		SelectModule,
 		InputTextModule,
@@ -64,7 +63,7 @@ export class RegisterComponent implements OnInit {
 		private loadingService: LoadingService,
 		private titleService: Title,
 		private customerService: CustomerService,
-		public dialogService: DialogService
+		public dialogService: DialogService,
 	) {
 		this.titleService.setTitle("Register");
 		this.newSelectedProfileImage = new BehaviorSubject<Blob | null>(null);

@@ -1,8 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
 import { Meta, Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -29,9 +26,6 @@ import { SearchComponent } from "../../shared/search/search.component";
 		SearchComponent,
 		FeaturedPropertiesComponent,
 		NgbModule,
-		MatDialogModule,
-		MatFormFieldModule,
-		MatInputModule,
 		HeroContactFormComponent,
 		PhoneNumberFormatPipe,
 		TeamCardComponent,
@@ -47,7 +41,10 @@ export class T8HomeComponent implements OnInit {
 	private titleService = inject(Title);
 	private metaService = inject(Meta);
 
-	constructor(private sharedDataService: SharedDataService, private searchService: SearchService) {}
+	constructor(
+		private sharedDataService: SharedDataService,
+		private searchService: SearchService,
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");

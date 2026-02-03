@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
@@ -32,7 +31,6 @@ import { TemplateService } from "../../../services/template.service";
 		AngularSvgIconModule,
 		FormsModule,
 		ReactiveFormsModule,
-		MatDialogModule,
 		InputTextModule,
 		SelectModule,
 		InputMaskModule,
@@ -67,7 +65,6 @@ export class ProfileComponent {
 	secondaryAgentProfileImage: BehaviorSubject<string>;
 	secondaryAgentProfileImageObservable: Observable<string>;
 
-	readonly dialog = inject(MatDialog);
 	items: MenuItem[] | undefined;
 
 	constructor(
@@ -79,7 +76,7 @@ export class ProfileComponent {
 		private loadingService: LoadingService,
 		private titleService: Title,
 		private templateService: TemplateService,
-		public dialogService: DialogService
+		public dialogService: DialogService,
 	) {
 		this.titleService.setTitle("Profile");
 		this.items = [
@@ -378,9 +375,10 @@ export class ProfileComponent {
 						phone: websitePhone,
 						// address: websiteAddress,
 					},
-					profileImage: this.primaryAgentProfileImage.value
-						? this.primaryAgentProfileImage.value
-						: this.existingProfileImage,
+					profileImage:
+						this.primaryAgentProfileImage.value ?
+							this.primaryAgentProfileImage.value
+						:	this.existingProfileImage,
 					brokerageImage: this.brokerageImage.value,
 					logoImage: this.logoImage.value,
 				},
@@ -393,7 +391,7 @@ export class ProfileComponent {
 				next: (v) => {},
 				error: (e) => {
 					this.notificationService.showError(
-						e.error.message || "Something went wrong while updating information."
+						e.error.message || "Something went wrong while updating information.",
 					);
 				},
 				complete: () => {
