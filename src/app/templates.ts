@@ -11,56 +11,6 @@ import { PropertyDetailPageComponent } from "./templates/shared/property-detail-
 import { SearchPageComponent } from "./templates/shared/search-page/search-page.component";
 import { SellerComponent } from "./templates/shared/seller/seller.component";
 import { SellerdetailComponent } from "./templates/shared/sellerdetail/sellerdetail.component";
-import { Sellerdetail2Component } from "./templates/shared/sellerdetail2/sellerdetail2.component";
-import { Sellerdetail3Component } from "./templates/shared/sellerdetail3/sellerdetail3.component";
-import { T1HomeComponent } from "./templates/t1/t1-home/t1-home.component";
-import { T1Component } from "./templates/t1/t1.component";
-import { T10HomeComponent } from "./templates/t10/t10-home/t10-home.component";
-import { T10Component } from "./templates/t10/t10.component";
-import { T11HomeComponent } from "./templates/t11/t11-home/t11-home.component";
-import { T11Component } from "./templates/t11/t11.component";
-import { T12HomeComponent } from "./templates/t12/t12-home/t12-home.component";
-import { T12Component } from "./templates/t12/t12.component";
-import { T13HomeComponent } from "./templates/t13/t13-home/t13-home.component";
-import { T13Component } from "./templates/t13/t13.component";
-import { T14HomeComponent } from "./templates/t14/t14-home/t14-home.component";
-import { T14Component } from "./templates/t14/t14.component";
-import { T15HomeComponent } from "./templates/t15/t15-home/t15-home.component";
-import { T15Component } from "./templates/t15/t15.component";
-import { T16HomeComponent } from "./templates/t16/t16-home/t16-home.component";
-import { T16Component } from "./templates/t16/t16.component";
-import { T17HomeComponent } from "./templates/t17/t17-home/t17-home.component";
-import { T17Component } from "./templates/t17/t17.component";
-import { T18HomeComponent } from "./templates/t18/t18-home/t18-home.component";
-import { T18Component } from "./templates/t18/t18.component";
-import { T19HomeComponent } from "./templates/t19/t19-home/t19-home.component";
-import { T19Component } from "./templates/t19/t19.component";
-import { T2HomeComponent } from "./templates/t2/t2-home/t2-home.component";
-import { T2Component } from "./templates/t2/t2.component";
-import { T20HomeComponent } from "./templates/t20/t20-home/t20-home.component";
-import { T20Component } from "./templates/t20/t20.component";
-import { T3HomeComponent } from "./templates/t3/t3-home/t3-home.component";
-import { T3Component } from "./templates/t3/t3.component";
-import { T4HomeComponent } from "./templates/t4/t4-home/t4-home.component";
-import { T4Component } from "./templates/t4/t4.component";
-import { T5HomeComponent } from "./templates/t5/t5-home/t5-home.component";
-import { T5Component } from "./templates/t5/t5.component";
-import { T6HomeComponent } from "./templates/t6/t6-home/t6-home.component";
-import { T6Component } from "./templates/t6/t6.component";
-import { T7HomeComponent } from "./templates/t7/t7-home/t7-home.component";
-import { T7Component } from "./templates/t7/t7.component";
-import { T8HomeComponent } from "./templates/t8/t8-home/t8-home.component";
-import { T8Component } from "./templates/t8/t8.component";
-import { T9HomeComponent } from "./templates/t9/t9-home/t9-home.component";
-import { T9Component } from "./templates/t9/t9.component";
-import { T21HomeComponent } from "./templates/t21/t21-home/t21-home.component";
-import { T21Component } from "./templates/t21/t21.component";
-import { T22Component } from "./templates/t22/t22.component";
-import { T22HomeComponent } from "./templates/t22/t22-home/t22home.component";
-import { T23HomeComponent } from "./templates/t23/t23-home/t23home.component";
-import { T24HomeComponent } from "./templates/t24/t24-home/t24home.component";
-import { T24Component } from "./templates/t24/t24.component";
-import { T23Component } from "./templates/t23/t23.component";
 
 export interface TemplateRoute {
 	path: string;
@@ -96,120 +46,281 @@ const generalRoutes: Route[] = [
 export const templates: TemplateRoutes = {
 	t1: {
 		path: "",
-		component: T1Component,
-		children: [...generalRoutes, { path: "home", component: T1HomeComponent }],
+		loadComponent: () => import("./templates/t1/t1.component").then((c) => c.T1Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () => import("./templates/t1/t1-home/t1-home.component").then((c) => c.T1HomeComponent),
+			},
+		],
 	},
 	t2: {
 		path: "",
-		component: T2Component,
-		children: [...generalRoutes, { path: "home", component: T2HomeComponent }],
+		loadComponent: () => import("./templates/t2/t2.component").then((c) => c.T2Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () => import("./templates/t2/t2-home/t2-home.component").then((c) => c.T2HomeComponent),
+			},
+		],
 	},
 	t3: {
 		path: "",
-		component: T3Component,
-		children: [...generalRoutes, { path: "home", component: T3HomeComponent }],
+		loadComponent: () => import("./templates/t3/t3.component").then((c) => c.T3Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () => import("./templates/t3/t3-home/t3-home.component").then((c) => c.T3HomeComponent),
+			},
+		],
 	},
 	t4: {
 		path: "",
-		component: T4Component,
-		children: [...generalRoutes, { path: "home", component: T4HomeComponent }],
+		loadComponent: () => import("./templates/t4/t4.component").then((c) => c.T4Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () => import("./templates/t4/t4-home/t4-home.component").then((c) => c.T4HomeComponent),
+			},
+		],
 	},
 	t5: {
 		path: "",
-		component: T5Component,
-		children: [...generalRoutes, { path: "home", component: T5HomeComponent }],
+		loadComponent: () => import("./templates/t5/t5.component").then((c) => c.T5Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () => import("./templates/t5/t5-home/t5-home.component").then((c) => c.T5HomeComponent),
+			},
+		],
 	},
 	t6: {
 		path: "",
-		component: T6Component,
-		children: [...generalRoutes, { path: "home", component: T6HomeComponent }],
+		loadComponent: () => import("./templates/t6/t6.component").then((c) => c.T6Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () => import("./templates/t6/t6-home/t6-home.component").then((c) => c.T6HomeComponent),
+			},
+		],
 	},
 	t7: {
 		path: "",
-		component: T7Component,
-		children: [...generalRoutes, { path: "home", component: T7HomeComponent }],
+		loadComponent: () => import("./templates/t7/t7.component").then((c) => c.T7Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () => import("./templates/t7/t7-home/t7-home.component").then((c) => c.T7HomeComponent),
+			},
+		],
 	},
 	t8: {
 		path: "",
-		component: T8Component,
-		children: [...generalRoutes, { path: "home", component: T8HomeComponent }],
+		loadComponent: () => import("./templates/t8/t8.component").then((c) => c.T8Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () => import("./templates/t8/t8-home/t8-home.component").then((c) => c.T8HomeComponent),
+			},
+		],
 	},
 	t9: {
 		path: "",
-		component: T9Component,
-		children: [...generalRoutes, { path: "home", component: T9HomeComponent }],
+		loadComponent: () => import("./templates/t9/t9.component").then((c) => c.T9Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () => import("./templates/t9/t9-home/t9-home.component").then((c) => c.T9HomeComponent),
+			},
+		],
 	},
 	t10: {
 		path: "",
-		component: T10Component,
-		children: [...generalRoutes, { path: "home", component: T10HomeComponent }],
+		loadComponent: () => import("./templates/t10/t10.component").then((c) => c.T10Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t10/t10-home/t10-home.component").then((c) => c.T10HomeComponent),
+			},
+		],
 	},
 	t11: {
 		path: "",
-		component: T11Component,
-		children: [...generalRoutes, { path: "home", component: T11HomeComponent }],
+		loadComponent: () => import("./templates/t11/t11.component").then((c) => c.T11Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t11/t11-home/t11-home.component").then((c) => c.T11HomeComponent),
+			},
+		],
 	},
 	t12: {
 		path: "",
-		component: T12Component,
-		children: [...generalRoutes, { path: "home", component: T12HomeComponent }],
+		loadComponent: () => import("./templates/t12/t12.component").then((c) => c.T12Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t12/t12-home/t12-home.component").then((c) => c.T12HomeComponent),
+			},
+		],
 	},
 	t13: {
 		path: "",
-		component: T13Component,
-		children: [...generalRoutes, { path: "home", component: T13HomeComponent }],
+		loadComponent: () => import("./templates/t13/t13.component").then((c) => c.T13Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t13/t13-home/t13-home.component").then((c) => c.T13HomeComponent),
+			},
+		],
 	},
 	t14: {
 		path: "",
-		component: T14Component,
-		children: [...generalRoutes, { path: "home", component: T14HomeComponent }],
+		loadComponent: () => import("./templates/t14/t14.component").then((c) => c.T14Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t14/t14-home/t14-home.component").then((c) => c.T14HomeComponent),
+			},
+		],
 	},
 	t15: {
 		path: "",
-		component: T15Component,
-		children: [...generalRoutes, { path: "home", component: T15HomeComponent }],
+		loadComponent: () => import("./templates/t15/t15.component").then((c) => c.T15Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t15/t15-home/t15-home.component").then((c) => c.T15HomeComponent),
+			},
+		],
 	},
 	t16: {
 		path: "",
-		component: T16Component,
-		children: [...generalRoutes, { path: "home", component: T16HomeComponent }],
+		loadComponent: () => import("./templates/t16/t16.component").then((c) => c.T16Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t16/t16-home/t16-home.component").then((c) => c.T16HomeComponent),
+			},
+		],
 	},
 	t17: {
 		path: "",
-		component: T17Component,
-		children: [...generalRoutes, { path: "home", component: T17HomeComponent }],
+		loadComponent: () => import("./templates/t17/t17.component").then((c) => c.T17Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t17/t17-home/t17-home.component").then((c) => c.T17HomeComponent),
+			},
+		],
 	},
 	t18: {
 		path: "",
-		component: T18Component,
-		children: [...generalRoutes, { path: "home", component: T18HomeComponent }],
+		loadComponent: () => import("./templates/t18/t18.component").then((c) => c.T18Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t18/t18-home/t18-home.component").then((c) => c.T18HomeComponent),
+			},
+		],
 	},
 	t19: {
 		path: "",
-		component: T19Component,
-		children: [...generalRoutes, { path: "home", component: T19HomeComponent }],
+		loadComponent: () => import("./templates/t19/t19.component").then((c) => c.T19Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t19/t19-home/t19-home.component").then((c) => c.T19HomeComponent),
+			},
+		],
 	},
 	t20: {
 		path: "",
-		component: T20Component,
-		children: [...generalRoutes, { path: "home", component: T20HomeComponent }],
-	},	
+		loadComponent: () => import("./templates/t20/t20.component").then((c) => c.T20Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t20/t20-home/t20-home.component").then((c) => c.T20HomeComponent),
+			},
+		],
+	},
 	t21: {
 		path: "",
-		component: T21Component,
-		children: [...generalRoutes, { path: "home", component: T21HomeComponent }],
+		loadComponent: () => import("./templates/t21/t21.component").then((c) => c.T21Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t21/t21-home/t21-home.component").then((c) => c.T21HomeComponent),
+			},
+		],
 	},
 	t22: {
 		path: "",
-		component: T22Component,
-		children: [...generalRoutes, { path: "home", component: T22HomeComponent }],
-	},t23: {
+		loadComponent: () => import("./templates/t22/t22.component").then((c) => c.T22Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t22/t22-home/t22home.component").then((c) => c.T22HomeComponent),
+			},
+		],
+	},
+	t23: {
 		path: "",
-		component: T23Component,
-		children: [...generalRoutes, { path: "home", component: T23HomeComponent }],
-	},t24: {
+		loadComponent: () => import("./templates/t23/t23.component").then((c) => c.T23Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t23/t23-home/t23home.component").then((c) => c.T23HomeComponent),
+			},
+		],
+	},
+	t24: {
 		path: "",
-		component: T24Component,
-		children: [...generalRoutes, { path: "home", component: T24HomeComponent }],
+		loadComponent: () => import("./templates/t24/t24.component").then((c) => c.T24Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t24/t24-home/t24home.component").then((c) => c.T24HomeComponent),
+			},
+		],
 	},
 };
