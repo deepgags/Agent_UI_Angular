@@ -23,7 +23,7 @@ export class NavbarComponent {
 	constructor(
 		private router: Router,
 		private customerService: CustomerService,
-		private sharedDataService: SharedDataService
+		private sharedDataService: SharedDataService,
 	) {
 		this.items = [
 			{

@@ -38,14 +38,14 @@ export class TemplateComponent implements OnInit {
 		private titleService: Title,
 		private loadingService: LoadingService,
 		private sharedDataService: SharedDataService,
-		public dialogService: DialogService
+		public dialogService: DialogService,
 	) {
 		this.titleService.setTitle("Templates");
 	}
 
 	ngOnInit() {
 		this.siteConfig = this.sharedDataService.siteData();
-		this.selectedTemplate = this.siteConfig.websiteSettings.templateId;
+		this.selectedTemplate = this.siteConfig?.websiteSettings?.templateId || "";
 		this.getTemplates();
 	}
 
@@ -78,7 +78,7 @@ export class TemplateComponent implements OnInit {
 				},
 				error: (e) => {
 					this.notificationService.showError(
-						e.error.message || "Something went wrong while changing template."
+						e.error.message || "Something went wrong while changing template.",
 					);
 				},
 				complete: () => {

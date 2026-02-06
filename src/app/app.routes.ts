@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "./guards/auth.guard";
 import { brokerGuard } from "./guards/broker.guard";
+import { SiteDataResolver } from "./resolvers/site-data.resolver";
 
 export const routes: Routes = [
 	{
@@ -72,6 +73,7 @@ export const routes: Routes = [
 	{
 		path: "",
 		loadComponent: () => import("./pages/private/private.component").then((c) => c.PrivateComponent),
+		resolve: { siteData: SiteDataResolver },
 		children: [
 			{
 				path: "dashboard",
