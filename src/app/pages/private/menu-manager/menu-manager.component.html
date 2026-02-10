@@ -5,11 +5,11 @@
 	<div class="border rounded p-4">
 		<div class="d-flex justify-content-between align-items-center mb-4">
 			<h5 class="mb-0">Menu Items</h5>
-			<p-button label="Add Menu Item"
-					  icon="pi pi-plus"
-					  (onClick)="openAddMenuDialog()"
-					  styleClass="p-button-success">
-			</p-button>
+			<p-button
+				label="Add Menu Item"
+				icon="pi pi-plus"
+				(onClick)="openAddMenuDialog()"
+				styleClass="p-button-success"></p-button>
 		</div>
 
 		<p-tabs value="0">
@@ -19,32 +19,35 @@
 			</p-tablist>
 			<p-tabpanels>
 				<p-tabpanel value="0">
-					<div class="menu-tree"
-						 style="max-height: 400px; overflow-y: auto;">
-						<p-tree [value]="mainTreeNodes"
-								class="w-full md:w-[30rem]">
-							<ng-template let-node
-										 pTemplate="default">
+					<div
+						class="menu-tree"
+						style="max-height: 400px; overflow-y: auto">
+						<p-tree
+							[value]="mainMenuTree"
+							class="w-full md:w-[30rem]">
+							<ng-template
+								let-node
+								pTemplate="default">
 								<div class="d-flex justify-content-between align-items-center w-100 py-2">
 									<div class="d-flex align-items-center flex-grow-1 me-3">
 										<div class="d-flex flex-column gap-1 justify-content-start">
-											<span class="fw-bold">{{node.label}}</span>
+											<span class="fw-bold">{{ node.label }}</span>
 											<span class="capitalize badge bg-warning text-dark w-auto align-self-start">
-												{{node.data?.menuType }}
+												{{ node.data?.menuType }}
 											</span>
 										</div>
 									</div>
 									<div class="d-flex gap-2 flex-shrink-0">
-										<p-button icon="bi bi-pencil-square"
-												  styleClass="p-button-text p-button-sm"
-												  (onClick)="openEditMenuDialog(node.data!)"
-												  pTooltip="Edit">
-										</p-button>
-										<p-button icon="bi bi-trash3"
-												  styleClass="p-button-text p-button-danger p-button-sm"
-												  (onClick)="deleteMenuItem(node.data!)"
-												  pTooltip="Delete">
-										</p-button>
+										<p-button
+											icon="bi bi-pencil-square"
+											styleClass="p-button-text p-button-sm"
+											(onClick)="openEditMenuDialog(node.data!)"
+											pTooltip="Edit"></p-button>
+										<p-button
+											icon="bi bi-trash3"
+											styleClass="p-button-text p-button-danger p-button-sm"
+											(onClick)="deleteMenuItem(node.data!)"
+											pTooltip="Delete"></p-button>
 									</div>
 								</div>
 							</ng-template>
@@ -52,32 +55,35 @@
 					</div>
 				</p-tabpanel>
 				<p-tabpanel value="1">
-					<div class="menu-tree"
-						 style="max-height: 400px; overflow-y: auto;">
-						<p-tree [value]="sideTreeNodes"
-								class="w-full md:w-[30rem]">
-							<ng-template let-node
-										 pTemplate="default">
+					<div
+						class="menu-tree"
+						style="max-height: 400px; overflow-y: auto">
+						<p-tree
+							[value]="sideMenuTree"
+							class="w-full md:w-[30rem]">
+							<ng-template
+								let-node
+								pTemplate="default">
 								<div class="d-flex justify-content-between align-items-center w-100 py-2">
 									<div class="d-flex align-items-center flex-grow-1 me-3">
 										<div class="d-flex flex-column gap-1 justify-content-start">
-											<span class="fw-bold">{{node.label}}</span>
+											<span class="fw-bold">{{ node.label }}</span>
 											<span class="capitalize badge bg-warning text-dark w-auto align-self-start">
-												{{node.data?.menuType }}
+												{{ node.data?.menuType }}
 											</span>
 										</div>
 									</div>
 									<div class="d-flex gap-2 flex-shrink-0">
-										<p-button icon="bi bi-pencil-square"
-												  styleClass="p-button-text p-button-sm"
-												  (onClick)="openEditMenuDialog(node.data!)"
-												  pTooltip="Edit">
-										</p-button>
-										<p-button icon="bi bi-trash3"
-												  styleClass="p-button-text p-button-danger p-button-sm"
-												  (onClick)="deleteMenuItem(node.data!)"
-												  pTooltip="Delete">
-										</p-button>
+										<p-button
+											icon="bi bi-pencil-square"
+											styleClass="p-button-text p-button-sm"
+											(onClick)="openEditMenuDialog(node.data!)"
+											pTooltip="Edit"></p-button>
+										<p-button
+											icon="bi bi-trash3"
+											styleClass="p-button-text p-button-danger p-button-sm"
+											(onClick)="deleteMenuItem(node.data!)"
+											pTooltip="Delete"></p-button>
 									</div>
 								</div>
 							</ng-template>
@@ -89,128 +95,155 @@
 	</div>
 
 	<!-- Menu Item Dialog -->
-	<p-dialog header="{{editingItem ? 'Edit Menu Item' : 'Add Menu Item'}}"
-			  [(visible)]="menuDialogVisible"
-			  [modal]="true"
-			  [style]="{width: '600px'}"
-			  [closable]="true">
-
-		<form [formGroup]="menuForm"
-			  (ngSubmit)="saveMenuItem()">
+	<p-dialog
+		header="{{ editingItem ? 'Edit Menu Item' : 'Add Menu Item' }}"
+		[(visible)]="menuDialogVisible"
+		[modal]="true"
+		[style]="{ width: '600px' }"
+		[closable]="true">
+		<form
+			[formGroup]="menuForm"
+			(ngSubmit)="saveMenuItem()">
 			<div class="row g-3">
 				<!-- Menu Name -->
 				<div class="col-12">
-					<label for="name"
-						   class="form-label fw-semibold">Menu Name *</label>
-					<input pInputText
-						   id="name"
-						   formControlName="name"
-						   placeholder="Enter menu item name"
-						   class="w-100"
-						   [class.ng-invalid]="menuForm.get('name')?.invalid && menuForm.get('name')?.touched" />
-					<small class="text-danger"
-						   *ngIf="menuForm.get('name')?.invalid && menuForm.get('name')?.touched">
+					<label
+						for="name"
+						class="form-label fw-semibold">
+						Menu Name *
+					</label>
+					<input
+						pInputText
+						id="name"
+						formControlName="name"
+						placeholder="Enter menu item name"
+						class="w-100"
+						[class.ng-invalid]="menuForm.get('name')?.invalid && menuForm.get('name')?.touched" />
+					<small
+						class="text-danger"
+						*ngIf="menuForm.get('name')?.invalid && menuForm.get('name')?.touched">
 						Menu name is required
 					</small>
 				</div>
 
 				<!-- Menu Type -->
 				<div class="col-12">
-					<label for="menuType"
-						   class="form-label fw-semibold">Menu Type *</label>
-					<p-select id="menuType"
-							  formControlName="menuType"
-							  [options]="menuTypes"
-							  optionLabel="label"
-							  optionValue="value"
-							  placeholder="Select menu type"
-							  class="w-100">
-					</p-select>
+					<label
+						for="menuType"
+						class="form-label fw-semibold">
+						Menu Type *
+					</label>
+					<p-select
+						id="menuType"
+						formControlName="menuType"
+						[options]="menuTypes"
+						optionLabel="label"
+						optionValue="value"
+						placeholder="Select menu type"
+						class="w-100"></p-select>
 				</div>
 
 				<!-- Page Selection (when menuType is PAGE) -->
-				<div class="col-12"
-					 *ngIf="menuForm.get('menuType')?.value === 'page'">
-					<label for="pageKey"
-						   class="form-label fw-semibold">Select Page *</label>
-					<p-select id="pageKey"
-							  formControlName="pageKey"
-							  [options]="pages"
-							  optionLabel="title"
-							  optionValue="pageKey"
-							  placeholder="Select a page"
-							  class="w-100"
-							  [class.ng-invalid]="menuForm.get('pageKey')?.invalid && menuForm.get('pageKey')?.touched">
-					</p-select>
-					<small class="text-danger"
-						   *ngIf="menuForm.get('pageKey')?.invalid && menuForm.get('pageKey')?.touched">
+				<div
+					class="col-12"
+					*ngIf="menuForm.get('menuType')?.value === 'page'">
+					<label
+						for="pageKey"
+						class="form-label fw-semibold">
+						Select Page *
+					</label>
+					<p-select
+						id="pageKey"
+						formControlName="pageKey"
+						[options]="pages"
+						optionLabel="title"
+						optionValue="pageKey"
+						placeholder="Select a page"
+						class="w-100"
+						[class.ng-invalid]="
+							menuForm.get('pageKey')?.invalid && menuForm.get('pageKey')?.touched
+						"></p-select>
+					<small
+						class="text-danger"
+						*ngIf="menuForm.get('pageKey')?.invalid && menuForm.get('pageKey')?.touched">
 						Page selection is required
 					</small>
 				</div>
 
 				<!-- Link URL (when menuType is LINK) -->
-				<div class="col-12"
-					 *ngIf="menuForm.get('menuType')?.value === 'link'">
-					<label for="linkUrl"
-						   class="form-label fw-semibold">Link URL *</label>
-					<input pInputText
-						   id="linkUrl"
-						   formControlName="linkUrl"
-						   placeholder="https://example.com or /internal-path"
-						   class="w-100"
-						   [class.ng-invalid]="menuForm.get('linkUrl')?.invalid && menuForm.get('linkUrl')?.touched" />
-					<small class="text-danger"
-						   *ngIf="menuForm.get('linkUrl')?.invalid && menuForm.get('linkUrl')?.touched">
+				<div
+					class="col-12"
+					*ngIf="menuForm.get('menuType')?.value === 'link'">
+					<label
+						for="linkUrl"
+						class="form-label fw-semibold">
+						Link URL *
+					</label>
+					<input
+						pInputText
+						id="linkUrl"
+						formControlName="linkUrl"
+						placeholder="https://example.com or /internal-path"
+						class="w-100"
+						[class.ng-invalid]="menuForm.get('linkUrl')?.invalid && menuForm.get('linkUrl')?.touched" />
+					<small
+						class="text-danger"
+						*ngIf="menuForm.get('linkUrl')?.invalid && menuForm.get('linkUrl')?.touched">
 						Link URL is required
 					</small>
 				</div>
 
-
 				<!-- Menu Category -->
 				<div class="col-12">
-					<label for="menuCategory"
-						   class="form-label fw-semibold">Menu Category *</label>
-					<p-select id="menuCategory"
-							  formControlName="menuCategory"
-							  [options]="menuCategories"
-							  optionLabel="label"
-							  optionValue="value"
-							  placeholder="Select menu category"
-							  class="w-100">
-					</p-select>
+					<label
+						for="menuCategory"
+						class="form-label fw-semibold">
+						Menu Category *
+					</label>
+					<p-select
+						id="menuCategory"
+						formControlName="menuCategory"
+						[options]="menuCategories"
+						optionLabel="label"
+						optionValue="value"
+						placeholder="Select menu category"
+						class="w-100"></p-select>
 				</div>
 
 				<!-- Parent Menu Item -->
 				<div class="col-12">
-					<label for="parentId"
-						   class="form-label fw-semibold">Parent Menu Item</label>
-					<p-select id="parentId"
-							  formControlName="parentId"
-							  [options]="getAvailableParents(menuForm.get('menuCategory')?.value)"
-							  optionLabel="label"
-							  optionValue="value"
-							  placeholder="Select parent (optional)"
-							  class="w-100"
-							  appendTo="body">
-					</p-select>
+					<label
+						for="parentId"
+						class="form-label fw-semibold">
+						Parent Menu Item
+					</label>
+					<p-select
+						id="parentId"
+						formControlName="parentId"
+						[options]="getParentOptions(menuForm.get('menuCategory')?.value)"
+						optionLabel="label"
+						optionValue="value"
+						placeholder="Select parent (optional)"
+						class="w-100"
+						appendTo="body"></p-select>
 					<small class="text-muted">Leave empty for top-level menu item</small>
 				</div>
-
 			</div>
 		</form>
 
 		<ng-template pTemplate="footer">
-			<p-button label="Cancel"
-					  styleClass="p-button-text"
-					  (onClick)="cancelDialog()">
-			</p-button>
-			<p-button label="Save"
-					  styleClass="p-button-success"
-					  (onClick)="saveMenuItem()"
-					  [disabled]="menuForm.invalid">
-			</p-button>
+			<p-button
+				label="Cancel"
+				styleClass="p-button-text"
+				(onClick)="cancelDialog()"></p-button>
+			<p-button
+				label="Save"
+				styleClass="p-button-success"
+				(onClick)="saveMenuItem()"
+				[disabled]="menuForm.invalid"></p-button>
 		</ng-template>
 	</p-dialog>
 
 	<!-- Confirmation Dialog -->
 	<p-confirmDialog></p-confirmDialog>
+</div>

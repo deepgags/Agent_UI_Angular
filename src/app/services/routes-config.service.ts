@@ -40,7 +40,7 @@ export class RoutesConfigService {
 			}
 
 			this.sharedDataService.setSiteData(customer);
-			this.sharedDataService.setSiteId(customer.id);
+			this.sharedDataService.setSiteId(customer._id);
 			if (mainMenu) {
 				this.sharedDataService.setMainMenu(mainMenu);
 			}

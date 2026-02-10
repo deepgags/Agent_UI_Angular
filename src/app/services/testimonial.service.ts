@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "../environments/environment.development";
 
 export interface Testimonial {
-	id: string;
+	_id: string;
 	customerName: string;
 	message: string;
 	date: string;

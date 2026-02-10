@@ -86,12 +86,13 @@ export class TestimonialComponent {
 		private confirmationService: ConfirmationService,
 		private dialogService: DialogService,
 		private sharedDataService: SharedDataService,
-		private testimonialService: TestimonialService
-	) {}
-
-	ngOnInit() {
+		private testimonialService: TestimonialService,
+	) {
 		this.siteConfig = this.sharedDataService.siteData();
 		this.siteId = this.sharedDataService.siteId();
+	}
+
+	ngOnInit() {
 		this.getTestimonial();
 	}
 

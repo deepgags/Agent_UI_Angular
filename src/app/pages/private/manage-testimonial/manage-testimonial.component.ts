@@ -12,6 +12,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
 import { BlobToUrlPipe } from "../../../pipes/blob-to-url";
 import { NotificationService } from "../../../services/notification.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 import { TestimonialService } from "../../../services/testimonial.service";
 
 @Component({
@@ -43,6 +44,7 @@ export class ManageTestimonialComponent {
 	private ref = inject(DynamicDialogRef);
 	private dialogConfig = inject(DynamicDialogConfig);
 	private testimonialService = inject(TestimonialService);
+	private sharedDataService = inject(SharedDataService);
 
 	constructor(public dialogService: DialogService) {
 		this.testimonialImage = new BehaviorSubject<Blob | null>(null);
@@ -115,15 +117,20 @@ export class ManageTestimonialComponent {
 			return;
 		} else {
 			const formData = new FormData();
-			formData.append("name", this.form.value.name);
+			formData.append("customerName", this.form.value.name);
 			formData.append("message", this.form.value.message);
 			formData.append("date", dayjs(this.form.value.date).format("DD-MMM-YYYY"));
 			if (this.form.value.designation) {
 				formData.append("designation", this.form.value.designation);
 			}
 			if (this.testimonialImage.value) {
-				console.log(this.testimonialImage);
 				formData.append("image", this.testimonialImage.value, "testimonial-image.png");
+			}
+
+			// Include siteId from shared data service
+			const siteId = this.sharedDataService.siteId();
+			if (siteId) {
+				formData.append("siteId", siteId);
 			}
 
 			this.testimonialService.addTestimonial(formData).subscribe({
@@ -132,9 +139,8 @@ export class ManageTestimonialComponent {
 					this.ref.close(true);
 				},
 				error: (error) => {
-					// this.loading = false;
-					console.error("Error deleting Testimonial:", error);
-					this.notificationService.showError("Unable to remove Testimonial.");
+					console.error("Error adding Testimonial:", error);
+					this.notificationService.showError("Unable to add Testimonial.");
 				},
 			});
 		}
