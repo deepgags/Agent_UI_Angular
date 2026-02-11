@@ -14,7 +14,6 @@ import { SearchService } from "../../../services/search.service";
 import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
-import { SearchComponent } from "../../shared/search/search.component";
 
 @Component({
 	selector: "app-t24-home",
@@ -22,7 +21,6 @@ import { SearchComponent } from "../../shared/search/search.component";
 	imports: [
 		CommonModule,
 		RouterModule,
-		SearchComponent,
 		FeaturedPropertiesComponent,
 		HeroContactFormComponent,
 		PhoneNumberFormatPipe,
@@ -41,7 +39,7 @@ export class T24HomeComponent implements OnInit {
 		private titleService: Title,
 		private metaService: Meta,
 		private sharedDataService: SharedDataService,
-		private searchService: SearchService
+		private searchService: SearchService,
 	) {}
 
 	ngOnInit(): void {

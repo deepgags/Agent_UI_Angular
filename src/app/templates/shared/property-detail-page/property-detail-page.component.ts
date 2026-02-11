@@ -26,7 +26,6 @@ import { PropertyModel } from "../../../models/PropertyModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { TimeAgo } from "../../../pipes/time-ago";
-import { CaptchaService } from "../../../services/captcha.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PropertyService } from "../../../services/property.service";
 import { PublicService } from "../../../services/public.service";
@@ -80,7 +79,11 @@ export class PropertyDetailPageComponent {
 
 	@ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 	@ViewChild("map", { static: false }) map!: GoogleMap;
-	@ViewChild(CaptchaComponent) captchaComponent!: CaptchaComponent;
+	@ViewChild("requestShowingCaptcha") requestShowingCaptcha!: CaptchaComponent;
+	@ViewChild("propertyHistoryCaptcha") propertyHistoryCaptcha!: CaptchaComponent;
+	@ViewChild("recentSalesCaptcha") recentSalesCaptcha!: CaptchaComponent;
+	@ViewChild("haveQuestionCaptcha") haveQuestionCaptcha!: CaptchaComponent;
+	@ViewChild("contactCaptcha") contactCaptcha!: CaptchaComponent;
 	zoom = 14;
 	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Canada
 
@@ -153,7 +156,6 @@ export class PropertyDetailPageComponent {
 		private notificationService: NotificationService,
 		private publicService: PublicService,
 		private route: ActivatedRoute,
-		private captchaService: CaptchaService,
 	) {
 		this.titleService.setTitle("Property Detail");
 		this.route.queryParams.subscribe((params) => {
@@ -385,7 +387,7 @@ export class PropertyDetailPageComponent {
 			return;
 		}
 
-		if (!this.captchaComponent.isCaptchaValid()) {
+		if (!this.requestShowingCaptcha?.isCaptchaValid()) {
 			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
@@ -403,7 +405,7 @@ export class PropertyDetailPageComponent {
 				this.requestShowingForm.patchValue({
 					message: this.requestShowingText,
 				});
-				this.captchaService.reset();
+				this.requestShowingCaptcha?.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -418,7 +420,7 @@ export class PropertyDetailPageComponent {
 			return;
 		}
 
-		if (!this.captchaComponent.isCaptchaValid()) {
+		if (!this.propertyHistoryCaptcha?.isCaptchaValid()) {
 			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
@@ -436,7 +438,7 @@ export class PropertyDetailPageComponent {
 				this.propertyHistoryForm.patchValue({
 					message: this.propertyHistooryText,
 				});
-				this.captchaService.reset();
+				this.propertyHistoryCaptcha?.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -451,7 +453,7 @@ export class PropertyDetailPageComponent {
 			return;
 		}
 
-		if (!this.captchaComponent.isCaptchaValid()) {
+		if (!this.recentSalesCaptcha?.isCaptchaValid()) {
 			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
@@ -469,7 +471,7 @@ export class PropertyDetailPageComponent {
 				this.recentSaleInAreaForm.patchValue({
 					message: this.recentSalesinAreaText,
 				});
-				this.captchaService.reset();
+				this.recentSalesCaptcha?.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -484,7 +486,7 @@ export class PropertyDetailPageComponent {
 			return;
 		}
 
-		if (!this.captchaComponent.isCaptchaValid()) {
+		if (!this.haveQuestionCaptcha?.isCaptchaValid()) {
 			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
@@ -502,7 +504,7 @@ export class PropertyDetailPageComponent {
 				this.haveQuestionForm.patchValue({
 					message: this.haveAQuestionText,
 				});
-				this.captchaService.reset();
+				this.haveQuestionCaptcha?.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -517,7 +519,7 @@ export class PropertyDetailPageComponent {
 			return;
 		}
 
-		if (!this.captchaComponent.isCaptchaValid()) {
+		if (!this.contactCaptcha?.isCaptchaValid()) {
 			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
@@ -535,7 +537,7 @@ export class PropertyDetailPageComponent {
 				this.contactForm.patchValue({
 					message: this.askAboutThisHomecommentText,
 				});
-				this.captchaService.reset();
+				this.contactCaptcha?.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");

@@ -5,7 +5,6 @@ import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { SiteConfig } from "../../models/SiteConfig";
-import { CaptchaService } from "../../services/captcha.service";
 import { NotificationService } from "../../services/notification.service";
 import { PublicService } from "../../services/public.service";
 import { SharedDataService } from "../../services/shared-data.service";
@@ -27,7 +26,6 @@ export class HeroContactFormComponent {
 		private publicService: PublicService,
 		private notificationService: NotificationService,
 		private sharedDataService: SharedDataService,
-		private captchaService: CaptchaService
 	) {
 		this.heroContactForm = new FormGroup({
 			name: new FormControl("", Validators.required),
@@ -75,7 +73,7 @@ export class HeroContactFormComponent {
 			next: () => {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.heroContactForm.reset();
-				this.captchaService.reset();
+				this.captchaComponent.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");

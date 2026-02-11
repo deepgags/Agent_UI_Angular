@@ -14,7 +14,6 @@ import { environment } from "../../../environments/environment.development";
 import { Page } from "../../../models/Page";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
-import { CaptchaService } from "../../../services/captcha.service";
 import { NotificationService } from "../../../services/notification.service";
 import { PageService } from "../../../services/page.service";
 import { PublicService } from "../../../services/public.service";
@@ -75,7 +74,6 @@ export class ContactComponent {
 	private sharedDataService = inject(SharedDataService);
 	private notificationService = inject(NotificationService);
 	private publicService = inject(PublicService);
-	private captchaService = inject(CaptchaService);
 
 	constructor() {
 		this.contactForm = new FormGroup({
@@ -152,7 +150,7 @@ export class ContactComponent {
 			next: () => {
 				this.notificationService.showSuccess("Your request has been submitted successfully.");
 				this.contactForm.reset();
-				this.captchaService.reset();
+				this.captchaComponent.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to submit request. Please try again later.");

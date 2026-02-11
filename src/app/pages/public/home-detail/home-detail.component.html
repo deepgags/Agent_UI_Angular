@@ -1,156 +1,194 @@
 <section class="hero d-flex flex-column justify-content-between">
-  <div class="overlay"></div>
+	<div class="overlay"></div>
 
-  <div class="container position-relative py-4 d-flex justify-content-between align-items-center">
-  <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-         height="60">
-    <a href="/home"
-       class="btn btn-success fw-semibold px-4">Back To Home</a>
-  </div>
+	<div class="container position-relative py-4 d-flex justify-content-between align-items-center">
+		<img
+			[src]="
+				siteConfig.websiteSettings.brokerageImage ?
+					localImageUrl + siteConfig.websiteSettings.brokerageImage
+				:	'/images/Nologo.png'
+			"
+			height="60" />
+		<a
+			href="/home"
+			class="btn btn-success fw-semibold px-4">
+			Back To Home
+		</a>
+	</div>
 
-  <div class="container position-relative pb-5 text-center text-white">
-    <h2 class="fw-bold mb-2">Good News! We found multiple properties in your selected area.</h2>
-    <p class="lead">{{ selectedAddress }}</p>
+	<div class="container position-relative pb-5 text-center text-white">
+		<h2 class="fw-bold mb-2">Good News! We found multiple properties in your selected area.</h2>
+		<p class="lead">{{ selectedAddress }}</p>
 
-    <div class="row justify-content-center align-items-start mt-4 g-4">
-      <div class="col-lg-6">
-        <div class="ratio ratio-4x3 rounded-4 overflow-hidden shadow">
-          <google-map [options]="mapOptions"
-                      width="100%"
-                      height="100%">
-            <map-marker [options]="markerOptions"></map-marker>
-          </google-map>
-        </div>
-      </div>
+		<div class="row justify-content-center align-items-start mt-4 g-4">
+			<div class="col-lg-6">
+				<div class="ratio ratio-4x3 rounded-4 overflow-hidden shadow">
+					<google-map
+						[options]="mapOptions"
+						width="100%"
+						height="100%">
+						<map-marker [options]="markerOptions"></map-marker>
+					</google-map>
+				</div>
+			</div>
 
-      <div class="col-lg-5">
-        <div class="card card-glass p-4 text-start shadow-lg text-white">
-          <form [formGroup]="homeDetailForm"
-                (ngSubmit)="submitHomeDetailForm()">
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label small">Type Of Home*</label>
-                <select class="form-select bg-dark text-white border-0 rounded-pill"
-                        formControlName="homeType"
-                        required>
-                  <option value=""
-                          disabled
-                          selected>Select Type</option>
-                  <option value="Detached">Detached</option>
-                  <option value="Semi-Detached">Semi-Detached</option>
-                  <option value="Townhouse">Townhouse</option>
-                  <option value="Condo">Condo</option>
-                </select>
-                <span class="error"
-                      *ngIf="homeType?.invalid && (homeType?.dirty || homeType?.touched)">
-                  <span *ngIf="homeType?.errors?.['required']">Home type is required</span>
-                </span>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label small">Radius*</label>
-                <select class="form-select bg-dark text-white border-0 rounded-pill"
-                        formControlName="radius"
-                        required>
-                  <option value=""
-                          disabled
-                          selected>Select Radius</option>
-                  <option value="200 Meters">200 Meters</option>
-                  <option value="500 Meters">500 Meters</option>
-                  <option value="1 KM">1 KM</option>
-                </select>
-                <span class="error"
-                      *ngIf="radius?.invalid && (radius?.dirty || radius?.touched)">
-                  <span *ngIf="radius?.errors?.['required']">Radius is required</span>
-                </span>
-              </div>
+			<div class="col-lg-5">
+				<div class="card card-glass p-4 text-start shadow-lg text-white">
+					<form
+						[formGroup]="homeDetailForm"
+						(ngSubmit)="submitHomeDetailForm()">
+						<div class="row g-3">
+							<div class="col-md-6">
+								<label class="form-label small">Type Of Home*</label>
+								<select
+									class="form-select bg-dark text-white border-0 rounded-pill"
+									formControlName="homeType"
+									required>
+									<option
+										value=""
+										disabled
+										selected>
+										Select Type
+									</option>
+									<option value="Detached">Detached</option>
+									<option value="Semi-Detached">Semi-Detached</option>
+									<option value="Townhouse">Townhouse</option>
+									<option value="Condo">Condo</option>
+								</select>
+								<span
+									class="error"
+									*ngIf="homeType?.invalid && (homeType?.dirty || homeType?.touched)">
+									<span *ngIf="homeType?.errors?.['required']">Home type is required</span>
+								</span>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label small">Radius*</label>
+								<select
+									class="form-select bg-dark text-white border-0 rounded-pill"
+									formControlName="radius"
+									required>
+									<option
+										value=""
+										disabled
+										selected>
+										Select Radius
+									</option>
+									<option value="200 Meters">200 Meters</option>
+									<option value="500 Meters">500 Meters</option>
+									<option value="1 KM">1 KM</option>
+								</select>
+								<span
+									class="error"
+									*ngIf="radius?.invalid && (radius?.dirty || radius?.touched)">
+									<span *ngIf="radius?.errors?.['required']">Radius is required</span>
+								</span>
+							</div>
 
-              <div class="col-md-6">
-                <label class="form-label small">Bed*</label>
-                <select class="form-select bg-dark text-white border-0 rounded-pill"
-                        formControlName="bed"
-                        required>
-                  <option value=""
-                          disabled
-                          selected>Select Beds</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4+">4+</option>
-                </select>
-                <span class="error"
-                      *ngIf="bed?.invalid && (bed?.dirty || bed?.touched)">
-                  <span *ngIf="bed?.errors?.['required']">Number of beds is required</span>
-                </span>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label small">Bath*</label>
-                <select class="form-select bg-dark text-white border-0 rounded-pill"
-                        formControlName="bath"
-                        required>
-                  <option value=""
-                          disabled
-                          selected>Select Baths</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4+">4+</option>
-                </select>
-                <span class="error"
-                      *ngIf="bath?.invalid && (bath?.dirty || bath?.touched)">
-                  <span *ngIf="bath?.errors?.['required']">Number of baths is required</span>
-                </span>
-              </div>
+							<div class="col-md-6">
+								<label class="form-label small">Bed*</label>
+								<select
+									class="form-select bg-dark text-white border-0 rounded-pill"
+									formControlName="bed"
+									required>
+									<option
+										value=""
+										disabled
+										selected>
+										Select Beds
+									</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4+">4+</option>
+								</select>
+								<span
+									class="error"
+									*ngIf="bed?.invalid && (bed?.dirty || bed?.touched)">
+									<span *ngIf="bed?.errors?.['required']">Number of beds is required</span>
+								</span>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label small">Bath*</label>
+								<select
+									class="form-select bg-dark text-white border-0 rounded-pill"
+									formControlName="bath"
+									required>
+									<option
+										value=""
+										disabled
+										selected>
+										Select Baths
+									</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4+">4+</option>
+								</select>
+								<span
+									class="error"
+									*ngIf="bath?.invalid && (bath?.dirty || bath?.touched)">
+									<span *ngIf="bath?.errors?.['required']">Number of baths is required</span>
+								</span>
+							</div>
 
-              <div class="col-12">
-                <label class="form-label small">Name*</label>
-                <input type="text"
-                       pInputText
-                       formControlName="name"
-                       class="form-control bg-dark text-white border-0 rounded-pill"
-                       placeholder="Name*"
-                       required />
-                <span class="error"
-                      *ngIf="name?.invalid && (name?.dirty || name?.touched)">
-                  <span *ngIf="name?.errors?.['required']">Name is required</span>
-                </span>
-              </div>
+							<div class="col-12">
+								<label class="form-label small">Name*</label>
+								<input
+									type="text"
+									pInputText
+									formControlName="name"
+									class="form-control bg-dark text-white border-0 rounded-pill"
+									placeholder="Name*"
+									required />
+								<span
+									class="error"
+									*ngIf="name?.invalid && (name?.dirty || name?.touched)">
+									<span *ngIf="name?.errors?.['required']">Name is required</span>
+								</span>
+							</div>
 
-              <div class="col-12">
-                <label class="form-label small">Phone*</label>
-                <p-inputmask mask="(999) 999-9999"
-                             formControlName="phone"
-                             class="w-100"
-                             placeholder="Ex. 123-456-1234"
-                             required></p-inputmask>
-                <span class="error"
-                      *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
-                  <span *ngIf="phone?.errors?.['required']">Phone number is required</span>
-                </span>
-              </div>
-              <div class="col-12">
-                <label class="form-label small">E-Mail ID*</label>
-                <input type="email"
-                       pInputText
-                       formControlName="email"
-                       class="form-control bg-dark text-white border-0 rounded-pill"
-                       placeholder="E-Mail ID"
-                       required />
-                <span class="error"
-                      *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-                  <span *ngIf="email?.errors?.['required']">Email is required</span>
-                  <span *ngIf="email?.errors?.['email']">Please enter a valid email address</span>
-                </span>
-              </div>
+							<div class="col-12">
+								<label class="form-label small">Phone*</label>
+								<p-inputmask
+									mask="999-999-9999"
+									formControlName="phone"
+									class="w-100"
+									placeholder="Ex. 123-456-1234"
+									required></p-inputmask>
+								<span
+									class="error"
+									*ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+									<span *ngIf="phone?.errors?.['required']">Phone number is required</span>
+								</span>
+							</div>
+							<div class="col-12">
+								<label class="form-label small">E-Mail ID*</label>
+								<input
+									type="email"
+									pInputText
+									formControlName="email"
+									class="form-control bg-dark text-white border-0 rounded-pill"
+									placeholder="E-Mail ID"
+									required />
+								<span
+									class="error"
+									*ngIf="email?.invalid && (email?.dirty || email?.touched)">
+									<span *ngIf="email?.errors?.['required']">Email is required</span>
+									<span *ngIf="email?.errors?.['email']">Please enter a valid email address</span>
+								</span>
+							</div>
 
-              <div class="col-12 text-center mt-3">
-                <button class="btn btn-success w-100 rounded-pill py-2 fw-semibold"
-                        type="submit">SUBMIT</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
+							<div class="col-12 text-center mt-3">
+								<button
+									class="btn btn-success w-100 rounded-pill py-2 fw-semibold"
+									type="submit">
+									SUBMIT
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>

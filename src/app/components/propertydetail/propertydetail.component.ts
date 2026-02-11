@@ -26,7 +26,6 @@ import { PropertyModel } from "../../models/PropertyModel";
 import { SiteConfig } from "../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../pipes/phone-format";
 import { TimeAgo } from "../../pipes/time-ago";
-import { CaptchaService } from "../../services/captcha.service";
 import { NotificationService } from "../../services/notification.service";
 import { PropertyService } from "../../services/property.service";
 import { PublicService } from "../../services/public.service";
@@ -80,7 +79,11 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
 	@ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 	@ViewChild("map", { static: false }) map!: GoogleMap;
-	@ViewChild(CaptchaComponent) captchaComponent!: CaptchaComponent;
+	@ViewChild("requestShowingCaptcha") requestShowingCaptcha!: CaptchaComponent;
+	@ViewChild("propertyHistoryCaptcha") propertyHistoryCaptcha!: CaptchaComponent;
+	@ViewChild("recentSalesCaptcha") recentSalesCaptcha!: CaptchaComponent;
+	@ViewChild("haveQuestionCaptcha") haveQuestionCaptcha!: CaptchaComponent;
+	@ViewChild("contactCaptcha") contactCaptcha!: CaptchaComponent;
 	zoom = 14;
 	center: google.maps.LatLngLiteral = { lat: 56.1304, lng: 106.3468 }; // Center of Canada
 
@@ -154,7 +157,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	private dialogConfig = inject(DynamicDialogConfig);
 	private notificationService = inject(NotificationService);
 	private publicService = inject(PublicService);
-	private captchaService = inject(CaptchaService);
 
 	constructor() {
 		this.titleService.setTitle("Property Detail");
@@ -387,7 +389,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			return;
 		}
 
-		if (!this.captchaComponent.isCaptchaValid()) {
+		if (!this.requestShowingCaptcha?.isCaptchaValid()) {
 			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
@@ -405,7 +407,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.requestShowingForm.patchValue({
 					message: this.requestShowingText,
 				});
-				this.captchaService.reset();
+				this.requestShowingCaptcha?.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -420,40 +422,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			return;
 		}
 
-		if (!this.captchaComponent.isCaptchaValid()) {
-			this.notificationService.showError("Please solve the math problem correctly.");
-			return;
-		}
-
-		const params = {
-			...this.requestShowingForm.value,
-			leadSource: "requestShowing",
-			siteId: this.siteConfig?.id,
-			mlsId: this.mlsId,
-		};
-		this.publicService.submitContactForm(params).subscribe({
-			next: () => {
-				this.notificationService.showSuccess("Your message has been sent successfully.");
-				this.requestShowingForm.reset();
-				this.requestShowingForm.patchValue({
-					message: this.requestShowingText,
-				});
-				this.captchaService.reset();
-			},
-			error: () => {
-				this.notificationService.showError("Failed to send message. Please try again later.");
-			},
-		});
-	}
-
-	submitRecentSalesInAreaForm() {
-		if (this.recentSaleInAreaForm.invalid) {
-			this.recentSaleInAreaForm.markAllAsTouched();
-			this.notificationService.showError("Please fill all required fields correctly.");
-			return;
-		}
-
-		if (!this.captchaComponent.isCaptchaValid()) {
+		if (!this.propertyHistoryCaptcha?.isCaptchaValid()) {
 			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
@@ -471,7 +440,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.propertyHistoryForm.patchValue({
 					message: this.propertyHistooryText,
 				});
-				this.captchaService.reset();
+				this.propertyHistoryCaptcha?.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -479,14 +448,14 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		});
 	}
 
-	submitHaveQuestionForm() {
-		if (this.haveQuestionForm.invalid) {
-			this.haveQuestionForm.markAllAsTouched();
+	submitRecentSalesInAreaForm() {
+		if (this.recentSaleInAreaForm.invalid) {
+			this.recentSaleInAreaForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
 
-		if (!this.captchaComponent.isCaptchaValid()) {
+		if (!this.recentSalesCaptcha?.isCaptchaValid()) {
 			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
@@ -504,7 +473,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.recentSaleInAreaForm.patchValue({
 					message: this.recentSalesinAreaText,
 				});
-				this.captchaService.reset();
+				this.recentSalesCaptcha?.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
@@ -512,14 +481,14 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		});
 	}
 
-	submitContactForm() {
-		if (this.contactForm.invalid) {
-			this.contactForm.markAllAsTouched();
+	submitHaveQuestionForm() {
+		if (this.haveQuestionForm.invalid) {
+			this.haveQuestionForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
 
-		if (!this.captchaComponent.isCaptchaValid()) {
+		if (!this.haveQuestionCaptcha?.isCaptchaValid()) {
 			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
@@ -537,7 +506,40 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.haveQuestionForm.patchValue({
 					message: this.haveAQuestionText,
 				});
-				this.captchaService.reset();
+				this.haveQuestionCaptcha?.reset();
+			},
+			error: () => {
+				this.notificationService.showError("Failed to send message. Please try again later.");
+			},
+		});
+	}
+
+	submitContactForm() {
+		if (this.contactForm.invalid) {
+			this.contactForm.markAllAsTouched();
+			this.notificationService.showError("Please fill all required fields correctly.");
+			return;
+		}
+
+		if (!this.contactCaptcha?.isCaptchaValid()) {
+			this.notificationService.showError("Please solve the math problem correctly.");
+			return;
+		}
+
+		const params = {
+			...this.contactForm.value,
+			leadSource: "contactForm",
+			siteId: this.siteConfig?.id,
+			mlsId: this.mlsId,
+		};
+		this.publicService.submitContactForm(params).subscribe({
+			next: () => {
+				this.notificationService.showSuccess("Your message has been sent successfully.");
+				this.contactForm.reset();
+				this.contactForm.patchValue({
+					message: this.askAboutThisHomecommentText,
+				});
+				this.contactCaptcha?.reset();
 			},
 			error: () => {
 				this.notificationService.showError("Failed to send message. Please try again later.");
