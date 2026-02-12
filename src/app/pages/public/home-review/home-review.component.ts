@@ -44,7 +44,7 @@ export class HomeReviewComponent implements OnInit {
 		private publicService: PublicService,
 		private notificationService: NotificationService,
 		private sharedDataService: SharedDataService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
 	) {
 		this.homeReviewForm = this.fb.group({
 			name: new FormControl("", Validators.required),
@@ -103,6 +103,7 @@ export class HomeReviewComponent implements OnInit {
 				address: this.selectedAddress,
 				latitude: this.latitude,
 				longitude: this.longitude,
+				sellingIn: this.homeReviewForm.value.sellingIn,
 			},
 			message: "I would like to know my home worth.",
 		};

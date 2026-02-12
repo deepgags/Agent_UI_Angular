@@ -1,58 +1,79 @@
 <div class="">
-	<form [formGroup]="form"
-		  (ngSubmit)="submitForm()"
-		  class="d-flex flex-column">
+	<form
+		[formGroup]="form"
+		(ngSubmit)="submitForm()"
+		class="d-flex flex-column">
 		<div class="mb-3">
-			<label for="name"
-				   class="form-label">Name</label>
-			<input type="text"
-				   pInputText
-				   formControlName="name"
-				   placeholder="Name"
-				   class="form-control"
-				   id="name"
-				   required />
-			<span class="error"
-				  *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+			<label
+				for="name"
+				class="form-label">
+				Name
+			</label>
+			<input
+				type="text"
+				pInputText
+				formControlName="name"
+				placeholder="Name"
+				class="form-control"
+				id="name"
+				required />
+			<span
+				class="error"
+				*ngIf="name?.invalid && (name?.dirty || name?.touched)">
 				<span *ngIf="name?.errors?.['required']">Name is required</span>
 			</span>
 		</div>
 
 		<div class="mb-3">
-			<label for="designation"
-				   class="form-label">Designation</label>
-			<input type="text"
-				   pInputText
-				   formControlName="designation"
-				   placeholder="Designation"
-				   class="form-control"
-				   id="designation" />
+			<label
+				for="designation"
+				class="form-label">
+				Designation
+			</label>
+			<input
+				type="text"
+				pInputText
+				formControlName="designation"
+				placeholder="Designation"
+				class="form-control"
+				id="designation" />
 		</div>
 
 		<div class="mb-3">
-			<label for="message"
-				   class="form-label">Testimonial Message</label>
-			<textarea pTextarea
-					  formControlName="message"
-					  class="form-control p-inputtext"
-					  rows="4"
-					  placeholder="Message"
-					  id="message"></textarea>
-			<span class="error"
-				  *ngIf="message?.invalid && (message?.dirty || message?.touched)">
+			<label
+				for="message"
+				class="form-label">
+				Testimonial Message
+			</label>
+			<textarea
+				pTextarea
+				formControlName="message"
+				class="form-control p-inputtext"
+				rows="4"
+				placeholder="Message"
+				id="message"></textarea>
+			<span
+				class="error"
+				*ngIf="message?.invalid && (message?.dirty || message?.touched)">
 				<span *ngIf="message?.errors?.['required']">Message is required</span>
 			</span>
 		</div>
 
 		<div class="mb-3 d-flex flex-column">
-			<label for="date"
-				   class="form-label">Testimonial Date</label>
-			<p-datepicker formControlName="date"
-						  class=""
-						  id="date"
-						  autofocus="false" />
-			<span class="error"
-				  *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+			<label
+				for="date"
+				class="form-label">
+				Testimonial Date
+			</label>
+			<p-datepicker
+				formControlName="date"
+				class="w-100"
+				id="date"
+				autofocus="false"
+				appendTo="body" />
+			<span
+				class="error"
+				*ngIf="date?.invalid && (date?.dirty || date?.touched)">
 				<span *ngIf="date?.errors?.['required']">Date is required</span>
 			</span>
 		</div>
@@ -65,40 +86,44 @@
 						Testimonial Image
 					</h6>
 					<div class="upload-container p-3 border rounded bg-light">
-						<input type="file"
-							   #testimonialImageUpload
-							   (change)="onTestimonialImageChange($event)"
-							   class="form-control upload-btn w-100"
-							   id="testimonialImageUpload"
-							   accept="image/*" />
+						<input
+							type="file"
+							#testimonialImageUpload
+							(change)="onTestimonialImageChange($event)"
+							class="form-control upload-btn w-100"
+							id="testimonialImageUpload"
+							accept="image/*" />
 					</div>
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-12">
 				@if (testimonialImageObservable | async; as testimonialImage) {
-				<div class="mt-3 p-2 border rounded bg-white shadow-sm position-relative">
-					<button type="button"
+					<div class="mt-3 p-2 border rounded bg-white shadow-sm position-relative">
+						<button
+							type="button"
 							class="btn btn-sm position-absolute top-0 end-0 mt-1 me-1 p-0"
-							style="background: none; border: none; color: #dc3545; font-size: 18px;"
+							style="background: none; border: none; color: #dc3545; font-size: 18px"
 							(click)="removeTestimonialImage()"
 							title="Remove Image">
-						<i class="bi bi-x-circle-fill"></i>
-					</button>
-					<div class="text-center">
-						<h6 class="text-dark fw-bold mb-2">Testimonial Image Preview</h6>
-						<img [src]="testimonialImage | blobToUrl"
-							 class="rounded border image-preview"
-							 style="width: 150px; height: 150px; object-fit: cover;"
-							 alt="Testimonial Image Preview" />
+							<i class="bi bi-x-circle-fill"></i>
+						</button>
+						<div class="text-center">
+							<h6 class="text-dark fw-bold mb-2">Testimonial Image Preview</h6>
+							<img
+								[src]="testimonialImage | blobToUrl"
+								class="rounded border image-preview"
+								style="width: 150px; height: 150px; object-fit: cover"
+								alt="Testimonial Image Preview" />
+						</div>
 					</div>
-				</div>
 				}
 			</div>
 		</div>
 
-		<button type="submit"
-				class="btn btn-primary w-auto fw-bold align-self-end">
+		<button
+			type="submit"
+			class="btn btn-primary w-auto fw-bold align-self-end">
 			Submit
 		</button>
 	</form>

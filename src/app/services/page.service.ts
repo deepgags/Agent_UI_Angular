@@ -11,7 +11,10 @@ import { CreatePageRequest, Page, UpdatePageRequest } from "../models/Page";
 export class PageService {
 	private baseUrl: string = environment.baseUrl;
 
-	constructor(private http: HttpClient, @Inject(DOCUMENT) private document: Document) {}
+	constructor(
+		private http: HttpClient,
+		@Inject(DOCUMENT) private document: Document,
+	) {}
 
 	getPages(): Observable<Page[]> {
 		return this.http.get<Page[]>(`${this.baseUrl}/page`).pipe(
@@ -24,7 +27,7 @@ export class PageService {
 			catchError((error) => {
 				console.error("Error fetching pages:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -39,7 +42,7 @@ export class PageService {
 			catchError((error) => {
 				console.error("Error fetching page:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -56,7 +59,7 @@ export class PageService {
 			catchError((error) => {
 				console.error("Error fetching page by slug:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -71,7 +74,7 @@ export class PageService {
 			catchError((error) => {
 				console.error("Error creating page:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -86,7 +89,7 @@ export class PageService {
 			catchError((error) => {
 				console.error("Error updating page:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -95,7 +98,7 @@ export class PageService {
 			catchError((error) => {
 				console.error("Error deleting page:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -110,7 +113,7 @@ export class PageService {
 			catchError((error) => {
 				console.error("Error fetching page by slug:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -125,7 +128,7 @@ export class PageService {
 			catchError((error) => {
 				console.error("Error fetching hero images:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -145,7 +148,7 @@ export class PageService {
 			catchError((error) => {
 				console.error("Error uploading hero images:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -160,7 +163,7 @@ export class PageService {
 			catchError((error) => {
 				console.error("Error deleting hero image:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 }

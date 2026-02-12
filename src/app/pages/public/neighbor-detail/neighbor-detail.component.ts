@@ -74,11 +74,13 @@ export class NeighborDetailComponent implements OnInit {
 		private fb: FormBuilder,
 		private publicService: PublicService,
 		private notificationService: NotificationService,
-		private sharedDataService: SharedDataService
+		private sharedDataService: SharedDataService,
 	) {
 		this.neighborDetailForm = this.fb.group({
 			radius: new FormControl(500, Validators.required),
 			homeType: new FormControl("", Validators.required),
+			beds: new FormControl("", Validators.required),
+			baths: new FormControl("", Validators.required),
 			name: new FormControl("", Validators.required),
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", Validators.required),
@@ -153,7 +155,7 @@ export class NeighborDetailComponent implements OnInit {
 			return;
 		}
 
-		const { homeType, radius, name, email, phone } = this.neighborDetailForm.value;
+		const { homeType, radius, beds, baths, name, email, phone } = this.neighborDetailForm.value;
 
 		const params = {
 			name,
@@ -167,6 +169,8 @@ export class NeighborDetailComponent implements OnInit {
 				longitude: this.longitude,
 				homeType,
 				radius,
+				beds,
+				baths,
 			},
 			message: "I would like to know about any property selling in this neighbor hood.",
 		};

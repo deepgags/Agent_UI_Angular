@@ -117,7 +117,7 @@ export class ManageTestimonialComponent {
 			return;
 		} else {
 			const formData = new FormData();
-			formData.append("customerName", this.form.value.name);
+			formData.append("name", this.form.value.name);
 			formData.append("message", this.form.value.message);
 			formData.append("date", dayjs(this.form.value.date).format("DD-MMM-YYYY"));
 			if (this.form.value.designation) {

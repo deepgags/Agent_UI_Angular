@@ -60,7 +60,7 @@ export class PageManagerComponent implements OnInit {
 		private pageService: PageService,
 		private notificationService: NotificationService,
 		private confirmationService: ConfirmationService,
-		private router: Router
+		private router: Router,
 	) {}
 
 	ngOnInit() {
@@ -113,9 +113,9 @@ export class PageManagerComponent implements OnInit {
 				keywords: page.keywords || "",
 			});
 			if (page.isEditable) {
-				this.pageForm.get("content")?.disable();
-			} else {
 				this.pageForm.get("content")?.enable();
+			} else {
+				this.pageForm.get("content")?.disable();
 			}
 
 			// get hero images if editing home page
@@ -163,10 +163,12 @@ export class PageManagerComponent implements OnInit {
 		if (this.editingPage) {
 			this.pageService.updatePage(this.editingPage._id, pageData).subscribe({
 				next: (updatedPage) => {
-					const index = this.pages.findIndex((p) => p._id === this.editingPage!._id);
-					if (index !== -1) {
-						this.pages[index] = updatedPage;
-					}
+					// debugger;
+					// const index = this.pages.findIndex((p) => p._id === this.editingPage!._id);
+					// if (index !== -1) {
+					// 	this.pages[index] = updatedPage;
+					// }
+					this.getPages();
 					this.notificationService.showSuccess("Page updated successfully");
 					this.loadingService.loadingOff();
 					this.pageDialogVisible = false;
