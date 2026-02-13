@@ -1,0 +1,114 @@
+.nav_bg {
+	background-color: var(--primary-color);
+}
+
+.logo {
+	width: 17px;
+}
+.dropdown:hover .dropdown-menu {
+	display: block;
+	margin-top: 0; 
+}
+.dropdown-menu {
+	margin-top: 0;
+	display: none;
+	margin-left: 65px;
+}
+
+a {
+	font-size: 14px;
+}
+
+.premium-header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.premium-header.scrolled {
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+.agent-name {
+  font-size: 44px !important;
+  letter-spacing: 0.4px;
+}
+
+.premium-header.scrolled .lux-divider {
+  width: 64px;
+}
+
+.contact-wrap {
+  flex-wrap: wrap;
+}
+
+.contact-pill {
+  font-size: 16px;
+  text-decoration: none;
+  // color: #bb5959;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.04);
+  transition: all 0.25s ease;
+}
+
+.contact-pill:hover {
+  background: rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+.inline-cta {
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  align-self: center;
+}
+
+.inline-cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.inline-cta:hover::after {
+  transform: scaleX(1);
+}
+
+.brokerage-logo img {
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.brokerage-logo:hover img {
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+@media (max-width: 991px) {
+  .agent-name {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .inline-cta {
+    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+  }
+}

@@ -6,14 +6,13 @@
           <div class="mb-2">
             @if (siteConfig) {
             <a [routerLink]="['home']">
-              <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+              <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl+siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
                    alt="No brokerage logo"
                    height="80px" />
             </a>
             }
           </div>
           <div class="">
-            <h5 class="text-white">{{ siteConfig?.brokerageTypeId}}</h5>
 
           </div>
 
@@ -28,6 +27,8 @@
         </div>
         <div class="mb-3 col-lg-4 col-12 mb-lg-0  justify-content-between footer-contact">
           <div class="mb-1">
+            <h5 class="text-white">{{ siteConfig?.brokerageTypeId}}</h5>
+
             <p class="text-center fs-4 fw-semibold mb-0">Contact</p>
             @if (siteConfig?.websiteSettings?.contactInfo?.phone) {
             <div class=" d-flex justify-content-center align-items-center">
@@ -91,10 +92,9 @@
         </div>
       </div>
       <p class="text-center text-white small">Copyright 2021 All rights reserved. Toronto Real Estate Board (TREB)
-        assumes no responsibility for the accuracy of any information
-        shown. The information provided herein must only be used by consumers that have a bona fide interest in the
-        purchase, sale or lease of real estate and may not be used for
-        any commercial purpose or any other purpose.</p>
+        assumes no responsibility for the accuracy of any information shown. The information provided herein must only
+        be used by consumers that have a bona fide interest in the purchase, sale or lease of real estate and may not be
+        used for any commercial purpose or any other purpose.</p>
     </footer>
   </div>
 </div>

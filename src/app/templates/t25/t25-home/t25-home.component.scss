@@ -1,0 +1,392 @@
+  .info{
+    color:#00C1CF !important;
+  }
+  
+  .top-padding1{
+    padding-top: 290px;
+}
+/* HERO */
+.lux-hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  background: url('/assets/img/luxury-bg.jpg') center / cover no-repeat;
+}
+
+.lux-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.85)
+  );
+}
+
+/* CARD */
+.lux-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  padding: 4rem 3rem;
+  transition: all 0.4s ease;
+}
+
+.lux-card:hover {
+  transform: translateY(-10px);
+}
+
+/* CONTENT */
+.lux-content {
+  text-align: left;
+}
+
+.lux-title {
+  font-size: clamp(1.9rem, 2.6vw, 2.6rem);
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.lux-subtitle {
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+}
+
+/* CTA BUTTON */
+.lux-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 50px;
+  background: #c8a46b;
+  color: #000;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.lux-cta-btn i {
+  transition: transform 0.3s ease;
+}
+
+.lux-cta-btn:hover {
+  background: #d6b57c;
+  transform: translateY(-2px);
+}
+
+.lux-cta-btn:hover i {
+  transform: translateX(5px);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .lux-hero {
+    min-height: auto;
+    padding: 3rem 0;
+  }
+
+  .lux-card {
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .lux-content {
+    text-align: center;
+  }
+}
+
+    .city-card {
+  position: relative;
+  height: 520px; 
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.city-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.city-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Overlay */
+.city-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.15)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  color: #fff;
+}
+
+.search-label {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  opacity: 0.85;
+}
+
+.city-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 4px 0 8px;
+}
+
+.city-card button {
+  width: fit-content;
+  font-size: 13px;
+  padding: 6px 14px;
+}
+
+.text1{
+  font-size: 84px !important;
+    font-weight: 400 !important;
+    line-height: 0.95 !important;
+    text-align: center  !important;
+  }
+.broker-logo {
+  max-height: 90px;
+}
+@media (max-width: 991px) {
+  .agent-bars,
+  .agent-name-bar,
+  .agent-contact-bar {
+    width: 100%;
+    min-width: auto;
+    text-align: center;
+  }
+
+  .col-lg-5 {
+    justify-content: center !important;
+  }
+}
+
+
+.profile-img {
+  max-width: 220px;
+  width: 100%;
+}
+
+
+    .background-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin-top: -182px;
+  backdrop-filter: blur(4px);
+  background-size: cover;
+  background-position: center;
+}
+.background-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); 
+  z-index: 1;
+}
+
+.background-container > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+  .sec-3{
+    background-color: #e0fdff;
+  }
+
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image-container img {
+    transition: transform 0.3s ease;
+    width: 100%;
+    display: block;
+  }
+  
+  .image-container:hover img {
+    transform: scale(1.05);
+    z-index: 1;
+  }
+  
+  .image-label {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  
+.profile-img {
+  max-width: 260px;
+  width: 100%;
+}
+
+/* INFO BOX */
+.agent-info {
+  background: #f04a3a;
+  color: #fff;
+  padding: 20px 28px;
+  border-radius: 6px;
+}
+
+.agent-info h4 {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.agent-info p {
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+/* CONTACT BAR */
+.agent-contact {
+  background: #e63e2f;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.agent-contact p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.agent-contact a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.buy-sell-section {
+  background-color: #fff;
+
+  .buy-card,
+  .sell-card {
+    cursor: pointer;
+    height: 350px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+
+    img {
+      transition: transform 0.4s ease;
+      filter: brightness(0.8);
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.4);
+      transition: background 0.3s ease;
+    }
+
+    .icon-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    .line {
+      width: 50px;
+      height: 3px;
+      border-radius: 2px;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+      img {
+        transform: scale(1.05);
+        filter: brightness(1);
+      }
+
+      .overlay {
+        background: rgba(0, 0, 0, 0.55);
+      }
+    }
+  }
+
+  .or-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  @media (max-width: 992px) {
+    .buy-card,
+    .sell-card {
+      height: 250px;
+    }
+
+    .or-circle {
+      margin: 1rem 0;
+    }
+  }
+}
+
+.feature-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 70px 25px 35px;
+    position: relative;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+    border: 1px solid #eee;
+}
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+}
+
+.feature-card .icon-wrap {
+    width: 75px;
+    height: 75px;
+    background: #007bff;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 6px 15px rgba(0,123,255,0.4);
+}
+.feature-card h5 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.feature-card p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 18px;
+}

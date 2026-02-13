@@ -1,0 +1,65 @@
+<header class="premium-header" id="premiumHeader">
+  <div class="container search-container">
+    <div class="row py-3 align-items-center justify-content-center">
+
+    
+   <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
+        @if (siteConfig) {
+          <a [routerLink]="['home']" class="brokerage-logo">
+            <img
+              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+              alt="No brokerage logo"
+              height="80px" />
+          </a>
+        }
+      </div>
+    
+
+        <div class="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-center gap-5">
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="">
+       			<img [src]="localImageUrl + siteConfig.secondaryAgent.profileImage" class="profile-img" alt="Agent"  height="80px"  />
+          </div>
+          <div class="">
+            	<p class="mb-0 info">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
+					<span class="info">{{ siteConfig.secondaryAgent.designation }}</span>
+          </div>
+        </div>
+              <div class="d-flex justify-content-center align-items-center">
+      <div class="">
+			<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage" class="profile-img" alt="Agent" height="80px"/>
+        
+      </div>
+      <div class="">
+        <p class="info mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+					<span class="info">{{ siteConfig.designation }}</span>
+      </div>
+        </div>
+      </div>
+
+
+     <div class="col-12 col-lg-4 d-flex py-lg-0 py-3 justify-content-end gap-4 contact-wrap">
+        <a
+          class="contact-pill info"
+          [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+          <i class="bi bi-telephone-fill info"></i>
+          {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+        </a>
+
+        <a
+          class="contact-pill info"
+          [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+          <i class="bi bi-envelope-at-fill info"></i>
+          {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        </a>
+
+        <a href="/contact" class="inline-cta">
+          Book a Private Showing
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<app-menu />
