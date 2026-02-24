@@ -4,6 +4,7 @@ import { DomSanitizer, Meta, Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { environment } from "../../../environments/environment.development";
 import { Page } from "../../../models/Page";
 import { PageService } from "../../../services/page.service";
 
@@ -14,6 +15,7 @@ import { PageService } from "../../../services/page.service";
 	styleUrl: "./sellerdetail.component.scss",
 })
 export class SellerdetailComponent {
+	localImageUrl = environment.localImageUrl;
 	private router = inject(Router);
 	private pageService = inject(PageService);
 	private titleService = inject(Title);
@@ -56,5 +58,10 @@ export class SellerdetailComponent {
 
 	getSafeHtml(content: string | undefined) {
 		return this.sanitizer.bypassSecurityTrustHtml(content ?? "");
+	}
+
+	get heroImageSrc(): string {
+		const heroImage = this.page()?.heroImages?.[0];
+		return heroImage ? this.localImageUrl + heroImage : "/images/banner3.jpg";
 	}
 }

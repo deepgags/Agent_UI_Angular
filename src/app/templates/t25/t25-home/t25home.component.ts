@@ -25,7 +25,6 @@ import { SearchComponent } from "../../shared/search/search.component";
 		SearchComponent,
 		FeaturedPropertiesComponent,
 		HeroContactFormComponent,
-		PhoneNumberFormatPipe,
 		TeamCardComponent,
 	],
 	templateUrl: "./t25-home.component.html",
@@ -41,7 +40,7 @@ export class T25HomeComponent implements OnInit {
 		private titleService: Title,
 		private metaService: Meta,
 		private sharedDataService: SharedDataService,
-		private searchService: SearchService
+		private searchService: SearchService,
 	) {}
 
 	ngOnInit(): void {

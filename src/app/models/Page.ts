@@ -8,6 +8,8 @@ export interface Page {
 	keywords?: string;
 	pageKey?: string;
 	heroImages?: string[];
+	allowHeroImage?: boolean;
+	heroImageLimit?: number;
 	isPredefined: boolean;
 	isEditable: boolean;
 	isDeletable: boolean;

@@ -4,6 +4,7 @@ import { DomSanitizer, Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { environment } from "../../../environments/environment.development";
 import { Page } from "../../../models/Page";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PageService } from "../../../services/page.service";
@@ -17,6 +18,7 @@ import { PageService } from "../../../services/page.service";
 	encapsulation: ViewEncapsulation.None,
 })
 export class BuyerComponent implements OnInit {
+	localImageUrl = environment.localImageUrl;
 	siteConfig: SiteConfig = {} as SiteConfig;
 	private route = inject(ActivatedRoute);
 	private router = inject(Router);
@@ -61,5 +63,10 @@ export class BuyerComponent implements OnInit {
 
 	getSafeHtml(content: string | undefined) {
 		return this.sanitizer.bypassSecurityTrustHtml(content ?? "");
+	}
+
+	get heroImageSrc(): string {
+		const heroImage = this.page()?.heroImages?.[0];
+		return heroImage ? this.localImageUrl + heroImage : "/images/banner3.jpg";
 	}
 }

@@ -161,4 +161,9 @@ export class ContactComponent {
 	getSafeHtml(content: string | undefined) {
 		return this.sanitizer.bypassSecurityTrustHtml(content ?? "");
 	}
+
+	get heroImageSrc(): string {
+		const heroImage = this.page()?.heroImages?.[0];
+		return heroImage ? this.localImageUrl + heroImage : "/images/banner3.jpg";
+	}
 }

@@ -223,12 +223,11 @@
 					<small class="text-muted">Comma-separated keywords</small>
 				</div>
 
-				@if(editingPage?.pageKey === 'home') {
+				@if(canManageHeroImages(editingPage)) {
 				<div class="col-12">
-					<h6 class="border-bottom pb-2 mb-3">Hero Images</h6>
+					<h6 class="border-bottom pb-2 mb-3">Hero Image</h6>
 					<small class="text-muted d-block mb-3">
-						Upload up to 5 hero images (max 5MB each). These images will be displayed in the hero carousel
-						on the home page.
+						Upload up to {{ getHeroImageLimit(editingPage) }} hero image{{ getHeroImageLimit(editingPage) > 1 ? 's' : '' }} (max 5MB each).
 					</small>
 
 					<!-- Existing Hero Images -->
@@ -281,21 +280,21 @@
 
 					<!-- File Upload -->
 					<div class="col-12">
-						<label class="form-label fw-semibold">Select Hero Images</label>
+						<label class="form-label fw-semibold">Select Hero Image</label>
 						<p-fileUpload
 							#fileUpload
 							name="heroImages"
-							[multiple]="true"
+							[multiple]="getHeroImageLimit(editingPage) > 1"
 							accept="image/*"
 							[maxFileSize]="5242880"
-							[fileLimit]="5"
+							[fileLimit]="getHeroImageLimit(editingPage)"
 							[showUploadButton]="false"
 							[showCancelButton]="false"
-							chooseLabel="Choose Images"
+							chooseLabel="Choose Image"
 							(onSelect)="onFileSelect($event)"
-							[disabled]="heroImages.length + uploadedFiles.length >= 5"></p-fileUpload>
+							[disabled]="heroImages.length + uploadedFiles.length >= getHeroImageLimit(editingPage)"></p-fileUpload>
 						<small class="text-muted">
-							{{ heroImages.length + uploadedFiles.length }}/5 images selected
+							{{ heroImages.length + uploadedFiles.length }}/{{ getHeroImageLimit(editingPage) }} image{{ getHeroImageLimit(editingPage) > 1 ? 's' : '' }} selected
 						</small>
 					</div>
 				</div>

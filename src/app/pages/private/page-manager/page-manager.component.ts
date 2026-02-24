@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { ConfirmationService } from "primeng/api";
@@ -54,6 +54,7 @@ export class PageManagerComponent implements OnInit {
 	heroImages: string[] = [];
 	uploadedFiles: File[] = [];
 	localImageBaseUrl = environment.localImageUrl;
+	@ViewChild("fileUpload") fileUpload: any;
 	constructor(
 		private fb: FormBuilder,
 		private loadingService: LoadingService,
@@ -118,8 +119,7 @@ export class PageManagerComponent implements OnInit {
 				this.pageForm.get("content")?.disable();
 			}
 
-			// get hero images if editing home page
-			if (page.pageKey === "home") {
+			if (this.canManageHeroImages(page)) {
 				this.loadHeroImages(page._id);
 			}
 		}, 150);
@@ -138,9 +138,10 @@ export class PageManagerComponent implements OnInit {
 
 			this.loadingService.loadingOn();
 
-			// Upload hero images first if editing home page and there are selected files
-			if (this.editingPage?.pageKey === "home" && this.uploadedFiles.length > 0) {
-				this.pageService.uploadHeroImages(this.editingPage._id, this.uploadedFiles).subscribe({
+			if (this.canManageHeroImages(this.editingPage) && this.uploadedFiles.length > 0) {
+				const fileLimit = this.getHeroImageLimit(this.editingPage);
+				const filesToUpload = this.uploadedFiles.slice(0, fileLimit);
+				this.pageService.uploadHeroImages(this.editingPage!._id, filesToUpload).subscribe({
 					next: (images: string[]) => {
 						this.heroImages = images;
 						this.uploadedFiles = [];
@@ -166,11 +167,14 @@ export class PageManagerComponent implements OnInit {
 					// debugger;
 					// const index = this.pages.findIndex((p) => p._id === this.editingPage!._id);
 					// if (index !== -1) {
-					// 	this.pages[index] = updatedPage;
+					// this.pages[index] = updatedPage;
 					// }
 					this.getPages();
 					this.notificationService.showSuccess("Page updated successfully");
 					this.loadingService.loadingOff();
+					this.heroImages = [];
+					this.uploadedFiles = [];
+					this.fileUpload?.clear();
 					this.pageDialogVisible = false;
 				},
 				error: (error) => {
@@ -185,6 +189,9 @@ export class PageManagerComponent implements OnInit {
 					this.pages.push(createdPage);
 					this.notificationService.showSuccess("Page created successfully");
 					this.loadingService.loadingOff();
+					this.heroImages = [];
+					this.uploadedFiles = [];
+					this.fileUpload?.clear();
 					this.pageDialogVisible = false;
 				},
 				error: (error) => {
@@ -266,21 +273,44 @@ export class PageManagerComponent implements OnInit {
 				return;
 			}
 			if (!allowedTypes.includes(file.type)) {
-				this.notificationService.showError(`File ${file.name} has invalid type. Only images are allowed.`);
+				this.notificationService.showError(`Invalid File ${file.name}. Only images are allowed.`);
 				return;
 			}
 		}
 
-		if (this.heroImages.length + this.uploadedFiles.length + files.length > 5) {
-			this.notificationService.showError("Maximum 5 hero images allowed.");
+		const fileLimit = this.getHeroImageLimit(this.editingPage);
+		if (files.length > fileLimit) {
+			this.notificationService.showError(`Please select up to ${fileLimit} image${fileLimit > 1 ? "s" : ""}.`);
 			return;
 		}
 
-		this.uploadedFiles = [...this.uploadedFiles, ...files];
+		if (this.heroImages.length + files.length > fileLimit) {
+			this.notificationService.showError(`Maximum ${fileLimit} hero image${fileLimit > 1 ? "s" : ""} allowed.`);
+			return;
+		}
+
+		this.uploadedFiles = [...files];
 	}
 
 	removeSelectedFile(index: number) {
 		this.uploadedFiles.splice(index, 1);
+	}
+
+	canManageHeroImages(page?: Page | null): boolean {
+		if (!page) {
+			return false;
+		}
+		return page.allowHeroImage === true;
+	}
+
+	getHeroImageLimit(page?: Page | null): number {
+		if (!page || !page.allowHeroImage) {
+			return 0;
+		}
+		if (page.heroImageLimit && page.heroImageLimit > 0) {
+			return page.heroImageLimit;
+		}
+		return page.pageKey === "home" ? 5 : 1;
 	}
 
 	private uploadHeroImages() {
@@ -347,6 +377,7 @@ export class PageManagerComponent implements OnInit {
 		this.editingPage = null;
 		this.heroImages = [];
 		this.uploadedFiles = [];
+		this.fileUpload?.clear();
 	}
 
 	getStatusBadge(page: Page) {
