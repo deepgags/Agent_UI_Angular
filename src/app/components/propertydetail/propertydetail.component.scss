@@ -2,6 +2,16 @@
 	background-color: #ffffff !important;
 }
 
+.p-dialog .p-dialog-header .p-dialog-title {
+  color: #000000 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .p-dialog .p-dialog-header .p-dialog-title {
+    color: #ffffff !important;
+  }
+}
+
 .form-card {
 	border-radius: 12px;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
