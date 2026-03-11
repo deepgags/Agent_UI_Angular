@@ -1,28 +1,31 @@
-<p-dialog header="Search Filters"
-		  [modal]="true"
-		  [(visible)]="showFilterDialog"
-		  [style]="{ width: '600px' }">
-
+<p-dialog
+	header="Search Filters"
+	[modal]="true"
+	[(visible)]="showFilterDialog"
+	[style]="{ width: '600px' }">
 	<div class="row g-4">
-		<div class="col-md-6">
-
-		</div>
-		<div class="col-md-6">
-
-		</div>
-		<div class="col-md-2">
-
-		</div>
+		<div class="col-md-6"></div>
+		<div class="col-md-6"></div>
+		<div class="col-md-2"></div>
 	</div>
 	<div class="mt-4 d-flex gap-1 justify-content-end">
-		<button type="button"
-				class="btn btn-secondary btn-sm rounded-3 me-2"
-				(click)="resetMoreFilters()">Reset</button>
-		<button type="button"
-				class="btn btn-secondary rounded-3 btn-sm">Close</button>
-		<button type="button"
-				class="btn search_btn btn-sm"
-				(click)="searchProperties()">Apply</button>
+		<button
+			type="button"
+			class="btn btn-secondary btn-sm rounded-3 me-2"
+			(click)="resetMoreFilters()">
+			Reset
+		</button>
+		<button
+			type="button"
+			class="btn btn-secondary rounded-3 btn-sm">
+			Close
+		</button>
+		<button
+			type="button"
+			class="btn search_btn btn-sm"
+			(click)="searchProperties()">
+			Apply
+		</button>
 	</div>
 </p-dialog>
 
@@ -32,24 +35,27 @@
 			   [(ngModel)]="filters.address"
 			   class="search-bar"
 			   placeholder="City, Address, Postal Code, MLS®#" /> -->
-		<p-autocomplete [(ngModel)]="filters.address"
-						[suggestions]="propertiesSuggestions"
-						optionLabel="address"
-						optionValue="address"
-						placeholder="Search City, Address, Postal Code, MLS#"
-						appendTo="body"
-						[lazy]="true"
-						(completeMethod)="searchCityProvince($event)"
-						(onSelect)="onSuggestionSelect()">
-			<ng-template let-property
-						 #item>
+		<p-autocomplete
+			[(ngModel)]="filters.address"
+			[suggestions]="propertiesSuggestions"
+			optionLabel="address"
+			optionValue="address"
+			placeholder="Search City, Address, Postal Code, MLS#"
+			appendTo="body"
+			[lazy]="true"
+			(completeMethod)="searchCityProvince($event)"
+			(onSelect)="onSuggestionSelect()">
+			<ng-template
+				let-property
+				#item>
 				<div class="d-flex align-items-center gap-3 p-2 border-bottom">
-					<img [src]="propertyImageUrl+property.image"
-						 class="rounded"
-						 style="width: 40px; height: 40px; object-fit: cover;" />
+					<img
+						[src]="propertyImageUrl + property.image"
+						class="rounded"
+						style="width: 40px; height: 40px; object-fit: cover" />
 					<div class="flex-grow-1">
 						<strong>{{ property.address }}</strong>
-						<br>
+						<br />
 						<small class="text-muted">MLS®# {{ property.mls }}</small>
 					</div>
 				</div>
@@ -58,53 +64,57 @@
 				<div class="font-medium px-3 py-2">Available Properties</div>
 			</ng-template>
 		</p-autocomplete>
-
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
-		<p-select [options]="propertyTypesDropDown"
-				  [(ngModel)]="filters.property_type"
-				  optionLabel="LookupValue"
-				  optionValue="LookupValue"
-				  placeholder="Select Property"
-				  appendTo="body"
-				  (onChange)="filterPropertySubType()" />
+		<p-select
+			[options]="propertyTypesDropDown"
+			[(ngModel)]="filters.property_type"
+			optionLabel="LookupValue"
+			optionValue="LookupValue"
+			placeholder="Select Property"
+			appendTo="body"
+			(onChange)="filterPropertySubType()" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
-		<p-select [options]="propertySubTypesDropDown"
-				  [(ngModel)]="filters.property_subtype"
-				  optionLabel="LookupValue"
-				  optionValue="LookupValue"
-				  placeholder="Select Property Subtype"
-				  appendTo="body" />
+		<p-select
+			[options]="propertySubTypesDropDown"
+			[(ngModel)]="filters.property_subtype"
+			optionLabel="LookupValue"
+			optionValue="LookupValue"
+			placeholder="Select Property Subtype"
+			appendTo="body" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
-		<p-select [options]="bedTypesDropDown"
-				  [(ngModel)]="filters.bedrooms"
-				  optionLabel="label"
-				  optionValue="value"
-				  placeholder="Bedrooms"
-				  appendTo="body" />
+		<p-select
+			[options]="bedTypesDropDown"
+			[(ngModel)]="filters.bedrooms"
+			optionLabel="label"
+			optionValue="value"
+			placeholder="Bedrooms"
+			appendTo="body" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
-		<p-select [options]="bathTypesDropDown"
-				  [(ngModel)]="filters.bathrooms"
-				  optionLabel="label"
-				  optionValue="value"
-				  placeholder="Bathrooms"
-				  appendTo="body" />
+		<p-select
+			[options]="bathTypesDropDown"
+			[(ngModel)]="filters.bathrooms"
+			optionLabel="label"
+			optionValue="value"
+			placeholder="Bathrooms"
+			appendTo="body" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
-		<p-select [options]="statusTypesDropDown"
-				  [(ngModel)]="filters.property_status"
-				  optionLabel="label"
-				  optionValue="value"
-				  placeholder="Select Property Status"
-				  appendTo="body" />
+		<p-select
+			[options]="statusTypesDropDown"
+			[(ngModel)]="filters.property_status"
+			optionLabel="label"
+			optionValue="value"
+			placeholder="Select Property Status"
+			appendTo="body" />
 	</div>
 
 	<!-- <div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
@@ -112,50 +122,61 @@
 			<i class="fa-solid fa-filter info fs-6 cursor"></i>
 		</span>
 	</div> -->
-		<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
-		<p-select [options]="sqFtTypesDropDown"
-				  [(ngModel)]="filters.sqFt"
-				  optionLabel="label"
-				  optionValue="value"
-				  placeholder="Select Area"
-				  appendTo="body"
-				  class="" />
+	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
+		<p-select
+			[options]="sqFtTypesDropDown"
+			[(ngModel)]="filters.sqFt"
+			optionLabel="label"
+			optionValue="value"
+			placeholder="Select Area"
+			appendTo="body"
+			class="" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
-		<p-inputnumber [(ngModel)]="filters.min_price"
-					   mode="decimal"
-					   [minFractionDigits]="0"
-					   [maxFractionDigits]="2"
-					   prefix="$"
-					   placeholder="Min. Price"
-					   class="wid" />
+		<p-inputnumber
+			[(ngModel)]="filters.min_price"
+			mode="decimal"
+			[minFractionDigits]="0"
+			[maxFractionDigits]="2"
+			prefix="$"
+			placeholder="Min. Price"
+			class="wid" />
 	</div>
-	
+
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex justify-content-center">
-		<p-inputnumber [(ngModel)]="filters.max_price"
-					   mode="decimal"
-					   [minFractionDigits]="0"
-					   [maxFractionDigits]="2"
-					   prefix="$"
-					   placeholder="Max. Price"
-					   class="wid" />
+		<p-inputnumber
+			[(ngModel)]="filters.max_price"
+			mode="decimal"
+			[minFractionDigits]="0"
+			[maxFractionDigits]="2"
+			prefix="$"
+			placeholder="Max. Price"
+			class="wid" />
 	</div>
 
 	<div class="col-12 col-lg-auto p-0 mb-3 mb-lg-0 d-flex align-items-center gap-2 justify-content-center">
-		<button type="button"
-				class="btn btn-secondary btn-sm rounded-3"
-				(click)="resetFilters()">Reset</button>
+		<button
+			type="button"
+			class="btn btn-secondary btn-sm rounded-3"
+			(click)="resetFilters()">
+			Reset
+		</button>
 
-		<button type="button"
-				class="btn search_btn btn-sm"
-				(click)="searchProperties()"><i class="bi bi-search"></i></button>
+		<button
+			type="button"
+			class="btn search_btn btn-sm"
+			(click)="searchProperties()">
+			<i class="bi bi-search"></i>
+		</button>
 
-		@if (showMapSearch==true) {
-		<button type="button"
+		<!-- @if (showMapSearch == true) {
+			<button
+				type="button"
 				class="btn search_btn btn-sm"
-				(click)="searchProperties(true)"><i class="bi bi-compass"></i></button>
-		}
+				(click)="searchProperties(true)">
+				<i class="bi bi-compass"></i>
+			</button>
+		} -->
 	</div>
-
 </div>
