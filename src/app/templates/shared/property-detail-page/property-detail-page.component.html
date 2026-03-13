@@ -429,7 +429,7 @@
 											id="mapMarkerLarge"
 											#mapMarker="mapMarker"
 											[position]="{ lat: property.Latitude, lng: property.Longitude }"
-											[label]="property.ListOfficeName"
+											[label]="property.UnparsedAddress"
 											[title]="property.PropertyUse"
 											(mapClick)="openInfoWindow(property, mapMarker)"></map-marker>
 										<map-info-window #mapMarkerLarge>

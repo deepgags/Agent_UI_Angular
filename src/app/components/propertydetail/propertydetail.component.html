@@ -418,7 +418,7 @@
 								role="tabpanel"
 								aria-labelledby="pills-profile-tab"
 								tabindex="0">
-								<div class="ratio ratio-16x9">
+								<div class="ratio ratio-16x9 overflow-hidden">
 									<google-map
 										#map
 										[center]="{ lat: property.Latitude, lng: property.Longitude }"
@@ -429,7 +429,7 @@
 											id="mapMarkerLarge"
 											#mapMarker="mapMarker"
 											[position]="{ lat: property.Latitude, lng: property.Longitude }"
-											[label]="property.ListOfficeName"
+											[label]="property.UnparsedAddress"
 											[title]="property.PropertyUse"
 											(mapClick)="openInfoWindow(property, mapMarker)"></map-marker>
 										<map-info-window #mapMarkerLarge>
@@ -449,7 +449,7 @@
 												</p>
 												<p>
 													<b>Price:</b>
-													${{ property.ListPrice }}
+													{{ property.ListPrice }}
 												</p>
 												<p>
 													<b>Property Type:</b>
