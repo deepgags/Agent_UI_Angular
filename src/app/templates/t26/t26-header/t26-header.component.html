@@ -1,0 +1,87 @@
+<div class="header-wrapper position-fixed w-100 bg-gradient" style="z-index: 999;">
+  <div class="container-fluid px-5">
+    <div class="row align-items-stretch gx-4" style="min-height: 120px;">
+      
+      <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-start py-3 py-lg-0">
+        @if (siteConfig) {
+        <a [routerLink]="['home']" class="logo-link">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="No brokerage logo"
+               class="brokerage-logo" />
+        </a>
+        }
+      </div>
+
+      <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center text-center py-4 py-lg-0 agent-section">
+        <div class="agent-card">
+          <h1 class="agent-name mb-1">
+            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
+          </h1>
+          <p class="agent-title mb-3">{{ siteConfig.designation }}</p>
+          
+          <div class="contact-row d-flex flex-wrap justify-content-center align-items-center gap-3 mb-3">
+            <a class="contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+              <i class="fa-solid fa-phone contact-icon"></i>
+              <span>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}</span>
+            </a>
+            <span class="contact-divider">•</span>
+            <a class="contact-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+              <i class="fa-solid fa-envelope contact-icon"></i>
+              <span>{{ siteConfig?.websiteSettings?.contactInfo?.email }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-end py-3 py-lg-0">
+        <div class="social-cluster">
+          @if (siteConfig.websiteSettings.socialLinks.facebook) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.facebook"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="social-icon facebook-icon"
+             aria-label="Facebook">
+            <i class="bi bi-facebook"></i>
+          </a>
+          }
+          
+          @if (siteConfig.websiteSettings.socialLinks.twitter) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.twitter"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="social-icon twitter-icon"
+             aria-label="Twitter">
+            <i class="bi bi-twitter"></i>
+          </a>
+          }
+          
+          @if (siteConfig.websiteSettings.socialLinks.instagram) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.instagram"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="social-icon instagram-icon"
+             aria-label="Instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+          }
+          
+          @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="social-icon linkedin-icon"
+             aria-label="LinkedIn">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          }
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="header-border"></div>
+</div>
+
+<div class="top-pad">
+  <app-menu />
+</div>

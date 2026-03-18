@@ -322,7 +322,8 @@ export const templates: TemplateRoutes = {
 					import("./templates/t24/t24-home/t24home.component").then((c) => c.T24HomeComponent),
 			},
 		],
-	},	t25: {
+	},	
+	t25: {
 		path: "",
 		loadComponent: () => import("./templates/t25/t25.component").then((c) => c.T25Component),
 		children: [
@@ -331,6 +332,30 @@ export const templates: TemplateRoutes = {
 				path: "home",
 				loadComponent: () =>
 					import("./templates/t25/t25-home/t25home.component").then((c) => c.T25HomeComponent),
+			},
+		],
+	},
+	t26: {
+		path: "",
+		loadComponent: () => import("./templates/t26/t26.component").then((c) => c.T26Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t26/t26-home/t26-home.component").then((c) => c.T26HomeComponent),
+			},
+		],
+	},
+	t27: {
+		path: "",
+		loadComponent: () => import("./templates/t27/t27.component").then((c) => c.T27Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t27/t27-home/t27-home.component").then((c) => c.T27HomeComponent),
 			},
 		],
 	},
