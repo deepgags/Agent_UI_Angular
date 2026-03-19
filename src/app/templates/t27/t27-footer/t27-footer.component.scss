@@ -1,0 +1,9 @@
+.backdrop-blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-light:hover {
+  transform: translateX(5px);
+  transition: transform 0.2s ease;
+}

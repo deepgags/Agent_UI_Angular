@@ -1,21 +1,23 @@
 <div>
-	<div class="search-container position-relative">
-		<div
-			id="heroCarousel"
-			class="carousel slide"
-			data-bs-ride="carousel"
-			data-bs-interval="2500">
-			<div class="carousel-inner">
-				@if (heroImages && heroImages.length > 0) { @for (image of heroImages; track $index) {
-				<div
-					class="carousel-item"
-					[ngClass]="{ active: $index === 0 }">
-					<img
-						[src]="localImageUrl + image"
-						class="d-block w-100"
-						[alt]="'Hero image ' + ($index + 1)" />
-				</div>
-				} } @else {
+<div class="search-container position-relative">
+	<div
+		id="heroCarousel"
+		class="carousel slide"
+		data-bs-ride="carousel"
+		data-bs-interval="2500">
+		<div class="carousel-inner">
+			@if (heroImages && heroImages.length > 0) { 
+				@for (image of heroImages; track $index) {
+					<div
+						class="carousel-item"
+						[ngClass]="{ active: $index === 0 }">
+						<img
+							[src]="localImageUrl + image"
+							class="d-block w-100"
+							[alt]="'Hero image ' + ($index + 1)" />
+					</div>
+				} 
+			} @else {
 				<div class="carousel-item active">
 					<img
 						src="/t3/images/banner2.jpg"
@@ -34,100 +36,62 @@
 						class="d-block w-100"
 						alt="Default banner 3" />
 				</div>
-				}
-			</div>
-		</div>
-		<div class="first">
-			<img
-				[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-				alt="No profile image"
-				class="overlay-image" />
-			<div
-				class="card position-absolute man-card"
-				style="width: 15rem">
-				<div class="card-body">
-					<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-					<p class="card-text text-white mb-0">{{ siteConfig.designation }}</p>
-					<div class="d-flex align-items-center">
-						<div class="">
-							<i class="fa-solid fa-phone info"></i>
-						</div>
-						<div class="ms-2">
-							<p class="mb-0">
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
-									{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-								</a>
-							</p>
-						</div>
-					</div>
-					<div class="d-flex align-items-center">
-						<div class="">
-							<i class="fa-solid fa-envelope info"></i>
-						</div>
-						<div class="ms-2 mt-1">
-							<p class="mb-0">
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
-									{{ siteConfig.websiteSettings.contactInfo.email }}
-								</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="second">
-			@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-
-			<img
-				[src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
-				alt="No profile image"
-				class="overlay-image2" />
-			<div
-				class="card position-absolute man_card2"
-				style="width: 15rem">
-				<div class="card-body">
-					<h5 class="card-head text-white">
-						{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
-					</h5>
-					<p class="card-text text-white mb-0">{{ siteConfig.secondaryAgent.designation }}</p>
-					<div class="d-flex">
-						<div class="">
-							<i class="fa-solid fa-phone info"></i>
-						</div>
-						<div class="ms-2">
-							<p class="mb-0">
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
-									{{ siteConfig.secondaryAgent.websitePhone | phone }}
-								</a>
-							</p>
-						</div>
-					</div>
-					<div class="d-flex">
-						<div class="">
-							<i class="fa-solid fa-envelope info"></i>
-						</div>
-						<div class="ms-2 mt-1">
-							<p class="mb-0">
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
-									{{ siteConfig.secondaryAgent.websiteEmail }}
-								</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
 			}
 		</div>
 	</div>
+
+	<div class="agent-wrapper left-agent">
+		<div class="profile-circle">
+			<img
+				[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
+				alt="Profile"
+				class="profile-img" />
+		</div>
+		<div class="info-card">
+			<div class="card-header">
+				<h4>{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h4>
+				<span class="title">{{ siteConfig.designation }}</span>
+			</div>
+			<div class="contact-list">
+				<a [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone" class="contact-link">
+					<i class="fa-solid fa-phone"></i>
+					<span>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}</span>
+				</a>
+				<a [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email" class="contact-link">
+					<i class="fa-solid fa-envelope"></i>
+					<span>{{ siteConfig.websiteSettings.contactInfo.email }}</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
+		<div class="agent-wrapper right-agent">
+			<div class="profile-circle">
+				<img
+					[src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
+					alt="Profile"
+					class="profile-img" />
+			</div>
+			<div class="info-card">
+				<div class="card-header">
+					<h4>{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</h4>
+					<span class="title">{{ siteConfig.secondaryAgent.designation }}</span>
+				</div>
+				<div class="contact-list">
+					<a [href]="'tel:' + siteConfig.secondaryAgent.websitePhone" class="contact-link">
+						<i class="fa-solid fa-phone"></i>
+						<span>{{ siteConfig.secondaryAgent.websitePhone | phone }}</span>
+					</a>
+					<a [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail" class="contact-link">
+						<i class="fa-solid fa-envelope"></i>
+						<span>{{ siteConfig.secondaryAgent.websiteEmail }}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	}
+</div>
 		<div class="container-fluid">
 		<div class="">
 			<div class="row justify-content-center">
@@ -139,17 +103,20 @@
 		</div>
 	</div>
 	<div class="container-fluid about-section py-5">
-  <div class="container">
+<div class="container py-5">
     
-    <div class="row mb-5">
-      <div class="col-lg-6">
-        <div class="section-header">
-          <span class="section-label">Who We Are</span>
-          <h2 class="section-title">Elevating Standards In<br>Luxury Real Estate</h2>
-        </div>
+    <div class="row mb-5 g-4">
+      <div class="col-lg-5">
+        <span class="badge bg-primary text-white px-4 py-2 rounded-pill fw-bold text-uppercase mb-3 d-inline-block" style="letter-spacing: 1.5px; font-size: 11px;">
+          Who We Are
+        </span>
+        <h2 class="display-5 fw-bold text-dark mb-0 lh-sm">
+          Elevating Standards In
+          <span class="text-primary">Luxury Real Estate</span>
+        </h2>
       </div>
-      <div class="col-lg-6 d-flex align-items-center">
-        <p class="section-description">
+      <div class="col-lg-7 d-flex align-items-center">
+        <p class="fs-6 text-secondary lh-lg mb-0">
           We specialize in luxury properties, sustainable homes, and vacation rentals — driven
           by a passion for exceptional living and a commitment to quality, innovation, and
           client satisfaction.
@@ -159,70 +126,82 @@
 
     <div class="row g-4">
       
-      <div class="col-12">
-        <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="card border-0 rounded-4 shadow-lg overflow-hidden h-100 vision-card-hover">
           
-          <div class="col-12">
-            <div class="info-card vision-card">
-              <div class="row g-4">
-                <div class="col-md-7">
-                  <div class="card-header-icon">
-                    <i class="fa-solid fa-eye"></i>
-                  </div>
-                  <h3 class="card-title">Our Vision</h3>
-                  <p class="card-text">
-                    To be a leader in the real estate market, offering unparalleled services in luxury,
-                    sustainability, and vacation properties. We specialize in luxury properties, 
-                    sustainable homes, and vacation rentals — driven by a passion for exceptional living.
-                  </p>
-                </div>
-                <div class="col-md-5">
-                  <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=300&fit=crop" 
-                       alt="Modern Architecture" 
-                       class="card-image">
-                  <div class="stats-badge">
-                    <div class="stat-number">1250+</div>
-                    <div class="stat-label">Project Handover</div>
-                  </div>
+          <div class="position-relative overflow-hidden" style="height: 300px;">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop" 
+                 alt="Modern Architecture" 
+                 class="w-100 h-100 object-fit-cover vision-img-zoom">
+            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+            
+            <div class="position-absolute top-0 start-0 m-3">
+              <div class="badge bg-white text-dark px-3 py-2 rounded-pill shadow d-flex align-items-center gap-2">
+                <i class="fa-solid fa-eye text-primary"></i>
+                <span class="fw-bold">Vision</span>
+              </div>
+            </div>
+            
+            <div class="position-absolute bottom-0 end-0 m-3">
+              <div class="bg-white rounded-3 shadow-lg px-4 py-3 text-center">
+                <div class="fs-3 fw-bold text-primary mb-1">1250+</div>
+                <div class="text-secondary fw-semibold text-uppercase" style="font-size: 11px; letter-spacing: 0.5px;">
+                  Project Handover
                 </div>
               </div>
             </div>
           </div>
-
-<div class="col-12">
-  <div class="info-card mission-card">
-    <div class="row g-4">
-      <div class="col-md-5">
-        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=300&fit=crop" 
-             alt="Luxury Property" 
-             class="card-image">
-        <div class="stats-badge">
-          <div class="stat-number">150+</div>
-          <div class="stat-label">Happy Customers</div>
-        </div>
-      </div>
-      <div class="col-md-7">
-        <div class="d-flex justify-content-end">
-          <div class="card-header-icon">
-            <i class="fa-solid fa-eye"></i>
+          
+          <div class="card-body p-4">
+            <h3 class="card-title fs-4 fw-bold text-dark mb-3">Our Vision</h3>
+            <p class="card-text text-secondary lh-lg mb-0">
+              To be a leader in the real estate market, offering unparalleled services in luxury,
+              sustainability, and vacation properties. We specialize in luxury properties, 
+              sustainable homes, and vacation rentals — driven by a passion for exceptional living.
+            </p>
           </div>
         </div>
-        <h3 class="card-title text-end">Our Mission</h3>
-        <p class="card-text">
-          Simply scan the QR code on the right with your phone's camera, then click the 
-          prompt to open the app download page. We are committed to quality, innovation, 
-          and client satisfaction in every project we undertake.
-        </p>
       </div>
-    </div>
-  </div>
-</div>
 
+      <div class="col-lg-6">
+        <div class="card border-0 rounded-4 shadow-lg overflow-hidden h-100 mission-card-hover">
+          
+          <div class="position-relative overflow-hidden" style="height: 300px;">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop" 
+                 alt="Luxury Property" 
+                 class="w-100 h-100 object-fit-cover mission-img-zoom">
+            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+            
+            <div class="position-absolute top-0 start-0 m-3">
+              <div class="badge bg-white text-dark px-3 py-2 rounded-pill shadow d-flex align-items-center gap-2">
+                <i class="fa-solid fa-bullseye text-danger"></i>
+                <span class="fw-bold">Mission</span>
+              </div>
+            </div>
+            
+            <div class="position-absolute bottom-0 end-0 m-3">
+              <div class="bg-white rounded-3 shadow-lg px-4 py-3 text-center">
+                <div class="fs-3 fw-bold text-danger mb-1">150+</div>
+                <div class="text-secondary fw-semibold text-uppercase" style="font-size: 11px; letter-spacing: 0.5px;">
+                  Happy Customers
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-body p-4">
+            <h3 class="card-title fs-4 fw-bold text-dark mb-3">Our Mission</h3>
+            <p class="card-text text-secondary lh-lg mb-0">
+              Simply scan the QR code on the right with your phone's camera, then click the 
+              prompt to open the app download page. We are committed to quality, innovation, 
+              and client satisfaction in every project we undertake.
+            </p>
+          </div>
         </div>
       </div>
 
     </div>
-  </div>
+</div>
 </div>
 
 
@@ -299,28 +278,122 @@
 	</section>
 	}
 
-	<div class="container py-lg-5 p-lg-0 p-4">
-		<div class="row p-lg-4 p-3 estate-border">
-			<p class="text mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
-			<div class="col">
-				<p class="estate text-center">
-					{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
-				</p>
-				<p class="text-center fw-semibold small text-secondary">
-					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
-					educate and prepare my clients to insure that they are always in a position to make informed
-					decisions.Every engagement is an opportunity to create a lasting impression and a forever client.
-					{{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving in real estate with the
-					reputation of providing quality services and keeping excellent relations with the clients. My intend
-					to provide our clients with the best personalized real estate experience from beginning to end. I
-					enjoy sharing my expertise by giving you the scoop on the local real estate market. My aim is to
-					guide & prepare our clients to ensure that they are always in a position to make informed decision.
-					I put our client’s interest above everything. I am professionally trained and licensed realtors who
-					work for seeking to experience satisfaction and feel good emotionss.
-				</p>
+<div class="container py-5">
+	<div class="row justify-content-center">
+		<div class="col-lg-10">
+			
+			<div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4">
+				<div class="card-body p-0">
+					<div class="bg-primary bg-gradient p-4 text-center">
+						<i class="fa-solid fa-quote-left text-white fs-2 mb-3 opacity-75"></i>
+						<h4 class="text-white fw-bold mb-0 px-3">
+							Enjoy a clear and simple home-buying experience
+						</h4>
+					</div>
+				</div>
 			</div>
+
+			<div class="card border-0 shadow rounded-4">
+				<div class="card-body p-4 p-lg-5">
+					
+					<div class="text-center mb-4 pb-3 border-bottom">
+						<h3 class="fw-bold text-dark mb-2">
+							{{ siteConfig.firstName }} {{ siteConfig.lastName }}
+						</h3>
+						<span class="badge bg-primary bg-gradient px-4 py-2 rounded-pill fs-6">
+							{{ siteConfig.designation }}
+						</span>
+					</div>
+
+					<div class="alert alert-light border-start border-primary border-4 mb-4">
+						<div class="d-flex align-items-center mb-2">
+							<i class="fa-solid fa-handshake text-primary fs-4 me-3"></i>
+							<h5 class="fw-bold text-dark mb-0">My Commitment</h5>
+						</div>
+						<p class="text-secondary mb-0 lh-lg">
+							I believe every client has the right to be treated fairly, honestly and with integrity. 
+							My aim is to educate and prepare my clients to ensure that they are always in a position 
+							to make informed decisions.
+						</p>
+					</div>
+
+					<div class="row g-4">
+						
+						<div class="col-md-6">
+							<div class="d-flex align-items-start">
+								<div class="bg-primary bg-gradient rounded-circle p-2 me-3 flex-shrink-0" style="width: 40px; height: 40px;">
+									<i class="fa-solid fa-star text-white d-flex align-items-center justify-content-center h-100"></i>
+								</div>
+								<div>
+									<h6 class="fw-bold text-dark mb-2">Experience & Reputation</h6>
+									<p class="text-secondary small mb-0 lh-lg">
+										{{ siteConfig.firstName }} {{ siteConfig.lastName }} is well-serving in real estate 
+										with the reputation of providing quality services and keeping excellent relations with clients.
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="d-flex align-items-start">
+								<div class="bg-primary bg-gradient rounded-circle p-2 me-3 flex-shrink-0" style="width: 40px; height: 40px;">
+									<i class="fa-solid fa-bullseye text-white d-flex align-items-center justify-content-center h-100"></i>
+								</div>
+								<div>
+									<h6 class="fw-bold text-dark mb-2">Personalized Service</h6>
+									<p class="text-secondary small mb-0 lh-lg">
+										I intend to provide clients with the best personalized real estate experience 
+										from beginning to end, sharing expertise on the local real estate market.
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="d-flex align-items-start">
+								<div class="bg-primary bg-gradient rounded-circle p-2 me-3 flex-shrink-0" style="width: 40px; height: 40px;">
+									<i class="fa-solid fa-users text-white d-flex align-items-center justify-content-center h-100"></i>
+								</div>
+								<div>
+									<h6 class="fw-bold text-dark mb-2">Client-First Approach</h6>
+									<p class="text-secondary small mb-0 lh-lg">
+										Every engagement is an opportunity to create a lasting impression and a forever client. 
+										I put client interests above everything.
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="d-flex align-items-start">
+								<div class="bg-primary bg-gradient rounded-circle p-2 me-3 flex-shrink-0" style="width: 40px; height: 40px;">
+									<i class="fa-solid fa-certificate text-white d-flex align-items-center justify-content-center h-100"></i>
+								</div>
+								<div>
+									<h6 class="fw-bold text-dark mb-2">Professional & Licensed</h6>
+									<p class="text-secondary small mb-0 lh-lg">
+										I am a professionally trained and licensed realtor working to ensure client 
+										satisfaction and positive experiences throughout the journey.
+									</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="mt-4 pt-4 border-top text-center">
+						<p class="text-secondary fw-semibold mb-3">
+							<i class="fa-solid fa-compass text-primary me-2"></i>
+							My aim is to guide and prepare clients to make informed decisions
+						</p>
+					</div>
+
+				</div>
+			</div>
+
 		</div>
 	</div>
+</div>
 
 	@if(cities.length > 0){
 	<div class="container p-lg-0 p-4">
