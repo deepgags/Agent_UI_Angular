@@ -6,6 +6,10 @@ export interface Page {
 	metaTitle?: string;
 	metaDescription?: string;
 	keywords?: string;
+	homeSectionText1?: string;
+	homeSectionText2?: string;
+	homeSectionText3?: string;
+	homeSectionText4?: string;
 	pageKey?: string;
 	heroImages?: string[];
 	allowHeroImage?: boolean;
@@ -25,6 +29,10 @@ export interface CreatePageRequest {
 	metaTitle?: string;
 	metaDescription?: string;
 	keywords?: string;
+	homeSectionText1?: string;
+	homeSectionText2?: string;
+	homeSectionText3?: string;
+	homeSectionText4?: string;
 	siteId: string;
 }
 
@@ -35,6 +43,10 @@ export interface UpdatePageRequest {
 	metaTitle?: string;
 	metaDescription?: string;
 	keywords?: string;
+	homeSectionText1?: string;
+	homeSectionText2?: string;
+	homeSectionText3?: string;
+	homeSectionText4?: string;
 }
 
 export interface PredefinedPageTemplate {

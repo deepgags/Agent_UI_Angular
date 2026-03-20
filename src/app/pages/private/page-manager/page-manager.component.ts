@@ -76,6 +76,10 @@ export class PageManagerComponent implements OnInit {
 			metaTitle: new FormControl(""),
 			metaDescription: new FormControl(""),
 			keywords: new FormControl(""),
+			homeSectionText1: new FormControl(""),
+			homeSectionText2: new FormControl(""),
+			homeSectionText3: new FormControl(""),
+			homeSectionText4: new FormControl(""),
 		});
 	}
 
@@ -112,6 +116,10 @@ export class PageManagerComponent implements OnInit {
 				metaTitle: page.metaTitle || "",
 				metaDescription: page.metaDescription || "",
 				keywords: page.keywords || "",
+				homeSectionText1: page.homeSectionText1 || "",
+				homeSectionText2: page.homeSectionText2 || "",
+				homeSectionText3: page.homeSectionText3 || "",
+				homeSectionText4: page.homeSectionText4 || "",
 			});
 			if (page.isEditable) {
 				this.pageForm.get("content")?.enable();
@@ -135,6 +143,13 @@ export class PageManagerComponent implements OnInit {
 				metaDescription: formValue.metaDescription,
 				keywords: formValue.keywords,
 			};
+
+			if (this.isEditingHomePage()) {
+				pageData.homeSectionText1 = formValue.homeSectionText1;
+				pageData.homeSectionText2 = formValue.homeSectionText2;
+				pageData.homeSectionText3 = formValue.homeSectionText3;
+				pageData.homeSectionText4 = formValue.homeSectionText4;
+			}
 
 			this.loadingService.loadingOn();
 
@@ -301,6 +316,10 @@ export class PageManagerComponent implements OnInit {
 			return false;
 		}
 		return page.allowHeroImage === true;
+	}
+
+	isEditingHomePage(): boolean {
+		return this.editingPage?.pageKey === "home";
 	}
 
 	getHeroImageLimit(page?: Page | null): number {

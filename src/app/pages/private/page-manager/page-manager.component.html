@@ -45,12 +45,12 @@
 							[ngClass]="{
 								'bg-info': getStatusBadge(page).severity === 'info',
 								'bg-warning': getStatusBadge(page).severity === 'warning',
-								'bg-success': getStatusBadge(page).severity === 'success'
+								'bg-success': getStatusBadge(page).severity === 'success',
 							}">
 							{{ getStatusBadge(page).label }}
 						</span>
 					</td>
-					<td>{{ page.createdAt | date : "short" }}</td>
+					<td>{{ page.createdAt | date: "short" }}</td>
 					<td>
 						<div class="d-flex gap-2">
 							<p-button
@@ -80,7 +80,7 @@
 					<td
 						colspan="5"
 						class="text-center py-4">
-						<p class=" mb-3">No pages found</p>
+						<p class="mb-3">No pages found</p>
 					</td>
 				</tr>
 			</ng-template>
@@ -129,7 +129,7 @@
 					</label>
 					<p-editor
 						formControlName="content"
-						[style]="{ height: '300px' }"
+						[style]="{ height: '150px' }"
 						placeholder="Enter your page content here...">
 						<ng-template pTemplate="header">
 							<span class="ql-formats">
@@ -167,8 +167,8 @@
 							</span>
 						</ng-template>
 					</p-editor>
-					@if(pageForm.get('content')?.invalid && pageForm.get('content')?.touched){
-					<small class="text-danger">Content is required</small>
+					@if (pageForm.get("content")?.invalid && pageForm.get("content")?.touched) {
+						<small class="text-danger">Content is required</small>
 					}
 				</div>
 
@@ -223,81 +223,292 @@
 					<small class="">Comma-separated keywords</small>
 				</div>
 
-				@if(canManageHeroImages(editingPage)) {
-				<div class="col-12">
-					<h6 class="border-bottom pb-2 mb-3">Hero Image</h6>
-					<small class=" d-block mb-3">
-						Upload up to {{ getHeroImageLimit(editingPage) }} hero image{{ getHeroImageLimit(editingPage) > 1 ? 's' : '' }} (max 5MB each).
-					</small>
-
-					<!-- Existing Hero Images -->
-					@if(heroImages.length > 0) {
-					<div class="row g-3 mb-3">
-						<div class="col-12">
-							<h6 class="mb-3">Current Hero Images</h6>
-						</div>
-						@for(image of heroImages; track image; let i = $index) {
-						<div class="col-md-6 col-lg-4">
-							<div class="card position-relative">
-								<i
-									class="bi bi-x-circle-fill remove-button"
-									pTooltip="Remove image"
-									(click)="deleteHeroImage(i)"></i>
-								<img
-									[src]="localImageBaseUrl + image"
-									class="card-img-top"
-									alt="Hero image {{ i + 1 }}"
-									style="height: 150px; object-fit: cover" />
-							</div>
-						</div>
-						}
-					</div>
-					}
-
-					<!-- Selected Images for Upload -->
-					@if(uploadedFiles.length > 0) {
-					<div class="row g-3 mb-3">
-						<div class="col-12">
-							<h6 class="mb-3">Selected Images (will be uploaded on save)</h6>
-						</div>
-						@for(file of uploadedFiles; track file; let i = $index) {
-						<div class="col-md-6 col-lg-4">
-							<div class="card position-relative">
-								<i
-									class="bi bi-x-circle-fill remove-button"
-									pTooltip="Remove image"
-									(click)="removeSelectedFile(i)"></i>
-								<img
-									[src]="file | blobToUrl"
-									class="card-img-top"
-									alt="Selected image {{ i + 1 }}"
-									style="height: 150px; object-fit: cover" />
-							</div>
-						</div>
-						}
-					</div>
-					}
-
-					<!-- File Upload -->
+				@if (isEditingHomePage()) {
 					<div class="col-12">
-						<label class="form-label fw-semibold">Select Hero Image</label>
-						<p-fileUpload
-							#fileUpload
-							name="heroImages"
-							[multiple]="getHeroImageLimit(editingPage) > 1"
-							accept="image/*"
-							[maxFileSize]="5242880"
-							[fileLimit]="getHeroImageLimit(editingPage)"
-							[showUploadButton]="false"
-							[showCancelButton]="false"
-							chooseLabel="Choose Image"
-							(onSelect)="onFileSelect($event)"
-							[disabled]="heroImages.length + uploadedFiles.length >= getHeroImageLimit(editingPage)"></p-fileUpload>
-						<small class="">
-							{{ heroImages.length + uploadedFiles.length }}/{{ getHeroImageLimit(editingPage) }} image{{ getHeroImageLimit(editingPage) > 1 ? 's' : '' }} selected
-						</small>
+						<h6 class="border-bottom pb-2 mb-3">Home Section Texts</h6>
+						<small class="d-block mb-3">These fields are available only for Home page.</small>
 					</div>
-				</div>
+
+					<div class="col-12">
+						<label
+							for="homeSectionText1"
+							class="form-label">
+							homeSectionText1
+						</label>
+						<p-editor
+							id="homeSectionText1"
+							formControlName="homeSectionText1"
+							[style]="{ height: '150px' }"
+							placeholder="Enter home section text 1">
+							<ng-template pTemplate="header">
+								<span class="ql-formats">
+									<button
+										class="ql-bold"
+										aria-label="Bold"></button>
+									<button
+										class="ql-italic"
+										aria-label="Italic"></button>
+									<button
+										class="ql-underline"
+										aria-label="Underline"></button>
+								</span>
+								<span class="ql-formats">
+									<select class="ql-size">
+										<option value="small">Small</option>
+										<option
+											value="normal"
+											selected>
+											Normal
+										</option>
+										<option value="large">Large</option>
+										<option value="huge">Huge</option>
+									</select>
+								</span>
+								<span class="ql-formats">
+									<button
+										class="ql-list"
+										value="ordered"
+										aria-label="Ordered List"></button>
+									<button
+										class="ql-list"
+										value="bullet"
+										aria-label="Unordered List"></button>
+								</span>
+							</ng-template>
+						</p-editor>
+					</div>
+
+					<div class="col-12">
+						<label
+							for="homeSectionText2"
+							class="form-label">
+							homeSectionText2
+						</label>
+						<p-editor
+							id="homeSectionText2"
+							formControlName="homeSectionText2"
+							[style]="{ height: '150px' }"
+							placeholder="Enter home section text 2">
+							<ng-template pTemplate="header">
+								<span class="ql-formats">
+									<button
+										class="ql-bold"
+										aria-label="Bold"></button>
+									<button
+										class="ql-italic"
+										aria-label="Italic"></button>
+									<button
+										class="ql-underline"
+										aria-label="Underline"></button>
+								</span>
+								<span class="ql-formats">
+									<select class="ql-size">
+										<option value="small">Small</option>
+										<option
+											value="normal"
+											selected>
+											Normal
+										</option>
+										<option value="large">Large</option>
+										<option value="huge">Huge</option>
+									</select>
+								</span>
+								<span class="ql-formats">
+									<button
+										class="ql-list"
+										value="ordered"
+										aria-label="Ordered List"></button>
+									<button
+										class="ql-list"
+										value="bullet"
+										aria-label="Unordered List"></button>
+								</span>
+							</ng-template>
+						</p-editor>
+					</div>
+
+					<div class="col-12">
+						<label
+							for="homeSectionText3"
+							class="form-label">
+							homeSectionText3
+						</label>
+						<p-editor
+							id="homeSectionText3"
+							formControlName="homeSectionText3"
+							[style]="{ height: '150px' }"
+							placeholder="Enter home section text 3">
+							<ng-template pTemplate="header">
+								<span class="ql-formats">
+									<button
+										class="ql-bold"
+										aria-label="Bold"></button>
+									<button
+										class="ql-italic"
+										aria-label="Italic"></button>
+									<button
+										class="ql-underline"
+										aria-label="Underline"></button>
+								</span>
+								<span class="ql-formats">
+									<select class="ql-size">
+										<option value="small">Small</option>
+										<option
+											value="normal"
+											selected>
+											Normal
+										</option>
+										<option value="large">Large</option>
+										<option value="huge">Huge</option>
+									</select>
+								</span>
+								<span class="ql-formats">
+									<button
+										class="ql-list"
+										value="ordered"
+										aria-label="Ordered List"></button>
+									<button
+										class="ql-list"
+										value="bullet"
+										aria-label="Unordered List"></button>
+								</span>
+							</ng-template>
+						</p-editor>
+					</div>
+
+					<div class="col-12">
+						<label
+							for="homeSectionText4"
+							class="form-label">
+							homeSectionText4
+						</label>
+						<p-editor
+							id="homeSectionText4"
+							formControlName="homeSectionText4"
+							[style]="{ height: '150px' }"
+							placeholder="Enter home section text 4">
+							<ng-template pTemplate="header">
+								<span class="ql-formats">
+									<button
+										class="ql-bold"
+										aria-label="Bold"></button>
+									<button
+										class="ql-italic"
+										aria-label="Italic"></button>
+									<button
+										class="ql-underline"
+										aria-label="Underline"></button>
+								</span>
+								<span class="ql-formats">
+									<select class="ql-size">
+										<option value="small">Small</option>
+										<option
+											value="normal"
+											selected>
+											Normal
+										</option>
+										<option value="large">Large</option>
+										<option value="huge">Huge</option>
+									</select>
+								</span>
+								<span class="ql-formats">
+									<button
+										class="ql-list"
+										value="ordered"
+										aria-label="Ordered List"></button>
+									<button
+										class="ql-list"
+										value="bullet"
+										aria-label="Unordered List"></button>
+								</span>
+							</ng-template>
+						</p-editor>
+					</div>
+				}
+
+				@if (canManageHeroImages(editingPage)) {
+					<div class="col-12">
+						<h6 class="border-bottom pb-2 mb-3">Hero Image</h6>
+						<small class="d-block mb-3">
+							Upload up to {{ getHeroImageLimit(editingPage) }} hero image{{
+								getHeroImageLimit(editingPage) > 1 ? "s" : ""
+							}}
+							(max 5MB each).
+						</small>
+
+						<!-- Existing Hero Images -->
+						@if (heroImages.length > 0) {
+							<div class="row g-3 mb-3">
+								<div class="col-12">
+									<h6 class="mb-3">Current Hero Images</h6>
+								</div>
+								@for (image of heroImages; track image; let i = $index) {
+									<div class="col-md-6 col-lg-4">
+										<div class="card position-relative">
+											<i
+												class="bi bi-x-circle-fill remove-button"
+												pTooltip="Remove image"
+												(click)="deleteHeroImage(i)"></i>
+											<img
+												[src]="localImageBaseUrl + image"
+												class="card-img-top"
+												alt="Hero image {{ i + 1 }}"
+												style="height: 150px; object-fit: cover" />
+										</div>
+									</div>
+								}
+							</div>
+						}
+
+						<!-- Selected Images for Upload -->
+						@if (uploadedFiles.length > 0) {
+							<div class="row g-3 mb-3">
+								<div class="col-12">
+									<h6 class="mb-3">Selected Images (will be uploaded on save)</h6>
+								</div>
+								@for (file of uploadedFiles; track file; let i = $index) {
+									<div class="col-md-6 col-lg-4">
+										<div class="card position-relative">
+											<i
+												class="bi bi-x-circle-fill remove-button"
+												pTooltip="Remove image"
+												(click)="removeSelectedFile(i)"></i>
+											<img
+												[src]="file | blobToUrl"
+												class="card-img-top"
+												alt="Selected image {{ i + 1 }}"
+												style="height: 150px; object-fit: cover" />
+										</div>
+									</div>
+								}
+							</div>
+						}
+
+						<!-- File Upload -->
+						<div class="col-12">
+							<label class="form-label fw-semibold">Select Hero Image</label>
+							<p-fileUpload
+								#fileUpload
+								name="heroImages"
+								[multiple]="getHeroImageLimit(editingPage) > 1"
+								accept="image/*"
+								[maxFileSize]="5242880"
+								[fileLimit]="getHeroImageLimit(editingPage)"
+								[showUploadButton]="false"
+								[showCancelButton]="false"
+								chooseLabel="Choose Image"
+								(onSelect)="onFileSelect($event)"
+								[disabled]="
+									heroImages.length + uploadedFiles.length >= getHeroImageLimit(editingPage)
+								"></p-fileUpload>
+							<small class="">
+								{{ heroImages.length + uploadedFiles.length }}/{{
+									getHeroImageLimit(editingPage)
+								}}
+								image{{ getHeroImageLimit(editingPage) > 1 ? "s" : "" }} selected
+							</small>
+						</div>
+					</div>
 				}
 			</div>
 		</form>
