@@ -31,7 +31,7 @@ export class T16HomeComponent implements OnInit {
 		private titleService: Title,
 		private metaService: Meta,
 		private searchService: SearchService,
-		private sharedDataService: SharedDataService
+		public sharedDataService: SharedDataService,
 	) {}
 
 	ngOnInit(): void {

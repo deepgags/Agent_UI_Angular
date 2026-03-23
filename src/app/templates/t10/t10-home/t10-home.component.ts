@@ -46,7 +46,7 @@ export class T10HomeComponent implements OnInit, AfterViewInit {
 	private metaService = inject(Meta);
 
 	constructor(
-		private sharedDataService: SharedDataService,
+		public sharedDataService: SharedDataService,
 		private searchService: SearchService,
 	) {}
 

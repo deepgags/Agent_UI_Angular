@@ -19,6 +19,7 @@ export class SharedDataService {
 	private _team = signal<TeamMemberModel[]>([]);
 	private _cities = signal<City[]>([]);
 	private _heroImages = signal<string[]>([]);
+	private _homeSections = signal<any>({});
 	private _homeMeta = signal<HomeMetaModel>({ metaTitle: "", metaDescription: "", keywords: "" });
 
 	constructor() {
@@ -60,6 +61,10 @@ export class SharedDataService {
 		this._heroImages.set(_heroImages);
 	}
 
+	setHomeSections(_homeSections: any) {
+		this._homeSections.set(_homeSections);
+	}
+
 	setHomeMeta(_homeMeta: HomeMetaModel) {
 		this._homeMeta.set(_homeMeta);
 	}
@@ -94,6 +99,10 @@ export class SharedDataService {
 
 	get heroImages() {
 		return this._heroImages;
+	}
+
+	get homeSections() {
+		return this._homeSections;
 	}
 
 	get homeMeta() {

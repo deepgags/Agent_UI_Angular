@@ -39,7 +39,10 @@ export class T5HomeComponent implements OnInit {
 	private titleService = inject(Title);
 	private metaService = inject(Meta);
 
-	constructor(private sharedDataService: SharedDataService, private searchService: SearchService) {}
+	constructor(
+		public sharedDataService: SharedDataService,
+		private searchService: SearchService,
+	) {}
 
 	ngOnInit(): void {
 		this.titleService.setTitle("Home");

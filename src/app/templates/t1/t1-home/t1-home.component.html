@@ -6,34 +6,36 @@
 			data-bs-ride="carousel"
 			data-bs-interval="2500">
 			<div class="carousel-inner">
-				@if (heroImages && heroImages.length > 0) { @for (image of heroImages; track $index) {
-				<div
-					class="carousel-item"
-					[ngClass]="{ active: $index === 0 }">
-					<img
-						[src]="localImageUrl + image"
-						class="d-block w-100"
-						[alt]="'Hero image ' + ($index + 1)" />
-				</div>
-				} } @else {
-				<div class="carousel-item active">
-					<img
-						src="/t3/images/banner2.jpg"
-						class="d-block w-100"
-						alt="Default banner 1" />
-				</div>
-				<div class="carousel-item">
-					<img
-						src="/t2/images/banner.png"
-						class="d-block w-100"
-						alt="Default banner 2" />
-				</div>
-				<div class="carousel-item">
-					<img
-						src="/t4/images/banner.jpg"
-						class="d-block w-100"
-						alt="Default banner 3" />
-				</div>
+				@if (heroImages && heroImages.length > 0) {
+					@for (image of heroImages; track $index) {
+						<div
+							class="carousel-item"
+							[ngClass]="{ active: $index === 0 }">
+							<img
+								[src]="localImageUrl + image"
+								class="d-block w-100"
+								[alt]="'Hero image ' + ($index + 1)" />
+						</div>
+					}
+				} @else {
+					<div class="carousel-item active">
+						<img
+							src="/t3/images/banner2.jpg"
+							class="d-block w-100"
+							alt="Default banner 1" />
+					</div>
+					<div class="carousel-item">
+						<img
+							src="/t2/images/banner.png"
+							class="d-block w-100"
+							alt="Default banner 2" />
+					</div>
+					<div class="carousel-item">
+						<img
+							src="/t4/images/banner.jpg"
+							class="d-block w-100"
+							alt="Default banner 3" />
+					</div>
 				}
 			</div>
 		</div>
@@ -82,49 +84,48 @@
 
 		<div class="second">
 			@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-
-			<img
-				[src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
-				alt="No profile image"
-				class="overlay-image2" />
-			<div
-				class="card position-absolute man_card2"
-				style="width: 15rem">
-				<div class="card-body">
-					<h5 class="card-head text-white">
-						{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
-					</h5>
-					<p class="card-text text-white mb-0">{{ siteConfig.secondaryAgent.designation }}</p>
-					<div class="d-flex">
-						<div class="">
-							<i class="fa-solid fa-phone info"></i>
+				<img
+					[src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
+					alt="No profile image"
+					class="overlay-image2" />
+				<div
+					class="card position-absolute man_card2"
+					style="width: 15rem">
+					<div class="card-body">
+						<h5 class="card-head text-white">
+							{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
+						</h5>
+						<p class="card-text text-white mb-0">{{ siteConfig.secondaryAgent.designation }}</p>
+						<div class="d-flex">
+							<div class="">
+								<i class="fa-solid fa-phone info"></i>
+							</div>
+							<div class="ms-2">
+								<p class="mb-0">
+									<a
+										class="text-white fw-semibold text-decoration-none"
+										[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+										{{ siteConfig.secondaryAgent.websitePhone | phone }}
+									</a>
+								</p>
+							</div>
 						</div>
-						<div class="ms-2">
-							<p class="mb-0">
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
-									{{ siteConfig.secondaryAgent.websitePhone | phone }}
-								</a>
-							</p>
-						</div>
-					</div>
-					<div class="d-flex">
-						<div class="">
-							<i class="fa-solid fa-envelope info"></i>
-						</div>
-						<div class="ms-2 mt-1">
-							<p class="mb-0">
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
-									{{ siteConfig.secondaryAgent.websiteEmail }}
-								</a>
-							</p>
+						<div class="d-flex">
+							<div class="">
+								<i class="fa-solid fa-envelope info"></i>
+							</div>
+							<div class="ms-2 mt-1">
+								<p class="mb-0">
+									<a
+										class="text-white fw-semibold text-decoration-none"
+										[href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+										{{ siteConfig.secondaryAgent.websiteEmail }}
+									</a>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			}
 		</div>
 	</div>
@@ -140,76 +141,81 @@
 		</div>
 	</div>
 
-	@if( siteConfig.websiteSettings.showHomeWorthPage || siteConfig.websiteSettings.showSellingInNeighborHoodPage ||
-	siteConfig.websiteSettings.showFindDreamHomePage ){
-	<section class="hero-bg d-flex justify-content-center align-items-center position-relative py-5">
-		<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+	@if (
+		siteConfig.websiteSettings.showHomeWorthPage ||
+		siteConfig.websiteSettings.showSellingInNeighborHoodPage ||
+		siteConfig.websiteSettings.showFindDreamHomePage
+	) {
+		<section class="hero-bg d-flex justify-content-center align-items-center position-relative py-5">
+			<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
 
-		<div class="container position-relative">
-			<div class="row justify-content-center g-4">
-				@if(siteConfig.websiteSettings.showHomeWorthPage){
-				<div class="col-12 col-sm-6 col-lg-4 d-flex">
-					<div
-						class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
-						<h2 class="fw-bold text-uppercase mb-3">Free Home Evaluation</h2>
-						<p class="fs-5 mb-4">
-							Find out what your home is
-							<span class="text-warning fw-semibold fst-italic">WORTH</span>
-							— for
-							<span class="text-warning fw-semibold">FREE</span>
-						</p>
+			<div class="container position-relative">
+				<div class="row justify-content-center g-4">
+					@if (siteConfig.websiteSettings.showHomeWorthPage) {
+						<div class="col-12 col-sm-6 col-lg-4 d-flex">
+							<div
+								class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
+								<h2 class="fw-bold text-uppercase mb-3">Free Home Evaluation</h2>
+								<p class="fs-5 mb-4">
+									Find out what your home is
+									<span class="text-warning fw-semibold fst-italic">WORTH</span>
+									— for
+									<span class="text-warning fw-semibold">FREE</span>
+								</p>
 
-						<a
-							href="/home-worth"
-							target="_blank"
-							class="btn btn-warning fw-semibold px-4 py-2 rounded-3">
-							Get Started
-						</a>
-					</div>
+								<a
+									href="/home-worth"
+									target="_blank"
+									class="btn btn-warning fw-semibold px-4 py-2 rounded-3">
+									Get Started
+								</a>
+							</div>
+						</div>
+					}
+					@if (siteConfig.websiteSettings.showSellingInNeighborHoodPage) {
+						<div class="col-12 col-sm-6 col-lg-4 d-flex">
+							<div
+								class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
+								<h2 class="fw-bold text-uppercase mb-3">Neighborhood Watch</h2>
+								<p class="fs-5 mb-4">
+									Get updated as soon as your
+									<span class="text-danger fw-semibold">NEIGHBORS</span>
+									are
+									<span class="text-danger fw-semibold fst-italic">SELLING</span>
+								</p>
+								<a
+									href="/neighbor-detail"
+									target="_blank"
+									class="btn btn-danger fw-semibold px-4 py-2 rounded-3">
+									Get Started
+								</a>
+							</div>
+						</div>
+					}
+					@if (siteConfig.websiteSettings.showFindDreamHomePage) {
+						<div class="col-12 col-sm-6 col-lg-4 d-flex">
+							<div
+								class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
+								<h2 class="fw-bold text-uppercase mb-3">Find Your Dream Home</h2>
+								<p class="fs-5 mb-4">
+									Start your search and
+									<span class="text-success fw-semibold fst-italic">FIND</span>
+									your
+									<span class="text-success fw-semibold">DREAM HOME</span>
+									today.
+								</p>
+								<a
+									href="/dream-home"
+									target="_blank"
+									class="btn btn-success fw-semibold px-4 py-2 rounded-3">
+									Get Started
+								</a>
+							</div>
+						</div>
+					}
 				</div>
-				} @if(siteConfig.websiteSettings.showSellingInNeighborHoodPage){
-				<div class="col-12 col-sm-6 col-lg-4 d-flex">
-					<div
-						class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
-						<h2 class="fw-bold text-uppercase mb-3">Neighborhood Watch</h2>
-						<p class="fs-5 mb-4">
-							Get updated as soon as your
-							<span class="text-danger fw-semibold">NEIGHBORS</span>
-							are
-							<span class="text-danger fw-semibold fst-italic">SELLING</span>
-						</p>
-						<a
-							href="/neighbor-detail"
-							target="_blank"
-							class="btn btn-danger fw-semibold px-4 py-2 rounded-3">
-							Get Started
-						</a>
-					</div>
-				</div>
-				} @if(siteConfig.websiteSettings.showFindDreamHomePage){
-				<div class="col-12 col-sm-6 col-lg-4 d-flex">
-					<div
-						class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
-						<h2 class="fw-bold text-uppercase mb-3">Find Your Dream Home</h2>
-						<p class="fs-5 mb-4">
-							Start your search and
-							<span class="text-success fw-semibold fst-italic">FIND</span>
-							your
-							<span class="text-success fw-semibold">DREAM HOME</span>
-							today.
-						</p>
-						<a
-							href="/dream-home"
-							target="_blank"
-							class="btn btn-success fw-semibold px-4 py-2 rounded-3">
-							Get Started
-						</a>
-					</div>
-				</div>
-				}
 			</div>
-		</div>
-	</section>
+		</section>
 	}
 
 	<div class="container py-lg-5 p-lg-0 p-4">
@@ -219,86 +225,80 @@
 				<p class="estate text-center">
 					{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
 				</p>
-				<p class="text-center fw-semibold small text-secondary">
-					I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
-					educate and prepare my clients to insure that they are always in a position to make informed
-					decisions.Every engagement is an opportunity to create a lasting impression and a forever client.
-					{{ siteConfig.firstName }} {{ siteConfig.lastName }} is a well serving in real estate with the
-					reputation of providing quality services and keeping excellent relations with the clients. My intend
-					to provide our clients with the best personalized real estate experience from beginning to end. I
-					enjoy sharing my expertise by giving you the scoop on the local real estate market. My aim is to
-					guide & prepare our clients to ensure that they are always in a position to make informed decision.
-					I put our client’s interest above everything. I am professionally trained and licensed realtors who
-					work for seeking to experience satisfaction and feel good emotionss.
-				</p>
+				<p
+					class="text-center fw-semibold small text-secondary"
+					[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
 			</div>
 		</div>
 	</div>
 
-	@if(cities.length > 0){
-	<div class="container p-lg-0 p-4">
-		<p class="text text-center mb-0 fw-semibold">Find Properties in These Cities</p>
-		<p class="text-center fw-normal"></p>
-		<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-			@if(cities[0].name){
-			<div class="col">
-				<div
-					class="pro_card"
-					(click)="searchProperties({ city: cities[0].name })">
-					<div class="content text-center">
-						<img
-							class="img-fluid rounded mb-2"
-							[src]="localImageUrl + cities[0].image"
-							alt="" />
-						<p class="pro-card-text">{{ cities[0].name }}</p>
+	@if (cities.length > 0) {
+		<div class="container p-lg-0 p-4">
+			<p class="text text-center mb-0 fw-semibold">Find Properties in These Cities</p>
+			<p class="text-center fw-normal"></p>
+			<div class="row py-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+				@if (cities[0].name) {
+					<div class="col">
+						<div
+							class="pro_card"
+							(click)="searchProperties({ city: cities[0].name })">
+							<div class="content text-center">
+								<img
+									class="img-fluid rounded mb-2"
+									[src]="localImageUrl + cities[0].image"
+									alt="" />
+								<p class="pro-card-text">{{ cities[0].name }}</p>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-			} @if(cities[1] && cities[1].name){
-			<div class="col">
-				<div
-					class="pro_card"
-					(click)="searchProperties({ city: cities[1].name })">
-					<div class="content text-center">
-						<img
-							class="img-fluid rounded mb-2"
-							[src]="localImageUrl + cities[1].image"
-							alt="" />
-						<p class="pro-card-text">{{ cities[1].name }}</p>
+				}
+				@if (cities[1] && cities[1].name) {
+					<div class="col">
+						<div
+							class="pro_card"
+							(click)="searchProperties({ city: cities[1].name })">
+							<div class="content text-center">
+								<img
+									class="img-fluid rounded mb-2"
+									[src]="localImageUrl + cities[1].image"
+									alt="" />
+								<p class="pro-card-text">{{ cities[1].name }}</p>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-			} @if(cities[2] && cities[2].name){
-			<div class="col">
-				<div
-					class="pro_card"
-					(click)="searchProperties({ city: cities[2].name })">
-					<div class="content text-center">
-						<img
-							class="img-fluid rounded mb-2"
-							[src]="localImageUrl + cities[2].image"
-							alt="" />
-						<p class="pro-card-text">{{ cities[2].name }}</p>
+				}
+				@if (cities[2] && cities[2].name) {
+					<div class="col">
+						<div
+							class="pro_card"
+							(click)="searchProperties({ city: cities[2].name })">
+							<div class="content text-center">
+								<img
+									class="img-fluid rounded mb-2"
+									[src]="localImageUrl + cities[2].image"
+									alt="" />
+								<p class="pro-card-text">{{ cities[2].name }}</p>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-			} @if(cities[3] && cities[3].name){
-			<div class="col">
-				<div
-					class="pro_card"
-					(click)="searchProperties({ city: cities[3].name })">
-					<div class="content text-center">
-						<img
-							class="img-fluid rounded mb-2"
-							[src]="localImageUrl + cities[3].image"
-							alt="" />
-						<p class="pro-card-text">{{ cities[3].name }}</p>
+				}
+				@if (cities[3] && cities[3].name) {
+					<div class="col">
+						<div
+							class="pro_card"
+							(click)="searchProperties({ city: cities[3].name })">
+							<div class="content text-center">
+								<img
+									class="img-fluid rounded mb-2"
+									[src]="localImageUrl + cities[3].image"
+									alt="" />
+								<p class="pro-card-text">{{ cities[3].name }}</p>
+							</div>
+						</div>
 					</div>
-				</div>
+				}
 			</div>
-			}
 		</div>
-	</div>
 	}
 
 	<div class="container-fluid mb-3">

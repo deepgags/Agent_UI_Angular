@@ -38,7 +38,7 @@ export class T24HomeComponent implements OnInit {
 	constructor(
 		private titleService: Title,
 		private metaService: Meta,
-		private sharedDataService: SharedDataService,
+		public sharedDataService: SharedDataService,
 		private searchService: SearchService,
 	) {}
 

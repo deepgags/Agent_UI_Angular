@@ -40,8 +40,8 @@ export class T23HomeComponent implements OnInit {
 	constructor(
 		private titleService: Title,
 		private metaService: Meta,
-		private sharedDataService: SharedDataService,
-		private searchService: SearchService
+		public sharedDataService: SharedDataService,
+		private searchService: SearchService,
 	) {}
 
 	ngOnInit(): void {

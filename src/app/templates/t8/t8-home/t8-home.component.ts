@@ -42,7 +42,7 @@ export class T8HomeComponent implements OnInit {
 	private metaService = inject(Meta);
 
 	constructor(
-		private sharedDataService: SharedDataService,
+		public sharedDataService: SharedDataService,
 		private searchService: SearchService,
 	) {}
 

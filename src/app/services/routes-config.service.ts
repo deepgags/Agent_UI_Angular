@@ -23,7 +23,8 @@ export class RoutesConfigService {
 			const response = (await this.http
 				.get(`${environment.baseUrl}/customer/web`, { params: { domain: hostname } })
 				.toPromise()) as any;
-			const { customer, mainMenu, sideMenu, team, cities, heroImages, meta } = response.data;
+			debugger;
+			const { customer, mainMenu, sideMenu, team, cities, heroImages, meta, homeSections } = response.data;
 
 			const templateId = customer.websiteSettings.templateId;
 			if (customer.websiteSettings.primaryColor) {
@@ -59,6 +60,10 @@ export class RoutesConfigService {
 
 			if (heroImages) {
 				this.sharedDataService.setHeroImages(heroImages);
+			}
+
+			if (homeSections) {
+				this.sharedDataService.setHomeSections(homeSections);
 			}
 
 			if (meta) {
