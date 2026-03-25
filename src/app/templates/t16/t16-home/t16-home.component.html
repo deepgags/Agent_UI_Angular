@@ -6,19 +6,27 @@
 	<div class="container-fluid pt-2 search-container">
 		<div class="top-padding">
 			<div class="row justify-content-center">
-				<p class="text text-white fw-semibold pt-3">Search Your Dream Home</p>
-				<p class="text-white text-center">
+				<p class="text text-white fw-semibold pt-3 mob">Search Your Dream Home</p>
+				<p class="text-white text-center mob">
 					We are recognized for exceeding client expectations and delivering great results through dedication,
 					<br />
 					ease of process, and extraordinary services to our worldwide clients.
 				</p>
-				<div class="col-12 menu-bg p-4 mb-5">
+				<div class="col-12 menu-bg p-4 mb-5 mbb">
 					<app-search [onSearch]="searchProperties" />
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<div class="container-fluid search-container padd-top">
+	<div class="container py-4">
+		<p class="text text-center fw-semibold">Featured Properties</p>
+		<app-featured-properties />
+	</div>
+</div>
+
 
 @if (
 	siteConfig.websiteSettings.showHomeWorthPage ||
@@ -94,15 +102,9 @@
 		</div>
 	</section>
 }
-
 <app-team-card />
 
-<div class="container-fluid search-container">
-	<div class="container py-4">
-		<p class="text text-center fw-semibold">Featured Properties</p>
-		<app-featured-properties />
-	</div>
-</div>
+
 
 <div class="container-fluid search-container">
 	<div class="container">
@@ -111,7 +113,7 @@
 				<p class="fs-2 mb-0 fw-semibold">Hi, I’m {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
 				<p class="fs-4 info">{{ siteConfig.designation }}</p>
 				<p
-					class="fw-semibold mb-0"
+					class="fw-semibold mb-0 word-break"
 					[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
 
 				<!-- Button trigger modal -->

@@ -88,11 +88,22 @@ $info:#06A788;
   .prop-img  {
     width: 100%;
   } 
+  .mbb{
+
+    margin-bottom: 200px !important;
+  }
+  .padd-top{
+    padding-top: 400px;
+  }
+
   .profile-img {
     position: static !important;
     top: auto !important;
   }
-
+.word-break {
+  word-break: break-word;
+  white-space: normal;
+}
    .background-container {
   position: relative;
   width: 100%;
@@ -102,7 +113,9 @@ $info:#06A788;
   background-size: cover;
   background-position: center;
 }
-
+.mob{
+  display: none;
+}
 }
 
 .profile-img {

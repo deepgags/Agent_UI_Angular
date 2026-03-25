@@ -6,7 +6,7 @@
 	<div class="container-fluid search-container">
 		<div class="top-padding1">
 			<div class="row justify-content-center">
-				<p class="text1 fs-1 text-white fw-semibold pt-3">
+				<p class="text1 fs-1 text-white fw-semibold pt-3 mob">
 					Find Your
 					<br />
 					Perfect Home
@@ -113,7 +113,7 @@
 
 		<div class="container position-relative">
 			<div class="row g-4 justify-content-center">
-				<!-- FIND DREAM HOME -->
+				
 				@if (siteConfig.websiteSettings.showFindDreamHomePage) {
 					<div class="col-12 col-lg-4 d-flex justify-content-center">
 						<div class="lux-card h-100">
@@ -135,7 +135,6 @@
 					</div>
 				}
 
-				<!-- HOME WORTH -->
 				@if (siteConfig.websiteSettings.showHomeWorthPage) {
 					<div class="col-12 col-lg-4 d-flex justify-content-center">
 						<div class="lux-card h-100">
@@ -155,7 +154,7 @@
 					</div>
 				}
 
-				<!-- NEIGHBORHOOD WATCH -->
+	\
 				@if (siteConfig.websiteSettings.showSellingInNeighborHoodPage) {
 					<div class="col-12 col-lg-4 d-flex justify-content-center">
 						<div class="lux-card h-100">
@@ -382,7 +381,7 @@
 					{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
 				</p>
 				<p
-					class="text-center fw-semibold"
+					class="text-center fw-semibold word-break"
 					[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
 			</div>
 		</div>

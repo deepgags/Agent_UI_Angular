@@ -639,7 +639,12 @@ a {
 	#heroCarousel {
 		height: 450px;
 	}
-
+  .mob{
+  display: none;
+  }
+	.top-pad1 {
+    padding-top: 100px;
+}
 	.agent-wrapper {
 		position: relative;
 		left: 0 !important;
@@ -692,7 +697,6 @@ a {
 	}
 }
 
-/* Hover Effects */
 .vision-card-hover,
 .mission-card-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -704,7 +708,6 @@ a {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Image Zoom on Hover */
 .vision-img-zoom,
 .mission-img-zoom {
   transition: transform 0.5s ease;
@@ -715,7 +718,6 @@ a {
   transform: scale(1.1);
 }
 
-/* Optional: Gradient for header text (if you want) */
 .text-gradient {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;

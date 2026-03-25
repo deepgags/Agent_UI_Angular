@@ -176,7 +176,7 @@
 			<p class="fs-2 mb-0 fw-semibold">Hi, I’m {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
 			<p class="info fw-bold fs-5">{{ siteConfig.designation }}</p>
 			<p
-				class="fw-semibold mb-0"
+				class="fw-semibold mb-0 word-break"
 				[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
 
 			<a
@@ -367,7 +367,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6 col-12 mt-5 mt-lg-0 p-4">
+			<div class="col-lg-6 col-12 mt-5 mt-lg-0 p-0 p-lg-4">
 				<div class="card shadow">
 					<div class="card-body">
 						<app-hero-contact-form />

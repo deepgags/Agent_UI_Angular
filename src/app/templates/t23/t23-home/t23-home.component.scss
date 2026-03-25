@@ -7,14 +7,12 @@
 }
 
 
-/* AGENT BARS */
 .agent-bars {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* NAME BAR */
 .agent-name-bar {
   background: #f04a3a;
   color: #fff;
@@ -31,7 +29,6 @@
   font-size: 15px;
 }
 
-/* CONTACT BAR */
 .agent-contact-bar {
   background: #f04a3a;
   color: #fff;
@@ -53,7 +50,6 @@
 .broker-logo {
   max-height: 90px;
 }
-/* MOBILE FIX */
 @media (max-width: 991px) {
   .agent-bars,
   .agent-name-bar,
@@ -62,7 +58,10 @@
     min-width: auto;
     text-align: center;
   }
-
+.word-break {
+  word-break: break-word;
+  white-space: normal;
+}
   .col-lg-5 {
     justify-content: center !important;
   }
@@ -235,7 +234,17 @@
     }
   }
 }
+  @media (max-width: 768px) {
+.top-padding1 {
+    padding-top: 245px;
 
+}
+    .agent-bars[_ngcontent-ng-c1941462185], .agent-name-bar[_ngcontent-ng-c1941462185], .agent-contact-bar[_ngcontent-ng-c1941462185] {
+        width: 86%;
+        min-width: auto;
+        text-align: center;
+    }
+  }
 .feature-card {
     background: #fff;
     border-radius: 14px;

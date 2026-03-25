@@ -130,7 +130,10 @@ $info:#06A788;
     background-size: cover;
     background-position: center;
   }
-
+.word-break {
+  word-break: break-word;
+  white-space: normal;
+}
   .overlay-image {
          position: absolute;
         bottom: 0px;
