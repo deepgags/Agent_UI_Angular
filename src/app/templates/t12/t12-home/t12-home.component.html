@@ -17,12 +17,11 @@
 
 <div class="container sec-31 p-5 my-5 rounded-4 search-container">
 	<div class="row justify-content-center align-items-center">
-		<!-- Text Section -->
 		<div class="col-lg-6 col-12">
 			<p class="fs-2 mb-0 fw-semibold">Hi, I’m {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
 			<p class="info fw-bold fs-5">{{ siteConfig.designation }}</p>
 			<p
-				class="fw-semibold mb-0"
+				class="fw-semibold mb-0 word-break"
 				[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
 			<p class="fw-semibold">
 				Every engagement is an opportunity to create a lasting impression and a forever client.
@@ -134,7 +133,7 @@
 				{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
 			</p>
 			<p
-				class="fw-normal"
+				class="fw-normal word-break"
 				[innerHTML]="sharedDataService.homeSections().homeSectionText2"></p>
 		</div>
 
@@ -217,7 +216,7 @@
 <div class="container-fluid sec-3 search-container">
 	<div class="container">
 		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
-			<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-4">
+			<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-0 pe-lg-4 mb-3 mb-lg-0">
 				<div class="card shadow">
 					<div class="card-body">
 						<app-hero-contact-form />

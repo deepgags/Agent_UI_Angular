@@ -3,9 +3,7 @@ $info:#95c41f;
 .top-padding{
     padding-top: 300px;
 }
-.mob{
-  display: none;
-}
+
     .background-container {
   position: relative;
   width: 100%;
@@ -52,6 +50,9 @@ $info:#95c41f;
   .top-padding{
     padding-top: 260px;
 }
+.mob{
+  display: none;
+}
 }
 .image-text {
   position: absolute;
@@ -96,6 +97,10 @@ $info:#95c41f;
     position: static !important;
     top: auto !important;
   }
+  .word-break {
+  word-break: break-word;
+  white-space: normal;
+}
 
 }
 
