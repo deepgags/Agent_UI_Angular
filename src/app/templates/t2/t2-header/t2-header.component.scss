@@ -38,3 +38,9 @@ a {
 .top-pad{
   padding-top: 101px;
 }
+
+@media (max-width: 768px) {
+	.top-pad {
+    padding-top: 277px !important;
+}
+}

@@ -226,12 +226,12 @@
 					{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
 				</p>
 				<p
-					class="text-center fw-semibold small text-secondary"
+					class="text-center fw-semibold small text-secondary word-break"
 					[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
 			</div>
 		</div>
 	</div>
-
+ 
 	@if (cities.length > 0) {
 		<div class="container p-lg-0 p-4">
 			<p class="text text-center mb-0 fw-semibold">Find Properties in These Cities</p>

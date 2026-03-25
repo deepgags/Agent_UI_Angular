@@ -108,7 +108,10 @@ $info:#FF385C;
   .icon{
     width: 10px;
   }
-
+.word-break {
+  word-break: break-word;
+  white-space: normal;
+}
   .overlay-image {
          position: absolute;
         bottom: 0px;

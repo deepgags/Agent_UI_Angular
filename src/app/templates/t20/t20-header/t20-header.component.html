@@ -2,7 +2,7 @@
   <div class="container search-container">
     <div class="row align-items-center py-3">
 
-      <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+      <div class="col-12 col-lg-4 ">
         <div class="signature-block">
 
           <span class="signature-line"></span>
@@ -11,11 +11,11 @@
             {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
           </h2>
 
-          <p class="fs-6 mb-1">
+          <p class="fs-6 mb-1 text-white">
             {{ siteConfig.designation }}
           </p>
 
-          <p class="fs-6">
+          <p class="fs-6 text-white">
             Serving Toronto & GTA
           </p>
 
@@ -24,19 +24,19 @@
 
       <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center gap-4 signature-meta d-none d-lg-block">
 
-        <a class="meta-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-              <i class="bi bi-telephone-fill info"></i>
+        <a class="meta-link me-3" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+           <i class="bi bi-telephone-fill info"></i>
           {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
         </a>
 
         <a class="meta-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-                 <i class="bi bi-envelope-at-fill info"></i>
+              <i class="bi bi-envelope-at-fill info"></i>
           {{ siteConfig?.websiteSettings?.contactInfo?.email }}
         </a>
 
       </div>
 
-      <div class="col-12 col-lg-4 text-center text-lg-end ">
+      <div class="col-12 col-lg-4 text-center text-lg-end mt-3 mt-lg-0">
 
         @if (siteConfig) {
         <a [routerLink]="['home']" class="signature-logo d-block mb-2">
@@ -45,9 +45,7 @@
             alt="Brokerage logo" height="80px" />
         </a>
         }
-
       </div>
-
     </div>
 
 

@@ -6,8 +6,8 @@
 	<div class="container-fluid pt-2 search-container">
 		<div class="top-padding">
 			<div class="row justify-content-center">
-				<p class="text fw-semibold pt-3">Search Your Dream Home</p>
-				<p class="text-white text-center">
+				<p class="text fw-semibold pt-3 mob">Search Your Dream Home</p>
+				<p class="text-white text-center mob">
 					We are recognized for exceeding client expectations and delivering great results through dedication,
 					<br />
 					ease of process, and extraordinary services to our worldwide clients.
@@ -27,7 +27,7 @@
 				<p class="fs-2 mb-0 fw-semibold">Hi, I’m {{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
 				<p class="fs-4 info">{{ siteConfig.designation }}</p>
 				<p
-					class="fw-semibold mb-0"
+					class="fw-semibold mb-0 word-break"
 					[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
 				<p class="fw-semibold">
 					Every engagement is an opportunity to create a lasting impression and a forever client.
@@ -176,8 +176,8 @@
 				<p class="estate text-center">
 					{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
 				</p>
-				<p
-					class="text-center fw-semibold"
+							<p
+					class="text-center fw-semibold word-break"
 					[innerHTML]="sharedDataService.homeSections().homeSectionText2"></p>
 			</div>
 		</div>
@@ -200,12 +200,12 @@
 			<div class="col-lg-6 col-12">
 				<div class="">
 					<img
-						class="img-fluid"
+						class="img-fluid rounded"
 						src="./t7/images/contact-img.png"
 						alt="" />
 				</div>
 			</div>
-			<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-4">
+			<div class="col-lg-5 col-12 mt-5 mt-lg-0 p-0 p-lg-4">
 				<div class="card shadow">
 					<div class="card-body">
 						<app-hero-contact-form />

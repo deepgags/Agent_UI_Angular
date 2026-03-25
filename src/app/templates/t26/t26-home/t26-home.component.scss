@@ -395,9 +395,7 @@ a {
       padding: 1.5rem;
     }
   }
-  /* MAGAZINE STYLE - Minimal CSS for Bootstrap Version */
 
-/* Custom gradient background for quote section */
 .testimonial-quote-bg {
 	background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
 }
@@ -414,7 +412,6 @@ a {
 	z-index: 1;
 }
 
-/* Hover effect for philosophy cards */
 .philosophy-card {
 	transition: all 0.3s ease;
 }
@@ -433,7 +430,6 @@ a {
 	color: white !important;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
 	.testimonial-quote-bg {
 		padding: 2rem !important;

@@ -50,7 +50,10 @@ $info: #B37DF7;
     top: 34% !important;
   } 
   .top-padding{
-    padding-top: 0px;
+    padding-top: 274px;
+}
+.mob{
+  display: none;
 }
 }
 
@@ -186,4 +189,11 @@ $info: #B37DF7;
 .city-card:hover .content * {
     opacity: 1;
     transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+.word-break {
+  word-break: break-word;
+  white-space: normal;
+}
 }

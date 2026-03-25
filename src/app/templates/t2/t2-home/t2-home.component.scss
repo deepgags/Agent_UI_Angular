@@ -2,6 +2,12 @@
 	height: 70vh;
 	overflow: hidden;
 }
+@media (max-width: 768px) {
+	#heroCarousel {
+    height: 29vh;
+    overflow: hidden;
+}
+}
 
 #heroCarousel .carousel-item img {
 	height: 100%;
@@ -87,4 +93,10 @@
 		left: -42px;
 		width: 190px;
 	}
+}
+@media (max-width: 768px) {
+.word-break {
+  word-break: break-word;
+  white-space: normal;
+}
 }
