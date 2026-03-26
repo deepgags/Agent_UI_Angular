@@ -138,17 +138,17 @@ export class PageManagerComponent implements OnInit {
 			const formValue = this.pageForm.getRawValue();
 			const pageData: CreatePageRequest | UpdatePageRequest = {
 				title: formValue.title,
-				content: formValue.content,
+				content: this.normalizeEditorHtmlSpaces(formValue.content),
 				metaTitle: formValue.metaTitle,
 				metaDescription: formValue.metaDescription,
 				keywords: formValue.keywords,
 			};
 
 			if (this.isEditingHomePage()) {
-				pageData.homeSectionText1 = formValue.homeSectionText1;
-				pageData.homeSectionText2 = formValue.homeSectionText2;
-				pageData.homeSectionText3 = formValue.homeSectionText3;
-				pageData.homeSectionText4 = formValue.homeSectionText4;
+				pageData.homeSectionText1 = this.normalizeEditorHtmlSpaces(formValue.homeSectionText1);
+				pageData.homeSectionText2 = this.normalizeEditorHtmlSpaces(formValue.homeSectionText2);
+				pageData.homeSectionText3 = this.normalizeEditorHtmlSpaces(formValue.homeSectionText3);
+				pageData.homeSectionText4 = this.normalizeEditorHtmlSpaces(formValue.homeSectionText4);
 			}
 
 			this.loadingService.loadingOn();
@@ -173,6 +173,14 @@ export class PageManagerComponent implements OnInit {
 		} else {
 			this.pageForm.markAllAsTouched();
 		}
+	}
+
+	private normalizeEditorHtmlSpaces(content: string | null | undefined): string {
+		if (!content) {
+			return "";
+		}
+
+		return content.replace(/&nbsp;|&#160;/g, " ").replace(/\u00A0/g, " ");
 	}
 
 	private _savePageData(pageData: CreatePageRequest | UpdatePageRequest) {
