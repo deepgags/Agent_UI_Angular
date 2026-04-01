@@ -363,6 +363,7 @@ export class PropertyService {
 			header: `Property Information`,
 			width: "100%",
 			height: "100%",
+			styleClass: "mh-100",
 			maximizable: true,
 			closable: true,
 			modal: true,
