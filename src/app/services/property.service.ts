@@ -21,7 +21,7 @@ export class PropertyService {
 		private http: HttpClient,
 		@Inject(DOCUMENT) private document: Document,
 		private sharedDataService: SharedDataService,
-		private dialogService: DialogService
+		private dialogService: DialogService,
 	) {}
 
 	searchProperties(propertyParams: any): Observable<PropertyModel[]> {
@@ -47,14 +47,14 @@ export class PropertyService {
 		return this.http
 			.get<PropertyModel[]>(
 				`${this.Apiurl}/properties?page=${page}&pageSize=${pageSize}&address=${encodeURIComponent(
-					address
+					address,
 				)}&city=${encodeURIComponent(city)}&property_type=${encodeURIComponent(
-					property_type
+					property_type,
 				)}&property_subtype=${encodeURIComponent(property_subtype)}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
       &max_price=${max_price}&min_area=${sqFt}&brokerageType=${
-					brokerageType ? brokerageType : ""
-				}&sort=${sort}&domain=${hostname}`
+			brokerageType ? brokerageType : ""
+		}&sort=${sort}&domain=${hostname}`,
 			)
 			.pipe(
 				map((result: any) => {
@@ -118,7 +118,7 @@ export class PropertyService {
 				}),
 				catchError((error) => {
 					return throwError(() => error);
-				})
+				}),
 			);
 	}
 
@@ -145,12 +145,12 @@ export class PropertyService {
 			.get<PropertyModel[]>(
 				`${this.Apiurl}/properties/featured?page=${page}&pageSize=${pageSize}&address=${address}
       &property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(
-					property_subtype
-				)}&bedrooms=${bedrooms}
+			property_subtype,
+		)}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
       &max_price=${max_price}&min_area=${sqFt}&brokerageType=${
-					brokerageType ? brokerageType : ""
-				}&sort=${sort}&domain=${hostname}`
+			brokerageType ? brokerageType : ""
+		}&sort=${sort}&domain=${hostname}`,
 			)
 			.pipe(
 				map((result: any) => {
@@ -214,7 +214,7 @@ export class PropertyService {
 				}),
 				catchError((error) => {
 					return throwError(() => error);
-				})
+				}),
 			);
 	}
 
@@ -295,7 +295,7 @@ export class PropertyService {
 				}),
 				catchError((error) => {
 					return throwError(() => error);
-				})
+				}),
 			);
 	}
 
@@ -309,7 +309,7 @@ export class PropertyService {
 			}),
 			catchError((error) => {
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -323,7 +323,7 @@ export class PropertyService {
 			}),
 			catchError((error) => {
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -337,7 +337,7 @@ export class PropertyService {
 			}),
 			catchError((error) => {
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 
@@ -361,10 +361,12 @@ export class PropertyService {
 	private _openPropertyDetails1(property: PropertyModel, selectedFilters: any): void {
 		this.dialogService.open(PropertyDetailComponent, {
 			header: `Property Information`,
-			width: "70%",
+			width: "100%",
+			height: "100%",
 			maximizable: true,
 			closable: true,
 			modal: true,
+			draggable: false,
 			data: {
 				propertyId: property._id,
 				mlsId: property.ListingKey,

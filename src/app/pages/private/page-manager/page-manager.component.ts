@@ -187,7 +187,6 @@ export class PageManagerComponent implements OnInit {
 		if (this.editingPage) {
 			this.pageService.updatePage(this.editingPage._id, pageData).subscribe({
 				next: (updatedPage) => {
-					// debugger;
 					// const index = this.pages.findIndex((p) => p._id === this.editingPage!._id);
 					// if (index !== -1) {
 					// this.pages[index] = updatedPage;
