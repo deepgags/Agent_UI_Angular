@@ -12,3 +12,9 @@ p{
 .banner{
 	height: 60vh;
   }
+
+   @media (max-width: 768px) {
+.banner{
+    height: 18vh;
+}
+}
