@@ -383,6 +383,7 @@ export class PropertyDetailPageComponent {
 	submitRequestShowingForm() {
 		if (this.requestShowingForm.invalid) {
 			this.requestShowingForm.markAllAsTouched();
+			this.requestShowingCaptcha?.reset();
 			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
@@ -416,6 +417,7 @@ export class PropertyDetailPageComponent {
 	submitPropertyHistoryForm() {
 		if (this.propertyHistoryForm.invalid) {
 			this.propertyHistoryForm.markAllAsTouched();
+			this.propertyHistoryCaptcha?.reset();
 			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
@@ -449,6 +451,7 @@ export class PropertyDetailPageComponent {
 	submitRecentSalesInAreaForm() {
 		if (this.recentSaleInAreaForm.invalid) {
 			this.recentSaleInAreaForm.markAllAsTouched();
+			this.recentSalesCaptcha?.reset();
 			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
@@ -482,6 +485,7 @@ export class PropertyDetailPageComponent {
 	submitHaveQuestionForm() {
 		if (this.haveQuestionForm.invalid) {
 			this.haveQuestionForm.markAllAsTouched();
+			this.haveQuestionCaptcha?.reset();
 			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
@@ -515,6 +519,7 @@ export class PropertyDetailPageComponent {
 	submitContactForm() {
 		if (this.contactForm.invalid) {
 			this.contactForm.markAllAsTouched();
+			this.contactCaptcha?.reset();
 			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}

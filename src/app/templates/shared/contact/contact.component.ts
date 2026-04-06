@@ -132,6 +132,7 @@ export class ContactComponent {
 	submitContactForm() {
 		if (this.contactForm.invalid) {
 			this.contactForm.markAllAsTouched();
+			this.captchaComponent.reset();
 			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}

@@ -55,6 +55,7 @@ export class HeroContactFormComponent {
 	submitHeroContactForm() {
 		if (this.heroContactForm.invalid) {
 			this.heroContactForm.markAllAsTouched();
+			this.captchaComponent.reset();
 			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
