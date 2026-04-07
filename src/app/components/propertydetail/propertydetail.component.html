@@ -60,7 +60,7 @@
 
 							<div class="d-flex p-3 justify-content-between align-items-center border-bottom">
 								<div class="">
-									<i class="bi bi-archive-fill d-block mb-1 info fs-4"></i>
+									<i class="bi bi-archive-fill d-block mb-1 text-primary fs-4"></i>
 								</div>
 								<div class="">
 									<span class="fw-semibold fs-6">{{ property.PropertyType }}</span>
@@ -69,7 +69,7 @@
 
 							<div class="d-flex p-3 justify-content-between align-items-center border-bottom">
 								<div class="">
-									<i class="bi bi-building d-block mb-1 info fs-4"></i>
+									<i class="bi bi-building d-block mb-1 text-secondary fs-4"></i>
 									<!-- <i class="bi bi-archive-fill d-block mb-1 info fs-4"></i> -->
 								</div>
 								<div class="">
@@ -79,10 +79,10 @@
 
 							<div class="d-flex p-3 justify-content-between align-items-center border-bottom">
 								<div class="">
-									<i class="bi bi-currency-dollar d-block mb-1 info fs-4"></i>
+									<i class="bi bi-currency-dollar d-block mb-1 text-success fs-4"></i>
 								</div>
 								<div class="">
-									<span class="fw-semibold fs-6">
+									<span class="fw-semibold fs-3">
 										{{ property.ListPrice | currency: "USD" }} {{ property.ListPriceUnit }}
 									</span>
 								</div>
@@ -90,7 +90,7 @@
 
 							<div class="d-flex p-3 justify-content-between align-items-center border-bottom">
 								<div class="">
-									<i class="bi bi-house-fill d-block mb-1 info fs-4"></i>
+									<i class="bi bi-house-fill d-block mb-1 text-info fs-4"></i>
 								</div>
 								<div class="">
 									<span class="fw-semibold fs-6">{{ property.BedroomsTotal }} Bedrooms</span>
@@ -99,7 +99,7 @@
 
 							<div class="d-flex p-3 justify-content-between align-items-center border-bottom">
 								<div class="">
-									<i class="bi bi-droplet-half d-block mb-1 info fs-4"></i>
+									<i class="bi bi-droplet-half d-block mb-1 text-primary fs-4"></i>
 								</div>
 								<div class="">
 									<span class="fw-semibold fs-6">{{ property.BathroomsTotalInteger }} Bathroom</span>
@@ -108,7 +108,7 @@
 
 							<div class="d-flex p-3 justify-content-between align-items-center border-bottom">
 								<div class="">
-									<i class="bi bi-border-width d-block mb-1 info fs-4"></i>
+									<i class="bi bi-border-width d-block mb-1 text-muted fs-4"></i>
 								</div>
 								<div class="">
 									<span class="fw-semibold fs-6">{{ property.ListingKey }}</span>
@@ -117,7 +117,7 @@
 
 							<div class="d-flex p-3 justify-content-between align-items-center border-bottom">
 								<div class="">
-									<i class="bi bi-calendar3 d-block mb-1 info fs-4"></i>
+									<i class="bi bi-calendar3 d-block mb-1 text-warning fs-4"></i>
 								</div>
 								<div class="">
 									<span class="fw-semibold fs-6">{{ property.ModificationTimestamp | timeAgo }}</span>
@@ -126,7 +126,7 @@
 
 							<div class="d-flex p-3 justify-content-between align-items-center">
 								<div class="">
-									<i class="bi bi-archive-fill d-block mb-1 info fs-4"></i>
+									<i class="bi bi-archive-fill d-block mb-1 text-danger fs-4"></i>
 								</div>
 								<div class="">
 									<span class="fw-semibold fs-6">{{ property.MlsStatus }}</span>
@@ -136,9 +136,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="row card-body">
-				<div class="col-lg-12 justify-content-between align-items-center d-flex">
-					<h6 class="p-0 m-0 text-black">{{ property.UnparsedAddress }}</h6>
+			<div class="row align-items-center">
+				<div class="col-auto justify-content-between align-items-center d-flex">
+					<p class="fw-semibold fs-4 mb-0">{{ property.UnparsedAddress }}</p> 
+					<span class="badge rounded-pill text-bg-primary ms-5">{{property.TransactionType}}</span>
 					@if (property.VirtualTourURLUnbranded) {
 						<a
 							[href]="property.VirtualTourURLUnbranded"
@@ -146,6 +147,8 @@
 							Virtual Tour
 						</a>
 					}
+                  <!-- <span class="badge text_bg rounded-pill text-bg-primary">{{property.TransactionType}}</span> -->
+					
 				</div>
 			</div>
 
@@ -1215,11 +1218,10 @@
 								</a>
 								or
 								<a
-									href="#"
+									href="/contact"
 									class="text-decoration-none info fw-semibold">
-									contact us
+									contact us.
 								</a>
-								.
 							</p>
 							<form
 								[formGroup]="contactForm"
@@ -1384,7 +1386,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="card shadow border-0 rounded-3">
+						<div class="card shadow border-0 rounded-3 mb-2">
 							@if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
 								<div class="row align-items-center">
 									<div class="col-4">
@@ -1415,6 +1417,38 @@
 									</div>
 								</div>
 							}
+						</div>
+				
+							<div class="card shadow border-0 rounded-3 ">
+							<div class="row align-items-center">
+								<p class="mb-0 fw-semibold fs-5 ms-2">Presented by:</p>
+								<div class="col-4">
+									<div class="">
+									  @if (siteConfig) {
+      <a [routerLink]="['home']">
+        <img class="w-100" [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+             alt="No brokerage logo"
+             />
+      </a>
+      }
+									</div>
+								</div>
+
+								<div class="col-8">
+									<div class="card-body">
+										            <h5 class="card-title info mt-1">{{ siteConfig?.brokerageTypeId}}</h5>
+
+										<div class="text-muted small">
+											<p class="mb-1">
+												Email: {{ siteConfig.websiteSettings.contactInfo.email }}
+											</p>
+											<p class="mb-0">
+												Call: {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
