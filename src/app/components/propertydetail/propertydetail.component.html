@@ -1421,9 +1421,9 @@
 				
 							<div class="card shadow border-0 rounded-3 ">
 							<div class="row align-items-center">
-								<p class="mb-0 fw-semibold fs-5 ms-2">Presented by:</p>
-								<div class="col-4">
-									<div class="">
+								<p class="mb-0 fw-semibold fs-5 ms-4 mt-2">Presented by:</p>
+								<div class="col-5">
+									<div class="ms-2">
 									  @if (siteConfig) {
       <a [routerLink]="['home']">
         <img class="w-100" [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
@@ -1434,9 +1434,9 @@
 									</div>
 								</div>
 
-								<div class="col-8">
+								<div class="col-7">
 									<div class="card-body">
-										            <h5 class="card-title info mt-1">{{ siteConfig?.brokerageTypeId}}</h5>
+										            <h6 class="card-title info mt-1">{{ siteConfig?.brokerageTypeId}}</h6>
 
 										<div class="text-muted small">
 											<p class="mb-1">
