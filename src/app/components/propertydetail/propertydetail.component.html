@@ -138,8 +138,8 @@
 			</div>
 			<div class="row align-items-center">
 				<div class="col-auto justify-content-between align-items-center d-flex">
-					<p class="fw-semibold fs-4 mb-0">{{ property.UnparsedAddress }}</p> 
-					<span class="badge rounded-pill text-bg-primary ms-5">{{property.TransactionType}}</span>
+					<p class="fw-semibold fs-4 mb-0">{{ property.UnparsedAddress }}</p>
+					<span class="badge rounded-pill text-bg-primary ms-5">{{ property.TransactionType }}</span>
 					@if (property.VirtualTourURLUnbranded) {
 						<a
 							[href]="property.VirtualTourURLUnbranded"
@@ -147,8 +147,7 @@
 							Virtual Tour
 						</a>
 					}
-                  <!-- <span class="badge text_bg rounded-pill text-bg-primary">{{property.TransactionType}}</span> -->
-					
+					<!-- <span class="badge text_bg rounded-pill text-bg-primary">{{property.TransactionType}}</span> -->
 				</div>
 			</div>
 
@@ -729,12 +728,27 @@
 												<label for="leadSource">Select option suits you best</label>
 											</p-iftalabel>
 										</div>
+										<div class="form-check mb-3">
+											<input
+												type="checkbox"
+												class="form-check-input"
+												id="requestShowingTerms"
+												formControlName="termsAccepted" />
+											<label
+												class="form-check-label"
+												for="requestShowingTerms">
+												By submitting this form, I agree to be contacted by
+												{{ siteConfig.brokerageTypeId }} via email, phone, and text about real
+												estate services.
+											</label>
+										</div>
 
 										<app-captcha #requestShowingCaptcha></app-captcha>
 
 										<button
 											type="submit"
-											class="btn search_btn w-100 fw-bold">
+											class="btn search_btn w-100 fw-bold"
+											[disabled]="requestShowingForm.invalid">
 											Send
 										</button>
 									</form>
@@ -879,12 +893,27 @@
 												<label for="leadSource">Select option suits you best</label>
 											</p-iftalabel>
 										</div>
+										<div class="form-check mb-3">
+											<input
+												type="checkbox"
+												class="form-check-input"
+												id="propertyHistoryTerms"
+												formControlName="termsAccepted" />
+											<label
+												class="form-check-label"
+												for="propertyHistoryTerms">
+												By submitting this form, I agree to be contacted by
+												{{ siteConfig.brokerageTypeId }} via email, phone, and text about real
+												estate services.
+											</label>
+										</div>
 
 										<app-captcha #propertyHistoryCaptcha></app-captcha>
 
 										<button
 											type="submit"
-											class="btn search_btn w-100 fw-bold">
+											class="btn search_btn w-100 fw-bold"
+											[disabled]="propertyHistoryForm.invalid">
 											Send
 										</button>
 									</form>
@@ -1030,12 +1059,27 @@
 												<label for="leadSource">Select option suits you best</label>
 											</p-iftalabel>
 										</div>
+										<div class="form-check mb-3">
+											<input
+												type="checkbox"
+												class="form-check-input"
+												id="recentSaleTerms"
+												formControlName="termsAccepted" />
+											<label
+												class="form-check-label"
+												for="recentSaleTerms">
+												By submitting this form, I agree to be contacted by
+												{{ siteConfig.brokerageTypeId }} via email, phone, and text about real
+												estate services.
+											</label>
+										</div>
 
 										<app-captcha #recentSalesCaptcha></app-captcha>
 
 										<button
 											type="submit"
-											class="btn search_btn w-100 fw-bold">
+											class="btn search_btn w-100 fw-bold"
+											[disabled]="recentSaleInAreaForm.invalid">
 											Send
 										</button>
 									</form>
@@ -1177,12 +1221,27 @@
 												<label for="leadSource">Select option suits you best</label>
 											</p-iftalabel>
 										</div>
+										<div class="form-check mb-3">
+											<input
+												type="checkbox"
+												class="form-check-input"
+												id="haveQuestionTerms"
+												formControlName="termsAccepted" />
+											<label
+												class="form-check-label"
+												for="haveQuestionTerms">
+												By submitting this form, I agree to be contacted by
+												{{ siteConfig.brokerageTypeId }} via email, phone, and text about real
+												estate services.
+											</label>
+										</div>
 
 										<app-captcha #haveQuestionCaptcha></app-captcha>
 
 										<button
 											type="submit"
-											class="btn search_btn w-100 fw-bold">
+											class="btn search_btn w-100 fw-bold"
+											[disabled]="haveQuestionForm.invalid">
 											Send
 										</button>
 									</form>
@@ -1345,12 +1404,27 @@
 										<label for="leadSource">Select option suits you best</label>
 									</p-iftalabel>
 								</div>
+								<div class="form-check mb-3">
+									<input
+										type="checkbox"
+										class="form-check-input"
+										id="contactTerms"
+										formControlName="termsAccepted" />
+									<label
+										class="form-check-label"
+										for="contactTerms">
+										By submitting this form, I agree to be contacted by
+										{{ siteConfig.brokerageTypeId }} via email, phone, and text about real estate
+										services.
+									</label>
+								</div>
 
 								<app-captcha #contactCaptcha></app-captcha>
 
 								<button
 									type="submit"
-									class="btn search_btn w-100 fw-bold">
+									class="btn search_btn w-100 fw-bold"
+									[disabled]="contactForm.invalid">
 									Save
 								</button>
 							</form>
@@ -1418,25 +1492,30 @@
 								</div>
 							}
 						</div>
-				
-							<div class="card shadow border-0 rounded-3 ">
+
+						<div class="card shadow border-0 rounded-3">
 							<div class="row align-items-center">
 								<p class="mb-0 fw-semibold fs-5 ms-4 mt-2">Presented by:</p>
 								<div class="col-5">
 									<div class="ms-2">
-									  @if (siteConfig) {
-      <a [routerLink]="['home']">
-        <img class="w-100" [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-             alt="No brokerage logo"
-             />
-      </a>
-      }
+										@if (siteConfig) {
+											<a [routerLink]="['home']">
+												<img
+													class="w-100"
+													[src]="
+														siteConfig.websiteSettings.brokerageImage ?
+															localImageUrl + siteConfig.websiteSettings.brokerageImage
+														:	'/images/Nologo.png'
+													"
+													alt="No brokerage logo" />
+											</a>
+										}
 									</div>
 								</div>
 
 								<div class="col-7">
 									<div class="card-body">
-										            <h6 class="card-title info mt-1">{{ siteConfig?.brokerageTypeId}}</h6>
+										<h6 class="card-title info mt-1">{{ siteConfig?.brokerageTypeId }}</h6>
 
 										<div class="text-muted small">
 											<p class="mb-1">

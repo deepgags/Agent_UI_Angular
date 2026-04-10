@@ -82,6 +82,7 @@ export class ContactComponent {
 			phone: new FormControl("", [Validators.required]),
 			message: new FormControl("", Validators.required),
 			userType: new FormControl("seller", Validators.required),
+			termsAccepted: new FormControl(false, Validators.requiredTrue),
 		});
 	}
 
@@ -151,6 +152,7 @@ export class ContactComponent {
 			next: () => {
 				this.notificationService.showSuccess("Your request has been submitted successfully.");
 				this.contactForm.reset();
+				this.contactForm.patchValue({ termsAccepted: false });
 				this.captchaComponent.reset();
 			},
 			error: () => {

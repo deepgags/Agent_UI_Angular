@@ -32,6 +32,7 @@ export class HeroContactFormComponent {
 			email: new FormControl("", [Validators.required, Validators.email]),
 			phone: new FormControl("", [Validators.required]),
 			message: new FormControl("", Validators.required),
+			termsAccepted: new FormControl(false, Validators.requiredTrue),
 		});
 	}
 
@@ -74,6 +75,7 @@ export class HeroContactFormComponent {
 			next: () => {
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.heroContactForm.reset();
+				this.heroContactForm.patchValue({ termsAccepted: false });
 				this.captchaComponent.reset();
 			},
 			error: () => {

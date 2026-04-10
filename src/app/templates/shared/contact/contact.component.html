@@ -232,10 +232,25 @@
 									</label>
 								}
 							</div>
+							<div class="form-check mb-3">
+								<input
+									type="checkbox"
+									class="form-check-input"
+									id="contactTerms"
+									formControlName="termsAccepted" />
+								<label
+									class="form-check-label"
+									for="contactTerms">
+									By submitting this form, I agree to be contacted by
+									{{ siteConfig.brokerageTypeId }} via email, phone, and text about real estate
+									services.
+								</label>
+							</div>
 							<app-captcha></app-captcha>
 							<button
 								type="submit"
-								class="btn search_btn w-100 fw-bold">
+								class="btn search_btn w-100 fw-bold"
+								[disabled]="contactForm.invalid">
 								Submit
 							</button>
 						</form>

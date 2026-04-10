@@ -178,6 +178,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			message: new FormControl(this.requestShowingText, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
+			termsAccepted: new FormControl(false, Validators.requiredTrue),
 		});
 
 		this.propertyHistoryForm = new FormGroup({
@@ -187,6 +188,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			message: new FormControl(this.propertyHistooryText, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
+			termsAccepted: new FormControl(false, Validators.requiredTrue),
 		});
 
 		this.recentSaleInAreaForm = new FormGroup({
@@ -196,6 +198,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			message: new FormControl(this.recentSalesinAreaText, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
+			termsAccepted: new FormControl(false, Validators.requiredTrue),
 		});
 
 		this.haveQuestionForm = new FormGroup({
@@ -205,6 +208,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			message: new FormControl(this.haveAQuestionText, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
+			termsAccepted: new FormControl(false, Validators.requiredTrue),
 		});
 
 		this.contactForm = new FormGroup({
@@ -214,6 +218,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			message: new FormControl(this.askAboutThisHomecommentText, Validators.required),
 			userType: new FormControl("seller", Validators.required),
 			leadType: new FormControl("", Validators.required),
+			termsAccepted: new FormControl(false, Validators.requiredTrue),
 		});
 	}
 
@@ -406,6 +411,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.requestShowingForm.reset();
 				this.requestShowingForm.patchValue({
 					message: this.requestShowingText,
+					termsAccepted: false,
 				});
 				this.requestShowingCaptcha?.reset();
 			},
@@ -439,6 +445,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.propertyHistoryForm.reset();
 				this.propertyHistoryForm.patchValue({
 					message: this.propertyHistooryText,
+					termsAccepted: false,
 				});
 				this.propertyHistoryCaptcha?.reset();
 			},
@@ -472,6 +479,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.recentSaleInAreaForm.reset();
 				this.recentSaleInAreaForm.patchValue({
 					message: this.recentSalesinAreaText,
+					termsAccepted: false,
 				});
 				this.recentSalesCaptcha?.reset();
 			},
@@ -505,6 +513,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.haveQuestionForm.reset();
 				this.haveQuestionForm.patchValue({
 					message: this.haveAQuestionText,
+					termsAccepted: false,
 				});
 				this.haveQuestionCaptcha?.reset();
 			},
@@ -538,6 +547,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.contactForm.reset();
 				this.contactForm.patchValue({
 					message: this.askAboutThisHomecommentText,
+					termsAccepted: false,
 				});
 				this.contactCaptcha?.reset();
 			},
