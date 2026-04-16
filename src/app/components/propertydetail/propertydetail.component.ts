@@ -572,7 +572,14 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	}
 
 	private getLeadTypesFromUserType(userType: string) {
-		return this._leadTypes.filter((type) => type.userType == userType);
+		console.log(userType);
+		if (userType == "buyerAndSeller") {
+			const _buyerOptions = this._leadTypes.filter((type) => type.userType == "buyer");
+			const _sellerOptions = this._leadTypes.filter((type) => type.userType == "seller");
+			return [..._buyerOptions, ..._sellerOptions];
+		} else {
+			return this._leadTypes.filter((type) => type.userType == userType);
+		}
 	}
 
 	getLeadTypesForForms(from: string) {
