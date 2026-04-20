@@ -1,0 +1,196 @@
+// @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+	--primary-color: #22614b;
+}
+
+p,h1,h2,h3,h4,h5,h6 {
+	font-family: "Raleway", serif;
+}
+
+.pop {
+	font-family: "Poppins", serif;
+}
+
+.banner {
+	height: 100%;
+	width: 100%;
+}
+
+.menu_img {
+	background-image: url("/t1/images/menu.png");
+	background-size: cover;
+}
+
+.text {
+	font-size: 35px;
+	text-align: center;
+}
+
+.estate {
+	font-family: "Patua One", serif;
+	font-weight: 400;
+	font-size: 35px;
+	color: var(--primary-color);
+}
+
+.estate-border {
+	border: 2px solid var(--primary-color);
+}
+
+.pro_card {
+	position: relative;
+	color: #fff;
+	transition: 0.5s;
+	cursor: pointer;
+}
+
+.pro_card:hover {
+	transform: translateY(-20px);
+}
+.pro-card-text {
+	top: 265px;
+	font-weight: 600;
+	font-size: 30px;
+	position: absolute;
+}
+.pro_card .content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.worth {
+	font-size: 40px;
+	font-weight: 600;
+	color: white;
+	line-height: 45px;
+}
+
+
+.tool {
+	border-radius: 50px;
+	cursor: pointer;
+	border: 0;
+	background-color: white;
+	box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	font-size: 15px;
+	transition: all 0.5s ease;
+}
+.fotter-bg {
+	background-color: #222222;
+}
+
+@media screen and (max-width: 600px) {
+	
+	.text {
+		font-size: 26px;
+	}
+
+	.estate {
+		font-family: "Patua One", serif;
+		font-weight: 400;
+		font-size: 26px;
+		color: var(--primary-color);
+	}
+
+	.worth {
+		font-size: 30px;
+		font-weight: 600;
+		color: white;
+		line-height: 45px;
+	}
+	.footer-contact {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+}
+
+.search-container {
+	.info {
+		color: var(--primary-color)!important;
+	}
+
+.search_btn {
+		color: white;
+		background-color: var(--primary-color) !important;
+		border-radius: 10px;
+
+		&:hover {
+			background-color: #002fd5 !important;
+			color: white;
+		}
+	}
+
+	span {
+		font-size: 13px !important;
+	}
+
+
+	.lable {
+		background-color: #22614b;
+		position: absolute;
+		top: 355px;
+		left: 49px;
+	}
+	.text_bg {
+		background-color: var(--primary-color);
+		position: absolute;
+		top: 9px;
+	}
+
+	.text_bg2 {
+		position: absolute;
+		top: 10px;
+		left: 372px;
+	}
+
+
+	@media (max-width: 767px) {
+		.text_bg2 {
+			position: absolute;
+			top: 10px;
+			left: 292px;
+		}
+	}
+	.search-bar:focus-visible {
+		border-color: #71ffcd !important;
+		outline: 0;
+		box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+	}
+
+	.custom-select:focus {
+		border-color: red !important;
+		outline: none !important;
+		box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25) !important;
+	}
+
+	.drop {
+		border-radius: 0px;
+		color: black;
+
+		&:hover,
+		&:active,
+		&:focus-visible {
+			background-color: #22614b;
+			border-color: #22614b;
+		}
+	}
+}
+
+:host ::ng-deep {
+	app-search-page {
+		.search-container {
+			@extend .search-container;
+		}
+	}
+	.search-container {
+		@extend .search-container;
+	}
+}

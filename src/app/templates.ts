@@ -359,4 +359,16 @@ export const templates: TemplateRoutes = {
 			},
 		],
 	},
+		t28: {
+		path: "",
+		loadComponent: () => import("./templates/t28/t28.component").then((c) => c.T28Component),
+		children: [
+			...generalRoutes,
+			{
+				path: "home",
+				loadComponent: () =>
+					import("./templates/t28/t28-home/t28-home.component").then((c) => c.T28HomeComponent),
+			},
+		],
+	},
 };
