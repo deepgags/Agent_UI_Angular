@@ -76,7 +76,7 @@ export class T8HomeComponent implements OnInit {
 			}
 		}, 200);
 	}
-	 searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
+ searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
 		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};
 }
