@@ -26,7 +26,7 @@ export class LoginComponent {
 		private customerService: CustomerService,
 		private router: Router,
 		private notificationService: NotificationService,
-		@Inject(DOCUMENT) private document: Document
+		@Inject(DOCUMENT) private document: Document,
 	) {
 		this.loginForm = this.fb.group({
 			email: ["", [Validators.required, Validators.email]],
@@ -41,7 +41,7 @@ export class LoginComponent {
 			this.customerService.login({ emailAddress: email, password, domain: hostname }).subscribe({
 				next: (response: any) => {
 					localStorage.setItem("token", response.token);
-					this.router.navigate([Pages.DASHBOARD]);
+					this.router.navigate([Pages.SETTINGS]);
 				},
 				error: (error: any) => {
 					this.notificationService.showError(error.error.message);

@@ -108,8 +108,15 @@
 		<button
 			type="submit"
 			class="btn search_btn w-100 fw-bold"
-			[disabled]="heroContactForm.invalid">
-			Submit
+			[disabled]="heroContactForm.invalid || isSubmitting()">
+			@if (isSubmitting()) {
+				<span
+					class="spinner-border spinner-border-sm me-2"
+					aria-hidden="true"></span>
+				Submitting...
+			} @else {
+				Submit
+			}
 		</button>
 	</form>
 </div>

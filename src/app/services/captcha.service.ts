@@ -58,13 +58,13 @@ export class CaptchaService {
 		return this.currentProblem;
 	}
 
-	validateAnswer(userAnswer: string): boolean {
-		if (!this.currentProblem) {
+	validateAnswer(userAnswer: string, problem: CaptchaProblem | null = this.currentProblem): boolean {
+		if (!problem) {
 			return false;
 		}
 
 		const cleanAnswer = userAnswer.trim().toLowerCase();
-		const expectedAnswer = this.currentProblem.answer.toString();
+		const expectedAnswer = problem.answer.toString();
 
 		return cleanAnswer === expectedAnswer;
 	}

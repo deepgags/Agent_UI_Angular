@@ -1,180 +1,204 @@
-<div class="position-relative overflow-hidden" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-  
-  <div class="position-absolute top-0 start-0 w-100 h-100 opacity-10">
-    <div class="position-absolute" style="top: -50px; right: -50px; width: 300px; height: 300px; background: white; border-radius: 50%;"></div>
-    <div class="position-absolute" style="bottom: -100px; left: -100px; width: 400px; height: 400px; background: white; border-radius: 50%;"></div>
-  </div>
+<div
+	class="position-relative overflow-hidden"
+	style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
+	<div class="position-absolute top-0 start-0 w-100 h-100 opacity-10">
+		<div
+			class="position-absolute"
+			style="top: -50px; right: -50px; width: 300px; height: 300px; background: white; border-radius: 50%"></div>
+		<div
+			class="position-absolute"
+			style="
+				bottom: -100px;
+				left: -100px;
+				width: 400px;
+				height: 400px;
+				background: white;
+				border-radius: 50%;
+			"></div>
+	</div>
 
-  <div class="container position-relative py-5">
-    <footer>
-      
-      <div class="row g-4 mb-5">
-        
-        <div class="col-lg-4">
-          <div class="bg-white rounded-4 p-4 shadow-lg h-100 d-flex flex-column justify-content-between">
-            @if (siteConfig) {
-              <div>
-                <a [routerLink]="['home']" class="d-block mb-3">
-                  <img 
-                    [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl+siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-                    alt="Company Logo"
-                    class="img-fluid"
-                    style="max-height: 70px;" />
-                </a>
-                @if (siteConfig?.brokerageTypeId) {
-                  <span class="badge text-bg-primary px-3 py-2 rounded-pill fs-6" style="font-size: 13px !important;">
-                    <i class="fa-solid fa-building me-2"></i>
-                    {{ siteConfig?.brokerageTypeId }}
-                  </span>
-                }
-              </div>
-              <div class="mt-4">
-                <p class="text-muted small mb-0 lh-lg">
-                  <i class="fa-solid fa-quote-left text-primary me-2"></i>
-                  Your trusted partner in finding your dream property
-                </p>
-              </div>
-            }
-          </div>
-        </div>
+	<div class="container position-relative py-5">
+		<footer>
+			<div class="row g-4 mb-5">
+				<div class="col-lg-4">
+					<div class="bg-white rounded-4 p-4 shadow-lg h-100 d-flex flex-column justify-content-between">
+						@if (siteConfig) {
+							<div>
+								<a
+									[routerLink]="['home']"
+									class="d-block mb-3">
+									<img
+										[src]="
+											siteConfig.websiteSettings.brokerageImage ?
+												localImageUrl + siteConfig.websiteSettings.brokerageImage
+											:	'/images/Nologo.png'
+										"
+										alt="Company Logo"
+										class="img-fluid"
+										style="max-height: 70px" />
+								</a>
+								@if (siteConfig.brokerageTypeId) {
+									<span
+										class="badge text-bg-primary px-3 py-2 rounded-pill fs-6"
+										style="font-size: 13px !important">
+										<i class="fa-solid fa-building me-2"></i>
+										{{ siteConfig.brokerageTypeId }}
+									</span>
+								}
+							</div>
+							<div class="mt-4">
+								<p class="text-muted small mb-0 lh-lg">
+									<i class="fa-solid fa-quote-left text-primary me-2"></i>
+									Your trusted partner in finding your dream property
+								</p>
+							</div>
+						}
+					</div>
+				</div>
 
-        <div class="col-lg-8">
-          <div class="row g-3 h-100">
-            
-            <div class="col-md-6">
-              <div class="card bg-white bg-opacity-25 backdrop-blur border-0 rounded-4 h-100 text-white shadow-lg">
-                <div class="card-body p-4">
-                  <div class="d-flex align-items-center mb-3">
-                    <div class="bg-white rounded-circle p-2 me-3">
-                      <i class="fa-solid fa-user-tie text-primary fs-4"></i>
-                    </div>
-                    <h5 class="fw-bold mb-0">Primary Contact</h5>
-                  </div>
+				<div class="col-lg-8">
+					<div class="row g-3 h-100">
+						<div class="col-md-6">
+							<div
+								class="card bg-white bg-opacity-25 backdrop-blur border-0 rounded-4 h-100 text-white shadow-lg">
+								<div class="card-body p-4">
+									<div class="d-flex align-items-center mb-3">
+										<div class="bg-white rounded-circle p-2 me-3">
+											<i class="fa-solid fa-user-tie text-primary fs-4"></i>
+										</div>
+										<h5 class="fw-bold mb-0">Primary Contact</h5>
+									</div>
 
-                  @if (siteConfig?.websiteSettings?.contactInfo?.phone) {
-                    <a 
-                      [href]="'tel:' + (siteConfig?.websiteSettings?.contactInfo?.phone | phone)"
-                      class="btn btn-light w-100 text-start mb-2 py-3 rounded-3 shadow-sm border-0 d-flex align-items-center">
-                      <div class="bg-primary bg-gradient rounded-circle me-3 d-flex align-items-center justify-content-center" 
-                           style="width: 40px; height: 40px;">
-                        <i class="fa-solid fa-phone text-white"></i>
-                      </div>
-                      <div>
-                        <div class="text-muted small">Phone</div>
-                        <div class="fw-bold text-dark">
-                          {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-                        </div>
-                      </div>
-                    </a>
-                  }
+									@if (siteConfig?.websiteSettings?.contactInfo?.phone) {
+										<a
+											[href]="'tel:' + (siteConfig?.websiteSettings?.contactInfo?.phone | phone)"
+											class="btn btn-light w-100 text-start mb-2 py-3 rounded-3 shadow-sm border-0 d-flex align-items-center">
+											<div
+												class="bg-primary bg-gradient rounded-circle me-3 d-flex align-items-center justify-content-center"
+												style="width: 40px; height: 40px">
+												<i class="fa-solid fa-phone text-white"></i>
+											</div>
+											<div>
+												<div class="text-muted small">Phone</div>
+												<div class="fw-bold text-dark">
+													{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+												</div>
+											</div>
+										</a>
+									}
 
-                  @if (siteConfig?.websiteSettings?.contactInfo?.email) {
-                    <a 
-                      [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email"
-                      class="btn btn-light w-100 text-start py-3 rounded-3 shadow-sm border-0 d-flex align-items-center">
-                      <div class="bg-primary bg-gradient rounded-circle me-3 d-flex align-items-center justify-content-center" 
-                           style="width: 40px; height: 40px;">
-                        <i class="fa-solid fa-envelope text-white"></i>
-                      </div>
-                      <div class="flex-grow-1 text-truncate">
-                        <div class="text-muted small">Email</div>
-                        <div class="fw-bold text-dark text-truncate">
-                          {{ siteConfig?.websiteSettings?.contactInfo?.email }}
-                        </div>
-                      </div>
-                    </a>
-                  }
-                </div>
-              </div>
-            </div>
+									@if (siteConfig?.websiteSettings?.contactInfo?.email) {
+										<a
+											[href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email"
+											class="btn btn-light w-100 text-start py-3 rounded-3 shadow-sm border-0 d-flex align-items-center">
+											<div
+												class="bg-primary bg-gradient rounded-circle me-3 d-flex align-items-center justify-content-center"
+												style="width: 40px; height: 40px">
+												<i class="fa-solid fa-envelope text-white"></i>
+											</div>
+											<div class="flex-grow-1 text-truncate">
+												<div class="text-muted small">Email</div>
+												<div class="fw-bold text-dark text-truncate">
+													{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+												</div>
+											</div>
+										</a>
+									}
+								</div>
+							</div>
+						</div>
 
-            @if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-              <div class="col-md-6">
-                <div class="card bg-white bg-opacity-25 backdrop-blur border-0 rounded-4 h-100 text-white shadow-lg">
-                  <div class="card-body p-4">
-                    <div class="d-flex align-items-center mb-3">
-                      <div class="bg-white rounded-circle p-2 me-3">
-                        <i class="fa-solid fa-user-tie text-danger fs-4"></i>
-                      </div>
-                      <h5 class="fw-bold mb-0">Secondary Contact</h5>
-                    </div>
+						@if (
+							siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent
+						) {
+							<div class="col-md-6">
+								<div
+									class="card bg-white bg-opacity-25 backdrop-blur border-0 rounded-4 h-100 text-white shadow-lg">
+									<div class="card-body p-4">
+										<div class="d-flex align-items-center mb-3">
+											<div class="bg-white rounded-circle p-2 me-3">
+												<i class="fa-solid fa-user-tie text-danger fs-4"></i>
+											</div>
+											<h5 class="fw-bold mb-0">Secondary Contact</h5>
+										</div>
 
-                    <a 
-                      [href]="'tel:' + siteConfig.secondaryAgent.websitePhone"
-                      class="btn btn-light w-100 text-start mb-2 py-3 rounded-3 shadow-sm border-0 d-flex align-items-center">
-                      <div class="bg-danger bg-gradient rounded-circle me-3 d-flex align-items-center justify-content-center" 
-                           style="width: 40px; height: 40px;">
-                        <i class="fa-solid fa-phone text-white"></i>
-                      </div>
-                      <div>
-                        <div class="text-muted small">Phone</div>
-                        <div class="fw-bold text-dark">
-                          {{ siteConfig.secondaryAgent.websitePhone | phone }}
-                        </div>
-                      </div>
-                    </a>
+										<a
+											[href]="'tel:' + siteConfig.secondaryAgent.websitePhone"
+											class="btn btn-light w-100 text-start mb-2 py-3 rounded-3 shadow-sm border-0 d-flex align-items-center">
+											<div
+												class="bg-danger bg-gradient rounded-circle me-3 d-flex align-items-center justify-content-center"
+												style="width: 40px; height: 40px">
+												<i class="fa-solid fa-phone text-white"></i>
+											</div>
+											<div>
+												<div class="text-muted small">Phone</div>
+												<div class="fw-bold text-dark">
+													{{ siteConfig.secondaryAgent.websitePhone | phone }}
+												</div>
+											</div>
+										</a>
 
-                    <a 
-                      [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail"
-                      class="btn btn-light w-100 text-start py-3 rounded-3 shadow-sm border-0 d-flex align-items-center">
-                      <div class="bg-danger bg-gradient rounded-circle me-3 d-flex align-items-center justify-content-center" 
-                           style="width: 40px; height: 40px;">
-                        <i class="fa-solid fa-envelope text-white"></i>
-                      </div>
-                      <div class="flex-grow-1 text-truncate">
-                        <div class="text-muted small">Email</div>
-                        <div class="fw-bold text-dark text-truncate">
-                          {{ siteConfig.secondaryAgent.websiteEmail }}
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            } @else {
-              <div class="col-md-6">
-                <div class="card bg-white bg-opacity-25 backdrop-blur border-0 rounded-4 h-100 text-white shadow-lg">
-                  <div class="card-body p-4 d-flex flex-column justify-content-center">
-                    <div class="text-center">
-                      <div class="bg-white rounded-circle p-3 d-inline-flex mb-3">
-                        <i class="fa-solid fa-location-dot text-primary fs-2"></i>
-                      </div>
-                      <h5 class="fw-bold mb-3">Visit Us</h5>
-                      @if (siteConfig?.websiteSettings?.contactInfo?.address) {
-                        <p class="mb-0 lh-lg">
-                          {{ siteConfig?.websiteSettings?.contactInfo?.address }}
-                        </p>
-                      }
-                    </div>
-                  </div>
-                </div>
-              </div>
-            }
+										<a
+											[href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail"
+											class="btn btn-light w-100 text-start py-3 rounded-3 shadow-sm border-0 d-flex align-items-center">
+											<div
+												class="bg-danger bg-gradient rounded-circle me-3 d-flex align-items-center justify-content-center"
+												style="width: 40px; height: 40px">
+												<i class="fa-solid fa-envelope text-white"></i>
+											</div>
+											<div class="flex-grow-1 text-truncate">
+												<div class="text-muted small">Email</div>
+												<div class="fw-bold text-dark text-truncate">
+													{{ siteConfig.secondaryAgent.websiteEmail }}
+												</div>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						} @else {
+							<div class="col-md-6">
+								<div
+									class="card bg-white bg-opacity-25 backdrop-blur border-0 rounded-4 h-100 text-white shadow-lg">
+									<div class="card-body p-4 d-flex flex-column justify-content-center">
+										<div class="text-center">
+											<div class="bg-white rounded-circle p-3 d-inline-flex mb-3">
+												<i class="fa-solid fa-location-dot text-primary fs-2"></i>
+											</div>
+											<h5 class="fw-bold mb-3">Visit Us</h5>
+											@if (siteConfig?.websiteSettings?.contactInfo?.address) {
+												<p class="mb-0 lh-lg">
+													{{ siteConfig?.websiteSettings?.contactInfo?.address }}
+												</p>
+											}
+										</div>
+									</div>
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
 
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col-12">
-          <div class="card bg-dark bg-opacity-50 backdrop-blur border-0 rounded-4 shadow-lg">
-            <div class="card-body p-4">
-              <div class="row align-items-center g-3">
-                <div class="col-lg-8">
-                  <p class="text-white small mb-0 lh-lg opacity-75">
-                    <i class="fa-regular fa-copyright me-2"></i>
-                    Copyright 2021 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility 
-                    for the accuracy of any information shown. The information provided herein must only be used by 
-                    consumers that have a bona fide interest in the purchase, sale or lease of real estate.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </footer>
-  </div>
+			<div class="row">
+				<div class="col-12">
+					<div class="card bg-dark bg-opacity-50 backdrop-blur border-0 rounded-4 shadow-lg">
+						<div class="card-body p-4">
+							<div class="row align-items-center g-3">
+								<div class="col-lg-8">
+									<p class="text-white small mb-0 lh-lg opacity-75">
+										<i class="fa-regular fa-copyright me-2"></i>
+										Copyright 2021 All rights reserved. Toronto Real Estate Board (TREB) assumes no
+										responsibility for the accuracy of any information shown. The information
+										provided herein must only be used by consumers that have a bona fide interest in
+										the purchase, sale or lease of real estate.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
 </div>

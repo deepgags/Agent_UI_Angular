@@ -729,8 +729,16 @@
 										<app-captcha #requestShowingCaptcha></app-captcha>
 										<button
 											type="submit"
-											class="btn search_btn w-100 fw-bold">
-											Send
+											class="btn search_btn w-100 fw-bold"
+											[disabled]="submittingForms().requestShowing">
+											@if (submittingForms().requestShowing) {
+												<span
+													class="spinner-border spinner-border-sm me-2"
+													aria-hidden="true"></span>
+												Submitting...
+											} @else {
+												Send
+											}
 										</button>
 									</form>
 								</div>
@@ -877,8 +885,16 @@
 										<app-captcha #propertyHistoryCaptcha></app-captcha>
 										<button
 											type="submit"
-											class="btn search_btn w-100 fw-bold">
-											Send
+											class="btn search_btn w-100 fw-bold"
+											[disabled]="submittingForms().propertyHistory">
+											@if (submittingForms().propertyHistory) {
+												<span
+													class="spinner-border spinner-border-sm me-2"
+													aria-hidden="true"></span>
+												Submitting...
+											} @else {
+												Send
+											}
 										</button>
 									</form>
 								</div>
@@ -1026,8 +1042,16 @@
 										<app-captcha #recentSalesCaptcha></app-captcha>
 										<button
 											type="submit"
-											class="btn search_btn w-100 fw-bold">
-											Send
+											class="btn search_btn w-100 fw-bold"
+											[disabled]="submittingForms().recentSalesInArea">
+											@if (submittingForms().recentSalesInArea) {
+												<span
+													class="spinner-border spinner-border-sm me-2"
+													aria-hidden="true"></span>
+												Submitting...
+											} @else {
+												Send
+											}
 										</button>
 									</form>
 								</div>
@@ -1171,8 +1195,16 @@
 										<app-captcha #haveQuestionCaptcha></app-captcha>
 										<button
 											type="submit"
-											class="btn search_btn w-100 fw-bold">
-											Send
+											class="btn search_btn w-100 fw-bold"
+											[disabled]="submittingForms().haveQuestion">
+											@if (submittingForms().haveQuestion) {
+												<span
+													class="spinner-border spinner-border-sm me-2"
+													aria-hidden="true"></span>
+												Submitting...
+											} @else {
+												Send
+											}
 										</button>
 									</form>
 								</div>
@@ -1210,7 +1242,8 @@
 									href="/contact"
 									class="text-decoration-none info fw-semibold">
 									contact us
-								</a>.
+								</a>
+								.
 							</p>
 							<form
 								[formGroup]="contactForm"
@@ -1337,8 +1370,16 @@
 								<app-captcha #contactCaptcha></app-captcha>
 								<button
 									type="submit"
-									class="btn search_btn w-100 fw-bold">
-									Save
+									class="btn search_btn w-100 fw-bold"
+									[disabled]="submittingForms().contact">
+									@if (submittingForms().contact) {
+										<span
+											class="spinner-border spinner-border-sm me-2"
+											aria-hidden="true"></span>
+										Submitting...
+									} @else {
+										Save
+									}
 								</button>
 							</form>
 						</div>

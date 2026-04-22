@@ -4,6 +4,7 @@ import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { environment } from "../environments/environment.development";
 import { CustomerModel } from "../models/CustomerModel";
+import { SharedDataService } from "./shared-data.service";
 
 @Injectable({
 	providedIn: "root",
@@ -12,7 +13,10 @@ export class CustomerService {
 	query = signal<string>("");
 	private baseUrl: string = environment.baseUrl;
 
-	constructor(private http: HttpClient) {}
+	constructor(
+		private http: HttpClient,
+		public sharedDataService: SharedDataService,
+	) {}
 
 	register(formData: FormData): Observable<any> {
 		return this.http.post(`${this.baseUrl}/customer/register`, formData);
@@ -22,7 +26,7 @@ export class CustomerService {
 		return this.http.post(`${this.baseUrl}/customer/verify`, params);
 	}
 
-	login(params: { emailAddress: string; password: string, domain: string }): Observable<any> {
+	login(params: { emailAddress: string; password: string; domain: string }): Observable<any> {
 		return this.http.post(`${this.baseUrl}/customer/login`, params);
 	}
 
@@ -65,6 +69,18 @@ export class CustomerService {
 		return this.http.get(`${this.baseUrl}/customer/profile`);
 	}
 
+	getProfile() {
+		this.http.get(`${this.baseUrl}/customer/profile`).subscribe({
+			next: (response: any) => {
+				if (response.status) {
+					this.sharedDataService.setSiteData(response.data);
+				}
+			},
+			error: () => {},
+			complete: () => {},
+		});
+	}
+
 	getCustomers(emailAddress: string): Observable<CustomerModel> {
 		return this.http.get<CustomerModel>(this.baseUrl + "/login?emailAddress=" + emailAddress).pipe(
 			map((result: any) => {
@@ -75,7 +91,7 @@ export class CustomerService {
 			catchError((error) => {
 				console.error("Error fetching customers:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 

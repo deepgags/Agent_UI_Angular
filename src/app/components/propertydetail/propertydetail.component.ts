@@ -1,5 +1,5 @@
 import { CommonModule, Location } from "@angular/common";
-import { AfterViewInit, Component, inject, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
+import { AfterViewInit, Component, inject, OnInit, signal, ViewChild, ViewEncapsulation } from "@angular/core";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from "@angular/google-maps";
 
@@ -32,6 +32,9 @@ import { PublicService } from "../../services/public.service";
 import { SharedDataService } from "../../services/shared-data.service";
 declare var window: any;
 declare var google: any;
+
+type PropertyDetailFormKey = "requestShowing" | "propertyHistory" | "recentSalesInArea" | "haveQuestion" | "contact";
+
 @Component({
 	selector: "app-property-detail-page",
 	imports: [
@@ -74,6 +77,13 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	recentSaleInAreaForm: FormGroup;
 	haveQuestionForm: FormGroup;
 	contactForm: FormGroup;
+	submittingForms = signal({
+		requestShowing: false,
+		propertyHistory: false,
+		recentSalesInArea: false,
+		haveQuestion: false,
+		contact: false,
+	});
 
 	userModel: InterestedUserModel = new InterestedUserModel();
 
@@ -388,6 +398,10 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 	}
 
 	submitRequestShowingForm() {
+		if (this.submittingForms().requestShowing) {
+			return;
+		}
+
 		if (this.requestShowingForm.invalid) {
 			this.requestShowingForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
@@ -405,8 +419,11 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			siteId: this.siteConfig?.id,
 			mlsId: this.mlsId,
 		};
-		this.publicService.submitContactForm(params).subscribe({
+		this.setSubmittingForm("requestShowing", true);
+		this.publicService.submitContactForm(params)
+			.subscribe({
 			next: () => {
+				this.setSubmittingForm("requestShowing", false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.requestShowingForm.reset();
 				this.requestShowingForm.patchValue({
@@ -416,12 +433,17 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.requestShowingCaptcha?.reset();
 			},
 			error: () => {
+				this.setSubmittingForm("requestShowing", false);
 				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
 	}
 
 	submitPropertyHistoryForm() {
+		if (this.submittingForms().propertyHistory) {
+			return;
+		}
+
 		if (this.propertyHistoryForm.invalid) {
 			this.propertyHistoryForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
@@ -439,8 +461,11 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			siteId: this.siteConfig?.id,
 			mlsId: this.mlsId,
 		};
-		this.publicService.submitContactForm(params).subscribe({
+		this.setSubmittingForm("propertyHistory", true);
+		this.publicService.submitContactForm(params)
+			.subscribe({
 			next: () => {
+				this.setSubmittingForm("propertyHistory", false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.propertyHistoryForm.reset();
 				this.propertyHistoryForm.patchValue({
@@ -450,12 +475,17 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.propertyHistoryCaptcha?.reset();
 			},
 			error: () => {
+				this.setSubmittingForm("propertyHistory", false);
 				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
 	}
 
 	submitRecentSalesInAreaForm() {
+		if (this.submittingForms().recentSalesInArea) {
+			return;
+		}
+
 		if (this.recentSaleInAreaForm.invalid) {
 			this.recentSaleInAreaForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
@@ -473,8 +503,11 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			siteId: this.siteConfig?.id,
 			mlsId: this.mlsId,
 		};
-		this.publicService.submitContactForm(params).subscribe({
+		this.setSubmittingForm("recentSalesInArea", true);
+		this.publicService.submitContactForm(params)
+			.subscribe({
 			next: () => {
+				this.setSubmittingForm("recentSalesInArea", false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.recentSaleInAreaForm.reset();
 				this.recentSaleInAreaForm.patchValue({
@@ -484,12 +517,17 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.recentSalesCaptcha?.reset();
 			},
 			error: () => {
+				this.setSubmittingForm("recentSalesInArea", false);
 				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
 	}
 
 	submitHaveQuestionForm() {
+		if (this.submittingForms().haveQuestion) {
+			return;
+		}
+
 		if (this.haveQuestionForm.invalid) {
 			this.haveQuestionForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
@@ -507,8 +545,11 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			siteId: this.siteConfig?.id,
 			mlsId: this.mlsId,
 		};
-		this.publicService.submitContactForm(params).subscribe({
+		this.setSubmittingForm("haveQuestion", true);
+		this.publicService.submitContactForm(params)
+			.subscribe({
 			next: () => {
+				this.setSubmittingForm("haveQuestion", false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.haveQuestionForm.reset();
 				this.haveQuestionForm.patchValue({
@@ -518,12 +559,17 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.haveQuestionCaptcha?.reset();
 			},
 			error: () => {
+				this.setSubmittingForm("haveQuestion", false);
 				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
 	}
 
 	submitContactForm() {
+		if (this.submittingForms().contact) {
+			return;
+		}
+
 		if (this.contactForm.invalid) {
 			this.contactForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");
@@ -541,8 +587,11 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 			siteId: this.siteConfig?.id,
 			mlsId: this.mlsId,
 		};
-		this.publicService.submitContactForm(params).subscribe({
+		this.setSubmittingForm("contact", true);
+		this.publicService.submitContactForm(params)
+			.subscribe({
 			next: () => {
+				this.setSubmittingForm("contact", false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.contactForm.reset();
 				this.contactForm.patchValue({
@@ -552,9 +601,14 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 				this.contactCaptcha?.reset();
 			},
 			error: () => {
+				this.setSubmittingForm("contact", false);
 				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});
+	}
+
+	private setSubmittingForm(form: PropertyDetailFormKey, isSubmitting: boolean) {
+		this.submittingForms.update((forms) => ({ ...forms, [form]: isSubmitting }));
 	}
 
 	getLeadTypeDropdown() {

@@ -748,8 +748,15 @@
 										<button
 											type="submit"
 											class="btn search_btn w-100 fw-bold"
-											[disabled]="requestShowingForm.invalid">
-											Send
+											[disabled]="requestShowingForm.invalid || submittingForms().requestShowing">
+											@if (submittingForms().requestShowing) {
+												<span
+													class="spinner-border spinner-border-sm me-2"
+													aria-hidden="true"></span>
+												Submitting...
+											} @else {
+												Send
+											}
 										</button>
 									</form>
 								</div>
@@ -913,8 +920,15 @@
 										<button
 											type="submit"
 											class="btn search_btn w-100 fw-bold"
-											[disabled]="propertyHistoryForm.invalid">
-											Send
+											[disabled]="propertyHistoryForm.invalid || submittingForms().propertyHistory">
+											@if (submittingForms().propertyHistory) {
+												<span
+													class="spinner-border spinner-border-sm me-2"
+													aria-hidden="true"></span>
+												Submitting...
+											} @else {
+												Send
+											}
 										</button>
 									</form>
 								</div>
@@ -1079,8 +1093,17 @@
 										<button
 											type="submit"
 											class="btn search_btn w-100 fw-bold"
-											[disabled]="recentSaleInAreaForm.invalid">
-											Send
+											[disabled]="
+												recentSaleInAreaForm.invalid || submittingForms().recentSalesInArea
+											">
+											@if (submittingForms().recentSalesInArea) {
+												<span
+													class="spinner-border spinner-border-sm me-2"
+													aria-hidden="true"></span>
+												Submitting...
+											} @else {
+												Send
+											}
 										</button>
 									</form>
 								</div>
@@ -1241,8 +1264,15 @@
 										<button
 											type="submit"
 											class="btn search_btn w-100 fw-bold"
-											[disabled]="haveQuestionForm.invalid">
-											Send
+											[disabled]="haveQuestionForm.invalid || submittingForms().haveQuestion">
+											@if (submittingForms().haveQuestion) {
+												<span
+													class="spinner-border spinner-border-sm me-2"
+													aria-hidden="true"></span>
+												Submitting...
+											} @else {
+												Send
+											}
 										</button>
 									</form>
 								</div>
@@ -1424,8 +1454,15 @@
 								<button
 									type="submit"
 									class="btn search_btn w-100 fw-bold"
-									[disabled]="contactForm.invalid">
-									Save
+									[disabled]="contactForm.invalid || submittingForms().contact">
+									@if (submittingForms().contact) {
+										<span
+											class="spinner-border spinner-border-sm me-2"
+											aria-hidden="true"></span>
+										Submitting...
+									} @else {
+										Save
+									}
 								</button>
 							</form>
 						</div>
@@ -1515,7 +1552,7 @@
 
 								<div class="col-7">
 									<div class="card-body">
-										<h6 class="card-title info mt-1">{{ siteConfig?.brokerageTypeId }}</h6>
+										<h6 class="card-title info mt-1">{{ siteConfig.brokerageTypeId }}</h6>
 
 										<div class="text-muted small">
 											<p class="mb-1">

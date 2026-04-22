@@ -5,4 +5,5 @@ export enum Pages {
 	PROFILE = "/profile",
 	LOADING = "/loading",
 	DASHBOARD = "/dashboard",
+	SETTINGS = "/settings",
 }
