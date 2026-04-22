@@ -41,7 +41,7 @@ export class CaptchaComponent implements OnInit {
 			return false;
 		}
 
-		const isValid = this.captchaService.validateAnswer(this.captchaAnswer.value);
+		const isValid = this.captchaService.validateAnswer(this.captchaAnswer.value, this.currentProblem);
 
 		if (!isValid) {
 			this.errorMessage = "Incorrect answer. Please try again.";
@@ -59,7 +59,7 @@ export class CaptchaComponent implements OnInit {
 		if (!this.captchaAnswer.value || !this.captchaAnswer.value.trim()) {
 			return false;
 		}
-		return this.captchaService.validateAnswer(this.captchaAnswer.value);
+		return this.captchaService.validateAnswer(this.captchaAnswer.value, this.currentProblem);
 	}
 
 	// get current error message

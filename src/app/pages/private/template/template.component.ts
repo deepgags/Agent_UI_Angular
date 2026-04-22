@@ -25,7 +25,7 @@ import { TemplateService } from "../../../services/template.service";
 	styleUrl: "./template.component.scss",
 })
 export class TemplateComponent implements OnInit {
-	selectedTemplate: any = "";
+	selectedTemplate: any = null;
 	customerModel!: CustomerModel;
 	private templatesSubject = new BehaviorSubject<TemplateModel[]>([]);
 	templates$ = this.templatesSubject.asObservable();
@@ -37,15 +37,14 @@ export class TemplateComponent implements OnInit {
 		private notificationService: NotificationService,
 		private titleService: Title,
 		private loadingService: LoadingService,
-		private sharedDataService: SharedDataService,
+		public sharedDataService: SharedDataService,
 		public dialogService: DialogService,
 	) {
 		this.titleService.setTitle("Templates");
+		this.siteConfig = this.sharedDataService.siteData();
 	}
 
 	ngOnInit() {
-		this.siteConfig = this.sharedDataService.siteData();
-		this.selectedTemplate = this.siteConfig?.websiteSettings?.templateId || "";
 		this.getTemplates();
 	}
 
@@ -55,6 +54,17 @@ export class TemplateComponent implements OnInit {
 			next: (response: any) => {
 				if (response.data && response.data.length > 0) {
 					this.templatesSubject.next(response.data);
+					this.selectedTemplate = this.siteConfig?.websiteSettings?.templateId;
+
+					const templateWithoutSelected = response.data.filter(
+						(template: any) => template.templateKey !== this.selectedTemplate,
+					);
+					const templateSelected = response.data.filter(
+						(template: any) => template.templateKey === this.selectedTemplate,
+					);
+
+					const templatesFiltered = [...templateSelected, ...templateWithoutSelected];
+					this.templatesSubject.next(templatesFiltered);
 				}
 			},
 			error: (error) => {
@@ -75,6 +85,7 @@ export class TemplateComponent implements OnInit {
 			this.customerService.changeTemplate(params).subscribe({
 				next: (v) => {
 					this.selectedTemplate = template.templateKey;
+					this.customerService.getProfile();
 				},
 				error: (e) => {
 					this.notificationService.showError(

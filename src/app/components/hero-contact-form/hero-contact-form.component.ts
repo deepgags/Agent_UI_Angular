@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, ViewChild } from "@angular/core";
+import { Component, signal, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { IftaLabelModule } from "primeng/iftalabel";
 import { InputMaskModule } from "primeng/inputmask";
@@ -19,6 +19,7 @@ import { CaptchaComponent } from "../captcha/captcha.component";
 export class HeroContactFormComponent {
 	heroContactForm: FormGroup;
 	siteConfig: SiteConfig = {} as SiteConfig;
+	isSubmitting = signal(false);
 
 	@ViewChild(CaptchaComponent) captchaComponent!: CaptchaComponent;
 
@@ -54,6 +55,10 @@ export class HeroContactFormComponent {
 	}
 
 	submitHeroContactForm() {
+		if (this.isSubmitting()) {
+			return;
+		}
+
 		if (this.heroContactForm.invalid) {
 			this.heroContactForm.markAllAsTouched();
 			this.captchaComponent.reset();
@@ -71,14 +76,17 @@ export class HeroContactFormComponent {
 			leadSource: "heroForm",
 			siteId: this.siteConfig?.id,
 		};
+		this.isSubmitting.set(true);
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
+				this.isSubmitting.set(false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
 				this.heroContactForm.reset();
 				this.heroContactForm.patchValue({ termsAccepted: false });
 				this.captchaComponent.reset();
 			},
 			error: () => {
+				this.isSubmitting.set(false);
 				this.notificationService.showError("Failed to send message. Please try again later.");
 			},
 		});

@@ -44,6 +44,7 @@ export class ContactComponent {
 	siteConfig: SiteConfig = {} as SiteConfig;
 	localImageUrl = environment.localImageUrl;
 	page = signal<Page | null>(null);
+	isSubmitting = signal(false);
 
 	@ViewChild(CaptchaComponent) captchaComponent!: CaptchaComponent;
 
@@ -131,6 +132,10 @@ export class ContactComponent {
 	}
 
 	submitContactForm() {
+		if (this.isSubmitting()) {
+			return;
+		}
+
 		if (this.contactForm.invalid) {
 			this.contactForm.markAllAsTouched();
 			this.captchaComponent.reset();
@@ -148,14 +153,17 @@ export class ContactComponent {
 			leadSource: "contactForm",
 			siteId: this.siteConfig?.id,
 		};
+		this.isSubmitting.set(true);
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
+				this.isSubmitting.set(false);
 				this.notificationService.showSuccess("Your request has been submitted successfully.");
 				this.contactForm.reset();
 				this.contactForm.patchValue({ termsAccepted: false });
 				this.captchaComponent.reset();
 			},
 			error: () => {
+				this.isSubmitting.set(false);
 				this.notificationService.showError("Failed to submit request. Please try again later.");
 			},
 		});
