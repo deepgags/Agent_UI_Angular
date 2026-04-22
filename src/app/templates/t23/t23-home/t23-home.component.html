@@ -71,24 +71,25 @@
 						<h4>{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h4>
 						<span>{{ siteConfig.designation }}</span>
 					</div>
-
-					<div class="agent-contact-bar">
-						<div class="">
-							M:
-							<a
-								class="text-white fw-semibold text-decoration-none"
-								[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
-								{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-							</a>
-						</div>
-						<div class="">
-							<a
-								class="text-white fw-semibold text-decoration-none"
-								[href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
-								{{ siteConfig.websiteSettings.contactInfo.email }}
-							</a>
-						</div>
-					</div>
+<div class="d-flex">
+    <div class="agent-contact-bar ms-auto">
+        <div class="">
+            M:
+            
+               <a  class="text-white fw-semibold text-decoration-none"
+                [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+                {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+            </a>
+        </div>
+        <div class="">
+            
+               <a class="text-white fw-semibold text-decoration-none"
+                [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+                {{ siteConfig.websiteSettings.contactInfo.email }}
+            </a>
+        </div>
+    </div>
+</div>
 				</div>
 
 				<img
