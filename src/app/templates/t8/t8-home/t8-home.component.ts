@@ -16,6 +16,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+declare var bootstrap: any;
 
 @Component({
 	selector: "app-t8-home",
@@ -67,7 +68,14 @@ export class T8HomeComponent implements OnInit {
 	get heroImages(): string[] {
 		return this.sharedDataService.heroImages();
 	}
-
+	ngAfterViewInit(): void {
+		setTimeout(() => {
+			const carouselEl = document.querySelector("#heroCarousel");
+			if (carouselEl) {
+				new bootstrap.Carousel(carouselEl);
+			}
+		}, 200);
+	}
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
 		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};

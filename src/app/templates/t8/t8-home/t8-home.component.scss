@@ -1,7 +1,18 @@
 .top-padding{
     padding-top: 300px;
 }
+#heroCarousel {
+	height: 70vh;
+	overflow: hidden;
+	/* position: relative; */
+}
 
+#heroCarousel .carousel-item img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+}
    .background-container {
   position: relative;
   width: 100%;
