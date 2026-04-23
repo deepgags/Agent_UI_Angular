@@ -23,7 +23,7 @@ export class VerifyEmailComponent implements OnInit {
 		private loadingService: LoadingService,
 		private titleService: Title,
 		private customerService: CustomerService,
-		private notificationService: NotificationService
+		private notificationService: NotificationService,
 	) {
 		this.titleService.setTitle("Verify your account");
 		this.verifyEmailForm = new FormGroup({
@@ -54,8 +54,9 @@ export class VerifyEmailComponent implements OnInit {
 			this.customerService.verifyEmail(params).subscribe({
 				next: (res: any) => {
 					this.loadingService.loadingOff();
-					this.router.navigate([Pages.LOGIN]);
+					// this.router.navigate([Pages.LOGIN]);
 					this.notificationService.showSuccess(res.message);
+					window.location.replace(res.redirect_url);
 				},
 				error: (error: any) => {
 					this.loadingService.loadingOff();
