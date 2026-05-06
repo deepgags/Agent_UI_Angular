@@ -1,0 +1,56 @@
+<div class="page-header">
+  <h1 class="page-title">Pages</h1>
+  <p class="page-subtitle">Manage your content pages.</p>
+</div>
+<div class="card">
+  <p-toolbar>
+    <ng-template #start>
+      <input pInputText placeholder="Search..." [(ngModel)]="searchQuery" (input)="onSearch()" class="mr-2" />
+    </ng-template>
+    <ng-template #end>
+      <button pButton label="Add Page" icon="pi pi-plus" (click)="openDialog()"></button>
+    </ng-template>
+  </p-toolbar>
+  <p-table [value]="items()" [paginator]="true" [rows]="10" [loading]="loading()">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Title</th>
+        <th>Slug</th>
+        <th>Status</th>
+        <th class="text-right">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.slug }}</td>
+        <td>{{ item.status }}</td>
+        <td class="text-right">
+          <button pButton icon="pi pi-pencil" class="p-button-text p-button-sm" (click)="editItem(item)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-text p-button-danger p-button-sm" (click)="deleteItem(item)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr><td colspan="4" class="empty-state">No pages found.</td></tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog [(visible)]="dialogVisible" [header]="isEdit ? 'Edit Page' : 'Add Page'" [modal]="true" [style]="{width: '500px'}">
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label class="form-label">Title</label>
+      <input pInputText formControlName="title" class="w-full" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Slug</label>
+      <input pInputText formControlName="slug" class="w-full" />
+    </div>
+  </form>
+  <ng-template #footer>
+    <button pButton label="Cancel" class="p-button-text" (click)="dialogVisible = false"></button>
+    <button pButton label="Save" (click)="onSave()" [disabled]="form.invalid"></button>
+  </ng-template>
+</p-dialog>
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

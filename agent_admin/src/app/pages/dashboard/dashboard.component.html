@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h1 class="page-title">Dashboard</h1>
+  <p class="page-subtitle">Welcome back! Here's an overview of your system.</p>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-icon customers">
+      <i class="pi pi-users"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ summary().totalCustomers }}</div>
+      <div class="stat-label">Total Customers</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon leads">
+      <i class="pi pi-bolt"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ summary().totalLeads }}</div>
+      <div class="stat-label">Total Leads</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon properties">
+      <i class="pi pi-building"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ summary().totalProperties }}</div>
+      <div class="stat-label">Total Properties</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon users">
+      <i class="pi pi-user"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-value">{{ summary().totalUsers }}</div>
+      <div class="stat-label">Total Users</div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4">
+  <h2>Recent Leads</h2>
+  <p-chart type="line" [data]="chartData()" [options]="chartOptions()"></p-chart>
+</div>

@@ -1,0 +1,28 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <i class="pi pi-box"></i>
+      <h1>Agent Admin</h1>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input pInputText id="email" formControlName="email" class="form-input" placeholder="Enter your email" />
+        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+          <small class="text-red-500">Email is required</small>
+        }
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <p-password id="password" formControlName="password" class="w-full" [feedback]="false" [toggleMask]="true" placeholder="Enter your password"></p-password>
+        @if (form.get('password')?.invalid && form.get('password')?.touched) {
+          <small class="text-red-500">Password is required</small>
+        }
+      </div>
+      @if (error()) {
+        <div class="error-message">{{ error() }}</div>
+      }
+      <button pButton type="submit" label="Sign In" class="w-full" [disabled]="form.invalid || loading()"></button>
+    </form>
+  </div>
+</div>

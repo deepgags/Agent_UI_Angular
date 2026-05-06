@@ -1,0 +1,93 @@
+<div class="page-header">
+  <h1 class="page-title">Customers</h1>
+  <p class="page-subtitle">Manage your customer accounts.</p>
+</div>
+
+<div class="card">
+  <p-toolbar>
+    <ng-template #start>
+      <input pInputText placeholder="Search..." [(ngModel)]="searchQuery" (input)="onSearch()" class="mr-2" />
+      <button pButton icon="pi pi-search" class="p-button-text"></button>
+    </ng-template>
+    <ng-template #end>
+      <button pButton label="Add Customer" icon="pi pi-plus" (click)="openDialog()"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table [value]="customers()" [paginator]="true" [rows]="10" [loading]="loading()" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Business Name</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th class="text-right">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-customer>
+      <tr>
+        <td>{{ customer.businessName }}</td>
+        <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+        <td>{{ customer.emailAddress }}</td>
+        <td>{{ customer.phoneNumber }}</td>
+        <td>{{ customer.role }}</td>
+        <td>
+          <p-tag [value]="getStatusLabel(customer.isApproved)" [severity]="getStatusSeverity(customer.isApproved)"></p-tag>
+        </td>
+        <td>{{ customer.createdAt | date: 'medium' }}</td>
+        <td class="text-right">
+          <button pButton icon="pi pi-eye" class="p-button-text p-button-sm" pTooltip="View" tooltipPosition="top" (click)="viewCustomer(customer)"></button>
+          <button pButton icon="pi pi-pencil" class="p-button-text p-button-sm" pTooltip="Edit" tooltipPosition="top" (click)="editCustomer(customer)"></button>
+          <button pButton icon="pi pi-check" class="p-button-text p-button-success p-button-sm" pTooltip="Approve" tooltipPosition="top" (click)="approveCustomer(customer)" *ngIf="!customer.isApproved"></button>
+          <button pButton icon="pi pi-refresh" class="p-button-text p-button-warning p-button-sm" pTooltip="Reset Password" tooltipPosition="top" (click)="resetCustomerPassword(customer)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-text p-button-danger p-button-sm" pTooltip="Deactivate" tooltipPosition="top" (click)="deleteCustomer(customer)"></button>
+          <button pButton icon="pi pi-ban" class="p-button-text p-button-danger p-button-sm" pTooltip="Permanent Delete" tooltipPosition="top" (click)="hardDeleteCustomer(customer)" *ngIf="customer.isApproved"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8" class="empty-state">No customers found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="dialogVisible" [header]="isEdit ? 'Edit Customer' : 'Add Customer'" [modal]="true" [style]="{ width: '500px' }">
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label class="form-label">Business Name</label>
+      <input pInputText formControlName="businessName" class="w-full" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">First Name</label>
+      <input pInputText formControlName="firstName" class="w-full" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Last Name</label>
+      <input pInputText formControlName="lastName" class="w-full" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input pInputText formControlName="emailAddress" class="w-full" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Phone</label>
+      <input pInputText formControlName="phoneNumber" class="w-full" />
+    </div>
+    <div class="form-group" *ngIf="!isEdit">
+      <label class="form-label">Password</label>
+      <input pInputText type="password" formControlName="password" class="w-full" />
+    </div>
+  </form>
+  <ng-template #footer>
+    <button pButton label="Cancel" class="p-button-text" (click)="dialogVisible = false"></button>
+    <button pButton label="Save" (click)="onSave()" [disabled]="form.invalid"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

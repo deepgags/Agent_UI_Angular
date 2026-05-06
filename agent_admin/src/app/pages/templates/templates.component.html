@@ -1,0 +1,95 @@
+<div class="page-header"><h1 class="page-title">Templates</h1><p class="page-subtitle">Manage email templates.</p></div>
+<div class="card">
+  <p-toolbar><ng-template #end><button pButton label="Add Template" icon="pi pi-plus" (click)="openDialog()"></button></ng-template></p-toolbar>
+  <p-table [value]="items()" [paginator]="true" [rows]="10" [loading]="loading()">
+    <ng-template pTemplate="header"><tr><th>Name</th><th>Colors</th><th>Images</th><th>Status</th><th class="text-right">Actions</th></tr></ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>
+          <div class="color-swatches">
+            <div class="color-swatch" *ngIf="item.primaryColor" [style.background]="item.primaryColor" [title]="item.primaryColor"></div>
+            <div class="color-swatch" *ngIf="item.secondaryColor" [style.background]="item.secondaryColor" [title]="item.secondaryColor"></div>
+          </div>
+        </td>
+        <td>{{ item.images?.length || 0 }} images</td>
+        <td>
+          <span [class]="'p-tag p-tag-' + (item.enable ? 'success' : 'danger')">{{ item.enable ? 'Enabled' : 'Disabled' }}</span>
+        </td>
+        <td class="text-right">
+          <button pButton icon="pi pi-pencil" class="p-button-text p-button-sm" (click)="editItem(item)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-text p-button-danger p-button-sm" (click)="deleteItem(item)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage"><tr><td colspan="5" class="empty-state">No templates found.</td></tr></ng-template>
+  </p-table>
+</div>
+<p-dialog [(visible)]="dialogVisible" [header]="isEdit ? 'Edit Template' : 'Add Template'" [modal]="true" [style]="{width: '600px'}">
+  <form [formGroup]="form">
+    <div class="form-section">
+      <h3>Basic Info</h3>
+      <div class="form-group">
+        <label class="form-label">Template Key</label>
+        <input pInputText formControlName="templateKey" class="w-full" [disabled]="isEdit" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input pInputText formControlName="name" class="w-full" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea pInputTextarea formControlName="description" class="w-full" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Enable</label>
+        <p-toggleSwitch formControlName="enable"></p-toggleSwitch>
+      </div>
+    </div>
+    <div class="form-section">
+      <h3>Colors</h3>
+      <div class="form-group">
+        <label class="form-label">Primary Color</label>
+        <div class="color-picker-wrapper">
+          <p-colorPicker formControlName="primaryColor"></p-colorPicker>
+          <span class="color-value">{{ form.value.primaryColor || 'None' }}</span>
+          <div class="color-swatch" *ngIf="form.value.primaryColor" [style.background]="form.value.primaryColor"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Secondary Color</label>
+        <div class="color-picker-wrapper">
+          <p-colorPicker formControlName="secondaryColor"></p-colorPicker>
+          <span class="color-value">{{ form.value.secondaryColor || 'None' }}</span>
+          <div class="color-swatch" *ngIf="form.value.secondaryColor" [style.background]="form.value.secondaryColor"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-section">
+      <h3>Images ({{ getTotalImageCount() }}/5)</h3>
+      <div class="existing-images" *ngIf="selectedItem?.images?.length">
+        <div class="image-item" *ngFor="let img of selectedItem?.images">
+          <img [src]="img.url" [alt]="'Template image'" />
+          <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text p-button-sm" (click)="confirmDeleteImage(img)"></button>
+        </div>
+      </div>
+      <div class="new-images" *ngIf="newImages.length">
+        <div class="image-item" *ngFor="let file of newImages; let i = index">
+          <img [src]="getImagePreview(file)" [alt]="'New image'" />
+          <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text p-button-sm" (click)="removeNewImage(i)"></button>
+        </div>
+      </div>
+      <div class="upload-section">
+        <input type="file" #imageInput multiple accept="image/jpeg,image/jpg,image/png,image/gif,image/webp" (change)="onImageSelect($event)" style="display: none" />
+        <button pButton label="Upload Images" icon="pi pi-upload" (click)="imageInput.click()" type="button"></button>
+        <small class="helper-text">2-5 images required. Max 5MB each. JPEG, PNG, GIF, WEBP.</small>
+      </div>
+    </div>
+  </form>
+  <ng-template #footer>
+    <button pButton label="Cancel" class="p-button-text" (click)="dialogVisible = false"></button>
+    <button pButton label="Save" (click)="onSave()" [disabled]="form.invalid || getTotalImageCount() < 2"></button>
+  </ng-template>
+</p-dialog>
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

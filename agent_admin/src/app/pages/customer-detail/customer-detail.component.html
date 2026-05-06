@@ -1,0 +1,78 @@
+<div class="customer-detail">
+  <div class="customer-header">
+    <button pButton icon="pi pi-arrow-left" class="p-button-text" (click)="goBack()"></button>
+    <div class="header-info">
+      <h1>{{ customer()?.businessName }}</h1>
+      <p>{{ customer()?.firstName }} {{ customer()?.lastName }}</p>
+      <p-tag
+        [value]="getStatusLabel(customer()?.isApproved!)"
+        [severity]="getStatusSeverity(customer()?.isApproved!)">
+      </p-tag>
+    </div>
+    <div class="header-meta">
+      <span>{{ customer()?.emailAddress }}</span>
+      <span>{{ customer()?.phoneNumber }}</span>
+      <span>{{ customer()?.role }}</span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button
+      [class.active]="activeTab() === 'menus'"
+      (click)="activeTab.set('menus')"
+      class="tab-button">
+      Menus
+    </button>
+    <button
+      [class.active]="activeTab() === 'pages'"
+      (click)="activeTab.set('pages')"
+      class="tab-button">
+      Pages
+    </button>
+    <button
+      [class.active]="activeTab() === 'team-members'"
+      (click)="activeTab.set('team-members')"
+      class="tab-button">
+      Team Members
+    </button>
+    <button
+      [class.active]="activeTab() === 'testimonials'"
+      (click)="activeTab.set('testimonials')"
+      class="tab-button">
+      Testimonials
+    </button>
+    <button
+      [class.active]="activeTab() === 'cities'"
+      (click)="activeTab.set('cities')"
+      class="tab-button">
+      Cities
+    </button>
+    <button
+      [class.active]="activeTab() === 'leads'"
+      (click)="activeTab.set('leads')"
+      class="tab-button">
+      Leads
+    </button>
+  </div>
+
+  <div class="tab-content">
+    @if (activeTab() === 'menus') {
+      <app-menus [customerId]="customerId()"></app-menus>
+    }
+    @if (activeTab() === 'pages') {
+      <app-pages [customerId]="customerId()"></app-pages>
+    }
+    @if (activeTab() === 'team-members') {
+      <app-team-members [customerId]="customerId()"></app-team-members>
+    }
+    @if (activeTab() === 'testimonials') {
+      <app-testimonials [customerId]="customerId()"></app-testimonials>
+    }
+    @if (activeTab() === 'cities') {
+      <app-customer-cities [customerId]="customerId()"></app-customer-cities>
+    }
+    @if (activeTab() === 'leads') {
+      <app-leads [customerId]="customerId()"></app-leads>
+    }
+  </div>
+</div>
