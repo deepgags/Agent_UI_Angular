@@ -96,7 +96,7 @@ export class UsersComponent implements OnInit {
       message: 'Are you sure?', header: 'Confirm Delete', icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.apiClient.delete(`/users/${item._id}`).subscribe({
-          next: () => { this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User deleted' }); this.loadItems(); },
+          next: () => { this.messageService.add({ severity: 'success', summary: 'Success', detail: 'System admin deleted' }); this.loadItems(); },
         });
       },
     });
@@ -107,7 +107,7 @@ export class UsersComponent implements OnInit {
     const data = this.form.value;
     if (this.isEdit && this.selectedItem) {
       this.apiClient.patch(`/users/${this.selectedItem._id}`, data).subscribe({
-        next: () => { this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User updated' }); this.dialogVisible = false; this.loadItems(); },
+        next: () => { this.messageService.add({ severity: 'success', summary: 'Success', detail: 'System admin updated' }); this.dialogVisible = false; this.loadItems(); },
       });
     }
   }

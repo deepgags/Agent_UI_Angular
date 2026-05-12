@@ -1,14 +1,11 @@
 <div class="page-header">
   <h1 class="page-title">Properties</h1>
-  <p class="page-subtitle">Manage properties.</p>
+  <p class="page-subtitle">View property details.</p>
 </div>
 <div class="card">
   <p-toolbar>
     <ng-template #start>
       <input pInputText placeholder="Search..." [(ngModel)]="searchQuery" (input)="onSearch()" class="mr-2" />
-    </ng-template>
-    <ng-template #end>
-      <button pButton label="Add Property" icon="pi pi-plus" (click)="openDialog()"></button>
     </ng-template>
   </p-toolbar>
   <p-table [value]="items()" [paginator]="true" [rows]="10" [loading]="loading()">
@@ -25,7 +22,7 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-item>
-      <tr>
+      <tr (click)="onRowClick(item)" style="cursor: pointer">
         <td>{{ item.ListingKey }}</td>
         <td>{{ item.UnparsedAddress }}</td>
         <td>{{ item.City }}</td>
@@ -36,8 +33,7 @@
           <p-tag [value]="item.ContractStatus" [severity]="getStatusSeverity(item.ContractStatus)"></p-tag>
         </td>
         <td class="text-right">
-          <button pButton icon="pi pi-pencil" class="p-button-text p-button-sm" (click)="editItem(item)"></button>
-          <button pButton icon="pi pi-trash" class="p-button-text p-button-danger p-button-sm" (click)="deleteItem(item)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-text p-button-danger p-button-sm" (click)="deleteItem(item); $event.stopPropagation()"></button>
         </td>
       </tr>
     </ng-template>
@@ -46,19 +42,5 @@
     </ng-template>
   </p-table>
 </div>
-<p-dialog [(visible)]="dialogVisible" [header]="isEdit ? 'Edit Property' : 'Add Property'" [modal]="true" [style]="{width: '500px'}">
-  <form [formGroup]="form">
-    <div class="form-group"><label class="form-label">Address</label><input pInputText formControlName="UnparsedAddress" class="w-full" /></div>
-    <div class="form-group"><label class="form-label">City</label><input pInputText formControlName="City" class="w-full" /></div>
-    <div class="form-group"><label class="form-label">State</label><input pInputText formControlName="StateOrProvince" class="w-full" /></div>
-    <div class="form-group"><label class="form-label">Zip Code</label><input pInputText formControlName="PostalCode" class="w-full" /></div>
-    <div class="form-group"><label class="form-label">Price</label><p-inputNumber formControlName="ListPrice" class="w-full" mode="currency" currency="USD"></p-inputNumber></div>
-    <div class="form-group"><label class="form-label">Property Type</label><input pInputText formControlName="PropertyType" class="w-full" /></div>
-  </form>
-  <ng-template #footer>
-    <button pButton label="Cancel" class="p-button-text" (click)="dialogVisible = false"></button>
-    <button pButton label="Save" (click)="onSave()" [disabled]="form.invalid"></button>
-  </ng-template>
-</p-dialog>
 <p-confirmDialog></p-confirmDialog>
 <p-toast></p-toast>

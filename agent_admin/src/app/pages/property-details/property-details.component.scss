@@ -1,0 +1,269 @@
+:host {
+  display: block;
+}
+
+.details-page {
+  --details-border: #dbe2ea;
+  --details-bg: linear-gradient(180deg, #f7f9fc 0%, #eef2f7 100%);
+  --details-card: #ffffff;
+  --details-title: #0f172a;
+  --details-text: #334155;
+  min-height: calc(100vh - 5rem);
+  padding: 1.25rem;
+  background: var(--details-bg);
+}
+
+.details-topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.state-card {
+  display: grid;
+  place-items: center;
+  gap: 0.75rem;
+  min-height: 14rem;
+  border: 1px solid var(--details-border);
+  border-radius: 16px;
+  background: var(--details-card);
+  color: var(--details-text);
+}
+
+.state-card i {
+  font-size: 1.5rem;
+}
+
+.state-card--error i,
+.state-card--error p {
+  color: #b91c1c;
+}
+
+.card-shell {
+  border: 1px solid var(--details-border);
+  border-radius: 18px;
+  background: var(--details-card);
+  padding: 1rem;
+  box-shadow: 0 6px 18px rgb(15 23 42 / 6%);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.1fr) 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hero__image {
+  border-radius: 14px;
+  min-height: 280px;
+  background: linear-gradient(130deg, #0f172a, #1e293b);
+  background-size: cover;
+  background-position: center;
+}
+
+.hero__placeholder {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: #cbd5e1;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.hero__placeholder i {
+  font-size: 2rem;
+}
+
+.hero__meta h2 {
+  margin: 0.75rem 0 0.35rem;
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.8rem);
+  line-height: 1.2;
+  color: var(--details-title);
+}
+
+.hero__meta p {
+  margin: 0;
+  color: var(--details-text);
+}
+
+.hero__price {
+  margin: 0.8rem 0;
+  font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem);
+  font-weight: 700;
+  color: #0b6e4f;
+}
+
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.hero__stats div {
+  border: 1px solid var(--details-border);
+  border-radius: 12px;
+  padding: 0.65rem;
+  background: #f8fafc;
+}
+
+.hero__stats span {
+  display: block;
+  font-size: 0.73rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.hero__stats strong {
+  color: var(--details-title);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card-shell--full {
+  grid-column: 1 / -1;
+}
+
+.card-shell h3 {
+  margin: 0 0 0.85rem;
+  font-size: 1rem;
+  color: var(--details-title);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.info-grid span {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin-bottom: 0.2rem;
+}
+
+.info-grid strong {
+  color: var(--details-title);
+  font-size: 0.97rem;
+  font-weight: 600;
+}
+
+.gallery-empty {
+  margin: 0;
+  color: #64748b;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.thumb {
+  all: unset;
+  display: block;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--details-border);
+  background: #f8fafc;
+  aspect-ratio: 4 / 3;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.thumb:hover img {
+  transform: scale(1.05);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgb(15 23 42 / 85%);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.lightbox__inner {
+  position: relative;
+  width: min(980px, 100%);
+  max-height: 90vh;
+  display: grid;
+  place-items: center;
+}
+
+.lightbox__inner img {
+  width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: #fff;
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.lightbox__nav--prev {
+  left: 0.5rem;
+}
+
+.lightbox__nav--next {
+  right: 0.5rem;
+}
+
+.lightbox__count {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 0.85rem;
+  background: rgb(15 23 42 / 65%);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+}
+
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__stats,
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lightbox__inner {
+    width: 100%;
+  }
+}

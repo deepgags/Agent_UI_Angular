@@ -1,15 +1,12 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
-import { SelectModule } from 'primeng/select';
 import { TagModule } from 'primeng/tag';
 import { ApiClientService, ListQuery } from '../../core/services/api-client.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
@@ -40,34 +37,22 @@ interface Property {
 @Component({
   selector: 'app-properties',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TableModule, ButtonModule, InputTextModule, InputNumberModule, DialogModule, ConfirmDialogModule, ToastModule, ToolbarModule, SelectModule, TagModule],
+  imports: [CommonModule, FormsModule, TableModule, ButtonModule, ConfirmDialogModule, ToastModule, ToolbarModule, TagModule],
   providers: [MessageService, ConfirmationService],
   templateUrl: './properties.component.html',
   styleUrl: './properties.component.scss',
 })
 export class PropertiesComponent implements OnInit {
   private apiClient = inject(ApiClientService);
-  private fb = inject(FormBuilder);
+  private router = inject(Router);
   private messageService = inject(MessageService);
   private confirmationService = inject(ConfirmationService);
 
   items = signal<Property[]>([]);
   loading = signal(false);
-  dialogVisible = false;
-  isEdit = false;
-  selectedItem: Property | null = null;
   searchQuery = '';
   currentPage = 1;
   pageSize = 10;
-
-  form = this.fb.group({
-    UnparsedAddress: ['', Validators.required],
-    City: [''],
-    StateOrProvince: [''],
-    PostalCode: [''],
-    ListPrice: [0],
-    PropertyType: [''],
-  });
 
   ngOnInit() { this.loadItems(); }
 
@@ -78,21 +63,17 @@ export class PropertiesComponent implements OnInit {
   }
 
   onSearch() { this.currentPage = 1; this.loadItems(); }
-  openDialog() { this.isEdit = false; this.selectedItem = null; this.form.reset(); this.dialogVisible = true; }
-  editItem(item: Property) { this.isEdit = true; this.selectedItem = item; this.form.patchValue(item); this.dialogVisible = true; }
+
+  onRowClick(property: Property) {
+    if (property?._id) {
+      this.router.navigate(['/properties', property._id]);
+    }
+  }
 
   deleteItem(item: Property) {
     this.confirmationService.confirm({ message: 'Are you sure?', header: 'Confirm Delete', icon: 'pi pi-exclamation-triangle', accept: () => {
       this.apiClient.delete(`/properties/${item._id}`).subscribe({ next: () => { this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Property deleted' }); this.loadItems(); } });
     }});
-  }
-
-  onSave() {
-    if (this.form.invalid) return;
-    const data = this.form.value;
-    if (this.isEdit && this.selectedItem) {
-      this.apiClient.patch(`/properties/${this.selectedItem._id}`, data).subscribe({ next: () => { this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Property updated' }); this.dialogVisible = false; this.loadItems(); } });
-    }
   }
 
   getStatusSeverity(status: string | undefined) {

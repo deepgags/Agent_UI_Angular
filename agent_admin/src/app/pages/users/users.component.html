@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1 class="page-title">Users</h1>
+  <h1 class="page-title">System Admins</h1>
   <p class="page-subtitle">Manage system users.</p>
 </div>
 <div class="card">
@@ -8,7 +8,7 @@
       <input pInputText placeholder="Search..." [(ngModel)]="searchQuery" (input)="onSearch()" class="mr-2" />
     </ng-template>
     <ng-template #end>
-      <button pButton label="Add User" icon="pi pi-plus" (click)="openDialog()"></button>
+      <button pButton label="Add System Admin" icon="pi pi-plus" (click)="openDialog()"></button>
     </ng-template>
   </p-toolbar>
   <p-table [value]="items()" [paginator]="true" [rows]="10" [loading]="loading()">
@@ -25,10 +25,10 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="emptymessage"><tr><td colspan="6" class="empty-state">No users found.</td></tr></ng-template>
+    <ng-template pTemplate="emptymessage"><tr><td colspan="6" class="empty-state">No system admins found.</td></tr></ng-template>
   </p-table>
 </div>
-<p-dialog [(visible)]="dialogVisible" [header]="isEdit ? 'Edit User' : 'Add User'" [modal]="true" [style]="{width: '500px'}">
+<p-dialog [(visible)]="dialogVisible" [header]="isEdit ? 'Edit System Admin' : 'Add System Admin'" [modal]="true" [style]="{width: '500px'}">
   <form [formGroup]="form">
     <div class="form-group"><label class="form-label">Name</label><input pInputText formControlName="name" class="w-full" /></div>
     <div class="form-group"><label class="form-label">Email</label><input pInputText formControlName="email" class="w-full" /></div>

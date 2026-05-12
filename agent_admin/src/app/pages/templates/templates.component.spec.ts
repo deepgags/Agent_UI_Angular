@@ -126,7 +126,7 @@ describe('TemplatesComponent', () => {
     });
 
     const files = [new File([''], 'test.jpg', { type: 'image/jpeg' })];
-    const fd = component.buildFormData(component.form.value, files);
+    const fd = component.buildFormData(component.form.getRawValue() as Partial<Template>, files);
 
     expect(fd.has('templateKey')).toBe(true);
     expect(fd.has('name')).toBe(true);

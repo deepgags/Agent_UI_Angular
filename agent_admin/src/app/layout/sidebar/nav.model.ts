@@ -13,11 +13,11 @@ export const navItems: NavItem[] = [
     route: '/customers',
   },
   {
-    label: 'Users & Roles',
+    label: 'System Admins & Roles',
     icon: 'pi pi-user-plus',
     route: '',
     children: [
-      { label: 'Users', icon: 'pi pi-user', route: '/users' },
+      { label: 'System Admins', icon: 'pi pi-user', route: '/users' },
       { label: 'Roles', icon: 'pi pi-shield', route: '/roles' },
     ],
   },

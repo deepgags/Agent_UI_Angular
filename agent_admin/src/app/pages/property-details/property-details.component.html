@@ -1,0 +1,120 @@
+<div class="details-page">
+  <div class="details-topbar">
+    <button pButton icon="pi pi-arrow-left" class="p-button-text" (click)="goBack()"></button>
+    <div>
+      <h1 class="page-title">Property Details</h1>
+      <p class="page-subtitle">{{ property()?.UnparsedAddress || property()?.ListingKey || 'Property Overview' }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="loading()" class="state-card">
+    <i class="pi pi-spin pi-spinner"></i>
+    <p>Loading property details...</p>
+  </div>
+
+  <div *ngIf="error()" class="state-card state-card--error">
+    <i class="pi pi-exclamation-triangle"></i>
+    <p>{{ error() }}</p>
+    <button pButton label="Back to List" (click)="goBack()"></button>
+  </div>
+
+  <ng-container *ngIf="property() && !loading()">
+    <section class="hero card-shell">
+      <div class="hero__image" [style.background-image]="heroImage() ? 'url(' + heroImage() + ')' : ''">
+        <div *ngIf="!heroImage()" class="hero__placeholder">
+          <i class="pi pi-home"></i>
+          <span>No Property Image</span>
+        </div>
+      </div>
+      <div class="hero__meta">
+        <p-tag [value]="getStatusValue()" [severity]="getStatusSeverity(getStatusValue())"></p-tag>
+        <h2>{{ property()?.UnparsedAddress || 'Address Unavailable' }}</h2>
+        <p>{{ property()?.City || 'N/A' }}, {{ property()?.StateOrProvince || 'N/A' }} {{ property()?.PostalCode || '' }}</p>
+        <div class="hero__price">{{ property()?.ListPrice ? (property()?.ListPrice | currency:'USD':'symbol':'1.0-0') : 'Price on request' }}</div>
+
+        <div class="hero__stats">
+          <div>
+            <span>Bedrooms</span>
+            <strong>{{ property()?.BedroomsTotal || 0 }}</strong>
+          </div>
+          <div>
+            <span>Bathrooms</span>
+            <strong>{{ property()?.BathroomsTotalInteger || 0 }}</strong>
+          </div>
+          <div>
+            <span>Living Area</span>
+            <strong>{{ property()?.LivingArea ? ((property()?.LivingArea | number) + ' sqft') : 'N/A' }}</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="details-grid">
+      <article class="card-shell">
+        <h3>Overview</h3>
+        <div class="info-grid">
+          <div><span>MLS ID</span><strong>{{ property()?.ListingKey || 'N/A' }}</strong></div>
+          <div><span>Property Type</span><strong>{{ property()?.PropertyType || 'N/A' }}</strong></div>
+          <div><span>Subtype</span><strong>{{ property()?.PropertySubType || 'N/A' }}</strong></div>
+          <div><span>Year Built</span><strong>{{ property()?.YearBuilt || 'N/A' }}</strong></div>
+          <div><span>Garage Type</span><strong>{{ property()?.GarageType || 'N/A' }}</strong></div>
+          <div><span>Parking</span><strong>{{ property()?.ParkingTotal || 0 }}</strong></div>
+        </div>
+      </article>
+
+      <article class="card-shell">
+        <h3>Financial</h3>
+        <div class="info-grid">
+          <div><span>List Price</span><strong>{{ property()?.ListPrice | currency:'USD':'symbol':'1.0-0' }}</strong></div>
+          <div><span>Original Price</span><strong>{{ property()?.OriginalListPrice | currency:'USD':'symbol':'1.0-0' }}</strong></div>
+          <div><span>Tax Annual</span><strong>{{ property()?.TaxAnnualAmount | currency:'USD':'symbol':'1.0-0' }}</strong></div>
+          <div><span>Tax Year</span><strong>{{ property()?.TaxYear || 'N/A' }}</strong></div>
+          <div><span>Listing Date</span><strong>{{ property()?.ListingContractDate || 'N/A' }}</strong></div>
+          <div><span>Expiration Date</span><strong>{{ property()?.ExpirationDate || 'N/A' }}</strong></div>
+        </div>
+      </article>
+
+      <article class="card-shell card-shell--full">
+        <h3>Features</h3>
+        <div class="info-grid">
+          <div><span>Heating</span><strong>{{ property()?.HeatType || 'N/A' }}</strong></div>
+          <div><span>Cooling</span><strong>{{ formatList(property()?.Cooling) }}</strong></div>
+          <div><span>Basement</span><strong>{{ formatList(property()?.Basement) }}</strong></div>
+          <div><span>Roof</span><strong>{{ formatList(property()?.Roof) }}</strong></div>
+          <div><span>Construction</span><strong>{{ formatList(property()?.ConstructionMaterials) }}</strong></div>
+          <div><span>Exterior Features</span><strong>{{ formatList(property()?.ExteriorFeatures) }}</strong></div>
+        </div>
+      </article>
+
+      <article class="card-shell card-shell--full">
+        <h3>Description</h3>
+        <p>{{ property()?.PublicRemarks || 'No public remarks available.' }}</p>
+      </article>
+
+      <article class="card-shell card-shell--full">
+        <h3>Gallery</h3>
+        <p *ngIf="photoUrls().length === 0" class="gallery-empty">No photos available for this property.</p>
+        <div *ngIf="photoUrls().length > 0" class="gallery-grid">
+          <button
+            *ngFor="let photoUrl of photoUrls(); let i = index"
+            type="button"
+            class="thumb"
+            (click)="openLightbox(i)"
+          >
+            <img [src]="photoUrl" [alt]="'Property photo ' + (i + 1)" />
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <div *ngIf="lightboxOpen()" class="lightbox" (click)="closeLightbox()">
+      <div class="lightbox__inner" (click)="$event.stopPropagation()">
+        <button pButton type="button" class="p-button-rounded p-button-text lightbox__close" icon="pi pi-times" (click)="closeLightbox()"></button>
+        <button pButton type="button" class="p-button-rounded p-button-text lightbox__nav lightbox__nav--prev" icon="pi pi-chevron-left" (click)="showPreviousPhoto()"></button>
+        <img [src]="photoUrls()[activePhotoIndex()]" [alt]="'Property photo ' + (activePhotoIndex() + 1)" />
+        <button pButton type="button" class="p-button-rounded p-button-text lightbox__nav lightbox__nav--next" icon="pi pi-chevron-right" (click)="showNextPhoto()"></button>
+        <span class="lightbox__count">{{ activePhotoIndex() + 1 }} / {{ photoUrls().length }}</span>
+      </div>
+    </div>
+  </ng-container>
+</div>

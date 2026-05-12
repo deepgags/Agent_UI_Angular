@@ -57,6 +57,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/properties/properties.component').then((m) => m.PropertiesComponent),
       },
       {
+        path: 'properties/:id',
+        loadComponent: () => import('./pages/property-details/property-details.component').then((m) => m.PropertyDetailsComponent),
+      },
+      {
         path: 'audit-logs',
         loadComponent: () => import('./pages/audit-logs/audit-logs.component').then((m) => m.AuditLogsComponent),
       },
