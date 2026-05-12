@@ -15,7 +15,7 @@
 						</p>
 						<div class="text-center">
 							<footer class="footer">
-								<button [ngClass]="template.templateKey == selectedTemplate ? 'btn btn-success border border-success green' : 'btn btn-primary'"
+								<button [class]="template.templateKey == selectedTemplate ? 'btn btn-success border border-success green' : 'btn btn-primary'"
 										(click)="setTemplate(template)"
 										class="me-2 mt-4">
 									{{ template.templateKey == selectedTemplate ? "Applied" : "Apply" }}

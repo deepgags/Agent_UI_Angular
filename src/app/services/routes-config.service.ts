@@ -26,7 +26,13 @@ export class RoutesConfigService {
 
 			const { customer, mainMenu, sideMenu, team, cities, heroImages, meta, homeSections } = response.data;
 
-			const templateId = customer.websiteSettings.templateId;
+			const params = new URLSearchParams(this.document.location.search);
+			const previewTemplateKey = params.get("templatePreview")?.trim();
+			const configuredTemplateId = customer.websiteSettings.templateId;
+			const templateId =
+				previewTemplateKey && templates[previewTemplateKey]
+					? previewTemplateKey
+					: configuredTemplateId;
 			if (customer.websiteSettings.primaryColor) {
 				this.document.documentElement.style.setProperty(
 					"--primary-color",

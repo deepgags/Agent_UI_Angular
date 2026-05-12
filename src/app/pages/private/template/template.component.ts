@@ -1,13 +1,14 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, WritableSignal } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { Title } from "@angular/platform-browser";
 
-import { DialogModule } from "primeng/dialog";
-import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
+import { Router } from "@angular/router";
+// import { DialogModule } from "primeng/dialog";
+// import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
 import { BehaviorSubject } from "rxjs";
 import { GalleryComponent } from "../../../components/gallery/gallery.component";
-import { TemplatePreviewComponent } from "../../../components/template-preview/template-preview.component";
+// import { TemplatePreviewComponent } from "../../../components/template-preview/template-preview.component";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { TemplateModel } from "../../../models/TemplateModel";
@@ -19,8 +20,13 @@ import { TemplateService } from "../../../services/template.service";
 
 @Component({
 	selector: "app-template",
-	imports: [CommonModule, GalleryComponent, DialogModule, DynamicDialogModule],
-	providers: [DialogService],
+	standalone: true,
+	imports: [
+		CommonModule,
+		GalleryComponent,
+		// DialogModule, DynamicDialogModule
+	],
+	// providers: [DialogService],
 	templateUrl: "./template.component.html",
 	styleUrl: "./template.component.scss",
 })
@@ -38,7 +44,7 @@ export class TemplateComponent implements OnInit {
 		private titleService: Title,
 		private loadingService: LoadingService,
 		public sharedDataService: SharedDataService,
-		public dialogService: DialogService,
+		private router: Router,
 	) {
 		this.titleService.setTitle("Templates");
 		this.siteConfig = this.sharedDataService.siteData();
@@ -103,19 +109,14 @@ export class TemplateComponent implements OnInit {
 	}
 
 	previewTemplate(template: TemplateModel) {
-		const ref = this.dialogService.open(TemplatePreviewComponent, {
-			header: "Preview",
-			modal: true,
-			closable: true,
-			width: "80%",
-			data: {
-				template: template,
-			},
-		});
-		ref?.onClose.subscribe((setTemplate: boolean) => {
-			if (setTemplate) {
-				this.setTemplate(template);
-			}
-		});
+		if (!template?.templateKey) {
+			this.notificationService.showError("Template key is missing for preview.");
+			return;
+		}
+
+		const url = this.router.serializeUrl(
+			this.router.createUrlTree(["/home"], { queryParams: { templatePreview: template.templateKey } }),
+		);
+		window.open(url, "_blank");
 	}
 }
