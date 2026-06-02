@@ -1,14 +1,10 @@
 <p-galleria [value]="images"
 			[responsiveOptions]="responsiveOptions"
-			[numVisible]="5">
+			[numVisible]="5"
+			[showThumbnails]="false">
 	<ng-template #item
 				 let-item>
 		<img [src]="item"
 			 class="gallery-img" />
-	</ng-template>
-	<ng-template #thumbnail
-				 let-item>
-		<img [src]="item"
-			 class="thumbnail" />
 	</ng-template>
 </p-galleria>

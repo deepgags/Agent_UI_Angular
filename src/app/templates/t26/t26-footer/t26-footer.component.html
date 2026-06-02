@@ -36,10 +36,52 @@
 								}
 							</div>
 							<div class="mt-4">
-								<p class="text-muted small mb-0 lh-lg">
+								<p class="text-muted small mb-3 lh-lg">
 									<i class="fa-solid fa-quote-left text-primary me-2"></i>
 									Your trusted partner in finding your dream property
 								</p>
+								<div class="d-flex gap-2 flex-wrap">
+									@if (siteConfig.websiteSettings.socialLinks.facebook) {
+									<a [href]="siteConfig.websiteSettings.socialLinks.facebook"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-outline-primary btn-sm rounded-circle p-2">
+										<i class="bi bi-facebook"></i>
+									</a>
+									}
+									@if (siteConfig.websiteSettings.socialLinks.twitter) {
+									<a [href]="siteConfig.websiteSettings.socialLinks.twitter"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-outline-primary btn-sm rounded-circle p-2">
+										<i class="bi bi-twitter"></i>
+									</a>
+									}
+									@if (siteConfig.websiteSettings.socialLinks.instagram) {
+									<a [href]="siteConfig.websiteSettings.socialLinks.instagram"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-outline-primary btn-sm rounded-circle p-2">
+										<i class="bi bi-instagram"></i>
+									</a>
+									}
+									@if (siteConfig.websiteSettings.socialLinks.linkedin) {
+									<a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-outline-primary btn-sm rounded-circle p-2">
+										<i class="bi bi-linkedin"></i>
+									</a>
+									}
+									@if (siteConfig.websiteSettings.socialLinks.youtube) {
+									<a [href]="siteConfig.websiteSettings.socialLinks.youtube"
+									   target="_blank"
+									   rel="noopener noreferrer"
+									   class="btn btn-outline-primary btn-sm rounded-circle p-2">
+										<i class="bi bi-youtube"></i>
+									</a>
+									}
+								</div>
 							</div>
 						}
 					</div>
@@ -51,12 +93,18 @@
 							<div
 								class="card bg-white bg-opacity-25 backdrop-blur border-0 rounded-4 h-100 text-white shadow-lg">
 								<div class="card-body p-4">
+									@if (siteConfig) {
 									<div class="d-flex align-items-center mb-3">
-										<div class="bg-white rounded-circle p-2 me-3">
-											<i class="fa-solid fa-user-tie text-primary fs-4"></i>
+										<img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
+										     alt="{{ siteConfig.firstName }}"
+										     class="rounded-circle me-3 flex-shrink-0"
+										     style="width:50px;height:50px;object-fit:cover;" />
+										<div>
+											<h6 class="fw-bold mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h6>
+											<small class="text-muted">{{ siteConfig.designation }}</small>
 										</div>
-										<h5 class="fw-bold mb-0">Primary Contact</h5>
 									</div>
+									}
 
 									@if (siteConfig?.websiteSettings?.contactInfo?.phone) {
 										<a
@@ -105,10 +153,14 @@
 									class="card bg-white bg-opacity-25 backdrop-blur border-0 rounded-4 h-100 text-white shadow-lg">
 									<div class="card-body p-4">
 										<div class="d-flex align-items-center mb-3">
-											<div class="bg-white rounded-circle p-2 me-3">
-												<i class="fa-solid fa-user-tie text-danger fs-4"></i>
+											<img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl + siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
+											     alt="{{ siteConfig.secondaryAgent.firstName }}"
+											     class="rounded-circle me-3 flex-shrink-0"
+											     style="width:50px;height:50px;object-fit:cover;" />
+											<div>
+												<h6 class="fw-bold mb-0">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</h6>
+												<small class="text-muted">{{ siteConfig.secondaryAgent.designation }}</small>
 											</div>
-											<h5 class="fw-bold mb-0">Secondary Contact</h5>
 										</div>
 
 										<a
