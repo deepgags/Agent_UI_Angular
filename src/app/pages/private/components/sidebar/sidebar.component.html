@@ -27,22 +27,6 @@
 		</li>
 
 		<li class="mb-1">
-			<a routerLink="/old-manager"
-			   routerLinkActive="active"
-			   class="d-flex align-items-center text-dark text-decoration-none py-2">
-				<i class="bi bi-person me-2"></i>Landing Page Settings
-			</a>
-		</li>
-
-		<li class="mb-1">
-			<a routerLink="/menu-manager"
-			   routerLinkActive="active"
-			   class="d-flex align-items-center text-dark text-decoration-none py-2">
-				<i class="bi bi-person me-2"></i> Menu Manager
-			</a>
-		</li>
-
-		<li class="mb-1">
 			<a routerLink="/leads"
 			   routerLinkActive="active"
 			   class="d-flex align-items-center text-dark text-decoration-none py-2">
@@ -54,20 +38,13 @@
 			<a routerLink="/testimonial"
 			   routerLinkActive="active"
 			   class="d-flex align-items-center text-dark text-decoration-none py-2">
-				<i class="bi bi-building me-2"></i> Testimonial
+				<i class="bi bi-chat-quote me-2"></i> Testimonial
 			</a>
 		</li>
 
 
-		<li class="mb-1">
-			<a routerLink="/users"
-			   routerLinkActive="active"
-			   class="d-flex align-items-center text-dark text-decoration-none py-2">
-				<i class="bi bi-people me-2"></i> Registered Users
-			</a>
-		</li>
 
-		@if(isBroker){
+@if(isBroker){
 		<li class="mb-1">
 			<a routerLink="/manage-team"
 			   routerLinkActive="active"

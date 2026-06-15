@@ -1,43 +1,113 @@
+// ── Stat cards ─────────────────────────────────────────────────────────────────
 .stat-card {
-  text-align: center;
-  border-radius: 8px;
-  color: #fff;
+	position: relative;
+	overflow: hidden;
+	border-radius: 12px;
+	padding: 1.25rem 1.25rem 1rem;
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+	transition: transform 0.18s ease, box-shadow 0.18s ease;
 
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-
-  .card-value {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 15px 0;
-  }
-
-  .card-footer {
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-  }
+	&:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+	}
 }
 
-
-.card4 {
-background: linear-gradient(135deg, #43C6AC, #191654);
-
+.stat-bg-icon {
+	position: absolute;
+	right: -10px;
+	bottom: -8px;
+	font-size: 5rem;
+	opacity: 0.15;
+	pointer-events: none;
+	line-height: 1;
 }
 
-.card2 {
-background: linear-gradient(135deg, #4CAF50, #CDDC39);
-
+.stat-label {
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	opacity: 0.9;
+	margin-bottom: 0.35rem;
 }
 
-.card3 {
-background: linear-gradient(135deg, #FF9800, #FFEB3B);
-
+.stat-value {
+	font-size: 2.2rem;
+	font-weight: 700;
+	line-height: 1.1;
+	margin-bottom: 0.35rem;
 }
 
-.card1 {
-background: linear-gradient(135deg, #36D1DC, #5B86E5);
+.stat-sub {
+	font-size: 11px;
+	opacity: 0.75;
+}
 
+.stat-trend {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 12px;
+	font-weight: 600;
+	padding: 2px 8px;
+	border-radius: 20px;
+	margin-top: 4px;
+
+	&.trend-up {
+		background: rgba(255, 255, 255, 0.25);
+		color: #fff;
+	}
+
+	&.trend-down {
+		background: rgba(0, 0, 0, 0.15);
+		color: #ffe0e0;
+	}
+}
+
+// ── Card gradients ─────────────────────────────────────────────────────────────
+.card1 { background: linear-gradient(135deg, #36D1DC, #5B86E5); }
+.card2 { background: linear-gradient(135deg, #4CAF50, #CDDC39); }
+.card3 { background: linear-gradient(135deg, #FF9800, #FFEB3B); }
+.card4 { background: linear-gradient(135deg, #43C6AC, #191654); }
+
+// ── Progress panel ─────────────────────────────────────────────────────────────
+.progress-panel {
+	background: #fff;
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+	padding: 1rem 1.25rem;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+// ── Quick actions ──────────────────────────────────────────────────────────────
+.quick-action {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 1rem 0.5rem;
+	background: #fff;
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+	text-align: center;
+	color: #374151;
+	font-size: 12px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+	&:hover {
+		border-color: #93c5fd;
+		box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
+		transform: translateY(-2px);
+		color: #1d4ed8;
+	}
+}
+
+.quick-icon {
+	font-size: 1.6rem;
 }

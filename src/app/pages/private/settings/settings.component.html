@@ -1,6 +1,16 @@
 <div class="col mt-3">
-	<h2>Settings</h2>
-	<p class="">Manage account details</p>
+
+	<div class="d-flex justify-content-between align-items-center mb-3">
+		<div>
+			<h2 class="mb-0">Settings</h2>
+			<p class="text-muted mb-0 mt-1">Manage account details</p>
+		</div>
+		<button type="button"
+				(click)="save()"
+				class="btn btn-success px-4">
+			<i class="fas fa-save me-2"></i>Save Changes
+		</button>
+	</div>
 
 	<div class="">
 		<div class="row justify-content-center">
@@ -9,212 +19,346 @@
 					  name="brokerageForm"
 					  class="w-100"
 					  (ngSubmit)="save()">
-					<div class="">
-						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
-							<i class="fas fa-address-book text-muted me-2"></i>
+
+					<!-- Account Information -->
+					<div class="mb-4 section-card section-account">
+						<h6 class="section-header">
+							<i class="fas fa-address-book me-2" style="color: #3b82f6;"></i>
 							Account Information
 						</h6>
-						<div class="mb-4 border p-3 rounded shadow-sm">
-							<div class="row">
-								<div class="col-md-12 mb-3">
+
+						<div class="mb-3">
+							<label class="form-label text-muted small mb-1">Website URL</label>
+							<div class="input-group">
+								<span class="input-group-text bg-light text-muted border-end-0">
+									<i class="bi bi-lock-fill"></i>
+								</span>
+								<input type="url"
+									   pInputText
+									   formControlName="siteUrl"
+									   class="form-control bg-light border-start-0 text-muted"
+									   id="siteUrl"
+									   readonly />
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="mb-3">
 									<p-iftalabel>
-										<input type="url"
-											   pInputText
-											   formControlName="siteUrl"
-											   placeholder="Website URL"
-											   class="form-control"
-											   id="siteUrl"
-											   readonly />
-										<label for="siteUrl">Website URL</label>
+										<p-inputmask mask="999-999-9999"
+													 formControlName="phoneNumber"
+													 styleClass="form-control"
+													 inputId="phoneNumber"
+													 required></p-inputmask>
+										<label for="phoneNumber">Phone Number</label>
 									</p-iftalabel>
-									@if (siteUrl?.invalid && (siteUrl?.dirty || siteUrl?.touched)) {
+									@if (phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)) {
 									<span class="error">
-										@if (siteUrl?.errors?.['required']) {
-										<span>Website URL is required</span>
-										} @if (siteUrl?.errors?.['pattern']) {
-										<span>Enter a valid website URL</span>
+										@if (phoneNumber?.errors?.['required']) {
+										<span>Phone Number is required</span>
+										} @if (phoneNumber?.errors?.['pattern']) {
+										<span>Enter a valid phone number</span>
 										}
 									</span>
 									}
 								</div>
 							</div>
-
-							<div class="row">
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<p-inputmask mask="999-999-9999"
-														 formControlName="phoneNumber"
-														 styleClass="form-control"
-														 inputId="phoneNumber"
-														 required></p-inputmask>
-											<label for="phoneNumber">Phone Number</label>
-										</p-iftalabel>
-										@if (phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)) {
-										<span class="error">
-											@if (phoneNumber?.errors?.['required']) {
-											<span>Phone Number is required</span>
-											} @if (phoneNumber?.errors?.['pattern']) {
-											<span>Enter a valid phone number</span>
-											}
-										</span>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="email"
+											   pInputText
+											   formControlName="emailAddress"
+											   class="form-control"
+											   id="emailAddress"
+											   required />
+										<label for="emailAddress">Personal Email</label>
+									</p-iftalabel>
+									@if (emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)) {
+									<span class="error">
+										@if (emailAddress?.errors?.['required']) {
+										<span>Email Address is required</span>
 										}
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="email"
-												   pInputText
-												   formControlName="emailAddress"
-												   placeholder="Personal Email"
-												   class="form-control"
-												   id="emailAddress"
-												   required />
-											<label for="emailAddress">Personal Email</label>
-										</p-iftalabel>
-										@if (emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)) {
-										<span class="error">
-											@if (emailAddress?.errors?.['required']) {
-											<span>Email Address is required</span>
-											}
-											@if (emailAddress?.errors?.['email']) {
-											<span>Enter a valid email address</span>
-											}
-										</span>
+										@if (emailAddress?.errors?.['email']) {
+										<span>Enter a valid email address</span>
 										}
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="text"
-												   pInputText
-												   formControlName="businessName"
-												   placeholder="Business Name"
-												   class="form-control"
-												   id="businessName"
-												   required />
-											<label for="businessName">Brokerage Name</label>
-										</p-iftalabel>
-										@if (businessName?.invalid && (businessName?.dirty || businessName?.touched)) {
-										<span class="error">
-											@if (businessName?.errors?.['required']) {
-											<span>Brokerage Name is required</span>
-											}
-										</span>
-										}
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="text"
-												   pInputText
-												   formControlName="address"
-												   placeholder="Brokerage Address"
-												   class="form-control"
-												   id="address" />
-											<label for="address">Brokerage Address</label>
-										</p-iftalabel>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="mb-4 border p-3 rounded shadow-sm">
-							<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
-								<i class="fas fa-building text-muted me-2"></i>
-								Brokerage Information
-							</h6>
-							<div class="row mt-4 justify-content-start align-items-start">
-								<div class="col-lg-6 col-12">
-									<label class="form-label fw-semibold d-block">
-										Brokerage
-									</label>
-									<div class="mb-3">
-										<p-iftalabel>
-											<!-- <p-select formControlName="brokerageType"
-													  [options]="brokerageTypes"
-													  optionLabel="name"
-													  optionValue="_id"
-													  styleClass="w-100"
-													  inputId="brokerageType"></p-select> -->
-											<p-autocomplete formControlName="brokerageType"
-															[suggestions]="brokerageTypes"
-															(completeMethod)="searchBrokerage($event)"
-															styleClass="w-100"
-															class="w-100" />
-											<label for="brokerageType">Brokerage</label>
-										</p-iftalabel>
-										@if (brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)) {
-										<span class="error">
-											@if (brokerageType?.errors?.['required']) {
-											<span>Brokerage is required</span>
-											}
-										</span>
-										}
-									</div>
-								</div>
-							</div>
-							<div class="row justify-content-start align-items-start">
-
-								<div class="col-lg-6 col-12">
-									<div class="upload-container mb-3 mb-md-0 bg-light">
-										<label class="form-label fw-semibold d-block">
-											Brokerage Logo
-										</label>
-										<input type="file"
-											   #brokerageLogoUpload
-											   (change)="onBrokerageLogoImageChange($event)"
-											   class="form-control upload-btn w-100"
-											   id="logoImageUpload"
-											   accept="image/*" />
-
-									</div>
-								</div>
-								<div class="col-lg-6 col-12">
-									@if (brokerageLogoImageObservable | async; as logoImage) {
-									<div class="mt-3 p-2 border rounded bg-white shadow-sm position-relative">
-										<button type="button"
-												class="btn btn-sm position-absolute top-0 end-0 mt-1 me-1 p-0"
-												style="background: none; border: none; color: #dc3545; font-size: 18px;"
-												(click)="removeBrokerageLogoImage()"
-												title="Remove Logo">
-											<i class="bi bi-x-circle-fill"></i>
-										</button>
-										<div class="text-center">
-											<h6 class="text-dark fw-bold mb-2">Brokerage Logo Preview</h6>
-											<img [src]="logoImage | blobToUrl"
-												 class="rounded border image-preview"
-												 style="width: 150px; height: 150px; object-fit: cover;"
-												 alt="Logo Preview" />
-										</div>
-									</div>
-									}
-									@else if (existingBrokerageImage) {
-									<div class="mt-3 p-2 border rounded bg-white shadow-sm">
-										<div class="text-center">
-											<h6 class="text-dark fw-bold mb-2">Brokerage Logo Preview</h6>
-											<img [src]="localImageBaseUrl + existingBrokerageImage"
-												 class="rounded border image-preview"
-												 style="width: 150px; height: 150px; object-fit: cover;"
-												 alt="Logo Preview" />
-										</div>
-									</div>
+									</span>
 									}
 								</div>
 							</div>
 						</div>
 
-						<div class="mb-4 border p-3 rounded shadow-sm">
-							<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
-								<i class="fas fa-user-tie text-muted me-2"></i>
-								Primary Agent Information
-							</h6>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="text"
+											   pInputText
+											   formControlName="businessName"
+											   class="form-control"
+											   id="businessName"
+											   required />
+										<label for="businessName">Brokerage Name</label>
+									</p-iftalabel>
+									@if (businessName?.invalid && (businessName?.dirty || businessName?.touched)) {
+									<span class="error">
+										@if (businessName?.errors?.['required']) {
+										<span>Brokerage Name is required</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="text"
+											   pInputText
+											   formControlName="address"
+											   class="form-control"
+											   id="address" />
+										<label for="address">Brokerage Address</label>
+									</p-iftalabel>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Brokerage Information -->
+					<div class="mb-4 section-card section-brokerage">
+						<h6 class="section-header">
+							<i class="fas fa-building me-2" style="color: #f59e0b;"></i>
+							Brokerage Information
+						</h6>
+
+						<div class="row mt-2 justify-content-start align-items-start">
+							<div class="col-lg-6 col-12">
+								<label class="form-label fw-semibold d-block">Brokerage</label>
+								<div class="mb-3">
+									<p-iftalabel>
+										<p-autocomplete formControlName="brokerageType"
+														[suggestions]="brokerageTypes"
+														(completeMethod)="searchBrokerage($event)"
+														styleClass="w-100"
+														class="w-100" />
+										<label for="brokerageType">Brokerage</label>
+									</p-iftalabel>
+									@if (brokerageType?.invalid && (brokerageType?.dirty || brokerageType?.touched)) {
+									<span class="error">
+										@if (brokerageType?.errors?.['required']) {
+										<span>Brokerage is required</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+						</div>
+
+						<div class="row justify-content-start align-items-center">
+							<div class="col-lg-6 col-12">
+								<label class="form-label fw-semibold d-block">Brokerage Logo</label>
+								<div class="upload-zone"
+									 (click)="brokerageLogoUpload.click()">
+									<i class="bi bi-cloud-arrow-up fs-4 mb-1 d-block text-muted"></i>
+									<span class="text-muted small">Click to upload logo</span>
+									<input type="file"
+										   #brokerageLogoUpload
+										   (change)="onBrokerageLogoImageChange($event)"
+										   class="d-none"
+										   id="logoImageUpload"
+										   accept="image/*" />
+								</div>
+							</div>
+							<div class="col-lg-6 col-12 d-flex align-items-center mt-3 mt-lg-0">
+								@if (brokerageLogoImageObservable | async; as logoImage) {
+								<div class="image-preview-card position-relative">
+									<button type="button"
+											class="btn-remove"
+											(click)="removeBrokerageLogoImage()"
+											title="Remove Logo">
+										<i class="bi bi-x-circle-fill"></i>
+									</button>
+									<p class="preview-label">Brokerage Logo</p>
+									<img [src]="logoImage | blobToUrl"
+										 class="preview-img"
+										 alt="Logo Preview" />
+								</div>
+								}
+								@else if (existingBrokerageImage) {
+								<div class="image-preview-card">
+									<p class="preview-label">Brokerage Logo</p>
+									<img [src]="localImageBaseUrl + existingBrokerageImage"
+										 class="preview-img"
+										 alt="Logo Preview" />
+								</div>
+								}
+							</div>
+						</div>
+					</div>
+
+					<!-- Primary Agent Information -->
+					<div class="mb-4 section-card section-agent">
+						<h6 class="section-header">
+							<i class="fas fa-user-tie me-2" style="color: #10b981;"></i>
+							Primary Agent Information
+						</h6>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="text"
+											   pInputText
+											   formControlName="firstName"
+											   class="form-control"
+											   id="firstName"
+											   required />
+										<label for="firstName">First Name</label>
+									</p-iftalabel>
+									@if (firstName?.invalid && (firstName?.dirty || firstName?.touched)) {
+									<span class="error">
+										@if (firstName?.errors?.['required']) {
+										<span>First Name is required</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="text"
+											   pInputText
+											   formControlName="lastName"
+											   class="form-control"
+											   id="lastName"
+											   required />
+										<label for="lastName">Last Name</label>
+									</p-iftalabel>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="email"
+											   pInputText
+											   formControlName="websiteEmail"
+											   class="form-control"
+											   id="websiteEmail"
+											   required />
+										<label for="websiteEmail">Email (Displayed on Website)</label>
+									</p-iftalabel>
+									@if (websiteEmail?.invalid && (websiteEmail?.dirty || websiteEmail?.touched)) {
+									<span class="error">
+										@if (websiteEmail?.errors?.['required']) {
+										<span>Email Address is required</span>
+										}
+										@if (websiteEmail?.errors?.['email']) {
+										<span>Enter a valid email address</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<p-inputmask mask="999-999-9999"
+													 formControlName="websitePhone"
+													 styleClass="form-control"
+													 placeholder="Website Phone"
+													 id="websitePhone"
+													 required></p-inputmask>
+										<label for="websitePhone">Phone (Displayed on Website)</label>
+									</p-iftalabel>
+									@if (websitePhone?.invalid && (websitePhone?.dirty || websitePhone?.touched)) {
+									<span class="error">
+										@if (websitePhone?.errors?.['required']) {
+										<span>Phone is required</span>
+										}
+										@if (phoneNumber?.errors?.['pattern']) {
+										<span>Phone is invalid</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="text"
+											   pInputText
+											   formControlName="designation"
+											   class="form-control"
+											   id="designation" />
+										<label for="designation">Designation (Displayed on Website)</label>
+									</p-iftalabel>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-6 col-12">
+								<label class="form-label fw-semibold d-block">Profile Picture</label>
+								<div class="upload-zone upload-zone-avatar"
+									 (click)="primaryUpload.click()">
+									<i class="bi bi-person-circle fs-3 mb-1 d-block text-muted"></i>
+									<span class="text-muted small">Click to upload photo</span>
+									<input type="file"
+										   #primaryUpload
+										   (change)="onProfileImageChange($event)"
+										   class="d-none"
+										   id="profileImageUpload"
+										   accept="image/*" />
+								</div>
+							</div>
+							<div class="col-lg-6 col-12 d-flex align-items-center mt-3 mt-lg-0">
+								@if (primaryAgentProfileImageObservable | async; as primaryAgentProfileImage) {
+								<div class="image-preview-card text-center">
+									<p class="preview-label">Profile Picture</p>
+									<img [src]="primaryAgentProfileImage | blobToUrl"
+										 class="rounded-circle preview-avatar"
+										 alt="Profile Picture Preview" />
+								</div>
+								}
+								@else if (existingProfileImage) {
+								<div class="image-preview-card text-center">
+									<p class="preview-label">Profile Picture</p>
+									<img [src]="localImageBaseUrl + existingProfileImage"
+										 class="rounded-circle preview-avatar"
+										 alt="Profile Picture Preview" />
+								</div>
+								}
+							</div>
+						</div>
+					</div>
+
+					<!-- Secondary Agent Information -->
+					<div class="mb-4 section-card section-secondary"
+						 formGroupName="secondaryAgent">
+						<h6 class="section-header">
+							<i class="fas fa-user-plus me-2" style="color: #8b5cf6;"></i>
+							Secondary Agent Information
+						</h6>
+
+						<div class="mb-3 d-flex align-items-center gap-3">
+							<p-toggleswitch formControlName="enableSecondaryAgent"
+											id="enableSecondaryAgent"
+											(onChange)="setSecondaryAgentValidations($event)" />
+							<label for="enableSecondaryAgent"
+								   class="mb-0 fw-semibold">Enable Secondary Agent</label>
+							@if (agentForm.get('secondaryAgent.enableSecondaryAgent')?.value) {
+							<span class="badge bg-success">Active</span>
+							} @else {
+							<span class="badge bg-secondary">Inactive</span>
+							}
+						</div>
+
+						<div [class.agent-disabled]="!agentForm.get('secondaryAgent.enableSecondaryAgent')?.value">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-3">
@@ -222,183 +366,6 @@
 											<input type="text"
 												   pInputText
 												   formControlName="firstName"
-												   placeholder="First Name"
-												   class="form-control"
-												   id="firstName"
-												   required />
-											<label for="firstName">First Name</label>
-										</p-iftalabel>
-										@if (firstName?.invalid && (firstName?.dirty || firstName?.touched)) {
-										<span class="error">
-											@if (firstName?.errors?.['required']) {
-											<span>First Name is required</span>
-											}
-										</span>
-										}
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="text"
-												   pInputText
-												   formControlName="lastName"
-												   placeholder="Last Name"
-												   class="form-control"
-												   id="lastName"
-												   required />
-											<label for="lastName">Last Name</label>
-										</p-iftalabel>
-										<!-- @if (lastName?.invalid && (lastName?.dirty || lastName?.touched)) {
-										<span class="error">
-											@if (lastName?.errors?.['required']) {
-											<span>Last Name is required</span>
-											}
-										</span>
-										} -->
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="email"
-												   pInputText
-												   formControlName="websiteEmail"
-												   placeholder="Website Email"
-												   class="form-control"
-												   id="websiteEmail"
-												   required />
-											<label for="websiteEmail">Email (Displayed on Website)</label>
-										</p-iftalabel>
-										@if (websiteEmail?.invalid && (websiteEmail?.dirty || websiteEmail?.touched)) {
-										<span class="error">
-											@if (websiteEmail?.errors?.['required']) {
-											<span>Email Address is required</span>
-											}
-											@if (websiteEmail?.errors?.['email']) {
-											<span>Enter a valid email address</span>
-											}
-
-										</span>
-										}
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<p-inputmask mask="999-999-9999"
-														 formControlName="websitePhone"
-														 styleClass="form-control"
-														 placeholder="Website Phone"
-														 id="websitePhone"
-														 required></p-inputmask>
-											<label for="websitePhone">Phone (Displayed on Website)</label>
-										</p-iftalabel>
-										@if (websitePhone?.invalid && (websitePhone?.dirty || websitePhone?.touched)) {
-										<span class="error">
-											@if (websitePhone?.errors?.['required']) {
-											<span>Phone is required</span>
-											}
-											@if (phoneNumber?.errors?.['pattern']) {
-											<span>Phone is invalid</span>
-											}
-										</span>
-										}
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="text"
-												   pInputText
-												   formControlName="designation"
-												   placeholder="Designation"
-												   class="form-control"
-												   id="designation" />
-											<label for="designation">Designation (Displayed on Website)</label>
-										</p-iftalabel>
-										@if (designation?.invalid && (designation?.dirty || designation?.touched)) {
-										<span class="error">
-											@if (designation?.errors?.['required']) {
-											<span>Designation is required</span>
-											}
-										</span>
-										}
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6 col-12">
-									<div class="bg-white shadow-sm">
-
-										<h6 class="text-muted  d-flex align-items-center">
-											<i class="fas fa-user-tie text-muted me-2"></i>
-											Primary Agent Picture
-										</h6>
-										<div class="upload-container p-3 border rounded bg-light">
-											<label class="form-label fw-semibold d-block"
-												   style="font-size: 14px">
-												<i class="fas fa-user-circle me-2"></i>
-												Profile Picture
-											</label>
-											<input type="file"
-												   (change)="onProfileImageChange($event)"
-												   class="form-control upload-btn w-100"
-												   id="profileImageUpload"
-												   accept="image/*" />
-										</div>
-									</div>
-								</div>
-
-								<div class="col-lg-6 col-12">
-									@if (primaryAgentProfileImageObservable | async; as primaryAgentProfileImage) {
-									<div class="mt-3 p-2 border rounded bg-white shadow-sm">
-										<div class="text-center">
-											<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
-											<img [src]="primaryAgentProfileImage | blobToUrl"
-												 class="rounded border image-preview"
-												 alt="Profile Picture Preview" />
-										</div>
-									</div>
-									}
-									@else if (existingProfileImage) {
-									<div class="mt-3 p-2 border rounded bg-white shadow-sm">
-										<div class="text-center">
-											<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
-											<img [src]="localImageBaseUrl + existingProfileImage"
-												 class="rounded border image-preview"
-												 alt="Profile Picture Preview" />
-										</div>
-									</div>
-									}
-								</div>
-							</div>
-						</div>
-
-						<div class="mb-4 border p-3 rounded shadow-sm"
-							 formGroupName="secondaryAgent">
-							<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
-								<i class="fas fa-user-tie text-muted me-2"></i>
-								Secondary Agent Information
-							</h6>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="mb-3 d-flex gap-2">
-										<label for="enableSecondaryAgent">Enable Secondary Agent</label>
-										<p-toggleswitch formControlName="enableSecondaryAgent"
-														id="enableSecondaryAgent"
-														(onChange)="setSecondaryAgentValidations($event)" />
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="text"
-												   pInputText
-												   formControlName="firstName"
-												   placeholder="First Name"
 												   class="form-control"
 												   id="secondaryFirstName" />
 											<label for="secondaryFirstName">First Name</label>
@@ -419,7 +386,6 @@
 											<input type="text"
 												   pInputText
 												   formControlName="lastName"
-												   placeholder="Last Name"
 												   class="form-control"
 												   id="secondaryLastName" />
 											<label for="secondaryLastName">Last Name</label>
@@ -454,7 +420,6 @@
 											<input type="email"
 												   pInputText
 												   formControlName="websiteEmail"
-												   placeholder="Website Email"
 												   class="form-control"
 												   id="secondaryWebsiteEmail" />
 											<label for="secondaryWebsiteEmail">Website Email</label>
@@ -478,202 +443,225 @@
 											<input type="text"
 												   pInputText
 												   formControlName="designation"
-												   placeholder="Designation"
 												   class="form-control"
-												   id="designation" />
-											<label for="designation">Designation (Displayed on Website)</label>
+												   id="secondaryDesignation" />
+											<label for="secondaryDesignation">Designation (Displayed on Website)</label>
 										</p-iftalabel>
-										@if(agentForm.get('secondaryAgent.designation')?.invalid && (agentForm.get('secondaryAgent.designation')?.dirty ||
-										agentForm.get('secondaryAgent.designation')?.touched)){
-										<span class="error">
-											@if(agentForm.get('secondaryAgent.designation')?.errors?.['required']){
-											<span>Designation is required</span>
-											}
-										</span>
-										}
 									</div>
 								</div>
 							</div>
 							<div class="row mb-3">
-
 								<div class="col-lg-6 col-12">
-									<div class="bg-white shadow-sm">
-										<h6 class="text-muted d-flex align-items-center">
-											<i class="fas fa-user-tie text-muted me-2"></i>
-											Secondary Agent Picture
-										</h6>
-										<div class="upload-container p-3 border rounded bg-light">
-											<label class="form-label fw-semibold d-block"
-												   style="font-size: 14px">
-												<i class="fas fa-user-circle me-2"></i>
-												Profile Picture
-											</label>
-											<input type="file"
-												   (change)="onSecondaryProfileImageChange($event)"
-												   class="form-control upload-btn w-100"
-												   id="secondaryProfileImageUpload"
-												   accept="image/*" />
-										</div>
+									<label class="form-label fw-semibold d-block">Profile Picture</label>
+									<div class="upload-zone upload-zone-avatar"
+										 (click)="secondaryUpload.click()">
+										<i class="bi bi-person-circle fs-3 mb-1 d-block text-muted"></i>
+										<span class="text-muted small">Click to upload photo</span>
+										<input type="file"
+											   #secondaryUpload
+											   (change)="onSecondaryProfileImageChange($event)"
+											   class="d-none"
+											   id="secondaryProfileImageUpload"
+											   accept="image/*" />
 									</div>
 								</div>
-
-								<div class="col-lg-6 col-12">
+								<div class="col-lg-6 col-12 d-flex align-items-center mt-3 mt-lg-0">
 									@if (secondaryAgentProfileImageObservable | async; as secondaryAgentProfileImage) {
-									<div class="mt-3 p-2 border rounded bg-white shadow-sm">
-										<div class="text-center">
-											<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
-											<img [src]="secondaryAgentProfileImage | blobToUrl"
-												 class="rounded border image-preview"
-												 alt="Profile Picture Preview" />
-										</div>
+									<div class="image-preview-card text-center">
+										<p class="preview-label">Profile Picture</p>
+										<img [src]="secondaryAgentProfileImage | blobToUrl"
+											 class="rounded-circle preview-avatar"
+											 alt="Profile Picture Preview" />
 									</div>
 									}
 									@else if (existingSecondaryProfileImage) {
-									<div class="mt-3 p-2 border rounded bg-white shadow-sm">
-										<div class="text-center">
-											<h6 class="text-dark fw-bold mb-2">Profile Picture Preview</h6>
-											<img [src]="localImageBaseUrl + existingSecondaryProfileImage"
-												 class="rounded border image-preview"
-												 alt="Profile Picture Preview" />
-										</div>
+									<div class="image-preview-card text-center">
+										<p class="preview-label">Profile Picture</p>
+										<img [src]="localImageBaseUrl + existingSecondaryProfileImage"
+											 class="rounded-circle preview-avatar"
+											 alt="Profile Picture Preview" />
 									</div>
 									}
 								</div>
 							</div>
 						</div>
-
 					</div>
 
-
-
-
-					<div class="mb-4 border p-3 rounded shadow-sm">
-						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
-							<i class="fas fa-cog text-muted me-2"></i>
+					<!-- Website Settings -->
+					<div class="mb-4 section-card section-website">
+						<h6 class="section-header">
+							<i class="fas fa-palette me-2" style="color: #ef4444;"></i>
 							Website Settings
 						</h6>
-
 						<div class="row">
 							<div class="col-md-6">
 								<div class="mb-3">
 									<label for="primaryColor"
-										   class="form-label fw-semibold d-block">
-										<i class="fas fa-palette text-muted me-2"></i>
-										Primary Color
-									</label>
-									<p-colorpicker formControlName="primaryColor"
-												   inputId="primaryColor"></p-colorpicker>
-									<div class="d-inline-flex align-items-center ms-3">
-										<small class="text-muted">
-											{{ agentForm.get("primaryColor")?.value }}
-										</small>
+										   class="form-label fw-semibold d-block">Primary Color</label>
+									<div class="d-flex align-items-center gap-3">
+										<p-colorpicker formControlName="primaryColor"
+													   inputId="primaryColor"></p-colorpicker>
+										<div class="color-swatch"
+											 [style.background-color]="'#' + agentForm.get('primaryColor')?.value"></div>
+										<code class="text-muted">#{{ agentForm.get("primaryColor")?.value }}</code>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-3">
 									<label for="secondaryColor"
-										   class="form-label fw-semibold d-block">
-										<i class="fas fa-palette text-muted me-2"></i>
-										Secondary Color
-									</label>
-									<p-colorpicker formControlName="secondaryColor"
-												   inputId="secondaryColor"></p-colorpicker>
-									<div class="d-inline-flex align-items-center ms-3">
-										<small class="text-muted">
-											{{ agentForm.get("secondaryColor")?.value }}
-										</small>
+										   class="form-label fw-semibold d-block">Secondary Color</label>
+									<div class="d-flex align-items-center gap-3">
+										<p-colorpicker formControlName="secondaryColor"
+													   inputId="secondaryColor"></p-colorpicker>
+										<div class="color-swatch"
+											 [style.background-color]="'#' + agentForm.get('secondaryColor')?.value"></div>
+										<code class="text-muted">#{{ agentForm.get("secondaryColor")?.value }}</code>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-
-					<div class="mb-4 border p-3 rounded shadow-sm">
-						<h6 class="text-muted mb-3 border-bottom pb-2 d-flex align-items-center">
-							<i class="fas fa-share-alt text-muted me-2"></i>
+					<!-- Social Media -->
+					<div class="mb-4 section-card section-social">
+						<h6 class="section-header">
+							<i class="fas fa-share-alt me-2" style="color: #6366f1;"></i>
 							Social Media
 						</h6>
 						<div class="row">
-							<div class="col-md-4">
-								<div class="mb-3">
-									<p-iftalabel>
-										<input type="url"
-											   pInputText
-											   formControlName="facebook"
-											   placeholder="Facebook URL"
-											   class="form-control"
-											   id="facebook" />
-										<label for="facebook">Facebook</label>
-									</p-iftalabel>
+							<div class="col-md-4 mb-3">
+								<label class="form-label small fw-semibold mb-1">Facebook</label>
+								<div class="input-group">
+									<span class="input-group-text social-icon-facebook">
+										<i class="bi bi-facebook"></i>
+									</span>
+									<input type="url"
+										   formControlName="facebook"
+										   class="form-control"
+										   placeholder="https://facebook.com/..."
+										   id="facebook" />
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="mb-3">
-									<p-iftalabel>
-										<input type="url"
-											   pInputText
-											   formControlName="twitter"
-											   class="form-control"
-											   id="x" />
-										<label for="x">X(Twitter)</label>
-									</p-iftalabel>
+							<div class="col-md-4 mb-3">
+								<label class="form-label small fw-semibold mb-1">X (Twitter)</label>
+								<div class="input-group">
+									<span class="input-group-text social-icon-twitter">
+										<i class="bi bi-twitter-x"></i>
+									</span>
+									<input type="url"
+										   formControlName="twitter"
+										   class="form-control"
+										   placeholder="https://x.com/..."
+										   id="x" />
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="mb-3">
-									<p-iftalabel>
-										<input type="url"
-											   pInputText
-											   formControlName="instagram"
-											   placeholder="Instagram URL"
-											   class="form-control"
-											   id="instagram" />
-										<label for="instagram">Instagram</label>
-									</p-iftalabel>
+							<div class="col-md-4 mb-3">
+								<label class="form-label small fw-semibold mb-1">Instagram</label>
+								<div class="input-group">
+									<span class="input-group-text social-icon-instagram">
+										<i class="bi bi-instagram"></i>
+									</span>
+									<input type="url"
+										   formControlName="instagram"
+										   class="form-control"
+										   placeholder="https://instagram.com/..."
+										   id="instagram" />
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<div class="mb-3">
-									<p-iftalabel>
-										<input type="url"
-											   pInputText
-											   formControlName="linkedin"
-											   placeholder="Linked In URL"
-											   class="form-control"
-											   id="linkedin" />
-										<label for="linkedin">Linkedin</label>
-									</p-iftalabel>
+							<div class="col-md-4 mb-3">
+								<label class="form-label small fw-semibold mb-1">LinkedIn</label>
+								<div class="input-group">
+									<span class="input-group-text social-icon-linkedin">
+										<i class="bi bi-linkedin"></i>
+									</span>
+									<input type="url"
+										   formControlName="linkedin"
+										   class="form-control"
+										   placeholder="https://linkedin.com/..."
+										   id="linkedin" />
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="mb-3">
-									<p-iftalabel>
-										<input type="url"
-											   pInputText
-											   formControlName="youtube"
-											   placeholder="YouTube URL"
-											   class="form-control"
-											   id="youtube" />
-										<label for="youtube">Youtube</label>
-									</p-iftalabel>
+							<div class="col-md-4 mb-3">
+								<label class="form-label small fw-semibold mb-1">YouTube</label>
+								<div class="input-group">
+									<span class="input-group-text social-icon-youtube">
+										<i class="bi bi-youtube"></i>
+									</span>
+									<input type="url"
+										   formControlName="youtube"
+										   class="form-control"
+										   placeholder="https://youtube.com/..."
+										   id="youtube" />
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="d-flex justify-content-end align-items-center">
-						<div class="d-flex align-items-center">
-							<button type="submit"
-									class="btn btn-success px-4">
-								<i class="fas fa-save me-2"></i>
-								Save Changes
-							</button>
+					<!-- Landing Page Visibility -->
+					<div class="mb-4 section-card section-pages">
+						<h6 class="section-header">
+							<i class="fas fa-eye me-2" style="color: #0ea5e9;"></i>
+							Landing Page Visibility
+						</h6>
+						<p class="text-muted small mb-3">Control which landing pages are visible to visitors on your website.</p>
+						<div class="row">
+							<div class="col-12 mb-3">
+								<div class="landing-page-toggle d-flex align-items-center gap-3 p-3 border rounded">
+									<p-checkbox inputId="showHomeWorthPage"
+												[binary]="true"
+												formControlName="showHomeWorthPage" />
+									<div>
+										<label for="showHomeWorthPage"
+											   class="fw-semibold mb-0 cursor-pointer">
+											<i class="bi bi-house-heart me-2 text-primary"></i>
+											How Much Is Your Home Worth
+										</label>
+										<p class="text-muted small mb-0">Displays the home valuation landing page</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 mb-3">
+								<div class="landing-page-toggle d-flex align-items-center gap-3 p-3 border rounded">
+									<p-checkbox inputId="showSellingInNeighborHoodPage"
+												[binary]="true"
+												formControlName="showSellingInNeighborHoodPage" />
+									<div>
+										<label for="showSellingInNeighborHoodPage"
+											   class="fw-semibold mb-0 cursor-pointer">
+											<i class="bi bi-signpost-split me-2 text-warning"></i>
+											Selling in Neighborhood
+										</label>
+										<p class="text-muted small mb-0">Displays the neighborhood selling activity landing page</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 mb-3">
+								<div class="landing-page-toggle d-flex align-items-center gap-3 p-3 border rounded">
+									<p-checkbox inputId="showFindDreamHomePage"
+												[binary]="true"
+												formControlName="showFindDreamHomePage" />
+									<div>
+										<label for="showFindDreamHomePage"
+											   class="fw-semibold mb-0 cursor-pointer">
+											<i class="bi bi-search-heart me-2 text-success"></i>
+											Find Your Dream Home
+										</label>
+										<p class="text-muted small mb-0">Displays the property search landing page</p>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
+
+					<div class="d-flex justify-content-end align-items-center mb-4">
+						<button type="submit"
+								class="btn btn-success px-4">
+							<i class="fas fa-save me-2"></i>
+							Save Changes
+						</button>
+					</div>
+
 				</form>
 			</div>
 		</div>

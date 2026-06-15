@@ -1,11 +1,24 @@
 <div class="col mt-3">
-	<h2>Dashboard</h2>
+
+	<!-- Greeting Header -->
+	<div class="greeting-header mb-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+		<div>
+			<h2 class="mb-0">{{ greeting }}, {{ greetingName }}! 👋</h2>
+			<p class="text-muted mb-0 mt-1">
+				{{ currentDate | date: 'EEEE, MMMM d, y' }} &mdash; Here's what's happening today.
+			</p>
+		</div>
+		<button class="btn btn-outline-secondary btn-sm"
+				(click)="loadDashboardData()">
+			<i class="bi bi-arrow-clockwise me-1"></i> Refresh
+		</button>
+	</div>
 
 	<!-- Loading State -->
 	<div *ngIf="loading"
-		 class="text-center py-4">
+		 class="text-center py-5">
 		<p-progressSpinner></p-progressSpinner>
-		<p class="mt-2">Loading dashboard data...</p>
+		<p class="mt-2 text-muted">Loading dashboard data...</p>
 	</div>
 
 	<!-- Error State -->
@@ -17,59 +30,148 @@
 				(click)="loadDashboardData()">Retry</button>
 	</div>
 
-	<!-- Top Cards -->
-	<div class="row g-3 mb-4"
-		 *ngIf="!loading && !error">
-		<div class="col-md-3 col-6">
-			<div class="card  card1 h-100">
-				<div class="card-body">
-					<h5 class="text-white card-title">Registered Users</h5>
-					<h3 class="text-white">{{ dashboardData.registeredUsers || 0 }}</h3>
+	<div *ngIf="!loading && !error">
+
+		<!-- Stat Cards -->
+		<div class="row g-3 mb-4">
+
+			<!-- Registered Users -->
+			<div class="col-md-3 col-6">
+				<div class="stat-card card1 h-100">
+					<i class="bi bi-people-fill stat-bg-icon"></i>
+					<div class="stat-label">Registered Users</div>
+					<div class="stat-value">{{ dashboardData.registeredUsers || 0 }}</div>
+					<div class="stat-sub">Total on platform</div>
 				</div>
-				<!-- <div class="card-footer  text-center">
-					<a href="#"
-					   class="text-white text-decoration-none">View Detail</a>
-				</div> -->
+			</div>
+
+			<!-- Total Leads -->
+			<div class="col-md-3 col-6">
+				<div class="stat-card card2 h-100">
+					<i class="bi bi-funnel-fill stat-bg-icon"></i>
+					<div class="stat-label">Total Leads</div>
+					<div class="stat-value">{{ dashboardData.totalLeads }}</div>
+					<div class="stat-sub">All time</div>
+				</div>
+			</div>
+
+			<!-- Leads Last Month -->
+			<div class="col-md-3 col-6">
+				<div class="stat-card card3 h-100">
+					<i class="bi bi-calendar-minus stat-bg-icon"></i>
+					<div class="stat-label">Leads Last Month</div>
+					<div class="stat-value">{{ dashboardData.previousMonthLeads }}</div>
+					<div class="stat-sub">Previous period</div>
+				</div>
+			</div>
+
+			<!-- Leads This Month + trend -->
+			<div class="col-md-3 col-6">
+				<div class="stat-card card4 h-100">
+					<i class="bi bi-calendar-check stat-bg-icon"></i>
+					<div class="stat-label">Leads This Month</div>
+					<div class="stat-value">{{ dashboardData.currentMonthLeads }}</div>
+					<div class="stat-trend"
+						 [class.trend-up]="leadTrendUp"
+						 [class.trend-down]="!leadTrendUp">
+						<i class="bi"
+						   [class.bi-arrow-up-circle-fill]="leadTrendUp"
+						   [class.bi-arrow-down-circle-fill]="!leadTrendUp"></i>
+						{{ leadTrendPercent >= 0 ? '+' : '' }}{{ leadTrendPercent }}% vs last month
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Month Comparison Progress -->
+		<div class="progress-panel mb-4">
+			<div class="d-flex justify-content-between align-items-center mb-2">
+				<div>
+					<span class="fw-semibold">This Month vs Last Month</span>
+					<span class="text-muted small ms-2">{{ progressLabel }}</span>
+				</div>
+				<span class="fw-bold"
+					  [class.text-success]="leadTrendUp"
+					  [class.text-danger]="!leadTrendUp">
+					{{ dashboardData.currentMonthLeads }} / {{ dashboardData.previousMonthLeads || '—' }}
+				</span>
+			</div>
+			<div class="progress"
+				 style="height: 10px; border-radius: 8px;">
+				<div class="progress-bar"
+					 role="progressbar"
+					 [style.width.%]="progressPercent"
+					 [class.bg-success]="progressPercent >= 100"
+					 [class.bg-warning]="progressPercent >= 50 && progressPercent < 100"
+					 [class.bg-danger]="progressPercent < 50"
+					 [attr.aria-valuenow]="progressPercent"
+					 aria-valuemin="0"
+					 aria-valuemax="100">
+				</div>
+			</div>
+			<div class="d-flex justify-content-between mt-1">
+				<small class="text-muted">0</small>
+				<small class="text-muted">Target: {{ dashboardData.previousMonthLeads }} leads</small>
 			</div>
 		</div>
 
-		<div class="col-md-3 col-6">
-			<div class="card  card2 h-100">
-				<div class="card-body">
-					<h5 class="text-white card-title">Total Leads</h5>
-					<h3 class="text-white">{{ dashboardData.totalLeads }}</h3>
-				</div>
-				<!-- <div class="card-footer  text-center">
-					<a href="#"
-					   class="text-white text-decoration-none">View Detail</a>
-				</div> -->
-			</div>
+		<!-- Quick Actions -->
+		<div class="mb-2">
+			<h6 class="text-muted fw-semibold text-uppercase"
+				style="font-size: 11px; letter-spacing: 0.06em;">Quick Actions</h6>
 		</div>
-		<div class="col-md-3 col-6">
-			<div class="card  card3 h-100">
-				<div class="card-body">
-					<h5 class="text-white card-title">Leads Last Month</h5>
-					<h3 class="text-white">{{ dashboardData.previousMonthLeads }}</h3>
-				</div>
-				<!-- <div class="card-footer  text-center">
-					<a href="#"
-					   class="text-white text-decoration-none">View Detail</a>
-				</div> -->
+		<div class="row g-3 mb-4">
+
+			<div class="col-md-2 col-4">
+				<a routerLink="/leads"
+				   class="quick-action text-decoration-none">
+					<i class="bi bi-funnel quick-icon text-primary"></i>
+					<span>View Leads</span>
+				</a>
 			</div>
-		</div>
-		<div class="col-md-3 col-6">
-			<div class="card  card4 h-100">
-				<div class="card-body">
-					<h5 class="text-white card-title">Leads this month</h5>
-					<h3 class="text-white">{{ dashboardData.currentMonthLeads }}</h3>
-				</div>
-				<!-- <div class="card-footer  text-center">
-					<a href="#"
-					   class="text-white text-decoration-none">View Detail</a>
-				</div> -->
+
+			<div class="col-md-2 col-4">
+				<a routerLink="/settings"
+				   class="quick-action text-decoration-none">
+					<i class="bi bi-gear quick-icon text-secondary"></i>
+					<span>Settings</span>
+				</a>
 			</div>
+
+			<div class="col-md-2 col-4">
+				<a routerLink="/template"
+				   class="quick-action text-decoration-none">
+					<i class="bi bi-grid-1x2 quick-icon text-success"></i>
+					<span>Templates</span>
+				</a>
+			</div>
+
+			<div class="col-md-2 col-4">
+				<a routerLink="/testimonial"
+				   class="quick-action text-decoration-none">
+					<i class="bi bi-chat-quote quick-icon text-warning"></i>
+					<span>Testimonials</span>
+				</a>
+			</div>
+
+			<div class="col-md-2 col-4">
+				<a routerLink="/page-manager"
+				   class="quick-action text-decoration-none">
+					<i class="bi bi-layout-text-window quick-icon text-info"></i>
+					<span>Page Manager</span>
+				</a>
+			</div>
+
+			<div class="col-md-2 col-4">
+				<a routerLink="/cities"
+				   class="quick-action text-decoration-none">
+					<i class="bi bi-geo-alt quick-icon text-danger"></i>
+					<span>Cities</span>
+				</a>
+			</div>
+
 		</div>
+
 	</div>
-
-
 </div>

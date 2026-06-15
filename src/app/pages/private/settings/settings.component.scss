@@ -1,9 +1,175 @@
+*:not(h2) {
+	font-size: 14px !important;
+}
+
+// ── Section cards ─────────────────────────────────────────────────────────────
+.section-card {
+	border: 1px solid #e5e7eb;
+	border-left-width: 4px;
+	border-radius: 8px;
+	padding: 1.25rem 1.25rem 0.5rem;
+	background: #fff;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-account   { border-left-color: #3b82f6; }
+.section-brokerage { border-left-color: #f59e0b; }
+.section-agent     { border-left-color: #10b981; }
+.section-secondary { border-left-color: #8b5cf6; }
+.section-website   { border-left-color: #ef4444; }
+.section-social    { border-left-color: #6366f1; }
+.section-pages     { border-left-color: #0ea5e9; }
+
+.section-header {
+	display: flex;
+	align-items: center;
+	font-size: 11px !important;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #374151;
+	margin-bottom: 1rem;
+	padding-bottom: 0.6rem;
+	border-bottom: 1px solid #f3f4f6;
+}
+
+// ── Disabled secondary agent ───────────────────────────────────────────────────
+.agent-disabled {
+	opacity: 0.38;
+	pointer-events: none;
+	user-select: none;
+	transition: opacity 0.25s ease;
+}
+
+// ── Upload zones ───────────────────────────────────────────────────────────────
+.upload-zone {
+	border: 2px dashed #d1d5db;
+	border-radius: 8px;
+	padding: 1.5rem 1rem;
+	text-align: center;
+	cursor: pointer;
+	background: #f9fafb;
+	transition: border-color 0.2s ease, background 0.2s ease;
+
+	&:hover {
+		border-color: #3b82f6;
+		background: #eff6ff;
+	}
+}
+
+.upload-zone-avatar {
+	max-width: 180px;
+}
+
+// ── Image previews ─────────────────────────────────────────────────────────────
+.image-preview-card {
+	display: inline-block;
+	padding: 0.65rem 0.85rem;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	background: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.preview-label {
+	font-size: 10px !important;
+	font-weight: 700;
+	color: #9ca3af;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-bottom: 0.4rem;
+}
+
+.preview-img {
+	width: 120px;
+	height: 120px;
+	object-fit: cover;
+	border-radius: 6px;
+	border: 1px solid #e5e7eb;
+	display: block;
+}
+
+.preview-avatar {
+	width: 90px;
+	height: 90px;
+	object-fit: cover;
+	border: 3px solid #e5e7eb;
+	display: block;
+	margin: 0 auto;
+}
+
+.btn-remove {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	background: none;
+	border: none;
+	color: #dc3545;
+	font-size: 16px;
+	padding: 0;
+	cursor: pointer;
+	line-height: 1;
+	z-index: 1;
+
+	&:hover { color: #a71d2a; }
+}
+
+// ── Color swatch ───────────────────────────────────────────────────────────────
+.color-swatch {
+	width: 52px;
+	height: 30px;
+	border-radius: 6px;
+	border: 1px solid #d1d5db;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+	flex-shrink: 0;
+}
+
+// ── Social media icon prefixes ────────────────────────────────────────────────
+.social-icon-facebook {
+	background-color: #1877f2 !important;
+	color: #fff !important;
+	border-color: #1877f2 !important;
+}
+
+.social-icon-twitter {
+	background-color: #000 !important;
+	color: #fff !important;
+	border-color: #000 !important;
+}
+
+.social-icon-instagram {
+	background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888) !important;
+	color: #fff !important;
+	border-color: #dc2743 !important;
+}
+
+.social-icon-linkedin {
+	background-color: #0a66c2 !important;
+	color: #fff !important;
+	border-color: #0a66c2 !important;
+}
+
+.social-icon-youtube {
+	background-color: #ff0000 !important;
+	color: #fff !important;
+	border-color: #ff0000 !important;
+}
+
+// ── Landing page toggles ───────────────────────────────────────────────────────
+.landing-page-toggle {
+	background: #f9fafb;
+	transition: background 0.15s ease, border-color 0.15s ease;
+	cursor: default;
+
+	&:has(p-checkbox .p-checkbox-checked) {
+		background: #f0fdf4;
+		border-color: #86efac !important;
+	}
+}
+
+// ── Legacy ─────────────────────────────────────────────────────────────────────
 .image-preview {
 	height: 120px;
 	width: 120px;
 	object-fit: cover;
-}
-
-*:not(h2) {
-	font-size: 14px !important;
 }

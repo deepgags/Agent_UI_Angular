@@ -1,14 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-
+import { FormsModule } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
-
 import { Router } from "@angular/router";
-// import { DialogModule } from "primeng/dialog";
-// import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
-import { BehaviorSubject } from "rxjs";
-import { GalleryComponent } from "../../../components/gallery/gallery.component";
-// import { TemplatePreviewComponent } from "../../../components/template-preview/template-preview.component";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { TemplateModel } from "../../../models/TemplateModel";
@@ -21,21 +15,16 @@ import { TemplateService } from "../../../services/template.service";
 @Component({
 	selector: "app-template",
 	standalone: true,
-	imports: [
-		CommonModule,
-		GalleryComponent,
-		// DialogModule, DynamicDialogModule
-	],
-	// providers: [DialogService],
+	imports: [CommonModule, FormsModule],
 	templateUrl: "./template.component.html",
 	styleUrl: "./template.component.scss",
 })
 export class TemplateComponent implements OnInit {
 	selectedTemplate: any = null;
 	customerModel!: CustomerModel;
-	private templatesSubject = new BehaviorSubject<TemplateModel[]>([]);
-	templates$ = this.templatesSubject.asObservable();
 	siteConfig: SiteConfig = {} as SiteConfig;
+	allTemplates: TemplateModel[] = [];
+	searchQuery = "";
 
 	constructor(
 		private customerService: CustomerService,
@@ -59,21 +48,13 @@ export class TemplateComponent implements OnInit {
 		this.templateService.getTemplates().subscribe({
 			next: (response: any) => {
 				if (response.data && response.data.length > 0) {
-					this.templatesSubject.next(response.data);
 					this.selectedTemplate = this.siteConfig?.websiteSettings?.templateId;
-
-					const templateWithoutSelected = response.data.filter(
-						(template: any) => template.templateKey !== this.selectedTemplate,
-					);
-					const templateSelected = response.data.filter(
-						(template: any) => template.templateKey === this.selectedTemplate,
-					);
-
-					const templatesFiltered = [...templateSelected, ...templateWithoutSelected];
-					this.templatesSubject.next(templatesFiltered);
+					const selected = response.data.filter((t: any) => t.templateKey === this.selectedTemplate);
+					const rest = response.data.filter((t: any) => t.templateKey !== this.selectedTemplate);
+					this.allTemplates = [...selected, ...rest];
 				}
 			},
-			error: (error) => {
+			error: () => {
 				this.notificationService.showError("Error occurred while getting templates");
 			},
 			complete: () => {
@@ -82,30 +63,49 @@ export class TemplateComponent implements OnInit {
 		});
 	}
 
-	setTemplate(template: TemplateModel) {
-		if (template && template.templateKey) {
-			this.loadingService.loadingOn();
-			const params = {
-				templateKey: template.templateKey,
-			};
-			this.customerService.changeTemplate(params).subscribe({
-				next: (v) => {
-					this.selectedTemplate = template.templateKey;
-					this.customerService.getProfile();
-				},
-				error: (e) => {
-					this.notificationService.showError(
-						e.error.message || "Something went wrong while changing template.",
-					);
-				},
-				complete: () => {
-					this.notificationService.showSuccess("Template changed successfully");
-					this.loadingService.loadingOff();
-				},
-			});
-		} else {
-			this.notificationService.showSuccess("Select template to apply.");
+	get activeTemplate(): TemplateModel | undefined {
+		return this.allTemplates.find((t) => t.templateKey === this.selectedTemplate);
+	}
+
+	get showHero(): boolean {
+		return !this.searchQuery.trim() && !!this.activeTemplate;
+	}
+
+	get filteredTemplates(): TemplateModel[] {
+		const query = this.searchQuery.toLowerCase().trim();
+		if (!query) {
+			return this.allTemplates.filter((t) => t.templateKey !== this.selectedTemplate);
 		}
+		return this.allTemplates.filter(
+			(t) =>
+				t.name.toLowerCase().includes(query) ||
+				t.templateKey.toLowerCase().includes(query) ||
+				(t.description || "").toLowerCase().includes(query),
+		);
+	}
+
+	setTemplate(template: TemplateModel) {
+		if (!template?.templateKey) {
+			this.notificationService.showError("Select a template to apply.");
+			return;
+		}
+		this.loadingService.loadingOn();
+		this.customerService.changeTemplate({ templateKey: template.templateKey }).subscribe({
+			next: () => {
+				this.selectedTemplate = template.templateKey;
+				const selected = this.allTemplates.filter((t) => t.templateKey === this.selectedTemplate);
+				const rest = this.allTemplates.filter((t) => t.templateKey !== this.selectedTemplate);
+				this.allTemplates = [...selected, ...rest];
+				this.customerService.getProfile();
+			},
+			error: (e) => {
+				this.notificationService.showError(e.error?.message || "Something went wrong while changing template.");
+			},
+			complete: () => {
+				this.notificationService.showSuccess("Template applied successfully");
+				this.loadingService.loadingOff();
+			},
+		});
 	}
 
 	previewTemplate(template: TemplateModel) {
@@ -113,7 +113,6 @@ export class TemplateComponent implements OnInit {
 			this.notificationService.showError("Template key is missing for preview.");
 			return;
 		}
-
 		const url = this.router.serializeUrl(
 			this.router.createUrlTree(["/home"], { queryParams: { templatePreview: template.templateKey } }),
 		);

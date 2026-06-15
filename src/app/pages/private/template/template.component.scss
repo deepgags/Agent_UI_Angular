@@ -1,53 +1,251 @@
-h2 {
-    text-align: center;
-  }
-  
-  .carousel {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .carousel img {
-    width: 100%;
-  }
-  .carousel .carousel-inner{
-    margin-bottom: 20px !important;
-  }
-
-  .green{
-    box-shadow: #95d8b9 0px 20px 30px -10px;
-  }
-  .card_hover{
-    box-shadow: #95d8b9 0px 20px 30px -10px;
-    transition: transform 250ms;
-  }
-  .card_hover:hover {
-    transform: translateY(-15px);
-  }
-
-.carousel-caption {
-  position: absolute;
-  right: 15%;
-  left: 15%;
-  top: 21% !important;
-  padding-top: 1.25rem;
-  bottom: 20% !important;
-  padding-bottom: 1.25rem;
-  color: #fff;
-  text-align: center;
+// ── Header ────────────────────────────────────────────────────────────────────
+.count-badge {
+	display: inline-block;
+	background: #f3f4f6;
+	border: 1px solid #e5e7eb;
+	color: #374151;
+	font-size: 12px;
+	font-weight: 700;
+	padding: 1px 8px;
+	border-radius: 20px;
+	margin-right: 2px;
 }
 
-  .fixed-height {
-    height: 300px; /* Adjust height as needed */
-    width: 100%; 
-    object-fit: cover;
-  }
+// ── Search ────────────────────────────────────────────────────────────────────
+.search-wrap {
+	position: relative;
+	width: 300px;
+}
 
-  .gallery_img {
-    object-fit: cover;
-    background-color: white !important;
-    border: 1px #969696 solid;
-    border-radius: 7px;
-    height: 386px;
-    }
-  
+.search-icon {
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #9ca3af;
+	font-size: 13px;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.search-input {
+	padding-left: 32px;
+	padding-right: 32px;
+	border-radius: 8px;
+	font-size: 13px;
+	border-color: #e5e7eb;
+
+	&:focus {
+		border-color: #93c5fd;
+		box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+	}
+}
+
+.search-clear {
+	position: absolute;
+	right: 8px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	color: #9ca3af;
+	cursor: pointer;
+	padding: 0 2px;
+	font-size: 16px;
+	line-height: 1;
+
+	&:hover { color: #374151; }
+}
+
+// ── Active hero ───────────────────────────────────────────────────────────────
+.active-hero {
+	border: 2px solid #22c55e;
+	border-radius: 14px;
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0 4px 20px rgba(34, 197, 94, 0.13);
+	position: relative;
+}
+
+.active-hero-badge {
+	position: absolute;
+	top: 14px;
+	left: 14px;
+	background: #22c55e;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 700;
+	padding: 4px 12px;
+	border-radius: 20px;
+	z-index: 2;
+	letter-spacing: 0.04em;
+}
+
+.active-hero-img {
+	height: 280px;
+	overflow: hidden;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top;
+	}
+}
+
+// ── Section divider ───────────────────────────────────────────────────────────
+.section-divider {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #9ca3af;
+
+	&::before,
+	&::after {
+		content: "";
+		flex: 1;
+		height: 1px;
+		background: #e5e7eb;
+	}
+}
+
+// ── Template card ─────────────────────────────────────────────────────────────
+.template-card {
+	border-radius: 12px;
+	overflow: hidden;
+	border: 1px solid #e5e7eb;
+	background: #fff;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+	position: relative;
+
+	&:hover {
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+		transform: translateY(-4px);
+	}
+
+	&.is-active {
+		border-color: #22c55e;
+		box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+	}
+}
+
+// ── Active ribbon ─────────────────────────────────────────────────────────────
+.active-ribbon {
+	position: absolute;
+	top: 18px;
+	left: -26px;
+	width: 100px;
+	background: #22c55e;
+	color: #fff;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 4px 0;
+	transform: rotate(-45deg);
+	z-index: 3;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+// ── Thumbnail + overlay ───────────────────────────────────────────────────────
+.template-thumb {
+	position: relative;
+	height: 210px;
+	overflow: hidden;
+	background: #f3f4f6;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top;
+		transition: transform 0.35s ease;
+	}
+
+	&:hover img {
+		transform: scale(1.05);
+	}
+
+	&:hover .template-overlay {
+		opacity: 1;
+	}
+}
+
+.thumb-placeholder {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.template-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.52);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	opacity: 0;
+	transition: opacity 0.22s ease;
+}
+
+// ── Card info ─────────────────────────────────────────────────────────────────
+.template-info {
+	padding: 0.85rem 1rem 0.9rem;
+}
+
+.template-name {
+	font-weight: 600;
+	font-size: 14px;
+	color: #111827;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.template-key-badge {
+	display: inline-block;
+	font-size: 10px;
+	background: #f3f4f6;
+	color: #6b7280;
+	border-radius: 4px;
+	padding: 1px 7px;
+	font-weight: 600;
+	margin-top: 3px;
+	letter-spacing: 0.03em;
+}
+
+.template-desc {
+	font-size: 12px;
+	color: #6b7280;
+	margin-top: 7px;
+	margin-bottom: 4px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	line-height: 1.5;
+}
+
+.template-actions {
+	display: flex;
+	gap: 8px;
+	margin-top: 10px;
+	justify-content: flex-end;
+}
+
+// ── Empty state ───────────────────────────────────────────────────────────────
+.empty-state {
+	text-align: center;
+	padding: 5rem 1rem;
+	color: #9ca3af;
+
+	i { font-size: 3rem; }
+}

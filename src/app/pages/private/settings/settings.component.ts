@@ -13,11 +13,12 @@ import { InputTextModule } from "primeng/inputtext";
 
 import { SelectModule } from "primeng/select";
 import { TextareaModule } from "primeng/textarea";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, forkJoin, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
 import { BlobToUrlPipe } from "../../../pipes/blob-to-url";
 
 import { AutoCompleteModule } from "primeng/autocomplete";
+import { CheckboxModule } from "primeng/checkbox";
 import { ToggleSwitchModule } from "primeng/toggleswitch";
 
 import { environment } from "../../../environments/environment.development";
@@ -44,6 +45,7 @@ import { NotificationService } from "../../../services/notification.service";
 		EditorModule,
 		ToggleSwitchModule,
 		AutoCompleteModule,
+		CheckboxModule,
 		BlobToUrlPipe,
 	],
 	templateUrl: "./settings.component.html",
@@ -134,6 +136,9 @@ export class SettingsComponent {
 				profileImage: new FormControl(""),
 				designation: new FormControl(""),
 			}),
+			showHomeWorthPage: new FormControl(false),
+			showSellingInNeighborHoodPage: new FormControl(false),
+			showFindDreamHomePage: new FormControl(false),
 		});
 
 		this.getBrokerageTypes();
@@ -203,6 +208,9 @@ export class SettingsComponent {
 						socialLinks: { facebook, instagram, linkedin, twitter, youtube },
 						profileImage,
 						siteUrl,
+						showHomeWorthPage,
+						showSellingInNeighborHoodPage,
+						showFindDreamHomePage,
 					} = websiteSettings;
 
 					this.existingProfileImage = profileImage;
@@ -232,6 +240,9 @@ export class SettingsComponent {
 							youtube: youtube,
 							websiteEmail: websiteEmail,
 							websitePhone: websitePhone,
+							showHomeWorthPage: showHomeWorthPage ?? false,
+							showSellingInNeighborHoodPage: showSellingInNeighborHoodPage ?? false,
+							showFindDreamHomePage: showFindDreamHomePage ?? false,
 						});
 						if (response.data.secondaryAgent) {
 							this.agentForm.get("secondaryAgent")?.patchValue({
@@ -360,15 +371,24 @@ export class SettingsComponent {
 				formData.append("existingSecondaryProfileImage", this.existingSecondaryProfileImage);
 			}
 
-			this.customerService.update(formData).subscribe({
-				next: (v) => {},
+			const { showHomeWorthPage, showSellingInNeighborHoodPage, showFindDreamHomePage } = this.agentForm.value;
+			const pageParams = {
+				websiteSettings: { showHomeWorthPage, showSellingInNeighborHoodPage, showFindDreamHomePage },
+			};
+
+			forkJoin({
+				profile: this.customerService.update(formData),
+				pages: this.customerService.updatePageContent(pageParams),
+			}).subscribe({
+				next: () => {},
 				error: (e) => {
 					this.notificationService.showError(
-						e.error.message || "Something went wrong while updating information.",
+						e.error?.message || "Something went wrong while updating information.",
 					);
+					this.loadingService.loadingOff();
 				},
 				complete: () => {
-					this.notificationService.showSuccess("Profile updated successfully");
+					this.notificationService.showSuccess("Settings updated successfully");
 					this.loadingService.loadingOff();
 				},
 			});

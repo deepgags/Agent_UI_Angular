@@ -1,0 +1,45 @@
+::ng-deep {
+    .p-datatable {
+        font-size: 13px;
+
+        .p-datatable-thead > tr > th {
+            padding: 0.4rem 0.6rem;
+            font-size: 13px;
+        }
+
+        .p-datatable-tbody > tr > td {
+            padding: 0.35rem 0.6rem;
+            font-size: 13px;
+        }
+
+        .p-datatable-tfoot > tr > td {
+            padding: 0.35rem 0.6rem;
+            font-size: 13px;
+        }
+
+        /* Filter row inputs */
+        .p-column-filter {
+            .p-inputtext,
+            input.p-inputtext {
+                padding: 0.25rem 0.5rem;
+                font-size: 12px;
+                height: 28px;
+            }
+
+            .p-column-filter-element {
+                width: 100%;
+            }
+        }
+
+        /* Paginator */
+        .p-paginator {
+            padding: 0.4rem 0.5rem;
+            font-size: 13px;
+
+            .p-paginator-element {
+                min-width: 2rem;
+                height: 2rem;
+            }
+        }
+    }
+}
