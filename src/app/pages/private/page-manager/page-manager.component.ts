@@ -1,4 +1,5 @@
 import { CommonModule, DatePipe } from "@angular/common";
+import { CdkDragDrop, DragDropModule, moveItemInArray } from "@angular/cdk/drag-drop";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -40,6 +41,7 @@ import { PageService } from "../../../services/page.service";
 		EditorModule,
 		FileUploadModule,
 		TabsModule,
+		DragDropModule,
 		BlobToUrlPipe,
 		DatePipe,
 		TooltipModule,
@@ -54,9 +56,14 @@ export class PageManagerComponent implements OnInit {
 	pageForm!: FormGroup;
 	editingPage: Page | null = null;
 	heroImages: string[] = [];
+	heroImagesOriginalOrder: string[] = [];
 	uploadedFiles: File[] = [];
 	localImageBaseUrl = environment.localImageUrl;
 	@ViewChild("fileUpload") fileUpload: any;
+
+	get heroOrderChanged(): boolean {
+		return JSON.stringify(this.heroImages) !== JSON.stringify(this.heroImagesOriginalOrder);
+	}
 	constructor(
 		private fb: FormBuilder,
 		private loadingService: LoadingService,
@@ -151,6 +158,10 @@ export class PageManagerComponent implements OnInit {
 				pageData.homeSectionText2 = this.normalizeEditorHtmlSpaces(formValue.homeSectionText2);
 				pageData.homeSectionText3 = this.normalizeEditorHtmlSpaces(formValue.homeSectionText3);
 				pageData.homeSectionText4 = this.normalizeEditorHtmlSpaces(formValue.homeSectionText4);
+			}
+
+			if (this.canManageHeroImages(this.editingPage) && this.heroImages.length > 0) {
+				(pageData as UpdatePageRequest).heroImages = this.heroImages;
 			}
 
 			this.loadingService.loadingOn();
@@ -272,12 +283,18 @@ export class PageManagerComponent implements OnInit {
 		this.pageService.getHeroImages(pageId).subscribe({
 			next: (images: string[]) => {
 				this.heroImages = images;
+				this.heroImagesOriginalOrder = [...images];
 			},
 			error: (error) => {
 				this.notificationService.showError("Failed to load hero images");
 			},
 		});
 	}
+
+	onHeroImageDrop(event: CdkDragDrop<string[]>): void {
+		moveItemInArray(this.heroImages, event.previousIndex, event.currentIndex);
+	}
+
 
 	onFileSelect(event: any) {
 		const files = event.files;

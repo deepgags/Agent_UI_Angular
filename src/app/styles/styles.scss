@@ -98,6 +98,41 @@ padding-right: 0;
 	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
+/* Quick links bar (home-worth / neighbor-detail / dream-home) */
+.dc-quick-links {
+	background: #1a1a2e;
+	border-top: 1px solid rgba(255, 255, 255, 0.06);
+	padding: 0.75rem 1rem;
+	text-align: center;
+}
+
+.dc-quick-links-inner {
+	display: inline-flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.25rem 1.5rem;
+}
+
+.dc-quick-link {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.6);
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	padding: 0.25rem 0.5rem;
+	border-radius: 4px;
+	transition: color 0.18s ease, background 0.18s ease;
+
+	i { font-size: 11px; }
+
+	&:hover {
+		color: #fff;
+		background: rgba(255, 255, 255, 0.08);
+	}
+}
+
 /* Powered by DealCentre bar */
 .dealcentre-powered-bar {
 	background: #0a0a0a;

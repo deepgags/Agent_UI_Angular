@@ -1,4 +1,4 @@
-<div class="container-fluid fotter-bg">
+﻿<div class="container-fluid fotter-bg">
   <div class="container search-container">
     <footer class="py-5">
       <div class="row justify-content-center align-items-center  border-bottom pb-3 mb-3 ">
@@ -131,6 +131,29 @@
     </footer>
   </div>
 </div>
+
+<!-- Page Quick Links -->
+@if (siteConfig && (siteConfig.websiteSettings?.showHomeWorthPage || siteConfig.websiteSettings?.showSellingInNeighborHoodPage || siteConfig.websiteSettings?.showFindDreamHomePage)) {
+<div class="dc-quick-links">
+	<div class="dc-quick-links-inner">
+		@if (siteConfig.websiteSettings?.showHomeWorthPage) {
+		<a routerLink="/home-worth" class="dc-quick-link">
+			<i class="bi bi-house-heart-fill me-1"></i>Free Home Evaluation
+		</a>
+		}
+		@if (siteConfig.websiteSettings?.showSellingInNeighborHoodPage) {
+		<a routerLink="/neighbor-detail" class="dc-quick-link">
+			<i class="bi bi-geo-alt-fill me-1"></i>Neighbourhood Watch
+		</a>
+		}
+		@if (siteConfig.websiteSettings?.showFindDreamHomePage) {
+		<a routerLink="/dream-home" class="dc-quick-link">
+			<i class="bi bi-search-heart-fill me-1"></i>Find Your Dream Home
+		</a>
+		}
+	</div>
+</div>
+}
 <!-- Powered by DealCentre -->
 <div class="dealcentre-powered-bar">
 	<a href="https://app.dealcentre.ca" target="_blank" rel="noopener noreferrer" class="dc-link">
@@ -139,3 +162,4 @@
 		<span class="dc-copy">&copy; DealCentre</span>
 	</a>
 </div>
+

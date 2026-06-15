@@ -47,6 +47,7 @@ export interface UpdatePageRequest {
 	homeSectionText2?: string;
 	homeSectionText3?: string;
 	homeSectionText4?: string;
+	heroImages?: string[];
 }
 
 export interface PredefinedPageTemplate {
