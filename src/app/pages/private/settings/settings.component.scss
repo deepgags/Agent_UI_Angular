@@ -81,12 +81,16 @@
 }
 
 .preview-img {
-	width: 120px;
-	height: 120px;
-	object-fit: cover;
+	max-width: 220px;
+	max-height: 80px;
+	width: auto;
+	height: auto;
+	object-fit: contain;
 	border-radius: 6px;
 	border: 1px solid #e5e7eb;
 	display: block;
+	background: #f9fafb;
+	padding: 4px;
 }
 
 .preview-avatar {

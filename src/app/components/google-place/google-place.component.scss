@@ -1,0 +1,34 @@
+:host {
+	display: flex;
+	align-items: stretch;
+	width: 100%;
+	min-height: 44px;
+}
+
+.gp-container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+// Pierce into the PlaceAutocompleteElement shadow DOM
+::ng-deep gmp-place-autocomplete {
+	width: 100%;
+	display: block;
+
+	&::part(input) {
+		width: 100%;
+		border: none;
+		outline: none;
+		box-shadow: none;
+		background: transparent;
+		padding: 0.75rem 1rem;
+		font-size: 1rem;
+		line-height: 1.5;
+		color: #212529;
+	}
+
+	&::part(input)::placeholder {
+		color: #6c757d;
+	}
+}

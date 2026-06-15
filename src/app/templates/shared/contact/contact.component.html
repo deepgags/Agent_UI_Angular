@@ -1,273 +1,288 @@
-<div class="container-fluid p-0">
-	<div class=" pt-3 mt-5">
-		<img
-			class="banner w-100"
-			[src]="heroImageSrc"
-			alt="Banner Image" />
-		<div class="position-absolute top-50 start-50 translate-middle text-center">
-			<h1 class="text-white fw-bold baner-text">Contact Us</h1>
-		</div>
+<!-- Hero Banner -->
+<div class="contact-hero" [style.background-image]="'url(' + heroImageSrc + ')'">
+	<div class="contact-hero-overlay"></div>
+	<div class="contact-hero-content">
+		<h1 class="fw-bold mb-2">Contact Us</h1>
+		<p class="lead mb-0 opacity-75">We'd love to hear from you. Let's talk.</p>
 	</div>
 </div>
 
-<section class="container-fluid py-5 bg-light search-container">
+<!-- Main Content -->
+<section class="py-5 bg-light">
 	<div class="container">
-		<div class="row justify-content-around ">
-			<div class="col-lg-6 col-12 mb-4 mb-lg-0">
-			<div 
-  *ngIf="siteConfig.websiteSettings.brokerageImage || siteConfig.brokerageTypeId"
-  class="shadow-sm rounded p-3 mb-3"
->
-  <img
-    class="logo"
-    [src]="
-      siteConfig.websiteSettings.brokerageImage
-        ? localImageUrl + siteConfig.websiteSettings.brokerageImage
-        : '/images/Nologo.png'
-    "
-    alt="No brokerage logo"
-  />
+		<div class="row g-4 align-items-start">
 
-  <h5 class="mt-2">{{ siteConfig.brokerageTypeId }}</h5>
-</div>
+			<!-- Left: Agent Info -->
+			<div class="col-lg-5">
 
-				<div class="card p-3 shadow-sm border-0 rounded">
-					<h5 class="card-head">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-					<p class="fw-semibold fs-6">{{ siteConfig.designation }}</p>
-
-					<p class="mb-2 fw-semibold">
-						<i class="bi bi-geo-alt-fill info me-2"></i>
-						{{ siteConfig.websiteSettings.contactInfo.address }}
-					</p>
-					<p class="mb-2">
-						<i class="bi bi-telephone-fill info me-2"></i>
-						<a
-							class="text-dark fw-semibold text-decoration-none"
-							[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
-							{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-						</a>
-					</p>
-					<p class="mb-3">
-						<i class="bi bi-envelope-fill info me-2"></i>
-						<a
-							class="text-dark fw-semibold text-decoration-none"
-							[href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
-							{{ siteConfig.websiteSettings.contactInfo.email }}
-						</a>
-					</p>
-
-					@if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-						<div class="mt-3">
-							<h5 class="card-head">
-								{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
-							</h5>
-							<p class="fw-semibold fs-6">{{ siteConfig.secondaryAgent.designation }}</p>
-
-							<p class="mb-2 fw-semibold">
-								<i class="bi bi-geo-alt-fill info me-2"></i>
-								{{ siteConfig.websiteSettings.contactInfo.address }}
-							</p>
-							<p class="mb-2">
-								<i class="bi bi-telephone-fill info me-2"></i>
-								<a
-									class="text-dark fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
-									{{ siteConfig.secondaryAgent.websitePhone | phone }}
-								</a>
-							</p>
-							<p class="mb-3">
-								<i class="bi bi-envelope-fill info me-2"></i>
-								<a
-									class="text-dark fw-semibold text-decoration-none"
-									[href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
-									{{ siteConfig.secondaryAgent.websiteEmail }}
-								</a>
-							</p>
+				<!-- Primary Agent Card -->
+				<div class="agent-card mb-4">
+					<div class="agent-card-header">
+						<div class="agent-avatar">
+							<i class="bi bi-person-fill"></i>
 						</div>
-					}
-				</div>
-
-				<div class="mt-3">
-					<h6 class="fw-bold info">Follow Us</h6>
-
-					<div class="d-flex gap-2">
-						@if (siteConfig.websiteSettings.socialLinks.facebook) {
-							<a
-								[href]="siteConfig.websiteSettings.socialLinks.facebook"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="btn btn-light border">
-								<i class="bi bi-facebook orig facebook"></i>
-							</a>
+						<div>
+							<h5 class="mb-0 fw-bold">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
+							<p class="mb-0 small opacity-75">{{ siteConfig.designation }}</p>
+						</div>
+					</div>
+					<div class="agent-card-body">
+						@if (siteConfig.websiteSettings.contactInfo.address) {
+						<div class="contact-row">
+							<span class="contact-icon-wrap location"><i class="bi bi-geo-alt-fill"></i></span>
+							<span class="contact-text">{{ siteConfig.websiteSettings.contactInfo.address }}</span>
+						</div>
 						}
-						@if (siteConfig.websiteSettings.socialLinks.twitter) {
-							<a
-								[href]="siteConfig.websiteSettings.socialLinks.twitter"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="btn btn-light border">
-								<i class="bi bi-twitter orig twitter"></i>
+						@if (siteConfig.websiteSettings.contactInfo.phone) {
+						<div class="contact-row">
+							<span class="contact-icon-wrap phone"><i class="bi bi-telephone-fill"></i></span>
+							<a class="contact-text text-dark text-decoration-none"
+							   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+								{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
 							</a>
+						</div>
 						}
-						@if (siteConfig.websiteSettings.socialLinks.instagram) {
-							<a
-								[href]="siteConfig.websiteSettings.socialLinks.instagram"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="btn btn-light border">
-								<i class="bi bi-instagram orig instagram"></i>
+						@if (siteConfig.websiteSettings.contactInfo.email) {
+						<div class="contact-row">
+							<span class="contact-icon-wrap email"><i class="bi bi-envelope-fill"></i></span>
+							<a class="contact-text text-dark text-decoration-none"
+							   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+								{{ siteConfig.websiteSettings.contactInfo.email }}
 							</a>
-						}
-						@if (siteConfig.websiteSettings.socialLinks.linkedin) {
-							<a
-								[href]="siteConfig.websiteSettings.socialLinks.linkedin"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="btn btn-light border">
-								<i class="bi bi-linkedin orig linkedin"></i>
-							</a>
+						</div>
 						}
 					</div>
 				</div>
 
-				<div>
-					<p
-						class="text-muted mt-3"
-						[innerHTML]="getSafeHtml(page()?.content)"></p>
+				<!-- Brokerage Logo -->
+				@if (siteConfig.websiteSettings.brokerageImage || siteConfig.brokerageTypeId) {
+				<div class="brokerage-card mb-4">
+					@if (siteConfig.websiteSettings.brokerageImage) {
+					<img [src]="localImageUrl + siteConfig.websiteSettings.brokerageImage"
+						 class="brokerage-logo"
+						 alt="Brokerage logo" />
+					}
+					@if (siteConfig.brokerageTypeId) {
+					<p class="mb-0 mt-2 fw-semibold text-muted small">{{ siteConfig.brokerageTypeId }}</p>
+					}
 				</div>
+				}
+
+				<!-- Secondary Agent -->
+				@if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
+				<div class="agent-card agent-card-secondary mb-4">
+					<div class="agent-card-header">
+						<div class="agent-avatar secondary">
+							<i class="bi bi-person-fill"></i>
+						</div>
+						<div>
+							<h5 class="mb-0 fw-bold">
+								{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
+							</h5>
+							<p class="mb-0 small opacity-75">{{ siteConfig.secondaryAgent.designation }}</p>
+						</div>
+					</div>
+					<div class="agent-card-body">
+						@if (siteConfig.websiteSettings.contactInfo.address) {
+						<div class="contact-row">
+							<span class="contact-icon-wrap location"><i class="bi bi-geo-alt-fill"></i></span>
+							<span class="contact-text">{{ siteConfig.websiteSettings.contactInfo.address }}</span>
+						</div>
+						}
+						@if (siteConfig.secondaryAgent.websitePhone) {
+						<div class="contact-row">
+							<span class="contact-icon-wrap phone"><i class="bi bi-telephone-fill"></i></span>
+							<a class="contact-text text-dark text-decoration-none"
+							   [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+								{{ siteConfig.secondaryAgent.websitePhone | phone }}
+							</a>
+						</div>
+						}
+						@if (siteConfig.secondaryAgent.websiteEmail) {
+						<div class="contact-row">
+							<span class="contact-icon-wrap email"><i class="bi bi-envelope-fill"></i></span>
+							<a class="contact-text text-dark text-decoration-none"
+							   [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+								{{ siteConfig.secondaryAgent.websiteEmail }}
+							</a>
+						</div>
+						}
+					</div>
+				</div>
+				}
+
+				<!-- Social Links -->
+				<div class="social-section mb-4">
+					<p class="section-label">Follow Us</p>
+					<div class="d-flex gap-2 flex-wrap">
+						@if (siteConfig.websiteSettings.socialLinks.facebook) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.facebook"
+						   target="_blank" rel="noopener noreferrer"
+						   class="social-btn facebook">
+							<i class="bi bi-facebook"></i>
+						</a>
+						}
+						@if (siteConfig.websiteSettings.socialLinks.twitter) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.twitter"
+						   target="_blank" rel="noopener noreferrer"
+						   class="social-btn twitter">
+							<i class="bi bi-twitter-x"></i>
+						</a>
+						}
+						@if (siteConfig.websiteSettings.socialLinks.instagram) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.instagram"
+						   target="_blank" rel="noopener noreferrer"
+						   class="social-btn instagram">
+							<i class="bi bi-instagram"></i>
+						</a>
+						}
+						@if (siteConfig.websiteSettings.socialLinks.linkedin) {
+						<a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
+						   target="_blank" rel="noopener noreferrer"
+						   class="social-btn linkedin">
+							<i class="bi bi-linkedin"></i>
+						</a>
+						}
+					</div>
+				</div>
+
+				<!-- Page Content -->
+				@if (page()?.content) {
+				<div class="page-content-card">
+					<div [innerHTML]="getSafeHtml(page()?.content)"></div>
+				</div>
+				}
 			</div>
 
-			<div class="col-lg-4 col-12 mt-4 mt-lg-0">
-				<div class="card shadow">
-					<div class="card-body">
-						<h5 class="card-title info">Ask About Property</h5>
-						<form
-							class="form-card bg-white"
-							[formGroup]="contactForm"
-							(ngSubmit)="submitContactForm()">
-							<p>
-								Interested in viewing a property? Need more information? Fill out the form below and you
-								will be contacted shortly. Thank you for your interest. Your business is appreciated!
+			<!-- Right: Contact Form -->
+			<div class="col-lg-7">
+				<div class="contact-form-card">
+					<div class="contact-form-header">
+						<i class="bi bi-chat-dots-fill me-2"></i>
+						<div>
+							<h4 class="mb-0 fw-bold">Get In Touch</h4>
+							<p class="mb-0 small mt-1 opacity-75">
+								Fill out the form and we'll get back to you shortly.
 							</p>
-							<div class="mb-3">
-								<p-iftalabel>
-									<input
-										type="text"
-										pInputText
-										formControlName="name"
-										class="form-control"
-										id="name"
-										required />
-									<label for="name">Name</label>
-									<span
-										class="error"
-										*ngIf="name?.invalid && (name?.dirty || name?.touched)">
-										<span *ngIf="name?.errors?.['required']">Name is required</span>
-									</span>
-								</p-iftalabel>
-							</div>
-							<div class="mb-3">
-								<p-iftalabel>
-									<input
-										type="email"
-										pInputText
-										formControlName="email"
-										class="form-control w-100"
-										id="email"
-										required />
-									<label for="email">Email</label>
-									<span
-										class="error"
-										*ngIf="email?.invalid && (email?.dirty || email?.touched)">
-										<span *ngIf="email?.errors?.['required']">Email is required</span>
-										<span *ngIf="email?.errors?.['email']">Please enter a valid email address</span>
-									</span>
-								</p-iftalabel>
-							</div>
-							<div class="mb-3">
-								<p-iftalabel>
-									<p-inputmask
-										mask="999-999-9999"
-										formControlName="phone"
-										placeholder="Ex. 123-456-1234"
-										class="w-100"
-										id="phone"></p-inputmask>
-									<label for="phone">Phone Number</label>
-									<span
-										class="error"
-										*ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
-										<span *ngIf="phone?.errors?.['required']">Phone number is required</span>
-										<span *ngIf="phone?.errors?.['pattern']">
-											Please enter a valid phone number
-										</span>
-									</span>
-								</p-iftalabel>
-							</div>
-							<div class="mb-3">
-								<p-iftalabel>
-									<textarea
-										pTextarea
-										formControlName="message"
-										class="form-control p-inputtext"
-										rows="4"
-										id="message"></textarea>
-									<label for="message">Leave a comment</label>
-									<span
-										class="error"
-										*ngIf="message?.invalid && (message?.dirty || message?.touched)">
-										<span *ngIf="message?.errors?.['required']">Comment is required</span>
-									</span>
-								</p-iftalabel>
-							</div>
-							<p class="mb-0 fw-semibold">I am</p>
-							<div class="d-flex flex-wrap gap-2 py-3">
-								@for (type of userTypes; track $index) {
-									<input
-										type="radio"
-										class="btn-check radio_btn"
-										formControlName="userType"
-										[id]="'userType' + type.value"
-										[value]="type.value"
-										required />
-									<label
-										class="btn rounded-pill"
-										[for]="'userType' + type.value">
-										{{ type.title }}
+						</div>
+					</div>
+					<div class="contact-form-body">
+						<form [formGroup]="contactForm" (ngSubmit)="submitContactForm()">
+							<div class="row g-3">
+
+								<div class="col-md-6">
+									<label class="form-label fw-semibold">
+										Full Name <span class="text-danger">*</span>
 									</label>
-								}
+									<input type="text"
+										   pInputText
+										   formControlName="name"
+										   class="form-control"
+										   placeholder="Your full name" />
+									@if (name?.invalid && (name?.dirty || name?.touched)) {
+									<small class="text-danger">Name is required</small>
+									}
+								</div>
+
+								<div class="col-md-6">
+									<label class="form-label fw-semibold">
+										Email Address <span class="text-danger">*</span>
+									</label>
+									<input type="email"
+										   pInputText
+										   formControlName="email"
+										   class="form-control"
+										   placeholder="your@email.com" />
+									@if (email?.invalid && (email?.dirty || email?.touched)) {
+									<small class="text-danger">
+										@if (email?.errors?.['required']) { Email is required }
+										@else { Please enter a valid email }
+									</small>
+									}
+								</div>
+
+								<div class="col-12">
+									<label class="form-label fw-semibold">
+										Phone Number <span class="text-danger">*</span>
+									</label>
+									<p-inputmask mask="999-999-9999"
+												 formControlName="phone"
+												 class="w-100"
+												 placeholder="Ex. 123-456-1234"></p-inputmask>
+									@if (phone?.invalid && (phone?.dirty || phone?.touched)) {
+									<small class="text-danger">Phone number is required</small>
+									}
+								</div>
+
+								<div class="col-12">
+									<label class="form-label fw-semibold">
+										Message <span class="text-danger">*</span>
+									</label>
+									<textarea formControlName="message"
+											  class="form-control"
+											  rows="4"
+											  placeholder="Tell us what you're looking for..."></textarea>
+									@if (message?.invalid && (message?.dirty || message?.touched)) {
+									<small class="text-danger">Message is required</small>
+									}
+								</div>
+
+								<div class="col-12">
+									<label class="form-label fw-semibold">I am a</label>
+									<div class="d-flex flex-wrap gap-2 mt-1">
+										@for (type of userTypes; track $index) {
+										<input type="radio"
+											   class="btn-check"
+											   formControlName="userType"
+											   [id]="'userType' + type.value"
+											   [value]="type.value" />
+										<label class="btn btn-outline-primary btn-sm rounded-pill px-3"
+											   [for]="'userType' + type.value">
+											{{ type.title }}
+										</label>
+										}
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="terms-box">
+										<div class="form-check">
+											<input type="checkbox"
+												   class="form-check-input"
+												   id="contactTerms"
+												   formControlName="termsAccepted" />
+											<label class="form-check-label small" for="contactTerms">
+												By submitting this form, I agree to be contacted by
+												<strong>{{ siteConfig.brokerageTypeId }}</strong> via email,
+												phone, and text about real estate services.
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-12">
+									<app-captcha></app-captcha>
+								</div>
+
+								<div class="col-12">
+									<button type="submit"
+											class="btn btn-primary w-100 py-2 fw-semibold submit-btn"
+											[disabled]="contactForm.invalid || isSubmitting()">
+										@if (isSubmitting()) {
+										<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+										Submitting...
+										} @else {
+										<i class="bi bi-send me-2"></i> Send Message
+										}
+									</button>
+								</div>
+
 							</div>
-							<div class="form-check mb-3">
-								<input
-									type="checkbox"
-									class="form-check-input"
-									id="contactTerms"
-									formControlName="termsAccepted" />
-								<label
-									class="form-check-label"
-									for="contactTerms">
-									By submitting this form, I agree to be contacted by
-									{{ siteConfig.brokerageTypeId }} via email, phone, and text about real estate
-									services.
-								</label>
-							</div>
-							<app-captcha></app-captcha>
-							<button
-								type="submit"
-								class="btn search_btn w-100 fw-bold"
-								[disabled]="contactForm.invalid || isSubmitting()">
-								@if (isSubmitting()) {
-									<span
-										class="spinner-border spinner-border-sm me-2"
-										aria-hidden="true"></span>
-									Submitting...
-								} @else {
-									Submit
-								}
-							</button>
 						</form>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </section>

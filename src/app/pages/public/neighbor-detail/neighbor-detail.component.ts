@@ -149,6 +149,11 @@ export class NeighborDetailComponent implements OnInit {
 	}
 
 	submitNeighborDetailForm() {
+		if (!this.selectedAddress) {
+			this.notificationService.showError("Please search and select your location.");
+			return;
+		}
+
 		if (this.neighborDetailForm.invalid) {
 			this.neighborDetailForm.markAllAsTouched();
 			this.notificationService.showError("Please fill all required fields correctly.");

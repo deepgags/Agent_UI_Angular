@@ -11,6 +11,7 @@ import { FileUploadModule } from "primeng/fileupload";
 import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
+import { TabsModule } from "primeng/tabs";
 import { TextareaModule } from "primeng/textarea";
 import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
@@ -38,6 +39,7 @@ import { PageService } from "../../../services/page.service";
 		TableModule,
 		EditorModule,
 		FileUploadModule,
+		TabsModule,
 		BlobToUrlPipe,
 		DatePipe,
 		TooltipModule,
@@ -407,12 +409,47 @@ export class PageManagerComponent implements OnInit {
 	}
 
 	getStatusBadge(page: Page) {
-		if (!page.isEditable) {
+		if (page.isPredefined && !page.isEditable) {
 			return { label: "Read Only", severity: "warning" };
-		} else {
-			// if (!page.isDeletable) return { label: "Protected", severity: "warning" };
-			return { label: "Editable", severity: "success" };
 		}
+		if (page.isPredefined) {
+			return { label: "Built-in", severity: "info" };
+		}
+		return { label: "Custom", severity: "success" };
+	}
+
+	getBadgeClass(page: Page): string {
+		const { severity } = this.getStatusBadge(page);
+		const map: Record<string, string> = {
+			warning: "bg-warning text-dark",
+			info: "bg-info text-dark",
+			success: "bg-success",
+		};
+		return map[severity] ?? "bg-secondary";
+	}
+
+	getPageIcon(page: Page): string {
+		const key = page.pageKey ?? "";
+		const icons: Record<string, string> = {
+			home: "bi-house-fill",
+			about: "bi-person-fill",
+			contact: "bi-envelope-fill",
+			seller: "bi-tag-fill",
+			buyer: "bi-search-heart",
+			testimonial: "bi-chat-quote-fill",
+			calculator: "bi-calculator-fill",
+			cities: "bi-geo-alt-fill",
+		};
+		return icons[key] ?? "bi-file-earmark-text-fill";
+	}
+
+	getPageIconClass(page: Page): string {
+		if (!page.isPredefined) return "page-icon-wrap page-icon-custom";
+		const key = page.pageKey ?? "";
+		if (key === "home") return "page-icon-wrap page-icon-home";
+		if (["seller", "buyer"].includes(key)) return "page-icon-wrap page-icon-listing";
+		if (key === "contact") return "page-icon-wrap page-icon-contact";
+		return "page-icon-wrap page-icon-builtin";
 	}
 
 	previewPage(page: Page) {

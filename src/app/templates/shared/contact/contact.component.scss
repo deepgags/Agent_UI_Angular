@@ -1,59 +1,231 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-  
-*{  overflow-wrap: break-word;
-  word-break: break-word;}
-
-p,h1,h3,input,button{
-    font-family: "Raleway", sans-serif;
-}
-.btn-check:checked + .btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check) + .btn:active {
-    color: #000000;
-    // background-color: #dbdbdb;
-    border-color: #000000;
-}
-.banner{
-  }
-
-.mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after {
-    margin-left: 1px;
-    margin-right: 0;
-    content: "*";
-    color: red;
-}
-.search-container[_ngcontent-ng-c978161180] span[_ngcontent-ng-c978161180], [_nghost-ng-c978161180] .search-container span {
-    font-size: 13px;
-    color: red;
+// ── Hero ──────────────────────────────────────────────────────────────────────
+.contact-hero {
+	position: relative;
+	background-size: cover;
+	background-position: center;
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin-top: 60px;
 }
 
-.logo{
-    width: 200px;
+.contact-hero-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.55);
 }
 
-.orig {
-  font-size: 1.1rem;
+.contact-hero-content {
+	position: relative;
+	z-index: 1;
+	color: #fff;
+
+	h1 { font-size: 2.5rem; }
 }
 
-.facebook {
-  color: #1877F2;
+// ── Agent Card ────────────────────────────────────────────────────────────────
+.agent-card {
+	background: #fff;
+	border-radius: 14px;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+	border-left: 4px solid #3b82f6;
+	overflow: hidden;
+
+	&.agent-card-secondary {
+		border-left-color: #8b5cf6;
+	}
 }
 
-.twitter {
-  color: #1DA1F2;
+.agent-card-header {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1.1rem 1.25rem;
+	background: #f8faff;
+	border-bottom: 1px solid #e5e7eb;
+
+	.agent-card-secondary & {
+		background: #faf8ff;
+	}
 }
 
-.instagram {
-  color: #E4405F;
+.agent-card-body {
+	padding: 1rem 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
 }
 
-.linkedin {
-  color: #0A66C2;
+.agent-avatar {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: #dbeafe;
+	color: #1d4ed8;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.4rem;
+	flex-shrink: 0;
+
+	&.secondary {
+		background: #ede9fe;
+		color: #7c3aed;
+	}
 }
 
-.btn:hover .orig {
-  opacity: 0.8;
+// ── Contact rows ──────────────────────────────────────────────────────────────
+.contact-row {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75rem;
 }
- @media (max-width: 768px) {
-.banner{
-    height: 18vh;
+
+.contact-icon-wrap {
+	width: 32px;
+	height: 32px;
+	border-radius: 8px;
+	background: #f3f4f6;
+	color: #6b7280;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	font-size: 13px;
+
+	&.location { background: #fee2e2; color: #dc2626; }
+	&.phone    { background: #dcfce7; color: #15803d; }
+	&.email    { background: #fef9c3; color: #854d0e; }
 }
+
+.contact-text {
+	font-size: 14px;
+	color: #374151;
+	line-height: 1.5;
+	padding-top: 6px;
+	word-break: break-word;
+}
+
+// ── Brokerage card ────────────────────────────────────────────────────────────
+.brokerage-card {
+	background: #fff;
+	border-radius: 12px;
+	padding: 1rem 1.25rem;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+	border: 1px solid #e5e7eb;
+}
+
+.brokerage-logo {
+	max-width: 200px;
+	max-height: 70px;
+	width: auto;
+	height: auto;
+	object-fit: contain;
+}
+
+// ── Section label ─────────────────────────────────────────────────────────────
+.section-label {
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: #9ca3af;
+	margin-bottom: 0.6rem;
+}
+
+// ── Social buttons ────────────────────────────────────────────────────────────
+.social-btn {
+	width: 42px;
+	height: 42px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.05rem;
+	text-decoration: none;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+	}
+
+	&.facebook  { background: #e7f0fd; color: #1877f2; }
+	&.twitter   { background: #f0f0f0; color: #000; }
+	&.instagram { background: #fde7ef; color: #e4405f; }
+	&.linkedin  { background: #e7f0f8; color: #0a66c2; }
+}
+
+// ── Page content card ─────────────────────────────────────────────────────────
+.page-content-card {
+	background: #fff;
+	border-radius: 12px;
+	padding: 1.25rem;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+	border: 1px solid #e5e7eb;
+	font-size: 14px;
+	color: #374151;
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+// ── Contact Form Card ─────────────────────────────────────────────────────────
+.contact-form-card {
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+	overflow: hidden;
+}
+
+.contact-form-header {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1.5rem 1.75rem;
+	background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+	color: #fff;
+	font-size: 1.5rem;
+
+	h4 { color: #fff; margin-bottom: 0; }
+	p  { color: rgba(255, 255, 255, 0.8) !important; }
+}
+
+.contact-form-body {
+	padding: 1.75rem;
+}
+
+// ── Terms box ─────────────────────────────────────────────────────────────────
+.terms-box {
+	background: #f9fafb;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	padding: 0.75rem 1rem;
+}
+
+// ── Submit button ─────────────────────────────────────────────────────────────
+.submit-btn {
+	border-radius: 8px;
+	font-size: 15px;
+	letter-spacing: 0.02em;
+	transition: background 0.2s ease, transform 0.15s ease;
+
+	&:not(:disabled):hover {
+		transform: translateY(-1px);
+		box-shadow: 0 4px 14px rgba(29, 78, 216, 0.35);
+	}
+}
+
+// ── Responsive ────────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+	.contact-hero {
+		height: 200px;
+		margin-top: 50px;
+
+		&-content h1 { font-size: 1.8rem; }
+	}
+
+	.contact-form-body { padding: 1.25rem; }
+	.contact-form-header { padding: 1.25rem; }
 }

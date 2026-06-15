@@ -14,6 +14,7 @@ import { SharedDataService } from "../../../../services/shared-data.service";
 })
 export class SidebarComponent {
 	userData!: CustomerModel;
+	currentYear = new Date().getFullYear();
 
 	constructor(private sharedDataService: SharedDataService) {}
 

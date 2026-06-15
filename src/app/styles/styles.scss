@@ -98,6 +98,67 @@ padding-right: 0;
 	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
+/* Powered by DealCentre bar */
+.dealcentre-powered-bar {
+	background: #0a0a0a;
+	text-align: center;
+	padding: 0.55rem 1rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.dc-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	text-decoration: none;
+
+	&:hover .dc-logo { opacity: 1; }
+}
+
+.dc-powered-text {
+	font-size: 10px;
+	color: rgba(255, 255, 255, 0.4);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.dc-logo {
+	height: 18px;
+	width: auto;
+	object-fit: contain;
+	opacity: 0.75;
+	transition: opacity 0.2s ease;
+	vertical-align: middle;
+}
+
+.dc-copy {
+	font-size: 10px;
+	color: rgba(255, 255, 255, 0.3);
+}
+
+/* Google PlaceAutocompleteElement dropdown fix */
+gmp-place-autocomplete {
+	position: relative;
+	z-index: 99999;
+	width: 100%;
+	display: block;
+}
+
+gmp-place-autocomplete::part(input) {
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	background: transparent !important;
+	width: 100% !important;
+	padding: 0.75rem 1rem !important;
+	font-size: 1rem !important;
+	color: #212529 !important;
+}
+
+.pac-container {
+	z-index: 99999 !important;
+}
+
 .blue-button {
 	background-color: #1a73e8;
 	color: white;
