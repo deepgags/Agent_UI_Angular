@@ -124,7 +124,6 @@ export class SharedDataService {
 
 	// Role-based access control methods
 	isBroker(): boolean {
-		console.log(this._userData());
 		return this._userData()?.isBroker === true;
 	}
 

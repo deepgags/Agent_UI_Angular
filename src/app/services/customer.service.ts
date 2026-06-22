@@ -73,7 +73,7 @@ export class CustomerService {
 		this.http.get(`${this.baseUrl}/customer/profile`).subscribe({
 			next: (response: any) => {
 				if (response.status) {
-					this.sharedDataService.setSiteData(response.data);
+					this.sharedDataService.setUserData(response.data);
 				}
 			},
 			error: () => {},

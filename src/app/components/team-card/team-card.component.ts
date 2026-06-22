@@ -1,5 +1,5 @@
 import { CommonModule, SlicePipe } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, effect } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { environment } from "../../environments/environment.development";
 import { TeamMemberModel } from "../../models/TeamMemberModel";
@@ -14,10 +14,14 @@ import { SharedDataService } from "../../services/shared-data.service";
 export class TeamCardComponent {
 	team: TeamMemberModel[] | any[] = [];
 	localImageUrl = environment.localImageUrl;
-	constructor(private sharedDataService: SharedDataService) {}
 
-	ngOnInit(): void {
-		this.team = this.sharedDataService.team();
-		console.log(this.team);
+	constructor(private sharedDataService: SharedDataService) {
+		effect(() => {
+			this.team = this.sharedDataService.team();
+		});
+	}
+
+	get isBroker(): boolean {
+		return this.sharedDataService.isBroker();
 	}
 }

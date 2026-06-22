@@ -612,16 +612,18 @@
 													id="requestShowingName"
 													required />
 												<label for="requestShowingName">Name</label>
-												<span
-													class="error"
-													*ngIf="
-														requestShowingName?.invalid &&
-														(requestShowingName?.dirty || requestShowingName?.touched)
-													">
-													<span *ngIf="requestShowingName?.errors?.['required']">
-														Name is required
-													</span>
+												@if(requestShowingName?.invalid &&
+														(requestShowingName?.dirty || requestShowingName?.touched)){
+
+												<span class="error">
+													@if(requestShowingName?.errors?.['required']){
+														<span>
+															Name is required
+														</span>
+
+													}
 												</span>
+												}
 											</p-iftalabel>
 										</div>
 										<div class="mb-3">

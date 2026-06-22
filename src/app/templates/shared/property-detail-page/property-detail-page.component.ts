@@ -37,28 +37,7 @@ type PropertyDetailFormKey = "requestShowing" | "propertyHistory" | "recentSales
 
 @Component({
 	selector: "app-property-detail-page",
-	imports: [
-		CommonModule,
-		NgbModule,
-		FormsModule,
-		ReactiveFormsModule,
-		GoogleMapsModule,
-		RouterModule,
-		PhoneNumberFormatPipe,
-		AccordionModule,
-		IftaLabelModule,
-		InputMaskModule,
-		InputTextModule,
-		SelectModule,
-		MultiSelectModule,
-		TimeAgo,
-		CarouselModule,
-		GalleriaModule,
-		PropertyComponent,
-		TabsModule,
-		ProgressSpinnerModule,
-		CaptchaComponent,
-	],
+	imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, GoogleMapsModule, RouterModule, PhoneNumberFormatPipe, AccordionModule, IftaLabelModule, InputMaskModule, InputTextModule, SelectModule, MultiSelectModule, TimeAgo, CarouselModule, GalleriaModule, PropertyComponent, TabsModule, ProgressSpinnerModule, CaptchaComponent],
 	templateUrl: "./property-detail-page.component.html",
 	styleUrl: "./property-detail-page.component.scss",
 	// providers: [provideAnimations(), NgbCarouselConfig],
@@ -350,6 +329,14 @@ export class PropertyDetailPageComponent {
 
 				this.askAboutThisHomecommentText = `I was searching on your site and came across a property at ${this.property.UnparsedAddress}, MLS Id #${this.property.ListingKey}. Please send me more information about this listing.
         Thank you.`;
+
+				setTimeout(() => {
+					this.requestShowingForm.patchValue({ message: this.requestShowingText });
+					this.propertyHistoryForm.patchValue({ message: this.propertyHistooryText });
+					this.recentSaleInAreaForm.patchValue({ message: this.recentSalesinAreaText });
+					this.haveQuestionForm.patchValue({ message: this.haveAQuestionText });
+					this.contactForm.patchValue({ message: this.askAboutThisHomecommentText });
+				});
 			},
 			error: (err) => {
 				this.loading = false;
@@ -413,8 +400,7 @@ export class PropertyDetailPageComponent {
 			mlsId: this.mlsId,
 		};
 		this.setSubmittingForm("requestShowing", true);
-		this.publicService.submitContactForm(params)
-			.subscribe({
+		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
 				this.setSubmittingForm("requestShowing", false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
@@ -455,8 +441,7 @@ export class PropertyDetailPageComponent {
 			mlsId: this.mlsId,
 		};
 		this.setSubmittingForm("propertyHistory", true);
-		this.publicService.submitContactForm(params)
-			.subscribe({
+		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
 				this.setSubmittingForm("propertyHistory", false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
@@ -497,8 +482,7 @@ export class PropertyDetailPageComponent {
 			mlsId: this.mlsId,
 		};
 		this.setSubmittingForm("recentSalesInArea", true);
-		this.publicService.submitContactForm(params)
-			.subscribe({
+		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
 				this.setSubmittingForm("recentSalesInArea", false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
@@ -539,8 +523,7 @@ export class PropertyDetailPageComponent {
 			mlsId: this.mlsId,
 		};
 		this.setSubmittingForm("haveQuestion", true);
-		this.publicService.submitContactForm(params)
-			.subscribe({
+		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
 				this.setSubmittingForm("haveQuestion", false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
@@ -581,8 +564,7 @@ export class PropertyDetailPageComponent {
 			mlsId: this.mlsId,
 		};
 		this.setSubmittingForm("contact", true);
-		this.publicService.submitContactForm(params)
-			.subscribe({
+		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
 				this.setSubmittingForm("contact", false);
 				this.notificationService.showSuccess("Your message has been sent successfully.");
@@ -727,26 +709,11 @@ export class PropertyDetailPageComponent {
 		const controlDiv = document.createElement("div");
 		controlDiv.className = "custom-map-controls";
 
-		const drawControl = this.createMapButton(
-			"fas fa-pencil-alt",
-			() => this.toggleDrawingMode(googleMap),
-			"Draw Region",
-			false,
-		);
+		const drawControl = this.createMapButton("fas fa-pencil-alt", () => this.toggleDrawingMode(googleMap), "Draw Region", false);
 
-		const amenitiesControl = this.createMapButton(
-			"fas fa-info",
-			() => this.toggleAmenities(googleMap),
-			"Amenities",
-			true,
-		);
+		const amenitiesControl = this.createMapButton("fas fa-info", () => this.toggleAmenities(googleMap), "Amenities", true);
 
-		const locationControl = this.createMapButton(
-			"fas fa-location-arrow",
-			() => this.centerOnUserLocation(googleMap),
-			"My Location",
-			true,
-		);
+		const locationControl = this.createMapButton("fas fa-location-arrow", () => this.centerOnUserLocation(googleMap), "My Location", true);
 
 		controlDiv.appendChild(drawControl);
 		controlDiv.appendChild(amenitiesControl);

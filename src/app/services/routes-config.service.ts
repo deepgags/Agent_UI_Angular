@@ -142,6 +142,7 @@ export class RoutesConfigService {
 			}
 
 			this.sharedDataService.setSiteData(normalized.customer);
+			this.sharedDataService.setUserData(normalized.customer);
 			this.sharedDataService.setSiteId(normalized.customer._id);
 			if (mainMenu) {
 				this.sharedDataService.setMainMenu(mainMenu);
