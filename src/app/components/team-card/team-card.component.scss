@@ -83,3 +83,32 @@
 	color: #fff;
 	transform: translateY(-3px);
 }
+
+/* About / Description */
+.premium-about {
+	font-size: 0.875rem;
+	color: #666;
+	line-height: 1.5;
+	margin-bottom: 18px;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* See All Button */
+.see-all-btn {
+	display: inline-block;
+	padding: 11px 32px;
+	border: 2px solid #2b5876;
+	color: #2b5876;
+	border-radius: 14px;
+	text-decoration: none;
+	font-weight: 500;
+	transition: 0.3s ease;
+}
+
+.see-all-btn:hover {
+	background: #2b5876;
+	color: #fff;
+}

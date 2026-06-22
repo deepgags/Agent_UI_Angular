@@ -124,8 +124,8 @@ export class SharedDataService {
 
 	// Role-based access control methods
 	isBroker(): boolean {
-		const userData = this._userData();
-		return userData?.role === "Broker";
+		console.log(this._userData());
+		return this._userData()?.isBroker === true;
 	}
 
 	isAgent(): boolean {

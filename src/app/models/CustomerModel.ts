@@ -15,6 +15,7 @@ export interface CustomerModel {
 	password: string;
 	confirmPassword: string;
 	role: string;
+	isBroker?: boolean;
 	brokerId?: string;
 	siteUrl?: string;
 	profileImage: string;

@@ -20,6 +20,7 @@
 				 styleClass="p-datatable-striped">
 			<ng-template pTemplate="header">
 				<tr>
+					<th style="width: 70px">Image</th>
 					<th>Name</th>
 					<th>Designation</th>
 					<th>Email</th>
@@ -31,6 +32,17 @@
 			<ng-template pTemplate="body"
 						 let-member>
 				<tr>
+					<td>
+						@if (member.profileImage) {
+						<img [src]="localImageBaseUrl + member.profileImage"
+							 alt="{{ member.firstName }}"
+							 style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
+						} @else {
+						<div style="width: 40px; height: 40px; border-radius: 50%; background: #e0e0e0; display: flex; align-items: center; justify-content: center;">
+							<i class="bi bi-person" style="font-size: 18px; color: #999;"></i>
+						</div>
+						}
+					</td>
 					<td>{{ member.firstName }} {{ member.lastName || '' }}</td>
 					<td>{{ member.designation }}</td>
 					<td>{{ member.emailAddress }}</td>
@@ -52,7 +64,7 @@
 
 			<ng-template pTemplate="emptymessage">
 				<tr>
-					<td colspan="5"
+					<td colspan="6"
 						class="text-center py-4">
 						<p class="text-muted mb-3">No team members found</p>
 					</td>

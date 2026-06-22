@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { CommonModule, SlicePipe } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { environment } from "../../environments/environment.development";
@@ -7,7 +7,7 @@ import { SharedDataService } from "../../services/shared-data.service";
 
 @Component({
 	selector: "app-team-card",
-	imports: [CommonModule, RouterModule],
+	imports: [CommonModule, RouterModule, SlicePipe],
 	templateUrl: "./team-card.component.html",
 	styleUrl: "./team-card.component.scss",
 })
@@ -18,5 +18,6 @@ export class TeamCardComponent {
 
 	ngOnInit(): void {
 		this.team = this.sharedDataService.team();
+		console.log(this.team);
 	}
 }

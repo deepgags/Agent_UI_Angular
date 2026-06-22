@@ -8,8 +8,7 @@
 		</div>
 	</div>
 	<div class="row g-4 justify-content-center">
-		<!-- Agent Card -->
-		@for (_team of team; track $index) {
+		@for (_team of team | slice:0:5; track $index) {
 		<div class="col-12 col-sm-6 col-lg-3">
 			<div class="premium-card">
 				<div class="premium-img-wrapper">
@@ -21,16 +20,20 @@
 				<div class="premium-body">
 					<h5 class="premium-name">{{_team.firstName}} {{_team.lastName}}</h5>
 					<div class="premium-divider"></div>
-					<p class="premium-phone">{{_team.phoneNumber}}</p>
 					<p class="premium-title">{{_team.designation}}</p>
-
+					@if (_team.about) {
+					<p class="premium-about">{{_team.about}}</p>
+					}
 					<a [routerLink]="['/team', _team._id]"
 					   class="premium-btn">View Details</a>
 				</div>
 			</div>
 		</div>
 		}
+	</div>
 
+	<div class="text-center mt-4">
+		<a routerLink="/team" class="see-all-btn">See All Team Members</a>
 	</div>
 </div>
 }
