@@ -144,3 +144,7 @@ li {
     padding-block-start: 0px;
     padding-block-end: var(--p-iftalabel-input-padding-bottom);
 }
+
+.p-iftalabel textarea.p-inputtext {
+    padding-block-start: 1.5rem;
+}
