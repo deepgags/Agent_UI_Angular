@@ -12,8 +12,15 @@ declare const google: any;
 })
 export class GooglePlaceComponent implements AfterViewInit {
 	@Input("onPlaceSelect") onPlaceSelect: Function = () => {};
+	@Input("onAddressChange") onAddressChange: Function = () => {};
 	@Input("placeholder") placeholder: string = "Enter Location";
-	@ViewChild("container") containerRef!: ElementRef;
+	@ViewChild("addressInput") inputRef!: ElementRef<HTMLInputElement>;
+
+	suggestions: any[] = [];
+	showSuggestions = false;
+	private autocompleteService: any;
+	private placesService: any;
+	private debounceTimer: any;
 
 	constructor(private ngZone: NgZone) {}
 
@@ -27,42 +34,74 @@ export class GooglePlaceComponent implements AfterViewInit {
 		} else if (attempts < 40) {
 			setTimeout(() => this.waitForGoogleMaps(attempts + 1), 250);
 		} else {
-			console.error("Google Maps JavaScript API not loaded after 10s.");
+			console.error("Google Maps JavaScript API not loaded.");
 		}
 	}
 
 	private async initAutocomplete(): Promise<void> {
-		const { PlaceAutocompleteElement } = (await google.maps.importLibrary("places")) as any;
+		const { AutocompleteService, PlacesService } = (await google.maps.importLibrary("places")) as any;
 
-		const placeAutocomplete = new PlaceAutocompleteElement({
-			includedPrimaryTypes: ["geocode"],
-			includedRegionCodes: ["ca"],
-		});
+		this.autocompleteService = new AutocompleteService();
+		this.placesService = new PlacesService(document.createElement("div"));
+	}
 
-		placeAutocomplete.setAttribute("placeholder", this.placeholder);
+	onInput(event: Event): void {
+		const value = (event.target as HTMLInputElement).value.trim();
+		this.onAddressChange(value);
 
-		this.containerRef.nativeElement.appendChild(placeAutocomplete);
+		clearTimeout(this.debounceTimer);
 
-		placeAutocomplete.addEventListener("gmp-placeselect", async (event: any) => {
-			try {
-				const place = event.place;
-				await place.fetchFields({
-					fields: ["location", "formattedAddress", "addressComponents"],
-				});
+		if (!value || value.length < 2) {
+			this.suggestions = [];
+			this.showSuggestions = false;
+			return;
+		}
 
+		this.debounceTimer = setTimeout(() => {
+			this.autocompleteService.getQueryPredictions({ input: value, componentRestrictions: { country: "ca" } }, (predictions: any[], status: any) => {
 				this.ngZone.run(() => {
-					const normalizedPlace = {
-						formatted_address: place.formattedAddress,
-						geometry: {
-							location: place.location, // LatLng — has .lat() and .lng()
-						},
-						address_components: place.addressComponents,
-					};
-					this.onPlaceSelect(normalizedPlace);
+					if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
+						this.suggestions = predictions;
+						this.showSuggestions = true;
+					} else {
+						this.suggestions = [];
+						this.showSuggestions = false;
+					}
 				});
-			} catch (err) {
-				console.error("PlaceAutocomplete fetchFields error:", err);
-			}
+			});
+		}, 300);
+	}
+
+	selectSuggestion(prediction: any): void {
+		this.showSuggestions = false;
+
+		this.placesService.getDetails({ placeId: prediction.place_id, fields: ["formatted_address", "geometry", "address_components"] }, (place: any, status: any) => {
+			this.ngZone.run(() => {
+				if (status === google.maps.places.PlacesServiceStatus.OK && place) {
+					if (this.inputRef?.nativeElement) {
+						this.inputRef.nativeElement.value = place.formatted_address;
+					}
+					this.onAddressChange(place.formatted_address);
+					this.onPlaceSelect({
+						formatted_address: place.formatted_address,
+						geometry: place.geometry,
+						address_components: place.address_components,
+					});
+				}
+			});
 		});
+	}
+
+	onBlur(): void {
+		setTimeout(() => {
+			this.showSuggestions = false;
+		}, 200);
+	}
+
+	onFocus(event: Event): void {
+		const value = (event.target as HTMLInputElement).value.trim();
+		if (value.length >= 2 && this.suggestions.length > 0) {
+			this.showSuggestions = true;
+		}
 	}
 }

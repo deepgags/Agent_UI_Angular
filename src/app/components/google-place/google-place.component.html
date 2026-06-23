@@ -1,1 +1,26 @@
-<div #container class="gp-container"></div>
+<div #container class="gp-container">
+	<div class="autocomplete-wrapper">
+		<input
+			#addressInput
+			type="text"
+			class="autocomplete-input"
+			[placeholder]="placeholder"
+			(input)="onInput($event)"
+			(blur)="onBlur()"
+			(focus)="onFocus($event)"
+			autocomplete="off"
+		/>
+		<ul
+			class="suggestions-list"
+			*ngIf="showSuggestions && suggestions.length > 0"
+		>
+			<li
+				*ngFor="let prediction of suggestions"
+				class="suggestion-item"
+				(mousedown)="selectSuggestion(prediction)"
+			>
+				{{ prediction.description }}
+			</li>
+		</ul>
+	</div>
+</div>

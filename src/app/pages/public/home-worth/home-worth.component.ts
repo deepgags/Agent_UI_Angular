@@ -15,6 +15,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 export class WorthComponent {
 	siteConfig: SiteConfig = {} as SiteConfig;
 	selectedPlace: any = null;
+	rawAddress = "";
 	localImageUrl = environment.localImageUrl;
 
 	constructor(
@@ -31,22 +32,27 @@ export class WorthComponent {
 		this.selectedPlace = place;
 	};
 
+	onAddressChange = (address: string) => {
+		this.rawAddress = address;
+	};
+
 	submitAddress = () => {
-		if (!this.selectedPlace) {
+		const address = this.selectedPlace?.formatted_address || this.rawAddress.trim();
+
+		if (!address) {
 			this.notificationService.showError("Address is required.");
 			return;
 		}
 
-		const address = this.selectedPlace.formatted_address;
-		const lat = this.selectedPlace.geometry.location.lat();
-		const lng = this.selectedPlace.geometry.location.lng();
+		const lat = this.selectedPlace?.geometry?.location?.lat?.();
+		const lng = this.selectedPlace?.geometry?.location?.lng?.();
 
-		this.router.navigate(["/home-review"], {
-			queryParams: {
-				address: address,
-				lat: lat,
-				lng: lng,
-			},
-		});
+		const queryParams: any = { address };
+		if (lat !== undefined && lng !== undefined) {
+			queryParams.lat = lat;
+			queryParams.lng = lng;
+		}
+
+		this.router.navigate(["/home-review"], { queryParams });
 	};
 }

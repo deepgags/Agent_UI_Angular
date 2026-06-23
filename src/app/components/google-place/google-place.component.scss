@@ -7,28 +7,67 @@
 
 .gp-container {
 	width: 100%;
-	display: flex;
-	align-items: center;
+	position: relative;
 }
 
-// Pierce into the PlaceAutocompleteElement shadow DOM
-::ng-deep gmp-place-autocomplete {
+.autocomplete-wrapper {
+	width: 100%;
+	position: relative;
+}
+
+.autocomplete-input {
 	width: 100%;
 	display: block;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	appearance: none;
+	border-radius: 0.375rem;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 
-	&::part(input) {
-		width: 100%;
-		border: none;
-		outline: none;
-		box-shadow: none;
-		background: transparent;
-		padding: 0.75rem 1rem;
-		font-size: 1rem;
-		line-height: 1.5;
-		color: #212529;
-	}
+.autocomplete-input:focus {
+	color: #212529;
+	background-color: #fff;
+	border-color: #86b7fe;
+	outline: 0;
+	box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
 
-	&::part(input)::placeholder {
-		color: #6c757d;
-	}
+.autocomplete-input::placeholder {
+	color: #6c757d;
+	opacity: 1;
+}
+
+.suggestions-list {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 1050;
+	list-style: none;
+	margin: 0.25rem 0 0;
+	padding: 0.25rem 0;
+	background: #fff;
+	border: 1px solid #dee2e6;
+	border-radius: 0.375rem;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	max-height: 240px;
+	overflow-y: auto;
+}
+
+.suggestion-item {
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	font-size: 0.95rem;
+	color: #212529;
+}
+
+.suggestion-item:hover {
+	background-color: #e9ecef;
 }
