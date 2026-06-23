@@ -39,15 +39,6 @@ export const routes: Routes = [
 			import("./pages/public/user-signup/user-signup.component").then((c) => c.UserSignupComponent),
 	},
 	{
-		path: "team/:memberId",
-		loadComponent: () =>
-			import("./pages/public/team-details/team-details.component").then((c) => c.TeamDetailComponent),
-	},
-	{
-		path: "team",
-		loadComponent: () => import("./pages/public/team-list/team-list.component").then((c) => c.TeamListComponent),
-	},
-	{
 		path: "home-worth",
 		loadComponent: () => import("./pages/public/home-worth/home-worth.component").then((c) => c.WorthComponent),
 	},

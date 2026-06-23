@@ -11,6 +11,8 @@ import { PropertyDetailPageComponent } from "./templates/shared/property-detail-
 import { SearchPageComponent } from "./templates/shared/search-page/search-page.component";
 import { SellerComponent } from "./templates/shared/seller/seller.component";
 import { SellerdetailComponent } from "./templates/shared/sellerdetail/sellerdetail.component";
+import { TeamListComponent } from "./pages/public/team-list/team-list.component";
+import { TeamDetailComponent } from "./pages/public/team-details/team-details.component";
 
 export interface TemplateRoute {
 	path: string;
@@ -40,6 +42,8 @@ const generalRoutes: Route[] = [
 	{ path: "buyer", component: BuyerComponent },
 	{ path: "about", component: AboutComponent },
 	{ path: "mortgage-calculator", component: MortgageCalculatorComponent },
+	{ path: "team", component: TeamListComponent },
+	{ path: "team/:memberId", component: TeamDetailComponent },
 	{ path: "page/:slug", component: PageDisplayComponent },
 ];
 
