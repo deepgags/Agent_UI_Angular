@@ -10,12 +10,12 @@ export interface TeamMemberModel {
 	siteUrl?: string;
 	about?: string;
 	address?: string;
-	socialLinks: {
-		facebook: string;
-		twitter: string;
-		instagram: string;
-		linkedin: string;
-		youtube: string;
+	socialLinks?: {
+		facebook?: string;
+		twitter?: string;
+		instagram?: string;
+		linkedin?: string;
+		youtube?: string;
 	};
 	createdAt: Date;
 	updatedAt: Date;

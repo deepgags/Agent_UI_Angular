@@ -1,39 +1,46 @@
-@if(isBroker && team.length > 0){
-<div class="container mb-5">
-	<div class="container-fluid search-container">
-		<div class="container">
-			<div class="row justify-content-center">
-				<h2 class="fw-semibold text-center info mt-3">Our Team</h2>
-			</div>
-		</div>
-	</div>
-	<div class="row g-4 justify-content-center">
-		@for (_team of team | slice:0:5; track $index) {
-		<div class="col-12 col-sm-6 col-lg-3">
-			<div class="premium-card">
-				<div class="premium-img-wrapper">
-					<img [src]="localImageUrl + _team.profileImage"
-						 class="premium-img"
-						 [alt]="_team.firstName">
-				</div>
+@if(team.length > 0){
+<section class="home-team-section">
+	<div class="container">
 
-				<div class="premium-body">
-					<h5 class="premium-name">{{_team.firstName}} {{_team.lastName}}</h5>
-					<div class="premium-divider"></div>
-					<p class="premium-title">{{_team.designation}}</p>
-					@if (_team.about) {
-					<p class="premium-about">{{_team.about}}</p>
-					}
-					<a [routerLink]="['/team', _team._id]"
-					   class="premium-btn">View Details</a>
+		<div class="home-team-header">
+			<p class="home-team-label">The People Behind The Properties</p>
+			<h2 class="home-team-title">Meet Our Team</h2>
+			<div class="home-team-divider"></div>
+		</div>
+
+		<div class="row g-4 justify-content-center">
+			@for (_team of team | slice:0:4; track $index) {
+			<div class="col-12 col-sm-6 col-lg-3">
+				<div class="ht-card">
+					<div class="ht-img-wrap">
+						<img
+							[src]="localImageUrl + _team.profileImage"
+							class="ht-img"
+							[alt]="_team.firstName" />
+						<div class="ht-overlay">
+							<a [routerLink]="['/team', _team._id]" class="ht-overlay-btn">
+								View Profile
+							</a>
+						</div>
+					</div>
+					<div class="ht-body">
+						<h5 class="ht-name">{{ _team.firstName }} {{ _team.lastName }}</h5>
+						<p class="ht-role">{{ _team.designation }}</p>
+						@if (_team.about) {
+							<p class="ht-about">{{ _team.about }}</p>
+						}
+					</div>
 				</div>
 			</div>
+			}
 		</div>
-		}
-	</div>
 
-	<div class="text-center mt-4">
-		<a routerLink="/team" class="see-all-btn">See All Team Members</a>
+		<div class="text-center mt-5">
+			<a routerLink="/team" class="ht-see-all">
+				See All Team Members <i class="fa-solid fa-arrow-right ms-2"></i>
+			</a>
+		</div>
+
 	</div>
-</div>
+</section>
 }

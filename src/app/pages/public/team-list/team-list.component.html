@@ -1,60 +1,116 @@
-<div class="p-0 container-fluid">
-	<div class="position-relative">
-		<img class="banner w-100"
-			 src="/images/banner3.jpg"
-			 alt="Banner Image" />
-		<div class="text-center position-absolute top-50 start-50 translate-middle">
-			<h1 class="text-white fw-bold baner-text">Our Team</h1>
-		</div>
+<section class="team-hero">
+	<div class="team-hero-overlay">
+		<p class="team-hero-sub">The People Behind The Properties</p>
+		<h1 class="team-hero-title">Meet Our Team</h1>
 	</div>
-</div>
+</section>
 
-<div class="container py-5">
-	<div class="row g-4">
-		@for (_team of teamMembers; track $index) {
-		<div class="col-6">
-			<div class="glass-card d-flex flex-column flex-md-row">
-				<div class="glass-img-wrapper">
-					<img [src]="localImageUrl + _team.profileImage"
-						 class="glass-img"
-						 [alt]="_team.firstName" />
+<section class="team-section">
+	<div class="container">
 
-					<div class="glass-social">
-						<i class="fab fa-facebook-f"></i>
-						<i class="fab fa-twitter"></i>
-						<i class="fab fa-linkedin-in"></i>
-						<i class="fab fa-instagram"></i>
+		@if (loading) {
+			<div class="row g-4 justify-content-center">
+				@for (_ of [1,2,3,4,5,6]; track $index) {
+					<div class="col-12 col-sm-6 col-lg-4">
+						<div class="agent-card skeleton-card">
+							<div class="skeleton-img"></div>
+							<div class="skeleton-body">
+								<div class="skeleton-line w-60"></div>
+								<div class="skeleton-line w-40"></div>
+								<div class="skeleton-line w-80 mt-3"></div>
+								<div class="skeleton-line w-70"></div>
+							</div>
+						</div>
 					</div>
-				</div>
-
-				<div class="p-4 flex-grow-1">
-					<h3 class="glass-name">{{ _team.firstName }} {{ _team.lastName }}</h3>
-					<p class="glass-role">{{ _team.designation }}</p>
-					<p>
-						<strong>Email:</strong>
-						{{ _team.emailAddress }}
-					</p>
-					<p>
-						<strong>Mobile:</strong>
-						{{ _team.phoneNumber }}
-					</p>
-
-					<p class="mb-3">
-						<strong>Visit My Site:</strong>
-						<a [href]="_team.siteUrl"
-						   target="_blank"
-						   class="ms-2 text-danger fs-5">
-							<i class="fa-solid fa-arrow-up-right-from-square"></i>
-						</a>
-					</p>
-
-					<a [routerLink]="['/team', _team._id]"
-					   class="">
-						View Details
-					</a>
-				</div>
+				}
 			</div>
-		</div>
 		}
+
+		@if (!loading && teamMembers.length === 0) {
+			<div class="empty-state">
+				<i class="fa-solid fa-users empty-icon"></i>
+				<h3>No Team Members Yet</h3>
+				<p>Check back soon to meet the team.</p>
+			</div>
+		}
+
+		@if (!loading && teamMembers.length > 0) {
+			<div class="row g-4 justify-content-center">
+				@for (_team of teamMembers; track $index) {
+					<div class="col-12 col-sm-6 col-lg-4">
+						<div class="agent-card">
+
+							<div class="agent-img-wrap">
+								<img
+									[src]="localImageUrl + _team.profileImage"
+									[alt]="_team.firstName + ' ' + _team.lastName"
+									class="agent-img" />
+
+								<div class="agent-social-overlay">
+									@if (_team.socialLinks?.facebook) {
+										<a [href]="_team.socialLinks?.facebook" target="_blank" aria-label="Facebook">
+											<i class="fab fa-facebook-f"></i>
+										</a>
+									}
+									@if (_team.socialLinks?.twitter) {
+										<a [href]="_team.socialLinks?.twitter" target="_blank" aria-label="Twitter / X">
+											<i class="fab fa-x-twitter"></i>
+										</a>
+									}
+									@if (_team.socialLinks?.instagram) {
+										<a [href]="_team.socialLinks?.instagram" target="_blank" aria-label="Instagram">
+											<i class="fab fa-instagram"></i>
+										</a>
+									}
+									@if (_team.socialLinks?.linkedin) {
+										<a [href]="_team.socialLinks?.linkedin" target="_blank" aria-label="LinkedIn">
+											<i class="fab fa-linkedin-in"></i>
+										</a>
+									}
+									@if (_team.socialLinks?.youtube) {
+										<a [href]="_team.socialLinks?.youtube" target="_blank" aria-label="YouTube">
+											<i class="fab fa-youtube"></i>
+										</a>
+									}
+								</div>
+							</div>
+
+							<div class="agent-body">
+								<h4 class="agent-name">{{ _team.firstName }} {{ _team.lastName }}</h4>
+								<p class="agent-role">{{ _team.designation }}</p>
+
+								<div class="agent-contacts">
+									@if (_team.phoneNumber) {
+										<a [href]="'tel:' + _team.phoneNumber" class="agent-contact-item">
+											<i class="fa-solid fa-phone"></i>
+											<span>{{ _team.phoneNumber }}</span>
+										</a>
+									}
+									@if (_team.emailAddress) {
+										<a [href]="'mailto:' + _team.emailAddress" class="agent-contact-item">
+											<i class="fa-solid fa-envelope"></i>
+											<span>{{ _team.emailAddress }}</span>
+										</a>
+									}
+								</div>
+
+								<div class="agent-footer">
+									<a [routerLink]="['/team', _team._id]" class="agent-btn">
+										View Profile <i class="fa-solid fa-arrow-right ms-1"></i>
+									</a>
+									@if (_team.siteUrl) {
+										<a [href]="_team.siteUrl" target="_blank" class="agent-site-btn" aria-label="Visit site">
+											<i class="fa-solid fa-arrow-up-right-from-square"></i>
+										</a>
+									}
+								</div>
+							</div>
+
+						</div>
+					</div>
+				}
+			</div>
+		}
+
 	</div>
-</div>
+</section>
