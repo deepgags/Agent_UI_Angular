@@ -39,6 +39,11 @@ export const routes: Routes = [
 			import("./pages/public/user-signup/user-signup.component").then((c) => c.UserSignupComponent),
 	},
 	{
+		path: "agent-landing",
+		loadComponent: () =>
+			import("./pages/public/agent-landing/agent-landing.component").then((c) => c.AgentLandingComponent),
+	},
+	{
 		path: "home-worth",
 		loadComponent: () => import("./pages/public/home-worth/home-worth.component").then((c) => c.WorthComponent),
 	},

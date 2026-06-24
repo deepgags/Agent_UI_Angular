@@ -22,7 +22,7 @@ a {
 }
 
 .nav_content {
-	color: black !important;
+	color: var(--primary-color, #000) !important;
 }
 .signature-header {
   position: sticky;

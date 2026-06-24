@@ -28,7 +28,7 @@ a {
 }
 
 a:hover {
-  color: #e63946;
+  color: var(--primary-color, #e63946);
 }
 
 .orig {

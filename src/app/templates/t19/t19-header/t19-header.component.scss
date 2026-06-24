@@ -39,7 +39,7 @@ a {
   display: block;
   width: 42px;
   height: 2px;
-  background: #000;
+  background: var(--primary-color, #000);
   margin-top: 6px;
   transition: width 0.4s ease;
 }
@@ -55,7 +55,7 @@ a {
 .contact-pill {
   font-size: 16px;
   text-decoration: none;
-  color: #222;
+  color: var(--primary-color, #222);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -75,7 +75,7 @@ a {
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
-  color: #000;
+  color: var(--primary-color, #000);
   position: relative;
   align-self: center;
 }

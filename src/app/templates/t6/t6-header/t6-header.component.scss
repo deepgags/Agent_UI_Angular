@@ -45,7 +45,7 @@ a {
 }
 
 .contact-chip a {
-  color: #111;
+  color: var(--primary-color, #111);
 }
 
 .contact-chip:hover {

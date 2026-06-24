@@ -20,7 +20,7 @@ a,span{
 }
 
 .nav_content{
-    color: black !important;
+    color: var(--primary-color, #000) !important;
 }
 
 .editorial-header {

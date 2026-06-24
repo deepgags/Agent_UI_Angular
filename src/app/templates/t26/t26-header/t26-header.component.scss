@@ -143,10 +143,10 @@ a {
   }
 
   .contact-link:hover {
-    color: #0d6efd;
-    background: rgba(13, 110, 253, 0.08);
+    color: var(--primary-color, #0d6efd);
+    background: rgba(var(--primary-color-rgb, 13, 110, 253), 0.08);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15);
+    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb, 13, 110, 253), 0.15);
   }
 
   .contact-link:hover::before {

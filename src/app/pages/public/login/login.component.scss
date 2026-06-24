@@ -1,45 +1,308 @@
-.login-container {
-    height: 100vh;
-    background: linear-gradient(to bottom, #eaf4ff, #ffffff);
+/* ============================================================
+   Admin Login Page
+   ============================================================ */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  font-family: "Inter", sans-serif;
+}
+
+/* ---- Left Panel ---- */
+.login-left {
+  width: 42%;
+  background: url("/images/login-img.jpg") center center / cover no-repeat;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 56px 52px;
+  color: #fff;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(10, 20, 50, 0.82) 0%,
+      rgba(10, 30, 70, 0.65) 100%
+    );
+  }
+
+  > * { position: relative; z-index: 1; }
+}
+
+.left-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 36px;
+}
+
+.brand-headline {
+  font-size: clamp(1.6rem, 2.4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.brand-sub {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+  max-width: 380px;
+  margin-bottom: 36px;
+}
+
+.brand-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  li {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.88);
+
+    i {
+      color: #4ade80;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
   }
-
-  .login-card {
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .pointer{
-    cursor: pointer;
-  }
-
-  .icon-circle {
-    background-color: #f8f9fa;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-
-  /* Force the toggle (eye) to the far right inside the field */
-.p-password {
-  flex: 1; /* let it take full width */
 }
 
-.p-password .p-password-input {
-  width: 100% !important;
+.left-footer {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  a {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+
+    &:hover { border-color: #fff; }
+  }
 }
 
-.p-password .p-password-toggle-icon {
+/* ---- Right Panel ---- */
+.login-right {
+  flex: 1;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+}
+
+.form-wrap {
+  width: 100%;
+  max-width: 420px;
+}
+
+.form-header {
+  margin-bottom: 36px;
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+  }
+}
+
+/* ---- Fields ---- */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+
+  label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #374151;
+  }
+}
+
+.field-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus-within {
+    border-color: var(--primary-color, #1a6fa8);
+    box-shadow: 0 0 0 3px rgba(26, 111, 168, 0.1);
+  }
+
+  &.has-error {
+    border-color: #ef4444;
+
+    &:focus-within {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+  }
+}
+
+.field-icon {
   position: absolute;
-  right: 12px;   /* space from edge */
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer !important;
-  color: #6c757d;
+  left: 14px;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.field-input,
+::ng-deep .pwd-stretch .p-password-input {
+  width: 100%;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 13px 14px 13px 40px;
+  font-size: 0.9rem;
+  color: #111827;
+  background: transparent;
+  border-radius: 10px;
+
+  &::placeholder { color: #9ca3af; }
+}
+
+.pwd-wrap {
+  ::ng-deep .pwd-stretch {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    .p-password-input {
+      flex: 1;
+    }
+
+    .p-password-toggle-icon {
+      position: absolute;
+      right: 14px;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 0.9rem;
+      z-index: 2;
+    }
+  }
+}
+
+.field-error {
+  font-size: 0.78rem;
+  color: #ef4444;
+}
+
+/* ---- Forgot ---- */
+.forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -8px;
+  margin-bottom: 28px;
+
+  a {
+    font-size: 0.82rem;
+    color: var(--primary-color, #1a6fa8);
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+/* ---- Submit ---- */
+.btn-signin {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary-color, #1a6fa8);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.register-hint {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.875rem;
+  color: #6b7280;
+
+  a {
+    color: var(--primary-color, #1a6fa8);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .login-left {
+    display: none;
+  }
+
+  .login-right {
+    padding: 40px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-wrap {
+    max-width: 100%;
+  }
 }

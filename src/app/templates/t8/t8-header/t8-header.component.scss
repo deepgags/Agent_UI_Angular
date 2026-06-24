@@ -33,7 +33,7 @@ a{
 }
 
 .contact-item a {
-  color: #000000;
+  color: var(--primary-color, #000000);
 }
 
 .contact-item i {

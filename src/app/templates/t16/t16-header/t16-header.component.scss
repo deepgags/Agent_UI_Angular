@@ -19,7 +19,7 @@ a {
 }
 
 .nav_content {
-	color: black !important;
+	color: var(--primary-color, #000) !important;
 }
 .stripe-header {
    backdrop-filter: blur(18px);
