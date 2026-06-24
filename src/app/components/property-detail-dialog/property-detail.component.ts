@@ -37,11 +37,32 @@ type PropertyDetailFormKey = "requestShowing" | "propertyHistory" | "recentSales
 
 @Component({
 	selector: "app-property-detail-page",
-	imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, GoogleMapsModule, RouterModule, PhoneNumberFormatPipe, AccordionModule, IftaLabelModule, InputMaskModule, InputTextModule, SelectModule, MultiSelectModule, TimeAgo, CarouselModule, GalleriaModule, PropertyComponent, TabsModule, ProgressSpinnerModule, CaptchaComponent],
+	imports: [
+		CommonModule,
+		NgbModule,
+		FormsModule,
+		ReactiveFormsModule,
+		GoogleMapsModule,
+		RouterModule,
+		PhoneNumberFormatPipe,
+		AccordionModule,
+		IftaLabelModule,
+		InputMaskModule,
+		InputTextModule,
+		SelectModule,
+		MultiSelectModule,
+		TimeAgo,
+		CarouselModule,
+		GalleriaModule,
+		PropertyComponent,
+		TabsModule,
+		ProgressSpinnerModule,
+		CaptchaComponent,
+	],
 	providers: [provideAnimations(), NgbCarouselConfig, DialogService],
 	encapsulation: ViewEncapsulation.None,
-	templateUrl: "./propertydetail.component.html",
-	styleUrls: ["./propertydetail.component.scss"],
+	templateUrl: "./property-detail.component.html",
+	styleUrls: ["./property-detail.component.scss"],
 	standalone: true,
 })
 export class PropertyDetailComponent implements OnInit, AfterViewInit {
@@ -724,11 +745,26 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
 		const controlDiv = document.createElement("div");
 		controlDiv.className = "custom-map-controls";
 
-		const drawControl = this.createMapButton("fas fa-pencil-alt", () => this.toggleDrawingMode(googleMap), "Draw Region", false);
+		const drawControl = this.createMapButton(
+			"fas fa-pencil-alt",
+			() => this.toggleDrawingMode(googleMap),
+			"Draw Region",
+			false,
+		);
 
-		const amenitiesControl = this.createMapButton("fas fa-info", () => this.toggleAmenities(googleMap), "Amenities", true);
+		const amenitiesControl = this.createMapButton(
+			"fas fa-info",
+			() => this.toggleAmenities(googleMap),
+			"Amenities",
+			true,
+		);
 
-		const locationControl = this.createMapButton("fas fa-location-arrow", () => this.centerOnUserLocation(googleMap), "My Location", true);
+		const locationControl = this.createMapButton(
+			"fas fa-location-arrow",
+			() => this.centerOnUserLocation(googleMap),
+			"My Location",
+			true,
+		);
 
 		controlDiv.appendChild(drawControl);
 		controlDiv.appendChild(amenitiesControl);
