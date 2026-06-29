@@ -7,7 +7,7 @@ import { stringiFy } from "../consts/Utility";
 import { environment } from "../environments/environment.development";
 import { PropertyModel } from "../models/PropertyModel";
 
-import { PropertyDetailComponent } from "../components/propertydetail/propertydetail.component";
+import { PropertyDetailComponent } from "../components/property-detail-dialog/property-detail.component";
 import { SharedDataService } from "./shared-data.service";
 
 @Injectable({
@@ -46,15 +46,9 @@ export class PropertyService {
 		} = propertyParams;
 		return this.http
 			.get<PropertyModel[]>(
-				`${this.Apiurl}/properties?page=${page}&pageSize=${pageSize}&address=${encodeURIComponent(
-					address,
-				)}&city=${encodeURIComponent(city)}&property_type=${encodeURIComponent(
-					property_type,
-				)}&property_subtype=${encodeURIComponent(property_subtype)}&bedrooms=${bedrooms}
+				`${this.Apiurl}/properties?page=${page}&pageSize=${pageSize}&address=${encodeURIComponent(address)}&city=${encodeURIComponent(city)}&property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(property_subtype)}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
-      &max_price=${max_price}&min_area=${sqFt}&brokerageType=${
-			brokerageType ? brokerageType : ""
-		}&sort=${sort}&domain=${hostname}`,
+      &max_price=${max_price}&min_area=${sqFt}&brokerageType=${brokerageType ? brokerageType : ""}&sort=${sort}&domain=${hostname}`,
 			)
 			.pipe(
 				map((result: any) => {
@@ -144,13 +138,9 @@ export class PropertyService {
 		return this.http
 			.get<PropertyModel[]>(
 				`${this.Apiurl}/properties/featured?page=${page}&pageSize=${pageSize}&address=${address}
-      &property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(
-			property_subtype,
-		)}&bedrooms=${bedrooms}
+      &property_type=${encodeURIComponent(property_type)}&property_subtype=${encodeURIComponent(property_subtype)}&bedrooms=${bedrooms}
       &bathrooms=${bathrooms}&property_for=${property_for}&min_price=${min_price}
-      &max_price=${max_price}&min_area=${sqFt}&brokerageType=${
-			brokerageType ? brokerageType : ""
-		}&sort=${sort}&domain=${hostname}`,
+      &max_price=${max_price}&min_area=${sqFt}&brokerageType=${brokerageType ? brokerageType : ""}&sort=${sort}&domain=${hostname}`,
 			)
 			.pipe(
 				map((result: any) => {

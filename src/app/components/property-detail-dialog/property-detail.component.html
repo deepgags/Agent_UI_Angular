@@ -137,13 +137,19 @@
 				</div>
 			</div>
 			<div class="row align-items-center">
-				<div class="col-auto justify-content-between align-items-center d-flex">
-					<p class="fw-semibold fs-4 mb-0">{{ property.UnparsedAddress }}</p>
-					<span class="badge rounded-pill text-bg-primary ms-5">{{ property.TransactionType }}</span>
+				<div class="col-auto justify-content-between align-items-center d-flex mt-4">
+					<p class="fw-semibold fs-4 mb-0">
+						{{ property.UnparsedAddress }}
+					</p>
+					<span class="badge rounded-pill text-bg-primary ms-2">
+						{{ property.TransactionType }}
+					</span>
+
 					@if (property.VirtualTourURLUnbranded) {
 						<a
 							[href]="property.VirtualTourURLUnbranded"
-							target="_blank">
+							target="_blank" class="badge rounded-pill text-bg-primary ms-2"
+						>
 							Virtual Tour
 						</a>
 					}
