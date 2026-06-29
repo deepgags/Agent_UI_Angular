@@ -30,16 +30,117 @@
 	color: #6c757d;
 }
 
-/* Table styling */
-::ng-deep .p-datatable .p-datatable-tbody > tr > td {
-	padding: 0.75rem;
+/* Reorder list styling */
+.team-reorder-banner {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.75rem 1rem;
+	border-radius: 0.75rem;
+	background: #f8f9fa;
+	color: #495057;
+	font-weight: 500;
 }
 
-::ng-deep .p-datatable .p-datatable-thead > tr > th {
-	padding: 0.75rem;
-	background-color: #f8f9fa;
+.team-reorder-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.team-reorder-header,
+.team-member-row {
+	display: grid;
+	grid-template-columns: 36px 64px 72px 1.2fr 1fr 1.2fr 1fr 120px;
+	gap: 0.75rem;
+	align-items: center;
+}
+
+.team-reorder-header {
+	padding: 0 1rem;
+	font-size: 0.875rem;
 	font-weight: 600;
-	border-bottom: 2px solid #dee2e6;
+	color: #6c757d;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+.team-member-row {
+	padding: 0.9rem 1rem;
+	border: 1px solid #e9ecef;
+	border-radius: 0.9rem;
+	background: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.team-member-row:hover {
+	border-color: #d0d7de;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.team-member-drag-handle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 999px;
+	background: #f8f9fa;
+	color: #6c757d;
+	cursor: grab;
+}
+
+.team-member-drag-handle:active {
+	cursor: grabbing;
+}
+
+.team-member-order-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 999px;
+	background: #e7f1ff;
+	color: #0d6efd;
+	font-weight: 700;
+}
+
+.team-member-avatar {
+	display: flex;
+	align-items: center;
+}
+
+.team-member-image,
+.team-member-placeholder {
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.team-member-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #e9ecef;
+	color: #6c757d;
+	font-size: 1.1rem;
+}
+
+.team-member-drag-placeholder {
+	display: grid;
+	grid-template-columns: 36px 64px 72px 1.2fr 1fr 1.2fr 1fr 120px;
+	min-height: 76px;
+	border: 1px dashed #ced4da;
+	border-radius: 0.9rem;
+	background: #f8f9fa;
+}
+
+.team-member-designation,
+.team-member-email,
+.team-member-phone,
+.team-member-actions {
+	min-width: 0;
 }
 
 /* Button styling */
@@ -105,4 +206,64 @@
 	.image-preview {
 		max-height: 150px;
 	}
+
+	.team-reorder-header {
+		display: none;
+	}
+
+	.team-member-row {
+		grid-template-columns: 36px 56px 1fr;
+		grid-template-areas:
+			"handle order actions"
+			"avatar name name"
+			"avatar designation designation"
+			"avatar email email"
+			"avatar phone phone";
+		align-items: start;
+	}
+
+	.team-member-drag-handle {
+		grid-area: handle;
+	}
+
+	.team-member-order-badge {
+		grid-area: order;
+		justify-self: start;
+	}
+
+	.team-member-avatar {
+		grid-area: avatar;
+	}
+
+	.team-member-name {
+		grid-area: name;
+	}
+
+	.team-member-designation {
+		grid-area: designation;
+	}
+
+	.team-member-email {
+		grid-area: email;
+	}
+
+	.team-member-phone {
+		grid-area: phone;
+	}
+
+	.team-member-actions {
+		grid-area: actions;
+		justify-self: end;
+	}
+}
+
+/* CDK drag global overrides */
+::ng-deep .cdk-drag-preview {
+	box-sizing: border-box;
+	border-radius: 0.9rem;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep .cdk-drag-animating {
+	transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
 }

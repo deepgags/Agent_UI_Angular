@@ -7,6 +7,7 @@ export interface TeamMemberModel {
 	emailAddress: string;
 	phoneNumber: string;
 	profileImage: string;
+	order?: number;
 	siteUrl?: string;
 	about?: string;
 	address?: string;

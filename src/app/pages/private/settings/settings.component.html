@@ -244,29 +244,6 @@
 							<div class="col-md-6">
 								<div class="mb-3">
 									<p-iftalabel>
-										<input type="email"
-											   pInputText
-											   formControlName="websiteEmail"
-											   class="form-control"
-											   id="websiteEmail"
-											   required />
-										<label for="websiteEmail">Email (Displayed on Website)</label>
-									</p-iftalabel>
-									@if (websiteEmail?.invalid && (websiteEmail?.dirty || websiteEmail?.touched)) {
-									<span class="error">
-										@if (websiteEmail?.errors?.['required']) {
-										<span>Email Address is required</span>
-										}
-										@if (websiteEmail?.errors?.['email']) {
-										<span>Enter a valid email address</span>
-										}
-									</span>
-									}
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-3">
-									<p-iftalabel>
 										<p-inputmask mask="999-999-9999"
 													 formControlName="websitePhone"
 													 styleClass="form-control"
@@ -287,6 +264,30 @@
 									}
 								</div>
 							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="email"
+											   pInputText
+											   formControlName="websiteEmail"
+											   class="form-control"
+											   id="websiteEmail"
+											   required />
+										<label for="websiteEmail">Email (Displayed on Website)</label>
+									</p-iftalabel>
+									@if (websiteEmail?.invalid && (websiteEmail?.dirty || websiteEmail?.touched)) {
+									<span class="error">
+										@if (websiteEmail?.errors?.['required']) {
+										<span>Email Address is required</span>
+										}
+										@if (websiteEmail?.errors?.['email']) {
+										<span>Enter a valid email address</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+
 							<div class="col-md-6">
 								<div class="mb-3">
 									<p-iftalabel>

@@ -52,4 +52,11 @@ export class TeamService {
 	deleteTeamMember(id: string): Observable<{ status: boolean; message: string }> {
 		return this.http.delete<{ status: boolean; message: string }>(`${this.baseUrl}/team/${id}`);
 	}
+
+	reorderTeamMembers(memberIds: string[]): Observable<{ status: boolean; message: string; data: TeamMemberModel[] }> {
+		return this.http.patch<{ status: boolean; message: string; data: TeamMemberModel[] }>(
+			`${this.baseUrl}/team/reorder`,
+			{ memberIds },
+		);
+	}
 }
