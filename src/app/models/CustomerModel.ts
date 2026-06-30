@@ -32,6 +32,7 @@ export interface CustomerModel {
 		showHomeWorthPage?: boolean;
 		showSellingInNeighborHoodPage?: boolean;
 		showFindDreamHomePage?: boolean;
+		secondaryAgentFirst?: boolean;
 		menuItems?: MenuItem[];
 		templateId: string;
 	};
