@@ -2,6 +2,7 @@ export interface SiteConfig {
 	id: string;
 	firstName: string;
 	lastName: string;
+	businessName: string;
 	designation: string;
 	// templateId: string;
 	// phone: string;

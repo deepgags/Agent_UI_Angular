@@ -44,6 +44,11 @@ export const routes: Routes = [
 			import("./pages/public/agent-landing/agent-landing.component").then((c) => c.AgentLandingComponent),
 	},
 	{
+		path: "deal-centre",
+		loadComponent: () =>
+			import("./pages/public/deal-centre/deal-centre.component").then((c) => c.DealCentreComponent),
+	},
+	{
 		path: "home-worth",
 		loadComponent: () => import("./pages/public/home-worth/home-worth.component").then((c) => c.WorthComponent),
 	},
