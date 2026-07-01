@@ -177,4 +177,37 @@ export class ContactComponent {
 		const heroImage = this.page()?.heroImages?.[0];
 		return heroImage ? this.localImageUrl + heroImage : "/images/banner3.jpg";
 	}
+
+	formatBrokerageAddress(contactInfo: SiteConfig["websiteSettings"]["contactInfo"] | undefined): string {
+		if (!contactInfo) {
+			return "";
+		}
+
+		if (contactInfo.address && contactInfo.address.includes("\n")) {
+			return contactInfo.address;
+		}
+
+		const lines: string[] = [];
+		const brokerageAddress = contactInfo.address?.trim();
+		const streetAddress = contactInfo.streetAddress?.trim();
+		const municipality = contactInfo.municipality?.trim();
+		const province = contactInfo.province?.trim();
+		const postalCode = contactInfo.postalCode?.trim();
+
+		if (brokerageAddress) {
+			lines.push(brokerageAddress);
+		}
+
+		const streetLine = [streetAddress, municipality].filter(Boolean).join(", ");
+		if (streetLine) {
+			lines.push(streetLine);
+		}
+
+		const regionLine = [province, postalCode].filter(Boolean).join(" ");
+		if (regionLine) {
+			lines.push(regionLine);
+		}
+
+		return lines.join("\n");
+	}
 }

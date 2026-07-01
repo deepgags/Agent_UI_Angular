@@ -23,6 +23,15 @@ export interface CustomerModel {
 	websiteSettings: {
 		logoImage?: string;
 		profileImage: string;
+		contactInfo?: {
+			email?: string;
+			phone?: string;
+			address?: string;
+			streetAddress?: string;
+			municipality?: string;
+			province?: string;
+			postalCode?: string;
+		};
 		aboutText?: string;
 		contactText?: string;
 		sellingYourHouseText?: string;

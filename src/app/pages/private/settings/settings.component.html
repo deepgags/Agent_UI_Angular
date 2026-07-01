@@ -117,9 +117,103 @@
 											   pInputText
 											   formControlName="address"
 											   class="form-control"
-											   id="address" />
+											   id="address"
+											   required />
 										<label for="address">Brokerage Address</label>
 									</p-iftalabel>
+									@if (address?.invalid && (address?.dirty || address?.touched)) {
+									<span class="error">
+										@if (address?.errors?.['required']) {
+										<span>Brokerage Address is required</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="text"
+											   pInputText
+											   formControlName="streetAddress"
+											   class="form-control"
+											   id="streetAddress"
+											   required />
+										<label for="streetAddress">Street</label>
+									</p-iftalabel>
+									@if (streetAddress?.invalid && (streetAddress?.dirty || streetAddress?.touched)) {
+									<span class="error">
+										@if (streetAddress?.errors?.['required']) {
+										<span>Street is required</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="text"
+											   pInputText
+											   formControlName="municipality"
+											   class="form-control"
+											   id="municipality"
+											   required />
+										<label for="municipality">Municipality</label>
+									</p-iftalabel>
+									@if (municipality?.invalid && (municipality?.dirty || municipality?.touched)) {
+									<span class="error">
+										@if (municipality?.errors?.['required']) {
+										<span>Municipality is required</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="text"
+											   pInputText
+											   formControlName="province"
+											   class="form-control"
+											   id="province"
+											   required />
+										<label for="province">Province</label>
+									</p-iftalabel>
+									@if (province?.invalid && (province?.dirty || province?.touched)) {
+									<span class="error">
+										@if (province?.errors?.['required']) {
+										<span>Province is required</span>
+										}
+									</span>
+									}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input type="text"
+											   pInputText
+											   formControlName="postalCode"
+											   class="form-control"
+											   id="postalCode"
+											   required />
+										<label for="postalCode">Postal Code</label>
+									</p-iftalabel>
+									@if (postalCode?.invalid && (postalCode?.dirty || postalCode?.touched)) {
+									<span class="error">
+										@if (postalCode?.errors?.['required']) {
+										<span>Postal Code is required</span>
+										}
+									</span>
+									}
 								</div>
 							</div>
 						</div>

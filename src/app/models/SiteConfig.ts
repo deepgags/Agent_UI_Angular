@@ -17,6 +17,10 @@ export interface SiteConfig {
 			email: string;
 			phone: string;
 			address: string;
+			streetAddress?: string;
+			municipality?: string;
+			province?: string;
+			postalCode?: string;
 		};
 		socialLinks: {
 			facebook: string;

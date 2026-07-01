@@ -108,7 +108,11 @@ export class SettingsComponent {
 			phoneNumber: new FormControl("", [Validators.required]),
 			designation: new FormControl("", [Validators.required]),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
-			address: new FormControl(""),
+			address: new FormControl("", [Validators.required]),
+			streetAddress: new FormControl("", [Validators.required]),
+			municipality: new FormControl("", [Validators.required]),
+			province: new FormControl("", [Validators.required]),
+			postalCode: new FormControl("", [Validators.required]),
 			logoImage: new FormControl(""),
 			logoImagePath: new FormControl(""),
 			profileImage: new FormControl(""),
@@ -168,6 +172,26 @@ export class SettingsComponent {
 		return this.agentForm.get("firstName");
 	}
 
+	get address() {
+		return this.agentForm.get("address");
+	}
+
+	get streetAddress() {
+		return this.agentForm.get("streetAddress");
+	}
+
+	get municipality() {
+		return this.agentForm.get("municipality");
+	}
+
+	get province() {
+		return this.agentForm.get("province");
+	}
+
+	get postalCode() {
+		return this.agentForm.get("postalCode");
+	}
+
 	// get lastName() {
 	// 	return this.agentForm.get("lastName");
 	// }
@@ -196,17 +220,17 @@ export class SettingsComponent {
 						emailAddress,
 						phoneNumber,
 						brokerageTypeId,
-						websiteSettings,
 						brokerage,
 						designation,
 					} = response.data;
+					const websiteSettings = response.data.websiteSettings ?? {};
 
+					const contactInfo = websiteSettings?.contactInfo ?? {};
+					const socialLinks = websiteSettings?.socialLinks ?? {};
 					const {
 						primaryColor,
 						secondaryColor,
 						brokerageImage,
-						contactInfo: { address, email: websiteEmail, phone: websitePhone },
-						socialLinks: { facebook, instagram, linkedin, twitter, youtube },
 						profileImage,
 						siteUrl,
 						showHomeWorthPage,
@@ -214,6 +238,16 @@ export class SettingsComponent {
 						showFindDreamHomePage,
 						secondaryAgentFirst,
 					} = websiteSettings;
+					const {
+						address,
+						streetAddress,
+						municipality,
+						province,
+						postalCode,
+						email: websiteEmail,
+						phone: websitePhone,
+					} = contactInfo;
+					const { facebook, instagram, linkedin, twitter, youtube } = socialLinks;
 
 					this.existingProfileImage = profileImage;
 					this.existingBrokerageImage = brokerageImage;
@@ -224,6 +258,10 @@ export class SettingsComponent {
 						firstName: firstName,
 						lastName: lastName,
 						address: address,
+						streetAddress: streetAddress,
+						municipality: municipality,
+						province: province,
+						postalCode: postalCode,
 						emailAddress: emailAddress,
 						phoneNumber: phoneNumber,
 						brokerageType: brokerageTypeId,
@@ -302,6 +340,10 @@ export class SettingsComponent {
 				firstName,
 				lastName,
 				address,
+				streetAddress,
+				municipality,
+				province,
+				postalCode,
 				brokerageType,
 				// siteUrl,
 				primaryColor,
@@ -321,7 +363,11 @@ export class SettingsComponent {
 			formData.append("businessName", businessName);
 			formData.append("firstName", firstName);
 			formData.append("lastName", lastName);
-			if (address) formData.append("address", address);
+			formData.append("address", address);
+			formData.append("streetAddress", streetAddress);
+			formData.append("municipality", municipality);
+			formData.append("province", province);
+			formData.append("postalCode", postalCode);
 			formData.append("brokerageTypeId", brokerageType);
 			if (designation) formData.append("designation", designation);
 

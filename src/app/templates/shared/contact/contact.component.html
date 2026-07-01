@@ -27,10 +27,12 @@
 						</div>
 					</div>
 					<div class="agent-card-body">
-						@if (siteConfig.websiteSettings.contactInfo.address) {
+						@if (formatBrokerageAddress(siteConfig.websiteSettings?.contactInfo)) {
 						<div class="contact-row">
 							<span class="contact-icon-wrap location"><i class="bi bi-geo-alt-fill"></i></span>
-							<span class="contact-text">{{ siteConfig.websiteSettings.contactInfo.address }}</span>
+							<span class="contact-text contact-address">
+								{{ formatBrokerageAddress(siteConfig.websiteSettings?.contactInfo) }}
+							</span>
 						</div>
 						}
 						@if (siteConfig.websiteSettings.contactInfo.phone) {
@@ -83,10 +85,12 @@
 						</div>
 					</div>
 					<div class="agent-card-body">
-						@if (siteConfig.websiteSettings.contactInfo.address) {
+						@if (formatBrokerageAddress(siteConfig.websiteSettings?.contactInfo)) {
 						<div class="contact-row">
 							<span class="contact-icon-wrap location"><i class="bi bi-geo-alt-fill"></i></span>
-							<span class="contact-text">{{ siteConfig.websiteSettings.contactInfo.address }}</span>
+							<span class="contact-text contact-address">
+								{{ formatBrokerageAddress(siteConfig.websiteSettings?.contactInfo) }}
+							</span>
 						</div>
 						}
 						@if (siteConfig.secondaryAgent.websitePhone) {

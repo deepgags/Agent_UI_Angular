@@ -23,6 +23,10 @@ interface PreviewFallbacks {
 		email: string;
 		phone: string;
 		address: string;
+		streetAddress: string;
+		municipality: string;
+		province: string;
+		postalCode: string;
 	};
 	socialLinks: {
 		facebook: string;
@@ -63,6 +67,10 @@ const PREVIEW_FALLBACKS: PreviewFallbacks = {
 		email: "hello@preview-example.com",
 		phone: "123-456-7890",
 		address: "123 Preview Street, Sample City",
+		streetAddress: "123 Preview Street",
+		municipality: "Sample City",
+		province: "ON",
+		postalCode: "A1A 1A1",
 	},
 	socialLinks: {
 		facebook: "https://facebook.com/preview-profile",
@@ -141,6 +149,10 @@ export class RoutesConfigService {
 				);
 			}
 
+			normalized.customer.websiteSettings.contactInfo.address = this.formatContactAddress(
+				normalized.customer.websiteSettings.contactInfo,
+			);
+
 			this.sharedDataService.setSiteData(normalized.customer);
 			this.sharedDataService.setUserData(normalized.customer);
 			this.sharedDataService.setSiteId(normalized.customer._id);
@@ -215,6 +227,26 @@ export class RoutesConfigService {
 			normalizedCustomer.websiteSettings.contactInfo,
 			"address",
 			PREVIEW_FALLBACKS.contactInfo.address,
+		);
+		this.assignIfMissing(
+			normalizedCustomer.websiteSettings.contactInfo,
+			"streetAddress",
+			PREVIEW_FALLBACKS.contactInfo.streetAddress,
+		);
+		this.assignIfMissing(
+			normalizedCustomer.websiteSettings.contactInfo,
+			"municipality",
+			PREVIEW_FALLBACKS.contactInfo.municipality,
+		);
+		this.assignIfMissing(
+			normalizedCustomer.websiteSettings.contactInfo,
+			"province",
+			PREVIEW_FALLBACKS.contactInfo.province,
+		);
+		this.assignIfMissing(
+			normalizedCustomer.websiteSettings.contactInfo,
+			"postalCode",
+			PREVIEW_FALLBACKS.contactInfo.postalCode,
 		);
 
 		normalizedCustomer.websiteSettings.socialLinks = normalizedCustomer.websiteSettings.socialLinks ?? {};
@@ -319,6 +351,39 @@ export class RoutesConfigService {
 		) {
 			target[key] = fallbackValue;
 		}
+	}
+
+	private formatContactAddress(contactInfo: Partial<PreviewFallbacks["contactInfo"]> | undefined): string {
+		if (!contactInfo) {
+			return "";
+		}
+
+		if (contactInfo.address && contactInfo.address.includes("\n")) {
+			return contactInfo.address;
+		}
+
+		const lines: string[] = [];
+		const brokerageAddress = contactInfo.address?.trim();
+		const streetAddress = contactInfo.streetAddress?.trim();
+		const municipality = contactInfo.municipality?.trim();
+		const province = contactInfo.province?.trim();
+		const postalCode = contactInfo.postalCode?.trim();
+
+		if (brokerageAddress) {
+			lines.push(brokerageAddress);
+		}
+
+		const streetLine = [streetAddress, municipality].filter(Boolean).join(", ");
+		if (streetLine) {
+			lines.push(streetLine);
+		}
+
+		const regionLine = [province, postalCode].filter(Boolean).join(" ");
+		if (regionLine) {
+			lines.push(regionLine);
+		}
+
+		return lines.join("\n");
 	}
 
 	private deepClone<T>(value: T): T {
