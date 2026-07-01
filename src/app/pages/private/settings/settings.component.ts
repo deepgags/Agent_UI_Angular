@@ -139,6 +139,7 @@ export class SettingsComponent {
 			showHomeWorthPage: new FormControl(false),
 			showSellingInNeighborHoodPage: new FormControl(false),
 			showFindDreamHomePage: new FormControl(false),
+			secondaryAgentFirst: new FormControl(false),
 		});
 
 		this.getBrokerageTypes();
@@ -211,6 +212,7 @@ export class SettingsComponent {
 						showHomeWorthPage,
 						showSellingInNeighborHoodPage,
 						showFindDreamHomePage,
+						secondaryAgentFirst,
 					} = websiteSettings;
 
 					this.existingProfileImage = profileImage;
@@ -243,6 +245,7 @@ export class SettingsComponent {
 							showHomeWorthPage: showHomeWorthPage ?? false,
 							showSellingInNeighborHoodPage: showSellingInNeighborHoodPage ?? false,
 							showFindDreamHomePage: showFindDreamHomePage ?? false,
+							secondaryAgentFirst: secondaryAgentFirst ?? false,
 						});
 						if (response.data.secondaryAgent) {
 							this.agentForm.get("secondaryAgent")?.patchValue({
@@ -371,9 +374,15 @@ export class SettingsComponent {
 				formData.append("existingSecondaryProfileImage", this.existingSecondaryProfileImage);
 			}
 
-			const { showHomeWorthPage, showSellingInNeighborHoodPage, showFindDreamHomePage } = this.agentForm.value;
+			const { showHomeWorthPage, showSellingInNeighborHoodPage, showFindDreamHomePage, secondaryAgentFirst } =
+				this.agentForm.value;
 			const pageParams = {
-				websiteSettings: { showHomeWorthPage, showSellingInNeighborHoodPage, showFindDreamHomePage },
+				websiteSettings: {
+					showHomeWorthPage,
+					showSellingInNeighborHoodPage,
+					showFindDreamHomePage,
+					secondaryAgentFirst,
+				},
 			};
 
 			forkJoin({

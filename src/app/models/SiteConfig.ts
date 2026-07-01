@@ -36,6 +36,7 @@ export interface SiteConfig {
 		showFindDreamHomePage: boolean;
 		showHomeWorthPage: boolean;
 		showSellingInNeighborHoodPage: boolean;
+		secondaryAgentFirst?: boolean;
 	};
 
 	brokerageTypeId: string;

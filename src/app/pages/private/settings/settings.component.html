@@ -339,151 +339,168 @@
 					</div>
 
 					<!-- Secondary Agent Information -->
-					<div class="mb-4 section-card section-secondary"
-						 formGroupName="secondaryAgent">
+					<div class="mb-4 section-card section-secondary">
 						<h6 class="section-header">
 							<i class="fas fa-user-plus me-2" style="color: #8b5cf6;"></i>
 							Secondary Agent Information
 						</h6>
 
-						<div class="mb-3 d-flex align-items-center gap-3">
-							<p-toggleswitch formControlName="enableSecondaryAgent"
-											id="enableSecondaryAgent"
-											(onChange)="setSecondaryAgentValidations($event)" />
-							<label for="enableSecondaryAgent"
-								   class="mb-0 fw-semibold">Enable Secondary Agent</label>
-							@if (agentForm.get('secondaryAgent.enableSecondaryAgent')?.value) {
-							<span class="badge bg-success">Active</span>
-							} @else {
-							<span class="badge bg-secondary">Inactive</span>
-							}
-						</div>
 
-						<div [class.agent-disabled]="!agentForm.get('secondaryAgent.enableSecondaryAgent')?.value">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="text"
-												   pInputText
-												   formControlName="firstName"
-												   class="form-control"
-												   id="secondaryFirstName" />
-											<label for="secondaryFirstName">First Name</label>
-										</p-iftalabel>
-										@if(agentForm.get('secondaryAgent.firstName')?.invalid && (agentForm.get('secondaryAgent.firstName')?.dirty ||
-										agentForm.get('secondaryAgent.firstName')?.touched)){
-										<span class="error">
-											@if(agentForm.get('secondaryAgent.firstName')?.errors?.['required']){
-											<span>First Name is required</span>
+
+						<div formGroupName="secondaryAgent">
+							<div class="mb-3 d-flex align-items-center gap-3">
+								<p-toggleswitch formControlName="enableSecondaryAgent"
+												id="enableSecondaryAgent"
+												(onChange)="setSecondaryAgentValidations($event)" />
+								<label for="enableSecondaryAgent"
+									   class="mb-0 fw-semibold">Enable Secondary Agent</label>
+								@if (agentForm.get('secondaryAgent.enableSecondaryAgent')?.value) {
+								<span class="badge bg-success">Active</span>
+									} @else {
+									<span class="badge bg-secondary">Inactive</span>
+									}
+								</div>
+
+							<div [class.agent-disabled]="!agentForm.get('secondaryAgent.enableSecondaryAgent')?.value">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="mb-3">
+											<p-iftalabel>
+												<input type="text"
+													   pInputText
+													   formControlName="firstName"
+													   class="form-control"
+													   id="secondaryFirstName" />
+												<label for="secondaryFirstName">First Name</label>
+											</p-iftalabel>
+											@if(agentForm.get('secondaryAgent.firstName')?.invalid && (agentForm.get('secondaryAgent.firstName')?.dirty ||
+											agentForm.get('secondaryAgent.firstName')?.touched)){
+											<span class="error">
+												@if(agentForm.get('secondaryAgent.firstName')?.errors?.['required']){
+												<span>First Name is required</span>
+												}
+											</span>
 											}
-										</span>
-										}
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="mb-3">
+											<p-iftalabel>
+												<input type="text"
+													   pInputText
+													   formControlName="lastName"
+													   class="form-control"
+													   id="secondaryLastName" />
+												<label for="secondaryLastName">Last Name</label>
+											</p-iftalabel>
+										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="text"
-												   pInputText
-												   formControlName="lastName"
-												   class="form-control"
-												   id="secondaryLastName" />
-											<label for="secondaryLastName">Last Name</label>
-										</p-iftalabel>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="mb-3">
+											<p-iftalabel>
+												<p-inputmask mask="999-999-9999"
+															 formControlName="websitePhone"
+															 styleClass="form-control"
+															 placeholder="Website Phone"
+															 id="secondaryWebsitePhone"></p-inputmask>
+												<label for="secondaryWebsitePhone">Phone (Displayed on Website)</label>
+											</p-iftalabel>
+											@if(agentForm.get('secondaryAgent.websitePhone')?.invalid && (agentForm.get('secondaryAgent.websitePhone')?.dirty ||
+											agentForm.get('secondaryAgent.websitePhone')?.touched)){
+											<span class="error">
+												@if(agentForm.get('secondaryAgent.websitePhone')?.errors?.['required']){
+												<span>Phone is required</span>
+												}
+											</span>
+											}
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="mb-3">
+											<p-iftalabel>
+												<input type="email"
+													   pInputText
+													   formControlName="websiteEmail"
+													   class="form-control"
+													   id="secondaryWebsiteEmail" />
+												<label for="secondaryWebsiteEmail">Website Email</label>
+											</p-iftalabel>
+											@if(agentForm.get('secondaryAgent.websiteEmail')?.invalid && (agentForm.get('secondaryAgent.websiteEmail')?.dirty ||
+											agentForm.get('secondaryAgent.websiteEmail')?.touched)){
+											<span class="error">
+												@if(agentForm.get('secondaryAgent.websiteEmail')?.errors?.['required']){
+												<span>Email Address is required</span>
+												}
+												@if(agentForm.get('secondaryAgent.websiteEmail')?.errors?.['email']){
+												<span>Enter a valid email address</span>
+												}
+											</span>
+											}
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="mb-3">
+											<p-iftalabel>
+												<input type="text"
+													   pInputText
+													   formControlName="designation"
+													   class="form-control"
+													   id="secondaryDesignation" />
+												<label for="secondaryDesignation">Designation (Displayed on Website)</label>
+											</p-iftalabel>
+										</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-lg-6 col-12">
+										<label class="form-label fw-semibold d-block">Profile Picture</label>
+										<div class="upload-zone upload-zone-avatar"
+											 (click)="secondaryUpload.click()">
+											<i class="bi bi-person-circle fs-3 mb-1 d-block text-muted"></i>
+											<span class="text-muted small">Click to upload photo</span>
+											<input type="file"
+												   #secondaryUpload
+												   (change)="onSecondaryProfileImageChange($event)"
+												   class="d-none"
+												   id="secondaryProfileImageUpload"
+												   accept="image/*" />
+										</div>
+									</div>
+									<div class="col-lg-6 col-12 d-flex align-items-center mt-3 mt-lg-0">
+										@if (secondaryAgentProfileImageObservable | async; as secondaryAgentProfileImage) {
+										<div class="image-preview-card text-center">
+											<p class="preview-label">Profile Picture</p>
+											<img [src]="secondaryAgentProfileImage | blobToUrl"
+												 class="rounded-circle preview-avatar"
+												 alt="Profile Picture Preview" />
+										</div>
+										}
+										@else if (existingSecondaryProfileImage) {
+										<div class="image-preview-card text-center">
+											<p class="preview-label">Profile Picture</p>
+											<img [src]="localImageBaseUrl + existingSecondaryProfileImage"
+												 class="rounded-circle preview-avatar"
+												 alt="Profile Picture Preview" />
+										</div>
+										}
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<p-inputmask mask="999-999-9999"
-														 formControlName="websitePhone"
-														 styleClass="form-control"
-														 placeholder="Website Phone"
-														 id="secondaryWebsitePhone"></p-inputmask>
-											<label for="secondaryWebsitePhone">Phone (Displayed on Website)</label>
-										</p-iftalabel>
-										@if(agentForm.get('secondaryAgent.websitePhone')?.invalid && (agentForm.get('secondaryAgent.websitePhone')?.dirty ||
-										agentForm.get('secondaryAgent.websitePhone')?.touched)){
-										<span class="error">
-											@if(agentForm.get('secondaryAgent.websitePhone')?.errors?.['required']){
-											<span>Phone is required</span>
-											}
-										</span>
-										}
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="email"
-												   pInputText
-												   formControlName="websiteEmail"
-												   class="form-control"
-												   id="secondaryWebsiteEmail" />
-											<label for="secondaryWebsiteEmail">Website Email</label>
-										</p-iftalabel>
-										@if(agentForm.get('secondaryAgent.websiteEmail')?.invalid && (agentForm.get('secondaryAgent.websiteEmail')?.dirty ||
-										agentForm.get('secondaryAgent.websiteEmail')?.touched)){
-										<span class="error">
-											@if(agentForm.get('secondaryAgent.websiteEmail')?.errors?.['required']){
-											<span>Email Address is required</span>
-											}
-											@if(agentForm.get('secondaryAgent.websiteEmail')?.errors?.['email']){
-											<span>Enter a valid email address</span>
-											}
-										</span>
-										}
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<p-iftalabel>
-											<input type="text"
-												   pInputText
-												   formControlName="designation"
-												   class="form-control"
-												   id="secondaryDesignation" />
-											<label for="secondaryDesignation">Designation (Displayed on Website)</label>
-										</p-iftalabel>
-									</div>
-								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-lg-6 col-12">
-									<label class="form-label fw-semibold d-block">Profile Picture</label>
-									<div class="upload-zone upload-zone-avatar"
-										 (click)="secondaryUpload.click()">
-										<i class="bi bi-person-circle fs-3 mb-1 d-block text-muted"></i>
-										<span class="text-muted small">Click to upload photo</span>
-										<input type="file"
-											   #secondaryUpload
-											   (change)="onSecondaryProfileImageChange($event)"
-											   class="d-none"
-											   id="secondaryProfileImageUpload"
-											   accept="image/*" />
-									</div>
-								</div>
-								<div class="col-lg-6 col-12 d-flex align-items-center mt-3 mt-lg-0">
-									@if (secondaryAgentProfileImageObservable | async; as secondaryAgentProfileImage) {
-									<div class="image-preview-card text-center">
-										<p class="preview-label">Profile Picture</p>
-										<img [src]="secondaryAgentProfileImage | blobToUrl"
-											 class="rounded-circle preview-avatar"
-											 alt="Profile Picture Preview" />
-									</div>
-									}
-									@else if (existingSecondaryProfileImage) {
-									<div class="image-preview-card text-center">
-										<p class="preview-label">Profile Picture</p>
-										<img [src]="localImageBaseUrl + existingSecondaryProfileImage"
-											 class="rounded-circle preview-avatar"
-											 alt="Profile Picture Preview" />
-									</div>
-									}
-								</div>
+						</div>
+						<div class="mb-3 d-flex align-items-start gap-3">
+							<p-checkbox
+								inputId="secondaryAgentFirst"
+								[binary]="true"
+								formControlName="secondaryAgentFirst" />
+							<div>
+								<label for="secondaryAgentFirst" class="form-label fw-semibold mb-0">
+									Display secondary agent first
+								</label>
+								<p class="text-muted small mb-0">
+									Mixed-agent pages will show the secondary agent before the primary agent.
+								</p>
 							</div>
 						</div>
 					</div>
@@ -521,6 +538,7 @@
 									</div>
 								</div>
 							</div>
+
 						</div>
 					</div>
 
