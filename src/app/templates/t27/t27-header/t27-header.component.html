@@ -15,11 +15,10 @@
       <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center text-center py-4 py-lg-0 agent-section">
         <div class="agent-card">
           <h1 class="agent-name mb-1">
-            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
+            {{ siteConfig?.businessName }}
           </h1>
-          <p class="agent-title mb-3">{{ siteConfig.designation }}</p>
           
-          <div class="contact-row d-flex flex-wrap justify-content-center align-items-center gap-3 mb-3">
+          <!-- <div class="contact-row d-flex flex-wrap justify-content-center align-items-center gap-3 mb-3">
             <a class="contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
               <i class="fa-solid fa-phone contact-icon"></i>
               <span>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}</span>
@@ -29,7 +28,7 @@
               <i class="fa-solid fa-envelope contact-icon"></i>
               <span>{{ siteConfig?.websiteSettings?.contactInfo?.email }}</span>
             </a>
-          </div>
+          </div> -->
         </div>
       </div>
 

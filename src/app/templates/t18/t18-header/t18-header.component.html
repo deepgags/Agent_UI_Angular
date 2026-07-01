@@ -4,15 +4,12 @@
 
       <div class="col-12 col-lg-4 text-center text-lg-start mb-3 mb-lg-0">
         <h3 class="agent-name info mb-0">
-          {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
+          {{ siteConfig?.businessName }}
         </h3>
-        <p class="agent-role mb-0">
-          {{ siteConfig.designation }}
-        </p>
         <span class="scroll-underline"></span>
       </div>
 
-      <div class="col-12 col-lg-4 d-flex justify-content-center gap-4">
+      <!-- <div class="col-12 col-lg-4 d-flex justify-content-center gap-4">
         <a
           class="contact-pill"
           [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
@@ -26,7 +23,7 @@
                  <i class="bi bi-envelope-at-fill info"></i>
           {{ siteConfig?.websiteSettings?.contactInfo?.email }}
         </a>
-      </div>
+      </div> -->
 
       <div class="col-12 col-lg-4 text-center text-lg-end mt-3 mt-lg-0">
         @if (siteConfig) {

@@ -5,17 +5,14 @@
       <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
         <div>
           <h4 class="fw-semibold info mb-0 agent-name">
-            {{ siteConfig?.firstName }} {{ siteConfig?.lastName }}
+            {{ siteConfig?.businessName }}
           </h4>
-          <p class="fw-semibold fs-6 mb-1 text-center text-lg-start">
-            {{ siteConfig.designation }}
-          </p>
 
           <span class="lux-divider"></span>
         </div>
       </div>
 
-      <div class="col-12 col-lg-6 d-flex py-lg-0 py-3 justify-content-center gap-4 contact-wrap d-none d-lg-block">
+      <!-- <div class="col-12 col-lg-6 d-flex py-lg-0 py-3 justify-content-center gap-4 contact-wrap d-none d-lg-block">
         <a
           class="contact-pill"
           [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
@@ -33,7 +30,7 @@
         <a href="/contact" class="inline-cta">
           Book a Private Showing
         </a>
-      </div>
+      </div> -->
 
       <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
         @if (siteConfig) {
