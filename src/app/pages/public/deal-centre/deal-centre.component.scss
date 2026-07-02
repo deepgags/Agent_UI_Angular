@@ -22,7 +22,7 @@ $border:  #e9ecef;
 
 /* ── Logo ── */
 .dc-logo-img {
-  height: 48px;
+  height: 80px;
   width: auto;
   object-fit: contain;
 
@@ -67,7 +67,7 @@ $border:  #e9ecef;
 
     i {
       color: $orange;
-      font-size: 1rem;
+      font-size: 2rem;
       margin-top: 2px;
       flex-shrink: 0;
     }
@@ -83,7 +83,7 @@ $border:  #e9ecef;
 
     span {
       display: block;
-      font-size: 0.68rem;
+      font-size: 0.9rem;
       color: $grey;
       margin-top: 1px;
       line-height: 1.35;
@@ -112,10 +112,16 @@ $border:  #e9ecef;
   padding: 2px 0 64px;
   background: #fff;
 
+  .container {
+    max-width: 1440px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 56px;
+    gap: 10px;
     align-items: center;
   }
 
@@ -227,6 +233,16 @@ $border:  #e9ecef;
   }
 }
 
+/* ── Hero Banner Image ── */
+.dc-hero-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  margin-top: 28px;
+  object-fit: contain;
+}
+
 /* ── Hero Mockup Image ── */
 .dc-hero__mockup {
   display: flex;
@@ -235,8 +251,8 @@ $border:  #e9ecef;
 }
 
 .dc-mockup-img {
-  width: 100%;
-  max-width: 480px;
+  width: 846px;
+  max-width: 846px;
   height: auto;
   object-fit: contain;
   display: block;
@@ -462,15 +478,15 @@ $border:  #e9ecef;
   &:last-child { border-right: none; }
 
   &__icon {
-    width: 58px;
-    height: 58px;
+    width: 80px;
+    height: 80px;
     background: $orange;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 2.3rem;
     margin-bottom: 18px;
     flex-shrink: 0;
   }
