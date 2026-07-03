@@ -66,3 +66,11 @@
   opacity: 0.85;
   &:hover { opacity: 1; }
 }
+
+.t11-top-pad {
+  padding-top: 90px;
+}
+
+@media (max-width: 768px) {
+  .t11-top-pad { padding-top: 200px; }
+}

@@ -76,3 +76,11 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
   &:hover { opacity: 1; transform: scale(1.03); }
 }
+
+.t20-top-pad {
+  padding-top: 90px;
+}
+
+@media (max-width: 768px) {
+  .t20-top-pad { padding-top: 220px; }
+}

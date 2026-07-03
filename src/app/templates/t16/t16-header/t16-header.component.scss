@@ -103,3 +103,11 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
   &:hover { transform: translateY(-3px); opacity: 1; }
 }
+
+.t16-top-pad {
+  padding-top: 90px;
+}
+
+@media (max-width: 768px) {
+  .t16-top-pad { padding-top: 220px; }
+}

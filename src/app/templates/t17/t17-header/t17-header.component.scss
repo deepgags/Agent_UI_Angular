@@ -94,3 +94,11 @@
   opacity: 0.9;
   &:hover { opacity: 1; }
 }
+
+.t17-top-pad {
+  padding-top: 90px;
+}
+
+@media (max-width: 768px) {
+  .t17-top-pad { padding-top: 220px; }
+}

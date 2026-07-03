@@ -76,3 +76,11 @@
 }
 
 .t18-brokerage-wrap:hover .t18-brokerage-logo { opacity: 1; }
+
+.t18-top-pad {
+  padding-top: 90px;
+}
+
+@media (max-width: 768px) {
+  .t18-top-pad { padding-top: 220px; }
+}

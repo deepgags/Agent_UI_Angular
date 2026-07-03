@@ -89,3 +89,11 @@
   height: 4px;
   background: linear-gradient(90deg, var(--primary-color, #e63946) 0%, #1a1a1a 100%);
 }
+
+.t9-top-pad {
+  padding-top: 90px;
+}
+
+@media (max-width: 768px) {
+  .t9-top-pad { padding-top: 200px; }
+}

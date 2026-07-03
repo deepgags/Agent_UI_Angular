@@ -80,3 +80,11 @@
   width: auto;
   object-fit: contain;
 }
+
+.t10-top-pad {
+  padding-top: 90px;
+}
+
+@media (max-width: 768px) {
+  .t10-top-pad { padding-top: 200px; }
+}

@@ -96,3 +96,11 @@
   transform: translateY(-2px);
   opacity: 1;
 }
+
+.t13-top-pad {
+  padding-top: 90px;
+}
+
+@media (max-width: 768px) {
+  .t13-top-pad { padding-top: 200px; }
+}

@@ -74,3 +74,11 @@
   transition: opacity 0.3s ease;
   &:hover { opacity: 1; }
 }
+
+.t19-top-pad {
+  padding-top: 90px;
+}
+
+@media (max-width: 768px) {
+  .t19-top-pad { padding-top: 220px; }
+}
