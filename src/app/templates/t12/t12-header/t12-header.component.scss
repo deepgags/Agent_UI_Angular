@@ -1,108 +1,73 @@
-.nav_bg {
-	background-color: var(--primary-color);
-}
-
-.logo {
-	width: 17px;
-}
-.dropdown:hover .dropdown-menu {
-	display: block;
-	margin-top: 0; 
-}
-.dropdown-menu {
-	margin-top: 0;
-	display: none;
-	margin-left: 65px;
-}
-a {
-	font-size: 14px;
-}
-
-.nav_content {
-	color: var(--primary-color, #000) !important;
-}
-
-.editorial-header {
-  position: sticky;
+.t12-header {
   top: 0;
-  backdrop-filter: blur(4px);
-  background-color: #00000094;
-  z-index: 999;
-  transition: padding 0.3s ease, box-shadow 0.3s ease;
+  background: #00000094;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: all 0.3s ease;
 }
 
-.agent-name {
-  letter-spacing: 0.6px;
+.t12-logo-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 3px;
 }
 
-.agent-role {
-  font-size: 15px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  opacity: 0.7;
-  color: #fff;
-}
-
-.scroll-underline {
-  display: block;
-  width: 0;
-  height: 2px;
-  background: #000;
-  margin-top: 6px;
-  transition: width 0.4s ease;
-}
-
-.editorial-header.scrolled .scroll-underline {
-  width: 64px;
-}
-
-.contact-pill {
+.t12-biz-name {
   font-size: 16px;
-  text-decoration: none;
+  font-weight: 700;
   color: #fff;
+}
+
+.t12-designation {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.t12-contact-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
-  background: rgba(0,0,0,0.03);
+  padding: 6px 14px;
   transition: all 0.25s ease;
+  i { color: var(--primary-color, #e63946); }
+  &:hover { background: rgba(255, 255, 255, 0.1); color: #fff; transform: translateY(-1px); }
 }
 
-.contact-pill:hover {
-  background: rgba(0,0,0,0.06);
-  transform: translateY(-1px);
+.t12-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+  &:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
 }
 
-.brokerage-logo img {
-  opacity: 0.9;
-  transition: opacity 0.3s ease;
-}
+.facebook  { color: #1877F2; }
+.twitter   { color: #1DA1F2; }
+.instagram { color: #E4405F; }
+.linkedin  { color: #0A66C2; }
 
-.brokerage-logo:hover img {
-  opacity: 1;
-}
-
-.editorial-header.scrolled {
-  padding: 6px 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-}
-
-.editorial-header.scrolled .agent-name {
-  font-size: 30px;
-}
-
-@media (max-width: 991px) {
-  .agent-name {
-    font-size: 24px;
-  }
-
-  .scroll-underline {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .contact-pill {
-    font-size: 11px;
-  }
+.t12-brokerage-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  &:hover { opacity: 1; }
 }

@@ -1,46 +1,88 @@
-.nav_bg {
-	background-color: var(--primary-color);
-}
-p {
-	font-size: 14px;
-}
-.logo {
-	width: 17px;
-}
-a {
-	font-size: 16px ;
+.t2-header {
+  top: 0;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
-.orig {
-  font-size: 1.1rem;
+/* Top accent bar */
+.t2-top-bar {
+  background: var(--primary-color, #e63946);
+  padding: 5px 0;
 }
 
-.facebook {
-  color: #1877F2;
+.t2-top-link {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+  &:hover { color: #fff; }
 }
 
-.twitter {
-  color: #1DA1F2;
+.t2-top-vr {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.4);
 }
 
-.instagram {
-  color: #E4405F;
+/* Brokerage circle */
+.t2-logo-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  padding: 4px;
 }
 
-.linkedin {
-  color: #0A66C2;
+.t2-biz-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
-.btn:hover .orig {
-  opacity: 0.8;
+.t2-designation {
+  font-size: 12px;
+  color: #6c757d;
 }
 
-.top-pad{
-  padding-top: 101px;
+/* Social */
+.t2-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #dee2e6;
+  border-radius: 50%;
+  background: #f8f9fa;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background 0.2s, transform 0.2s;
+  &:hover { background: #e9ecef; transform: translateY(-1px); }
 }
 
+.facebook  { color: #1877F2; }
+.twitter   { color: #1DA1F2; }
+.instagram { color: #E4405F; }
+.linkedin  { color: #0A66C2; }
+
+/* Brokerage logo */
+.t2-brokerage-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.top-pad { padding-top: 115px; }
+
+@media (max-width: 991px) {
+  .top-pad { padding-top: 240px; }
+}
 @media (max-width: 768px) {
-	.top-pad {
-    padding-top: 277px !important;
-}
+  .top-pad { padding-top: 300px; }
 }

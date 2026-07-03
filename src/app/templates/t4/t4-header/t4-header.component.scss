@@ -1,63 +1,76 @@
-.nav_bg {
-	background-color: var(--primary-color);
+.t4-header {
+  top: 0;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-	width: 17px;
-}
-.dropdown:hover .dropdown-menu {
-	display: block;
-	margin-top: 0; /* optional: remove any jump */
-}
-.dropdown-menu {
-	margin-top: 0;
-	display: none;
-	margin-left: 65px;
-}
-a {
-	font-size: 16px;
+/* Utility bar */
+.t4-utility-bar {
+  background: var(--primary-color, #e63946);
+  padding: 6px 0;
 }
 
-.top-pad{
-  padding-top: 96px;
+.t4-util-link {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  &:hover { color: #fff; }
 }
 
-.vr {
+.t4-util-vr {
   width: 1px;
-  background-color: #ddd;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.35);
 }
 
-a:hover {
-  color: var(--primary-color, #e63946);
+.t4-util-social {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+  &:hover { color: #fff; }
 }
 
-.orig {
-  font-size: 1.1rem;
+/* Main bar */
+.t4-main-bar {
+  background: #fff;
 }
 
-.facebook {
-  color: #1877F2;
+.t4-logo-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  padding: 3px;
 }
 
-.twitter {
-  color: #1DA1F2;
+.t4-biz-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
-.instagram {
-  color: #E4405F;
+.t4-designation {
+  font-size: 12px;
+  color: #6c757d;
 }
 
-.linkedin {
-  color: #0A66C2;
+.t4-brokerage-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
 }
 
-.btn:hover .orig {
-  opacity: 0.8;
+.top-pad { padding-top: 115px; }
+
+@media (max-width: 991px) {
+  .top-pad { padding-top: 220px; }
 }
-
-
 @media (max-width: 768px) {
-  .top-pad {
-    padding-top: 209px;
-}
+  .top-pad { padding-top: 280px; }
 }

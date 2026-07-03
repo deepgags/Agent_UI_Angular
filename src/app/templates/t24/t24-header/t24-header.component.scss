@@ -1,114 +1,91 @@
-.nav_bg {
-	background-color: var(--primary-color);
-}
-
-.logo {
-	width: 17px;
-}
-.dropdown:hover .dropdown-menu {
-	display: block;
-	margin-top: 0; 
-}
-.dropdown-menu {
-	margin-top: 0;
-	display: none;
-	margin-left: 65px;
-}
-
-a {
-	font-size: 14px;
-}
-
-.premium-header {
+.t24-header {
   position: sticky;
   top: 0;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: #faf8f5;
   z-index: 999;
-  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid #ede9e3;
+  transition: box-shadow 0.3s ease;
 }
 
-.premium-header.scrolled {
-  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+.t24-logo-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #fff;
+  border: 2px solid var(--primary-color, #e63946);
+  padding: 4px;
 }
 
-.agent-name {
-  font-size: 44px !important;
-  letter-spacing: 0.4px;
+.t24-identity {
+  border-left: 2px solid #1a1a1a;
+  padding-left: 10px;
 }
 
-.premium-header.scrolled .lux-divider {
-  width: 64px;
+.t24-biz-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
-.contact-wrap {
-  flex-wrap: wrap;
-}
-
-.contact-pill {
-  font-size: 16px;
-  text-decoration: none;
-  // color: #bb5959;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.04);
-  transition: all 0.25s ease;
-}
-
-.contact-pill:hover {
-  background: rgba(0,0,0,0.08);
-  transform: translateY(-1px);
-}
-
-.inline-cta {
-  font-size: 16px;
-  letter-spacing: 1px;
+.t24-designation {
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
+}
+
+.t24-contact-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.t24-contact-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #aaa;
+  font-weight: 600;
+}
+
+.t24-contact-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
   text-decoration: none;
-  color: #000000;
+  &:hover { color: var(--primary-color, #e63946); }
+}
+
+.t24-social-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #555;
+  transition: all 0.3s ease;
   position: relative;
-  align-self: center;
+  overflow: hidden;
 }
 
-.inline-cta::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 1px;
-  background: #000;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
+.facebook-icon:hover  { background: #1877F2; border-color: #1877F2; color: #fff; }
+.twitter-icon:hover   { background: #1DA1F2; border-color: #1DA1F2; color: #fff; }
+.instagram-icon:hover { background: #E4405F; border-color: #E4405F; color: #fff; }
+.linkedin-icon:hover  { background: #0A66C2; border-color: #0A66C2; color: #fff; }
+
+.t24-brokerage-logo img {
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.inline-cta:hover::after {
-  transform: scaleX(1);
-}
-
-.brokerage-logo img {
-  opacity: 0.9;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.brokerage-logo:hover img {
+.t24-brokerage-logo:hover img {
   opacity: 1;
   transform: scale(1.03);
-}
-
-@media (max-width: 991px) {
-  .agent-name {
-    font-size: 24px;
-    text-align: center;
-  }
-
-  .inline-cta {
-    width: 100%;
-    text-align: center;
-    margin-top: 6px;
-  }
 }

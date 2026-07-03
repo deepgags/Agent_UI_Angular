@@ -1,113 +1,78 @@
-.nav_bg {
-	background-color: var(--primary-color);
-}
-
-.logo {
-	width: 17px;
-}
-
-.dropdown:hover .dropdown-menu {
-	display: block;
-	margin-top: 0; 
-}
-
-.dropdown-menu {
-	margin-top: 0;
-	display: none;
-	margin-left: 65px;
-}
-
-a {
-	font-size: 16px;
-}
-
-.nav_content {
-	color: var(--primary-color, #000) !important;
-}
-.signature-header {
-  position: sticky;
+.t20-header {
   top: 0;
-   backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  background-color: #6b686894;
+  background: rgba(107, 104, 104, 0.58);
   z-index: 999;
-  transition: box-shadow 0.3s ease, padding 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
 }
 
-.signature-block {
-  display: inline-block;
-  position: relative;
-  padding-left: 18px;
+.t20-logo-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 3px;
 }
 
-.signature-line {
-  position: absolute;
-  left: 0;
-  top: 6px;
-  width: 2px;
-  height: 100%;
-  background: #000;
-  transition: height 0.4s ease;
+.t20-biz-name {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #fff;
 }
 
-.signature-name {
-  font-size: 18px;
-  letter-spacing: 0.6px;
+.t20-lux-divider {
+  width: 42px;
+  height: 2px;
+  background: var(--primary-color, #e63946);
+  margin-top: 6px;
+  transition: width 0.4s ease;
 }
 
-.signature-meta {
-  font-size: 12px;
-  letter-spacing: 0.3px;
-}
+.t20-header:hover .t20-lux-divider { width: 64px; }
 
-.meta-link {
+.t20-contact-pill {
+  font-size: 13px;
   text-decoration: none;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.9);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  opacity: 0.8;
-  transition: opacity 0.25s ease;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.25s ease;
+  .info { color: var(--primary-color, #e63946); }
+  &:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-1px); }
 }
 
-.meta-link:hover {
-  opacity: 1;
+.t20-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  &:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
 }
 
-.signature-logo img {
-  opacity: 0.85;
+.facebook  { color: #1877F2; }
+.twitter   { color: #1DA1F2; }
+.instagram { color: #E4405F; }
+.linkedin  { color: #0A66C2; }
+
+.t20-brokerage-logo img {
+  opacity: 0.9;
   transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.signature-logo:hover img {
-  opacity: 1;
-  transform: translateY(-2px);
-}
-
-.signature-header.scrolled {
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-}
-
-.signature-header.scrolled .signature-line {
-  height: 70%;
-}
-
-@media (max-width: 991px) {
-  .signature-block {
-    padding-left: 0;
-  }
-
-  .signature-line {
-    display: none;
-  }
-
-  .signature-name {
-    font-size: 26px;
-  }
-
-  .signature-meta {
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-  }
+  &:hover { opacity: 1; transform: scale(1.03); }
 }

@@ -1,112 +1,79 @@
-
-
-.nav_bg {
-    background-color: var(--primary-color);
-}
-
-.logo{
-    width: 17px;
-}
-.dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0; 
-  }
-
-.dropdown-menu {
-    margin-top: 0;
-    display: none;
-    margin-left: 65px;
-}
-
-a{
-    font-size:16px;
-}
-
-.glass-header {
-  background:rgb(235 235 235 / 65%);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  position: sticky;
+.t8-header {
   top: 0;
-  z-index: 1000;
+  background: #0f1117;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 }
 
-.contact-item a {
-  color: var(--primary-color, #000000);
+.t8-logo-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid var(--primary-color, #e63946);
+  padding: 4px;
+  box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.15);
 }
 
-.contact-item i {
-  margin-right: 4px;
-}
-
-.social-pill {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 42px;
-	height: 42px;
-	border-radius: 50%;
-	background: #f1f1f1;
-	color: #6c757d; 
-	text-decoration: none;
-	transition: all 0.3s ease;
-}
-
-.social-pill i {
-	font-size: 1.2rem;
-	transition: color 0.3s ease;
-}
-
-.social-pill:hover .bi-facebook {
-	color: #1877f2;
-}
-
-.social-pill:hover .bi-twitter {
-	color: #1da1f2;
-}
-
-.social-pill:hover .bi-instagram {
-	color: #e4405f;
-}
-
-.social-pill:hover .bi-linkedin {
-	color: #0a66c2;
-}
-
-.social-pill:hover {
-	background: #fff;
-	transform: translateY(-3px);
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-
-.mobile-social-drawer {
-  position: fixed;
-  bottom: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 16px;
-  background: rgba(12, 12, 12, 0.85);
-  padding: 14px 20px;
-  border-radius: 40px;
-  backdrop-filter: blur(14px);
-  transition: bottom 0.35s ease;
-  z-index: 999;
-}
-
-.mobile-social-drawer.active {
-  bottom: 20px;
-}
-
-.mobile-social-drawer a {
-  color: #fff;
+.t8-biz-name {
   font-size: 16px;
+  font-weight: 700;
+  color: #fff;
 }
+
+.t8-designation {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.t8-contact-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s;
+  i { color: var(--primary-color, #e63946); }
+  &:hover { color: #fff; }
+}
+
+.t8-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+  &:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+}
+
+.t8-brokerage-logo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+  &:hover { opacity: 1; }
+}
+
+.t8-underline {
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color, #e63946), transparent);
+  margin-top: 4px;
+}
+
+.top-pad { padding-top: 110px; }
 
 @media (max-width: 991px) {
-  .social-pills {
-    display: none;
-  }
+  .top-pad { padding-top: 240px; }
+}
+@media (max-width: 768px) {
+  .top-pad { padding-top: 300px; }
 }

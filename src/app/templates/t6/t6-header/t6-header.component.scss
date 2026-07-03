@@ -1,97 +1,91 @@
-.nav_bg {
-	background-color: var(--primary-color);
+.t6-header {
+  top: 0;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.12);
 }
 
-.logo {
-	width: 17px;
-}
-.dropdown:hover .dropdown-menu {
-	display: block;
-	margin-top: 0; 
-}
-.dropdown-menu {
-	margin-top: 0;
-	display: none;
-	margin-left: 65px;
-}
-a {
-	font-size: 14px;
+.t6-left-panel {
+  background: var(--primary-color, #e63946);
 }
 
-.agent-block {
-  line-height: 1.2;
-}
-.container-fluid{
-    background:rgb(235 235 235 / 0%);
-}
-.brokerage-wrap img {
-  filter: grayscale(10%);
-  transition: transform 0.3s ease;
+.t6-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
 }
 
-.brokerage-wrap img:hover {
-  transform: scale(1.05);
+.t6-biz-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
 }
 
-.contact-chip {
-  display: flex;
+.t6-designation {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 3px;
+}
+
+.t6-right-panel {
+  background: #fff;
+}
+
+.t6-logo-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  padding: 3px;
+}
+
+.t6-contact-link {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 30px;
-  border: 1px solid #e5e5e5;
-  background: #fafafa;
-  transition: all 0.2s ease;
+  gap: 4px;
+  transition: color 0.2s;
+  i { color: var(--primary-color, #e63946); }
+  &:hover { color: var(--primary-color, #e63946); }
 }
 
-.contact-chip a {
-  color: var(--primary-color, #111);
-}
-
-.contact-chip:hover {
-  background: #f3f3f3;
-}
-.facebook {
-  color: #1877F2;
-}
-
-.twitter {
-  color: #1DA1F2;
-}
-
-.instagram {
-  color: #E4405F;
-}
-
-.linkedin {
-  color: #0A66C2;
-}
-
-.btn:hover .orig {
-  opacity: 0.8;
-}
-
-.glass-header {
-  background: #8c8c8c94;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: 1050;
-}
-
-.pt-header {
-  padding-top: 127px;
-}
-
-.contact-chip {
-  display: flex;
+.t6-social-btn {
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background: #f8f9fa;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+  &:hover { background: #e9ecef; }
 }
 
-@media (max-width: 767px) {
+.facebook  { color: #1877F2; }
+.twitter   { color: #1DA1F2; }
+.instagram { color: #E4405F; }
+.linkedin  { color: #0A66C2; }
 
-.pt-header {
-    padding-top: 273px;
-  }
+.t6-brokerage-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
 
+.top-pad { padding-top: 86px; }
+
+@media (max-width: 991px) {
+  .top-pad { padding-top: 220px; }
+}
+@media (max-width: 768px) {
+  .top-pad { padding-top: 280px; }
 }

@@ -1,93 +1,73 @@
-.nav_bg {
-	background-color: var(--primary-color);
-}
-
-.logo {
-	width: 17px;
-}
-.dropdown:hover .dropdown-menu {
-	display: block;
-	margin-top: 0; 
-}
-.dropdown-menu {
-	margin-top: 0;
-	display: none;
-	margin-left: 65px;
-}
-a {
-	font-size: 14px;
-}
-.glass-header {
-  background:rgb(235 235 235 / 65%);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(16px);
+.t5-header {
+  top: 0;
+  background: rgba(15, 15, 20, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.3s ease;
-  z-index: 999;
 }
 
-.glass-header.shrink {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-.header-inner {
-  transition: all 0.3s ease;
-}
-
-.glass-header.shrink .header-inner {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-.broker-logo {
-  transition: all 0.3s ease;
-}
-
-.glass-header.shrink .broker-logo {
-  height: 38px;
-}
-
-.search-glass {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-radius: 50px;
+.t5-logo-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: contain;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 2px solid var(--primary-color, #e63946);
+  padding: 4px;
 }
 
-.search-glass i {
-  color: #aaa;
-}
-
-.search-glass input {
+.t5-biz-name {
+  font-size: 16px;
+  font-weight: 700;
   color: #fff;
 }
 
-.search-glass input::placeholder {
-  color: #bbb;
+.t5-designation {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.icon-pill {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background:rgba(85, 85, 85, 0.65);
-  display: flex;
+.t5-contact-link {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s;
+  i { color: var(--primary-color, #e63946); }
+  &:hover { color: #fff; }
+}
+
+.t5-social-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  transition: all 0.25s ease;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+  &:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
 }
 
-.icon-pill:hover {
-  background: #c9a14a; 
-  color: #000;
+.t5-brokerage-logo {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: opacity 0.2s;
+  &:hover { opacity: 1; }
 }
 
-/* AGENT */
-.agent-info {
-  line-height: 1.1;
+.top-pad { padding-top: 96px; }
+
+@media (max-width: 991px) {
+  .top-pad { padding-top: 230px; }
+}
+@media (max-width: 768px) {
+  .top-pad { padding-top: 290px; }
 }

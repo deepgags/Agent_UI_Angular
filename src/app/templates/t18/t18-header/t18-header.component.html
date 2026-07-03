@@ -1,38 +1,54 @@
-<header class="editorial-header" id="editorialHeader">
+<header class="t18-header position-fixed w-100" style="z-index: 999;">
   <div class="container search-container">
     <div class="row align-items-center py-3">
 
+      <!-- Name + underline -->
       <div class="col-12 col-lg-4 text-center text-lg-start mb-3 mb-lg-0">
-        <h3 class="agent-name info mb-0">
-          {{ siteConfig?.businessName }}
-        </h3>
-        <span class="scroll-underline"></span>
+        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+             alt="Brokerage" class="t18-logo-circle d-block mx-auto mx-lg-0 mb-2" />
+        <h3 class="t18-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
+        <span class="t18-underline d-block mt-1"></span>
       </div>
 
-      <!-- <div class="col-12 col-lg-4 d-flex justify-content-center gap-4">
-        <a
-          class="contact-pill"
-          [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-               <i class="bi bi-telephone-fill info"></i>
-          {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+      <!-- Phone + email -->
+      <div class="col-12 col-lg-4 d-flex justify-content-center gap-3 flex-wrap">
+        <a class="t18-contact-pill" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+          <i class="bi bi-telephone-fill info me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
         </a>
-
-        <a
-          class="contact-pill"
-          [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-                 <i class="bi bi-envelope-at-fill info"></i>
-          {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        <a class="t18-contact-pill" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+          <i class="bi bi-envelope-fill info me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
         </a>
-      </div> -->
+      </div>
 
-      <div class="col-12 col-lg-4 text-center text-lg-end mt-3 mt-lg-0">
-        @if (siteConfig) {
-          <a [routerLink]="['home']" class="brokerage-logo">
-            <img
-              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-              alt="Brokerage logo"
-              height="80px" />
+      <!-- Social + brokerage logo -->
+      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end gap-3 mt-3 mt-lg-0">
+        <div class="d-flex gap-2">
+          @if (siteConfig.websiteSettings.socialLinks.facebook) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t18-social-btn">
+            <i class="bi bi-facebook facebook"></i>
           </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.twitter) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t18-social-btn">
+            <i class="bi bi-twitter twitter"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.instagram) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t18-social-btn">
+            <i class="bi bi-instagram instagram"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t18-social-btn">
+            <i class="bi bi-linkedin linkedin"></i>
+          </a>
+          }
+        </div>
+        @if (siteConfig) {
+        <a [routerLink]="['home']" class="t18-brokerage-wrap">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage logo" class="t18-brokerage-logo" />
+        </a>
         }
       </div>
 

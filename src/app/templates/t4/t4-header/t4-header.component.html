@@ -1,107 +1,65 @@
-<div class="container-fluid search-container position-fixed bg-white" style="z-index: 999;">
-  <div class="container py-2">
-    <div class="row align-items-center">
-
-      <div class="col-lg-3 col-md-6 col-12 d-flex align-items-center justify-content-center justify-content-lg-start">  
-          	<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-							 alt="No profile image"
-							 class=" rounded-circle me-3"
-							    width="60"
-          height="60" />
-
-        <div>
-          <h3 class="fw-bold mb-0 info">
-            {{ siteConfig?.businessName }}
-          </h3>
-        </div>
+<div class="t4-header position-fixed w-100" style="z-index: 999;">
+  <!-- Dual-row: top utility bar + main header -->
+  <div class="t4-utility-bar">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-3">
+        <a class="t4-util-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+          <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+        </a>
+        <span class="t4-util-vr"></span>
+        <a class="t4-util-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+          <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        </a>
       </div>
-
-      <div class="col-lg-5 col-md-6 col-12 d-flex flex-column align-items-center justify-content-center  my-3 my-lg-0">
-
-        <!-- <div class="d-flex  gap-4">
-          
-          <div class="d-flex align-items-center gap-2">
-            <i class="fa-solid fa-phone info"></i>
-            <a
-              class="text-dark fw-semibold  text-decoration-none"
-              [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-              {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-            </a>
-          </div>
-
-          <div class="vr d-none d-lg-block"></div>
-          
-          <div class="d-flex align-items-center gap-2">
-            <i class="fa-solid fa-envelope info"></i>
-            <a
-              class="text-dark fw-semibold  text-decoration-none"
-              [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-              {{ siteConfig?.websiteSettings?.contactInfo?.email }}
-            </a>
-          
-          
-          </div>
-          
-        </div> -->
-        <div class="mt-3 d-none d-lg-block">
-  <div class="d-flex gap-2">
-
-    @if (siteConfig.websiteSettings.socialLinks.facebook) {
-    <a [href]="siteConfig.websiteSettings.socialLinks.facebook"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="btn btn-light border">
-      <i class="bi bi-facebook orig facebook"></i>
-    </a>
-    }
-
-    @if (siteConfig.websiteSettings.socialLinks.twitter) {
-    <a [href]="siteConfig.websiteSettings.socialLinks.twitter"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="btn btn-light border">
-      <i class="bi bi-twitter orig twitter"></i>
-    </a>
-    }
-
-    @if (siteConfig.websiteSettings.socialLinks.instagram) {
-    <a [href]="siteConfig.websiteSettings.socialLinks.instagram"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="btn btn-light border">
-      <i class="bi bi-instagram orig instagram"></i>
-    </a>
-    }
-
-    @if (siteConfig.websiteSettings.socialLinks.linkedin) {
-    <a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="btn btn-light border">
-      <i class="bi bi-linkedin orig linkedin"></i>
-    </a>
-    }
-
-  </div>
-</div>
-
-
-      </div>
-
-      <div class="col-lg-4 col-12 d-flex align-items-center justify-content-center justify-content-lg-end gap-3">
-
-					
-        @if (siteConfig) {
-          <a [routerLink]="['home']" class="ms-3">
-            <img
-              [src]="siteConfig.websiteSettings.brokerageImage ?localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-              height="80"
-              alt="Brokerage Logo" />
-          </a>
+      <div class="d-flex gap-2">
+        @if (siteConfig.websiteSettings.socialLinks.facebook) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t4-util-social">
+          <i class="bi bi-facebook"></i>
+        </a>
         }
+        @if (siteConfig.websiteSettings.socialLinks.twitter) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t4-util-social">
+          <i class="bi bi-twitter"></i>
+        </a>
+        }
+        @if (siteConfig.websiteSettings.socialLinks.instagram) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t4-util-social">
+          <i class="bi bi-instagram"></i>
+        </a>
+        }
+        @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t4-util-social">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Main header row -->
+  <div class="t4-main-bar">
+    <div class="container">
+      <div class="row align-items-center py-2">
+
+        <div class="col-12 col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage" class="t4-logo-circle flex-shrink-0" />
+          <div>
+            <h3 class="t4-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
+            <p class="t4-designation mb-0">{{ siteConfig?.designation }}</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-end mt-2 mt-lg-0">
+          @if (siteConfig) {
+          <a [routerLink]="['home']">
+            <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+                 alt="Brokerage Logo" class="t4-brokerage-logo" />
+          </a>
+          }
+        </div>
 
       </div>
-
     </div>
   </div>
 </div>
@@ -109,91 +67,3 @@
 <div class="top-pad">
   <app-menu />
 </div>
-
-<!-- <div class="container-fluid p-0">
-  <nav
-    class="navbar navbar-expand-lg nav_bg"
-    aria-label="Offcanvas navbar large">
-    <div class="container-fluid">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasNavbar2"
-        aria-controls="offcanvasNavbar2">
-        <span class=""><i class="fa-solid fa-bars text-white"></i></span>
-      </button>
-      <div
-        class="offcanvas offcanvas-end text-bg-dark"
-        tabindex="-1"
-        id="offcanvasNavbar2"
-        aria-labelledby="offcanvasNavbar2Label">
-        <div class="offcanvas-header">
-          <h5
-            class="offcanvas-title"
-            id="offcanvasNavbar2Label">
-            Menu
-          </h5>
-          <button
-            type="button"
-            class="btn-close btn-close-white"
-            data-bs-dismiss="offcanvas"
-          aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav flex-grow-1 pe-3 home_nav">
-            <li class="nav-item">
-              <a
-                class="nav-link nav_content"
-                [routerLink]="['home']">
-                Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link nav_content"
-                [routerLink]="['about']">
-                About
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link nav_content"
-                [routerLink]="['seller']">
-                Seller
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link nav_content"
-                [routerLink]="['buyer']">
-                Buyer
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link nav_content"
-                [routerLink]="['featured-listings']">
-                Featured Listings
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link nav_content"
-                [routerLink]="['calculator']">
-                Calculators
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link nav_content"
-                [routerLink]="['contact']">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
-</div> -->

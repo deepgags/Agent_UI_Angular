@@ -1,131 +1,82 @@
-.nav_bg {
-	background-color: var(--primary-color);
-}
-
-.logo {
-	width: 17px;
-}
-.dropdown:hover .dropdown-menu {
-	display: block;
-	margin-top: 0; 
-}
-.dropdown-menu {
-	margin-top: 0;
-	display: none;
-	margin-left: 65px;
-}
-a {
-	font-size: 14px;
-}
-
-.nav_content {
-	color: var(--primary-color, #000) !important;
-}
-.stripe-header {
+.t10-header {
+  top: 0;
   background: #fff;
   border-bottom: 1px solid #ececec;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
-.stripe-column {
-  background: #111;
-  justify-content: center;
-  align-items: center;
+/* Vertical stripe */
+.t10-stripe {
+  background: var(--primary-color, #e63946);
+  min-height: 90px;
 }
 
-.stripe-text {
+.t10-stripe-text {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  color: #fff;
-  font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 10px;
   letter-spacing: 3px;
-  font-weight: 600;
-}
-
-.agent-title {
-  font-size: 34px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.agent-subtitle {
-  font-size: 14px;
-  letter-spacing: 1px;
-  color: #777;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
-.editorial-cta {
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #111;
-  text-decoration: none;
-  position: relative;
+/* Logo circle */
+.t10-logo-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #f8f9fa;
+  border: 2px solid var(--primary-color, #e63946);
+  padding: 4px;
 }
 
-.editorial-cta::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 40px;
-  height: 1px;
-  background: #111;
-  transition: width 0.3s ease;
-}
-
-.editorial-cta:hover::after {
-  width: 100%;
-}
-
-.contact-block {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.contact-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.t10-biz-name {
   font-size: 16px;
-  font-weight: 600;
-  color: #111;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.t10-designation {
+  font-size: 11px;
+  color: #6c757d;
+}
+
+.t10-contact-link {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #333;
   text-decoration: none;
-}
-span{
-  font-size: 16px !important;
-}
-
-.brokerage-block img {
-  opacity: 0.9;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s;
+  i { color: var(--primary-color, #e63946); }
+  &:hover { color: var(--primary-color, #e63946); }
 }
 
-.brokerage-block img:hover {
-  transform: translateY(-3px);
-  opacity: 1;
+.t10-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background: #f8f9fa;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  &:hover { background: #e9ecef; }
 }
 
-/* MOBILE = CARD */
-@media (max-width: 991px) {
-  .stripe-header {
-    border-bottom: none;
-  }
+.facebook  { color: #1877F2; }
+.twitter   { color: #1DA1F2; }
+.instagram { color: #E4405F; }
+.linkedin  { color: #0A66C2; }
 
-  .agent-title {
-    font-size: 26px;
-  }
-
-  .contact-block {
-    padding-top: 12px;
-  }
-
-  .editorial-cta {
-    margin-top: 18px;
-  }
+.t10-brokerage-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
 }

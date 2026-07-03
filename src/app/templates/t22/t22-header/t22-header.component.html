@@ -1,48 +1,63 @@
-<header class="premium-header" id="premiumHeader">
+<header class="t22-header" id="t22Header">
   <div class="container search-container">
     <div class="row py-3 align-items-center justify-content-center">
 
-    
-   <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-        @if (siteConfig) {
-          <a [routerLink]="['home']" class="brokerage-logo">
-            <img
-              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-              alt="No brokerage logo"
-              height="80px" />
-          </a>
-        }
-      </div>
-    
-
-        <div class="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-center d-none d-lg-block">
-        <div>
-          <p class="fw-semibold info mb-0 agent-name text-center">
-            {{ siteConfig?.businessName }}
-          </p>
-
+      <!-- Brokerage circle + name -->
+      <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+        <div class="d-flex align-items-center gap-3">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage" class="t22-logo-circle flex-shrink-0" />
+          <div>
+            <h2 class="t22-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
+            <p class="t22-designation mb-0">{{ siteConfig?.designation }}</p>
+          </div>
         </div>
       </div>
 
-     <!-- <div class="col-12 col-lg-4 d-flex py-lg-0 py-3 justify-content-end gap-4 contact-wrap">
-        <a
-          class="contact-pill info"
-          [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-          <i class="bi bi-telephone-fill info"></i>
-          {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-        </a>
+      <!-- Large center name -->
+      <div class="col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center d-none d-lg-flex">
+        <div class="t22-contact-block">
+          <a class="t22-contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+            <i class="bi bi-telephone-fill me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+          </a>
+          <span class="t22-divider d-none d-lg-inline">|</span>
+          <a class="t22-contact-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+            <i class="bi bi-envelope-fill me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+          </a>
+        </div>
+      </div>
 
-        <a
-          class="contact-pill info"
-          [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-          <i class="bi bi-envelope-at-fill info"></i>
-          {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+      <!-- Social + brokerage logo -->
+      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end gap-3">
+        <div class="d-flex gap-2">
+          @if (siteConfig.websiteSettings.socialLinks.facebook) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t22-social-icon facebook-icon">
+            <i class="bi bi-facebook"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.twitter) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t22-social-icon twitter-icon">
+            <i class="bi bi-twitter"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.instagram) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t22-social-icon instagram-icon">
+            <i class="bi bi-instagram"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t22-social-icon linkedin-icon">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          }
+        </div>
+        @if (siteConfig) {
+        <a [routerLink]="['home']" class="t22-brokerage-logo">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="No brokerage logo" height="64px" />
         </a>
-
-        <a href="/contact" class="inline-cta">
-          Book a Private Showing
-        </a>
-      </div> -->
+        }
+      </div>
 
     </div>
   </div>

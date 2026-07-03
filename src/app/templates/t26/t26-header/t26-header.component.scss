@@ -1,299 +1,126 @@
-.logo{
-    width: 17px;
-}
-a {
-	font-size: 14px;
-}
-.top-pad{
-  padding-top: 131px;
+.t26-header {
+  top: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-.mob{
-  display: block;
-}
-@media (max-width: 768px) {
-	.top-pad {
-    padding-top: 269px;
-}
-	
-}.facebook {
-  color: #1877F2;
+.t26-header-border {
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--primary-color, #e63946) 30%,
+    rgba(230, 57, 70, 0.3) 70%,
+    transparent 100%);
 }
 
-.twitter {
-  color: #1DA1F2;
+.t26-logo-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #fff;
+  border: 2px solid var(--primary-color, #e63946);
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.instagram {
-  color: #E4405F;
+.t26-identity {
+  border-left: 3px solid var(--primary-color, #e63946);
+  padding-left: 10px;
 }
 
-.linkedin {
-  color: #0A66C2;
+.t26-biz-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
-.btn:hover .orig {
-  opacity: 0.8;
+.t26-designation {
+  font-size: 11px;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
 }
 
+.t26-contact-row {
+  align-items: center;
+}
 
-  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
-
-  .header-wrapper {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.04);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-  }
-
-  .header-border {
-    height: 2px;
-    background: linear-gradient(90deg, 
-      transparent 0%, 
-      rgba(13, 110, 253, 0.1) 20%, 
-      rgba(13, 110, 253, 0.4) 50%, 
-      rgba(13, 110, 253, 0.1) 80%, 
-      transparent 100%);
-  }
-
-  .logo-link {
-    display: block;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-
-  .logo-link:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-  }
-
-  .brokerage-logo {
-    height: 80px;
-    max-width: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06));
-  }
-
-  .agent-section {
-    position: relative;
-  }
-
-  .agent-card {
-    position: relative;
-    animation: fadeInUp 0.6s ease-out;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .agent-name {
-    font-family: 'Crimson Pro', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    margin: 0;
-  }
-
-  .agent-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #6c757d;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin: 0;
-  }
-
-  .contact-row {
-    font-family: 'Inter', sans-serif;
-  }
-
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #495057;
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    background: rgba(13, 110, 253, 0.04);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact-link::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(13, 110, 253, 0.1), rgba(13, 110, 253, 0.05));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .contact-link:hover {
-    color: var(--primary-color, #0d6efd);
-    background: rgba(var(--primary-color-rgb, 13, 110, 253), 0.08);
+.t26-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #495057;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 50px;
+  background: rgba(230, 57, 70, 0.04);
+  transition: all 0.3s ease;
+  &:hover {
+    color: var(--primary-color, #e63946);
+    background: rgba(230, 57, 70, 0.08);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb, 13, 110, 253), 0.15);
   }
+}
 
-  .contact-link:hover::before {
-    opacity: 1;
+.t26-contact-icon {
+  font-size: 0.85rem;
+  color: var(--primary-color, #e63946);
+}
+
+.t26-contact-divider {
+  color: #dee2e6;
+  font-size: 0.9rem;
+}
+
+.t26-social-cluster {
+  align-items: center;
+}
+
+.t26-social-icon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  color: #495057;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   }
+}
 
-  .contact-icon {
-    font-size: 0.875rem;
-    position: relative;
-    z-index: 1;
-  }
+.facebook-icon:hover  { background: #1877F2; border-color: #1877F2; color: #fff; }
+.twitter-icon:hover   { background: #1DA1F2; border-color: #1DA1F2; color: #fff; }
+.instagram-icon:hover { background: #E4405F; border-color: #E4405F; color: #fff; }
+.linkedin-icon:hover  { background: #0A66C2; border-color: #0A66C2; color: #fff; }
 
-  .contact-divider {
-    color: #dee2e6;
-    font-size: 0.875rem;
-  }
+.t26-logo-link {
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  &:hover { transform: scale(1.05); opacity: 0.9; }
+}
 
-  .social-cluster {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    animation: slideInRight 0.6s ease-out;
-  }
+.t26-brokerage-logo {
+  height: 70px;
+  max-width: 100%;
+  object-fit: contain;
+}
 
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+.t26-top-pad {
+  padding-top: 100px;
+}
 
-  .social-icon {
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: #ffffff;
-    border: 2px solid #e9ecef;
-    color: #495057;
-    font-size: 1.1rem;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .social-icon::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: currentColor;
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .social-icon i {
-    position: relative;
-    z-index: 1;
-    transition: all 0.3s ease;
-  }
-
-  .social-icon:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    border-color: transparent;
-  }
-
-  .social-icon:hover::before {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .social-icon:hover i {
-    color: white;
-  }
-
-  .facebook-icon {
-    --social-color: #1877f2;
-  }
-
-  .twitter-icon {
-    --social-color: #1da1f2;
-  }
-
-  .instagram-icon {
-    --social-color: #e4405f;
-  }
-
-  .linkedin-icon {
-    --social-color: #0a66c2;
-  }
-
-  .facebook-icon:hover { border-color: var(--social-color); }
-  .facebook-icon::before { background: var(--social-color); }
-
-  .twitter-icon:hover { border-color: var(--social-color); }
-  .twitter-icon::before { background: var(--social-color); }
-
-  .instagram-icon:hover { border-color: #e4405f; }
-  .instagram-icon::before { 
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  }
-
-  .linkedin-icon:hover { border-color: var(--social-color); }
-  .linkedin-icon::before { background: var(--social-color); }
-
-  /* Responsive adjustments */
-  @media (max-width: 991px) {
-    .agent-name {
-      font-size: 1.75rem;
-    }
-
-    .contact-row {
-      flex-direction: column;
-      gap: 0.75rem !important;
-    }
-
-    .contact-divider {
-      display: none;
-    }
-
-    .social-cluster {
-      justify-content: center;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .agent-name {
-      font-size: 1.5rem;
-    }
-
-    .contact-link {
-      font-size: 0.8rem;
-      padding: 0.4rem 0.8rem;
-    }
-
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      font-size: 1rem;
-    }
-  }
+@media (max-width: 768px) {
+  .t26-top-pad { padding-top: 220px; }
+}

@@ -1,54 +1,58 @@
-<header class="search-container glass-header mb-2">
+<div class="t7-header position-fixed w-100" style="z-index: 999;">
   <div class="container">
-    <div class="row align-items-center py-3 g-3 header-row">
+    <div class="d-flex align-items-center justify-content-between gap-3 py-2 flex-wrap">
 
-      <div class="col-lg-4 col-12 d-flex justify-content-center justify-content-lg-start">
-        <div class="agent-brand text-center text-lg-start">
-          <h3 class="fw-bold mb-0  text-uppercase text-white">
-            {{ siteConfig?.businessName }}
-          </h3>
+      <div class="d-flex align-items-center gap-2">
+        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+             alt="Brokerage" class="t7-logo-circle flex-shrink-0" />
+        <div>
+          <h3 class="t7-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
+          <p class="t7-designation mb-0">{{ siteConfig?.designation }}</p>
         </div>
       </div>
 
-      <!-- <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center gap-3 flex-wrap center-stack">
+      <div class="d-flex align-items-center gap-2 flex-wrap justify-content-center">
+        <a class="t7-pill-btn" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+          <i class="bi bi-telephone-fill me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+        </a>
+        <a class="t7-pill-btn" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+          <i class="bi bi-envelope-fill me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        </a>
+      </div>
 
-        <div class="contact-pill">
-          <i class="fa-solid fa-phone text-white"></i>
-          <a
-            class="fw-semibold small pop text-decoration-none"
-            [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-            {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-          </a>
-        </div>
-
-        <div class="contact-pill">
-          <i class="fa-solid fa-envelope text-white"></i>
-          <a
-            class="fw-semibold small pop text-decoration-none"
-            [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-            {{ siteConfig?.websiteSettings?.contactInfo?.email }}
-          </a>
-        </div>
-
-      </div> -->
-
-      <!-- Brokerage -->
-      <div class="col-lg-4 col-12 d-flex justify-content-center justify-content-lg-end">
+      <div class="d-flex align-items-center gap-2">
+        @if (siteConfig.websiteSettings.socialLinks.facebook) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t7-social-btn">
+          <i class="bi bi-facebook facebook"></i>
+        </a>
+        }
+        @if (siteConfig.websiteSettings.socialLinks.twitter) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t7-social-btn">
+          <i class="bi bi-twitter twitter"></i>
+        </a>
+        }
+        @if (siteConfig.websiteSettings.socialLinks.instagram) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t7-social-btn">
+          <i class="bi bi-instagram instagram"></i>
+        </a>
+        }
+        @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t7-social-btn">
+          <i class="bi bi-linkedin linkedin"></i>
+        </a>
+        }
         @if (siteConfig) {
-          <a [routerLink]="['home']" class="brokerage-badge">
-            <img
-              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-              height="80px"
-              alt="Brokerage Logo" />
-          </a>
+        <a [routerLink]="['home']" class="ms-1">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage Logo" class="t7-brokerage-logo" />
+        </a>
         }
       </div>
 
     </div>
-
-    <!-- Animated Underline -->
-    <div class="scroll-underline"></div>
   </div>
-</header>
+</div>
 
-<app-menu />
+<div class="top-pad">
+  <app-menu />
+</div>

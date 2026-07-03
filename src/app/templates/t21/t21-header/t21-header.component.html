@@ -1,57 +1,60 @@
-<header class="monogram-header " id="monogramHeader">
+<header class="t21-header" id="t21Header">
   <div class="container border-bottom search-container">
     <div class="row align-items-center py-4">
 
+      <!-- Brokerage circle + name -->
       <div class="col-12 col-lg-4 mb-3 mb-lg-0">
-        <div class="monogram-block">
-
+        <div class="t21-identity d-flex align-items-center gap-3">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage" class="t21-logo-circle flex-shrink-0" />
           <div>
-            <h2 class="monogram-name info mb-0">
-              {{ siteConfig?.businessName }}
-            </h2>
-            <p class="trust-line">
-              Residential · Luxury · Advisory
-            </p>
+            <h2 class="t21-biz-name info mb-0">{{ siteConfig?.businessName }}</h2>
+            <p class="t21-designation mb-0">{{ siteConfig?.designation }}</p>
           </div>
-
         </div>
       </div>
 
-      <!-- <div class="col-12 col-lg-4 d-flex justify-content-center gap-4 monogram-meta d-none d-lg-block">
-
-        <a
-          class="meta-item"
-          [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-        <i class="bi bi-telephone-fill info"></i>
-          {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+      <!-- Phone + email meta -->
+      <div class="col-12 col-lg-4 d-none d-lg-flex flex-column align-items-center gap-2">
+        <a class="t21-meta-item" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+          <i class="bi bi-telephone-fill info me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
         </a>
-
-        <a
-          class="meta-item ms-2"
-          [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-          <i class="bi bi-envelope-at-fill info"></i>
-          {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        <a class="t21-meta-item" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+          <i class="bi bi-envelope-fill info me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
         </a>
+      </div>
 
-       
-
-      </div> -->
-
-      <div class="col-12 col-lg-4 text-center text-lg-end ">
-
-        @if (siteConfig) {
-          <a [routerLink]="['home']" class="monogram-logo d-block mb-2">
-            <img
-              [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-              alt="Brokerage logo"
-              height="80px" />
+      <!-- Social + brokerage logo + CTA -->
+      <div class="col-12 col-lg-4 d-flex flex-column align-items-center align-items-lg-end gap-2">
+        <a [routerLink]="['home']" class="t21-brokerage-logo d-block mb-2">
+          @if (siteConfig) {
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage logo" height="60px" />
+          }
+        </a>
+        <div class="d-flex gap-2">
+          @if (siteConfig.websiteSettings.socialLinks.facebook) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t21-social-btn">
+            <i class="bi bi-facebook facebook"></i>
           </a>
-        }
-
-        <a href="/contact" class="quiet-cta">
-          Request a Consultation
-        </a>
-
+          }
+          @if (siteConfig.websiteSettings.socialLinks.twitter) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t21-social-btn">
+            <i class="bi bi-twitter twitter"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.instagram) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t21-social-btn">
+            <i class="bi bi-instagram instagram"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t21-social-btn">
+            <i class="bi bi-linkedin linkedin"></i>
+          </a>
+          }
+        </div>
+        <a href="/contact" class="t21-quiet-cta d-none d-lg-block">Request a Consultation</a>
       </div>
 
     </div>

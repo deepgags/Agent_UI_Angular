@@ -1,86 +1,69 @@
-<div class="header-wrapper position-fixed w-100 bg-gradient" style="z-index: 999;">
+<div class="t27-header position-fixed w-100" style="z-index: 999;">
   <div class="container-fluid px-5">
-    <div class="row align-items-stretch gx-4" style="min-height: 120px;">
-      
+    <div class="row align-items-stretch gx-4" style="min-height: 100px;">
+
+      <!-- Left: brokerage logo -->
       <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-start py-3 py-lg-0">
         @if (siteConfig) {
-        <a [routerLink]="['home']" class="logo-link">
+        <a [routerLink]="['home']" class="t27-logo-link">
           <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="No brokerage logo"
-               class="brokerage-logo" />
+               alt="No brokerage logo" class="t27-brokerage-logo-rect" />
         </a>
         }
       </div>
 
-      <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center text-center py-4 py-lg-0 agent-section">
-        <div class="agent-card">
-          <h1 class="agent-name mb-1">
-            {{ siteConfig?.businessName }}
-          </h1>
-          
-          <!-- <div class="contact-row d-flex flex-wrap justify-content-center align-items-center gap-3 mb-3">
-            <a class="contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-              <i class="fa-solid fa-phone contact-icon"></i>
-              <span>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}</span>
-            </a>
-            <span class="contact-divider">•</span>
-            <a class="contact-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-              <i class="fa-solid fa-envelope contact-icon"></i>
-              <span>{{ siteConfig?.websiteSettings?.contactInfo?.email }}</span>
-            </a>
-          </div> -->
+      <!-- Center: circle + name + contact row -->
+      <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center text-center py-4 py-lg-0">
+        <div class="d-flex align-items-center gap-3 mb-1">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage" class="t27-logo-circle flex-shrink-0" />
+          <div>
+            <h1 class="t27-biz-name mb-0">{{ siteConfig?.businessName }}</h1>
+            <p class="t27-designation mb-0">{{ siteConfig?.designation }}</p>
+          </div>
+        </div>
+        <div class="t27-contact-row d-none d-lg-flex gap-3 mt-2">
+          <a class="t27-contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+            <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+          </a>
+          <span class="t27-sep">|</span>
+          <a class="t27-contact-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+            <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+          </a>
         </div>
       </div>
 
+      <!-- Right: social icons -->
       <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-end py-3 py-lg-0">
-        <div class="social-cluster ">
+        <div class="t27-social-cluster d-flex gap-2">
           @if (siteConfig.websiteSettings.socialLinks.facebook) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.facebook"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="social-icon facebook-icon mob"
-             aria-label="Facebook">
+          <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t27-social-icon facebook-icon" aria-label="Facebook">
             <i class="bi bi-facebook"></i>
           </a>
           }
-          
           @if (siteConfig.websiteSettings.socialLinks.twitter) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.twitter"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="social-icon twitter-icon"
-             aria-label="Twitter">
+          <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t27-social-icon twitter-icon" aria-label="Twitter">
             <i class="bi bi-twitter"></i>
           </a>
           }
-          
           @if (siteConfig.websiteSettings.socialLinks.instagram) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.instagram"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="social-icon instagram-icon"
-             aria-label="Instagram">
+          <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t27-social-icon instagram-icon" aria-label="Instagram">
             <i class="bi bi-instagram"></i>
           </a>
           }
-          
           @if (siteConfig.websiteSettings.socialLinks.linkedin) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="social-icon linkedin-icon"
-             aria-label="LinkedIn">
+          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t27-social-icon linkedin-icon" aria-label="LinkedIn">
             <i class="bi bi-linkedin"></i>
           </a>
           }
         </div>
       </div>
-      
+
     </div>
   </div>
-  <div class="header-border"></div>
+  <div class="t27-header-border"></div>
 </div>
 
-<div class="top-pad">
+<div class="t27-top-pad">
   <app-menu />
 </div>

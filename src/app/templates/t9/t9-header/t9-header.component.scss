@@ -1,116 +1,91 @@
-$info: #ffffff;
-.nav_bg {
-    background-color: $info;
-}
-
-.logo{
-    width: 17px;
-}
-.dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0;
-}
-.dropdown-menu {
-    margin-top: 0;
-    display: none;
-    margin-left: 65px;
-}
-a,span{
-    font-size:16px !important;
-}
-
-.nav_content{
-    color: var(--primary-color, #000) !important;
-}
-
-.editorial-header {
-  background: #ffffff;
-    background:rgba(108, 108, 108, 0.65);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid #e6e6e6;
-  position: sticky;
-
+.t9-header {
   top: 0;
-  z-index: 1000;
-  transition: all 0.3s ease;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
 }
 
-.editorial-header.shrink {
-  padding-top: 4px;
-  padding-bottom: 4px;
+.t9-logo-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #f4f4f4;
+  border: 3px solid #1a1a1a;
+  padding: 3px;
 }
 
-.header-inner {
-  transition: all 0.3s ease;
+.t9-identity {
+  border-left: 3px solid #1a1a1a;
+  padding-left: 10px;
 }
 
-.agent-name {
-  font-weight: 600;
+.t9-biz-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1a1a1a;
+  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.agent-role {
-  font-size: 14px;
-  color: #f2f2f2;
-  font-weight: 500;
+.t9-designation {
+  font-size: 11px;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
 }
 
-.contact-editorial {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  flex-wrap: wrap;
-}
-
-.contact-item {
-  display: flex;
+.t9-contact-item {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 16px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: #ffffff;
+  color: #1a1a1a;
   text-decoration: none;
+  transition: color 0.2s;
+  &:hover { color: var(--primary-color, #e63946); }
 }
 
-.cta-editorial {
-  padding: 8px 18px;
-  border: 1px solid #111;
-  font-size: 13px;
-  border-radius: 10px;
-  font-weight: 600;
-  text-decoration: none;
-  color: #ffffff;
-  transition: all 0.25s ease;
-}
-
-.cta-editorial:hover {
-  background: #111;
+.t9-contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--primary-color, #e63946);
   color: #fff;
+  font-size: 0.75rem;
+  flex-shrink: 0;
 }
 
-.brokerage-editorial img {
-  transition: transform 0.25s ease;
+.t9-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #1a1a1a;
+  border-radius: 6px;
+  background: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+  &:hover { background: #1a1a1a; color: #fff; }
 }
 
-.brokerage-editorial img:hover {
-  transform: translateY(-2px);
+.facebook  { color: #1877F2; }
+.twitter   { color: #1DA1F2; }
+.instagram { color: #E4405F; }
+.linkedin  { color: #0A66C2; }
+
+.t9-brokerage-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
 }
 
-/* MOBILE REDESIGN */
-@media (max-width: 991px) {
-  .agent-name {
-    font-size: 20px;
-  }
-
-  .contact-editorial {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .cta-editorial {
-    width: 100%;
-    text-align: center;
-  }
+.t9-bottom-stripe {
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color, #e63946) 0%, #1a1a1a 100%);
 }

@@ -1,91 +1,66 @@
-<header class="position-fixed top-0 start-0 w-100 glass-header shadow-sm">
-  <div class="container-fluid">
-    <div class="container search-container">
-      <div class="row align-items-center py-3 g-3">
+<div class="t6-header position-fixed w-100" style="z-index: 999;">
+  <div class="row g-0 align-items-stretch">
 
-        <div class="col-lg-4 col-12">
-          <div class="agent-block text-center text-lg-start">
-            <h3 class="fw-bold mb-0 text-uppercase info">
-              {{ siteConfig?.businessName }}
-            </h3>
-          </div>
-
-          <div class="d-flex gap-2 mt-2 justify-content-center justify-content-lg-start">
-            @if (siteConfig.websiteSettings.socialLinks.facebook) {
-              <a [href]="siteConfig.websiteSettings.socialLinks.facebook"
-                 target="_blank"
-                 class="btn btn-light border">
-                <i class="bi bi-facebook facebook"></i>
-              </a>
-            }
-
-            @if (siteConfig.websiteSettings.socialLinks.twitter) {
-              <a [href]="siteConfig.websiteSettings.socialLinks.twitter"
-                 target="_blank"
-                 class="btn btn-light border">
-                <i class="bi bi-twitter twitter"></i>
-              </a>
-            }
-
-            @if (siteConfig.websiteSettings.socialLinks.instagram) {
-              <a [href]="siteConfig.websiteSettings.socialLinks.instagram"
-                 target="_blank"
-                 class="btn btn-light border">
-                <i class="bi bi-instagram instagram"></i>
-              </a>
-            }
-
-            @if (siteConfig.websiteSettings.socialLinks.linkedin) {
-              <a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
-                 target="_blank"
-                 class="btn btn-light border">
-                <i class="bi bi-linkedin linkedin"></i>
-              </a>
-            }
-          </div>
-        </div>
-
-        <!-- Logo -->
-        <div class="col-lg-4 col-12 d-flex justify-content-center">
-          @if (siteConfig) {
-            <a [routerLink]="['home']">
-              <img
-                [src]="siteConfig.websiteSettings.brokerageImage
-                  ? localImageUrl + siteConfig.websiteSettings.brokerageImage
-                  : '/images/Nologo.png'"
-                alt="Brokerage Logo"
-                height="80" />
-            </a>
-          }
-        </div>
-
-        <!-- Contact -->
-        <!-- <div class="col-lg-4 col-12 d-flex justify-content-center justify-content-lg-end gap-4 flex-wrap">
-          <div class="contact-chip">
-            <i class="fa-solid fa-phone info"></i>
-            <a
-              class="text-decoration-none fw-semibold small"
-              [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-              {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-            </a>
-          </div>
-
-          <div class="contact-chip">
-            <i class="fa-solid fa-envelope info"></i>
-            <a
-              class="text-decoration-none fw-semibold small"
-              [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-              {{ siteConfig?.websiteSettings?.contactInfo?.email }}
-            </a>
-          </div>
-        </div> -->
-
+    <!-- Left editorial panel -->
+    <div class="col-lg-5 col-12 t6-left-panel d-flex align-items-center px-5 py-3">
+      <div>
+        <p class="t6-label mb-1">REAL ESTATE</p>
+        <h2 class="t6-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
+        <p class="t6-designation mb-0">{{ siteConfig?.designation }}</p>
       </div>
     </div>
-  </div>
-</header>
 
-<div class="pt-header">
-  <app-menu />
+    <!-- Right white section -->
+    <div class="col-lg-7 col-12 t6-right-panel d-flex align-items-center justify-content-between px-4 py-2 flex-wrap gap-3">
+
+      <div class="d-flex align-items-center gap-3">
+        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+             alt="Brokerage" class="t6-logo-circle flex-shrink-0" />
+        <div class="d-flex flex-column gap-1">
+          <a class="t6-contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+            <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+          </a>
+          <a class="t6-contact-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+            <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+          </a>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-3">
+        <div class="d-flex gap-2">
+          @if (siteConfig.websiteSettings.socialLinks.facebook) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t6-social-btn">
+            <i class="bi bi-facebook facebook"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.twitter) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t6-social-btn">
+            <i class="bi bi-twitter twitter"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.instagram) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t6-social-btn">
+            <i class="bi bi-instagram instagram"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t6-social-btn">
+            <i class="bi bi-linkedin linkedin"></i>
+          </a>
+          }
+        </div>
+        @if (siteConfig) {
+        <a [routerLink]="['home']">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage Logo" class="t6-brokerage-logo" />
+        </a>
+        }
+      </div>
+
+    </div>
+  </div>
 </div>
 
+<div class="top-pad">
+  <app-menu />
+</div>

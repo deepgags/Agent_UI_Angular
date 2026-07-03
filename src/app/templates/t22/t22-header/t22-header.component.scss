@@ -1,114 +1,94 @@
-.nav_bg {
-	background-color: var(--primary-color);
-}
-
-.logo {
-	width: 17px;
-}
-.dropdown:hover .dropdown-menu {
-	display: block;
-	margin-top: 0; 
-}
-.dropdown-menu {
-	margin-top: 0;
-	display: none;
-	margin-left: 65px;
-}
-
-a {
-	font-size: 14px;
-}
-
-.premium-header {
+.t22-header {
   position: sticky;
   top: 0;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: #0a1929;
   z-index: 999;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.35s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
 }
 
-.premium-header.scrolled {
-  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+.t22-logo-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  padding: 4px;
+  box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.15);
 }
 
-.agent-name {
-  font-size: 44px !important;
-  letter-spacing: 0.4px;
+.t22-biz-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
 }
 
-.premium-header.scrolled .lux-divider {
-  width: 64px;
+.t22-designation {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.contact-wrap {
+.t22-contact-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-.contact-pill {
-  font-size: 16px;
+.t22-divider {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+}
+
+.t22-contact-link {
+  font-size: 13px;
+  font-weight: 500;
   text-decoration: none;
-  // color: #bb5959;
+  color: rgba(255, 255, 255, 0.8);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.04);
-  transition: all 0.25s ease;
+  i { color: var(--primary-color, #e63946); }
+  &:hover { color: #fff; }
 }
 
-.contact-pill:hover {
-  background: rgba(0,0,0,0.08);
-  transform: translateY(-1px);
-}
-
-.inline-cta {
-  font-size: 16px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.t22-social-icon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
   text-decoration: none;
-  color: #ffffff;
+  transition: all 0.3s ease;
   position: relative;
-  align-self: center;
+  overflow: hidden;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
 }
 
-.inline-cta::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 1px;
-  background: #000;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
+.facebook-icon:hover  { background: #1877F2; border-color: #1877F2; color: #fff; }
+.twitter-icon:hover   { background: #1DA1F2; border-color: #1DA1F2; color: #fff; }
+.instagram-icon:hover { background: #E4405F; border-color: #E4405F; color: #fff; }
+.linkedin-icon:hover  { background: #0A66C2; border-color: #0A66C2; color: #fff; }
 
-.inline-cta:hover::after {
-  transform: scaleX(1);
-}
-
-.brokerage-logo img {
-  opacity: 0.9;
+.t22-brokerage-logo img {
+  opacity: 0.8;
+  filter: brightness(0) invert(1);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.brokerage-logo:hover img {
+.t22-brokerage-logo:hover img {
   opacity: 1;
-  transform: scale(1.03);
-}
-
-@media (max-width: 991px) {
-  .agent-name {
-    font-size: 24px;
-    text-align: center;
-  }
-
-  .inline-cta {
-    width: 100%;
-    text-align: center;
-    margin-top: 6px;
-  }
+  transform: scale(1.04);
 }
