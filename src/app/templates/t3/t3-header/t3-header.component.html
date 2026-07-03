@@ -1,86 +1,83 @@
-<div class="container-fluid search-container position-fixed bg-white" style="z-index: 999;">
-  <div class="container">
+<div class="t3-header position-fixed w-100" style="z-index: 999;">
+  <div class="row g-0 align-items-stretch">
 
-    <div class="row align-items-center justify-content-center">
-  
-      <div class="col-12 col-lg-3 ">
-        <div class="text-center text-lg-start">
-          <h3 class="fw-semibold info mb-0">
-            {{ siteConfig?.businessName }}
-          </h3>
-        </div>
-        <div class="mb-1 d-none d-lg-block">
-    <div class="d-flex gap-2 justify-content-center justify-content-lg-start">
-  
-      @if (siteConfig.websiteSettings.socialLinks.facebook) {
-      <a [href]="siteConfig.websiteSettings.socialLinks.facebook"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="btn btn-light border">
-        <i class="bi bi-facebook orig facebook"></i>
-      </a>
-      }
-  
-      @if (siteConfig.websiteSettings.socialLinks.twitter) {
-      <a [href]="siteConfig.websiteSettings.socialLinks.twitter"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="btn btn-light border">
-        <i class="bi bi-twitter orig twitter"></i>
-      </a>
-      }
-  
-      @if (siteConfig.websiteSettings.socialLinks.instagram) {
-      <a [href]="siteConfig.websiteSettings.socialLinks.instagram"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="btn btn-light border">
-        <i class="bi bi-instagram orig instagram"></i>
-      </a>
-      }
-  
-      @if (siteConfig.websiteSettings.socialLinks.linkedin) {
-      <a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="btn btn-light border">
-        <i class="bi bi-linkedin orig linkedin"></i>
-      </a>
-      }
-  
-    </div>
-  </div>
-  
+    <!-- Left band: primary color — profile image + brokerage name + designation -->
+    <div class="col-lg-4 col-12 t3-band d-flex align-items-center px-4 py-3">
+      <img
+        [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
+        alt="Profile"
+        class="t3-avatar rounded-circle me-3 flex-shrink-0" />
+      <div>
+        <h3 class="t3-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
+        <p class="t3-designation mb-0">{{ siteConfig?.designation }}</p>
       </div>
-      <!-- <div class="col-12 col-lg-6 d-flex flex-column flex-lg-row justify-content-center align-items-center py-lg-0 py-2">
-        <div class="d-flex align-items-center mb-2 mb-lg-0">
-          <i class="fa-solid fa-phone info"></i>
-          <a class="text-dark fw-semibold  text-decoration-none pop ms-2"
-             [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-            {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+    </div>
+
+    <!-- Right section: white — phone, email, social icons, brokerage logo -->
+    <div class="col-lg-8 col-12 t3-content d-flex align-items-center justify-content-between px-4 py-2 flex-wrap gap-3">
+
+      <!-- Contact info -->
+      <div class="d-flex align-items-center gap-4 flex-wrap">
+        <a class="t3-contact-link"
+           [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+          <i class="bi bi-telephone-fill t3-icon me-1"></i>
+          {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+        </a>
+        <span class="t3-vr d-none d-lg-block"></span>
+        <a class="t3-contact-link"
+           [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+          <i class="bi bi-envelope-fill t3-icon me-1"></i>
+          {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        </a>
+      </div>
+
+      <!-- Social icons + brokerage logo -->
+      <div class="d-flex align-items-center gap-3">
+        <div class="d-flex gap-2">
+          @if (siteConfig.websiteSettings.socialLinks.facebook) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.facebook"
+             target="_blank" rel="noopener noreferrer"
+             class="t3-social-btn">
+            <i class="bi bi-facebook facebook"></i>
           </a>
-        </div>
-        <div class="d-flex align-items-center ms-lg-5">
-          <i class="fa-solid fa-envelope info"></i>
-          <a class="text-dark fw-semibold  text-decoration-none pop ms-2"
-             [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-            {{ siteConfig?.websiteSettings?.contactInfo?.email }}
+          }
+          @if (siteConfig.websiteSettings.socialLinks.twitter) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.twitter"
+             target="_blank" rel="noopener noreferrer"
+             class="t3-social-btn">
+            <i class="bi bi-twitter twitter"></i>
           </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.instagram) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.instagram"
+             target="_blank" rel="noopener noreferrer"
+             class="t3-social-btn">
+            <i class="bi bi-instagram instagram"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
+             target="_blank" rel="noopener noreferrer"
+             class="t3-social-btn">
+            <i class="bi bi-linkedin linkedin"></i>
+          </a>
+          }
         </div>
-      </div> -->
-  
-      <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end align-items-center gap-3">
+
         @if (siteConfig) {
         <a [routerLink]="['home']">
-          <img class="mob_img" [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="No brokerage logo" />
+          <img
+            [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+            alt="Brokerage Logo"
+            class="t3-brokerage-logo" />
         </a>
         }
       </div>
+
     </div>
   </div>
 </div>
 
 <div class="top-pad">
-<app-menu />
+  <app-menu />
 </div>
