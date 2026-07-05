@@ -1,4 +1,4 @@
-#heroCarousel {
+﻿#heroCarousel {
 	height: 70vh;
 	overflow: hidden;
 }
@@ -19,7 +19,7 @@
 	position: absolute;
 	bottom: 0px;
 	right: 20px;
-	width: 465px;
+	width: 365px;
 }
 .hero-bg {
 	background: url("https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80")
@@ -31,7 +31,7 @@
 	position: absolute;
 	bottom: 0px;
 	left: 20px;
-	width: 465px;
+	width: 365px;
 }
 
 .man-card {
@@ -91,7 +91,7 @@
 		position: absolute;
 		bottom: 0px;
 		left: -42px;
-		width: 190px;
+		width: 365px;
 	}
 }
 @media (max-width: 768px) {

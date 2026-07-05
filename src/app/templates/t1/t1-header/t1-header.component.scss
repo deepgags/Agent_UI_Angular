@@ -1,4 +1,4 @@
-.t1-header {
+﻿.t1-header {
   top: 0;
   background: #fff;
   border-bottom: 3px solid var(--primary-color, #e63946);
@@ -16,19 +16,26 @@
 }
 
 .t1-biz-name {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   color: #1a1a1a;
   line-height: 1.2;
 }
 
 .t1-designation {
-  font-size: 11px;
+  font-size: 13px;
   color: #6c757d;
 }
 
+.t1-biz-sub {
+  font-size: 15px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .t1-contact-link {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: #333;
   text-decoration: none;
@@ -66,11 +73,39 @@
 .instagram { color: #E4405F; }
 .linkedin  { color: #0A66C2; }
 
-.top-pad { padding-top: 110px; }
+.t1-agent-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color, #e63946);
+}
+
+.t1-agent-circle-fallback {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  border: 2px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 1.4rem;
+}
+
+.t1-brokerage-logo {
+  height: 68px;
+  max-width: 110px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+  &:hover { opacity: 1; }
+}
+
+.top-pad { padding-top: 75px; }
 
 @media (max-width: 991px) {
-  .top-pad { padding-top: 260px; }
-}
-@media (max-width: 768px) {
-  .top-pad { padding-top: 340px; }
+  .top-pad { padding-top: 80px; }
 }

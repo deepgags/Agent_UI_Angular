@@ -1,4 +1,4 @@
-.t18-header {
+﻿.t18-header {
   top: 0;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -18,7 +18,7 @@
 }
 
 .t18-biz-name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: #fff;
   letter-spacing: 0.4px;
@@ -31,7 +31,7 @@
 }
 
 .t18-contact-pill {
-  font-size: 13px;
+  font-size: 15px;
   text-decoration: none;
   color: #fff;
   display: inline-flex;
@@ -78,7 +78,7 @@
 .t18-brokerage-wrap:hover .t18-brokerage-logo { opacity: 1; }
 
 .t18-top-pad {
-  padding-top: 90px;
+  padding-top: 120px;
 }
 
 @media (max-width: 768px) {

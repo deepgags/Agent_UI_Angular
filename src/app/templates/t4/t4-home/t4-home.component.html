@@ -172,9 +172,9 @@
 				</div>
 			}
 			@if (cities[1] && cities[1].name) {
-				<div class="col-lg-3 col-12 position-relative">
+				<div class="col-lg-3 col-12 mb-lg-0 mb-3 position-relative">
 					<div
-						class="mb-3 city_card"
+						class="city_card"
 						(click)="searchProperties({ city: cities[1].name })">
 						<img
 							class="w-100"
@@ -182,15 +182,7 @@
 							alt="" />
 						<p class="image-label2 fs-3">{{ cities[1].name }}</p>
 					</div>
-
-					<!-- <div class=" city_card "
-				 (click)="searchProperties({ city: cities[1]?.name })">
-				<img class="w-100"
-					 [src]="localImageUrl + cities[1]?.image"
-					 [alt]="cities[1]?.name">
-				<p class="image-label  fs-3">{{ cities[1]?.name }}</p>
-			</div> -->
-				</div>
+ 				</div>
 			}
 			@if (cities[2] && cities[2].name) {
 				<div class="col-lg-3 col-12 position-relative">
@@ -238,15 +230,45 @@
 							alt="" />
 						<p class="image-label2 fs-3">{{ cities[4].name }}</p>
 					</div>
-					<!--
-			<div class=" city_card "
-				 (click)="searchProperties({ city: cities[5]?.name })">
-				<img class="w-100"
-					 [src]="localImageUrl + cities[5]?.image"
-					 [alt]="cities[5]?.name">
-				<p class="image-label  fs-3">{{ cities[5]?.name }}</p>
-
-			</div> -->
+				</div>
+			}
+			@if (cities[5] && cities[5].name) {
+				<div class="col-lg-3 col-12 position-relative">
+					<div
+						class="mb-3 city_card"
+						(click)="searchProperties({ city: cities[5].name })">
+						<img
+							class="w-100"
+							[src]="localImageUrl + cities[5].image"
+							alt="" />
+						<p class="image-label2 fs-3">{{ cities[5].name }}</p>
+					</div>
+				</div>
+			}
+			@if (cities[6] && cities[6].name) {
+				<div class="col-lg-3 col-12 position-relative">
+					<div
+						class="mb-3 city_card"
+						(click)="searchProperties({ city: cities[6].name })">
+						<img
+							class="w-100"
+							[src]="localImageUrl + cities[6].image"
+							alt="" />
+						<p class="image-label2 fs-3">{{ cities[6].name }}</p>
+					</div>
+				</div>
+			}
+			@if (cities[7] && cities[7].name) {
+				<div class="col-lg-3 col-12 position-relative">
+					<div
+						class="mb-3 city_card"
+						(click)="searchProperties({ city: cities[7].name })">
+						<img
+							class="w-100"
+							[src]="localImageUrl + cities[7].image"
+							alt="" />
+						<p class="image-label2 fs-3">{{ cities[7].name }}</p>
+					</div>
 				</div>
 			}
 		</div>

@@ -61,7 +61,7 @@ const PREVIEW_FALLBACKS: PreviewFallbacks = {
 		logoImage: "/images/Nologo.png",
 		brokerageImage: "/images/Nologo.png",
 		secondaryProfileImage: "/images/agent-2.png",
-		heroImages: ["/images/banner3.jpg", "/images/banner2.png", "/images/banner.png"],
+		heroImages: ["/images/banner3.jpg", "/images/banner2.jpg", "/images/banner.jpg"],
 	},
 	contactInfo: {
 		email: "hello@preview-example.com",
@@ -358,19 +358,18 @@ export class RoutesConfigService {
 			return "";
 		}
 
-		if (contactInfo.address && contactInfo.address.includes("\n")) {
-			return contactInfo.address;
+		if (contactInfo.streetAddress && contactInfo.streetAddress.includes("\n")) {
+			return contactInfo.streetAddress;
 		}
 
 		const lines: string[] = [];
-		const brokerageAddress = contactInfo.address?.trim();
 		const streetAddress = contactInfo.streetAddress?.trim();
 		const municipality = contactInfo.municipality?.trim();
 		const province = contactInfo.province?.trim();
 		const postalCode = contactInfo.postalCode?.trim();
 
-		if (brokerageAddress) {
-			lines.push(brokerageAddress);
+		if (streetAddress) {
+			lines.push(streetAddress);
 		}
 
 		const streetLine = [streetAddress, municipality].filter(Boolean).join(", ");

@@ -183,20 +183,15 @@ export class ContactComponent {
 			return "";
 		}
 
-		if (contactInfo.address && contactInfo.address.includes("\n")) {
-			return contactInfo.address;
-		}
-
+		 
 		const lines: string[] = [];
-		const brokerageAddress = contactInfo.address?.trim();
+		 
 		const streetAddress = contactInfo.streetAddress?.trim();
 		const municipality = contactInfo.municipality?.trim();
 		const province = contactInfo.province?.trim();
 		const postalCode = contactInfo.postalCode?.trim();
 
-		if (brokerageAddress) {
-			lines.push(brokerageAddress);
-		}
+		 
 
 		const streetLine = [streetAddress, municipality].filter(Boolean).join(", ");
 		if (streetLine) {

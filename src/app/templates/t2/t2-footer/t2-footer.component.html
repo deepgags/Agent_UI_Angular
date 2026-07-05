@@ -2,7 +2,7 @@
   <div class="container search-container">
     <footer class="py-5">
       <div class="row justify-content-center align-items-center  border-bottom pb-3 mb-3 ">
-        <div class="mb-3 col-lg-6 col-12 d-flex flex-column align-items-start mb-lg-0">
+        <div class="mb-3 col-lg-5 col-12 d-flex flex-column align-items-start mb-lg-0">
           @if (siteConfig) {
           <div class="mb-2">
             <a [routerLink]="['home']">
@@ -61,65 +61,61 @@
           }
 
         </div>
-        <div class="mb-3 col-lg-2 col-12 mb-lg-0">
-          <!-- @if (siteConfig?.websiteSettings?.contactInfo?.address) {
-          <p class="text-center fs-3 fw-semibold">Address</p>
-        }
-        <p class="text-center  small">
-          {{siteConfig?.websiteSettings?.contactInfo?.address}}
-        </p> -->
-        </div>
-        <div class="mb-3 col-lg-4 col-12 mb-lg-0 footer-contact">
+        <div class="mb-3 col-lg-7 col-12 mb-lg-0 footer-contact">
           @if (siteConfig) {
-          <div class="d-flex flex-wrap gap-3 justify-content-center">
-            <div class="text-center">
+          <div class="d-flex gap-4 justify-content-center align-items-start flex-wrap flex-lg-nowrap">
+
+            <!-- Primary Agent -->
+            <div class="d-flex align-items-start gap-3 flex-shrink-0">
               <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
                    alt="{{ siteConfig.firstName }} {{ siteConfig.lastName }}"
-                   class="rounded-circle border border-2 border-white mb-2"
-                   style="width:70px;height:70px;object-fit:cover;" />
-              <p class="text-white fw-semibold mb-0 small">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
-              <p class="text-white opacity-75 small mb-2">{{ siteConfig.designation }}</p>
-              @if (siteConfig.websiteSettings.contactInfo.phone) {
-              <div class="d-flex justify-content-center align-items-center mb-1">
-                <i class="fa-solid fa-phone info"></i>
-                <a class="text-white fw-semibold small text-decoration-none pop ms-2"
+                   class="rounded-circle border border-2 border-white flex-shrink-0"
+                   style="width:64px;height:64px;object-fit:cover;" />
+              <div>
+                <p class="text-white fw-semibold mb-0 small">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+                <p class="text-white opacity-75 small mb-2">{{ siteConfig.designation }}</p>
+                @if (siteConfig.websiteSettings.contactInfo.phone) {
+                <a class="d-flex align-items-center text-white text-decoration-none small mb-1"
                    href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}">
+                  <i class="bi bi-telephone-fill info me-2 flex-shrink-0"></i>
                   {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
                 </a>
-              </div>
-              }
-              <div class="d-flex justify-content-center align-items-center">
-                <i class="fa-solid fa-envelope info"></i>
-                <a class="text-white fw-semibold small text-decoration-none pop ms-2"
+                }
+                <a class="d-flex align-items-center text-white text-decoration-none small"
                    href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}">
+                  <i class="bi bi-envelope-fill info me-2 flex-shrink-0"></i>
                   {{ siteConfig.websiteSettings.contactInfo.email }}
                 </a>
               </div>
             </div>
+
             @if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-            <div class="text-center">
+            <!-- Divider -->
+            <div class="d-none d-lg-block" style="width:1px;background:rgba(255,255,255,0.2);align-self:stretch;"></div>
+
+            <!-- Secondary Agent -->
+            <div class="d-flex align-items-start gap-3 flex-shrink-0">
               <img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl + siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
                    alt="{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}"
-                   class="rounded-circle border border-2 border-white mb-2"
-                   style="width:70px;height:70px;object-fit:cover;" />
-              <p class="text-white fw-semibold mb-0 small">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
-              <p class="text-white opacity-75 small mb-2">{{ siteConfig.secondaryAgent.designation }}</p>
-              <div class="d-flex justify-content-center align-items-center mb-1">
-                <i class="fa-solid fa-phone info"></i>
-                <a class="text-white fw-semibold small text-decoration-none ms-2"
+                   class="rounded-circle border border-2 border-white flex-shrink-0"
+                   style="width:64px;height:64px;object-fit:cover;" />
+              <div>
+                <p class="text-white fw-semibold mb-0 small">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
+                <p class="text-white opacity-75 small mb-2">{{ siteConfig.secondaryAgent.designation }}</p>
+                <a class="d-flex align-items-center text-white text-decoration-none small mb-1"
                    [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+                  <i class="bi bi-telephone-fill info me-2 flex-shrink-0"></i>
                   {{ siteConfig.secondaryAgent.websitePhone | phone }}
                 </a>
-              </div>
-              <div class="d-flex justify-content-center align-items-center">
-                <i class="fa-solid fa-envelope info"></i>
-                <a class="text-white fw-semibold small text-decoration-none ms-2"
+                <a class="d-flex align-items-center text-white text-decoration-none small"
                    [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+                  <i class="bi bi-envelope-fill info me-2 flex-shrink-0"></i>
                   {{ siteConfig.secondaryAgent.websiteEmail }}
                 </a>
               </div>
             </div>
             }
+
           </div>
           }
         </div>

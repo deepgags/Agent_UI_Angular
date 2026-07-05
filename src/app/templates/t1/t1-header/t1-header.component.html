@@ -2,75 +2,55 @@
   <div class="container-fluid px-4">
     <div class="row align-items-center py-2">
 
-      <!-- Left: Brokerage circle + name + designation -->
-      <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
+      <!-- Left: Brokerage circle + business name (visible on all sizes) -->
+      <div class="col-6 col-lg-3 d-flex align-items-center justify-content-start gap-3">
         <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
              alt="Brokerage" class="t1-logo-circle flex-shrink-0" />
         <div>
-          <h3 class="t1-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
-          <p class="t1-designation mb-0">{{ siteConfig?.designation }}</p>
+          <p class="t1-biz-sub mb-0">{{ siteConfig?.businessName }}</p>
         </div>
       </div>
 
-      <!-- Center: Phone + Email + Social (dynamic width based on secondary agent) -->
-      <div class="d-flex flex-column align-items-center justify-content-center gap-2"
-           [ngClass]="siteConfig.secondaryAgent?.enableSecondaryAgent ? 'col-12 col-lg-3' : 'col-12 col-lg-6'">
-        <div class="d-flex align-items-center gap-3 flex-wrap justify-content-center">
-          <a class="t1-contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-            <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-          </a>
-          <span class="t1-vr d-none d-lg-block"></span>
-          <a class="t1-contact-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-            <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
-          </a>
-        </div>
-        <div class="d-flex gap-2">
-          @if (siteConfig.websiteSettings.socialLinks.facebook) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
-            <i class="bi bi-facebook facebook"></i>
-          </a>
-          }
-          @if (siteConfig.websiteSettings.socialLinks.twitter) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
-            <i class="bi bi-twitter twitter"></i>
-          </a>
-          }
-          @if (siteConfig.websiteSettings.socialLinks.instagram) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
-            <i class="bi bi-instagram instagram"></i>
-          </a>
-          }
-          @if (siteConfig.websiteSettings.socialLinks.linkedin) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
-            <i class="bi bi-linkedin linkedin"></i>
-          </a>
-          }
-        </div>
+      <!-- Phone + Email: desktop only -->
+      <div class="col-lg-3 d-none d-lg-flex flex-column align-items-center justify-content-center gap-2">
+        <a class="t1-contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+          <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+        </a>
+        <a class="t1-contact-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+          <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+        </a>
       </div>
 
-      <!-- Secondary agent (conditional) -->
-      @if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-      <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center gap-3">
-        @if (siteConfig.secondaryAgent.profileImage) {
-          <img [src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
-               [alt]="siteConfig.secondaryAgent.firstName"
-               class="rounded-circle border flex-shrink-0"
-               style="width:56px;height:56px;object-fit:cover;" />
-        } @else {
-          <div class="rounded-circle border bg-light d-flex align-items-center justify-content-center flex-shrink-0"
-               style="width:56px;height:56px;">
-            <i class="fa-solid fa-user text-secondary"></i>
-          </div>
+      <!-- Social icons: desktop only -->
+      <div class="col-lg-2 d-none d-lg-flex align-items-center justify-content-center gap-2">
+        @if (siteConfig.websiteSettings?.socialLinks?.facebook) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
+          <i class="bi bi-facebook facebook"></i>
+        </a>
         }
-        <div>
-          <h3 class="t1-biz-name mb-0">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</h3>
-          <p class="t1-designation mb-0">{{ siteConfig.secondaryAgent.designation }}</p>
-          <a class="t1-contact-link d-block mt-1" [href]="'tel:' + siteConfig.secondaryAgent.websitePhone | phone">
-            <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
-          </a>
-        </div>
+        @if (siteConfig.websiteSettings?.socialLinks?.twitter) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
+          <i class="bi bi-twitter twitter"></i>
+        </a>
+        }
+        @if (siteConfig.websiteSettings?.socialLinks?.instagram) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
+          <i class="bi bi-instagram instagram"></i>
+        </a>
+        }
+        @if (siteConfig.websiteSettings?.socialLinks?.linkedin) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
+          <i class="bi bi-linkedin linkedin"></i>
+        </a>
+        }
       </div>
-      }
+
+      <!-- Brokerage logo: mobile right + desktop right -->
+      <div class="col-6 col-lg-4 d-flex align-items-center justify-content-end gap-3">
+        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+             alt="Brokerage" class="t1-brokerage-logo" />
+      </div>
+     
 
     </div>
   </div>

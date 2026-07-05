@@ -1,4 +1,4 @@
-.t16-header {
+﻿.t16-header {
   top: 0;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -15,7 +15,7 @@
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   color: #fff;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 3px;
   font-weight: 600;
 }
@@ -35,20 +35,20 @@
 }
 
 .t16-biz-name {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: #1a1a1a;
 }
 
 .t16-designation {
-  font-size: 11px;
+  font-size: 13px;
   color: #6c757d;
   text-transform: uppercase;
   letter-spacing: 0.8px;
 }
 
 .t16-cta {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--primary-color, #e63946);
   text-decoration: none;
@@ -65,7 +65,7 @@
 }
 
 .t16-contact-row {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: #1a1a1a;
   text-decoration: none;
