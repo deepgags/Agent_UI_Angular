@@ -1,133 +1,73 @@
 ﻿<div class="container-fluid fotter-bg">
-  <div class="container search-container">
-    <footer class="py-5">
-      <div class="row justify-content-center align-items-center  border-bottom pb-3 mb-3 ">
-        <div class="mb-3 col-lg-5 col-12 d-flex flex-column align-items-start mb-lg-0">
-          @if (siteConfig) {
-          <div class="mb-2">
-            <a [routerLink]="['home']">
-              <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl+siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-                   alt="No brokerage logo"
-                   height="80px" />
-            </a>
-          </div>
-          <div class="">
-            @if (siteConfig.brokerageTypeId) {
-            <p class="text-white fw-semibold mb-2">{{ siteConfig.brokerageTypeId }}</p>
-            }
-            <div class="d-flex gap-2 flex-wrap">
-              @if (siteConfig.websiteSettings.socialLinks.facebook) {
-              <a [href]="siteConfig.websiteSettings.socialLinks.facebook"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="btn btn-light border">
-                <i class="bi bi-facebook orig facebook"></i>
+  <div class="container py-5">
+    <footer>
+      @if (siteConfig) {
+      <div class="row justify-content-center g-4 mb-4">
+        <div class="col-lg-5 col-md-6">
+          <div class="d-flex gap-3 align-items-start p-4 rounded-4" style="background:rgba(255,255,255,0.06);">
+            <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl+siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
+                 class="rounded-3 flex-shrink-0" style="width:90px;height:110px;object-fit:cover;" />
+            <div class="flex-grow-1">
+              <p class="text-white fw-bold mb-0 fs-6">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+              <p class="small mb-3" style="color:var(--primary-color,#e63946);">{{ siteConfig.designation }}</p>
+              @if (siteConfig.websiteSettings.contactInfo.phone) {
+              <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-flex align-items-center text-white-50 text-decoration-none small mb-2">
+                <i class="bi bi-telephone-fill me-2" style="color:var(--primary-color,#e63946);"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
               </a>
               }
-              @if (siteConfig.websiteSettings.socialLinks.twitter) {
-              <a [href]="siteConfig.websiteSettings.socialLinks.twitter"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="btn btn-light border">
-                <i class="bi bi-twitter orig twitter"></i>
+              <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-flex align-items-center text-white-50 text-decoration-none small">
+                <i class="bi bi-envelope-fill me-2" style="color:var(--primary-color,#e63946);"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
               </a>
-              }
-              @if (siteConfig.websiteSettings.socialLinks.instagram) {
-              <a [href]="siteConfig.websiteSettings.socialLinks.instagram"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="btn btn-light border">
-                <i class="bi bi-instagram orig instagram"></i>
-              </a>
-              }
-              @if (siteConfig.websiteSettings.socialLinks.linkedin) {
-              <a [href]="siteConfig.websiteSettings.socialLinks.linkedin"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="btn btn-light border">
-                <i class="bi bi-linkedin orig linkedin"></i>
-              </a>
-              }
-              @if (siteConfig.websiteSettings.socialLinks.youtube) {
-              <a [href]="siteConfig.websiteSettings.socialLinks.youtube"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="btn btn-light border">
-                <i class="bi bi-youtube orig youtube"></i>
-              </a>
-              }
             </div>
           </div>
-          }
         </div>
-        <div class="mb-3 col-lg-7 col-12 mb-lg-0 footer-contact">
-          @if (siteConfig) {
-          <div class="d-flex gap-4 justify-content-center align-items-start flex-wrap flex-lg-nowrap">
-
-            <!-- Primary Agent -->
-            <div class="d-flex align-items-start gap-3 flex-shrink-0">
-              <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
-                   alt="{{ siteConfig.firstName }} {{ siteConfig.lastName }}"
-                   class="rounded-circle border border-2 border-white flex-shrink-0"
-                   style="width:64px;height:64px;object-fit:cover;" />
-              <div>
-                <p class="text-white fw-semibold mb-0 small">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
-                <p class="text-white opacity-75 small mb-2">{{ siteConfig.designation }}</p>
-                @if (siteConfig.websiteSettings.contactInfo.phone) {
-                <a class="d-flex align-items-center text-white text-decoration-none small mb-1"
-                   href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}">
-                  <i class="bi bi-telephone-fill info me-2 flex-shrink-0"></i>
-                  {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-                </a>
-                }
-                <a class="d-flex align-items-center text-white text-decoration-none small"
-                   href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}">
-                  <i class="bi bi-envelope-fill info me-2 flex-shrink-0"></i>
-                  {{ siteConfig.websiteSettings.contactInfo.email }}
-                </a>
-              </div>
+        @if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
+        <div class="col-lg-5 col-md-6">
+          <div class="d-flex gap-3 align-items-start p-4 rounded-4" style="background:rgba(255,255,255,0.06);">
+            <img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl+siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
+                 class="rounded-3 flex-shrink-0" style="width:90px;height:110px;object-fit:cover;" />
+            <div class="flex-grow-1">
+              <p class="text-white fw-bold mb-0 fs-6">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
+              <p class="small mb-3" style="color:var(--primary-color,#e63946);">{{ siteConfig.secondaryAgent.designation }}</p>
+              <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-flex align-items-center text-white-50 text-decoration-none small mb-2">
+                <i class="bi bi-telephone-fill me-2" style="color:var(--primary-color,#e63946);"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
+              </a>
+              <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="d-flex align-items-center text-white-50 text-decoration-none small">
+                <i class="bi bi-envelope-fill me-2" style="color:var(--primary-color,#e63946);"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
+              </a>
             </div>
-
-            @if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-            <!-- Divider -->
-            <div class="d-none d-lg-block" style="width:1px;background:rgba(255,255,255,0.2);align-self:stretch;"></div>
-
-            <!-- Secondary Agent -->
-            <div class="d-flex align-items-start gap-3 flex-shrink-0">
-              <img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl + siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
-                   alt="{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}"
-                   class="rounded-circle border border-2 border-white flex-shrink-0"
-                   style="width:64px;height:64px;object-fit:cover;" />
-              <div>
-                <p class="text-white fw-semibold mb-0 small">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
-                <p class="text-white opacity-75 small mb-2">{{ siteConfig.secondaryAgent.designation }}</p>
-                <a class="d-flex align-items-center text-white text-decoration-none small mb-1"
-                   [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
-                  <i class="bi bi-telephone-fill info me-2 flex-shrink-0"></i>
-                  {{ siteConfig.secondaryAgent.websitePhone | phone }}
-                </a>
-                <a class="d-flex align-items-center text-white text-decoration-none small"
-                   [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
-                  <i class="bi bi-envelope-fill info me-2 flex-shrink-0"></i>
-                  {{ siteConfig.secondaryAgent.websiteEmail }}
-                </a>
-              </div>
-            </div>
-            }
-
           </div>
+        </div>
+        }
+      </div>
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 pt-4" style="border-top:1px solid rgba(255,255,255,0.1);">
+        <a [routerLink]="['home']">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl+siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'" alt="Logo" style="max-height:50px;" />
+        </a>
+        <p class="text-white-50 small mb-0">{{ siteConfig.businessName }}</p>
+        <div class="d-flex gap-2">
+          @if (siteConfig.websiteSettings.socialLinks.facebook) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none"><i class="bi bi-facebook"></i></a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.twitter) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none"><i class="bi bi-twitter"></i></a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.instagram) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none"><i class="bi bi-instagram"></i></a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none"><i class="bi bi-linkedin"></i></a>
+          }
+          @if (siteConfig.websiteSettings.socialLinks.youtube) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.youtube" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none"><i class="bi bi-youtube"></i></a>
           }
         </div>
       </div>
-      <p class="text-center text-white small">Copyright 2021 All rights reserved. Toronto Real Estate Board (TREB)
-        assumes no responsibility for the accuracy of any information shown. The information provided herein must only
-        be used by consumers that have a bona fide interest in the purchase, sale or lease of real estate and may not be
-        used for any commercial purpose or any other purpose.</p>
+      }
+      <p class="text-center text-white-50 small mt-3 mb-0">Copyright 2026 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information shown.</p>
     </footer>
   </div>
 </div>
-
-
 <!-- Page Quick Links -->
 @if (siteConfig && (siteConfig.websiteSettings?.showHomeWorthPage || siteConfig.websiteSettings?.showSellingInNeighborHoodPage || siteConfig.websiteSettings?.showFindDreamHomePage)) {
 <div class="dc-quick-links">
@@ -158,4 +98,3 @@
 		<span class="dc-copy">&copy; DealCentre</span>
 	</a>
 </div>
-
