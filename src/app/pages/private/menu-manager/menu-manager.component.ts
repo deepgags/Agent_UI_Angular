@@ -85,8 +85,10 @@ export class MenuManagerComponent implements OnInit {
 		});
 
 		this.menuForm.get("menuType")?.valueChanges.subscribe((type) => {
-			this.updateFormValidation(type);
+			this.updateFormValidation(type as MenuType);
 		});
+
+		this.updateFormValidation(this.menuForm.get("menuType")?.value as MenuType);
 
 		this.menuForm.get("menuCategory")?.valueChanges.subscribe((newCategory) => {
 			this.menuForm.patchValue({ parentId: "" });
@@ -215,6 +217,7 @@ export class MenuManagerComponent implements OnInit {
 			linkUrl: item.linkUrl || "",
 			parentId: item.parentId || "",
 		});
+		this.updateFormValidation(item.menuType);
 		this.menuDialogVisible = true;
 	}
 
@@ -224,6 +227,7 @@ export class MenuManagerComponent implements OnInit {
 			menuCategory: "main",
 			parentId: "",
 		});
+		this.updateFormValidation(MenuType.PAGE);
 	}
 
 	saveMenuItem() {
@@ -233,14 +237,13 @@ export class MenuManagerComponent implements OnInit {
 		}
 
 		const formValue = this.menuForm.value;
-		const menuItem = {
+		const menuItem: any = {
 			name: formValue.name,
 			menuType: formValue.menuType,
 			menuCategory: formValue.menuCategory,
-			pageKey: formValue.pageKey || "",
-			linkUrl: formValue.linkUrl || "",
-			parentId: formValue.parentId || "",
 			order: this.editingItem?.order || this.getNextOrder(formValue.menuCategory),
+			...(formValue.menuType === MenuType.PAGE ? { pageKey: formValue.pageKey } : { linkUrl: formValue.linkUrl }),
+			...(formValue.parentId ? { parentId: formValue.parentId } : {}),
 		};
 
 		this.loadingService.loadingOn();
@@ -261,9 +264,11 @@ export class MenuManagerComponent implements OnInit {
 				this.menuDialogVisible = false;
 			},
 			error: (error) => {
-				this.notificationService.showError(
-					error.error?.message || `Failed to ${this.editingItem ? "update" : "create"} menu item`,
-				);
+				const errorMessage =
+					(error as any)?.error?.message ||
+					(error as any)?.message ||
+					`Failed to ${this.editingItem ? "update" : "create"} menu item`;
+				this.notificationService.showError(errorMessage);
 				this.loadingService.loadingOff();
 			},
 		});

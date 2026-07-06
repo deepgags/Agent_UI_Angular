@@ -123,9 +123,13 @@ padding-right: 0;
 	gap: 0.3rem;
 	padding: 0.25rem 0.5rem;
 	border-radius: 4px;
-	transition: color 0.18s ease, background 0.18s ease;
+	transition:
+		color 0.18s ease,
+		background 0.18s ease;
 
-	i { font-size: 11px; }
+	i {
+		font-size: 11px;
+	}
 
 	&:hover {
 		color: #fff;
@@ -147,7 +151,9 @@ padding-right: 0;
 	gap: 0.5rem;
 	text-decoration: none;
 
-	&:hover .dc-logo { opacity: 1; }
+	&:hover .dc-logo {
+		opacity: 1;
+	}
 }
 
 .dc-powered-text {
@@ -302,4 +308,10 @@ gmp-place-autocomplete::part(input) {
 
 .capitalize {
 	text-transform: capitalize;
+}
+
+google-map {
+	.map-container {
+		height: 100% !important;
+	}
 }

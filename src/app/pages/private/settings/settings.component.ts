@@ -108,7 +108,7 @@ export class SettingsComponent {
 			phoneNumber: new FormControl("", [Validators.required]),
 			designation: new FormControl("", [Validators.required]),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
-			address: new FormControl("", [Validators.required]),
+			// address: new FormControl("", [Validators.required]),
 			streetAddress: new FormControl("", [Validators.required]),
 			municipality: new FormControl("", [Validators.required]),
 			province: new FormControl("", [Validators.required]),
@@ -172,9 +172,9 @@ export class SettingsComponent {
 		return this.agentForm.get("firstName");
 	}
 
-	get address() {
-		return this.agentForm.get("address");
-	}
+	// get address() {
+	// 	return this.agentForm.get("address");
+	// }
 
 	get streetAddress() {
 		return this.agentForm.get("streetAddress");
@@ -239,7 +239,7 @@ export class SettingsComponent {
 						secondaryAgentFirst,
 					} = websiteSettings;
 					const {
-						address,
+						// address,
 						streetAddress,
 						municipality,
 						province,
@@ -257,7 +257,7 @@ export class SettingsComponent {
 						businessName: businessName,
 						firstName: firstName,
 						lastName: lastName,
-						address: address,
+						// address: address,
 						streetAddress: streetAddress,
 						municipality: municipality,
 						province: province,
@@ -339,7 +339,7 @@ export class SettingsComponent {
 				businessName,
 				firstName,
 				lastName,
-				address,
+				// address,
 				streetAddress,
 				municipality,
 				province,
@@ -363,7 +363,7 @@ export class SettingsComponent {
 			formData.append("businessName", businessName);
 			formData.append("firstName", firstName);
 			formData.append("lastName", lastName);
-			formData.append("address", address);
+			// formData.append("address", address);
 			formData.append("streetAddress", streetAddress);
 			formData.append("municipality", municipality);
 			formData.append("province", province);
