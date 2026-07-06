@@ -98,6 +98,22 @@ export class RegisterComponent implements OnInit {
 		return this.customerForm.get("emailAddress");
 	}
 
+	get streetAddress() {
+		return this.customerForm.get("streetAddress");
+	}
+
+	get municipality() {
+		return this.customerForm.get("municipality");
+	}
+
+	get province() {
+		return this.customerForm.get("province");
+	}
+
+	get postalCode() {
+		return this.customerForm.get("postalCode");
+	}
+
 	get password() {
 		return this.customerForm.get("password");
 	}
@@ -119,7 +135,10 @@ export class RegisterComponent implements OnInit {
 			]),
 			// cellNumber: new FormControl("", [Validators.required, Validators.pattern("^(([0-9]{3}) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")]),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
-			address: new FormControl(""),
+			streetAddress: new FormControl("", Validators.required),
+			municipality: new FormControl("", Validators.required),
+			province: new FormControl("", Validators.required),
+			postalCode: new FormControl("", Validators.required),
 			password: new FormControl("", [
 				Validators.required,
 				Validators.pattern("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"),
@@ -206,7 +225,10 @@ export class RegisterComponent implements OnInit {
 				lastName,
 				phoneNumber,
 				emailAddress,
-				address,
+				streetAddress,
+				municipality,
+				province,
+				postalCode,
 				password,
 				confirmPassword,
 			} = this.customerForm.value;
@@ -214,7 +236,10 @@ export class RegisterComponent implements OnInit {
 			const formData = new FormData();
 			formData.append("brokerageTypeId", brokerageType);
 			formData.append("businessName", brokerageType);
-			if (address) formData.append("address", address);
+			formData.append("streetAddress", streetAddress);
+			formData.append("municipality", municipality);
+			formData.append("province", province);
+			formData.append("postalCode", postalCode);
 			formData.append("firstName", firstName);
 			formData.append("lastName", lastName);
 			formData.append("emailAddress", emailAddress);

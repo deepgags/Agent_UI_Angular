@@ -1,5 +1,4 @@
 <div class="col mt-3">
-
 	<!-- Header -->
 	<div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4">
 		<div>
@@ -9,172 +8,218 @@
 				pages on your website
 			</p>
 		</div>
-		<button class="btn btn-success px-4"
-				(click)="openAddPageDialog()">
-			<i class="bi bi-plus-lg me-2"></i>Create Page
+		<button
+			class="btn btn-success px-4"
+			(click)="openAddPageDialog()">
+			<i class="bi bi-plus-lg me-2"></i>
+			Create Page
 		</button>
 	</div>
 
 	<!-- Page Cards -->
 	<div class="row g-3 mb-4">
 		@for (page of pages; track page._id) {
-		<div class="col-12">
-			<div class="page-card"
-				 [class.page-card-predefined]="page.isPredefined">
-				<div class="page-card-body">
-
-					<!-- Left icon -->
-					<div class="page-icon-wrap"
-						 [ngClass]="getPageIconClass(page)">
-						<i class="bi"
-						   [class]="getPageIcon(page)"></i>
-					</div>
-
-					<!-- Info -->
-					<div class="page-info">
-						<div class="d-flex align-items-center flex-wrap gap-2 mb-1">
-							<span class="page-title">{{ page.title }}</span>
-							<span class="badge"
-								  [ngClass]="getBadgeClass(page)">{{ getStatusBadge(page).label }}</span>
-							@if (page.allowHeroImage) {
-							<span class="badge bg-light text-secondary border">
-								<i class="bi bi-image me-1"></i>Hero
-							</span>
-							}
+			<div class="col-12">
+				<div
+					class="page-card"
+					[class.page-card-predefined]="page.isPredefined">
+					<div class="page-card-body">
+						<!-- Left icon -->
+						<div
+							class="page-icon-wrap"
+							[ngClass]="getPageIconClass(page)">
+							<i
+								class="bi"
+								[class]="getPageIcon(page)"></i>
 						</div>
-						<div class="d-flex align-items-center flex-wrap gap-3">
-							<span class="page-slug">
-								<i class="bi bi-link-45deg me-1"></i>{{ page.slug || page.pageKey || '—' }}
-							</span>
-							<span class="page-date">
-								<i class="bi bi-clock me-1"></i>{{ page.createdAt | date: 'MMM d, y' }}
-							</span>
-						</div>
-					</div>
 
-					<!-- Actions -->
-					<div class="page-actions">
-						<button class="btn btn-sm btn-outline-secondary"
+						<!-- Info -->
+						<div class="page-info">
+							<div class="d-flex align-items-center flex-wrap gap-2 mb-1">
+								<span class="page-title">{{ page.title }}</span>
+								<span
+									class="badge"
+									[ngClass]="getBadgeClass(page)">
+									{{ getStatusBadge(page).label }}
+								</span>
+								@if (page.allowHeroImage) {
+									<span class="badge bg-light text-secondary border">
+										<i class="bi bi-image me-1"></i>
+										Hero
+									</span>
+								}
+							</div>
+							<div class="d-flex align-items-center flex-wrap gap-3">
+								<span class="page-slug">
+									<i class="bi bi-link-45deg me-1"></i>
+									{{ page.slug || page.pageKey || "—" }}
+								</span>
+								<span class="page-date">
+									<i class="bi bi-clock me-1"></i>
+									{{ page.createdAt | date: "MMM d, y" }}
+								</span>
+							</div>
+						</div>
+
+						<!-- Actions -->
+						<div class="page-actions">
+							<button
+								class="btn btn-sm btn-outline-secondary"
 								(click)="previewPage(page)"
 								pTooltip="Preview"
 								tooltipPosition="top">
-							<i class="bi bi-eye"></i>
-						</button>
-						<button class="btn btn-sm btn-outline-primary"
+								<i class="bi bi-eye"></i>
+							</button>
+							<button
+								class="btn btn-sm btn-outline-primary"
 								(click)="openEditPageDialog(page)"
 								[disabled]="!page.isEditable"
 								pTooltip="Edit"
 								tooltipPosition="top">
-							<i class="bi bi-pencil"></i>
-						</button>
-						<button class="btn btn-sm btn-outline-danger"
+								<i class="bi bi-pencil"></i>
+							</button>
+							<button
+								class="btn btn-sm btn-outline-danger"
 								(click)="deletePage(page)"
 								[disabled]="!page.isDeletable"
 								pTooltip="Delete"
 								tooltipPosition="top">
-							<i class="bi bi-trash3"></i>
-						</button>
+								<i class="bi bi-trash3"></i>
+							</button>
+						</div>
 					</div>
-
 				</div>
 			</div>
-		</div>
 		}
 
 		@if (pages.length === 0) {
-		<div class="col-12">
-			<div class="empty-state">
-				<i class="bi bi-file-earmark-plus"></i>
-				<p class="mt-3 mb-1 fw-semibold">No pages yet</p>
-				<p class="text-muted small mb-3">Create your first custom page</p>
-				<button class="btn btn-success btn-sm"
+			<div class="col-12">
+				<div class="empty-state">
+					<i class="bi bi-file-earmark-plus"></i>
+					<p class="mt-3 mb-1 fw-semibold">No pages yet</p>
+					<p class="text-muted small mb-3">Create your first custom page</p>
+					<button
+						class="btn btn-success btn-sm"
 						(click)="openAddPageDialog()">
-					<i class="bi bi-plus-lg me-1"></i>Create Page
-				</button>
+						<i class="bi bi-plus-lg me-1"></i>
+						Create Page
+					</button>
+				</div>
 			</div>
-		</div>
 		}
 	</div>
 
 	<!-- Page Dialog -->
-	<p-dialog [header]="editingPage ? 'Edit — ' + editingPage.title : 'Create New Page'"
-			  [(visible)]="pageDialogVisible"
-			  [modal]="true"
-			  [style]="{ width: '820px', maxWidth: '95vw' }"
-			  [closable]="true"
-			  [maximizable]="true">
-
-		<form [formGroup]="pageForm"
-			  (ngSubmit)="savePage()">
+	<p-dialog
+		[header]="editingPage ? 'Edit — ' + editingPage.title : 'Create New Page'"
+		[(visible)]="pageDialogVisible"
+		[modal]="true"
+		[style]="{ width: '820px', maxWidth: '95vw' }"
+		[closable]="true"
+		[maximizable]="true">
+		<form
+			[formGroup]="pageForm"
+			(ngSubmit)="savePage()">
 			<p-tabs value="content">
 				<p-tablist>
 					<p-tab value="content">
-						<i class="bi bi-file-text me-2"></i>Content
+						<i class="bi bi-file-text me-2"></i>
+						Content
 					</p-tab>
 					<p-tab value="seo">
-						<i class="bi bi-search me-2"></i>SEO
+						<i class="bi bi-search me-2"></i>
+						SEO
 					</p-tab>
 					@if (canManageHeroImages(editingPage)) {
-					<p-tab value="hero">
-						<i class="bi bi-image me-2"></i>Hero Images
-						@if (heroImages.length > 0) {
-						<span class="tab-count-badge ms-1">{{ heroImages.length }}</span>
-						}
-					</p-tab>
+						<p-tab value="hero">
+							<i class="bi bi-image me-2"></i>
+							Hero Images
+							@if (heroImages.length > 0) {
+								<span class="tab-count-badge ms-1">{{ heroImages.length }}</span>
+							}
+						</p-tab>
 					}
 					@if (isEditingHomePage()) {
-					<p-tab value="home-sections">
-						<i class="bi bi-layout-text-window me-2"></i>Home Sections
-					</p-tab>
+						<p-tab value="home-sections">
+							<i class="bi bi-layout-text-window me-2"></i>
+							Home Sections
+						</p-tab>
 					}
 				</p-tablist>
 
 				<p-tabpanels>
-
 					<!-- Content panel -->
 					<p-tabpanel value="content">
 						<div class="row g-3 pt-2">
 							<div class="col-12">
-								<label for="title"
-									   class="form-label fw-semibold">Page Title <span class="text-danger">*</span></label>
-								<input pInputText
-									   id="title"
-									   formControlName="title"
-									   placeholder="Enter page title"
-									   class="w-100"
-									   [class.ng-invalid]="pageForm.get('title')?.invalid && pageForm.get('title')?.touched" />
-								@if (pageForm.get('title')?.invalid && pageForm.get('title')?.touched) {
-								<small class="text-danger">Title is required</small>
+								<label
+									for="title"
+									class="form-label fw-semibold">
+									Page Title
+									<span class="text-danger">*</span>
+								</label>
+								<input
+									pInputText
+									id="title"
+									formControlName="title"
+									placeholder="Enter page title"
+									class="w-100"
+									[class.ng-invalid]="
+										pageForm.get('title')?.invalid && pageForm.get('title')?.touched
+									" />
+								@if (pageForm.get("title")?.invalid && pageForm.get("title")?.touched) {
+									<small class="text-danger">Title is required</small>
 								}
 							</div>
 							<div class="col-12">
-								<label for="content"
-									   class="form-label fw-semibold">Page Content <span class="text-danger">*</span></label>
-								<p-editor formControlName="content"
-										  [style]="{ height: '220px' }"
-										  placeholder="Enter your page content here...">
+								<label
+									for="content"
+									class="form-label fw-semibold">
+									Page Content
+									<span class="text-danger">*</span>
+								</label>
+								<p-editor
+									formControlName="content"
+									[style]="{ height: '220px' }"
+									placeholder="Enter your page content here...">
 									<ng-template pTemplate="header">
 										<span class="ql-formats">
-											<button class="ql-bold" aria-label="Bold"></button>
-											<button class="ql-italic" aria-label="Italic"></button>
-											<button class="ql-underline" aria-label="Underline"></button>
+											<button
+												class="ql-bold"
+												aria-label="Bold"></button>
+											<button
+												class="ql-italic"
+												aria-label="Italic"></button>
+											<button
+												class="ql-underline"
+												aria-label="Underline"></button>
 										</span>
 										<span class="ql-formats">
 											<select class="ql-size">
 												<option value="small">Small</option>
-												<option value="normal" selected>Normal</option>
+												<option
+													value="normal"
+													selected>
+													Normal
+												</option>
 												<option value="large">Large</option>
 												<option value="huge">Huge</option>
 											</select>
 										</span>
 										<span class="ql-formats">
-											<button class="ql-list" value="ordered" aria-label="Ordered List"></button>
-											<button class="ql-list" value="bullet" aria-label="Unordered List"></button>
+											<button
+												class="ql-list"
+												value="ordered"
+												aria-label="Ordered List"></button>
+											<button
+												class="ql-list"
+												value="bullet"
+												aria-label="Unordered List"></button>
 										</span>
 									</ng-template>
 								</p-editor>
-								@if (pageForm.get('content')?.invalid && pageForm.get('content')?.touched) {
-								<small class="text-danger">Content is required</small>
+								@if (pageForm.get("content")?.invalid && pageForm.get("content")?.touched) {
+									<small class="text-danger">Content is required</small>
 								}
 							</div>
 						</div>
@@ -190,34 +235,46 @@
 								</div>
 							</div>
 							<div class="col-12">
-								<label for="metaTitle"
-									   class="form-label fw-semibold">Meta Title</label>
-								<input pInputText
-									   id="metaTitle"
-									   formControlName="metaTitle"
-									   placeholder="Meta title for search engines"
-									   class="w-100" />
+								<label
+									for="metaTitle"
+									class="form-label fw-semibold">
+									Meta Title
+								</label>
+								<input
+									pInputText
+									id="metaTitle"
+									formControlName="metaTitle"
+									placeholder="Meta title for search engines"
+									class="w-100" />
 								<small class="text-muted">Leave empty to use the page title</small>
 							</div>
 							<div class="col-12">
-								<label for="metaDescription"
-									   class="form-label fw-semibold">Meta Description</label>
-								<textarea pInputTextarea
-										  id="metaDescription"
-										  formControlName="metaDescription"
-										  placeholder="Brief description of this page for search engines"
-										  rows="3"
-										  class="w-100"></textarea>
+								<label
+									for="metaDescription"
+									class="form-label fw-semibold">
+									Meta Description
+								</label>
+								<textarea
+									pInputTextarea
+									id="metaDescription"
+									formControlName="metaDescription"
+									placeholder="Brief description of this page for search engines"
+									rows="3"
+									class="w-100"></textarea>
 								<small class="text-muted">Recommended: 150–160 characters</small>
 							</div>
 							<div class="col-12">
-								<label for="keywords"
-									   class="form-label fw-semibold">Keywords</label>
-								<input pInputText
-									   id="keywords"
-									   formControlName="keywords"
-									   placeholder="keyword1, keyword2, keyword3"
-									   class="w-100" />
+								<label
+									for="keywords"
+									class="form-label fw-semibold">
+									Keywords
+								</label>
+								<input
+									pInputText
+									id="keywords"
+									formControlName="keywords"
+									placeholder="keyword1, keyword2, keyword3"
+									class="w-100" />
 								<small class="text-muted">Comma-separated keywords</small>
 							</div>
 						</div>
@@ -225,157 +282,202 @@
 
 					<!-- Hero Images panel -->
 					@if (canManageHeroImages(editingPage)) {
-					<p-tabpanel value="hero">
-						<div class="row g-3 pt-2">
-							<div class="col-12">
-								<div class="info-banner">
-									<i class="bi bi-info-circle me-2"></i>
-									Upload up to {{ getHeroImageLimit(editingPage) }}
-									hero image{{ getHeroImageLimit(editingPage) > 1 ? 's' : '' }} (max 5MB each).
-									<strong>{{ heroImages.length + uploadedFiles.length }}/{{ getHeroImageLimit(editingPage) }}</strong> used.
-								</div>
-							</div>
-							@if (heroImages.length > 0) {
-							<div class="col-12">
-								<div class="d-flex justify-content-between align-items-center mb-1">
-									<label class="form-label fw-semibold mb-0">Current Hero Images</label>
-									@if (heroOrderChanged) {
-									<span class="badge bg-warning text-dark">
-										<i class="bi bi-arrow-left-right me-1"></i>Order changed — click Save Changes
-									</span>
-									}
-								</div>
-								<p class="text-muted small mb-2">
-									<i class="bi bi-grip-vertical me-1"></i>Drag images to reorder, then click Save Changes
-								</p>
-								<div class="hero-img-cards"
-									 cdkDropList
-									 cdkDropListOrientation="mixed"
-									 [cdkDropListData]="heroImages"
-									 (cdkDropListDropped)="onHeroImageDrop($event)">
-									@for (image of heroImages; track image; let i = $index) {
-									<div class="hero-img-card position-relative" cdkDrag>
-										<div class="hero-drag-placeholder" *cdkDragPlaceholder></div>
-										<span class="hero-order-badge">{{ i + 1 }}</span>
-										<div class="hero-drag-handle" cdkDragHandle pTooltip="Drag to reorder" tooltipPosition="top">
-											<i class="bi bi-grip-vertical"></i>
-										</div>
-										<i class="bi bi-x-circle-fill remove-button"
-										   pTooltip="Remove image"
-										   (click)="deleteHeroImage(i)"></i>
-										<img [src]="localImageBaseUrl + image"
-											 class="hero-img"
-											 [alt]="'Hero image ' + (i + 1)" />
+						<p-tabpanel value="hero">
+							<div class="row g-3 pt-2">
+								<div class="col-12">
+									<div class="info-banner">
+										<i class="bi bi-info-circle me-2"></i>
+										Upload up to {{ getHeroImageLimit(editingPage) }} hero image{{
+											getHeroImageLimit(editingPage) > 1 ? "s" : ""
+										}}
+										(max 5MB each).
+										<strong>
+											{{ heroImages.length + uploadedFiles.length }}/{{
+												getHeroImageLimit(editingPage)
+											}}
+										</strong>
+										used.
 									</div>
-									}
 								</div>
-							</div>
-							}
-							@if (uploadedFiles.length > 0) {
-							<div class="col-12">
-								<label class="form-label fw-semibold">Selected for Upload</label>
-								<div class="row g-2">
-									@for (file of uploadedFiles; track file; let i = $index) {
-									<div class="col-md-4 col-6">
-										<div class="hero-img-card position-relative">
-											<i class="bi bi-x-circle-fill remove-button"
-											   pTooltip="Remove"
-											   (click)="removeSelectedFile(i)"></i>
-											<img [src]="file | blobToUrl"
-												 class="hero-img"
-												 [alt]="'Selected image ' + (i + 1)" />
-											<span class="upload-pending-badge">Pending</span>
+								@if (heroImages.length > 0) {
+									<div class="col-12">
+										<div class="d-flex justify-content-between align-items-center mb-1">
+											<label class="form-label fw-semibold mb-0">Current Hero Images</label>
+											@if (heroOrderChanged) {
+												<span class="badge bg-warning text-dark">
+													<i class="bi bi-arrow-left-right me-1"></i>
+													Order changed — click Save Changes
+												</span>
+											}
+										</div>
+										<p class="text-muted small mb-2">
+											<i class="bi bi-grip-vertical me-1"></i>
+											Drag images to reorder, then click Save Changes
+										</p>
+										<div
+											class="hero-img-cards"
+											cdkDropList
+											cdkDropListOrientation="mixed"
+											[cdkDropListData]="heroImages"
+											(cdkDropListDropped)="onHeroImageDrop($event)">
+											@for (image of heroImages; track image; let i = $index) {
+												<div
+													class="hero-img-card position-relative"
+													cdkDrag>
+													<div
+														class="hero-drag-placeholder"
+														*cdkDragPlaceholder></div>
+													<span class="hero-order-badge">{{ i + 1 }}</span>
+													<div
+														class="hero-drag-handle"
+														cdkDragHandle
+														pTooltip="Drag to reorder"
+														tooltipPosition="top">
+														<i class="bi bi-grip-vertical"></i>
+													</div>
+													<i
+														class="bi bi-x-circle-fill remove-button"
+														pTooltip="Remove image"
+														(click)="deleteHeroImage(i)"></i>
+													<img
+														[src]="localImageBaseUrl + image"
+														class="hero-img"
+														[alt]="'Hero image ' + (i + 1)" />
+												</div>
+											}
 										</div>
 									</div>
-									}
+								}
+								@if (uploadedFiles.length > 0) {
+									<div class="col-12">
+										<label class="form-label fw-semibold">Selected for Upload</label>
+										<div class="row g-2">
+											@for (file of uploadedFiles; track file; let i = $index) {
+												<div class="col-md-4 col-6">
+													<div class="hero-img-card position-relative">
+														<i
+															class="bi bi-x-circle-fill remove-button"
+															pTooltip="Remove"
+															(click)="removeSelectedFile(i)"></i>
+														<img
+															[src]="file | blobToUrl"
+															class="hero-img"
+															[alt]="'Selected image ' + (i + 1)" />
+														<span class="upload-pending-badge">Pending</span>
+													</div>
+												</div>
+											}
+										</div>
+									</div>
+								}
+								<div class="col-12">
+									<label class="form-label fw-semibold">Add Images</label>
+									<p-fileUpload
+										#fileUpload
+										name="heroImages"
+										mode="basic"
+										[multiple]="getHeroImageLimit(editingPage) > 1"
+										accept="image/*"
+										[maxFileSize]="5242880"
+										[fileLimit]="getHeroImageLimit(editingPage)"
+										[showUploadButton]="false"
+										[showCancelButton]="false"
+										chooseLabel="Choose Image"
+										(onSelect)="onFileSelect($event)"
+										[disabled]="
+											heroImages.length + uploadedFiles.length >= getHeroImageLimit(editingPage)
+										"
+									></p-fileUpload>
 								</div>
 							</div>
-							}
-							<div class="col-12">
-								<label class="form-label fw-semibold">Add Images</label>
-								<p-fileUpload #fileUpload
-											  name="heroImages"
-											  [multiple]="getHeroImageLimit(editingPage) > 1"
-											  accept="image/*"
-											  [maxFileSize]="5242880"
-											  [fileLimit]="getHeroImageLimit(editingPage)"
-											  [showUploadButton]="false"
-											  [showCancelButton]="false"
-											  chooseLabel="Choose Image"
-											  (onSelect)="onFileSelect($event)"
-											  [disabled]="heroImages.length + uploadedFiles.length >= getHeroImageLimit(editingPage)">
-								</p-fileUpload>
-							</div>
-						</div>
-					</p-tabpanel>
+						</p-tabpanel>
 					}
 
 					<!-- Home Sections panel -->
 					@if (isEditingHomePage()) {
-					<p-tabpanel value="home-sections">
-						<div class="row g-4 pt-2">
-							<div class="col-12">
-								<div class="info-banner">
-									<i class="bi bi-info-circle me-2"></i>
-									These text sections appear in specific areas of the home page layout.
+						<p-tabpanel value="home-sections">
+							<div class="row g-4 pt-2">
+								<div class="col-12">
+									<div class="info-banner">
+										<i class="bi bi-info-circle me-2"></i>
+										These text sections appear in specific areas of the home page layout.
+									</div>
 								</div>
+								@for (
+									section of [
+										{ key: "homeSectionText1", label: "Section 1" },
+										{ key: "homeSectionText2", label: "Section 2" },
+										{ key: "homeSectionText3", label: "Section 3" },
+										{ key: "homeSectionText4", label: "Section 4" },
+									];
+									track section.key
+								) {
+									<div class="col-12">
+										<label class="form-label fw-semibold">Home Page {{ section.label }}</label>
+										<p-editor
+											[formControlName]="section.key"
+											[style]="{ height: '150px' }"
+											[placeholder]="'Enter ' + section.label + ' text'">
+											<ng-template pTemplate="header">
+												<span class="ql-formats">
+													<button
+														class="ql-bold"
+														aria-label="Bold"></button>
+													<button
+														class="ql-italic"
+														aria-label="Italic"></button>
+													<button
+														class="ql-underline"
+														aria-label="Underline"></button>
+												</span>
+												<span class="ql-formats">
+													<select class="ql-size">
+														<option value="small">Small</option>
+														<option
+															value="normal"
+															selected>
+															Normal
+														</option>
+														<option value="large">Large</option>
+														<option value="huge">Huge</option>
+													</select>
+												</span>
+												<span class="ql-formats">
+													<button
+														class="ql-list"
+														value="ordered"
+														aria-label="Ordered List"></button>
+													<button
+														class="ql-list"
+														value="bullet"
+														aria-label="Unordered List"></button>
+												</span>
+											</ng-template>
+										</p-editor>
+									</div>
+								}
 							</div>
-							@for (section of [
-								{ key: 'homeSectionText1', label: 'Section 1' },
-								{ key: 'homeSectionText2', label: 'Section 2' },
-								{ key: 'homeSectionText3', label: 'Section 3' },
-								{ key: 'homeSectionText4', label: 'Section 4' }
-							]; track section.key) {
-							<div class="col-12">
-								<label class="form-label fw-semibold">Home Page {{ section.label }}</label>
-								<p-editor [formControlName]="section.key"
-										  [style]="{ height: '150px' }"
-										  [placeholder]="'Enter ' + section.label + ' text'">
-									<ng-template pTemplate="header">
-										<span class="ql-formats">
-											<button class="ql-bold" aria-label="Bold"></button>
-											<button class="ql-italic" aria-label="Italic"></button>
-											<button class="ql-underline" aria-label="Underline"></button>
-										</span>
-										<span class="ql-formats">
-											<select class="ql-size">
-												<option value="small">Small</option>
-												<option value="normal" selected>Normal</option>
-												<option value="large">Large</option>
-												<option value="huge">Huge</option>
-											</select>
-										</span>
-										<span class="ql-formats">
-											<button class="ql-list" value="ordered" aria-label="Ordered List"></button>
-											<button class="ql-list" value="bullet" aria-label="Unordered List"></button>
-										</span>
-									</ng-template>
-								</p-editor>
-							</div>
-							}
-						</div>
-					</p-tabpanel>
+						</p-tabpanel>
 					}
-
 				</p-tabpanels>
 			</p-tabs>
 		</form>
 
 		<ng-template pTemplate="footer">
-			<button class="btn btn-outline-secondary me-2"
-					(click)="cancelDialog()">
+			<button
+				class="btn btn-outline-secondary me-2"
+				(click)="cancelDialog()">
 				Cancel
 			</button>
-			<button class="btn btn-success px-4"
-					(click)="savePage()"
-					[disabled]="pageForm.invalid">
+			<button
+				class="btn btn-success px-4"
+				(click)="savePage()"
+				[disabled]="pageForm.invalid">
 				<i class="bi bi-check-lg me-2"></i>
-				{{ editingPage ? 'Save Changes' : 'Create Page' }}
+				{{ editingPage ? "Save Changes" : "Create Page" }}
 			</button>
 		</ng-template>
-
 	</p-dialog>
 
 	<p-confirmDialog />
-
 </div>
