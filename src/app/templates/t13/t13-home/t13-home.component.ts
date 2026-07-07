@@ -14,6 +14,7 @@ import { SearchService } from "../../../services/search.service";
 import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
+import { SearchComponent } from "../../shared/search/search.component";
 
 @Component({
 	selector: "app-t13-home",
@@ -22,6 +23,7 @@ import { FeaturedPropertiesComponent } from "../../shared/featured-properties/fe
 		CommonModule,
 		RouterModule,
 		FeaturedPropertiesComponent,
+		SearchComponent,
 		PhoneNumberFormatPipe,
 		HeroContactFormComponent,
 		TeamCardComponent,

@@ -37,39 +37,23 @@
         </div>
         <div class="col-lg-7 col-12">
           @if (siteConfig) {
-          <div class="d-flex flex-wrap gap-4">
-            <div class="d-flex align-items-start gap-3">
-              <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl+siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
-                   class="rounded-circle flex-shrink-0" style="width:60px;height:60px;object-fit:cover;border:2px solid var(--primary-color,#f59e0b);" />
-              <div>
-                <p class="text-white fw-semibold mb-0 small">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
-                <p class="mb-2" style="color:var(--primary-color,#f59e0b);font-size:0.75rem;">{{ siteConfig.designation }}</p>
-                @if (siteConfig.websiteSettings.contactInfo.phone) {
-                <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-block text-white-50 text-decoration-none small mb-1">
-                  <i class="bi bi-telephone-fill me-2"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-                </a>
-                }
-                <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-block text-white-50 text-decoration-none small">
-                  <i class="bi bi-envelope-fill me-2"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
-                </a>
-              </div>
-            </div>
-            @if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-            <div class="d-flex align-items-start gap-3">
-              <img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl+siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
-                   class="rounded-circle flex-shrink-0" style="width:60px;height:60px;object-fit:cover;border:2px solid var(--primary-color,#f59e0b);" />
-              <div>
-                <p class="text-white fw-semibold mb-0 small">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
-                <p class="mb-2" style="color:var(--primary-color,#f59e0b);font-size:0.75rem;">{{ siteConfig.secondaryAgent.designation }}</p>
-                <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-block text-white-50 text-decoration-none small mb-1">
-                  <i class="bi bi-telephone-fill me-2"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
-                </a>
-                <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="d-block text-white-50 text-decoration-none small">
-                  <i class="bi bi-envelope-fill me-2"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
-                </a>
-              </div>
-            </div>
+          <div class="d-flex align-items-start gap-4">
+            @if (siteConfig.websiteSettings.brokerageImage) {
+            <img [src]="localImageUrl + siteConfig.websiteSettings.brokerageImage"
+                 alt="Brokerage Logo"
+                 style="max-height:70px;width:auto;object-fit:contain;flex-shrink:0;filter:brightness(0) invert(1);opacity:0.85;" />
             }
+            <div>
+              <p class="text-white fw-bold fs-6 mb-2">{{ siteConfig.businessName }}</p>
+              @if (siteConfig.websiteSettings.contactInfo.phone) {
+              <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-block text-white-50 text-decoration-none small mb-1">
+                <i class="bi bi-telephone-fill me-2"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+              </a>
+              }
+              <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-block text-white-50 text-decoration-none small">
+                <i class="bi bi-envelope-fill me-2"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
+              </a>
+            </div>
           </div>
           }
         </div>

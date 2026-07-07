@@ -1,44 +1,58 @@
-﻿<div
-	class="background-container search-container"
-	[style.background-image]="
-		heroImages && heroImages.length > 0 ? 'url(' + localImageUrl + heroImages[0] + ')' : null
-	">
-	<div class="container pt-2 search-container">
-		<div class="top-padding">
-			<h1 class="display-1 text-white">
-				Innovative Living
-				<br />
-				Spaces
-			</h1>
-		</div>
-		<div class="">
-			<img
-				[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-				alt="No profile image"
-				class="overlay-image" />
-			<div
-				class="card position-absolute man-card"
-				style="width: 15rem">
-				<div class="card-body">
-					<h5 class="card-head text-white">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-					<p class="fw-semiboldt text-white fs-6">{{ siteConfig.designation }}</p>
-
-					<div class="d-flex">
-						<div class="">
-							<i class="fa-solid fa-phone info"></i>
-						</div>
-						<div class="ms-2">
-							<p class="mb-0">
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
-									{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-								</a>
-							</p>
-						</div>
+﻿<div class="t13-hero">
+	<!-- Carousel -->
+	<div id="t13HeroCarousel" class="carousel slide t13-hero-carousel" data-bs-ride="carousel" data-bs-interval="4000">
+		<div class="carousel-inner t13-hero-carousel-inner">
+			@if (heroImages && heroImages.length > 0) {
+				@for (image of heroImages; track $index) {
+					<div class="carousel-item t13-hero-slide" [ngClass]="{ active: $index === 0 }">
+						<img [src]="localImageUrl + image" class="t13-hero-slide-img" [alt]="'Hero image ' + ($index + 1)" />
 					</div>
-
+				}
+			} @else {
+				<div class="carousel-item t13-hero-slide active">
+					<img src="/t3/images/banner2.jpg" class="t13-hero-slide-img" alt="Hero banner" />
 				</div>
+			}
+		</div>
+
+		<!-- Prev / Next controls -->
+		<button class="carousel-control-prev t13-hero-control" type="button" data-bs-target="#t13HeroCarousel" data-bs-slide="prev">
+			<i class="bi bi-chevron-left t13-hero-control-icon"></i>
+		</button>
+		<button class="carousel-control-next t13-hero-control" type="button" data-bs-target="#t13HeroCarousel" data-bs-slide="next">
+			<i class="bi bi-chevron-right t13-hero-control-icon"></i>
+		</button>
+
+		<!-- Indicators -->
+		@if (heroImages && heroImages.length > 1) {
+			<div class="carousel-indicators t13-hero-indicators">
+				@for (image of heroImages; track $index) {
+					<button type="button" data-bs-target="#t13HeroCarousel" [attr.data-bs-slide-to]="$index"
+						[class.active]="$index === 0" [attr.aria-current]="$index === 0 ? 'true' : null"></button>
+				}
+			</div>
+		}
+	</div>
+
+	<!-- Overlay -->
+	<div class="t13-hero-overlay"></div>
+
+	<!-- Text content -->
+	<div class="container t13-hero-content">
+		<div class="t13-hero-inner">
+			<span class="t13-hero-eyebrow">Welcome to</span>
+			<h1 class="t13-hero-title">{{ siteConfig.businessName }}</h1>
+			@if (siteConfig.subheading) {
+				<p class="t13-hero-sub">{{ siteConfig.subheading }}</p>
+			}
+			<p class="t13-hero-tagline">Your trusted partner in finding the perfect home.</p>
+			<div class="t13-hero-actions">
+				<a routerLink="/search" class="t13-hero-btn-primary">
+					<i class="bi bi-search me-2"></i>Search Properties
+				</a>
+				<a routerLink="/contact" class="t13-hero-btn-outline">
+					Contact Us
+				</a>
 			</div>
 		</div>
 	</div>
@@ -120,10 +134,81 @@
 						</div>
 					</div>
 				}
+				@if (cities[4] && cities[4].name) {
+					<div class="col-lg-3 col-12">
+						<div
+							class="city-card position-relative text-white text-center"
+							(click)="searchProperties({ city: cities[4].name })">
+							<img
+								class="w-100"
+								[src]="localImageUrl + cities[4].image"
+								alt="" />
+							<div class="overlay"></div>
+							<div class="city-name">
+								<h2 class="fw-medium">{{ cities[4].name }}</h2>
+							</div>
+						</div>
+					</div>
+				}
+				@if (cities[5] && cities[5].name) {
+					<div class="col-lg-3 col-12">
+						<div
+							class="city-card position-relative text-white text-center"
+							(click)="searchProperties({ city: cities[5].name })">
+							<img
+								class="w-100"
+								[src]="localImageUrl + cities[5].image"
+								alt="" />
+							<div class="overlay"></div>
+							<div class="city-name">
+								<h2 class="fw-medium">{{ cities[5].name }}</h2>
+							</div>
+						</div>
+					</div>
+				}
+				@if (cities[6] && cities[6].name) {
+					<div class="col-lg-3 col-12">
+						<div
+							class="city-card position-relative text-white text-center"
+							(click)="searchProperties({ city: cities[6].name })">
+							<img
+								class="w-100"
+								[src]="localImageUrl + cities[6].image"
+								alt="" />
+							<div class="overlay"></div>
+							<div class="city-name">
+								<h2 class="fw-medium">{{ cities[6].name }}</h2>
+							</div>
+						</div>
+					</div>
+				}
+				@if (cities[7] && cities[7].name) {
+					<div class="col-lg-3 col-12">
+						<div
+							class="city-card position-relative text-white text-center"
+							(click)="searchProperties({ city: cities[7].name })">
+							<img
+								class="w-100"
+								[src]="localImageUrl + cities[7].image"
+								alt="" />
+							<div class="overlay"></div>
+							<div class="city-name">
+								<h2 class="fw-medium">{{ cities[7].name }}</h2>
+							</div>
+						</div>
+					</div>
+				}
 			</div>
 		</div>
 	</div>
 }
+
+<div class="t13-search-section">
+	<div class="container">
+		<p class="text text-center fw-semibold mb-4">Search Properties</p>
+		<app-search [onSearch]="searchProperties" />
+	</div>
+</div>
 
 @if (
 	siteConfig.websiteSettings.showHomeWorthPage ||
@@ -205,64 +290,111 @@
 
 <app-team-card />
 
-<div class="container py-lg-5 p-lg-0 p-4 search-container">
-	<div class="row align-items-center justify-content-around">
-		<div class="col-lg-5 col-12">
-			<h2 class=" ">
-				"Enjoy a clear and simple
-				<br />
-				home-buying experience"
-			</h2>
-			<p class="info fs-3">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
-			<p
-				class="fw-normal word-break"
-				[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
-		</div>
+<section class="t13-experience-section">
+	<div class="container">
+		<div class="row align-items-center g-5">
 
-		<div class="col-lg-7 col-12 mt-3 mt-lg-0 d-flex justify-content-lg-end">
-			<div class="">
-				<img
-					class="w-100 rounded"
-					src="t8/images/real-state.png"
-					alt="" />
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="container py-5 search-container">
-	<div class="row align-items-center">
-		<div class="col-lg-6">
-			<h2 class="info">Discover Your New Home</h2>
-			<p class="fs-3">A Place to Live</p>
-			<p class="text-muted fs-5">
-				Group One is excited to present this exceptional property in the prestigious location of Los Angeles
-				City. Designed by Lucy De Vito and built in the 2020 to a very high standard, this spectacular residence
-				has been thoughtfully designed for family living in an uncluttered and special space.
-			</p>
-
-			<div class="row mt-5">
-				<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-					<i class="bi bi-award fs-3"></i>
-					<div class="fw-semibold">International Design Award</div>
+			<!-- Left: content -->
+			<div class="col-lg-6 col-12">
+				<span class="t13-exp-eyebrow">Why Choose Us</span>
+				<div class="t13-exp-quote-wrap">
+					<span class="t13-exp-quote-mark">"</span>
+					<h2 class="t13-exp-heading">Enjoy a clear and simple home-buying experience</h2>
 				</div>
-				<div class="col-md-6 text-center text-md-start">
-					<i class="bi bi-award fs-3"></i>
-					<div class="fw-semibold">Lux Life Magazine</div>
+				<p class="t13-exp-body" [innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
+
+				<div class="t13-exp-features mt-4">
+					<div class="t13-exp-feature-item">
+						<div class="t13-exp-feature-icon"><i class="bi bi-shield-check-fill"></i></div>
+						<div>
+							<div class="t13-exp-feature-title">Trusted Expertise</div>
+							<div class="t13-exp-feature-desc">Years of local market knowledge at your side</div>
+						</div>
+					</div>
+					<div class="t13-exp-feature-item">
+						<div class="t13-exp-feature-icon"><i class="bi bi-people-fill"></i></div>
+						<div>
+							<div class="t13-exp-feature-title">Client-First Approach</div>
+							<div class="t13-exp-feature-desc">Your goals drive every decision we make</div>
+						</div>
+					</div>
+					<div class="t13-exp-feature-item">
+						<div class="t13-exp-feature-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+						<div>
+							<div class="t13-exp-feature-title">Fast &amp; Seamless</div>
+							<div class="t13-exp-feature-desc">From offer to close with total confidence</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="col-lg-6 d-flex justify-content-lg-end">
-			<div class="">
-				<img
-					class="img-fluid rounded-3"
-					src="./t10/images/pro3.png"
-					alt="" />
+			<!-- Right: image -->
+			<div class="col-lg-6 col-12">
+				<div class="t13-exp-img-wrap">
+					<img class="t13-exp-img" src="t8/images/real-state.png" alt="Real estate" />
+					<div class="t13-exp-img-badge">
+						<div class="t13-exp-badge-num">500+</div>
+						<div class="t13-exp-badge-label">Homes Sold</div>
+					</div>
+				</div>
 			</div>
+
 		</div>
 	</div>
-</div>
+</section>
+
+<section class="t13-discover-section">
+	<div class="container">
+		<div class="row align-items-center g-5">
+
+			<!-- Left: image with floating stats -->
+			<div class="col-lg-6 col-12">
+				<div class="t13-discover-img-wrap">
+					<img class="t13-discover-img" src="./t10/images/pro3.png" alt="Property" />
+					<div class="t13-discover-stats-bar">
+						<div class="t13-discover-stat">
+							<div class="t13-discover-stat-num">10+</div>
+							<div class="t13-discover-stat-label">Years Experience</div>
+						</div>
+						<div class="t13-discover-stat-sep"></div>
+						<div class="t13-discover-stat">
+							<div class="t13-discover-stat-num">98%</div>
+							<div class="t13-discover-stat-label">Client Satisfaction</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Right: content -->
+			<div class="col-lg-6 col-12">
+				<span class="t13-discover-eyebrow">Find Your Perfect Home</span>
+				<h2 class="t13-discover-heading">Discover Your New Home</h2>
+				<p class="t13-discover-subtitle">A Place to Live</p>
+				<p class="t13-discover-body">
+					Group One is excited to present this exceptional property in the prestigious location of Los Angeles
+					City. Designed by Lucy De Vito and built in 2020 to a very high standard, this spectacular residence
+					has been thoughtfully designed for family living in an uncluttered and special space.
+				</p>
+
+				<div class="t13-discover-awards">
+					<div class="t13-discover-award-item">
+						<div class="t13-discover-award-icon"><i class="bi bi-award-fill"></i></div>
+						<div class="t13-discover-award-name">International Design Award</div>
+					</div>
+					<div class="t13-discover-award-item">
+						<div class="t13-discover-award-icon"><i class="bi bi-award-fill"></i></div>
+						<div class="t13-discover-award-name">Lux Life Magazine</div>
+					</div>
+				</div>
+
+				<a routerLink="/search" class="t13-discover-cta">
+					Explore Properties <i class="bi bi-arrow-right ms-2"></i>
+				</a>
+			</div>
+
+		</div>
+	</div>
+</section>
 
 <div class="container-fluid search-container">
 	<div class="container py-4">
@@ -271,46 +403,71 @@
 	</div>
 </div>
 
-<div class="container-fluid sec-3 search-container">
+<section class="t13-contact-section">
 	<div class="container">
-		<div class="row p-lg-0 p-4 align-items-center justify-content-around mx-0">
-			<!-- <div class="col-lg-6 col-12">
-				<div class="">
-					<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage" alt="No profile image" class="">
-				</div>
-			</div> -->
+
+		<!-- Section heading -->
+		<div class="t13-contact-header text-center mb-5">
+			<span class="t13-contact-eyebrow">Contact Us</span>
+			<h2 class="t13-contact-heading">Let's Get In Touch</h2>
+			<p class="t13-contact-sub mx-auto">Ready to make your next move? We're here to guide you every step of the way.</p>
+		</div>
+
+		<div class="row g-4 align-items-stretch">
+
+			<!-- Info card -->
 			<div class="col-lg-4 col-12">
-				<div
-					class="card border-0 text-center p-4"
-					style="background-color: #f9f5f1">
-					<!-- <img src="agent-image.jpg" alt="Agent Image" class="img-fluid mb-3" /> -->
-					<img
-						[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-						alt="No profile image"
-						class="img-fluid mb-3" />
-					<h5 class="fw-bold mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-					<p class="fw-semibold fs-6">{{ siteConfig.designation }}</p>
-					<div class="mb-2">
-						<i
-							class="bi bi-phone"
-							style="font-size: 1.2rem"></i>
-						<div class="text-dark">{{ siteConfig.websiteSettings.contactInfo.phone | phone }}</div>
-					</div>
-					<div>
-						<i
-							class="bi bi-envelope"
-							style="font-size: 1.2rem"></i>
-						<div class="text-dark">{{ siteConfig.websiteSettings.contactInfo.email }}</div>
+				<div class="t13-info-card h-100">
+					@if (siteConfig.websiteSettings.brokerageImage) {
+						<img
+							[src]="localImageUrl + siteConfig.websiteSettings.brokerageImage"
+							alt="Brokerage Logo"
+							class="t13-info-logo mb-3" />
+					}
+					<h4 class="t13-info-biz-name">{{ siteConfig.businessName }}</h4>
+					<div class="t13-info-divider"></div>
+
+					<div class="d-flex flex-column gap-3 mt-4">
+						@if (siteConfig.websiteSettings.contactInfo.streetAddress) {
+						<div class="t13-info-row">
+							<div class="t13-info-icon-wrap">
+								<i class="bi bi-geo-alt-fill"></i>
+							</div>
+							<div>
+								<div class="t13-info-row-label">Address</div>
+								<div class="t13-info-row-value">{{ siteConfig.websiteSettings.contactInfo.streetAddress }}@if (siteConfig.websiteSettings.contactInfo.municipality){, {{ siteConfig.websiteSettings.contactInfo.municipality }}}@if (siteConfig.websiteSettings.contactInfo.province){ {{ siteConfig.websiteSettings.contactInfo.province }}}@if (siteConfig.websiteSettings.contactInfo.postalCode){ {{ siteConfig.websiteSettings.contactInfo.postalCode }}}</div>
+							</div>
+						</div>
+						}
+						<a class="t13-info-row" [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+							<div class="t13-info-icon-wrap">
+								<i class="bi bi-telephone-fill"></i>
+							</div>
+							<div>
+								<div class="t13-info-row-label">Phone</div>
+								<div class="t13-info-row-value">{{ siteConfig.websiteSettings.contactInfo.phone | phone }}</div>
+							</div>
+						</a>
+						<a class="t13-info-row" [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+							<div class="t13-info-icon-wrap">
+								<i class="bi bi-envelope-fill"></i>
+							</div>
+							<div>
+								<div class="t13-info-row-label">Email</div>
+								<div class="t13-info-row-value">{{ siteConfig.websiteSettings.contactInfo.email }}</div>
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6 col-12 mt-5 mt-lg-0 p-4">
-				<div class="card shadow">
-					<div class="card-body">
-						<app-hero-contact-form />
-					</div>
+
+			<!-- Form card -->
+			<div class="col-lg-8 col-12">
+				<div class="t13-form-card h-100">
+					<app-hero-contact-form />
 				</div>
 			</div>
+
 		</div>
 	</div>
-</div>
+</section>
