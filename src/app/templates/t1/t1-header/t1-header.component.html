@@ -29,28 +29,30 @@
         </a>
       </div>
 
-      <!-- Social icons: desktop only -->
-      <div class="col-lg-4 d-none d-lg-flex align-items-center justify-content-center gap-2">
-        @if (siteConfig.websiteSettings?.socialLinks?.facebook) {
-        <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
-          <i class="bi bi-facebook facebook"></i>
-        </a>
-        }
-        @if (siteConfig.websiteSettings?.socialLinks?.twitter) {
-        <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
-          <i class="bi bi-twitter twitter"></i>
-        </a>
-        }
-        @if (siteConfig.websiteSettings?.socialLinks?.instagram) {
-        <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
-          <i class="bi bi-instagram instagram"></i>
-        </a>
-        }
-        @if (siteConfig.websiteSettings?.socialLinks?.linkedin) {
-        <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
-          <i class="bi bi-linkedin linkedin"></i>
-        </a>
-        }
+      <!-- Social icons + personal branding: desktop only -->
+      <div class="col-lg-4 d-none d-lg-flex align-items-center justify-content-end gap-3">
+        <div class="d-flex gap-2">
+          @if (siteConfig.websiteSettings?.socialLinks?.facebook) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
+            <i class="bi bi-facebook facebook"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings?.socialLinks?.twitter) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
+            <i class="bi bi-twitter twitter"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings?.socialLinks?.instagram) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
+            <i class="bi bi-instagram instagram"></i>
+          </a>
+          }
+          @if (siteConfig.websiteSettings?.socialLinks?.linkedin) {
+          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t1-social-btn">
+            <i class="bi bi-linkedin linkedin"></i>
+          </a>
+          }
+        </div>
         @if (siteConfig.websiteSettings?.personalBrandingLogo) {
           <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
                alt="Personal Branding" class="t1-personal-branding-logo" />

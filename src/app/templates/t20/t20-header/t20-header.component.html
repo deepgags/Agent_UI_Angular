@@ -14,6 +14,9 @@
 
           <h4 class="t20-biz-name mb-0">{{ siteConfig?.businessName }}</h4>
           <span class="t20-lux-divider d-block"></span>
+          @if (siteConfig?.subheading) {
+            <p class="t20-subheading mb-0 mt-1">{{ siteConfig?.subheading }}</p>
+          }
         </div>
       </div>
 
@@ -45,6 +48,10 @@
           <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t20-social-btn">
             <i class="bi bi-linkedin linkedin"></i>
           </a>
+          }
+          @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+            <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+                 alt="Personal Branding" class="t20-personal-branding-logo" />
           }
         </div>
       </div>

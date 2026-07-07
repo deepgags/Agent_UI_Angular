@@ -102,6 +102,45 @@
 .t23-brokerage-logo:hover img {
   max-width: 150px; opacity: 1; }
 
+/* Agent card */
+.t23-agent-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 2px solid var(--primary-color, #e63946);
+}
+
+.t23-agent-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.t23-agent-desig {
+  font-size: 12px;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.t23-agent-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  &:hover { color: var(--primary-color, #e63946); }
+}
+
+.t23-agent-icon {
+  color: var(--primary-color, #e63946);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
 /* 20% header height increase */
 .t23-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }
 .t23-top-pad { padding-top: 0px; }
+
+.t23-subheading { font-size: 16px; color: #3e4348; letter-spacing: 0.3px; }
+.t23-personal-branding-logo { height: 75px; max-width: 130px; width: auto; object-fit: contain; }

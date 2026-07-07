@@ -12,7 +12,9 @@
         }
         <div>
           <h3 class="t7-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
-          <p class="t7-designation mb-0">{{ siteConfig?.designation }}</p>
+          @if (siteConfig?.subheading) {
+            <p class="t7-subheading mb-0">{{ siteConfig?.subheading }}</p>
+          }
         </div>
       </div>
 
@@ -45,6 +47,10 @@
         <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t7-social-btn">
           <i class="bi bi-linkedin linkedin"></i>
         </a>
+        }
+        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+               alt="Personal Branding" class="t7-personal-branding-logo" />
         }
       </div>
 

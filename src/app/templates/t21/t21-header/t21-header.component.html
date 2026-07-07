@@ -14,7 +14,9 @@
         }
           <div>
             <h2 class="t21-biz-name info mb-0">{{ siteConfig?.businessName }}</h2>
-            <p class="t21-designation mb-0">{{ siteConfig?.designation }}</p>
+            @if (siteConfig?.subheading) {
+              <p class="t21-subheading mb-0">{{ siteConfig?.subheading }}</p>
+            }
           </div>
         </div>
       </div>
@@ -51,6 +53,10 @@
           <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t21-social-btn">
             <i class="bi bi-linkedin linkedin"></i>
           </a>
+          }
+          @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+            <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+                 alt="Personal Branding" class="t21-personal-branding-logo" />
           }
         </div>
         <a href="/contact" class="t21-quiet-cta d-none d-lg-block">Request a Consultation</a>

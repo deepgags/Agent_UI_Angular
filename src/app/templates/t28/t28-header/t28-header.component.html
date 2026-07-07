@@ -12,7 +12,9 @@
         }
       <div class="t28-identity">
         <h2 class="t28-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
-        <p class="t28-designation mb-0">{{ siteConfig?.designation }}</p>
+        @if (siteConfig?.subheading) {
+          <p class="t28-subheading mb-0">{{ siteConfig?.subheading }}</p>
+        }
       </div>
     </div>
 
@@ -48,6 +50,10 @@
         </a>
         }
       </div>
+      @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+        <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+             alt="Personal Branding" class="t28-personal-branding-logo" />
+      }
     </div>
 
   </div>

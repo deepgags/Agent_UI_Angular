@@ -14,7 +14,9 @@
         }
           <div class="t24-identity">
             <h2 class="t24-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
-            <p class="t24-designation mb-0">{{ siteConfig?.designation }}</p>
+            @if (siteConfig?.subheading) {
+              <p class="t24-subheading mb-0">{{ siteConfig?.subheading }}</p>
+            }
           </div>
         </div>
       </div>
@@ -59,6 +61,10 @@
           </a>
           }
         </div>
+        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+               alt="Personal Branding" class="t24-personal-branding-logo" />
+        }
       </div>
 
     </div>

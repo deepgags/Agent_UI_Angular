@@ -13,6 +13,9 @@
 
         <h3 class="t18-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
         <span class="t18-underline d-block mt-1"></span>
+        @if (siteConfig?.subheading) {
+          <p class="t18-subheading mb-0 mt-1">{{ siteConfig?.subheading }}</p>
+        }
       </div>
 
       <!-- Phone + email -->
@@ -49,6 +52,10 @@
           </a>
           }
         </div>
+        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+               alt="Personal Branding" class="t18-personal-branding-logo" />
+        }
       </div>
 
     </div>

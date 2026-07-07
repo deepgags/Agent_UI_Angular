@@ -14,6 +14,9 @@
         <div>
           <h3 class="t19-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
           <span class="t19-scroll-underline d-block mt-1"></span>
+          @if (siteConfig?.subheading) {
+            <p class="t19-subheading mb-0 mt-1">{{ siteConfig?.subheading }}</p>
+          }
         </div>
       </div>
 
@@ -51,6 +54,10 @@
           </a>
           }
         </div>
+        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+               alt="Personal Branding" class="t19-personal-branding-logo" />
+        }
       </div>
 
     </div>

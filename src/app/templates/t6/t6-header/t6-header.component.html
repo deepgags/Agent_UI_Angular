@@ -6,7 +6,9 @@
       <div>
         <p class="t6-label mb-1">REAL ESTATE</p>
         <h2 class="t6-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
-        <p class="t6-designation mb-0">{{ siteConfig?.designation }}</p>
+        @if (siteConfig?.subheading) {
+          <p class="t6-subheading mb-0">{{ siteConfig?.subheading }}</p>
+        }
       </div>
     </div>
 
@@ -48,6 +50,10 @@
           </a>
           }
         </div>
+        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+               alt="Personal Branding" class="t6-personal-branding-logo" />
+        }
       </div>
 
     </div>

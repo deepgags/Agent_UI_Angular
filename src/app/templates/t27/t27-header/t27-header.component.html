@@ -14,7 +14,9 @@
         }
           <div>
             <h1 class="t27-biz-name mb-0">{{ siteConfig?.businessName }}</h1>
-            <p class="t27-designation mb-0">{{ siteConfig?.designation }}</p>
+            @if (siteConfig?.subheading) {
+              <p class="t27-subheading mb-0">{{ siteConfig?.subheading }}</p>
+            }
           </div>
         </div>
         <div class="t27-contact-row d-none d-lg-flex gap-3 mt-2">
@@ -52,6 +54,10 @@
           </a>
           }
         </div>
+        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+               alt="Personal Branding" class="t27-personal-branding-logo" />
+        }
       </div>
 
     </div>

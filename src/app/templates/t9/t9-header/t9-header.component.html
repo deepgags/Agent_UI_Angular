@@ -13,7 +13,9 @@
         }
         <div class="t9-identity">
           <h3 class="t9-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
-          <p class="t9-designation mb-0">{{ siteConfig?.designation }}</p>
+          @if (siteConfig?.subheading) {
+            <p class="t9-subheading mb-0">{{ siteConfig?.subheading }}</p>
+          }
         </div>
       </div>
 
@@ -53,6 +55,10 @@
           </a>
           }
         </div>
+        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+               alt="Personal Branding" class="t9-personal-branding-logo" />
+        }
       </div>
 
     </div>

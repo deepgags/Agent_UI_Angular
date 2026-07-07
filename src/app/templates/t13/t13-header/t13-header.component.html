@@ -13,7 +13,9 @@
         }
         <div>
           <h2 class="t13-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
-          <p class="t13-designation mb-0">{{ siteConfig?.designation }}</p>
+          @if (siteConfig?.subheading) {
+            <p class="t13-subheading mb-0">{{ siteConfig?.subheading }}</p>
+          }
           <a href="/contact" class="t13-cta d-none d-lg-block mt-1">Request Consultation</a>
         </div>
       </div>
@@ -52,6 +54,10 @@
           </a>
           }
         </div>
+        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+               alt="Personal Branding" class="t13-personal-branding-logo" />
+        }
       </div>
 
     </div>

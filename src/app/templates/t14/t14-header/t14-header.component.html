@@ -13,7 +13,9 @@
         }
         <div class="t14-identity">
           <h3 class="t14-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
-          <p class="t14-designation mb-0">{{ siteConfig?.websiteSettings?.contactInfo?.municipality }},  {{ siteConfig?.websiteSettings?.contactInfo?.province }}</p>
+          @if (siteConfig?.subheading) {
+            <p class="t14-subheading mb-0">{{ siteConfig?.subheading }}</p>
+          }
         </div>
       </div>
 
@@ -62,6 +64,10 @@
              class="t14-social-btn">
             <i class="bi bi-linkedin linkedin"></i>
           </a>
+          }
+          @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+            <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+                 alt="Personal Branding" class="t14-personal-branding-logo" />
           }
         </div>
 

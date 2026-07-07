@@ -21,18 +21,36 @@
         }
           <div>
             <h3 class="t10-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
-            <p class="t10-designation mb-0">{{ siteConfig?.designation }}</p>
+            @if (siteConfig?.subheading) {
+              <p class="t10-subheading mb-0">{{ siteConfig?.subheading }}</p>
+            }
           </div>
         </div>
 
-        <!-- Phone + Email -->
-        <div class="col-lg-4 col-12 d-flex flex-column align-items-center gap-1">
-          <a class="t10-contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-            <i class="bi bi-telephone-fill me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-          </a>
-          <a class="t10-contact-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-            <i class="bi bi-envelope-fill me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
-          </a>
+        <!-- Agent info (center) -->
+        <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center gap-3">
+          @if (siteConfig) {
+          <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
+               alt="Agent" class="t10-agent-img flex-shrink-0" />
+          <div>
+            <p class="t10-agent-name mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+            <p class="t10-agent-desig mb-2">{{ siteConfig.designation }}</p>
+            @if (siteConfig.websiteSettings.contactInfo.phone) {
+            <a class="t10-agent-link d-flex align-items-center gap-2 mb-1"
+               [href]="'tel:' + (siteConfig.websiteSettings.contactInfo.phone | phone)">
+              <i class="bi bi-telephone-fill t10-agent-icon"></i>
+              {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+            </a>
+            }
+            @if (siteConfig.websiteSettings.contactInfo.email) {
+            <a class="t10-agent-link d-flex align-items-center gap-2"
+               [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+              <i class="bi bi-envelope-fill t10-agent-icon"></i>
+              {{ siteConfig.websiteSettings.contactInfo.email }}
+            </a>
+            }
+          </div>
+          }
         </div>
 
         <!-- Social + brokerage logo -->
@@ -59,6 +77,10 @@
             </a>
             }
           </div>
+          @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+            <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+                 alt="Personal Branding" class="t10-personal-branding-logo" />
+          }
         </div>
 
       </div>

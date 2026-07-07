@@ -20,7 +20,9 @@
         }
           <div>
             <h2 class="t16-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
-            <p class="t16-designation mb-0">{{ siteConfig?.designation }}</p>
+            @if (siteConfig?.subheading) {
+              <p class="t16-subheading mb-0">{{ siteConfig?.subheading }}</p>
+            }
             <a href="/contact" class="t16-cta d-none d-lg-block mt-1">Book a Showing →</a>
           </div>
         </div>
@@ -59,6 +61,10 @@
             </a>
             }
           </div>
+          @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+            <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+                 alt="Personal Branding" class="t16-personal-branding-logo" />
+          }
         </div>
 
       </div>

@@ -12,7 +12,9 @@
       <div class="col-12 col-lg-4 d-flex align-items-center gap-3 text-lg-start mb-3 mb-lg-0">
 
         <h3 class="t12-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
-        <p class="t12-designation mb-0">{{ siteConfig?.designation }}</p>
+        @if (siteConfig?.subheading) {
+          <p class="t12-subheading mb-0">{{ siteConfig?.subheading }}</p>
+        }
       </div>
 
       <!-- Contact pills centered -->
@@ -49,6 +51,10 @@
           </a>
           }
         </div>
+        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+               alt="Personal Branding" class="t12-personal-branding-logo" />
+        }
       </div>
 
     </div>
