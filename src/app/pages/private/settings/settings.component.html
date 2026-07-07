@@ -264,6 +264,22 @@
 							</div>
 						</div>
 
+						<div class="row mt-2 justify-content-start align-items-start">
+							<div class="col-lg-6 col-12">
+								<div class="mb-3">
+									<p-iftalabel>
+										<input
+											type="text"
+											pInputText
+											formControlName="subheading"
+											class="form-control"
+											id="subheading" />
+										<label for="subheading">Subheading</label>
+									</p-iftalabel>
+								</div>
+							</div>
+						</div>
+
 						<div class="row justify-content-start align-items-center">
 							<div class="col-lg-6 col-12">
 								<label class="form-label fw-semibold d-block">Brokerage Logo</label>
@@ -304,6 +320,51 @@
 											[src]="localImageBaseUrl + existingBrokerageImage"
 											class="preview-img"
 											alt="Logo Preview" />
+									</div>
+								}
+							</div>
+						</div>
+
+						<div class="row justify-content-start align-items-center mt-3">
+							<div class="col-lg-6 col-12">
+								<label class="form-label fw-semibold d-block">Personal Branding Logo</label>
+								<div
+									class="upload-zone"
+									(click)="personalBrandingLogoUpload.click()">
+									<i class="bi bi-cloud-arrow-up fs-4 mb-1 d-block text-muted"></i>
+									<span class="text-muted small">Click to upload logo</span>
+									<input
+										type="file"
+										#personalBrandingLogoUpload
+										(change)="onPersonalBrandingLogoChange($event)"
+										class="d-none"
+										id="personalBrandingLogoUpload"
+										accept="image/*" />
+								</div>
+							</div>
+							<div class="col-lg-6 col-12 d-flex align-items-center mt-3 mt-lg-0">
+								@if (personalBrandingLogoImageObservable | async; as personalBrandingLogo) {
+									<div class="image-preview-card position-relative">
+										<button
+											type="button"
+											class="btn-remove"
+											(click)="removePersonalBrandingLogo()"
+											title="Remove Logo">
+											<i class="bi bi-x-circle-fill"></i>
+										</button>
+										<p class="preview-label">Personal Branding Logo</p>
+										<img
+											[src]="personalBrandingLogo | blobToUrl"
+											class="preview-img"
+											alt="Personal Branding Logo Preview" />
+									</div>
+								} @else if (existingPersonalBrandingLogo) {
+									<div class="image-preview-card">
+										<p class="preview-label">Personal Branding Logo</p>
+										<img
+											[src]="localImageBaseUrl + existingPersonalBrandingLogo"
+											class="preview-img"
+											alt="Personal Branding Logo Preview" />
 									</div>
 								}
 							</div>

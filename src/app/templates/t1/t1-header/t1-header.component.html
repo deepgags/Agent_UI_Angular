@@ -13,6 +13,9 @@
         }
         <div>
           <p class="t1-biz-sub mb-0">{{ siteConfig?.businessName }}</p>
+          @if (siteConfig?.subheading) {
+            <p class="t1-subheading mb-0">{{ siteConfig?.subheading }}</p>
+          }
         </div>
       </div>
 
@@ -48,8 +51,12 @@
           <i class="bi bi-linkedin linkedin"></i>
         </a>
         }
+        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
+          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+               alt="Personal Branding" class="t1-personal-branding-logo" />
+        }
       </div>
-     
+
 
     </div>
   </div>

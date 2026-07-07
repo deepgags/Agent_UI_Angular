@@ -55,6 +55,7 @@ import { NotificationService } from "../../../services/notification.service";
 export class SettingsComponent {
 	_fileSizeLimit = 2097152; //2MB
 	@ViewChild("brokerageLogoUpload", { static: false }) brokerageLogoUpload!: ElementRef<HTMLInputElement>;
+	@ViewChild("personalBrandingLogoUpload", { static: false }) personalBrandingLogoUpload!: ElementRef<HTMLInputElement>;
 
 	agentForm!: FormGroup;
 	agentData!: CustomerModel;
@@ -64,11 +65,15 @@ export class SettingsComponent {
 	existingProfileImage = "";
 	existingSecondaryProfileImage = "";
 	existingBrokerageImage = "";
+	existingPersonalBrandingLogo = "";
 	primaryAgentProfileImage: BehaviorSubject<Blob | null>;
 	primaryAgentProfileImageObservable: Observable<Blob | null>;
 
 	brokerageLogoImage: BehaviorSubject<Blob | null>;
 	brokerageLogoImageObservable: Observable<Blob | null>;
+
+	personalBrandingLogoImage: BehaviorSubject<Blob | null>;
+	personalBrandingLogoImageObservable: Observable<Blob | null>;
 
 	secondaryAgentProfileImage: BehaviorSubject<Blob | null>;
 	secondaryAgentProfileImageObservable: Observable<Blob | null>;
@@ -92,6 +97,9 @@ export class SettingsComponent {
 		this.brokerageLogoImage = new BehaviorSubject<Blob | null>(null);
 		this.brokerageLogoImageObservable = this.brokerageLogoImage.asObservable();
 
+		this.personalBrandingLogoImage = new BehaviorSubject<Blob | null>(null);
+		this.personalBrandingLogoImageObservable = this.personalBrandingLogoImage.asObservable();
+
 		this.primaryAgentProfileImage = new BehaviorSubject<Blob | null>(null);
 		this.primaryAgentProfileImageObservable = this.primaryAgentProfileImage.asObservable();
 
@@ -102,6 +110,7 @@ export class SettingsComponent {
 	ngOnInit() {
 		this.agentForm = this.fb.group({
 			businessName: new FormControl("", Validators.required),
+			subheading: new FormControl(""),
 			brokerageType: new FormControl("", Validators.required),
 			firstName: new FormControl("", Validators.required),
 			lastName: new FormControl(""),
@@ -164,6 +173,10 @@ export class SettingsComponent {
 		return this.agentForm.get("businessName");
 	}
 
+	get subheading() {
+		return this.agentForm.get("subheading");
+	}
+
 	get brokerageType() {
 		return this.agentForm.get("brokerageType");
 	}
@@ -222,6 +235,7 @@ export class SettingsComponent {
 						brokerageTypeId,
 						brokerage,
 						designation,
+						subheading,
 					} = response.data;
 					const websiteSettings = response.data.websiteSettings ?? {};
 
@@ -232,6 +246,7 @@ export class SettingsComponent {
 						secondaryColor,
 						brokerageImage,
 						profileImage,
+						personalBrandingLogo,
 						siteUrl,
 						showHomeWorthPage,
 						showSellingInNeighborHoodPage,
@@ -251,10 +266,12 @@ export class SettingsComponent {
 
 					this.existingProfileImage = profileImage;
 					this.existingBrokerageImage = brokerageImage;
+					this.existingPersonalBrandingLogo = personalBrandingLogo;
 					// this.brokerageImage.next(brokerage.logoPath);
 
 					this.agentForm.patchValue({
 						businessName: businessName,
+						subheading: subheading,
 						firstName: firstName,
 						lastName: lastName,
 						// address: address,
@@ -337,6 +354,7 @@ export class SettingsComponent {
 			this.loadingService.loadingOn();
 			const {
 				businessName,
+				subheading,
 				firstName,
 				lastName,
 				// address,
@@ -370,6 +388,7 @@ export class SettingsComponent {
 			formData.append("postalCode", postalCode);
 			formData.append("brokerageTypeId", brokerageType);
 			if (designation) formData.append("designation", designation);
+			if (subheading) formData.append("subheading", subheading);
 
 			// Website settings
 			if (primaryColor) formData.append("primaryColor", primaryColor);
@@ -386,6 +405,12 @@ export class SettingsComponent {
 
 			if (this.brokerageLogoImage.value) {
 				formData.append("brokerageImage", this.brokerageLogoImage.value, "brokerage-logo.png");
+			}
+
+			if (this.personalBrandingLogoImage.value) {
+				formData.append("personalBrandingLogo", this.personalBrandingLogoImage.value, "personal-branding-logo.png");
+			} else if (this.existingPersonalBrandingLogo) {
+				formData.append("existingPersonalBrandingLogo", this.existingPersonalBrandingLogo);
 			}
 
 			// social links
@@ -512,6 +537,41 @@ export class SettingsComponent {
 		this.brokerageLogoImage.next(null);
 		if (this.brokerageLogoUpload) {
 			this.brokerageLogoUpload.nativeElement.value = "";
+		}
+	}
+
+	onPersonalBrandingLogoChange(event: Event): void {
+		const file = (event.target as HTMLInputElement).files?.[0];
+		if (file && file.size > this._fileSizeLimit) {
+			this.notificationService.showError("File size must be less than 2MB");
+			return;
+		}
+		const ref = this.dialogService.open(ImageDialogComponent, {
+			header: "Adjust Personal Branding Logo",
+			height: "80%",
+			width: "80%",
+			closable: true,
+			closeOnEscape: true,
+			modal: true,
+			focusOnShow: false,
+			data: {
+				imageChangedEvent: event,
+				freeSelection: true,
+			},
+		});
+		ref?.onClose.subscribe((croppedImage: Blob | null) => {
+			if (croppedImage) {
+				this.personalBrandingLogoImage.next(croppedImage);
+			} else {
+				this.personalBrandingLogoImage.next(null);
+			}
+		});
+	}
+
+	removePersonalBrandingLogo(): void {
+		this.personalBrandingLogoImage.next(null);
+		if (this.personalBrandingLogoUpload) {
+			this.personalBrandingLogoUpload.nativeElement.value = "";
 		}
 	}
 

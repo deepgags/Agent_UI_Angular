@@ -4,6 +4,7 @@ export interface SiteConfig {
 	lastName: string;
 	businessName: string;
 	designation: string;
+	subheading: string;
 	// templateId: string;
 	// phone: string;
 	// email: string;
@@ -36,6 +37,7 @@ export interface SiteConfig {
 		profileImage: string;
 		logoImage: string;
 		brokerageImage: string;
+		personalBrandingLogo: string;
 		showFindDreamHomePage: boolean;
 		showHomeWorthPage: boolean;
 		showSellingInNeighborHoodPage: boolean;

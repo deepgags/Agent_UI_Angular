@@ -23,6 +23,8 @@ export interface CustomerModel {
 	websiteSettings: {
 		logoImage?: string;
 		profileImage: string;
+		subheading?: string;
+		personalBrandingLogo?: string;
 		contactInfo?: {
 			email?: string;
 			phone?: string;
