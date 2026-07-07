@@ -1,12 +1,17 @@
-<header class="t25-header" id="t25Header">
-  <div class="container search-container">
+﻿<header class="t25-header" id="t25Header">
+  <div class="container-fluid search-container-fluid">
     <div class="row py-3 align-items-center justify-content-center">
 
       <!-- Brokerage circle + name -->
-      <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-start gap-3 mb-3 mb-lg-0">
         <div class="d-flex align-items-center gap-3">
+
+          @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
           <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage" class="t25-logo-circle flex-shrink-0" />
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
           <div>
             <h2 class="t25-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
             <p class="t25-designation mb-0">{{ siteConfig?.designation }}</p>
@@ -15,7 +20,7 @@
       </div>
 
       <!-- Phone + email center -->
-      <div class="col-12 col-lg-5 d-none d-lg-flex justify-content-center gap-4">
+      <div class="col-12 col-lg-4 d-none d-lg-flex justify-content-center gap-4">
         <a class="t25-contact-chip" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
           <span class="t25-chip-icon"><i class="bi bi-telephone-fill"></i></span>
           {{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
@@ -50,16 +55,11 @@
           </a>
           }
         </div>
-        @if (siteConfig) {
-        <a [routerLink]="['home']" class="t25-brokerage-logo">
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="No brokerage logo" height="64px" />
-        </a>
-        }
       </div>
 
     </div>
   </div>
+  <app-menu />
 </header>
 
-<app-menu />
+<div class="t25-top-pad"></div>

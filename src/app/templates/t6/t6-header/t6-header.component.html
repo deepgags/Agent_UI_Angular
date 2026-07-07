@@ -1,4 +1,4 @@
-<div class="t6-header position-fixed w-100" style="z-index: 999;">
+﻿<div class="t6-header position-fixed w-100" style="z-index: 999;">
   <div class="row g-0 align-items-stretch">
 
     <!-- Left editorial panel -->
@@ -14,8 +14,7 @@
     <div class="col-lg-7 col-12 t6-right-panel d-flex align-items-center justify-content-between px-4 py-2 flex-wrap gap-3">
 
       <div class="d-flex align-items-center gap-3">
-        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-             alt="Brokerage" class="t6-logo-circle flex-shrink-0" />
+
         <div class="d-flex flex-column gap-1">
           <a class="t6-contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
             <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
@@ -49,18 +48,11 @@
           </a>
           }
         </div>
-        @if (siteConfig) {
-        <a [routerLink]="['home']">
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage Logo" class="t6-brokerage-logo" />
-        </a>
-        }
       </div>
 
     </div>
   </div>
-</div>
-
-<div class="top-pad">
   <app-menu />
 </div>
+
+<div class="top-pad"></div>

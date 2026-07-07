@@ -71,18 +71,54 @@
 .instagram { color: #E4405F; }
 .linkedin  { color: #0A66C2; }
 
+/* Agent info */
+.t2-agent-img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color, #e63946);
+}
+
+.t2-agent-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.t2-agent-desig {
+  font-size: 12px;
+  color: #6c757d;
+  margin-bottom: 3px;
+}
+
+.t2-agent-link {
+  font-size: 12px;
+  color: #555;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  i { color: var(--primary-color, #e63946); }
+  &:hover { color: var(--primary-color, #e63946); }
+}
+
 /* Brokerage logo */
 .t2-brokerage-logo {
-  height: 70px;
+  max-width: 150px;
+  height: 131px;
   width: auto;
   object-fit: contain;
 }
 
-.top-pad { padding-top: 115px; }
+.top-pad { padding-top: 188px; }
 
 @media (max-width: 991px) {
-  .top-pad { padding-top: 240px; }
+  .top-pad { padding-top: 388px; }
 }
 @media (max-width: 768px) {
-  .top-pad { padding-top: 300px; }
+  .top-pad { padding-top: 460px; }
 }
+
+/* 20% header height increase */
+.t2-header .row { padding-top: 10px !important; padding-bottom: 10px !important; }

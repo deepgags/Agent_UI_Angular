@@ -66,16 +66,20 @@
 .linkedin  { color: #0A66C2; }
 
 .t7-brokerage-logo {
-  height: 48px;
+  max-width: 150px;
+  height: 90px;
   width: auto;
   object-fit: contain;
 }
 
-.top-pad { padding-top: 76px; }
+.top-pad { padding-top: 141px; }
 
 @media (max-width: 991px) {
-  .top-pad { padding-top: 200px; }
+  .top-pad { padding-top: 340px; }
 }
 @media (max-width: 768px) {
-  .top-pad { padding-top: 260px; }
+  .top-pad { padding-top: 412px; }
 }
+
+/* 20% header height increase */
+.t7-header .row { padding-top: 10px !important; padding-bottom: 10px !important; }

@@ -81,11 +81,17 @@
 .linkedin-icon:hover  { background: #0A66C2; border-color: #0A66C2; color: #fff; }
 
 .t24-brokerage-logo img {
+  max-width: 150px;
   opacity: 0.85;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .t24-brokerage-logo:hover img {
+  max-width: 150px;
   opacity: 1;
   transform: scale(1.03);
 }
+
+/* 20% header height increase */
+.t24-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }
+.t24-top-pad { padding-top: 167px; }

@@ -64,7 +64,8 @@
 .linkedin  { color: #0A66C2; }
 
 .t12-brokerage-logo {
-  height: 60px;
+  max-width: 150px;
+  height: 112px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
@@ -73,9 +74,12 @@
 }
 
 .t12-top-pad {
-  padding-top: 90px;
+  padding-top: 158px;
 }
 
 @media (max-width: 768px) {
-  .t12-top-pad { padding-top: 200px; }
+  .t12-top-pad { padding-top: 340px; }
 }
+
+/* 20% header height increase */
+.t12-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }

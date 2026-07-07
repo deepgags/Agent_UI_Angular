@@ -1,10 +1,15 @@
-<div class="t7-header position-fixed w-100" style="z-index: 999;">
-  <div class="container">
+﻿<div class="t7-header position-fixed w-100" style="z-index: 999;">
+  <div class="container-fluid">
     <div class="d-flex align-items-center justify-content-between gap-3 py-2 flex-wrap">
 
       <div class="d-flex align-items-center gap-2">
-        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-             alt="Brokerage" class="t7-logo-circle flex-shrink-0" />
+
+        @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
         <div>
           <h3 class="t7-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
           <p class="t7-designation mb-0">{{ siteConfig?.designation }}</p>
@@ -41,18 +46,11 @@
           <i class="bi bi-linkedin linkedin"></i>
         </a>
         }
-        @if (siteConfig) {
-        <a [routerLink]="['home']" class="ms-1">
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage Logo" class="t7-brokerage-logo" />
-        </a>
-        }
       </div>
 
     </div>
   </div>
-</div>
-
-<div class="top-pad">
   <app-menu />
 </div>
+
+<div class="top-pad"></div>

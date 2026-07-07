@@ -67,7 +67,8 @@
 .linkedin  { color: #0A66C2; }
 
 .t18-brokerage-logo {
-  height: 60px;
+  max-width: 150px;
+  height: 112px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
@@ -75,12 +76,16 @@
   transition: opacity 0.3s ease;
 }
 
-.t18-brokerage-wrap:hover .t18-brokerage-logo { opacity: 1; }
+.t18-brokerage-wrap:hover .t18-brokerage-logo {
+  max-width: 150px; opacity: 1; }
 
 .t18-top-pad {
-  padding-top: 120px;
+  padding-top: 194px;
 }
 
 @media (max-width: 768px) {
-  .t18-top-pad { padding-top: 220px; }
+  .t18-top-pad { padding-top: 364px; }
 }
+
+/* 20% header height increase */
+.t18-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }

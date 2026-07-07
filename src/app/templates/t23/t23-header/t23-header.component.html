@@ -1,4 +1,4 @@
-<header class="t23-header" id="t23Header">
+﻿<header class="t23-header" id="t23Header">
 
   <!-- Top gradient bar: phone + email -->
   <div class="t23-top-bar d-none d-lg-flex align-items-center justify-content-center gap-4 py-1">
@@ -13,13 +13,18 @@
 
   <!-- Main row -->
   <div class="t23-main-bar">
-    <div class="container search-container">
+    <div class="container-fluid search-container-fluid">
       <div class="row align-items-center py-3">
 
         <!-- Circle + name -->
         <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-start gap-3 mb-3 mb-lg-0">
+
+          @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
           <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage" class="t23-logo-circle flex-shrink-0" />
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
           <div class="t23-identity">
             <h2 class="t23-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
             <p class="t23-designation mb-0">{{ siteConfig?.designation }}</p>
@@ -55,17 +60,12 @@
             </a>
             }
           </div>
-          @if (siteConfig) {
-          <a [routerLink]="['home']" class="t23-brokerage-logo">
-            <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-                 alt="Brokerage logo" height="64px" />
-          </a>
-          }
         </div>
 
       </div>
     </div>
   </div>
+  <app-menu />
 </header>
 
-<app-menu />
+<div class="t23-top-pad"></div>

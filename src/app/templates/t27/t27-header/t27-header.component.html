@@ -1,22 +1,17 @@
-<div class="t27-header position-fixed w-100" style="z-index: 999;">
+﻿<div class="t27-header position-fixed w-100" style="z-index: 999;">
   <div class="container-fluid px-5">
     <div class="row align-items-stretch gx-4" style="min-height: 100px;">
-
-      <!-- Left: brokerage logo -->
-      <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-start py-3 py-lg-0">
-        @if (siteConfig) {
-        <a [routerLink]="['home']" class="t27-logo-link">
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="No brokerage logo" class="t27-brokerage-logo-rect" />
-        </a>
-        }
-      </div>
 
       <!-- Center: circle + name + contact row -->
       <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center text-center py-4 py-lg-0">
         <div class="d-flex align-items-center gap-3 mb-1">
+
+          @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
           <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage" class="t27-logo-circle flex-shrink-0" />
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
           <div>
             <h1 class="t27-biz-name mb-0">{{ siteConfig?.businessName }}</h1>
             <p class="t27-designation mb-0">{{ siteConfig?.designation }}</p>
@@ -62,8 +57,7 @@
     </div>
   </div>
   <div class="t27-header-border"></div>
-</div>
-
-<div class="t27-top-pad">
   <app-menu />
 </div>
+
+<div class="t27-top-pad"></div>

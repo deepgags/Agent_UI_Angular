@@ -127,3 +127,7 @@ cursor:pointer ;
     .card-simple:hover {
         transform: translateY(-5px);
     }
+.background-container p.text-white:not(.card-text),
+.search-container > * p.text-white:not(.card-text) {
+  font-size: 20px;
+}

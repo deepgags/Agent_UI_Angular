@@ -1,10 +1,15 @@
-<div class="t28-header position-fixed w-100" style="z-index: 999;">
+﻿<div class="t28-header position-fixed w-100" style="z-index: 999;">
   <div class="row g-0 align-items-stretch">
 
     <!-- Left: white panel — circle + name + designation -->
     <div class="col-lg-5 col-12 t28-left-panel d-flex align-items-center px-5 py-3">
-      <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-           alt="Brokerage" class="t28-logo-circle flex-shrink-0 me-3" />
+
+      @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
       <div class="t28-identity">
         <h2 class="t28-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
         <p class="t28-designation mb-0">{{ siteConfig?.designation }}</p>
@@ -43,17 +48,10 @@
         </a>
         }
       </div>
-      @if (siteConfig) {
-      <a [routerLink]="['home']" class="t28-brokerage-logo">
-        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-             alt="Brokerage Logo" height="60px" />
-      </a>
-      }
     </div>
 
   </div>
-</div>
-
-<div class="t28-top-pad">
   <app-menu />
 </div>
+
+<div class="t28-top-pad"></div>

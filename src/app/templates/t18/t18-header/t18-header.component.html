@@ -1,11 +1,16 @@
-<header class="t18-header position-fixed w-100" style="z-index: 999;">
-  <div class="container search-container">
+﻿<header class="t18-header position-fixed w-100" style="z-index: 999;">
+  <div class="container-fluid search-container-fluid">
     <div class="row align-items-center py-3">
 
       <!-- Name + underline -->
+      @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
       <div class="col-12 col-lg-4 text-center text-lg-start mb-3 mb-lg-0">
-        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-             alt="Brokerage" class="t18-logo-circle d-block mx-auto mx-lg-0 mb-2" />
+
         <h3 class="t18-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
         <span class="t18-underline d-block mt-1"></span>
       </div>
@@ -44,18 +49,11 @@
           </a>
           }
         </div>
-        @if (siteConfig) {
-        <a [routerLink]="['home']" class="t18-brokerage-wrap">
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage logo" class="t18-brokerage-logo" />
-        </a>
-        }
       </div>
 
     </div>
   </div>
+  <app-menu />
 </header>
 
-<div class="t18-top-pad">
-  <app-menu />
-</div>
+<div class="t18-top-pad"></div>

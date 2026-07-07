@@ -112,15 +112,19 @@
 }
 
 .t26-brokerage-logo {
-  height: 70px;
+  max-width: 150px;
+  height: 131px;
   max-width: 100%;
   object-fit: contain;
 }
 
 .t26-top-pad {
-  padding-top: 100px;
+  padding-top: 170px;
 }
 
 @media (max-width: 768px) {
-  .t26-top-pad { padding-top: 220px; }
+  .t26-top-pad { padding-top: 364px; }
 }
+
+/* 20% header height increase */
+.t26-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }

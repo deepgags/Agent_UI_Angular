@@ -16,7 +16,7 @@
     position: absolute;
     bottom: 0px;
     right: 20px;
-   width: 365px;
+   width: 441px;
   }
 
 .image-container {
@@ -91,14 +91,14 @@
     position: absolute;
     bottom:0px;
     right: 20px;
-   width: 365px;
+   width: 441px;
   }
 
   .overlay-image2 {
     position: absolute;
     bottom:0px;
     left: 20px;
-   width: 365px;
+   width: 441px;
   }
 
   .man-card{
@@ -137,7 +137,7 @@
          position: absolute;
         bottom: 0px;
         left: 236px;
-        width: 190px;
+        width: 441px;
     }
     
 .man_card2{
@@ -166,7 +166,7 @@
     position: absolute;
     bottom:0px;
     left: -42px;
-    width: 365px;
+    width: 441px;
   }
 }
 
@@ -187,3 +187,7 @@
     }
 
     
+.background-container p.text-white:not(.card-text),
+.search-container > * p.text-white:not(.card-text) {
+  font-size: 20px;
+}

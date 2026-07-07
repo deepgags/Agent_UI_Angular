@@ -1,12 +1,17 @@
-<header class="t21-header" id="t21Header">
-  <div class="container border-bottom search-container">
+﻿<header class="t21-header" id="t21Header">
+  <div class="container-fluid border-bottom search-container-fluid">
     <div class="row align-items-center py-4">
 
       <!-- Brokerage circle + name -->
       <div class="col-12 col-lg-4 mb-3 mb-lg-0">
         <div class="t21-identity d-flex align-items-center gap-3">
+
+          @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
           <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage" class="t21-logo-circle flex-shrink-0" />
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
           <div>
             <h2 class="t21-biz-name info mb-0">{{ siteConfig?.businessName }}</h2>
             <p class="t21-designation mb-0">{{ siteConfig?.designation }}</p>
@@ -26,12 +31,6 @@
 
       <!-- Social + brokerage logo + CTA -->
       <div class="col-12 col-lg-4 d-flex flex-column align-items-center align-items-lg-end gap-2">
-        <a [routerLink]="['home']" class="t21-brokerage-logo d-block mb-2">
-          @if (siteConfig) {
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage logo" height="60px" />
-          }
-        </a>
         <div class="d-flex gap-2">
           @if (siteConfig.websiteSettings.socialLinks.facebook) {
           <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t21-social-btn">
@@ -59,6 +58,7 @@
 
     </div>
   </div>
+  <app-menu />
 </header>
 
-<app-menu />
+<div class="t21-top-pad"></div>

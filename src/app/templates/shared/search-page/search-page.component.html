@@ -6,15 +6,15 @@
 
 <div class="container-fluid search-container top-padding">
 	<div class="search-container">
-		<div class="row justify-content-center align-items-center pt-4 pb-3">
-			<!-- <h2 class=" fw-semibold text-center mt-3">Search Your Dream Home</h2>-->
-			<div class="col-auto">
+		<div class="row pt-4 pb-2">
+			<div class="col-12">
 				<app-search
 					[filters]="selectedFilters"
-					[onSearch]="searchProperties"
-					class="search-container" />
+					[onSearch]="searchProperties" />
 			</div>
-			<div class="col-auto">
+		</div>
+		<div class="row pb-3">
+			<div class="col-auto ms-auto">
 				<select
 					(ngModelChange)="sortChange($event)"
 					[(ngModel)]="selectedFilters.sort"

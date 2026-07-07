@@ -83,7 +83,8 @@
 
 /* Brokerage logo */
 .t14-brokerage-logo {
-  height: 72px;
+  max-width: 150px;
+  height: 135px;
   width: auto;
   object-fit: contain;
   opacity: 0.9;
@@ -94,17 +95,20 @@
 
 /* Top padding for content below fixed header */
 .top-pad {
-  padding-top: 88px;
+  padding-top: 156px;
 }
 
 @media (max-width: 991px) {
   .top-pad {
-    padding-top: 280px;
+    padding-top: 436px;
   }
 }
 
 @media (max-width: 768px) {
   .top-pad {
-    padding-top: 320px;
+    padding-top: 484px;
   }
 }
+
+/* 20% header height increase */
+.t14-header .row { padding-top: 10px !important; padding-bottom: 10px !important; }

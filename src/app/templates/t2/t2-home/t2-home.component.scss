@@ -19,7 +19,7 @@
 	position: absolute;
 	bottom: 0px;
 	right: 20px;
-	width: 365px;
+	width: 441px;
 }
 .hero-bg {
 	background: url("https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1600&q=80")
@@ -31,7 +31,7 @@
 	position: absolute;
 	bottom: 0px;
 	left: 20px;
-	width: 365px;
+	width: 441px;
 }
 
 .man-card {
@@ -63,7 +63,7 @@
 		position: absolute;
 		bottom: 0px;
 		left: 236px;
-		width: 190px;
+		width: 441px;
 	}
 
 	.man_card2 {
@@ -91,7 +91,7 @@
 		position: absolute;
 		bottom: 0px;
 		left: -42px;
-		width: 365px;
+		width: 441px;
 	}
 }
 @media (max-width: 768px) {
@@ -99,4 +99,8 @@
   word-break: break-word;
   white-space: normal;
 }
+}
+.background-container p.text-white:not(.card-text),
+.search-container > * p.text-white:not(.card-text) {
+  font-size: 20px;
 }

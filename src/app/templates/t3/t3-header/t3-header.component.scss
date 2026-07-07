@@ -88,19 +88,20 @@
 
 /* ── Brokerage logo ── */
 .t3-brokerage-logo {
-  height: 64px;
+  max-width: 150px;
+  height: 120px;
   width: auto;
   object-fit: contain;
 }
 
 /* ── Top padding for content below ── */
 .top-pad {
-  padding-top: 80px;
+  padding-top: 146px;
 }
 
 @media (max-width: 991px) {
   .top-pad {
-    padding-top: 240px;
+    padding-top: 388px;
   }
 
   .t3-content {
@@ -110,6 +111,9 @@
 
 @media (max-width: 768px) {
   .top-pad {
-    padding-top: 300px;
+    padding-top: 460px;
   }
 }
+
+/* 20% header height increase */
+.t3-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }

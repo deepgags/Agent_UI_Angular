@@ -1,51 +1,317 @@
-.form-select {
-    font-size: 13px !important;
+﻿/* Search Component - Two Row Hero Bar */
+
+.search-redesign {
+  width: 100%;
 }
 
-.search-bar{
-        display: block;
-        width: 100%;
-        padding: .375rem 2.25rem .375rem .75rem;
-        font-size: 13px !important;
-        font-weight: 400;
-        line-height: 1.5;
-        color: var(--bs-body-color);
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-color: var(--bs-body-bg);
-        background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
-        background-repeat: no-repeat;
-        background-position: right .75rem center;
-        background-size: 16px 12px;
-        border: var(--bs-border-width) solid var(--bs-border-color);
-        border-radius: var(--bs-border-radius);
-        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+/* ═══════════════════════════════════════
+   ROW 1 — Main search bar
+═══════════════════════════════════════ */
+.search-row-1 {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin-bottom: 8px;
+  min-height: 54px;
 }
 
-.mat-slider {
-    width: 300px;
-}
-input::placeholder{
-  font-size: 12px !important;
-}
-
-span,li{
-  font-size: 12px !important;
-}
-
-.mat-mdc-paginator-page-size-label {
-    font-size: 13px;
+.search-input-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 10px;
+  min-width: 0;
+  background: #fff;
 }
 
-.mat-mdc-paginator-range-label {
-    font-size: 13px;
+.search-main-icon {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  flex-shrink: 0;
 }
 
-.cursor{
-    cursor: pointer;
+/* PrimeNG AutoComplete — strip all default styling */
+.search-redesign .search-row-1 {
+  p-autocomplete,
+  .p-autocomplete {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    /* PrimeNG v20 root span */
+    > span {
+      width: 100%;
+    }
+  }
+
+  .p-autocomplete-input {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background: transparent !important;
+    font-size: 0.97rem;
+    padding: 14px 0;
+    width: 100%;
+    color: #1e293b;
+
+    &::placeholder {
+      color: #94a3b8;
+    }
+
+    &:focus {
+      border: none !important;
+      box-shadow: none !important;
+    }
+  }
 }
 
-.wid input {
-  width: 90px !important;
+.search-btn-main {
+  background: var(--primary-color, #2563eb);
+  color: #fff;
+  border: none;
+  padding: 0 30px;
+  font-size: 0.93rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.15s, transform 0.1s;
+  letter-spacing: 0.02em;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 0.8;
+    transform: scale(0.98);
+  }
+}
+
+/* ═══════════════════════════════════════
+   ROW 2 — Filter bar
+═══════════════════════════════════════ */
+.search-row-2 {
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.filter-row-inner {
+  display: flex;
+  align-items: stretch;
+  min-height: 46px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Thin vertical separator between items */
+.filter-divider {
+  width: 1px;
+  align-self: center;
+  height: 22px;
+  background: #cbd5e1;
+  flex-shrink: 0;
+}
+
+/* Each filter cell */
+.filter-item {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+
+  /* PrimeNG Select */
+  .p-select {
+    width: 100%;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+
+    &:hover,
+    &:focus,
+    &.p-focus {
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    .p-select-label {
+      font-size: 0.79rem;
+      padding: 0 8px 0 12px;
+      color: #334155;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .p-placeholder {
+      color: #64748b;
+    }
+
+    .p-select-dropdown {
+      width: 26px;
+      color: #94a3b8;
+    }
+  }
+
+  /* PrimeNG InputNumber */
+  .p-inputnumber {
+    width: 100%;
+
+    .p-inputnumber-input {
+      border: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      font-size: 0.79rem;
+      padding: 0 6px 0 0;
+      width: 100%;
+      color: #334155;
+      height: 100%;
+      min-height: 46px;
+
+      &::placeholder {
+        color: #64748b;
+        font-size: 0.79rem;
+      }
+
+      &:focus {
+        box-shadow: none !important;
+        border: none !important;
+      }
+    }
+  }
+}
+
+/* Price cells */
+.filter-item.filter-price {
+  flex: 0 0 auto;
+  min-width: 110px;
+  max-width: 130px;
+}
+
+.price-prefix {
+  font-size: 0.79rem;
+  color: #64748b;
+  padding-left: 12px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.filter-price-sep {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  flex-shrink: 0;
+  padding: 0 3px;
+  display: flex;
+  align-items: center;
+}
+
+/* Reset button cell */
+.filter-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-left: 1px solid #e2e8f0;
+}
+
+.btn-reset {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 0.76rem;
+  cursor: pointer;
+  color: #64748b;
+  white-space: nowrap;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  &:hover {
+    background: #fff;
+    border-color: #94a3b8;
+    color: #334155;
+  }
+}
+
+/* ═══════════════════════════════════════
+   Responsive
+═══════════════════════════════════════ */
+@media (max-width: 991px) {
+  .search-row-2 {
+    overflow: visible;
+  }
+
+  .filter-row-inner {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    min-height: auto;
+  }
+
+  .filter-item {
+    flex: 1 1 calc(33.333% - 1px);
+    border-bottom: 1px solid #e2e8f0;
+    min-height: 42px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .filter-item.filter-price {
+    flex: 1 1 calc(33.333% - 1px);
+    min-width: 0;
+    max-width: none;
+  }
+
+  .filter-divider {
+    display: none;
+  }
+
+  .filter-price-sep {
+    display: none;
+  }
+
+  .filter-actions {
+    width: 100%;
+    justify-content: flex-end;
+    border-left: none;
+    border-top: 1px solid #e2e8f0;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .search-btn-main {
+    padding: 0 16px;
+    font-size: 0.85rem;
+  }
+
+  .search-row-1 {
+    border-radius: 8px;
+  }
+
+  .filter-item {
+    flex: 1 1 50%;
+    min-height: 40px;
+  }
+
+  .filter-item.filter-price {
+    flex: 1 1 50%;
+  }
 }

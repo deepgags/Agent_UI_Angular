@@ -172,3 +172,7 @@
   font-weight: 500;
   font-size: 1rem;
 }
+.background-container p.text-white:not(.card-text),
+.search-container > * p.text-white:not(.card-text) {
+  font-size: 20px;
+}

@@ -31,7 +31,7 @@
     position: absolute;
     bottom: 0px;
     right: 20px;
-    width: 365px;
+    width: 441px;
   }
 .image-container {
   position: relative;
@@ -204,3 +204,8 @@
         font-size: 2rem;
         color: #00ffc3;
     }
+
+.background-container p.text-white:not(.card-text),
+.search-container > * p.text-white:not(.card-text) {
+  font-size: 20px;
+}

@@ -1,13 +1,16 @@
-<div class="t14-header position-fixed w-100" id="t14Header">
-  <div class="container">
+﻿<div class="t14-header position-fixed w-100" id="t14Header">
+  <div class="container-fluid">
     <div class="row align-items-center py-2">
 
       <!-- Col 1: Profile image + Brokerage name + designation -->
-      <div class="col-lg-3 col-md-6 col-12 d-flex align-items-center justify-content-center justify-content-lg-start">
-        <img
-          [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-          alt="Profile"
-          class="t14-avatar rounded-circle me-3" />
+      <div class="col-lg-4 col-md-6 col-12 d-flex align-items-center justify-content-center justify-content-lg-start">
+
+        @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
         <div class="t14-identity">
           <h3 class="t14-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
           <p class="t14-designation mb-0">{{ siteConfig?.websiteSettings?.contactInfo?.municipality }},  {{ siteConfig?.websiteSettings?.contactInfo?.province }}</p>
@@ -15,7 +18,7 @@
       </div>
 
       <!-- Col 2: Phone + Email + Social icons -->
-      <div class="col-lg-5 col-12 d-flex flex-column align-items-center justify-content-center gap-2 my-2 my-lg-0">
+      <div class="col-lg-8 col-12 d-flex flex-column align-items-center justify-content-center gap-2 my-2 my-lg-0">
 
         <div class="d-flex align-items-center gap-4 flex-wrap justify-content-center">
           <a class="t14-contact-link"
@@ -64,22 +67,9 @@
 
       </div>
 
-      <!-- Col 3: Brokerage logo -->
-      <div class="col-lg-4 col-12 d-flex align-items-center justify-content-center justify-content-lg-end mt-2 mt-lg-0">
-        @if (siteConfig) {
-        <a [routerLink]="['home']">
-          <img
-            [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-            alt="Brokerage Logo"
-            class="t14-brokerage-logo" />
-        </a>
-        }
-      </div>
-
     </div>
   </div>
-</div>
-
-<div class="top-pad">
   <app-menu />
 </div>
+
+<div class="top-pad"></div>

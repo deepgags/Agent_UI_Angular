@@ -61,11 +61,13 @@
 .linkedin  { color: #0A66C2; }
 
 .t21-brokerage-logo img {
+  max-width: 150px;
   opacity: 0.85;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .t21-brokerage-logo:hover img {
+  max-width: 150px;
   transform: translateY(-2px);
   opacity: 1;
 }
@@ -89,3 +91,7 @@
   }
   &:hover::after { transform: scaleX(1); }
 }
+
+/* 20% header height increase */
+.t21-header .row { padding-top: 29px !important; padding-bottom: 29px !important; }
+.t21-top-pad { padding-top: 187px; }

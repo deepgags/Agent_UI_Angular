@@ -59,7 +59,8 @@
 }
 
 .t11-brokerage-logo {
-  height: 60px;
+  max-width: 150px;
+  height: 112px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
@@ -68,9 +69,12 @@
 }
 
 .t11-top-pad {
-  padding-top: 90px;
+  padding-top: 158px;
 }
 
 @media (max-width: 768px) {
-  .t11-top-pad { padding-top: 200px; }
+  .t11-top-pad { padding-top: 340px; }
 }
+
+/* 20% header height increase */
+.t11-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }

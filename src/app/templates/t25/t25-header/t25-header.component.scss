@@ -85,11 +85,17 @@
 .linkedin  { color: #0A66C2; }
 
 .t25-brokerage-logo img {
+  max-width: 150px;
   opacity: 0.85;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .t25-brokerage-logo:hover img {
+  max-width: 150px;
   opacity: 1;
   transform: scale(1.03);
 }
+
+/* 20% header height increase */
+.t25-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }
+.t25-top-pad { padding-top: 167px; }

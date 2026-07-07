@@ -54,7 +54,8 @@
 }
 
 .t5-brokerage-logo {
-  height: 56px;
+  max-width: 150px;
+  height: 105px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
@@ -63,11 +64,14 @@
   &:hover { opacity: 1; }
 }
 
-.top-pad { padding-top: 96px; }
+.top-pad { padding-top: 165px; }
 
 @media (max-width: 991px) {
-  .top-pad { padding-top: 230px; }
+  .top-pad { padding-top: 376px; }
 }
 @media (max-width: 768px) {
-  .top-pad { padding-top: 290px; }
+  .top-pad { padding-top: 448px; }
 }
+
+/* 20% header height increase */
+.t5-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }

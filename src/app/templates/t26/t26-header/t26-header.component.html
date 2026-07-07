@@ -1,11 +1,16 @@
-<div class="t26-header position-fixed w-100" style="z-index: 999;">
+﻿<div class="t26-header position-fixed w-100" style="z-index: 999;">
   <div class="container-fluid px-5">
     <div class="row align-items-center py-3 gx-4">
 
       <!-- Brokerage circle + name -->
-      <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
-        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-             alt="Brokerage" class="t26-logo-circle flex-shrink-0" />
+      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
+
+        @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
         <div class="t26-identity">
           <h2 class="t26-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
           <p class="t26-designation mb-0">{{ siteConfig?.designation }}</p>
@@ -13,7 +18,7 @@
       </div>
 
       <!-- Phone + email center -->
-      <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center text-center py-4 py-lg-0">
+      <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-center text-center py-4 py-lg-0">
         <div class="t26-contact-row d-flex flex-wrap justify-content-center gap-3">
           <a class="t26-contact-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
             <i class="bi bi-telephone-fill t26-contact-icon"></i>
@@ -28,7 +33,7 @@
       </div>
 
       <!-- Social + brokerage logo -->
-      <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-end gap-3 py-3 py-lg-0">
+      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end gap-3 py-3 py-lg-0">
         <div class="t26-social-cluster d-flex gap-2">
           @if (siteConfig.websiteSettings.socialLinks.facebook) {
           <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t26-social-icon facebook-icon" aria-label="Facebook">
@@ -51,19 +56,12 @@
           </a>
           }
         </div>
-        @if (siteConfig) {
-        <a [routerLink]="['home']" class="t26-logo-link">
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="No brokerage logo" class="t26-brokerage-logo" />
-        </a>
-        }
       </div>
 
     </div>
   </div>
   <div class="t26-header-border"></div>
-</div>
-
-<div class="t26-top-pad">
   <app-menu />
 </div>
+
+<div class="t26-top-pad"></div>

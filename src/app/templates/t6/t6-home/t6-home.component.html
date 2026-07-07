@@ -1,4 +1,4 @@
-<div
+﻿<div
 	class="background-container"
 	[style.background-image]="
 		heroImages && heroImages.length > 0 ? 'url(' + localImageUrl + heroImages[0] + ')' : null
@@ -51,20 +51,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="d-flex">
-                                    <div class="">
-                                        <i class="fa-solid fa-envelope info"></i>
-                                    </div>
-                                    <div class="ms-2">
-                                        <p>
-                                            
-                                              <a  class="text-dark fw-semibold text-decoration-none"
-                                                [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
-                                                {{ siteConfig.secondaryAgent.websiteEmail }}
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="d-flex gap-2">
                                 @if (siteConfig.websiteSettings.socialLinks.facebook) {
@@ -131,20 +118,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="d-flex">
-                                <div class="">
-                                    <i class="fa-solid fa-envelope info"></i>
-                                </div>
-                                <div class="ms-2">
-                                    <p>
-                                        
-                                          <a  class="text-dark fw-semibold text-decoration-none"
-                                            [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
-                                            {{ siteConfig.websiteSettings.contactInfo.email }}
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="d-flex gap-2">
                             @if (siteConfig.websiteSettings.socialLinks.facebook) {

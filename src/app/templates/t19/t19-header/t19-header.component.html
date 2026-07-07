@@ -1,11 +1,16 @@
-<header class="t19-header position-fixed w-100" style="z-index: 999;">
-  <div class="container search-container">
+﻿<header class="t19-header position-fixed w-100" style="z-index: 999;">
+  <div class="container-fluid search-container-fluid">
     <div class="row align-items-center py-3">
 
       <!-- Name + circle -->
-      <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-start gap-3 mb-3 mb-lg-0">
-        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-             alt="Brokerage" class="t19-logo-circle flex-shrink-0" />
+      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-start gap-3 mb-3 mb-lg-0">
+
+        @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
         <div>
           <h3 class="t19-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
           <span class="t19-scroll-underline d-block mt-1"></span>
@@ -13,7 +18,7 @@
       </div>
 
       <!-- Phone + email pill -->
-      <div class="col-12 col-lg-5 d-flex justify-content-center gap-4">
+      <div class="col-12 col-lg-4 d-flex justify-content-center gap-4">
         <a class="t19-contact-pill" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
           <i class="bi bi-telephone-fill info me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
         </a>
@@ -46,19 +51,12 @@
           </a>
           }
         </div>
-        @if (siteConfig) {
-        <a [routerLink]="['home']" class="t19-brokerage-logo">
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage Logo" height="60px" />
-        </a>
-        }
       </div>
 
     </div>
   </div>
-</header>
- 
-<div class="t19-top-pad">
   <app-menu />
-</div>
+</header>
+
+<div class="t19-top-pad"></div>
 

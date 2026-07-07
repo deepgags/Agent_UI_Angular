@@ -20,7 +20,8 @@
 }
 
 .t27-brokerage-logo-rect {
-  height: 64px;
+  max-width: 150px;
+  height: 120px;
   max-width: 100%;
   object-fit: contain;
   filter: brightness(0) invert(1);
@@ -100,9 +101,12 @@
 .linkedin-icon:hover  { background: #0A66C2; border-color: #0A66C2; color: #fff; }
 
 .t27-top-pad {
-  padding-top: 100px;
+  padding-top: 170px;
 }
 
 @media (max-width: 768px) {
-  .t27-top-pad { padding-top: 240px; }
+  .t27-top-pad { padding-top: 388px; }
 }
+
+/* 20% header height increase */
+.t27-header .row { padding-top: 29px !important; padding-bottom: 29px !important; }

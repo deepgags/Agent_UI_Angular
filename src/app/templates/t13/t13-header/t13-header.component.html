@@ -1,11 +1,16 @@
-<header class="t13-header position-fixed w-100" style="z-index: 999;">
-  <div class="container search-container">
+﻿<header class="t13-header position-fixed w-100" style="z-index: 999;">
+  <div class="container-fluid search-container-fluid">
     <div class="row align-items-center py-3">
 
       <!-- Brokerage circle + name -->
       <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
-        <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-             alt="Brokerage" class="t13-logo-circle flex-shrink-0" />
+
+        @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
+          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
         <div>
           <h2 class="t13-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
           <p class="t13-designation mb-0">{{ siteConfig?.designation }}</p>
@@ -47,18 +52,11 @@
           </a>
           }
         </div>
-        @if (siteConfig) {
-        <a [routerLink]="['home']" class="t13-monogram-logo">
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage logo" class="t13-brokerage-logo" />
-        </a>
-        }
       </div>
 
     </div>
   </div>
+  <app-menu />
 </header>
 
-<div class="t13-top-pad">
-  <app-menu />
-</div>
+<div class="t13-top-pad"></div>

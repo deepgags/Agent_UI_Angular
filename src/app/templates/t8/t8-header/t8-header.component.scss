@@ -55,7 +55,8 @@
 }
 
 .t8-brokerage-logo {
-  height: 56px;
+  max-width: 150px;
+  height: 105px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
@@ -69,11 +70,14 @@
   margin-top: 4px;
 }
 
-.top-pad { padding-top: 95px; }
+.top-pad { padding-top: 164px; }
 
 @media (max-width: 991px) {
-  .top-pad { padding-top: 240px; }
+  .top-pad { padding-top: 388px; }
 }
 @media (max-width: 768px) {
-  .top-pad { padding-top: 300px; }
+  .top-pad { padding-top: 460px; }
 }
+
+/* 20% header height increase */
+.t8-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }

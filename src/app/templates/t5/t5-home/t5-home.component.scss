@@ -41,7 +41,7 @@
     position: absolute;
     bottom: 0px;
     right: 20px;
-    width: 365px;
+    width: 441px;
   }
 
   .sec-3{
@@ -115,7 +115,7 @@
 		position: absolute;
 		bottom: 0px;
 		left: 236px;
-		width: 240px;
+		width: 441px;
 	}
 
   .man{
@@ -176,4 +176,8 @@
   word-break: break-word;
   white-space: normal;
 }
+}
+.background-container p.text-white:not(.card-text),
+.search-container > * p.text-white:not(.card-text) {
+  font-size: 20px;
 }

@@ -95,7 +95,8 @@
 }
 
 .t1-brokerage-logo {
-  height: 68px;
+  max-width: 150px;
+  height: 128px;
   max-width: 110px;
   width: auto;
   object-fit: contain;
@@ -104,8 +105,11 @@
   &:hover { opacity: 1; }
 }
 
-.top-pad { padding-top: 75px; }
+.top-pad { padding-top: 140px; }
 
 @media (max-width: 991px) {
-  .top-pad { padding-top: 80px; }
+  .top-pad { padding-top: 196px; }
 }
+
+/* 20% header height increase */
+.t1-header .row { padding-top: 10px !important; padding-bottom: 10px !important; }

@@ -1,7 +1,7 @@
-<div class="t4-header position-fixed w-100" style="z-index: 999;">
+﻿<div class="t4-header position-fixed w-100" style="z-index: 999;">
   <!-- Dual-row: top utility bar + main header -->
   <div class="t4-utility-bar">
-    <div class="container d-flex align-items-center justify-content-between">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center gap-3">
         <a class="t4-util-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
           <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
@@ -38,32 +38,27 @@
 
   <!-- Main header row -->
   <div class="t4-main-bar">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row align-items-center py-2">
 
         <div class="col-12 col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
+
+          @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
           <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage" class="t4-logo-circle flex-shrink-0" />
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
           <div>
             <h3 class="t4-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
             <p class="t4-designation mb-0">{{ siteConfig?.designation }}</p>
           </div>
         </div>
 
-        <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-end mt-2 mt-lg-0">
-          @if (siteConfig) {
-          <a [routerLink]="['home']">
-            <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-                 alt="Brokerage Logo" class="t4-brokerage-logo" />
-          </a>
-          }
-        </div>
-
       </div>
     </div>
   </div>
-</div>
-
-<div class="top-pad">
   <app-menu />
 </div>
+
+<div class="top-pad"></div>

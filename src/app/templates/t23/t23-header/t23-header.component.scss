@@ -94,8 +94,14 @@
 .linkedin  { color: #0A66C2; }
 
 .t23-brokerage-logo img {
+  max-width: 150px;
   opacity: 0.85;
   transition: opacity 0.3s ease;
 }
 
-.t23-brokerage-logo:hover img { opacity: 1; }
+.t23-brokerage-logo:hover img {
+  max-width: 150px; opacity: 1; }
+
+/* 20% header height increase */
+.t23-header .row { padding-top: 19px !important; padding-bottom: 19px !important; }
+.t23-top-pad { padding-top: 167px; }

@@ -1,19 +1,24 @@
-<header class="t20-header position-fixed w-100" style="z-index: 999;">
-  <div class="container search-container">
+﻿<header class="t20-header position-fixed w-100" style="z-index: 999;">
+  <div class="container-fluid search-container-fluid">
     <div class="row align-items-center py-3">
 
       <!-- Name + lux divider -->
-      <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-start">
-        <div>
+      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
+        @if (siteConfig) {
+        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
           <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage" class="t20-logo-circle d-block mb-2" />
+               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+        </a>
+        }
+        <div>
+
           <h4 class="t20-biz-name mb-0">{{ siteConfig?.businessName }}</h4>
           <span class="t20-lux-divider d-block"></span>
         </div>
       </div>
 
       <!-- Contact -->
-      <div class="col-12 col-lg-6 d-flex py-lg-0 py-3 justify-content-center gap-4 flex-wrap">
+      <div class="col-12 col-lg-8 d-flex py-lg-0 py-3 justify-content-center gap-4 flex-wrap">
         <a class="t20-contact-pill" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
           <i class="bi bi-telephone-fill info me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
         </a>
@@ -44,20 +49,9 @@
         </div>
       </div>
 
-      <!-- Brokerage logo -->
-      <div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
-        @if (siteConfig) {
-        <a [routerLink]="['home']" class="t20-brokerage-logo">
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="No brokerage logo" height="80px" />
-        </a>
-        }
-      </div>
-
     </div>
   </div>
+  <app-menu />
 </header>
 
-<div class="t20-top-pad">
-  <app-menu />
-</div>
+<div class="t20-top-pad"></div>
