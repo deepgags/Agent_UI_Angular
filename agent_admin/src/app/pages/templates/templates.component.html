@@ -1,6 +1,6 @@
 <div class="page-header"><h1 class="page-title">Templates</h1><p class="page-subtitle">Manage email templates.</p></div>
 <div class="card">
-  <p-toolbar><ng-template #end><button pButton label="Add Template" icon="pi pi-plus" (click)="openDialog()"></button></ng-template></p-toolbar>
+  <p-toolbar><ng-template #start><input pInputText placeholder="Search..." [(ngModel)]="searchQuery" (input)="onSearch()" class="mr-2" /></ng-template><ng-template #end><button pButton label="Add Template" icon="pi pi-plus" (click)="openDialog()"></button></ng-template></p-toolbar>
   <p-table [value]="items()" [paginator]="true" [rows]="10" [loading]="loading()">
     <ng-template pTemplate="header"><tr><th>Name</th><th>Colors</th><th>Images</th><th>Status</th><th class="text-right">Actions</th></tr></ng-template>
     <ng-template pTemplate="body" let-item>

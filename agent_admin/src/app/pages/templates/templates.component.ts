@@ -34,6 +34,7 @@ export class TemplatesComponent implements OnInit {
 
   items = signal<Template[]>([]);
   loading = signal(false);
+  searchQuery = '';
   dialogVisible = false;
   isEdit = false;
   selectedItem: Template | null = null;
@@ -53,11 +54,13 @@ export class TemplatesComponent implements OnInit {
 
   loadItems() {
     this.loading.set(true);
-    this.apiClient.getPaginated<Template>('/templates', { page: 1, pageSize: 10 }).subscribe({
+    this.apiClient.getPaginated<Template>('/templates', { page: 1, pageSize: 10, search: this.searchQuery }).subscribe({
       next: (res) => { this.items.set(res.data); this.loading.set(false); },
       error: () => this.loading.set(false),
     });
   }
+
+  onSearch() { this.loadItems(); }
 
   openDialog() {
     this.isEdit = false;
