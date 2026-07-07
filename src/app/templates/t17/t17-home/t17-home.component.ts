@@ -71,4 +71,11 @@ export class T17HomeComponent implements OnInit {
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
 		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};
+
+	formatAddress(): string {
+		const ci = this.siteConfig?.websiteSettings?.contactInfo;
+		if (!ci) return '';
+		return [ci.streetAddress, ci.municipality, ci.province, ci.postalCode]
+			.filter(Boolean).join(', ');
+	}
 }

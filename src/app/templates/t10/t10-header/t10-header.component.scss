@@ -86,6 +86,10 @@
   padding-top: 158px;
 }
 
+@media (max-width: 991px) {
+  .t10-top-pad { padding-top: 340px; }
+}
+
 @media (max-width: 768px) {
   .t10-top-pad { padding-top: 340px; }
 }

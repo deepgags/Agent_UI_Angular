@@ -1,4 +1,4 @@
-@if (loading) {
+﻿@if (loading) {
 <div class="d-flex justify-content-center align-items-center py-5">
   <p-progress-spinner strokeWidth="4"
                       animationDuration=".8s" />
@@ -6,7 +6,7 @@
 }
 @else if (!loading && !error) {
 <div class="container-fluid p-0 search-container">
-  <div class=" pt-3 mt-5">
+  <div class="">
     <img class="banner w-100"
          [src]="heroImageSrc"
          alt="Banner Image">

@@ -29,6 +29,40 @@
 }
 
 /* Icon contact badges */
+/* Agent card in header */
+.t17-header-agent-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 2px solid var(--primary-color, #e63946);
+}
+
+.t17-header-agent-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.t17-header-agent-desig {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.t17-header-agent-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+  text-decoration: none;
+  &:hover { color: var(--primary-color, #e63946); }
+}
+
+.t17-header-agent-icon {
+  color: var(--primary-color, #e63946);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
 .t17-contact-badge {
   display: inline-flex;
   align-items: center;
@@ -56,14 +90,14 @@
   flex-direction: column;
   small {
     font-size: 12px;
-    color: #aaa;
+    color: #000;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
   strong {
     font-size: 14.5px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #000;
   }
 }
 
@@ -98,6 +132,10 @@
 
 .t17-top-pad {
   padding-top: 158px;
+}
+
+@media (max-width: 991px) {
+  .t17-top-pad { padding-top: 364px; }
 }
 
 @media (max-width: 768px) {

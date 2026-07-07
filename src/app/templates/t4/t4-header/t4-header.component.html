@@ -41,18 +41,44 @@
     <div class="container-fluid">
       <div class="row align-items-center py-2">
 
+        <!-- Left: brokerage logo + name -->
         <div class="col-12 col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
-
           @if (siteConfig) {
-        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
-          <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
-        </a>
-        }
+          <a [routerLink]="['home']" class="flex-shrink-0 me-3">
+            <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
+                 alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+          </a>
           <div>
             <h3 class="t4-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
             <p class="t4-designation mb-0">{{ siteConfig?.designation }}</p>
           </div>
+          }
+        </div>
+
+        <!-- Right: agent photo + name + designation + phone + email -->
+        <div class="col-12 col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-end gap-3">
+          @if (siteConfig) {
+          <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
+               alt="Agent" class="t4-agent-img flex-shrink-0" />
+          <div>
+            <p class="t4-agent-name mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+            <p class="t4-agent-desig mb-2">{{ siteConfig.designation }}</p>
+            @if (siteConfig.websiteSettings.contactInfo.phone) {
+            <a class="t4-agent-link d-flex align-items-center gap-2 mb-1"
+               [href]="'tel:' + (siteConfig.websiteSettings.contactInfo.phone | phone)">
+              <i class="bi bi-telephone-fill t4-agent-icon"></i>
+              {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+            </a>
+            }
+            @if (siteConfig.websiteSettings.contactInfo.email) {
+            <a class="t4-agent-link d-flex align-items-center gap-2"
+               [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+              <i class="bi bi-envelope-fill t4-agent-icon"></i>
+              {{ siteConfig.websiteSettings.contactInfo.email }}
+            </a>
+            }
+          </div>
+          }
         </div>
 
       </div>

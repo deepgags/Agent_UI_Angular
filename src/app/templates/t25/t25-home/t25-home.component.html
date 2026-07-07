@@ -333,24 +333,55 @@
 
 <app-team-card />
 
-<div class="container-fluid sec-4 search-container">
+<section class="t25-contact-section">
 	<div class="container">
-		<div class="row py-lg-5 p-lg-0 p-4 align-items-center justify-content-center">
-			<div class="col-lg-8 col-12 d-none d-lg-block">
-				<div class="">
-					<img
-						class="img-fluid"
-						src="t6/images/contact-img.png"
-						alt="" />
-				</div>
-			</div>
-			<div class="col-lg-4 col-12 mt-lg-0 mt-3">
-				<div class="card shadow">
-					<div class="card-body">
-						<app-hero-contact-form />
+		<div class="row g-5 align-items-center">
+
+			<!-- Left: contact info -->
+			<div class="col-lg-5 col-12">
+				<p class="t25-contact-label">Reach Out</p>
+				<h2 class="t25-contact-heading fw-bold mb-4">Let's Get In Touch</h2>
+
+				<div class="t25-agent-contact-card">
+					<div class="d-flex align-items-start gap-3 mb-4">
+						<img [src]="siteConfig.websiteSettings?.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
+							 class="t25-contact-agent-img flex-shrink-0" alt="Agent" />
+						<div>
+							<p class="fw-bold mb-1 t25-cagent-name">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+							<p class="mb-0 t25-cagent-desig">{{ siteConfig.designation }}</p>
+						</div>
 					</div>
+
+					@if (siteConfig.websiteSettings?.contactInfo?.phone) {
+					<a [href]="'tel:' + (siteConfig.websiteSettings.contactInfo.phone | phone)" class="t25-cinfo-row text-decoration-none">
+						<span class="t25-cinfo-icon"><i class="bi bi-telephone-fill"></i></span>
+						<span class="t25-cinfo-text">{{ siteConfig.websiteSettings.contactInfo.phone | phone }}</span>
+					</a>
+					}
+
+					@if (siteConfig.websiteSettings?.contactInfo?.email) {
+					<a [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email" class="t25-cinfo-row text-decoration-none">
+						<span class="t25-cinfo-icon"><i class="bi bi-envelope-fill"></i></span>
+						<span class="t25-cinfo-text">{{ siteConfig.websiteSettings.contactInfo.email }}</span>
+					</a>
+					}
+
+					@if (formatAddress()) {
+					<div class="t25-cinfo-row">
+						<span class="t25-cinfo-icon"><i class="bi bi-geo-alt-fill"></i></span>
+						<span class="t25-cinfo-text">{{ formatAddress() }}</span>
+					</div>
+					}
 				</div>
 			</div>
+
+			<!-- Right: form -->
+			<div class="col-lg-7 col-12">
+				<div class="t25-form-card">
+					<app-hero-contact-form />
+				</div>
+			</div>
+
 		</div>
 	</div>
-</div>
+</section>

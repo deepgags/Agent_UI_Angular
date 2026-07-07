@@ -17,22 +17,30 @@
         </div>
       </div>
 
-      <!-- Large icon contact badges -->
-      <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center gap-4 flex-wrap">
-        <a class="t17-contact-badge" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-          <span class="t17-contact-icon"><i class="bi bi-telephone-fill"></i></span>
-          <span class="t17-contact-text">
-            <small>Call us</small>
-            <strong>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}</strong>
-          </span>
-        </a>
-        <a class="t17-contact-badge" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-          <span class="t17-contact-icon"><i class="bi bi-envelope-fill"></i></span>
-          <span class="t17-contact-text">
-            <small>Email us</small>
-            <strong>{{ siteConfig?.websiteSettings?.contactInfo?.email }}</strong>
-          </span>
-        </a>
+      <!-- Agent info -->
+      <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center gap-3">
+        @if (siteConfig) {
+        <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
+             alt="Agent" class="t17-header-agent-img flex-shrink-0" />
+        <div>
+          <p class="t17-header-agent-name mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+          <p class="t17-header-agent-desig mb-2">{{ siteConfig.designation }}</p>
+          @if (siteConfig.websiteSettings.contactInfo.phone) {
+          <a class="t17-header-agent-link d-flex align-items-center gap-2 mb-1"
+             [href]="'tel:' + (siteConfig.websiteSettings.contactInfo.phone | phone)">
+            <i class="bi bi-telephone-fill t17-header-agent-icon"></i>
+            {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+          </a>
+          }
+          @if (siteConfig.websiteSettings.contactInfo.email) {
+          <a class="t17-header-agent-link d-flex align-items-center gap-2"
+             [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+            <i class="bi bi-envelope-fill t17-header-agent-icon"></i>
+            {{ siteConfig.websiteSettings.contactInfo.email }}
+          </a>
+          }
+        </div>
+        }
       </div>
 
       <!-- Social + brokerage logo -->

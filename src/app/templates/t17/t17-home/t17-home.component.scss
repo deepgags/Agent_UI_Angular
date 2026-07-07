@@ -227,7 +227,33 @@
     color: #555;
     margin-bottom: 18px;
 }
+/* Contact rows in team cards */
+.t17-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.t17-contact-icon {
+  color: var(--primary-color, #06A788);
+  margin-top: 2px;
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.t17-contact-text {
+  font-size: 13px;
+  color: #000;
+  font-weight: 500;
+  word-break: break-word;
+  &:hover { color: var(--primary-color, #06A788); }
+}
+
 .background-container p.text-white:not(.card-text),
 .search-container > * p.text-white:not(.card-text) {
   font-size: 20px;
 }
+@media (max-width: 767px) {
+  .overlay-image, .overlay-image2 { display: none !important; }
+}
+

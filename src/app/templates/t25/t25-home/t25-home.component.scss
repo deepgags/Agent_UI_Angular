@@ -403,3 +403,97 @@
 .search-container > * p.text-white:not(.card-text) {
   font-size: 20px;
 }
+
+/* ── Let's Get In Touch section ─────────────────────────────────── */
+.t25-contact-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #eef1f5 100%);
+  border-top: 1px solid #e2e6ea;
+}
+
+.t25-contact-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary-color, #e63946);
+  margin-bottom: 8px;
+}
+
+.t25-contact-heading {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.t25-agent-contact-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e9ecef;
+}
+
+.t25-contact-agent-img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--primary-color, #e63946);
+}
+
+.t25-cagent-name {
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+.t25-cagent-desig {
+  font-size: 0.82rem;
+  color: var(--primary-color, #e63946);
+}
+
+.t25-cinfo-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  &:last-child { margin-bottom: 0; }
+}
+
+.t25-cinfo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--primary-color, #e63946);
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.t25-cinfo-text {
+  font-size: 0.9rem;
+  color: #495057;
+  line-height: 1.5;
+  padding-top: 6px;
+  word-break: break-word;
+}
+
+.t25-form-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e9ecef;
+
+  /* Override the shared component's heading color */
+  .info { color: var(--primary-color, #e63946) !important; }
+}
+
+@media (max-width: 768px) {
+  .t25-contact-section { padding: 48px 0; }
+  .t25-form-card { padding: 24px; }
+}

@@ -95,6 +95,10 @@
   padding-top: 158px;
 }
 
+@media (max-width: 991px) {
+  .t9-top-pad { padding-top: 340px; }
+}
+
 @media (max-width: 768px) {
   .t9-top-pad { padding-top: 340px; }
 }

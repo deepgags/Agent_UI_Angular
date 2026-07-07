@@ -82,8 +82,12 @@
   padding-top: 158px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .t28-top-pad { padding-top: 316px; }
+}
+
+@media (max-width: 768px) {
+  .t28-top-pad { padding-top: 380px; }
 }
 
 /* 20% header height increase */

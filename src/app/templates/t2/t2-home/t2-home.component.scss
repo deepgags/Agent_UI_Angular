@@ -104,3 +104,7 @@
 .search-container > * p.text-white:not(.card-text) {
   font-size: 20px;
 }
+@media (max-width: 767px) {
+  .overlay-image, .overlay-image2 { display: none !important; }
+}
+

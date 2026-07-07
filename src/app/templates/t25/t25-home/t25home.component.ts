@@ -26,6 +26,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 		FeaturedPropertiesComponent,
 		HeroContactFormComponent,
 		TeamCardComponent,
+		PhoneNumberFormatPipe,
 	],
 	templateUrl: "./t25-home.component.html",
 	styleUrls: ["./t25-home.component.scss", "../t25.component.scss"],
@@ -69,4 +70,11 @@ export class T25HomeComponent implements OnInit {
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {
 		this.searchService.goToSearch(selectedFilters, searchByMap);
 	};
+
+	formatAddress(): string {
+		const ci = this.siteConfig?.websiteSettings?.contactInfo;
+		if (!ci) return '';
+		return [ci.streetAddress, ci.municipality, ci.province, ci.postalCode]
+			.filter(Boolean).join(', ');
+	}
 }

@@ -1,84 +1,89 @@
-﻿<div class="container-fluid" style="background:#0a0a0a;">
+﻿<div class="container-fluid" style="background:#f4f6f8;border-top:1px solid #e2e6ea;">
   <div class="container py-5">
     <footer>
-      <div class="row g-4 align-items-start pb-4 mb-3" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div class="row g-4 align-items-start pb-4 mb-3" style="border-bottom:1px solid #dee2e6;">
         <div class="col-lg-4 col-12">
           @if (siteConfig) {
           <a [routerLink]="['home']" class="d-inline-block mb-3">
             <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl+siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'" alt="Logo" style="max-height:55px;" />
           </a>
           @if (siteConfig.businessName) {
-          <p class="fw-bold mb-1" style="background:linear-gradient(90deg,var(--primary-color,#818cf8),#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">{{ siteConfig.businessName }}</p>
+          <p class="fw-bold mb-1" style="color:var(--primary-color,#e63946);">{{ siteConfig.businessName }}</p>
           }
-          <p class="text-white-50 small mb-3" style="font-size:0.78rem;">Next-level real estate services</p>
+          <p class="mb-3" style="font-size:0.78rem;color:#6c757d;">Next-level real estate services</p>
           <div class="d-flex gap-2">
             @if (siteConfig.websiteSettings.socialLinks.facebook) {
             <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer"
-               style="width:32px;height:32px;background:rgba(255,255,255,0.05);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);" class="text-white-50 text-decoration-none"><i class="bi bi-facebook"></i></a>
+               style="width:32px;height:32px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #dee2e6;color:#495057;" class="text-decoration-none"><i class="bi bi-facebook"></i></a>
             }
             @if (siteConfig.websiteSettings.socialLinks.twitter) {
             <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer"
-               style="width:32px;height:32px;background:rgba(255,255,255,0.05);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);" class="text-white-50 text-decoration-none"><i class="bi bi-twitter"></i></a>
+               style="width:32px;height:32px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #dee2e6;color:#495057;" class="text-decoration-none"><i class="bi bi-twitter"></i></a>
             }
             @if (siteConfig.websiteSettings.socialLinks.instagram) {
             <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer"
-               style="width:32px;height:32px;background:rgba(255,255,255,0.05);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);" class="text-white-50 text-decoration-none"><i class="bi bi-instagram"></i></a>
+               style="width:32px;height:32px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #dee2e6;color:#495057;" class="text-decoration-none"><i class="bi bi-instagram"></i></a>
             }
             @if (siteConfig.websiteSettings.socialLinks.linkedin) {
             <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer"
-               style="width:32px;height:32px;background:rgba(255,255,255,0.05);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);" class="text-white-50 text-decoration-none"><i class="bi bi-linkedin"></i></a>
+               style="width:32px;height:32px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #dee2e6;color:#495057;" class="text-decoration-none"><i class="bi bi-linkedin"></i></a>
             }
             @if (siteConfig.websiteSettings.socialLinks.youtube) {
             <a [href]="siteConfig.websiteSettings.socialLinks.youtube" target="_blank" rel="noopener noreferrer"
-               style="width:32px;height:32px;background:rgba(255,255,255,0.05);border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);" class="text-white-50 text-decoration-none"><i class="bi bi-youtube"></i></a>
+               style="width:32px;height:32px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid #dee2e6;color:#495057;" class="text-decoration-none"><i class="bi bi-youtube"></i></a>
             }
           </div>
           }
         </div>
         @if (siteConfig) {
         <div class="col-lg-4 col-md-6">
-          <div class="p-3 rounded-3" style="border-left:3px solid var(--primary-color,#818cf8);background:rgba(255,255,255,0.03);">
-            <div class="d-flex align-items-center gap-3 mb-3">
+          <div class="p-3 rounded-3" style="border-left:3px solid var(--primary-color,#e63946);background:#fff;box-shadow:0 1px 6px rgba(0,0,0,0.06);">
+            <div class="d-flex align-items-start gap-3 mb-3">
               <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl+siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
-                   class="rounded-circle flex-shrink-0" style="width:52px;height:52px;object-fit:cover;" />
+                   class="flex-shrink-0" style="width:80px;height:80px;object-fit:cover;border-radius:6px;border:2px solid var(--primary-color,#e63946);" />
               <div>
-                <p class="text-white fw-semibold mb-0 small">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
-                <p style="color:var(--primary-color,#818cf8);font-size:0.72rem;" class="mb-0">{{ siteConfig.designation }}</p>
+                <p class="fw-semibold mb-0 small" style="color:#1a1a1a;">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+                <p class="mb-2" style="color:var(--primary-color,#e63946);font-size:0.72rem;">{{ siteConfig.designation }}</p>
+                @if (siteConfig.websiteSettings.contactInfo.phone) {
+                <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-flex align-items-center text-decoration-none small mb-1" style="color:#6c757d;">
+                  <i class="bi bi-telephone-fill me-2" style="color:var(--primary-color,#e63946);"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+                </a>
+                }
+                <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-flex align-items-center text-decoration-none small mb-1" style="color:#6c757d;">
+                  <i class="bi bi-envelope-fill me-2" style="color:var(--primary-color,#e63946);"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
+                </a>
+                @if (formatAddress()) {
+                <p class="d-flex align-items-start text-decoration-none small mb-0" style="color:#6c757d;">
+                  <i class="bi bi-geo-alt-fill me-2 mt-1" style="color:var(--primary-color,#e63946);flex-shrink:0;"></i>{{ formatAddress() }}
+                </p>
+                }
               </div>
             </div>
-            @if (siteConfig.websiteSettings.contactInfo.phone) {
-            <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-flex align-items-center text-white-50 text-decoration-none small mb-2">
-              <i class="bi bi-telephone-fill me-2" style="color:var(--primary-color,#818cf8);"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-            </a>
-            }
-            <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-flex align-items-center text-white-50 text-decoration-none small">
-              <i class="bi bi-envelope-fill me-2" style="color:var(--primary-color,#818cf8);"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
-            </a>
           </div>
         </div>
         @if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
         <div class="col-lg-4 col-md-6">
-          <div class="p-3 rounded-3" style="border-left:3px solid rgba(192,132,252,0.5);background:rgba(255,255,255,0.02);">
-            <div class="d-flex align-items-center gap-3 mb-3">
+          <div class="p-3 rounded-3" style="border-left:3px solid #adb5bd;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,0.06);">
+            <div class="d-flex align-items-start gap-3 mb-0">
               <img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl+siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
-                   class="rounded-circle flex-shrink-0" style="width:52px;height:52px;object-fit:cover;" />
+                   class="flex-shrink-0" style="width:80px;height:80px;object-fit:cover;border-radius:6px;border:2px solid #adb5bd;" />
               <div>
-                <p class="text-white fw-semibold mb-0 small">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
-                <p style="color:#c084fc;font-size:0.72rem;" class="mb-0">{{ siteConfig.secondaryAgent.designation }}</p>
+                <p class="fw-semibold mb-0 small" style="color:#1a1a1a;">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
+                <p class="mb-2" style="color:#6c757d;font-size:0.72rem;">{{ siteConfig.secondaryAgent.designation }}</p>
+                <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-flex align-items-center text-decoration-none small mb-1" style="color:#6c757d;">
+                  <i class="bi bi-telephone-fill me-2" style="color:#adb5bd;"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
+                </a>
+                <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="d-flex align-items-center text-decoration-none small" style="color:#6c757d;">
+                  <i class="bi bi-envelope-fill me-2" style="color:#adb5bd;"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
+                </a>
               </div>
             </div>
-            <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-flex align-items-center text-white-50 text-decoration-none small mb-2">
-              <i class="bi bi-telephone-fill me-2" style="color:#c084fc;"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
-            </a>
-            <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="d-flex align-items-center text-white-50 text-decoration-none small">
-              <i class="bi bi-envelope-fill me-2" style="color:#c084fc;"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
-            </a>
           </div>
         </div>
         }
         }
       </div>
-      <p class="text-center mb-0" style="color:rgba(255,255,255,0.25);font-size:0.7rem;">Copyright 2026 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information shown.</p>
+      <p class="text-center mb-0" style="color:#adb5bd;font-size:0.7rem;">Copyright 2026 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information shown.</p>
     </footer>
   </div>
 </div>

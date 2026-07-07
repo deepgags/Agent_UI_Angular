@@ -18,4 +18,11 @@ export class t17FooterComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit(): void {}
+
+	formatAddress(): string {
+		const ci = this.siteConfig?.websiteSettings?.contactInfo;
+		if (!ci) return '';
+		return [ci.streetAddress, ci.municipality, ci.province, ci.postalCode]
+			.filter(Boolean).join(', ');
+	}
 }

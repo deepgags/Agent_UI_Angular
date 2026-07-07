@@ -111,5 +111,9 @@
   .top-pad { padding-top: 196px; }
 }
 
+@media (max-width: 768px) {
+  .top-pad { padding-top: 196px; }
+}
+
 /* 20% header height increase */
 .t1-header .row { padding-top: 10px !important; padding-bottom: 10px !important; }

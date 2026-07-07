@@ -1,4 +1,4 @@
-﻿<div class="container-fluid" style="background:#181818;">
+﻿<div class="container-fluid" style="background:#f4f6f8;border-top:1px solid #e2e6ea;">
   <div class="container py-5">
     <footer>
       <div class="row g-4">
@@ -8,7 +8,7 @@
             <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl+siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'" alt="Logo" style="max-height:60px;" />
           </a>
           @if (siteConfig.businessName) {
-          <p class="text-white fw-bold mb-1">{{ siteConfig.businessName }}</p>
+          <p class="fw-bold mb-1" style="color:var(--primary-color,#ec4899);">{{ siteConfig.businessName }}</p>
           }
           }
         </div>
@@ -20,30 +20,30 @@
               <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl+siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
                    class="rounded-circle flex-shrink-0" style="width:58px;height:58px;object-fit:cover;border:2px solid var(--primary-color,#ec4899);" />
               <div>
-                <p class="text-white fw-semibold mb-0 small">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
-                <p class="text-white-50 small mb-2" style="font-size:0.75rem;">{{ siteConfig.designation }}</p>
+                <p class="fw-semibold mb-0 small" style="color:#1a1a1a;">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+                <p class="mb-2" style="color:#6c757d;font-size:0.75rem;">{{ siteConfig.designation }}</p>
                 @if (siteConfig.websiteSettings.contactInfo.phone) {
-                <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-block text-white-50 text-decoration-none small mb-1">
-                  <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+                <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-block text-decoration-none small mb-1" style="color:#6c757d;">
+                  <i class="bi bi-telephone-fill me-1" style="color:var(--primary-color,#ec4899);"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
                 </a>
                 }
-                <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-block text-white-50 text-decoration-none small">
-                  <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
+                <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-block text-decoration-none small" style="color:#6c757d;">
+                  <i class="bi bi-envelope-fill me-1" style="color:var(--primary-color,#ec4899);"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
                 </a>
               </div>
             </div>
             @if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
             <div class="d-flex align-items-start gap-3">
               <img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl+siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
-                   class="rounded-circle flex-shrink-0" style="width:58px;height:58px;object-fit:cover;border:2px solid var(--primary-color,#ec4899);" />
+                   class="rounded-circle flex-shrink-0" style="width:58px;height:58px;object-fit:cover;border:2px solid #adb5bd;" />
               <div>
-                <p class="text-white fw-semibold mb-0 small">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
-                <p class="text-white-50 small mb-2" style="font-size:0.75rem;">{{ siteConfig.secondaryAgent.designation }}</p>
-                <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-block text-white-50 text-decoration-none small mb-1">
-                  <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
+                <p class="fw-semibold mb-0 small" style="color:#1a1a1a;">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
+                <p class="mb-2" style="color:#6c757d;font-size:0.75rem;">{{ siteConfig.secondaryAgent.designation }}</p>
+                <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-block text-decoration-none small mb-1" style="color:#6c757d;">
+                  <i class="bi bi-telephone-fill me-1" style="color:#adb5bd;"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
                 </a>
-                <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="d-block text-white-50 text-decoration-none small">
-                  <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
+                <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="d-block text-decoration-none small" style="color:#6c757d;">
+                  <i class="bi bi-envelope-fill me-1" style="color:#adb5bd;"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
                 </a>
               </div>
             </div>
@@ -56,27 +56,27 @@
           @if (siteConfig) {
           <div class="d-flex flex-column gap-2">
             @if (siteConfig.websiteSettings.socialLinks.facebook) {
-            <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center text-white-50 text-decoration-none small gap-2">
+            <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center text-decoration-none small gap-2" style="color:#495057;">
               <i class="bi bi-facebook fs-6" style="color:#1877F2;"></i>Facebook
             </a>
             }
             @if (siteConfig.websiteSettings.socialLinks.twitter) {
-            <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center text-white-50 text-decoration-none small gap-2">
+            <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center text-decoration-none small gap-2" style="color:#495057;">
               <i class="bi bi-twitter fs-6" style="color:#1DA1F2;"></i>Twitter / X
             </a>
             }
             @if (siteConfig.websiteSettings.socialLinks.instagram) {
-            <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center text-white-50 text-decoration-none small gap-2">
+            <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center text-decoration-none small gap-2" style="color:#495057;">
               <i class="bi bi-instagram fs-6" style="color:#E4405F;"></i>Instagram
             </a>
             }
             @if (siteConfig.websiteSettings.socialLinks.linkedin) {
-            <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center text-white-50 text-decoration-none small gap-2">
+            <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center text-decoration-none small gap-2" style="color:#495057;">
               <i class="bi bi-linkedin fs-6" style="color:#0A66C2;"></i>LinkedIn
             </a>
             }
             @if (siteConfig.websiteSettings.socialLinks.youtube) {
-            <a [href]="siteConfig.websiteSettings.socialLinks.youtube" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center text-white-50 text-decoration-none small gap-2">
+            <a [href]="siteConfig.websiteSettings.socialLinks.youtube" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center text-decoration-none small gap-2" style="color:#495057;">
               <i class="bi bi-youtube fs-6" style="color:#FF0000;"></i>YouTube
             </a>
             }
@@ -84,8 +84,8 @@
           }
         </div>
       </div>
-      <hr style="border-color:rgba(255,255,255,0.08);margin-top:2.5rem;">
-      <p class="text-center text-white-50 small mb-0" style="font-size:0.73rem;">Copyright 2026 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information shown.</p>
+      <hr style="border-color:#dee2e6;margin-top:2.5rem;">
+      <p class="text-center small mb-0" style="color:#adb5bd;font-size:0.73rem;">Copyright 2026 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information shown.</p>
     </footer>
   </div>
 </div>

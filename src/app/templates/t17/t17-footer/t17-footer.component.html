@@ -39,40 +39,44 @@
           <div class="col-lg-8 col-12">
             @if (siteConfig) {
             <div class="d-flex flex-wrap gap-3">
-              <div class="rounded-3 p-3 flex-grow-1" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);min-width:220px;">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl+siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
-                       class="rounded-circle flex-shrink-0" style="width:48px;height:48px;object-fit:cover;border:2px solid var(--primary-color,#8b5cf6);" />
-                  <div>
-                    <p class="text-white fw-semibold mb-0 small">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
-                    <p style="color:var(--primary-color,#8b5cf6);font-size:0.72rem;" class="mb-0">{{ siteConfig.designation }}</p>
+              <!-- Primary agent -->
+              <div class="rounded-3 p-3 flex-grow-1 d-flex gap-3" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);min-width:220px;">
+                <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl+siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
+                     alt="Agent photo" style="width:100px;height:100px;object-fit:cover;flex-shrink:0;border:2px solid var(--primary-color,#8b5cf6);border-radius:4px;" />
+                <div>
+                  <p class="text-white fw-semibold mb-1">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+                  <p style="color:var(--primary-color,#8b5cf6);font-size:0.78rem;" class="mb-2">{{ siteConfig.designation }}</p>
+                  @if (siteConfig.websiteSettings.contactInfo.phone) {
+                  <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-flex align-items-center text-white-50 text-decoration-none small mb-1">
+                    <i class="bi bi-telephone-fill me-2" style="color:var(--primary-color,#8b5cf6);"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+                  </a>
+                  }
+                  <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-flex align-items-center text-white-50 text-decoration-none small mb-1">
+                    <i class="bi bi-envelope-fill me-2" style="color:var(--primary-color,#8b5cf6);"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
+                  </a>
+                  @if (formatAddress()) {
+                  <div class="d-flex align-items-start text-white-50 small">
+                    <i class="bi bi-geo-alt-fill me-2 mt-1 flex-shrink-0" style="color:var(--primary-color,#8b5cf6);"></i>
+                    <span>{{ formatAddress() }}</span>
                   </div>
+                  }
                 </div>
-                @if (siteConfig.websiteSettings.contactInfo.phone) {
-                <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-flex align-items-center text-white-50 text-decoration-none small mb-2">
-                  <i class="bi bi-telephone-fill me-2" style="color:var(--primary-color,#8b5cf6);"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-                </a>
-                }
-                <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-flex align-items-center text-white-50 text-decoration-none small">
-                  <i class="bi bi-envelope-fill me-2" style="color:var(--primary-color,#8b5cf6);"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
-                </a>
               </div>
+              <!-- Secondary agent -->
               @if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
-              <div class="rounded-3 p-3 flex-grow-1" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);min-width:220px;">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl+siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
-                       class="rounded-circle flex-shrink-0" style="width:48px;height:48px;object-fit:cover;border:2px solid var(--primary-color,#8b5cf6);" />
-                  <div>
-                    <p class="text-white fw-semibold mb-0 small">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
-                    <p style="color:var(--primary-color,#8b5cf6);font-size:0.72rem;" class="mb-0">{{ siteConfig.secondaryAgent.designation }}</p>
-                  </div>
+              <div class="rounded-3 p-3 flex-grow-1 d-flex gap-3" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);min-width:220px;">
+                <img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl+siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
+                     alt="Agent photo" style="width:100px;height:100px;object-fit:cover;flex-shrink:0;border:2px solid var(--primary-color,#8b5cf6);border-radius:4px;" />
+                <div>
+                  <p class="text-white fw-semibold mb-1">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
+                  <p style="color:var(--primary-color,#8b5cf6);font-size:0.78rem;" class="mb-2">{{ siteConfig.secondaryAgent.designation }}</p>
+                  <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-flex align-items-center text-white-50 text-decoration-none small mb-1">
+                    <i class="bi bi-telephone-fill me-2" style="color:var(--primary-color,#8b5cf6);"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
+                  </a>
+                  <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="d-flex align-items-center text-white-50 text-decoration-none small">
+                    <i class="bi bi-envelope-fill me-2" style="color:var(--primary-color,#8b5cf6);"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
+                  </a>
                 </div>
-                <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-flex align-items-center text-white-50 text-decoration-none small mb-2">
-                  <i class="bi bi-telephone-fill me-2" style="color:var(--primary-color,#8b5cf6);"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
-                </a>
-                <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="d-flex align-items-center text-white-50 text-decoration-none small">
-                  <i class="bi bi-envelope-fill me-2" style="color:var(--primary-color,#8b5cf6);"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
-                </a>
               </div>
               }
             </div>
