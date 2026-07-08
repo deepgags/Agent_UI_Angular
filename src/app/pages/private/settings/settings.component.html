@@ -358,8 +358,15 @@
 											class="preview-img"
 											alt="Personal Branding Logo Preview" />
 									</div>
-								} @else if (existingPersonalBrandingLogo) {
-									<div class="image-preview-card">
+								} @else if (existingPersonalBrandingLogo && !removeExistingPersonalBrandingLogo) {
+									<div class="image-preview-card position-relative">
+										<button
+											type="button"
+											class="btn-remove"
+											(click)="removePersonalBrandingLogo()"
+											title="Remove Logo">
+											<i class="bi bi-x-circle-fill"></i>
+										</button>
 										<p class="preview-label">Personal Branding Logo</p>
 										<img
 											[src]="localImageBaseUrl + existingPersonalBrandingLogo"

@@ -66,6 +66,7 @@ export class SettingsComponent {
 	existingSecondaryProfileImage = "";
 	existingBrokerageImage = "";
 	existingPersonalBrandingLogo = "";
+	removeExistingPersonalBrandingLogo = false;
 	primaryAgentProfileImage: BehaviorSubject<Blob | null>;
 	primaryAgentProfileImageObservable: Observable<Blob | null>;
 
@@ -409,6 +410,8 @@ export class SettingsComponent {
 
 			if (this.personalBrandingLogoImage.value) {
 				formData.append("personalBrandingLogo", this.personalBrandingLogoImage.value, "personal-branding-logo.png");
+			} else if (this.removeExistingPersonalBrandingLogo) {
+				formData.append("removePersonalBrandingLogo", "true");
 			} else if (this.existingPersonalBrandingLogo) {
 				formData.append("existingPersonalBrandingLogo", this.existingPersonalBrandingLogo);
 			}
@@ -570,6 +573,9 @@ export class SettingsComponent {
 
 	removePersonalBrandingLogo(): void {
 		this.personalBrandingLogoImage.next(null);
+		if (this.existingPersonalBrandingLogo) {
+			this.removeExistingPersonalBrandingLogo = true;
+		}
 		if (this.personalBrandingLogoUpload) {
 			this.personalBrandingLogoUpload.nativeElement.value = "";
 		}
