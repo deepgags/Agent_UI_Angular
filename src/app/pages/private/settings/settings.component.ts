@@ -27,6 +27,7 @@ import { BrokerageTypeService } from "../../../services/brokerage.service";
 import { CustomerService } from "../../../services/customer.service";
 import { LoadingService } from "../../../services/loading.service";
 import { NotificationService } from "../../../services/notification.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 @Component({
 	selector: "app-settings",
@@ -89,6 +90,7 @@ export class SettingsComponent {
 		private loadingService: LoadingService,
 		private titleService: Title,
 		public dialogService: DialogService,
+		private sharedDataService: SharedDataService,
 	) {
 		this.titleService.setTitle("Profile");
 
@@ -106,6 +108,10 @@ export class SettingsComponent {
 
 		this.secondaryAgentProfileImage = new BehaviorSubject<Blob | null>(null);
 		this.secondaryAgentProfileImageObservable = this.secondaryAgentProfileImage.asObservable();
+	}
+
+	get isBroker(): boolean {
+		return this.sharedDataService.isBroker();
 	}
 
 	ngOnInit() {
