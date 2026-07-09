@@ -60,6 +60,7 @@ export class SettingsComponent {
 
 	agentForm!: FormGroup;
 	agentData!: CustomerModel;
+	isDataLoaded = false;
 	brokerageTypes: string[] = [];
 	_brokerageTypesCopy: string[] = [];
 
@@ -124,7 +125,6 @@ export class SettingsComponent {
 			phoneNumber: new FormControl("", [Validators.required]),
 			designation: new FormControl("", [Validators.required]),
 			emailAddress: new FormControl("", [Validators.required, Validators.email]),
-			// address: new FormControl("", [Validators.required]),
 			streetAddress: new FormControl("", [Validators.required]),
 			municipality: new FormControl("", [Validators.required]),
 			province: new FormControl("", [Validators.required]),
@@ -135,9 +135,7 @@ export class SettingsComponent {
 			profileImagePath: new FormControl(""),
 			siteUrl: new FormControl({ value: "", disabled: true }, [
 				Validators.required,
-				// Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?"),
 			]),
-			// Website Settings Form Controls
 			primaryColor: new FormControl(""),
 			secondaryColor: new FormControl(""),
 			facebook: new FormControl(""),
@@ -162,7 +160,7 @@ export class SettingsComponent {
 			secondaryAgentFirst: new FormControl(false),
 		});
 
-		this.getBrokerageTypes();
+		this.loadData();
 	}
 
 	get emailAddress() {
@@ -229,10 +227,24 @@ export class SettingsComponent {
 	}
 
 	getProfile() {
-		this.customerService.getCustomer().subscribe({
-			next: (response: any) => {
-				if (response.status) {
-					this.agentData = response.data;
+		return this.customerService.getCustomer();
+	}
+
+	getBrokerageTypes() {
+		return this.brokerageTypeService.getBrokerageTypes();
+	}
+
+	loadData() {
+		this.loadingService.loadingOn();
+		forkJoin({
+			brokerageTypes: this.getBrokerageTypes(),
+			profile: this.getProfile(),
+		}).subscribe({
+			next: (responses: any) => {
+				this._brokerageTypesCopy = responses.brokerageTypes.data;
+
+				if (responses.profile.status) {
+					this.agentData = responses.profile.data;
 					const {
 						businessName,
 						firstName,
@@ -243,8 +255,8 @@ export class SettingsComponent {
 						brokerage,
 						designation,
 						subheading,
-					} = response.data;
-					const websiteSettings = response.data.websiteSettings ?? {};
+					} = responses.profile.data;
+					const websiteSettings = responses.profile.data.websiteSettings ?? {};
 
 					const contactInfo = websiteSettings?.contactInfo ?? {};
 					const socialLinks = websiteSettings?.socialLinks ?? {};
@@ -261,7 +273,6 @@ export class SettingsComponent {
 						secondaryAgentFirst,
 					} = websiteSettings;
 					const {
-						// address,
 						streetAddress,
 						municipality,
 						province,
@@ -274,14 +285,12 @@ export class SettingsComponent {
 					this.existingProfileImage = profileImage;
 					this.existingBrokerageImage = brokerageImage;
 					this.existingPersonalBrandingLogo = personalBrandingLogo;
-					// this.brokerageImage.next(brokerage.logoPath);
 
 					this.agentForm.patchValue({
 						businessName: businessName,
 						subheading: subheading,
 						firstName: firstName,
 						lastName: lastName,
-						// address: address,
 						streetAddress: streetAddress,
 						municipality: municipality,
 						province: province,
@@ -293,7 +302,7 @@ export class SettingsComponent {
 						designation: designation,
 					});
 
-					if (response.data.websiteSettings) {
+					if (responses.profile.data.websiteSettings) {
 						this.agentForm.patchValue({
 							primaryColor: primaryColor,
 							secondaryColor: secondaryColor,
@@ -309,11 +318,11 @@ export class SettingsComponent {
 							showFindDreamHomePage: showFindDreamHomePage ?? false,
 							secondaryAgentFirst: secondaryAgentFirst ?? false,
 						});
-						if (response.data.secondaryAgent) {
+						if (responses.profile.data.secondaryAgent) {
 							this.agentForm.get("secondaryAgent")?.patchValue({
-								...response.data.secondaryAgent,
+								...responses.profile.data.secondaryAgent,
 							});
-							this.existingSecondaryProfileImage = response.data.secondaryAgent.profileImage;
+							this.existingSecondaryProfileImage = responses.profile.data.secondaryAgent.profileImage;
 						}
 					}
 					this.setSecondaryAgentValidations({
@@ -324,23 +333,10 @@ export class SettingsComponent {
 				}
 			},
 			error: () => {
-				this.notificationService.showError("An error has occurred while getting customer information");
-			},
-			complete: () => {},
-		});
-	}
-
-	getBrokerageTypes() {
-		this.loadingService.loadingOn();
-		this.brokerageTypeService.getBrokerageTypes().subscribe({
-			next: (response: any) => {
-				this._brokerageTypesCopy = response.data;
-				this.getProfile();
-			},
-			error: () => {
-				this.notificationService.showError("Error occurred while getting brokerage types");
+				this.notificationService.showError("An error has occurred while loading settings");
 			},
 			complete: () => {
+				this.isDataLoaded = true;
 				this.loadingService.loadingOff();
 			},
 		});
@@ -356,7 +352,7 @@ export class SettingsComponent {
 	// }
 
 	save() {
-		console.log(this.agentForm.controls);
+		if (!this.isDataLoaded) return;
 		if (this.agentForm.valid) {
 			this.loadingService.loadingOn();
 			const {
