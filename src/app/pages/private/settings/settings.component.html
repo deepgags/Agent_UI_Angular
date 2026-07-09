@@ -787,6 +787,58 @@
 								</div>
 							</div>
 						</div>
+						<div class="row mt-3">
+							<div class="col-lg-6 col-12">
+								<label class="form-label fw-semibold d-block">Favicon</label>
+								<div
+									class="upload-zone"
+									(click)="faviconUpload.click()">
+									<i class="bi bi-image fs-4 mb-1 d-block text-muted"></i>
+									<span class="text-muted small">Click to upload favicon (JPG or PNG)</span>
+									<input
+										type="file"
+										#faviconUpload
+										(change)="onFaviconChange($event)"
+										class="d-none"
+										id="faviconUpload"
+										accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
+								</div>
+								<p class="text-muted small mt-1 mb-0">Recommended: 32x32 or 48x48px</p>
+							</div>
+							<div class="col-lg-6 col-12 d-flex align-items-center mt-3 mt-lg-0">
+								@if (faviconImageObservable | async; as faviconImage) {
+									<div class="image-preview-card position-relative">
+										<button
+											type="button"
+											class="btn-remove"
+											(click)="removeFavicon()"
+											title="Remove Favicon">
+											<i class="bi bi-x-circle-fill"></i>
+										</button>
+										<p class="preview-label">Favicon</p>
+										<img
+											[src]="faviconImage | blobToUrl"
+											class="preview-img"
+											alt="Favicon Preview" />
+									</div>
+								} @else if (existingFaviconUrl) {
+									<div class="image-preview-card position-relative">
+										<button
+											type="button"
+											class="btn-remove"
+											(click)="removeFavicon()"
+											title="Remove Favicon">
+											<i class="bi bi-x-circle-fill"></i>
+										</button>
+										<p class="preview-label">Favicon</p>
+										<img
+											[src]="localImageBaseUrl + existingFaviconUrl"
+											class="preview-img"
+											alt="Favicon Preview" />
+									</div>
+								}
+							</div>
+						</div>
 					</div>
 
 					<!-- Social Media -->

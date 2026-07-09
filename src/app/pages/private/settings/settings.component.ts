@@ -57,6 +57,7 @@ export class SettingsComponent {
 	_fileSizeLimit = 2097152; //2MB
 	@ViewChild("brokerageLogoUpload", { static: false }) brokerageLogoUpload!: ElementRef<HTMLInputElement>;
 	@ViewChild("personalBrandingLogoUpload", { static: false }) personalBrandingLogoUpload!: ElementRef<HTMLInputElement>;
+	@ViewChild("faviconUpload", { static: false }) faviconUpload!: ElementRef<HTMLInputElement>;
 
 	agentForm!: FormGroup;
 	agentData!: CustomerModel;
@@ -69,6 +70,8 @@ export class SettingsComponent {
 	existingBrokerageImage = "";
 	existingPersonalBrandingLogo = "";
 	removeExistingPersonalBrandingLogo = false;
+	existingFaviconUrl = "";
+	removeExistingFavicon = false;
 	primaryAgentProfileImage: BehaviorSubject<Blob | null>;
 	primaryAgentProfileImageObservable: Observable<Blob | null>;
 
@@ -80,6 +83,9 @@ export class SettingsComponent {
 
 	secondaryAgentProfileImage: BehaviorSubject<Blob | null>;
 	secondaryAgentProfileImageObservable: Observable<Blob | null>;
+
+	faviconImage: BehaviorSubject<Blob | null>;
+	faviconImageObservable: Observable<Blob | null>;
 
 	localImageBaseUrl = environment.localImageUrl;
 
@@ -109,6 +115,9 @@ export class SettingsComponent {
 
 		this.secondaryAgentProfileImage = new BehaviorSubject<Blob | null>(null);
 		this.secondaryAgentProfileImageObservable = this.secondaryAgentProfileImage.asObservable();
+
+		this.faviconImage = new BehaviorSubject<Blob | null>(null);
+		this.faviconImageObservable = this.faviconImage.asObservable();
 	}
 
 	get isBroker(): boolean {
@@ -267,6 +276,7 @@ export class SettingsComponent {
 						profileImage,
 						personalBrandingLogo,
 						siteUrl,
+						faviconUrl,
 						showHomeWorthPage,
 						showSellingInNeighborHoodPage,
 						showFindDreamHomePage,
@@ -285,6 +295,7 @@ export class SettingsComponent {
 					this.existingProfileImage = profileImage;
 					this.existingBrokerageImage = brokerageImage;
 					this.existingPersonalBrandingLogo = personalBrandingLogo;
+					this.existingFaviconUrl = faviconUrl || "";
 
 					this.agentForm.patchValue({
 						businessName: businessName,
@@ -418,6 +429,15 @@ export class SettingsComponent {
 				formData.append("existingPersonalBrandingLogo", this.existingPersonalBrandingLogo);
 			}
 
+			// Favicon
+			if (this.faviconImage.value) {
+				formData.append("favicon", this.faviconImage.value, "favicon.png");
+			} else if (this.removeExistingFavicon) {
+				formData.append("removeFavicon", "true");
+			} else if (this.existingFaviconUrl) {
+				formData.append("existingFavicon", this.existingFaviconUrl);
+			}
+
 			// social links
 			const socialLinks: any = {};
 			if (facebook) {
@@ -474,7 +494,7 @@ export class SettingsComponent {
 				},
 				complete: () => {
 					this.notificationService.showSuccess("Settings updated successfully");
-					this.loadingService.loadingOff();
+					this.loadData();
 				},
 			});
 		} else {
@@ -580,6 +600,56 @@ export class SettingsComponent {
 		}
 		if (this.personalBrandingLogoUpload) {
 			this.personalBrandingLogoUpload.nativeElement.value = "";
+		}
+	}
+
+	onFaviconChange(event: Event): void {
+		const file = (event.target as HTMLInputElement).files?.[0];
+		if (!file) return;
+
+		if (file.size > this._fileSizeLimit) {
+			this.notificationService.showError("File size must be less than 2MB");
+			return;
+		}
+
+		const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+		const allowedExtensions = [".jpg", ".jpeg", ".png"];
+		const ext = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
+
+		if (!allowedTypes.includes(file.type) || !allowedExtensions.includes(ext)) {
+			this.notificationService.showError("Favicon must be a JPG or PNG image.");
+			return;
+		}
+
+		const ref = this.dialogService.open(ImageDialogComponent, {
+			header: "Adjust Favicon",
+			height: "80%",
+			width: "80%",
+			closable: true,
+			closeOnEscape: true,
+			modal: true,
+			focusOnShow: false,
+			data: {
+				imageChangedEvent: event,
+				freeSelection: true,
+			},
+		});
+		ref?.onClose.subscribe((croppedImage: Blob | null) => {
+			if (croppedImage) {
+				this.faviconImage.next(croppedImage);
+			} else {
+				this.faviconImage.next(null);
+			}
+		});
+	}
+
+	removeFavicon(): void {
+		this.faviconImage.next(null);
+		if (this.existingFaviconUrl) {
+			this.removeExistingFavicon = true;
+		}
+		if (this.faviconUpload) {
+			this.faviconUpload.nativeElement.value = "";
 		}
 	}
 

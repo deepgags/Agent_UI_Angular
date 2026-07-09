@@ -149,6 +149,19 @@ export class RoutesConfigService {
 				);
 			}
 
+			// Set dynamic favicon
+			const faviconUrl = normalized.customer.websiteSettings?.faviconUrl;
+			if (faviconUrl) {
+				let link = this.document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+				if (!link) {
+					link = this.document.createElement("link");
+					link.rel = "icon";
+					this.document.head.appendChild(link);
+				}
+				link.type = "image/png";
+				link.href = `${environment.localImageUrl}${faviconUrl}`;
+			}
+
 			normalized.customer.websiteSettings.contactInfo.address = this.formatContactAddress(
 				normalized.customer.websiteSettings.contactInfo,
 			);
