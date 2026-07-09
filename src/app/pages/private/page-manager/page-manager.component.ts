@@ -56,14 +56,9 @@ export class PageManagerComponent implements OnInit {
 	pageForm!: FormGroup;
 	editingPage: Page | null = null;
 	heroImages: string[] = [];
-	heroImagesOriginalOrder: string[] = [];
 	uploadedFiles: File[] = [];
 	localImageBaseUrl = environment.localImageUrl;
 	@ViewChild("fileUpload") fileUpload: any;
-
-	get heroOrderChanged(): boolean {
-		return JSON.stringify(this.heroImages) !== JSON.stringify(this.heroImagesOriginalOrder);
-	}
 	constructor(
 		private fb: FormBuilder,
 		private loadingService: LoadingService,
@@ -160,29 +155,8 @@ export class PageManagerComponent implements OnInit {
 				pageData.homeSectionText4 = this.normalizeEditorHtmlSpaces(formValue.homeSectionText4);
 			}
 
-			if (this.canManageHeroImages(this.editingPage) && this.heroImages.length > 0) {
-				(pageData as UpdatePageRequest).heroImages = this.heroImages;
-			}
-
 			this.loadingService.loadingOn();
-
-			if (this.canManageHeroImages(this.editingPage) && this.uploadedFiles.length > 0) {
-				const fileLimit = this.getHeroImageLimit(this.editingPage);
-				const filesToUpload = this.uploadedFiles.slice(0, fileLimit);
-				this.pageService.uploadHeroImages(this.editingPage!._id, filesToUpload).subscribe({
-					next: (images: string[]) => {
-						this.heroImages = images;
-						this.uploadedFiles = [];
-						this._savePageData(pageData);
-					},
-					error: (error) => {
-						this.notificationService.showError(error.error?.message || "Failed to upload hero images");
-						this.loadingService.loadingOff();
-					},
-				});
-			} else {
-				this._savePageData(pageData);
-			}
+			this.saveHeroImageChanges(pageData);
 		} else {
 			this.pageForm.markAllAsTouched();
 		}
@@ -237,6 +211,32 @@ export class PageManagerComponent implements OnInit {
 		}
 	}
 
+	private saveHeroImageChanges(pageData: CreatePageRequest | UpdatePageRequest) {
+		if (!this.canManageHeroImages(this.editingPage) || !this.editingPage) {
+			this._savePageData(pageData);
+			return;
+		}
+
+		if (this.uploadedFiles.length === 0) {
+			this._savePageData(pageData);
+			return;
+		}
+
+		const fileLimit = this.getHeroImageLimit(this.editingPage);
+		const filesToUpload = this.uploadedFiles.slice(0, fileLimit);
+		this.pageService.uploadHeroImages(this.editingPage._id, filesToUpload).subscribe({
+			next: (images: string[]) => {
+				this.heroImages = images;
+				this.uploadedFiles = [];
+				this._savePageData(pageData);
+			},
+			error: (error) => {
+				this.notificationService.showError(error.error?.message || "Failed to upload hero images");
+				this.loadingService.loadingOff();
+			},
+		});
+	}
+
 	deletePage(page: Page) {
 		if (!page.isDeletable) {
 			this.notificationService.showError("This page cannot be deleted");
@@ -283,7 +283,6 @@ export class PageManagerComponent implements OnInit {
 		this.pageService.getHeroImages(pageId).subscribe({
 			next: (images: string[]) => {
 				this.heroImages = images;
-				this.heroImagesOriginalOrder = [...images];
 			},
 			error: (error) => {
 				this.notificationService.showError("Failed to load hero images");
@@ -292,7 +291,21 @@ export class PageManagerComponent implements OnInit {
 	}
 
 	onHeroImageDrop(event: CdkDragDrop<string[]>): void {
+		if (!this.editingPage) return;
+
+		const previousOrder = [...this.heroImages];
 		moveItemInArray(this.heroImages, event.previousIndex, event.currentIndex);
+
+		const newOrder = this.heroImages.map((image) => previousOrder.indexOf(image));
+		this.pageService.reorderHeroImages(this.editingPage._id, newOrder).subscribe({
+			next: (images: string[]) => {
+				this.heroImages = images;
+			},
+			error: (error) => {
+				this.heroImages = previousOrder;
+				this.notificationService.showError(error.error?.message || "Failed to reorder hero images");
+			},
+		});
 	}
 
 
@@ -356,24 +369,6 @@ export class PageManagerComponent implements OnInit {
 			return page.heroImageLimit;
 		}
 		return page.pageKey === "home" ? 5 : 1;
-	}
-
-	private uploadHeroImages() {
-		if (!this.editingPage || this.uploadedFiles.length === 0) return;
-
-		this.loadingService.loadingOn();
-		this.pageService.uploadHeroImages(this.editingPage._id, this.uploadedFiles).subscribe({
-			next: (images: string[]) => {
-				this.heroImages = images;
-				this.uploadedFiles = [];
-				this.notificationService.showSuccess("Hero images uploaded successfully");
-				this.loadingService.loadingOff();
-			},
-			error: (error) => {
-				this.notificationService.showError(error.error?.message || "Failed to upload hero images");
-				this.loadingService.loadingOff();
-			},
-		});
 	}
 
 	deleteHeroImage(imageIndex: number) {

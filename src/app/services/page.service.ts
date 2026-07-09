@@ -167,9 +167,9 @@ export class PageService {
 		);
 	}
 
-	reorderHeroImages(pageId: string, images: string[]): Observable<string[]> {
-		return this.http.patch<string[]>(`${this.baseUrl}/page/${pageId}/hero-images`, { images }).pipe(
-			map((result: any) => result?.data ?? images),
+	reorderHeroImages(pageId: string, newOrder: number[]): Observable<string[]> {
+		return this.http.patch<string[]>(`${this.baseUrl}/page/${pageId}/hero-images/reorder`, { newOrder }).pipe(
+			map((result: any) => result?.data ?? []),
 			catchError((error) => {
 				console.error("Error reordering hero images:", error);
 				return throwError(() => error);
