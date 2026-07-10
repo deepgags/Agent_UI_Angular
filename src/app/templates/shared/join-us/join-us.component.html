@@ -1,0 +1,173 @@
+<!-- Banner -->
+<div class="position-relative">
+	<img class="banner w-100" src="/images/banner3.jpg" alt="Join Our Team" />
+	<div class="position-absolute top-0 start-0 w-100 h-100" style="background:rgba(0,0,0,0.5);"></div>
+	<div class="position-absolute top-50 start-50 translate-middle text-center">
+		<h1 class="text-white fw-bold baner-text">Join Our Team</h1>
+	</div>
+</div>
+
+<!-- Main layout -->
+<div class="container-fluid px-3 px-lg-5 py-4">
+	<div class="row g-4 align-items-start">
+
+		<!-- LEFT: Career Content -->
+		<div class="col-lg-8">
+
+			<!-- Hero Section -->
+			<div class="career-hero mb-4 p-4 rounded-3 bg-white border">
+				<div class="row g-4 align-items-center">
+					<div class="col-lg-6">
+						<h1 class="career-title-main">YOUR CAREER.</h1>
+						<h2 class="career-title-sub">Our Commitment.</h2>
+						<div class="career-divider my-3"></div>
+						<h6 class="career-tagline mb-3">More Support. More Opportunities. More Success.</h6>
+						<p class="text-muted mb-0" style="font-size:0.95rem;line-height:1.7;">
+							We provide the tools, training, and a supportive environment so you can do what you do
+							best — help people and build the career you've always envisioned.
+						</p>
+					</div>
+					<div class="col-lg-6">
+						<img src="/images/banner3.jpg" class="career-team-img w-100 rounded-3" alt="Our Team" />
+					</div>
+				</div>
+			</div>
+
+			<!-- Feature Cards -->
+			<div class="row g-3 mb-4">
+				@for (f of features; track f.title) {
+				<div class="col-md-4 col-sm-6">
+					<div class="feature-card h-100 text-center p-4">
+						<div class="feature-icon mb-3">
+							<i class="bi {{ f.icon }}"></i>
+						</div>
+						<h6 class="feature-title mb-2">{{ f.title }}</h6>
+						<p class="feature-desc text-muted small mb-0">{{ f.desc }}</p>
+					</div>
+				</div>
+				}
+			</div>
+
+			<!-- Bottom Bar -->
+			<div class="career-bottom-bar rounded-3 overflow-hidden">
+				<div class="row g-0">
+					<!-- Great People -->
+					<div class="col-lg-4 col-12 bottom-bar-navy p-4 d-flex align-items-center gap-3">
+						<i class="bi bi-house-fill bottom-icon"></i>
+						<div>
+							<p class="mb-0 fw-bold text-white text-uppercase" style="font-size:0.95rem;">GREAT PEOPLE.</p>
+							<p class="mb-0 fw-bold text-uppercase career-gold" style="font-size:0.95rem;">GREAT RESULTS.</p>
+						</div>
+					</div>
+					<!-- Your Success -->
+					<div class="col-lg-4 col-12 bottom-bar-navy p-4 d-flex align-items-start gap-3 border-start border-end" style="border-color:#2a3f6e!important;">
+						<i class="bi bi-star-fill bottom-icon career-gold"></i>
+						<div>
+							<p class="mb-1 fw-semibold text-white" style="font-size:0.9rem;">
+								YOUR <span class="career-teal">SUCCESS</span> IS OUR <span class="career-teal">PRIORITY.</span>
+							</p>
+							<p class="mb-0 text-white-50 small">We provide the foundation. You build the future. Let's build it together.</p>
+						</div>
+					</div>
+					<!-- Call to action -->
+					<div class="col-lg-4 col-12 bottom-bar-gold p-4 text-center d-flex flex-column justify-content-center">
+						<p class="career-script mb-1">Let's Build Your</p>
+						<p class="career-script mb-3">Success Story.</p>
+						<p class="fw-bold text-white text-uppercase mb-0" style="letter-spacing:1.5px;font-size:0.85rem;">
+							JOIN OUR TEAM TODAY!
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- RIGHT: Contact Form -->
+		<div class="col-lg-4">
+			<div class="join-contact-card sticky-top" style="top:90px;">
+				<div class="join-contact-header">
+					<h4 class="mb-1 fw-bold"><i class="bi bi-envelope-fill me-2"></i>Get In Touch</h4>
+					<p class="mb-0 small opacity-75">Interested in joining? We'd love to hear from you.</p>
+				</div>
+				<div class="p-4">
+					<form [formGroup]="contactForm" (ngSubmit)="submit()">
+						<div class="mb-3">
+							<label class="form-label fw-semibold small">Full Name <span class="text-danger">*</span></label>
+							<input
+								pInputText
+								type="text"
+								formControlName="name"
+								class="form-control form-control-sm"
+								placeholder="Your full name" />
+							@if (name?.invalid && name?.touched) {
+								<small class="text-danger">Name is required</small>
+							}
+						</div>
+						<div class="mb-3">
+							<label class="form-label fw-semibold small">Email Address <span class="text-danger">*</span></label>
+							<input
+								pInputText
+								type="email"
+								formControlName="email"
+								class="form-control form-control-sm"
+								placeholder="your@email.com" />
+							@if (email?.invalid && email?.touched) {
+								<small class="text-danger">Valid email required</small>
+							}
+						</div>
+						<div class="mb-3">
+							<label class="form-label fw-semibold small">Phone Number <span class="text-danger">*</span></label>
+							<p-inputmask
+								mask="999-999-9999"
+								formControlName="phone"
+								class="w-100"
+								placeholder="123-456-7890"></p-inputmask>
+							@if (phone?.invalid && phone?.touched) {
+								<small class="text-danger">Phone is required</small>
+							}
+						</div>
+						<div class="mb-3">
+							<label class="form-label fw-semibold small">Message</label>
+							<textarea
+								formControlName="message"
+								class="form-control form-control-sm"
+								rows="4"
+								placeholder="Tell us a bit about yourself and your experience..."></textarea>
+						</div>
+						<div class="mb-3">
+							<div class="terms-box p-3 rounded" style="background:#f8f9fa;border:1px solid #e9ecef;">
+								<div class="form-check">
+									<input
+										type="checkbox"
+										class="form-check-input"
+										id="joinTerms"
+										formControlName="termsAccepted" />
+									<label class="form-check-label small" for="joinTerms">
+										I agree to be contacted by
+										<strong>{{ siteConfig.businessName }}</strong>
+										regarding career opportunities.
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="mb-3">
+							<app-captcha></app-captcha>
+						</div>
+						<button
+							type="submit"
+							class="btn btn-success w-100 py-2 fw-semibold"
+							[disabled]="contactForm.invalid || isSubmitting()">
+							@if (isSubmitting()) {
+								<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+								Sending...
+							} @else {
+								<i class="bi bi-send me-2"></i>Send My Interest
+							}
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
