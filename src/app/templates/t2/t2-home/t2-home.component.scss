@@ -108,3 +108,132 @@
   .overlay-image, .overlay-image2 { display: none !important; }
 }
 
+/* ── Let's Get In Touch ── */
+.t2-contact-section {
+  background: #f4f6f9;
+  padding: 80px 0;
+}
+
+.t2-contact-eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--primary-color, #e63946);
+  margin-bottom: 10px;
+}
+
+.t2-contact-heading {
+  font-size: 38px;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.t2-contact-sub {
+  font-size: 15px;
+  color: #6c757d;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 0;
+}
+
+.t2-info-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.t2-info-logo {
+  max-height: 65px;
+  width: auto;
+  object-fit: contain;
+}
+
+.t2-info-biz-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0;
+}
+
+.t2-info-divider {
+  width: 36px;
+  height: 3px;
+  background: var(--primary-color, #e63946);
+  border-radius: 2px;
+  margin-top: 14px;
+}
+
+.t2-info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  text-decoration: none;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+  background: #f8f9fa;
+  transition: background 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: #fff0f1;
+    border-color: var(--primary-color, #e63946);
+
+    .t2-info-icon-wrap {
+      background: var(--primary-color, #e63946);
+      color: #fff;
+    }
+  }
+}
+
+.t2-info-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0f1f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--primary-color, #e63946);
+  font-size: 15px;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 2px;
+}
+
+.t2-info-row-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 2px;
+}
+
+.t2-info-row-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.t2-form-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 44px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+}
+
+@media (max-width: 991px) {
+  .t2-contact-section { padding: 56px 0; }
+  .t2-contact-heading { font-size: 28px; }
+  .t2-form-card { padding: 28px 22px; }
+  .t2-info-card { padding: 28px 22px; }
+}
+

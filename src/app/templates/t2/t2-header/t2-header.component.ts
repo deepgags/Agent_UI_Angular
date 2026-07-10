@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AngularSvgIconModule } from "angular-svg-icon";
@@ -8,7 +9,7 @@ import { environment } from "../../../environments/environment.development";
 
 @Component({
 	selector: "app-t2-header",
-	imports: [AngularSvgIconModule, PhoneNumberFormatPipe, RouterModule, MenuComponent],
+	imports: [CommonModule, AngularSvgIconModule, PhoneNumberFormatPipe, RouterModule, MenuComponent],
 	templateUrl: "./t2-header.component.html",
 	styleUrls: ["./t2-header.component.scss", "../t2.component.scss"],
 })

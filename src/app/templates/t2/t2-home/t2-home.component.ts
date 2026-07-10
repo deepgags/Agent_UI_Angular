@@ -11,6 +11,7 @@ import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { SearchService } from "../../../services/search.service";
 import { SharedDataService } from "../../../services/shared-data.service";
+import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
 
@@ -23,6 +24,7 @@ declare var bootstrap: any;
 		RouterModule,
 		SearchComponent,
 		FeaturedPropertiesComponent,
+		HeroContactFormComponent,
 		PhoneNumberFormatPipe,
 		TeamCardComponent,
 	],

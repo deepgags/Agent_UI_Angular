@@ -1,68 +1,37 @@
-﻿<header class="t13-header position-fixed w-100" style="z-index: 999;">
+<header class="t13-header position-fixed w-100" style="z-index: 999;">
   <div class="container-fluid search-container-fluid">
-    <div class="row align-items-center py-3">
+    <div class="row align-items-center py-2 gx-0">
 
-      <!-- Brokerage circle + name -->
-      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
-
+      <!-- Left: Logo only -->
+      <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-start px-3">
         @if (siteConfig) {
-        <a [routerLink]="['home']" class="flex-shrink-0 me-3">
+        <a [routerLink]="['home']" class="flex-shrink-0">
           <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
                alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
         </a>
         }
-        <div>
-          <h2 class="t13-biz-name mb-0">{{ siteConfig?.businessName }}</h2>
-          @if (siteConfig?.subheading) {
-            <p class="t13-subheading mb-0">{{ siteConfig?.subheading }}</p>
-          }
-          <a href="/contact" class="t13-cta d-none d-lg-block mt-1">Request Consultation</a>
-        </div>
       </div>
 
-      <!-- Phone + email -->
-      <div class="col-12 col-lg-4 d-flex justify-content-center gap-3 flex-wrap d-none d-lg-flex">
-        <a class="t13-meta-item" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-          <i class="bi bi-telephone-fill info me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-        </a>
-        <a class="t13-meta-item" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-          <i class="bi bi-envelope-fill info me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
-        </a>
+      <!-- Centre: Menu -->
+      <div class="col-12 col-lg-5 t13-header-menu-col">
+        <app-menu />
       </div>
 
-      <!-- Social + brokerage logo -->
-      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end gap-3 mt-2 mt-lg-0">
-        <div class="d-flex gap-2">
-          @if (siteConfig.websiteSettings.socialLinks.facebook) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="t13-social-btn">
-            <i class="bi bi-facebook facebook"></i>
+      <!-- Right: Phone + Email + Social -->
+      <div class="col-12 col-lg-4 d-none d-lg-flex flex-column align-items-end justify-content-center px-3 gap-1">
+        <!-- Phone + Email stacked -->
+        <div class="d-flex flex-column align-items-end gap-1">
+          <a class="t13-meta-item" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
+            <i class="bi bi-telephone-fill info me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
           </a>
-          }
-          @if (siteConfig.websiteSettings.socialLinks.twitter) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="t13-social-btn">
-            <i class="bi bi-twitter twitter"></i>
+          <a class="t13-meta-item" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+            <i class="bi bi-envelope-fill info me-2"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
           </a>
-          }
-          @if (siteConfig.websiteSettings.socialLinks.instagram) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="t13-social-btn">
-            <i class="bi bi-instagram instagram"></i>
-          </a>
-          }
-          @if (siteConfig.websiteSettings.socialLinks.linkedin) {
-          <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="t13-social-btn">
-            <i class="bi bi-linkedin linkedin"></i>
-          </a>
-          }
         </div>
-        @if (siteConfig.websiteSettings?.personalBrandingLogo) {
-          <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
-               alt="Personal Branding" class="t13-personal-branding-logo" />
-        }
       </div>
 
     </div>
   </div>
-  <app-menu />
 </header>
 
 <div class="t13-top-pad"></div>

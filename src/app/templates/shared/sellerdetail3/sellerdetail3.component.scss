@@ -10,8 +10,9 @@ p{
     font-size: 16px !important;
 }
 .banner{
-	height: 60vh;
-  }
+  height: 200px;
+  object-fit: cover;
+}
    @media (max-width: 768px) {
 .banner{
     height: 18vh;

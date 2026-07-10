@@ -1,65 +1,60 @@
-﻿<div class="container-fluid position-relative overflow-hidden" style="background:#1c1c1c;">
+﻿<div class="container-fluid position-relative overflow-hidden" style="background:#f4f6f9;">
   <div class="position-absolute top-50 start-50 translate-middle w-100 text-center" style="pointer-events:none;user-select:none;z-index:0;">
     @if (siteConfig && siteConfig.businessName) {
-    <p class="fw-black text-white" style="font-size:clamp(2.5rem,10vw,8rem);opacity:0.04;letter-spacing:-2px;white-space:nowrap;overflow:hidden;">{{ siteConfig.businessName }}</p>
+    <p class="fw-black" style="font-size:clamp(2.5rem,10vw,8rem);opacity:0.04;letter-spacing:-2px;white-space:nowrap;overflow:hidden;color:#1a1a1a;">{{ siteConfig.businessName }}</p>
     }
   </div>
   <div class="container py-5 position-relative" style="z-index:1;">
     <footer>
-      <div class="row align-items-center g-4">
-        <div class="col-lg-5 col-12">
-          @if (siteConfig) {
-          <a [routerLink]="['home']" class="d-inline-block mb-3">
-            <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl+siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'" alt="Logo" style="max-height:65px;" />
-          </a>
-          @if (siteConfig.businessName) {
-          <p class="text-white fw-bold fs-5 mb-1">{{ siteConfig.businessName }}</p>
-          }
-          <p class="text-white-50 small mb-3">Exceptional real estate services</p>
-          <div class="d-flex gap-2 flex-wrap">
-            @if (siteConfig.websiteSettings.socialLinks.facebook) {
-            <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="text-white-50 fs-5 text-decoration-none me-1"><i class="bi bi-facebook"></i></a>
-            }
-            @if (siteConfig.websiteSettings.socialLinks.twitter) {
-            <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="text-white-50 fs-5 text-decoration-none me-1"><i class="bi bi-twitter"></i></a>
-            }
-            @if (siteConfig.websiteSettings.socialLinks.instagram) {
-            <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="text-white-50 fs-5 text-decoration-none me-1"><i class="bi bi-instagram"></i></a>
-            }
-            @if (siteConfig.websiteSettings.socialLinks.linkedin) {
-            <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="text-white-50 fs-5 text-decoration-none me-1"><i class="bi bi-linkedin"></i></a>
-            }
-            @if (siteConfig.websiteSettings.socialLinks.youtube) {
-            <a [href]="siteConfig.websiteSettings.socialLinks.youtube" target="_blank" rel="noopener noreferrer" class="text-white-50 fs-5 text-decoration-none"><i class="bi bi-youtube"></i></a>
-            }
+      <div class="row g-4">
+        @if (siteConfig) {
+
+          <!-- Left: Logo + social icons below -->
+          <div class="col-lg-4 col-12 d-flex flex-column align-items-center align-items-lg-center text-center">
+            <a [routerLink]="['home']" class="d-inline-block mb-3">
+              <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl+siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'" alt="Logo" style="max-height:80px;max-width:200px;width:auto;object-fit:contain;" />
+            </a>
+            <div class="d-flex gap-2 flex-wrap justify-content-center">
+              @if (siteConfig.websiteSettings.socialLinks.facebook) {
+              <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="fs-5 text-decoration-none" style="color:#6c757d;"><i class="bi bi-facebook"></i></a>
+              }
+              @if (siteConfig.websiteSettings.socialLinks.twitter) {
+              <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="fs-5 text-decoration-none" style="color:#6c757d;"><i class="bi bi-twitter"></i></a>
+              }
+              @if (siteConfig.websiteSettings.socialLinks.instagram) {
+              <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="fs-5 text-decoration-none" style="color:#6c757d;"><i class="bi bi-instagram"></i></a>
+              }
+              @if (siteConfig.websiteSettings.socialLinks.linkedin) {
+              <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="fs-5 text-decoration-none" style="color:#6c757d;"><i class="bi bi-linkedin"></i></a>
+              }
+              @if (siteConfig.websiteSettings.socialLinks.youtube) {
+              <a [href]="siteConfig.websiteSettings.socialLinks.youtube" target="_blank" rel="noopener noreferrer" class="fs-5 text-decoration-none" style="color:#6c757d;"><i class="bi bi-youtube"></i></a>
+              }
+            </div>
           </div>
-          }
-        </div>
-        <div class="col-lg-7 col-12">
-          @if (siteConfig) {
-          <div class="d-flex align-items-start gap-4">
-            @if (siteConfig.websiteSettings.brokerageImage) {
-            <img [src]="localImageUrl + siteConfig.websiteSettings.brokerageImage"
-                 alt="Brokerage Logo"
-                 style="max-height:70px;width:auto;object-fit:contain;flex-shrink:0;filter:brightness(0) invert(1);opacity:0.85;" />
-            }
-            <div>
-              <p class="text-white fw-bold fs-6 mb-2">{{ siteConfig.businessName }}</p>
+
+          <!-- Right: Brokerage info centred -->
+          <div class="col-lg-8 col-12 d-flex align-items-center justify-content-center justify-content-lg-start">
+            <div class="text-center text-lg-start">
+              <p class="fw-bold mb-1" style="font-size:22px;color:#1a1a1a;">{{ siteConfig.businessName }}</p>
+              @if (siteConfig.subheading) {
+              <p class="small mb-2" style="color:#6c757d;">{{ siteConfig.subheading }}</p>
+              }
               @if (siteConfig.websiteSettings.contactInfo.phone) {
-              <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-block text-white-50 text-decoration-none small mb-1">
+              <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-block text-decoration-none small mb-1" style="color:#6c757d;">
                 <i class="bi bi-telephone-fill me-2"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
               </a>
               }
-              <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-block text-white-50 text-decoration-none small">
+              <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-block text-decoration-none small" style="color:#6c757d;">
                 <i class="bi bi-envelope-fill me-2"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
               </a>
             </div>
           </div>
-          }
-        </div>
+
+        }
       </div>
-      <hr style="border-color:rgba(255,255,255,0.08);margin-top:2rem;">
-      <p class="text-center text-white-50 small mb-0" style="font-size:0.73rem;">Copyright 2026 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information shown.</p>
+      <hr style="border-color:#dee2e6;margin-top:2rem;">
+      <p class="text-center small mb-0" style="font-size:0.73rem;color:#adb5bd;">Copyright 2026 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information shown.</p>
     </footer>
   </div>
 </div>

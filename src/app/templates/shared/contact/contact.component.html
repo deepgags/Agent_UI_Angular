@@ -14,7 +14,13 @@
 
 			<!-- Left: Agent Info -->
 			<div class="col-lg-5">
-
+				@if (siteConfig.websiteSettings.brokerageImage) {
+					<div class="brokerage-card mb-3">
+						<img [src]="localImageUrl + siteConfig.websiteSettings.brokerageImage"
+							 class="brokerage-logo"
+							 alt="Brokerage logo" />
+					</div>
+					}
 				<!-- Primary Agent Card -->
 				<div class="agent-card mb-4">
 					<div class="agent-card-header">
@@ -27,6 +33,7 @@
 						</div>
 					</div>
 					<div class="agent-card-body">
+						
 						@if (formatBrokerageAddress(siteConfig.websiteSettings?.contactInfo)) {
 						<div class="contact-row">
 							<span class="contact-icon-wrap location"><i class="bi bi-geo-alt-fill"></i></span>
@@ -55,20 +62,6 @@
 						}
 					</div>
 				</div>
-
-				<!-- Brokerage Logo -->
-				@if (siteConfig.websiteSettings.brokerageImage || siteConfig.brokerageTypeId) {
-				<div class="brokerage-card mb-4">
-					@if (siteConfig.websiteSettings.brokerageImage) {
-					<img [src]="localImageUrl + siteConfig.websiteSettings.brokerageImage"
-						 class="brokerage-logo"
-						 alt="Brokerage logo" />
-					}
-					@if (siteConfig.brokerageTypeId) {
-					<p class="mb-0 mt-2 fw-semibold text-muted small">{{ siteConfig.brokerageTypeId }}</p>
-					}
-				</div>
-				}
 
 				<!-- Secondary Agent -->
 				@if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
@@ -150,12 +143,6 @@
 					</div>
 				</div>
 
-				<!-- Page Content -->
-				@if (page()?.content) {
-				<div class="page-content-card">
-					<div [innerHTML]="getSafeHtml(page()?.content)"></div>
-				</div>
-				}
 			</div>
 
 			<!-- Right: Contact Form -->

@@ -16,6 +16,28 @@ import { TabsModule } from "primeng/tabs";
 import { TextareaModule } from "primeng/textarea";
 import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
+import { EditorComponent } from "@tinymce/tinymce-angular";
+import "tinymce";
+import "tinymce/icons/default";
+import "tinymce/themes/silver";
+import "tinymce/models/dom";
+import "tinymce/plugins/advlist";
+import "tinymce/plugins/autolink";
+import "tinymce/plugins/lists";
+import "tinymce/plugins/link";
+import "tinymce/plugins/image";
+import "tinymce/plugins/charmap";
+import "tinymce/plugins/preview";
+import "tinymce/plugins/anchor";
+import "tinymce/plugins/searchreplace";
+import "tinymce/plugins/visualblocks";
+import "tinymce/plugins/code";
+import "tinymce/plugins/fullscreen";
+import "tinymce/plugins/insertdatetime";
+import "tinymce/plugins/media";
+import "tinymce/plugins/table";
+import "tinymce/plugins/help";
+import "tinymce/plugins/wordcount";
 import { environment } from "../../../environments/environment.development";
 import { CreatePageRequest, Page, UpdatePageRequest } from "../../../models/Page";
 import { BlobToUrlPipe } from "../../../pipes/blob-to-url";
@@ -45,6 +67,7 @@ import { PageService } from "../../../services/page.service";
 		BlobToUrlPipe,
 		DatePipe,
 		TooltipModule,
+		EditorComponent,
 	],
 	templateUrl: "./page-manager.component.html",
 	styleUrl: "./page-manager.component.scss",
@@ -58,7 +81,50 @@ export class PageManagerComponent implements OnInit {
 	heroImages: string[] = [];
 	uploadedFiles: File[] = [];
 	localImageBaseUrl = environment.localImageUrl;
+	editorReady = false;
 	@ViewChild("fileUpload") fileUpload: any;
+
+	tinymceConfig = {
+		base_url: "/tinymce",
+		suffix: ".min",
+		plugins:
+			"advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount",
+		toolbar:
+			"undo redo | blocks | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media table | code fullscreen | removeformat help",
+		height: 380,
+		menubar: true,
+		branding: false,
+		promotion: false,
+		image_advtab: true,
+		table_default_styles: {
+			"border-collapse": "collapse",
+			width: "100%",
+		},
+		table_default_attributes: {
+			border: "1",
+		},
+		file_picker_types: "image",
+		file_picker_callback: (cb: any, value: any, meta: any) => {
+			const input = document.createElement("input");
+			input.setAttribute("type", "file");
+			input.setAttribute("accept", "image/*");
+			input.addEventListener("change", (e: any) => {
+				const file = e.target.files[0];
+				const reader = new FileReader();
+				reader.addEventListener("load", () => {
+					const id = "blobid" + new Date().getTime();
+					const blobCache = (window as any).tinymce.activeEditor.editorUpload.blobCache;
+					const base64 = (reader.result as string).split(",")[1];
+					const blobInfo = blobCache.create(id, file, base64);
+					blobCache.add(blobInfo);
+					cb(blobInfo.blobUri(), { title: file.name });
+				});
+				reader.readAsDataURL(file);
+			});
+			input.click();
+		},
+	};
+
 	constructor(
 		private fb: FormBuilder,
 		private loadingService: LoadingService,
@@ -104,6 +170,7 @@ export class PageManagerComponent implements OnInit {
 	openAddPageDialog() {
 		this.editingPage = null;
 		this.pageForm.reset();
+		this.editorReady = true;
 		this.pageDialogVisible = true;
 	}
 
@@ -111,6 +178,7 @@ export class PageManagerComponent implements OnInit {
 		this.editingPage = page;
 		this.heroImages = [];
 		this.uploadedFiles = [];
+		this.editorReady = false;
 		this.pageDialogVisible = true;
 
 		setTimeout(() => {
@@ -134,6 +202,7 @@ export class PageManagerComponent implements OnInit {
 			if (this.canManageHeroImages(page)) {
 				this.loadHeroImages(page._id);
 			}
+			this.editorReady = true;
 		}, 150);
 	}
 
@@ -167,17 +236,13 @@ export class PageManagerComponent implements OnInit {
 			return "";
 		}
 
-		return content.replace(/&nbsp;|&#160;/g, " ").replace(/\u00A0/g, " ");
+		return content.replace(/&nbsp;|&#160;/g, " ").replace(/ /g, " ");
 	}
 
 	private _savePageData(pageData: CreatePageRequest | UpdatePageRequest) {
 		if (this.editingPage) {
 			this.pageService.updatePage(this.editingPage._id, pageData).subscribe({
 				next: (updatedPage) => {
-					// const index = this.pages.findIndex((p) => p._id === this.editingPage!._id);
-					// if (index !== -1) {
-					// this.pages[index] = updatedPage;
-					// }
 					this.getPages();
 					this.notificationService.showSuccess("Page updated successfully");
 					this.loadingService.loadingOff();
@@ -192,7 +257,7 @@ export class PageManagerComponent implements OnInit {
 				},
 			});
 		} else {
-			(pageData as CreatePageRequest).siteId = "current-site"; // TODO: Get from user context
+			(pageData as CreatePageRequest).siteId = "current-site";
 			this.pageService.createPage(pageData as CreatePageRequest).subscribe({
 				next: (createdPage) => {
 					this.pages.push(createdPage);
@@ -308,7 +373,6 @@ export class PageManagerComponent implements OnInit {
 		});
 	}
 
-
 	onFileSelect(event: any) {
 		const files = event.files;
 		if (!files || files.length === 0) {
@@ -316,7 +380,7 @@ export class PageManagerComponent implements OnInit {
 			return;
 		}
 
-		const maxSize = 5 * 1024 * 1024; // 5MB
+		const maxSize = 5 * 1024 * 1024;
 		const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
 
 		for (const file of files) {
@@ -417,6 +481,7 @@ export class PageManagerComponent implements OnInit {
 		this.editingPage = null;
 		this.heroImages = [];
 		this.uploadedFiles = [];
+		this.editorReady = false;
 		this.fileUpload?.clear();
 	}
 

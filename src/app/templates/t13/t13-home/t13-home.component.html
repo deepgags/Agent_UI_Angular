@@ -58,12 +58,108 @@
 	</div>
 </div>
 
+<!-- Featured Properties -->
+<div class="container-fluid search-container">
+	<div class="container py-4">
+		<p class="text text-center fw-semibold">Featured Properties</p>
+		<app-featured-properties />
+	</div>
+</div>
+
+<!-- Search -->
+<div class="t13-search-section">
+	<div class="container">
+		 
+		<app-search [onSearch]="searchProperties" />
+	</div>
+</div>
+
+<!-- Free Home Evaluation / Neighbourhood Watch / Find Dream Home -->
+@if (
+	siteConfig.websiteSettings.showHomeWorthPage ||
+	siteConfig.websiteSettings.showSellingInNeighborHoodPage ||
+	siteConfig.websiteSettings.showFindDreamHomePage
+) {
+	<section class="hero-bg d-flex justify-content-center align-items-center position-relative py-5">
+		<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+
+		<div class="container position-relative">
+			<div class="row justify-content-center g-4">
+				@if (siteConfig.websiteSettings.showHomeWorthPage) {
+					<div class="col-12 col-sm-6 col-lg-4 d-flex">
+						<div
+							class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
+							<h2 class="fw-bold text-uppercase mb-3">Free Home Evaluation</h2>
+							<p class="fs-5 mb-4">
+								Find out what your home is
+								<span class="text-warning fw-semibold fst-italic">WORTH</span>
+								— for
+								<span class="text-warning fw-semibold">FREE</span>
+								.
+							</p>
+
+							<a
+								href="/home-worth"
+								target="_blank"
+								class="btn btn-warning fw-semibold px-4 py-2 rounded-3">
+								Get Started
+							</a>
+						</div>
+					</div>
+				}
+				@if (siteConfig.websiteSettings.showSellingInNeighborHoodPage) {
+					<div class="col-12 col-sm-6 col-lg-4 d-flex">
+						<div
+							class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
+							<h2 class="fw-bold text-uppercase mb-3">Neighborhood Watch</h2>
+							<p class="fs-5 mb-4">
+								Get updated as soon as your
+								<span class="text-danger fw-semibold">NEIGHBORS</span>
+								are
+								<span class="text-danger fw-semibold fst-italic">SELLING</span>
+							</p>
+							<a
+								href="/neighbor-detail"
+								target="_blank"
+								class="btn btn-danger fw-semibold px-4 py-2 rounded-3">
+								Get Started
+							</a>
+						</div>
+					</div>
+				}
+				@if (siteConfig.websiteSettings.showFindDreamHomePage) {
+					<div class="col-12 col-sm-6 col-lg-4 d-flex">
+						<div
+							class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
+							<h2 class="fw-bold text-uppercase mb-3">find your dream home</h2>
+							<p class="fs-5 mb-4">
+								Start your search and
+								<span class="text-success fw-semibold fst-italic">FIND</span>
+								your
+								<span class="text-success fw-semibold">DREAM HOME</span>
+								today.
+							</p>
+							<a
+								href="/dream-home"
+								target="_blank"
+								class="btn btn-success fw-semibold px-4 py-2 rounded-3">
+								Get Started
+							</a>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</section>
+}
+
+<!-- Find Properties in These Cities -->
 @if (cities.length > 0) {
 	<div class="container-fluid search-container">
-		<div class="container py-lg-3">
-			<p class="text text-center fw-semibold">Find Properties in These Cities</p>
+		<div class="container py-4">
+			<p class="text text-center fw-semibold mb-3">Find Properties in These Cities</p>
 
-			<div class="row mt-3">
+			<div class="row g-3 mt-1">
 				@if (cities[0].name) {
 					<div class="col-lg-3 col-12">
 						<div
@@ -203,91 +299,6 @@
 	</div>
 }
 
-<div class="t13-search-section">
-	<div class="container">
-		<p class="text text-center fw-semibold mb-4">Search Properties</p>
-		<app-search [onSearch]="searchProperties" />
-	</div>
-</div>
-
-@if (
-	siteConfig.websiteSettings.showHomeWorthPage ||
-	siteConfig.websiteSettings.showSellingInNeighborHoodPage ||
-	siteConfig.websiteSettings.showFindDreamHomePage
-) {
-	<section class="hero-bg d-flex justify-content-center align-items-center position-relative py-5">
-		<div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
-
-		<div class="container position-relative">
-			<div class="row justify-content-center g-4">
-				@if (siteConfig.websiteSettings.showHomeWorthPage) {
-					<div class="col-12 col-sm-6 col-lg-4 d-flex">
-						<div
-							class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
-							<h2 class="fw-bold text-uppercase mb-3">Free Home Evaluation</h2>
-							<p class="fs-5 mb-4">
-								Find out what your home is
-								<span class="text-warning fw-semibold fst-italic">WORTH</span>
-								— for
-								<span class="text-warning fw-semibold">FREE</span>
-								.
-							</p>
-
-							<a
-								href="/home-worth"
-								target="_blank"
-								class="btn btn-warning fw-semibold px-4 py-2 rounded-3">
-								Get Started
-							</a>
-						</div>
-					</div>
-				}
-				@if (siteConfig.websiteSettings.showSellingInNeighborHoodPage) {
-					<div class="col-12 col-sm-6 col-lg-4 d-flex">
-						<div
-							class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
-							<h2 class="fw-bold text-uppercase mb-3">Neighborhood Watch</h2>
-							<p class="fs-5 mb-4">
-								Get updated as soon as your
-								<span class="text-danger fw-semibold">NEIGHBORS</span>
-								are
-								<span class="text-danger fw-semibold fst-italic">SELLING</span>
-							</p>
-							<a
-								href="/neighbor-detail"
-								target="_blank"
-								class="btn btn-danger fw-semibold px-4 py-2 rounded-3">
-								Get Started
-							</a>
-						</div>
-					</div>
-				}
-				@if (siteConfig.websiteSettings.showFindDreamHomePage) {
-					<div class="col-12 col-sm-6 col-lg-4 d-flex">
-						<div
-							class="bg-black bg-opacity-75 text-center text-white p-4 p-md-5 rounded-3 shadow border border-light border-opacity-25 w-100">
-							<h2 class="fw-bold text-uppercase mb-3">find your dream home</h2>
-							<p class="fs-5 mb-4">
-								Start your search and
-								<span class="text-success fw-semibold fst-italic">FIND</span>
-								your
-								<span class="text-success fw-semibold">DREAM HOME</span>
-								today.
-							</p>
-							<a
-								href="/dream-home"
-								target="_blank"
-								class="btn btn-success fw-semibold px-4 py-2 rounded-3">
-								Get Started
-							</a>
-						</div>
-					</div>
-				}
-			</div>
-		</div>
-	</section>
-}
-
 <app-team-card />
 
 <section class="t13-experience-section">
@@ -299,30 +310,30 @@
 				<span class="t13-exp-eyebrow">Why Choose Us</span>
 				<div class="t13-exp-quote-wrap">
 					<span class="t13-exp-quote-mark">"</span>
-					<h2 class="t13-exp-heading">Enjoy a clear and simple home-buying experience</h2>
+					<h2 class="t13-exp-heading">Find Your Perfect Home with Confidence</h2>
 				</div>
 				<p class="t13-exp-body" [innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
 
 				<div class="t13-exp-features mt-4">
 					<div class="t13-exp-feature-item">
-						<div class="t13-exp-feature-icon"><i class="bi bi-shield-check-fill"></i></div>
+						<div class="t13-exp-feature-icon"><i class="bi bi-shield-check"></i></div>
 						<div>
-							<div class="t13-exp-feature-title">Trusted Expertise</div>
-							<div class="t13-exp-feature-desc">Years of local market knowledge at your side</div>
+							<div class="t13-exp-feature-title">Trusted Market Expertise</div>
+							<div class="t13-exp-feature-desc">Proven experience and deep local insight to help you make confident real estate decisions.</div>
 						</div>
 					</div>
 					<div class="t13-exp-feature-item">
 						<div class="t13-exp-feature-icon"><i class="bi bi-people-fill"></i></div>
 						<div>
-							<div class="t13-exp-feature-title">Client-First Approach</div>
-							<div class="t13-exp-feature-desc">Your goals drive every decision we make</div>
+							<div class="t13-exp-feature-title">A Client-First Commitment</div>
+							<div class="t13-exp-feature-desc">Personalized strategies designed around your unique goals and needs.</div>
 						</div>
 					</div>
 					<div class="t13-exp-feature-item">
 						<div class="t13-exp-feature-icon"><i class="bi bi-lightning-charge-fill"></i></div>
 						<div>
-							<div class="t13-exp-feature-title">Fast &amp; Seamless</div>
-							<div class="t13-exp-feature-desc">From offer to close with total confidence</div>
+							<div class="t13-exp-feature-title">A Seamless Real Estate Journey</div>
+							<div class="t13-exp-feature-desc">Expert guidance from offer to closing, ensuring a smooth and successful transaction.</div>
 						</div>
 					</div>
 				</div>
@@ -332,10 +343,7 @@
 			<div class="col-lg-6 col-12">
 				<div class="t13-exp-img-wrap">
 					<img class="t13-exp-img" src="t8/images/real-state.png" alt="Real estate" />
-					<div class="t13-exp-img-badge">
-						<div class="t13-exp-badge-num">500+</div>
-						<div class="t13-exp-badge-label">Homes Sold</div>
-					</div>
+					 
 				</div>
 			</div>
 
@@ -351,61 +359,53 @@
 			<div class="col-lg-6 col-12">
 				<div class="t13-discover-img-wrap">
 					<img class="t13-discover-img" src="./t10/images/pro3.png" alt="Property" />
-					<div class="t13-discover-stats-bar">
-						<div class="t13-discover-stat">
-							<div class="t13-discover-stat-num">10+</div>
-							<div class="t13-discover-stat-label">Years Experience</div>
-						</div>
-						<div class="t13-discover-stat-sep"></div>
-						<div class="t13-discover-stat">
-							<div class="t13-discover-stat-num">98%</div>
-							<div class="t13-discover-stat-label">Client Satisfaction</div>
-						</div>
-					</div>
+					 
 				</div>
 			</div>
 
 			<!-- Right: content -->
 			<div class="col-lg-6 col-12">
-				<span class="t13-discover-eyebrow">Find Your Perfect Home</span>
-				<h2 class="t13-discover-heading">Discover Your New Home</h2>
-				<p class="t13-discover-subtitle">A Place to Live</p>
+				<span class="t13-discover-eyebrow">Sell Your Home with Confidence</span>
+				<h2 class="t13-discover-heading">Maximize Your Home's Value</h2>
+				<p class="t13-discover-subtitle">Expert Guidance. Exceptional Results.</p>
 				<p class="t13-discover-body">
-					Group One is excited to present this exceptional property in the prestigious location of Los Angeles
-					City. Designed by Lucy De Vito and built in 2020 to a very high standard, this spectacular residence
-					has been thoughtfully designed for family living in an uncluttered and special space.
+					Whether you're ready to sell now or simply exploring your options, our team is here to help you achieve the best possible outcome. We combine in-depth market knowledge, strategic pricing, professional marketing, and skilled negotiation to ensure your property stands out and attracts qualified buyers.
+
+From your initial consultation to closing day, we'll guide you through every step of the selling process with clear communication, personalized service, and a commitment to delivering outstanding results. Let us help you sell your home quickly, smoothly, and for the highest value the market will support.
 				</p>
 
-				<div class="t13-discover-awards">
-					<div class="t13-discover-award-item">
-						<div class="t13-discover-award-icon"><i class="bi bi-award-fill"></i></div>
-						<div class="t13-discover-award-name">International Design Award</div>
+				<div class="t13-exp-features mt-4">
+					<div class="t13-exp-feature-item">
+						<div class="t13-exp-feature-icon"><i class="bi bi-shield-check"></i></div>
+						<div>
+							<div class="t13-exp-feature-title">Trusted Market Expertise</div>
+							<div class="t13-exp-feature-desc">Proven experience and deep local insight to help you make confident real estate decisions.</div>
+						</div>
 					</div>
-					<div class="t13-discover-award-item">
-						<div class="t13-discover-award-icon"><i class="bi bi-award-fill"></i></div>
-						<div class="t13-discover-award-name">Lux Life Magazine</div>
+					<div class="t13-exp-feature-item">
+						<div class="t13-exp-feature-icon"><i class="bi bi-people-fill"></i></div>
+						<div>
+							<div class="t13-exp-feature-title">A Client-First Commitment</div>
+							<div class="t13-exp-feature-desc">Personalized strategies designed around your unique goals and needs.</div>
+						</div>
+					</div>
+					<div class="t13-exp-feature-item">
+						<div class="t13-exp-feature-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+						<div>
+							<div class="t13-exp-feature-title">A Seamless Real Estate Journey</div>
+							<div class="t13-exp-feature-desc">Expert guidance from offer to closing, ensuring a smooth and successful transaction.</div>
+						</div>
 					</div>
 				</div>
-
-				<a routerLink="/search" class="t13-discover-cta">
-					Explore Properties <i class="bi bi-arrow-right ms-2"></i>
-				</a>
+ 
 			</div>
 
 		</div>
 	</div>
 </section>
 
-<div class="container-fluid search-container">
-	<div class="container py-4">
-		<p class="text text-center fw-semibold">Featured Properties</p>
-		<app-featured-properties />
-	</div>
-</div>
-
 <section class="t13-contact-section">
 	<div class="container">
-
 		<!-- Section heading -->
 		<div class="t13-contact-header text-center mb-5">
 			<span class="t13-contact-eyebrow">Contact Us</span>
@@ -416,7 +416,7 @@
 		<div class="row g-4 align-items-stretch">
 
 			<!-- Info card -->
-			<div class="col-lg-4 col-12">
+			<div class="col-lg-5 col-12">
 				<div class="t13-info-card h-100">
 					@if (siteConfig.websiteSettings.brokerageImage) {
 						<img
@@ -462,7 +462,7 @@
 			</div>
 
 			<!-- Form card -->
-			<div class="col-lg-8 col-12">
+			<div class="col-lg-7 col-12">
 				<div class="t13-form-card h-100">
 					<app-hero-contact-form />
 				</div>

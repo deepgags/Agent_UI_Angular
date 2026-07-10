@@ -117,7 +117,7 @@
   font-weight: 700;
   letter-spacing: 3.5px;
   text-transform: uppercase;
-  color: var(--primary-color, #e63946);
+  color: #ffffff;
   margin-bottom: 16px;
   padding: 6px 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -318,30 +318,25 @@
   transform: scale(1.08);
 }
 
-/* Black overlay filter */
+/* Black overlay — always visible */
 .city-card .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 1;
+  transition: background 0.4s ease;
 }
 
 .city-card:hover .overlay {
-  opacity: 1;
+  background: rgba(0, 0, 0, 0.6);
 }
 
-/* City name hidden by default */
+/* City name — always visible */
 .city-card .city-name {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.city-card:hover .city-name {
   opacity: 1;
 }
 
@@ -634,7 +629,7 @@
 
 .t13-search-section {
   background: #f8f9fa;
-  padding: 48px 0;
+  padding: 32px 0 48px;
   border-top: 1px solid #e9ecef;
   border-bottom: 1px solid #e9ecef;
 }
@@ -642,7 +637,7 @@
 /* ── Let's Get In Touch ── */
 .t13-contact-section {
   background: #f4f6f9;
-  padding: 80px 0;
+  padding: 10px;
 }
 
 .t13-contact-eyebrow {
@@ -764,7 +759,7 @@
 }
 
 @media (max-width: 991px) {
-  .t13-contact-section { padding: 56px 0; }
+  .t13-contact-section { padding: 10px; }
   .t13-contact-heading { font-size: 28px; }
   .t13-form-card { padding: 28px 22px; }
   .t13-info-card { padding: 28px 22px; }

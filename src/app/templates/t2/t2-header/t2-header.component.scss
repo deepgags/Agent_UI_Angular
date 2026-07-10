@@ -70,6 +70,7 @@
 .twitter   { color: #1DA1F2; }
 .instagram { color: #E4405F; }
 .linkedin  { color: #0A66C2; }
+.youtube   { color: #FF0000; }
 
 /* Agent info */
 .t2-agent-img {
@@ -78,6 +79,10 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--primary-color, #e63946);
+}
+
+.t2-agent-img-secondary {
+  border-color: #6c757d;
 }
 
 .t2-agent-name {

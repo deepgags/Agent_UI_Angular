@@ -65,6 +65,10 @@ export class ContactComponent {
 			title: "Buyer And Seller",
 			value: "buyerAndSeller",
 		},
+		{
+			title: "Agent",
+			value: "agent",
+		},
 	];
 
 	private router = inject(Router);

@@ -1,3 +1,14 @@
+.banner {
+  height: 200px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    height: 18vh;
+  }
+}
+
 .loading-container,
 .error-container,
 .page-container {
