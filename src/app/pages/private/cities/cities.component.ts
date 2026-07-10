@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { CdkDragDrop, DragDropModule, moveItemInArray } from "@angular/cdk/drag-drop";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { RouterModule } from "@angular/router";
@@ -34,12 +35,12 @@ import { NotificationService } from "../../../services/notification.service";
 		InputTextModule,
 		ConfirmDialogModule,
 		ToastModule,
-		TableModule,
 		DynamicDialogModule,
 		IftaLabelModule,
 		BlobToUrlPipe,
 		AutoCompleteModule,
 		SelectModule,
+		DragDropModule,
 	],
 	templateUrl: "./cities.component.html",
 	styleUrl: "./cities.component.scss",
@@ -50,6 +51,7 @@ export class CitiesComponent implements OnInit {
 	@ViewChild("cityImageUpload", { static: false }) cityImageUpload!: ElementRef<HTMLInputElement>;
 
 	cities: City[] = [];
+	savingOrder = false;
 	cityDialogVisible = false;
 	cityForm!: FormGroup;
 	defaultCities = [];
@@ -198,6 +200,28 @@ export class CitiesComponent implements OnInit {
 			error: (error) => {
 				this.notificationService.showError(error.error?.message || "Failed to delete city");
 				this.loadingService.loadingOff();
+			},
+		});
+	}
+
+	onCityDrop(event: CdkDragDrop<City[]>) {
+		if (event.previousIndex === event.currentIndex) {
+			return;
+		}
+
+		moveItemInArray(this.cities, event.previousIndex, event.currentIndex);
+		const cityIds = this.cities.map((city) => city._id!);
+
+		this.savingOrder = true;
+		this.citiesService.reorderCities(cityIds).subscribe({
+			next: () => {
+				this.notificationService.showSuccess("City order updated successfully");
+				this.savingOrder = false;
+			},
+			error: (error: any) => {
+				this.getCities();
+				this.notificationService.showError(error?.error?.message || "Failed to reorder cities");
+				this.savingOrder = false;
 			},
 		});
 	}

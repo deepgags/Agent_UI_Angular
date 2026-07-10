@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { CdkDragDrop, DragDropModule, moveItemInArray } from "@angular/cdk/drag-drop";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ConfirmationService, TreeNode } from "primeng/api";
@@ -33,6 +34,7 @@ import { PageService } from "../../../services/page.service";
 		ConfirmDialogModule,
 		ToastModule,
 		TreeModule,
+		DragDropModule,
 	],
 	templateUrl: "./menu-manager.component.html",
 	styleUrl: "./menu-manager.component.scss",
@@ -41,8 +43,9 @@ import { PageService } from "../../../services/page.service";
 export class MenuManagerComponent implements OnInit {
 	mainMenuItems: MenuItem[] = [];
 	sideMenuItems: MenuItem[] = [];
-	mainMenuTree: TreeNode<MenuItem>[] = [];
+	mainMenuNested: MenuItem[] = [];
 	sideMenuTree: TreeNode<MenuItem>[] = [];
+	savingMenuOrder = false;
 
 	menuDialogVisible = false;
 	menuForm!: FormGroup;
@@ -147,8 +150,34 @@ export class MenuManagerComponent implements OnInit {
 	}
 
 	private buildTrees() {
-		this.mainMenuTree = this.buildTree(this.mainMenuItems);
+		this.mainMenuNested = this.buildNestedMenu(this.mainMenuItems);
 		this.sideMenuTree = this.buildTree(this.sideMenuItems);
+	}
+
+	private buildNestedMenu(items: MenuItem[]): MenuItem[] {
+		const childrenMap = new Map<string, MenuItem[]>();
+
+		items.forEach((item) => {
+			if (item.parentId) {
+				if (!childrenMap.has(item.parentId)) {
+					childrenMap.set(item.parentId, []);
+				}
+				childrenMap.get(item.parentId)!.push(item);
+			}
+		});
+
+		const build = (item: MenuItem): MenuItem => {
+			item.children = (childrenMap.get(item._id) || [])
+				.slice()
+				.sort((a, b) => a.order - b.order)
+				.map(build);
+			return item;
+		};
+
+		return items
+			.filter((item) => !item.parentId)
+			.sort((a, b) => a.order - b.order)
+			.map(build);
 	}
 
 	private buildTree(items: MenuItem[]): TreeNode<MenuItem>[] {
@@ -328,6 +357,53 @@ export class MenuManagerComponent implements OnInit {
 		if (node.data) {
 			node.data.isExpanded = node.expanded;
 		}
+	}
+
+	onMenuDrop(event: CdkDragDrop<MenuItem[]>, parentId: string | null) {
+		const list = this.getSiblingArray(parentId);
+		if (!list || event.previousIndex === event.currentIndex) {
+			return;
+		}
+
+		moveItemInArray(list, event.previousIndex, event.currentIndex);
+		const menuItems = list.map((item, index) => {
+			item.order = index;
+			return { id: item._id, order: index };
+		});
+
+		this.savingMenuOrder = true;
+		this.menuService.reorderMenuItems(menuItems).subscribe({
+			next: () => {
+				this.notificationService.showSuccess("Menu order updated successfully");
+				this.savingMenuOrder = false;
+			},
+			error: (error: any) => {
+				this.loadMenus();
+				this.notificationService.showError(error?.error?.message || "Failed to reorder menu items");
+				this.savingMenuOrder = false;
+			},
+		});
+	}
+
+	private getSiblingArray(parentId: string | null): MenuItem[] | null {
+		if (parentId === null) {
+			return this.mainMenuNested;
+		}
+		const find = (items: MenuItem[]): MenuItem[] | null => {
+			for (const item of items) {
+				if (item._id === parentId) {
+					return item.children ?? [];
+				}
+				if (item.children?.length) {
+					const result = find(item.children);
+					if (result) {
+						return result;
+					}
+				}
+			}
+			return null;
+		};
+		return find(this.mainMenuNested);
 	}
 
 	cancelDialog() {

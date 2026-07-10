@@ -19,39 +19,66 @@
 			</p-tablist>
 			<p-tabpanels>
 				<p-tabpanel value="0">
+					<p class="text-muted small mb-2">
+						Drag the handle to reorder menu items. Children can only be reordered within their own parent.
+					</p>
 					<div
 						class="menu-tree"
 						style="max-height: 400px; overflow-y: auto">
-						<p-tree
-							[value]="mainMenuTree"
-							class="w-full md:w-[30rem]">
-							<ng-template
-								let-node
-								pTemplate="default">
-								<div class="d-flex justify-content-between align-items-center w-100 py-2">
-									<div class="d-flex align-items-center flex-grow-1 me-3">
-										<div class="d-flex flex-column gap-1 justify-content-start">
-											<span class="fw-bold">{{ node.label }}</span>
+						<ng-template
+							#menuList
+							let-nodes
+							let-parentId="parentId">
+							<div
+								cdkDropList
+								class="d-flex flex-column gap-1 py-1"
+								(cdkDropListDropped)="onMenuDrop($event, parentId)">
+								@for (node of nodes; track node._id) {
+									<div
+										cdkDrag
+										class="list-group-item d-flex justify-content-between align-items-center py-2"
+										[class.opacity-50]="savingMenuOrder">
+										<div class="d-flex align-items-center gap-2">
+											<span
+												class="drag-handle text-muted"
+												cdkDragHandle
+												style="cursor: grab">
+												<i class="bi bi-grip-vertical"></i>
+											</span>
+											<span class="fw-bold">{{ node.name }}</span>
 											<span class="capitalize badge bg-warning text-dark w-auto align-self-start">
-												{{ node.data?.menuType }}
+												{{ node.menuType }}
 											</span>
 										</div>
+										<div class="d-flex gap-2 flex-shrink-0">
+											<p-button
+												icon="bi bi-pencil-square"
+												styleClass="p-button-text p-button-sm"
+												[disabled]="savingMenuOrder"
+												(onClick)="openEditMenuDialog(node)"
+												pTooltip="Edit"></p-button>
+											<p-button
+												icon="bi bi-trash3"
+												styleClass="p-button-text p-button-danger p-button-sm"
+												[disabled]="savingMenuOrder"
+												(onClick)="deleteMenuItem(node)"
+												pTooltip="Delete"></p-button>
+										</div>
 									</div>
-									<div class="d-flex gap-2 flex-shrink-0">
-										<p-button
-											icon="bi bi-pencil-square"
-											styleClass="p-button-text p-button-sm"
-											(onClick)="openEditMenuDialog(node.data!)"
-											pTooltip="Edit"></p-button>
-										<p-button
-											icon="bi bi-trash3"
-											styleClass="p-button-text p-button-danger p-button-sm"
-											(onClick)="deleteMenuItem(node.data!)"
-											pTooltip="Delete"></p-button>
-									</div>
-								</div>
-							</ng-template>
-						</p-tree>
+									@if (node.children?.length) {
+										<div class="ps-4">
+											<ng-template
+												[ngTemplateOutlet]="menuList"
+												[ngTemplateOutletContext]="{ $implicit: node.children, parentId: node._id }"></ng-template>
+										</div>
+									}
+								}
+							</div>
+						</ng-template>
+
+						<ng-template
+							[ngTemplateOutlet]="menuList"
+							[ngTemplateOutletContext]="{ $implicit: mainMenuNested, parentId: null }"></ng-template>
 					</div>
 				</p-tabpanel>
 				<p-tabpanel value="1">

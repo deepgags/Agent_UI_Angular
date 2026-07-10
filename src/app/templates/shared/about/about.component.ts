@@ -86,6 +86,14 @@ export class AboutComponent {
 		return this.sanitizer.bypassSecurityTrustHtml(content ?? "");
 	}
 
+	get isBroker(): boolean {
+		return this.sharedDataService.isBroker();
+	}
+
+	get hasSecondaryAgent(): boolean {
+		return !!this.siteConfig.secondaryAgent?.enableSecondaryAgent;
+	}
+
 	get heroImageSrc(): string {
 		const heroImage = this.page()?.heroImages?.[0];
 		return heroImage ? this.localImageUrl + heroImage : "/images/banner3.jpg";

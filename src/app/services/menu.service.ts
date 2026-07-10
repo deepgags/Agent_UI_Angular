@@ -69,18 +69,12 @@ export class MenuService {
 		);
 	}
 
-	reorderMenuItems(reorderData: { items: MenuItem[] }): Observable<MenuItem[]> {
-		return this.http.patch<MenuItem[]>(`${this.baseUrl}/menu/reorder`, reorderData).pipe(
-			map((result: any) => {
-				if (result && result.data) {
-					return result.data;
-				}
-				return reorderData.items;
-			}),
+	reorderMenuItems(menuItems: { id: string; order: number }[]): Observable<any> {
+		return this.http.patch(`${this.baseUrl}/menu/reorder`, { menuItems }).pipe(
 			catchError((error) => {
 				console.error("Error reordering menu items:", error);
 				return throwError(() => error);
-			})
+			}),
 		);
 	}
 }

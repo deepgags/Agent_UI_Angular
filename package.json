@@ -24,6 +24,7 @@
 		"@ng-bootstrap/ng-bootstrap": "^19.0.1",
 		"@primeng/themes": "^19.1.2",
 		"@primeuix/themes": "^1.2.3",
+		"@tinymce/tinymce-angular": "^9.1.1",
 		"angular-svg-icon": "^19.1.1",
 		"bootstrap": "^5.3.3",
 		"chart.js": "^3.9.1",
@@ -32,6 +33,7 @@
 		"primeng": "^20.0.1",
 		"quill": "^2.0.3",
 		"rxjs": "~7.8.0",
+		"tinymce": "^8.7.0",
 		"tslib": "^2.3.0",
 		"zone.js": "~0.15.0"
 	},

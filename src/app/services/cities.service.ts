@@ -30,4 +30,11 @@ export class CitiesService {
 		});
 		return this.http.delete(`${environment.baseUrl}/cities/${cityId}`, { headers });
 	}
+
+	reorderCities(cityIds: string[]): Observable<any> {
+		const headers = new HttpHeaders({
+			Authorization: `Bearer ${this.sharedDataService.userToken()}`,
+		});
+		return this.http.patch(`${environment.baseUrl}/cities/reorder`, { cityIds }, { headers });
+	}
 }

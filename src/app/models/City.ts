@@ -1,5 +1,6 @@
 export interface City {
-	_id?: string;
+	_id: string;
 	name: string;
 	image: string;
+	order?: number;
 }
