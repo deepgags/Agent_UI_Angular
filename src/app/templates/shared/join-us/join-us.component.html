@@ -1,6 +1,6 @@
 <!-- Banner -->
 <div class="position-relative">
-	<img class="banner w-100" src="/images/banner3.jpg" alt="Join Our Team" />
+	<img class="banner w-100" [src]="heroImageSrc" alt="Join Our Team" />
 	<div class="position-absolute top-0 start-0 w-100 h-100" style="background:rgba(0,0,0,0.5);"></div>
 	<div class="position-absolute top-50 start-50 translate-middle text-center">
 		<h1 class="text-white fw-bold baner-text">Join Our Team</h1>
@@ -11,7 +11,8 @@
 <div class="container-fluid px-3 px-lg-5 py-4">
 	<div class="row g-4 align-items-start">
 
-		<!-- LEFT: Career Content -->
+		<!-- LEFT: Built-in career content (fallback when no dynamic content) -->
+		@if (!hasDynamicContent) {
 		<div class="col-lg-8">
 
 			<!-- Hero Section -->
@@ -178,6 +179,11 @@
 			</div>
 
 		</div>
+		} @else {
+		<div class="col-lg-8">
+			<div class="p-4" [innerHTML]="getSafeHtml(page()?.content)"></div>
+		</div>
+		}
 
 		<!-- RIGHT: Contact Form -->
 		<div class="col-lg-4">
