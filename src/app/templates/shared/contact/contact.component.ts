@@ -58,16 +58,16 @@ export class ContactComponent {
 			value: "buyer",
 		},
 		{
-			title: "Renter",
-			value: "renter",
+			title: "Tenant",
+			value: "tenant",
 		},
 		{
-			title: "Buyer And Seller",
-			value: "buyerAndSeller",
+			title: "Landlord",
+			value: "landlord",
 		},
 		{
-			title: "Agent",
-			value: "agent",
+			title: "Realtor",
+			value: "realtor",
 		},
 	];
 

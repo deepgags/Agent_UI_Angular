@@ -11,41 +11,87 @@
 </div>
 
 <div class="container py-5 search-container">
-	<div class=" row align-items-center">
-		<div [class]="isBroker ? 'col-md-12' : 'col-md-8'">
-			<div class="p-4"
-				 [innerHTML]="getSafeHtml(page()?.content)"></div>
+	<!-- Page content -->
+	<div class="row">
+		<div class="col-12">
+			<div class="p-4" [innerHTML]="getSafeHtml(page()?.content)"></div>
 		</div>
-		@if (!isBroker) {
-		<div class="col-md-4">
-			<div class="border-0 shadow card rounded-3">
-				<div class="card shadow border-0 rounded-3">
-					<div class="row align-items-center p-3">
-						<div class="col-4">
-							<div class="">
-								<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
-									 alt=""
-									 height="120px" />
-							</div>
-						</div>
+	</div>
 
-						<div class="col-8">
-							<div class="card-body">
-								<h5 class="card-title info mt-1">{{ siteConfig.firstName }} {{ siteConfig.lastName }}
-								</h5>
-								<p class="fw-semibold fs-6 mb-0">{{ siteConfig.designation}}</p>
-								<div class="text-muted small">
-									<p class="mb-1">Email: {{ siteConfig.websiteSettings.contactInfo.email }}</p>
-									<p class="mb-0">Call: {{ siteConfig.websiteSettings.contactInfo.phone | phone }}</p>
-								</div>
-							</div>
-						</div>
-					</div>
+	<!-- Agent cards — shown for non-brokers -->
+	@if (!isBroker) {
+	<div class="row g-4 justify-content-center mt-2">
+
+		<!-- Secondary agent (LEFT) -->
+		@if (hasSecondaryAgent) {
+		<div class="col-md-6 col-lg-4">
+			<div class="about-agent-card about-agent-card-secondary">
+				<div class="about-agent-accent about-agent-accent-secondary"></div>
+				<div class="about-agent-photo-wrap">
+					<img [src]="localImageUrl + siteConfig.secondaryAgent!.profileImage"
+						 alt="{{ siteConfig.secondaryAgent!.firstName }} {{ siteConfig.secondaryAgent!.lastName }}"
+						 class="about-agent-photo"
+						 onerror="this.src='/images/NoProfile.png'" />
+				</div>
+				<div class="about-agent-body">
+					<h5 class="about-agent-name">
+						{{ siteConfig.secondaryAgent!.firstName }} {{ siteConfig.secondaryAgent!.lastName }}
+					</h5>
+					<p class="about-agent-desig">{{ siteConfig.secondaryAgent!.designation }}</p>
+					<div class="about-agent-divider"></div>
+					@if (siteConfig.secondaryAgent!.websitePhone) {
+					<a class="about-agent-contact-row"
+					   [href]="'tel:' + siteConfig.secondaryAgent!.websitePhone">
+						<span class="about-agent-icon"><i class="bi bi-telephone-fill"></i></span>
+						{{ siteConfig.secondaryAgent!.websitePhone | phone }}
+					</a>
+					}
+					@if (siteConfig.secondaryAgent!.websiteEmail) {
+					<a class="about-agent-contact-row"
+					   [href]="'mailto:' + siteConfig.secondaryAgent!.websiteEmail">
+						<span class="about-agent-icon"><i class="bi bi-envelope-fill"></i></span>
+						{{ siteConfig.secondaryAgent!.websiteEmail }}
+					</a>
+					}
 				</div>
 			</div>
 		</div>
 		}
+
+		<!-- Primary agent (RIGHT) -->
+		<div [class]="hasSecondaryAgent ? 'col-md-6 col-lg-4' : 'col-md-5 col-lg-4'">
+			<div class="about-agent-card">
+				<div class="about-agent-accent"></div>
+				<div class="about-agent-photo-wrap">
+					<img [src]="localImageUrl + siteConfig.websiteSettings.profileImage"
+						 alt="{{ siteConfig.firstName }} {{ siteConfig.lastName }}"
+						 class="about-agent-photo"
+						 onerror="this.src='/images/NoProfile.png'" />
+				</div>
+				<div class="about-agent-body">
+					<h5 class="about-agent-name">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
+					<p class="about-agent-desig">{{ siteConfig.designation }}</p>
+					<div class="about-agent-divider"></div>
+					@if (siteConfig.websiteSettings.contactInfo.phone) {
+					<a class="about-agent-contact-row"
+					   [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+						<span class="about-agent-icon"><i class="bi bi-telephone-fill"></i></span>
+						{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+					</a>
+					}
+					@if (siteConfig.websiteSettings.contactInfo.email) {
+					<a class="about-agent-contact-row"
+					   [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+						<span class="about-agent-icon"><i class="bi bi-envelope-fill"></i></span>
+						{{ siteConfig.websiteSettings.contactInfo.email }}
+					</a>
+					}
+				</div>
+			</div>
+		</div>
+
 	</div>
+	}
 
 	<section class="py-5 bg-light">
 		<div class="container">
@@ -54,9 +100,9 @@
 				<div class="mb-4 col-md-3">
 					<div class="p-4 border rounded">
 						<div class="mb-3 fs-1 info">
-							<i class="fa-solid fa-medal"></i>
+							<i class="bi bi-shield-check"></i>
 						</div>
-						<h5 class="mb-2">10+ Years Experience</h5>
+						<h5 class="mb-2">Building Trust</h5>
 					</div>
 				</div>
 				<div class="mb-4 col-md-3">
@@ -70,9 +116,9 @@
 				<div class="mb-4 col-md-3">
 					<div class="p-4 border rounded">
 						<div class="mb-3 fs-1 info">
-							<i class="bi bi-geo-alt"></i>
+							<i class="bi bi-award"></i>
 						</div>
-						<h5 class="mb-2">Local Experts</h5>
+						<h5 class="mb-2">Professional Excellence</h5>
 					</div>
 				</div>
 				<div class="mb-4 col-md-3">
@@ -93,23 +139,23 @@
 			<div class="text-center row">
 				<div class="mb-4 col-md-4">
 					<div class="p-4 border-0 shadow-sm card h-100">
-						<i class="mb-3 fa-solid fa-star fs-2 info"></i>
-						<h5>Proven Track Record</h5>
-						<p>Hundreds of successful deals and satisfied clients.</p>
+						 
+						<h5>Personalized Experience</h5>
+						<p>Tailored solutions, dedicated attention, and guidance designed around each client’s unique needs.</p>
 					</div>
 				</div>
 				<div class="mb-4 col-md-4">
 					<div class="p-4 border-0 shadow-sm card h-100">
-						<i class="mb-3 fa-solid fa-chart-line fs-2 info"></i>
-						<h5>Market Insights</h5>
-						<p>Providing data-driven guidance tailored to your goals.</p>
+						 
+						<h5>Trusted Guidance</h5>
+						<p>Providing expert advice and support to help clients make confident real estate decisions.</p>
 					</div>
 				</div>
 				<div class="mb-4 col-md-4">
 					<div class="p-4 border-0 shadow-sm card h-100">
-						<i class="mb-3 fa-solid fa-heart fs-2 info"></i>
-						<h5>Client Commitment</h5>
-						<p>Every client is treated like family—your success is my priority.</p>
+						 
+						<h5>People Matter</h5>
+						<p>Building meaningful relationships by understanding and supporting every client’s goals.</p>
 					</div>
 				</div>
 			</div>

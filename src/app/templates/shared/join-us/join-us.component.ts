@@ -56,11 +56,20 @@ export class JoinUsComponent implements OnInit {
 		},
 	];
 
+	userTypes = [
+		{ title: "Seller",   value: "seller" },
+		{ title: "Buyer",    value: "buyer" },
+		{ title: "Tenant",   value: "tenant" },
+		{ title: "Landlord", value: "landlord" },
+		{ title: "Realtor",  value: "realtor" },
+	];
+
 	contactForm = new FormGroup({
-		name: new FormControl("", Validators.required),
-		email: new FormControl("", [Validators.required, Validators.email]),
-		phone: new FormControl("", Validators.required),
-		message: new FormControl(""),
+		name:          new FormControl("", Validators.required),
+		email:         new FormControl("", [Validators.required, Validators.email]),
+		phone:         new FormControl("", Validators.required),
+		message:       new FormControl("", Validators.required),
+		userType:      new FormControl("seller", Validators.required),
 		termsAccepted: new FormControl(false, Validators.requiredTrue),
 	});
 
@@ -74,38 +83,44 @@ export class JoinUsComponent implements OnInit {
 		this.siteConfig = this.sharedDataService.siteData();
 	}
 
-	get name() { return this.contactForm.get("name"); }
-	get email() { return this.contactForm.get("email"); }
-	get phone() { return this.contactForm.get("phone"); }
+	get name()    { return this.contactForm.get("name"); }
+	get email()   { return this.contactForm.get("email"); }
+	get phone()   { return this.contactForm.get("phone"); }
+	get message() { return this.contactForm.get("message"); }
 
 	submit() {
 		if (this.isSubmitting()) return;
+
 		if (this.contactForm.invalid) {
 			this.contactForm.markAllAsTouched();
-			this.notificationService.showError("Please fill all required fields.");
+			this.captchaComponent.reset();
+			this.notificationService.showError("Please fill all required fields correctly.");
 			return;
 		}
+
 		if (!this.captchaComponent.isCaptchaValid()) {
 			this.notificationService.showError("Please solve the math problem correctly.");
 			return;
 		}
+
 		const params = {
 			...this.contactForm.value,
-			userType: "agent",
-			leadSource: "joinUsForm",
+			leadSource: "contactForm",
 			siteId: (this.siteConfig as any)?._id,
 		};
+
 		this.isSubmitting.set(true);
 		this.publicService.submitContactForm(params).subscribe({
 			next: () => {
 				this.isSubmitting.set(false);
-				this.notificationService.showSuccess("Thank you! We'll be in touch soon.");
+				this.notificationService.showSuccess("Your request has been submitted successfully.");
 				this.contactForm.reset();
+				this.contactForm.patchValue({ userType: "seller", termsAccepted: false });
 				this.captchaComponent.reset();
 			},
 			error: () => {
 				this.isSubmitting.set(false);
-				this.notificationService.showError("Failed to submit. Please try again.");
+				this.notificationService.showError("Failed to submit request. Please try again later.");
 			},
 		});
 	}

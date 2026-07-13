@@ -13,6 +13,7 @@ import { SellerComponent } from "./templates/shared/seller/seller.component";
 import { SellerdetailComponent } from "./templates/shared/sellerdetail/sellerdetail.component";
 import { TeamListComponent } from "./pages/public/team-list/team-list.component";
 import { TeamDetailComponent } from "./pages/public/team-details/team-details.component";
+import { JoinUsComponent } from "./templates/shared/join-us/join-us.component";
 
 export interface TemplateRoute {
 	path: string;
@@ -45,6 +46,7 @@ const generalRoutes: Route[] = [
 	{ path: "team", component: TeamListComponent },
 	{ path: "team/:memberId", component: TeamDetailComponent },
 	{ path: "page/:slug", component: PageDisplayComponent },
+	{ path: "join-us", component: JoinUsComponent },
 ];
 
 export const templates: TemplateRoutes = {

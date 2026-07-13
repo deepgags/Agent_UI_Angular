@@ -43,29 +43,6 @@
 			[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
 			alt="No profile image"
 			class="overlay-image" />
-		<div
-			class="card position-absolute man-card"
-			style="width: 15rem">
-			<div class="card-body">
-				<h5 class="card-head text-white mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</h5>
-				<p class="card-text text-white mb-0">{{ siteConfig.designation }}</p>
-				<div class="d-flex">
-					<div class="">
-						<i class="fa-solid fa-phone info"></i>
-					</div>
-					<div class="ms-2">
-						<p class="mb-0">
-							<a
-								class="text-white fw-semibold text-decoration-none"
-								[href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
-								{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-							</a>
-						</p>
-					</div>
-				</div>
-
-			</div>
-		</div>
 	</div>
 
 	<div class="second">
@@ -74,39 +51,48 @@
 				[src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
 				alt="No profile image"
 				class="overlay-image2" />
-			<div
-				class="card position-absolute man_card2"
-				style="width: 15rem">
-				<div class="card-body">
-					<h5 class="card-head text-white mb-0">
-						{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
-					</h5>
-					<p class="card-text text-white mb-0">{{ siteConfig.secondaryAgent.designation }}</p>
-					<div class="d-flex">
-						<div class="">
-							<i class="fa-solid fa-phone info"></i>
-						</div>
-						<div class="ms-2">
-							<p class="mb-0">
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
-									{{ siteConfig.secondaryAgent.websitePhone | phone }}
-								</a>
-							</p>
-						</div>
-					</div>
+		}
+	</div>
+</div>
 
+<!-- Agent info strip — below the banner, aligned under each photo -->
+<div class="t2-agent-strip">
+	<div class="container-fluid px-4">
+		<div class="d-flex justify-content-between align-items-start">
+
+			<!-- Secondary agent info: LEFT side, below overlay-image2 -->
+			<div>
+				@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
+					<div class="t2-agent-info-block">
+						<div class="t2-agent-name">
+							{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
+						</div>
+						<div class="t2-agent-role">{{ siteConfig.secondaryAgent.designation }}</div>
+						<a class="t2-agent-phone" [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+							<i class="fa-solid fa-phone me-1"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
+						</a>
+					</div>
+				}
+			</div>
+
+			<!-- Primary agent info: RIGHT side, below overlay-image -->
+			<div>
+				<div class="t2-agent-info-block text-end">
+					<div class="t2-agent-name">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</div>
+					<div class="t2-agent-role">{{ siteConfig.designation }}</div>
+					<a class="t2-agent-phone" [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+						<i class="fa-solid fa-phone me-1"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+					</a>
 				</div>
 			</div>
-		}
+
+		</div>
 	</div>
 </div>
 
 <div class="container-fluid menu_img">
 	<div class="">
 		<div class="row justify-content-center">
-			<p class="fs-1 text-center fw-semibold py-3 mb-0">Search Your Dream Home</p>
 			<div class="col-12 bg-white p-4">
 				<app-search [onSearch]="searchProperties" />
 			</div>

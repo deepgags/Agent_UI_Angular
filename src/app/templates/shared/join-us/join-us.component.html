@@ -28,7 +28,7 @@
 						</p>
 					</div>
 					<div class="col-lg-6">
-						<img src="/images/banner3.jpg" class="career-team-img w-100 rounded-3" alt="Our Team" />
+						<img src="/images/buyer 1.png" class="career-team-img w-100 rounded-3" alt="Our Team" />
 					</div>
 				</div>
 			</div>
@@ -80,90 +80,219 @@
 				</div>
 			</div>
 
+			<!-- Why Join Our Brokerage -->
+			<div class="why-join-section mt-4">
+				<h2 class="why-join-heading mb-2">Why Join Our Brokerage</h2>
+				<div class="why-join-divider mb-4"></div>
+
+				<p class="why-join-intro mb-5">
+					Success in real estate starts with having the right people, the right tools, and the right support
+					behind you. Our brokerage is committed to helping every REALTOR® build a rewarding, sustainable
+					business while delivering exceptional service to their clients. Whether you are newly licensed or an
+					experienced professional, you'll find an environment where collaboration, professionalism, and
+					continuous learning are part of everyday business. <strong>We believe that when our agents succeed,
+					our brokerage succeeds.</strong>
+				</p>
+
+				<div class="why-join-items">
+
+					<div class="why-join-item">
+						<div class="why-join-icon"><i class="bi bi-graph-up-arrow"></i></div>
+						<div class="why-join-content">
+							<h5>Support That Helps You Grow</h5>
+							<p>Real estate is constantly evolving, and so are we. Our agents benefit from ongoing training,
+							practical coaching, and knowledgeable broker support designed to help them confidently navigate
+							every stage of their career. From contract questions to complex transactions, guidance is
+							always within reach.</p>
+						</div>
+					</div>
+
+					<div class="why-join-item">
+						<div class="why-join-icon"><i class="bi bi-display"></i></div>
+						<div class="why-join-content">
+							<h5>Technology That Works for You</h5>
+							<p>We invest in modern technology that helps simplify your business, save valuable time, and
+							improve the client experience. From transaction management and digital document handling to
+							marketing resources and business tools, our systems are designed to help you stay organized
+							and productive so you can focus on growing your business.</p>
+						</div>
+					</div>
+
+					<div class="why-join-item">
+						<div class="why-join-icon"><i class="bi bi-people-fill"></i></div>
+						<div class="why-join-content">
+							<h5>A Culture of Collaboration</h5>
+							<p>We believe success is stronger when it's shared. Our brokerage encourages teamwork,
+							knowledge sharing, and professional networking. You'll be surrounded by professionals who
+							celebrate each other's achievements, exchange ideas, and support one another through every
+							stage of business.</p>
+						</div>
+					</div>
+
+					<div class="why-join-item">
+						<div class="why-join-icon"><i class="bi bi-person-badge-fill"></i></div>
+						<div class="why-join-content">
+							<h5>Build Your Personal Brand</h5>
+							<p>Every agent has unique strengths and goals. We provide the flexibility, resources, and
+							marketing support to help you develop your own brand while benefiting from the reputation
+							and credibility of an established brokerage.</p>
+						</div>
+					</div>
+
+					<div class="why-join-item">
+						<div class="why-join-icon"><i class="bi bi-trophy-fill"></i></div>
+						<div class="why-join-content">
+							<h5>Opportunities Without Limits</h5>
+							<p>Whether your goal is increasing production, expanding into new markets, growing a team,
+							or creating long-term financial success, we provide the foundation to help you achieve it.
+							You'll have access to education, business development opportunities, and the resources
+							needed to continue moving your career forward.</p>
+						</div>
+					</div>
+
+					<div class="why-join-item">
+						<div class="why-join-icon"><i class="bi bi-heart-fill"></i></div>
+						<div class="why-join-content">
+							<h5>A Brokerage That Cares</h5>
+							<p>Real estate is about more than buying and selling property. It's about building
+							relationships, earning trust, and making a positive impact in the communities we serve.
+							We encourage professionalism, integrity, and community involvement because lasting success
+							is built on helping others.</p>
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Closing CTA -->
+				<div class="why-join-cta mt-4 p-4 rounded-3">
+					<h4 class="mb-2 fw-bold">Your Future Starts Here</h4>
+					<p class="mb-2">
+						Choosing a brokerage is one of the most important decisions in your career. Join a team that is
+						committed to your success, values your independence, supports your ambitions, and provides the
+						tools and expertise to help you reach your full potential.
+					</p>
+					<p class="mb-0 fw-semibold">
+						Your success is our priority, and we're ready to help you build the business you've always envisioned.
+					</p>
+				</div>
+			</div>
+
 		</div>
 
 		<!-- RIGHT: Contact Form -->
 		<div class="col-lg-4">
 			<div class="join-contact-card sticky-top" style="top:90px;">
 				<div class="join-contact-header">
-					<h4 class="mb-1 fw-bold"><i class="bi bi-envelope-fill me-2"></i>Get In Touch</h4>
-					<p class="mb-0 small opacity-75">Interested in joining? We'd love to hear from you.</p>
+					<i class="bi bi-chat-dots-fill me-2"></i>
+					<div>
+						<h4 class="mb-0 fw-bold">Get In Touch</h4>
+						<p class="mb-0 small mt-1 opacity-75">Interested in joining? We'd love to hear from you.</p>
+					</div>
 				</div>
 				<div class="p-4">
 					<form [formGroup]="contactForm" (ngSubmit)="submit()">
-						<div class="mb-3">
-							<label class="form-label fw-semibold small">Full Name <span class="text-danger">*</span></label>
-							<input
-								pInputText
-								type="text"
-								formControlName="name"
-								class="form-control form-control-sm"
-								placeholder="Your full name" />
-							@if (name?.invalid && name?.touched) {
-								<small class="text-danger">Name is required</small>
-							}
-						</div>
-						<div class="mb-3">
-							<label class="form-label fw-semibold small">Email Address <span class="text-danger">*</span></label>
-							<input
-								pInputText
-								type="email"
-								formControlName="email"
-								class="form-control form-control-sm"
-								placeholder="your@email.com" />
-							@if (email?.invalid && email?.touched) {
-								<small class="text-danger">Valid email required</small>
-							}
-						</div>
-						<div class="mb-3">
-							<label class="form-label fw-semibold small">Phone Number <span class="text-danger">*</span></label>
-							<p-inputmask
-								mask="999-999-9999"
-								formControlName="phone"
-								class="w-100"
-								placeholder="123-456-7890"></p-inputmask>
-							@if (phone?.invalid && phone?.touched) {
-								<small class="text-danger">Phone is required</small>
-							}
-						</div>
-						<div class="mb-3">
-							<label class="form-label fw-semibold small">Message</label>
-							<textarea
-								formControlName="message"
-								class="form-control form-control-sm"
-								rows="4"
-								placeholder="Tell us a bit about yourself and your experience..."></textarea>
-						</div>
-						<div class="mb-3">
-							<div class="terms-box p-3 rounded" style="background:#f8f9fa;border:1px solid #e9ecef;">
-								<div class="form-check">
-									<input
-										type="checkbox"
-										class="form-check-input"
-										id="joinTerms"
-										formControlName="termsAccepted" />
-									<label class="form-check-label small" for="joinTerms">
-										I agree to be contacted by
-										<strong>{{ siteConfig.businessName }}</strong>
-										regarding career opportunities.
-									</label>
+						<div class="row g-3">
+
+							<div class="col-12">
+								<label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+								<input type="text"
+									   pInputText
+									   formControlName="name"
+									   class="form-control"
+									   placeholder="Your full name" />
+								@if (name?.invalid && (name?.dirty || name?.touched)) {
+									<small class="text-danger">Name is required</small>
+								}
+							</div>
+
+							<div class="col-12">
+								<label class="form-label fw-semibold">Email Address <span class="text-danger">*</span></label>
+								<input type="email"
+									   pInputText
+									   formControlName="email"
+									   class="form-control"
+									   placeholder="your@email.com" />
+								@if (email?.invalid && (email?.dirty || email?.touched)) {
+									<small class="text-danger">
+										@if (email?.errors?.['required']) { Email is required }
+										@else { Please enter a valid email }
+									</small>
+								}
+							</div>
+
+							<div class="col-12">
+								<label class="form-label fw-semibold">Phone Number <span class="text-danger">*</span></label>
+								<p-inputmask mask="999-999-9999"
+											 formControlName="phone"
+											 class="w-100"
+											 placeholder="Ex. 123-456-1234"></p-inputmask>
+								@if (phone?.invalid && (phone?.dirty || phone?.touched)) {
+									<small class="text-danger">Phone number is required</small>
+								}
+							</div>
+
+							<div class="col-12">
+								<label class="form-label fw-semibold">Message <span class="text-danger">*</span></label>
+								<textarea formControlName="message"
+										  class="form-control"
+										  rows="4"
+										  placeholder="Tell us a bit about yourself and your experience..."></textarea>
+								@if (message?.invalid && (message?.dirty || message?.touched)) {
+									<small class="text-danger">Message is required</small>
+								}
+							</div>
+
+							<div class="col-12">
+								<label class="form-label fw-semibold">I am a</label>
+								<div class="d-flex flex-wrap gap-2 mt-1">
+									@for (type of userTypes; track $index) {
+										<input type="radio"
+											   class="btn-check"
+											   formControlName="userType"
+											   [id]="'joinUserType' + type.value"
+											   [value]="type.value" />
+										<label class="btn btn-outline-primary btn-sm rounded-pill px-3"
+											   [for]="'joinUserType' + type.value">
+											{{ type.title }}
+										</label>
+									}
 								</div>
 							</div>
+
+							<div class="col-12">
+								<div class="terms-box p-3 rounded" style="background:#f8f9fa;border:1px solid #e9ecef;">
+									<div class="form-check">
+										<input type="checkbox"
+											   class="form-check-input"
+											   id="joinTerms"
+											   formControlName="termsAccepted" />
+										<label class="form-check-label small" for="joinTerms">
+											By submitting this form, I agree to be contacted by
+											<strong>{{ siteConfig.businessName }}</strong>
+											via email, phone, and text about real estate services.
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-12">
+								<app-captcha></app-captcha>
+							</div>
+
+							<div class="col-12">
+								<button type="submit"
+										class="btn btn-primary w-100 py-2 fw-semibold"
+										[disabled]="contactForm.invalid || isSubmitting()">
+									@if (isSubmitting()) {
+										<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+										Submitting...
+									} @else {
+										<i class="bi bi-send me-2"></i> Send Message
+									}
+								</button>
+							</div>
+
 						</div>
-						<div class="mb-3">
-							<app-captcha></app-captcha>
-						</div>
-						<button
-							type="submit"
-							class="btn btn-success w-100 py-2 fw-semibold"
-							[disabled]="contactForm.invalid || isSubmitting()">
-							@if (isSubmitting()) {
-								<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
-								Sending...
-							} @else {
-								<i class="bi bi-send me-2"></i>Send My Interest
-							}
-						</button>
 					</form>
 				</div>
 			</div>

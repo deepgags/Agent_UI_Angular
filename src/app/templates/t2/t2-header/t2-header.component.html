@@ -1,14 +1,40 @@
 <div class="t2-header position-fixed w-100" style="z-index: 999;">
   <!-- Top accent bar -->
   <div class="t2-top-bar">
-    <div class="container-fluid d-flex align-items-center justify-content-end gap-4">
-      <a class="t2-top-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone | phone">
-        <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
-      </a>
-      <span class="t2-top-vr"></span>
-      <a class="t2-top-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
-        <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
-      </a>
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+      <!-- Left: Secondary agent contact -->
+      <div class="d-flex align-items-center gap-3">
+        @if (siteConfig?.secondaryAgent?.enableSecondaryAgent) {
+          @if (siteConfig.secondaryAgent.websitePhone) {
+            <a class="t2-top-link" [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+              <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
+            </a>
+          }
+          @if (siteConfig.secondaryAgent.websiteEmail) {
+            <span class="t2-top-vr"></span>
+            <a class="t2-top-link" [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+              <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
+            </a>
+          }
+        }
+      </div>
+
+      <!-- Right: Primary agent contact -->
+      <div class="d-flex align-items-center gap-3">
+        @if (siteConfig?.websiteSettings?.contactInfo?.phone) {
+          <a class="t2-top-link" [href]="'tel:' + siteConfig?.websiteSettings?.contactInfo?.phone">
+            <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.phone | phone }}
+          </a>
+        }
+        @if (siteConfig?.websiteSettings?.contactInfo?.email) {
+          <span class="t2-top-vr"></span>
+          <a class="t2-top-link" [href]="'mailto:' + siteConfig?.websiteSettings?.contactInfo?.email">
+            <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig?.websiteSettings?.contactInfo?.email }}
+          </a>
+        }
+      </div>
+
     </div>
   </div>
 
@@ -33,50 +59,94 @@
         </div>
       </div>
 
-      <!-- Primary agent -->
-      <div class="col-12 d-flex align-items-center justify-content-center gap-3 my-2 my-lg-0"
-           [ngClass]="siteConfig?.secondaryAgent?.enableSecondaryAgent ? 'col-lg-3' : 'col-lg-4'">
-        @if (siteConfig) {
-        <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
-             alt="Agent Photo" class="t2-agent-img flex-shrink-0" />
-        <div>
-          <p class="t2-agent-name mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
-          <p class="t2-agent-desig mb-0">{{ siteConfig.designation }}</p>
-          @if (siteConfig.websiteSettings.contactInfo.phone) {
-          <a [href]="'tel:' + (siteConfig.websiteSettings.contactInfo.phone | phone)" class="t2-agent-link d-block">
-            <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-          </a>
-          }
-          @if (siteConfig.websiteSettings.contactInfo.email) {
-          <a [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email" class="t2-agent-link d-block">
-            <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
-          </a>
-          }
-        </div>
-        }
-      </div>
-
-      <!-- Secondary agent -->
+      <!-- LEFT agent column:
+           default         → secondary agent
+           secondaryAgentFirst=true → primary agent -->
       @if (siteConfig?.secondaryAgent?.enableSecondaryAgent) {
       <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center gap-3 my-2 my-lg-0">
-        <img [src]="siteConfig.secondaryAgent?.profileImage ? localImageUrl + siteConfig.secondaryAgent?.profileImage : '/images/NoProfile.png'"
-             alt="Secondary Agent Photo" class="t2-agent-img t2-agent-img-secondary flex-shrink-0" />
-        <div>
-          <p class="t2-agent-name mb-0">{{ siteConfig.secondaryAgent?.firstName }} {{ siteConfig.secondaryAgent?.lastName }}</p>
-          <p class="t2-agent-desig mb-0">{{ siteConfig.secondaryAgent?.designation }}</p>
-          @if (siteConfig.secondaryAgent?.websitePhone) {
-          <a [href]="'tel:' + (siteConfig.secondaryAgent?.websitePhone | phone)" class="t2-agent-link d-block">
-            <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.secondaryAgent?.websitePhone | phone }}
-          </a>
-          }
-          @if (siteConfig.secondaryAgent?.websiteEmail) {
-          <a [href]="'mailto:' + siteConfig.secondaryAgent?.websiteEmail" class="t2-agent-link d-block">
-            <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.secondaryAgent?.websiteEmail }}
-          </a>
-          }
-        </div>
+        @if (!siteConfig?.websiteSettings?.secondaryAgentFirst) {
+          <!-- Secondary on LEFT (default) -->
+          <img [src]="siteConfig.secondaryAgent?.profileImage ? localImageUrl + siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
+               alt="Secondary Agent Photo" class="t2-agent-img t2-agent-img-secondary flex-shrink-0" />
+          <div>
+            <p class="t2-agent-name mb-0">{{ siteConfig.secondaryAgent?.firstName }} {{ siteConfig.secondaryAgent?.lastName }}</p>
+            <p class="t2-agent-desig mb-0">{{ siteConfig.secondaryAgent?.designation }}</p>
+            @if (siteConfig.secondaryAgent?.websitePhone) {
+            <a [href]="'tel:' + (siteConfig.secondaryAgent.websitePhone | phone)" class="t2-agent-link d-block">
+              <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
+            </a>
+            }
+            @if (siteConfig.secondaryAgent?.websiteEmail) {
+            <a [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail" class="t2-agent-link d-block">
+              <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
+            </a>
+            }
+          </div>
+        } @else {
+          <!-- Primary on LEFT (when secondaryAgentFirst=true) -->
+          <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
+               alt="Agent Photo" class="t2-agent-img flex-shrink-0" />
+          <div>
+            <p class="t2-agent-name mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+            <p class="t2-agent-desig mb-0">{{ siteConfig.designation }}</p>
+            @if (siteConfig.websiteSettings.contactInfo.phone) {
+            <a [href]="'tel:' + (siteConfig.websiteSettings.contactInfo.phone | phone)" class="t2-agent-link d-block">
+              <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+            </a>
+            }
+            @if (siteConfig.websiteSettings.contactInfo.email) {
+            <a [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email" class="t2-agent-link d-block">
+              <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
+            </a>
+            }
+          </div>
+        }
       </div>
       }
+
+      <!-- RIGHT agent column:
+           default         → primary agent
+           secondaryAgentFirst=true → secondary agent -->
+      <div class="col-12 d-flex align-items-center justify-content-center gap-3 my-2 my-lg-0"
+           [ngClass]="siteConfig?.secondaryAgent?.enableSecondaryAgent ? 'col-lg-3' : 'col-lg-4'">
+        @if (!siteConfig?.websiteSettings?.secondaryAgentFirst || !siteConfig?.secondaryAgent?.enableSecondaryAgent) {
+          <!-- Primary on RIGHT (default) -->
+          <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
+               alt="Agent Photo" class="t2-agent-img flex-shrink-0" />
+          <div>
+            <p class="t2-agent-name mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+            <p class="t2-agent-desig mb-0">{{ siteConfig.designation }}</p>
+            @if (siteConfig.websiteSettings.contactInfo.phone) {
+            <a [href]="'tel:' + (siteConfig.websiteSettings.contactInfo.phone | phone)" class="t2-agent-link d-block">
+              <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+            </a>
+            }
+            @if (siteConfig.websiteSettings.contactInfo.email) {
+            <a [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email" class="t2-agent-link d-block">
+              <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
+            </a>
+            }
+          </div>
+        } @else {
+          <!-- Secondary on RIGHT (when secondaryAgentFirst=true) -->
+          <img [src]="siteConfig.secondaryAgent?.profileImage ? localImageUrl + siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
+               alt="Secondary Agent Photo" class="t2-agent-img t2-agent-img-secondary flex-shrink-0" />
+          <div>
+            <p class="t2-agent-name mb-0">{{ siteConfig.secondaryAgent?.firstName }} {{ siteConfig.secondaryAgent?.lastName }}</p>
+            <p class="t2-agent-desig mb-0">{{ siteConfig.secondaryAgent?.designation }}</p>
+            @if (siteConfig.secondaryAgent?.websitePhone) {
+            <a [href]="'tel:' + (siteConfig.secondaryAgent.websitePhone | phone)" class="t2-agent-link d-block">
+              <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
+            </a>
+            }
+            @if (siteConfig.secondaryAgent?.websiteEmail) {
+            <a [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail" class="t2-agent-link d-block">
+              <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
+            </a>
+            }
+          </div>
+        }
+      </div>
 
       <!-- Social icons + personal branding -->
       <div class="col-12 d-flex align-items-center justify-content-center justify-content-lg-end gap-3 my-2 my-lg-0"
