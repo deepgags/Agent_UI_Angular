@@ -142,7 +142,7 @@ export class PageManagerComponent implements OnInit {
 	private initializeForm() {
 		this.pageForm = this.fb.group({
 			title: new FormControl("", [Validators.required]),
-			content: new FormControl(""),
+			content: new FormControl("", [Validators.required]),
 			metaTitle: new FormControl(""),
 			metaDescription: new FormControl(""),
 			keywords: new FormControl(""),
@@ -516,7 +516,6 @@ export class PageManagerComponent implements OnInit {
 			testimonial: "bi-chat-quote-fill",
 			calculator: "bi-calculator-fill",
 			cities: "bi-geo-alt-fill",
-			"join-us": "bi-person-plus-fill",
 		};
 		return icons[key] ?? "bi-file-earmark-text-fill";
 	}

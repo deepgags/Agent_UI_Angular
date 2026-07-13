@@ -1,16 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, ViewChild, inject, signal } from "@angular/core";
-import { DomSanitizer, Meta, Title } from "@angular/platform-browser";
+import { Component, OnInit, ViewChild, signal } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from "primeng/inputtext";
 import { CaptchaComponent } from "../../../components/captcha/captcha.component";
-import { environment } from "../../../environments/environment.development";
-import { Page } from "../../../models/Page";
 import { SiteConfig } from "../../../models/SiteConfig";
 import { PhoneNumberFormatPipe } from "../../../pipes/phone-format";
 import { NotificationService } from "../../../services/notification.service";
-import { PageService } from "../../../services/page.service";
 import { PublicService } from "../../../services/public.service";
 import { SharedDataService } from "../../../services/shared-data.service";
 
@@ -24,14 +20,6 @@ import { SharedDataService } from "../../../services/shared-data.service";
 export class JoinUsComponent implements OnInit {
 	siteConfig: SiteConfig = {} as SiteConfig;
 	isSubmitting = signal(false);
-
-	private pageService = inject(PageService);
-	private titleService = inject(Title);
-	private metaService = inject(Meta);
-	private sanitizer = inject(DomSanitizer);
-
-	page = signal<Page | null>(null);
-	localImageUrl = "";
 
 	@ViewChild(CaptchaComponent) captchaComponent!: CaptchaComponent;
 
@@ -92,42 +80,7 @@ export class JoinUsComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.localImageUrl = environment.localImageUrl;
 		this.siteConfig = this.sharedDataService.siteData();
-
-		this.pageService.getPredefinedPageContent("join-us").subscribe({
-			next: (res) => {
-				this.page.set(res);
-
-				const title = res.metaTitle || res.title;
-				this.titleService.setTitle(title);
-
-				if (res.metaDescription) {
-					this.metaService.updateTag({ name: "description", content: res.metaDescription });
-				} else {
-					this.metaService.updateTag({ name: "description", content: res.content });
-				}
-
-				if (res.keywords) {
-					this.metaService.updateTag({ name: "keywords", content: res.keywords });
-				}
-			},
-			error: () => {},
-		});
-	}
-
-	getSafeHtml(content: string | undefined) {
-		return this.sanitizer.bypassSecurityTrustHtml(content ?? "");
-	}
-
-	get heroImageSrc(): string {
-		const heroImage = this.page()?.heroImages?.[0];
-		return heroImage ? this.localImageUrl + heroImage : "/images/banner3.jpg";
-	}
-
-	get hasDynamicContent(): boolean {
-		const c = this.page()?.content;
-		return !!(c && c.trim().length > 0);
 	}
 
 	get name()    { return this.contactForm.get("name"); }
