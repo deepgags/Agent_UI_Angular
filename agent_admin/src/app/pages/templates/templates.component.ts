@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { TableModule } from 'primeng/table';
+import { TableModule, TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
@@ -35,6 +35,9 @@ export class TemplatesComponent implements OnInit {
   items = signal<Template[]>([]);
   loading = signal(false);
   searchQuery = '';
+  first = signal(0);
+  rows = signal(10);
+  totalRecords = signal(0);
   dialogVisible = false;
   isEdit = false;
   selectedItem: Template | null = null;
@@ -45,6 +48,7 @@ export class TemplatesComponent implements OnInit {
     templateKey: ['', Validators.required],
     name: ['', Validators.required],
     description: [''],
+    role: ['Agent', Validators.required],
     enable: [true],
     primaryColor: [''],
     secondaryColor: [''],
@@ -54,20 +58,31 @@ export class TemplatesComponent implements OnInit {
 
   loadItems() {
     this.loading.set(true);
-    this.apiClient.getPaginated<Template>('/templates', { page: 1, pageSize: 10, search: this.searchQuery }).subscribe({
-      next: (res) => { this.items.set(res.data); this.loading.set(false); },
+    const page = Math.floor(this.first() / this.rows()) + 1;
+    this.apiClient.getPaginated<Template>('/templates', { page, pageSize: this.rows(), search: this.searchQuery }).subscribe({
+      next: (res) => {
+        this.items.set(res.data);
+        this.totalRecords.set(res.meta?.total ?? res.data.length);
+        this.loading.set(false);
+      },
       error: () => this.loading.set(false),
     });
   }
 
-  onSearch() { this.loadItems(); }
+  onLazyLoad(event: TableLazyLoadEvent) {
+    this.first.set(event.first ?? 0);
+    this.rows.set(event.rows ?? 10);
+    this.loadItems();
+  }
+
+  onSearch() { this.first.set(0); this.loadItems(); }
 
   openDialog() {
     this.isEdit = false;
     this.selectedItem = null;
     this.newImages = [];
     this.imagesToDelete = [];
-    this.form.reset({ enable: true, primaryColor: '', secondaryColor: '' });
+    this.form.reset({ enable: true, role: 'Agent', primaryColor: '', secondaryColor: '' });
     this.dialogVisible = true;
   }
 
@@ -80,6 +95,7 @@ export class TemplatesComponent implements OnInit {
       templateKey: item.templateKey,
       name: item.name,
       description: item.description || '',
+      role: item.role || 'Agent',
       enable: item.enable,
       primaryColor: item.primaryColor || '',
       secondaryColor: item.secondaryColor || '',
@@ -103,6 +119,7 @@ export class TemplatesComponent implements OnInit {
     if (template.templateKey) fd.append('templateKey', template.templateKey);
     if (template.name) fd.append('name', template.name);
     if (template.description) fd.append('description', template.description || '');
+    if (template.role) fd.append('role', template.role);
     if (template.enable !== undefined) fd.append('enable', String(template.enable));
     if (template.primaryColor) fd.append('primaryColor', template.primaryColor);
     if (template.secondaryColor) fd.append('secondaryColor', template.secondaryColor);
@@ -150,6 +167,7 @@ export class TemplatesComponent implements OnInit {
       templateKey: formValue.templateKey || undefined,
       name: formValue.name || undefined,
       description: formValue.description || undefined,
+      role: formValue.role || undefined,
       enable: formValue.enable ?? undefined,
       primaryColor: formValue.primaryColor || undefined,
       secondaryColor: formValue.secondaryColor || undefined,

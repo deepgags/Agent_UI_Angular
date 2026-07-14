@@ -11,7 +11,7 @@
       <button pButton label="Add Team Member" icon="pi pi-plus" (click)="openDialog()"></button>
     </ng-template>
   </p-toolbar>
-  <p-table [value]="items()" [paginator]="true" [rows]="10" [loading]="loading()">
+  <p-table [value]="items()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [paginator]="true" [rows]="rows()" [first]="first()" [totalRecords]="totalRecords()" [loading]="loading()">
     <ng-template pTemplate="header">
       <tr><th>Name</th><th>Role</th><th>Email</th><th>Phone</th><th class="text-right">Actions</th></tr>
     </ng-template>

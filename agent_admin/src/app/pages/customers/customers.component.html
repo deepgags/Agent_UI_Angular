@@ -14,7 +14,7 @@
     </ng-template>
   </p-toolbar>
 
-  <p-table [value]="customers()" [paginator]="true" [rows]="10" [loading]="loading()" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="customers()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [paginator]="true" [rows]="rows()" [first]="first()" [totalRecords]="totalRecords()" [loading]="loading()" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>Business Name</th>

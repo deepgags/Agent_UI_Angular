@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TableModule } from 'primeng/table';
+import { TableModule, TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
@@ -60,8 +60,9 @@ export class CustomersComponent implements OnInit {
   isEdit = false;
   selectedCustomer: Customer | null = null;
   searchQuery = '';
-  currentPage = 1;
-  pageSize = 10;
+  first = signal(0);
+  rows = signal(10);
+  totalRecords = signal(0);
 
   form = this.fb.group({
     businessName: ['', Validators.required],
@@ -79,18 +80,26 @@ export class CustomersComponent implements OnInit {
 
   loadCustomers() {
     this.loading.set(true);
-    const query: ListQuery = { page: this.currentPage, pageSize: this.pageSize, search: this.searchQuery };
+    const page = Math.floor(this.first() / this.rows()) + 1;
+    const query: ListQuery = { page, pageSize: this.rows(), search: this.searchQuery };
     this.apiClient.getPaginated<Customer>('/customers', query).subscribe({
       next: (res) => {
         this.customers.set(res.data);
+        this.totalRecords.set(res.meta?.total ?? res.data.length);
         this.loading.set(false);
       },
       error: () => this.loading.set(false),
     });
   }
 
+  onLazyLoad(event: TableLazyLoadEvent) {
+    this.first.set(event.first ?? 0);
+    this.rows.set(event.rows ?? 10);
+    this.loadCustomers();
+  }
+
   onSearch() {
-    this.currentPage = 1;
+    this.first.set(0);
     this.loadCustomers();
   }
 

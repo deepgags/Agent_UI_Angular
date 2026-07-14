@@ -1,7 +1,7 @@
 <div class="page-header"><h1 class="page-title">Cities</h1><p class="page-subtitle">Manage cities.</p></div>
 <div class="card">
   <p-toolbar><ng-template #end><button pButton label="Add City" icon="pi pi-plus" (click)="openDialog()"></button></ng-template></p-toolbar>
-  <p-table [value]="items()" [paginator]="true" [rows]="10" [loading]="loading()">
+  <p-table [value]="items()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [paginator]="true" [rows]="rows()" [first]="first()" [totalRecords]="totalRecords()" [loading]="loading()">
     <ng-template pTemplate="header"><tr><th>City</th><th>Province</th><th class="text-right"> Actions</th></tr></ng-template>
     <ng-template pTemplate="body" let-item><tr><td>{{ item.city }}</td><td>{{ item.province_name }}</td>
       <td class="text-right"><button pButton icon="pi pi-pencil" class="p-button-text p-button-sm" (click)="editItem(item)"></button><button pButton icon="pi pi-trash" class="p-button-text p-button-danger p-button-sm" (click)="deleteItem(item)"></button></td></tr></ng-template>

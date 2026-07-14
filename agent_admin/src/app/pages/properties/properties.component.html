@@ -8,7 +8,7 @@
       <input pInputText placeholder="Search..." [(ngModel)]="searchQuery" (input)="onSearch()" class="mr-2" />
     </ng-template>
   </p-toolbar>
-  <p-table [value]="items()" [paginator]="true" [rows]="10" [loading]="loading()">
+  <p-table [value]="items()" [lazy]="true" (onLazyLoad)="onLazyLoad($event)" [paginator]="true" [rows]="rows()" [first]="first()" [totalRecords]="totalRecords()" [loading]="loading()">
     <ng-template pTemplate="header">
       <tr>
         <th>MLS ID</th>

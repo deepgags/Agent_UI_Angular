@@ -4,6 +4,7 @@ export class TemplateModel {
 	templateKey: string = "";
 	description: string = "";
 	data: string = "";
+	role: string = "";
 	images: string[] | any = [];
 	isApproved: boolean = false;
 	isDefault: boolean = false;

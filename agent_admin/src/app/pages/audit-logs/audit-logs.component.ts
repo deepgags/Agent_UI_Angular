@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TableModule } from 'primeng/table';
+import { TableModule, TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -30,16 +30,24 @@ export class AuditLogsComponent implements OnInit {
   items = signal<AuditLog[]>([]);
   loading = signal(false);
   searchQuery = '';
-  currentPage = 1;
-  pageSize = 10;
+  first = signal(0);
+  rows = signal(10);
+  totalRecords = signal(0);
 
   ngOnInit() { this.loadItems(); }
 
   loadItems() {
     this.loading.set(true);
-    const query: ListQuery = { page: this.currentPage, pageSize: this.pageSize, search: this.searchQuery };
-    this.apiClient.getPaginated<AuditLog>('/audit-logs', query).subscribe({ next: (res) => { this.items.set(res.data); this.loading.set(false); }, error: () => this.loading.set(false) });
+    const page = Math.floor(this.first() / this.rows()) + 1;
+    const query: ListQuery = { page, pageSize: this.rows(), search: this.searchQuery };
+    this.apiClient.getPaginated<AuditLog>('/audit-logs', query).subscribe({ next: (res) => { this.items.set(res.data); this.totalRecords.set(res.meta?.total ?? res.data.length); this.loading.set(false); }, error: () => this.loading.set(false) });
   }
 
-  onSearch() { this.currentPage = 1; this.loadItems(); }
+  onLazyLoad(event: TableLazyLoadEvent) {
+    this.first.set(event.first ?? 0);
+    this.rows.set(event.rows ?? 10);
+    this.loadItems();
+  }
+
+  onSearch() { this.first.set(0); this.loadItems(); }
 }

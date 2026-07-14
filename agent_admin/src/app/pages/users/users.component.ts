@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { TableModule } from 'primeng/table';
+import { TableModule, TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
@@ -49,8 +49,9 @@ export class UsersComponent implements OnInit {
   isEdit = false;
   selectedItem: SiteUser | null = null;
   searchQuery = '';
-  currentPage = 1;
-  pageSize = 10;
+  first = signal(0);
+  rows = signal(10);
+  totalRecords = signal(0);
 
   roles = [{ label: 'Admin', value: 'admin' }, { label: 'Editor', value: 'editor' }, { label: 'Viewer', value: 'viewer' }];
 
@@ -65,13 +66,20 @@ export class UsersComponent implements OnInit {
 
   loadItems() {
     this.loading.set(true);
-    this.apiClient.getPaginated<SiteUser>('/users', { page: this.currentPage, pageSize: this.pageSize, search: this.searchQuery }).subscribe({
-      next: (res) => { this.items.set(res.data); this.loading.set(false); },
+    const page = Math.floor(this.first() / this.rows()) + 1;
+    this.apiClient.getPaginated<SiteUser>('/users', { page, pageSize: this.rows(), search: this.searchQuery }).subscribe({
+      next: (res) => { this.items.set(res.data); this.totalRecords.set(res.meta?.total ?? res.data.length); this.loading.set(false); },
       error: () => this.loading.set(false),
     });
   }
 
-  onSearch() { this.currentPage = 1; this.loadItems(); }
+  onLazyLoad(event: TableLazyLoadEvent) {
+    this.first.set(event.first ?? 0);
+    this.rows.set(event.rows ?? 10);
+    this.loadItems();
+  }
+
+  onSearch() { this.first.set(0); this.loadItems(); }
   openDialog() { this.isEdit = false; this.selectedItem = null; this.form.reset(); this.dialogVisible = true; }
   editItem(item: SiteUser) { this.isEdit = true; this.selectedItem = item; this.form.patchValue({ name: item.name, email: item.email, phone: item.phone, role: item.role }); this.dialogVisible = true; }
 

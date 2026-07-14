@@ -1,7 +1,7 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { TableModule } from 'primeng/table';
+import { TableModule, TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
@@ -51,13 +51,14 @@ export class LeadsComponent implements OnInit {
   isEdit = false;
   selectedItem: Lead | null = null;
   searchQuery = '';
-  currentPage = 1;
-  pageSize = 10;
+  first = signal(0);
+  rows = signal(10);
+  totalRecords = signal(0);
 
   private getQueryParams() {
     const params: any = {
-      page: this.currentPage,
-      pageSize: this.pageSize,
+      page: Math.floor(this.first() / this.rows()) + 1,
+      pageSize: this.rows(),
       search: this.searchQuery,
     };
     if (this.customerId()) {
@@ -88,12 +89,18 @@ export class LeadsComponent implements OnInit {
     this.loading.set(true);
     const params = this.getQueryParams();
     this.apiClient.getPaginated<Lead>('/leads', params).subscribe({
-      next: (res) => { this.items.set(res.data); this.loading.set(false); },
+      next: (res) => { this.items.set(res.data); this.totalRecords.set(res.meta?.total ?? res.data.length); this.loading.set(false); },
       error: () => this.loading.set(false),
     });
   }
 
-  onSearch() { this.currentPage = 1; this.loadItems(); }
+  onLazyLoad(event: TableLazyLoadEvent) {
+    this.first.set(event.first ?? 0);
+    this.rows.set(event.rows ?? 10);
+    this.loadItems();
+  }
+
+  onSearch() { this.first.set(0); this.loadItems(); }
   openDialog() { this.isEdit = false; this.selectedItem = null; this.form.reset({ status: 'new' }); this.dialogVisible = true; }
   editItem(item: Lead) { this.isEdit = true; this.selectedItem = item; this.form.patchValue(item); this.dialogVisible = true; }
 
