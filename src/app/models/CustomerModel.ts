@@ -25,6 +25,7 @@ export interface CustomerModel {
 		profileImage: string;
 		subheading?: string;
 		personalBrandingLogo?: string;
+		personalBrandingName?: string;
 		faviconUrl?: string;
 		contactInfo?: {
 			email?: string;

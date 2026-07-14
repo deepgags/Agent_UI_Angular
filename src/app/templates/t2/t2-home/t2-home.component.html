@@ -319,7 +319,11 @@
 		<p class="fs-2 text-center mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
 		<div class="col">
 			<p class="estate fs-2 text-center">
+				@if (siteConfig.secondaryAgent?.enableSecondaryAgent && siteConfig.websiteSettings.personalBrandingName) {
+				{{ siteConfig.websiteSettings.personalBrandingName }}
+			} @else {
 				{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
+			}
 			</p>
 			<p
 				class="text-center fw-semibold small text-secondary word-break"

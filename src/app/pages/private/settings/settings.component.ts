@@ -147,6 +147,7 @@ export class SettingsComponent {
 			]),
 			primaryColor: new FormControl(""),
 			secondaryColor: new FormControl(""),
+			personalBrandingName: new FormControl(""),
 			facebook: new FormControl(""),
 			twitter: new FormControl(""),
 			instagram: new FormControl(""),
@@ -275,6 +276,7 @@ export class SettingsComponent {
 						brokerageImage,
 						profileImage,
 						personalBrandingLogo,
+						personalBrandingName,
 						siteUrl,
 						faviconUrl,
 						showHomeWorthPage,
@@ -317,6 +319,7 @@ export class SettingsComponent {
 						this.agentForm.patchValue({
 							primaryColor: primaryColor,
 							secondaryColor: secondaryColor,
+							personalBrandingName: personalBrandingName,
 							facebook: facebook,
 							twitter: twitter,
 							instagram: instagram,
@@ -380,6 +383,7 @@ export class SettingsComponent {
 				// siteUrl,
 				primaryColor,
 				secondaryColor,
+				personalBrandingName,
 				facebook,
 				twitter,
 				instagram,
@@ -407,6 +411,7 @@ export class SettingsComponent {
 			// Website settings
 			if (primaryColor) formData.append("primaryColor", primaryColor);
 			if (secondaryColor) formData.append("secondaryColor", secondaryColor);
+			formData.append("personalBrandingName", personalBrandingName ?? "");
 			if (websiteEmail) formData.append("websiteEmail", websiteEmail);
 			if (websitePhone) formData.append("websitePhone", websitePhone);
 

@@ -323,12 +323,28 @@
 											alt="Logo Preview" />
 									</div>
 								}
+						</div>
+					</div>
+
+					<div class="row justify-content-start align-items-center mt-3">
+						<div class="col-lg-6 col-12">
+							<div class="mb-3">
+								<p-iftalabel>
+									<input
+										type="text"
+										pInputText
+										formControlName="personalBrandingName"
+										class="form-control"
+										id="personalBrandingName" />
+									<label for="personalBrandingName">Personal Branding Name</label>
+								</p-iftalabel>
 							</div>
 						</div>
+					</div>
 
-						<div class="row justify-content-start align-items-center mt-3">
-							<div class="col-lg-6 col-12">
-								<label class="form-label fw-semibold d-block">Personal Branding Logo</label>
+					<div class="row justify-content-start align-items-center mt-3">
+						<div class="col-lg-6 col-12">
+							<label class="form-label fw-semibold d-block">Personal Branding Logo</label>
 								<div
 									class="upload-zone"
 									(click)="personalBrandingLogoUpload.click()">

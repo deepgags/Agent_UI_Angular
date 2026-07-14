@@ -278,7 +278,11 @@
 	<div class="row py-5 align-items-center justify-content-around">
 		<div class="col-lg-5 col-12">
 			<h1 class="display-6 fw-semibold">"Enjoy a clear and simple home-buying experience"</h1>
-			<p class="info fs-3">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
+			<p class="info fs-3">			@if (siteConfig.secondaryAgent?.enableSecondaryAgent && siteConfig.websiteSettings.personalBrandingName) {
+				{{ siteConfig.websiteSettings.personalBrandingName }}
+			} @else {
+				{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
+			}</p>
 			<p
 				class="fw-normal word-break"
 				[innerHTML]="sharedDataService.homeSections().homeSectionText2"></p>

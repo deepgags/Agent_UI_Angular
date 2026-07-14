@@ -120,7 +120,11 @@
 				<br />
 				home-buying experience"
 			</h2>
-			<p class="info fs-3">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
+			<p class="info fs-3">			@if (siteConfig.secondaryAgent?.enableSecondaryAgent && siteConfig.websiteSettings.personalBrandingName) {
+				{{ siteConfig.websiteSettings.personalBrandingName }}
+			} @else {
+				{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
+			}</p>
 			<p
 				class="fw-normal word-break"
 				[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
