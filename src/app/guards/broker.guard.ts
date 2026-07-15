@@ -19,7 +19,7 @@ export const brokerGuard: CanActivateFn = (route, state) => {
 
 	return customerService.getCustomer().pipe(
 		map((response: any) => {
-			if (response.status && response.data.isBroker === true) {
+			if (response.status && response.data.role === "Broker") {
 				sharedDataService.setUserData(response.data);
 				return true;
 			}
