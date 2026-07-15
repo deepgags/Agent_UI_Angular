@@ -18,4 +18,10 @@ export class T13FooterComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit(): void {}
+
+	get brokerageAddress(): string {
+		const c = this.siteConfig?.websiteSettings?.contactInfo;
+		if (!c) return "";
+		return [c.streetAddress, c.municipality, c.province, c.postalCode].filter(Boolean).join(", ");
+	}
 }

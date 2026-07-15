@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'http://agentuiuxapi.sonnetinfotech.com:8082/api/admin',
+  apiBaseUrl: 'https://agentuiuxapi.sonnetinfotech.com:8082/api/admin',
 };

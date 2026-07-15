@@ -1,46 +1,43 @@
-﻿<div class="container-fluid fotter-bg">
+<div class="container-fluid" style="background:#fff;">
   <div class="container py-5">
     <footer>
       @if (siteConfig) {
       <div class="text-center mb-4">
         <a [routerLink]="['home']">
           <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl+siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Logo" style="max-height:65px;" />
+               alt="Logo" style="max-height:85px;" />
         </a>
-        @if (siteConfig.businessName) {
-        <p class="text-white fw-semibold mt-2 mb-0">{{ siteConfig.businessName }}</p>
-        }
       </div>
       <div class="d-flex justify-content-center gap-3 mb-4">
         @if (siteConfig.websiteSettings.socialLinks.facebook) {
-        <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="text-white-50 fs-5 text-decoration-none"><i class="bi bi-facebook"></i></a>
+        <a [href]="siteConfig.websiteSettings.socialLinks.facebook" target="_blank" rel="noopener noreferrer" class="text-muted fs-5 text-decoration-none"><i class="bi bi-facebook"></i></a>
         }
         @if (siteConfig.websiteSettings.socialLinks.twitter) {
-        <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="text-white-50 fs-5 text-decoration-none"><i class="bi bi-twitter"></i></a>
+        <a [href]="siteConfig.websiteSettings.socialLinks.twitter" target="_blank" rel="noopener noreferrer" class="text-muted fs-5 text-decoration-none"><i class="bi bi-twitter"></i></a>
         }
         @if (siteConfig.websiteSettings.socialLinks.instagram) {
-        <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="text-white-50 fs-5 text-decoration-none"><i class="bi bi-instagram"></i></a>
+        <a [href]="siteConfig.websiteSettings.socialLinks.instagram" target="_blank" rel="noopener noreferrer" class="text-muted fs-5 text-decoration-none"><i class="bi bi-instagram"></i></a>
         }
         @if (siteConfig.websiteSettings.socialLinks.linkedin) {
-        <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="text-white-50 fs-5 text-decoration-none"><i class="bi bi-linkedin"></i></a>
+        <a [href]="siteConfig.websiteSettings.socialLinks.linkedin" target="_blank" rel="noopener noreferrer" class="text-muted fs-5 text-decoration-none"><i class="bi bi-linkedin"></i></a>
         }
         @if (siteConfig.websiteSettings.socialLinks.youtube) {
-        <a [href]="siteConfig.websiteSettings.socialLinks.youtube" target="_blank" rel="noopener noreferrer" class="text-white-50 fs-5 text-decoration-none"><i class="bi bi-youtube"></i></a>
+        <a [href]="siteConfig.websiteSettings.socialLinks.youtube" target="_blank" rel="noopener noreferrer" class="text-muted fs-5 text-decoration-none"><i class="bi bi-youtube"></i></a>
         }
       </div>
-      <hr style="border-color:rgba(255,255,255,0.15);">
+      <hr style="border-color:rgba(0,0,0,0.12);">
       <div class="d-flex justify-content-center gap-5 flex-wrap my-4">
         <div class="text-center">
           <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl+siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
                class="rounded-circle mb-2" style="width:72px;height:72px;object-fit:cover;border:3px solid var(--primary-color,#e63946);" />
-          <p class="text-white fw-semibold mb-0 small">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
-          <p class="text-white-50 small mb-2">{{ siteConfig.designation }}</p>
+          <p class="fw-semibold mb-0 small" style="color:#1a1a1a;">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
+          <p class="text-muted small mb-2">{{ siteConfig.designation }}</p>
           @if (siteConfig.websiteSettings.contactInfo.phone) {
-          <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-block text-white-50 text-decoration-none small mb-1">
+          <a href="tel:{{siteConfig.websiteSettings.contactInfo.phone | phone}}" class="d-block text-muted text-decoration-none small mb-1">
             <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
           </a>
           }
-          <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-block text-white-50 text-decoration-none small">
+          <a href="mailto:{{siteConfig.websiteSettings.contactInfo.email}}" class="d-block text-muted text-decoration-none small">
             <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
           </a>
         </div>
@@ -48,20 +45,20 @@
         <div class="text-center">
           <img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl+siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
                class="rounded-circle mb-2" style="width:72px;height:72px;object-fit:cover;border:3px solid var(--primary-color,#e63946);" />
-          <p class="text-white fw-semibold mb-0 small">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
-          <p class="text-white-50 small mb-2">{{ siteConfig.secondaryAgent.designation }}</p>
-          <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-block text-white-50 text-decoration-none small mb-1">
+          <p class="fw-semibold mb-0 small" style="color:#1a1a1a;">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
+          <p class="text-muted small mb-2">{{ siteConfig.secondaryAgent.designation }}</p>
+          <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-block text-muted text-decoration-none small mb-1">
             <i class="bi bi-telephone-fill me-1"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
           </a>
-          <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="d-block text-white-50 text-decoration-none small">
+          <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="d-block text-muted text-decoration-none small">
             <i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
           </a>
         </div>
         }
       </div>
       }
-      <hr style="border-color:rgba(255,255,255,0.1);">
-      <p class="text-center text-white-50 small mb-0">Copyright 2026 All rights reserved. Toronto Real Estate Board (TREB) assumes no responsibility for the accuracy of any information shown.</p>
+      <hr style="border-color:rgba(0,0,0,0.1);">
+      <p class="text-center text-muted small mb-0">Copyright 2026 All rights reserved. Toronto Regional Real Estate Board (TRREB) assumes no responsibility for the accuracy of any information shown.</p>
     </footer>
   </div>
 </div>

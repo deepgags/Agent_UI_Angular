@@ -55,12 +55,12 @@
 	</div>
 </div>
 
-<!-- Agent info strip — below the banner, aligned under each photo -->
+<!-- Agent info strip + personal branding — all in one row below the banner -->
 <div class="t2-agent-strip">
 	<div class="container-fluid px-4">
-		<div class="d-flex justify-content-between align-items-start">
+		<div class="d-flex justify-content-between align-items-center">
 
-			<!-- Secondary agent info: LEFT side, below overlay-image2 -->
+			<!-- Secondary agent info: LEFT -->
 			<div>
 				@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
 					<div class="t2-agent-info-block">
@@ -68,21 +68,43 @@
 							{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
 						</div>
 						<div class="t2-agent-role">{{ siteConfig.secondaryAgent.designation }}</div>
-						<a class="t2-agent-phone" [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+						@if (siteConfig.secondaryAgent.websitePhone) {
+						<a class="t2-agent-phone d-block" [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
 							<i class="fa-solid fa-phone me-1"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
 						</a>
+						}
+						@if (siteConfig.secondaryAgent.websiteEmail) {
+						<a class="t2-agent-phone d-block" [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+							<i class="fa-solid fa-envelope me-1"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
+						</a>
+						}
 					</div>
 				}
 			</div>
 
-			<!-- Primary agent info: RIGHT side, below overlay-image -->
+			<!-- Personal branding: CENTRE -->
+			@if (siteConfig?.websiteSettings?.personalBrandingLogo) {
+			<div class="text-center">
+				<img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+				     alt="Personal Branding" style="height:90px;max-width:240px;width:auto;object-fit:contain;" />
+			</div>
+			}
+
+			<!-- Primary agent info: RIGHT -->
 			<div>
 				<div class="t2-agent-info-block text-end">
 					<div class="t2-agent-name">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</div>
 					<div class="t2-agent-role">{{ siteConfig.designation }}</div>
-					<a class="t2-agent-phone" [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
+					@if (siteConfig.websiteSettings.contactInfo.phone) {
+					<a class="t2-agent-phone d-block" [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
 						<i class="fa-solid fa-phone me-1"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
 					</a>
+					}
+					@if (siteConfig.websiteSettings.contactInfo.email) {
+					<a class="t2-agent-phone d-block" [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+						<i class="fa-solid fa-envelope me-1"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
+					</a>
+					}
 				</div>
 			</div>
 
@@ -319,7 +341,7 @@
 		<p class="fs-2 text-center mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
 		<div class="col">
 			<p class="estate fs-2 text-center">
-				{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
+				Team Badyal
 			</p>
 			<p
 				class="text-center fw-semibold small text-secondary word-break"

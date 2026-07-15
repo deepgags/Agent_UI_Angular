@@ -123,17 +123,26 @@
   object-fit: contain;
 }
 
-.top-pad { padding-top: 188px; }
+.top-pad { padding-top: 130px; }
 
 @media (max-width: 991px) {
-  .top-pad { padding-top: 388px; }
+  .top-pad { padding-top: 90px; }
 }
 @media (max-width: 768px) {
-  .top-pad { padding-top: 460px; }
+  .top-pad { padding-top: 80px; }
 }
 
-/* 20% header height increase */
-
-.t2-subheading { font-size: 16px; color: #3e4348; letter-spacing: 0.3px; }
-.t2-personal-branding-logo { height: 75px; max-width: 130px; width: auto; object-fit: contain; }
 .t2-header .row { padding-top: 10px !important; padding-bottom: 10px !important; }
+
+/* Inline menu — remove border-top, transparent bg, right-aligned */
+.t2-inline-menu {
+  ::ng-deep {
+    > div { border-top: none !important; border: none !important; }
+    .nav_bg { background: transparent !important; box-shadow: none !important; border: none !important; }
+    .container-fluid { padding: 0 !important; justify-content: flex-end !important; border: none !important; }
+    .navbar { padding: 0 !important; border: none !important; }
+    .navbar-nav { justify-content: flex-end !important; }
+    .home_nav { gap: 10px !important; flex-wrap: nowrap !important; }
+    .nav-link { padding-left: 19px !important; padding-right: 19px !important; white-space: nowrap !important; }
+  }
+}

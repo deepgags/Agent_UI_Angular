@@ -3,17 +3,17 @@
     <div class="row align-items-center py-2 gx-0">
 
       <!-- Left: Logo only -->
-      <div class="col-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-start px-3">
+      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-start px-3">
         @if (siteConfig) {
         <a [routerLink]="['home']" class="flex-shrink-0">
           <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-               alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+               alt="Brokerage Logo" style="max-height:99px;max-width:274px;width:auto;object-fit:contain;" />
         </a>
         }
       </div>
 
       <!-- Centre: Menu -->
-      <div class="col-12 col-lg-5 t13-header-menu-col">
+      <div class="col-12 col-lg-4 t13-header-menu-col">
         <app-menu />
       </div>
 
