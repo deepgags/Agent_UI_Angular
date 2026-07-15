@@ -1481,7 +1481,8 @@
 										<img
 											[src]="localImageUrl + siteConfig.websiteSettings.profileImage"
 											alt=""
-											height="120px" />
+											height="120px"
+											onerror="this.src='/images/NoProfile.png'" />
 									</div>
 								</div>
 
@@ -1493,25 +1494,30 @@
 										<p class="card-text mb-1 text-secondary small">{{ siteConfig.designation }}</p>
 										<div class="text-muted small">
 											<p class="mb-1">
-												Email: {{ siteConfig.websiteSettings.contactInfo.email }}
+												<a [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email" class="text-decoration-none">
+													Email: {{ siteConfig.websiteSettings.contactInfo.email }}
+												</a>
 											</p>
 											<p class="mb-0">
-												Call: {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+												<a [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone" class="text-decoration-none">
+													Call: {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+												</a>
 											</p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						@if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
 						<div class="card shadow border-0 rounded-3 mb-2">
-							@if (siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
 								<div class="row align-items-center">
 									<div class="col-4">
 										<div class="">
 											<img
 												[src]="localImageUrl + siteConfig.secondaryAgent.profileImage"
 												alt=""
-												height="120px" />
+												height="120px"
+												onerror="this.src='/images/NoProfile.png'" />
 										</div>
 									</div>
 
@@ -1525,16 +1531,22 @@
 												{{ siteConfig.secondaryAgent.designation }}
 											</p>
 											<div class="text-muted small">
-												<p class="mb-1">Email: {{ siteConfig.secondaryAgent.websiteEmail }}</p>
+												<p class="mb-1">
+													<a [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail" class="text-decoration-none">
+														Email: {{ siteConfig.secondaryAgent.websiteEmail }}
+													</a>
+												</p>
 												<p class="mb-0">
-													Call: {{ siteConfig.secondaryAgent.websitePhone | phone }}
+													<a [href]="'tel:' + siteConfig.secondaryAgent.websitePhone" class="text-decoration-none">
+														Call: {{ siteConfig.secondaryAgent.websitePhone | phone }}
+													</a>
 												</p>
 											</div>
 										</div>
 									</div>
 								</div>
-							}
 						</div>
+						}
 
 						<div class="card shadow border-0 rounded-3">
 							<div class="row align-items-center">

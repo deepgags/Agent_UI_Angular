@@ -78,25 +78,38 @@
 						{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
 					</h5>
 					<p class="card-text text-white mb-0">{{ siteConfig.secondaryAgent.designation }}</p>
-					<div class="d-flex">
-						<div class="">
-							<i class="fa-solid fa-phone info"></i>
-						</div>
-						<div class="ms-2">
-							<p class="mb-0">
-								<a
-									class="text-white fw-semibold text-decoration-none"
-									[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
-									{{ siteConfig.secondaryAgent.websitePhone | phone }}
-								</a>
-							</p>
-						</div>
+				<div class="d-flex">
+					<div class="">
+						<i class="fa-solid fa-phone info"></i>
 					</div>
-
+					<div class="ms-2">
+						<p class="mb-0">
+							<a
+								class="text-white fw-semibold text-decoration-none"
+								[href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+								{{ siteConfig.secondaryAgent.websitePhone | phone }}
+							</a>
+						</p>
+					</div>
 				</div>
+				<div class="d-flex">
+					<div class="">
+						<i class="bi bi-envelope-fill info"></i>
+					</div>
+					<div class="ms-2">
+						<p class="mb-0">
+							<a class="text-white fw-semibold text-decoration-none"
+							   [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+								{{ siteConfig.secondaryAgent.websiteEmail }}
+							</a>
+						</p>
+					</div>
+				</div>
+
 			</div>
-		}
-	</div>
+		</div>
+	}
+</div>
 </div>
 
 <div class="container-fluid sec-3">

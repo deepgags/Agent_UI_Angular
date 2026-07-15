@@ -49,10 +49,12 @@ export interface CustomerModel {
 		templateId: string;
 	};
 	secondaryAgent?: {
+		enableSecondaryAgent: boolean;
 		firstName: string;
 		lastName: string;
 		websiteEmail: string;
 		websitePhone: string;
 		profileImage: string;
+		designation: string;
 	};
 }

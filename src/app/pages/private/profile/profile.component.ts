@@ -178,13 +178,15 @@ export class ProfileComponent {
 			renovatingForResellText: new FormControl(""),
 			commonSellingMistakeText: new FormControl(""),
 			buyerText: new FormControl(""),
-			secondaryAgent: this.fb.group({
-				firstName: new FormControl(""),
-				lastName: new FormControl(""),
-				websitePhone: new FormControl(""),
-				websiteEmail: new FormControl(""),
-				profileImage: new FormControl(""),
-			}),
+		secondaryAgent: this.fb.group({
+			enableSecondaryAgent: new FormControl(false),
+			firstName: new FormControl(""),
+			lastName: new FormControl(""),
+			websitePhone: new FormControl(""),
+			websiteEmail: new FormControl(""),
+			profileImage: new FormControl(""),
+			designation: new FormControl(""),
+		}),
 		});
 
 		this.getBrokerageTypes();

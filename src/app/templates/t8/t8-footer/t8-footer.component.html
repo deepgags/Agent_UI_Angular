@@ -43,6 +43,7 @@
             <img [src]="siteConfig.secondaryAgent.profileImage ? localImageUrl+siteConfig.secondaryAgent.profileImage : '/images/NoProfile.png'"
                  class="rounded-circle flex-shrink-0" style="width:40px;height:40px;object-fit:cover;" />
             <p class="text-white small mb-0">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
+            <p class="text-white-50 mb-0" style="font-size:0.75rem;">{{ siteConfig.secondaryAgent.designation }}</p>
           </div>
           <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="d-block text-white-50 text-decoration-none small mb-1">
             <i class="bi bi-telephone-fill me-2" style="color:var(--primary-color,#3b82f6);"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
