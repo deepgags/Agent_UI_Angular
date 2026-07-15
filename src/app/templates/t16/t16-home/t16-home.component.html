@@ -262,7 +262,11 @@
 				<br />
 				home-buying experience"
 			</h2>
-			<p class="info fs-4">{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}</p>
+			<p class="info fs-4">			@if (siteConfig.secondaryAgent?.enableSecondaryAgent && siteConfig.websiteSettings.personalBrandingName) {
+				{{ siteConfig.websiteSettings.personalBrandingName }}
+			} @else {
+				{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
+			}</p>
 			<p class="fw-normal">
 				I believe every client has the right to be treated fairly, honestly and with integrity. My aim is to
 				educate and prepare my clients to insure that they are always in a position to make informed decisions.

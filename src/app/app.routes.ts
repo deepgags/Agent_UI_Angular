@@ -18,6 +18,7 @@ export const routes: Routes = [
 	},
 	{
 		path: "templates",
+		canActivate: [authGuard],
 		loadComponent: () => import("./pages/public/templates/templates.component").then((c) => c.TemplatesComponent),
 	},
 	{

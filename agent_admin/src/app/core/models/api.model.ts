@@ -36,6 +36,7 @@ export interface Template {
   templateKey: string;
   name: string;
   description?: string;
+  role?: string;
   enable: boolean;
   isDeleted?: boolean;
   primaryColor?: string;

@@ -173,7 +173,11 @@
 					home-buying experience"
 				</h2>
 				<p class="fs-3 info">
+					@if (siteConfig.secondaryAgent?.enableSecondaryAgent && siteConfig.websiteSettings.personalBrandingName) {
+					{{ siteConfig.websiteSettings.personalBrandingName }}
+				} @else {
 					{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
+				}
 				</p>
 				<p
 					class="fw-normal word-break"

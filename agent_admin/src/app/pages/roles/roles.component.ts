@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { TableModule } from 'primeng/table';
+import { TableModule, TableLazyLoadEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
@@ -41,8 +41,9 @@ export class RolesComponent implements OnInit {
   dialogVisible = false;
   isEdit = false;
   selectedItem: Role | null = null;
-  currentPage = 1;
-  pageSize = 10;
+  first = signal(0);
+  rows = signal(10);
+  totalRecords = signal(0);
 
   form = this.fb.group({
     name: ['', Validators.required],
@@ -53,10 +54,17 @@ export class RolesComponent implements OnInit {
 
   loadItems() {
     this.loading.set(true);
-    this.apiClient.getPaginated<Role>('/roles', { page: this.currentPage, pageSize: this.pageSize }).subscribe({
-      next: (res) => { this.items.set(res.data); this.loading.set(false); },
+    const page = Math.floor(this.first() / this.rows()) + 1;
+    this.apiClient.getPaginated<Role>('/roles', { page, pageSize: this.rows() }).subscribe({
+      next: (res) => { this.items.set(res.data); this.totalRecords.set(res.meta?.total ?? res.data.length); this.loading.set(false); },
       error: () => this.loading.set(false),
     });
+  }
+
+  onLazyLoad(event: TableLazyLoadEvent) {
+    this.first.set(event.first ?? 0);
+    this.rows.set(event.rows ?? 10);
+    this.loadItems();
   }
 
   openDialog() { this.isEdit = false; this.selectedItem = null; this.form.reset(); this.dialogVisible = true; }

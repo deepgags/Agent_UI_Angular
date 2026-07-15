@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../environments/environment.development";
 
@@ -11,6 +11,8 @@ export class TemplateService {
 	constructor(private http: HttpClient) {}
 
 	getTemplates() {
-		return this.http.get(`${this.baseUrl}/templates`);
+		const token = localStorage.getItem("token");
+		const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : {};
+		return this.http.get(`${this.baseUrl}/templates`, { headers });
 	}
 }
