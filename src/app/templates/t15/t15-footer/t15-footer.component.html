@@ -33,8 +33,12 @@
                    class="rounded-circle" style="width:32px;height:32px;object-fit:cover;" />
               <div>
                 <p class="text-white fw-semibold mb-0" style="font-size:0.78rem;">{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}</p>
+                <p class="text-white-50 mb-0" style="font-size:0.68rem;">{{ siteConfig.secondaryAgent.designation }}</p>
                 <a [href]="'tel:'+siteConfig.secondaryAgent.websitePhone" class="text-white-50 text-decoration-none" style="font-size:0.72rem;">
                   {{ siteConfig.secondaryAgent.websitePhone | phone }}
+                </a>
+                <a [href]="'mailto:'+siteConfig.secondaryAgent.websiteEmail" class="text-white-50 text-decoration-none" style="font-size:0.72rem;">
+                  {{ siteConfig.secondaryAgent.websiteEmail }}
                 </a>
               </div>
             </div>

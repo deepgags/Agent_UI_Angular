@@ -68,11 +68,14 @@
 							{{ siteConfig.secondaryAgent.firstName }} {{ siteConfig.secondaryAgent.lastName }}
 						</div>
 						<div class="t2-agent-role">{{ siteConfig.secondaryAgent.designation }}</div>
-						<a class="t2-agent-phone" [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
-							<i class="fa-solid fa-phone me-1"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
-						</a>
-					</div>
-				}
+					<a class="t2-agent-phone" [href]="'tel:' + siteConfig.secondaryAgent.websitePhone">
+						<i class="fa-solid fa-phone me-1"></i>{{ siteConfig.secondaryAgent.websitePhone | phone }}
+					</a>
+					<a class="t2-agent-phone" [href]="'mailto:' + siteConfig.secondaryAgent.websiteEmail">
+						<i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.secondaryAgent.websiteEmail }}
+					</a>
+				</div>
+			}
 			</div>
 
 			<!-- Primary agent info: RIGHT side, below overlay-image -->
