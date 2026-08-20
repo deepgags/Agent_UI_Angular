@@ -116,6 +116,24 @@ export class CitiesComponent implements OnInit {
 	openAddCityDialog() {
 		this.editingCity = null;
 		this.cityForm.reset();
+		this.cityForm.get("image")?.setValidators([Validators.required]);
+		this.cityForm.get("image")?.updateValueAndValidity();
+		this.cityForm.get("city")?.enable();
+		this.cityImage.next(null);
+		this.defaultCities = [...this.defaultCitiesCopy];
+		if (this.cityImageUpload) {
+			this.cityImageUpload.nativeElement.value = "";
+		}
+		this.cityDialogVisible = true;
+	}
+
+	editCity(city: City) {
+		this.editingCity = city;
+		this.cityForm.reset();
+		this.cityForm.patchValue({ city: city.name });
+		this.cityForm.get("city")?.disable();
+		this.cityForm.get("image")?.clearValidators();
+		this.cityForm.get("image")?.updateValueAndValidity();
 		this.cityImage.next(null);
 		this.defaultCities = [...this.defaultCitiesCopy];
 		if (this.cityImageUpload) {
@@ -131,6 +149,11 @@ export class CitiesComponent implements OnInit {
 	};
 
 	saveCity() {
+		if (this.editingCity) {
+			this.updateCity();
+			return;
+		}
+
 		if (this.cityForm.valid && this.cities.length < 10) {
 			const formValue = this.cityForm.getRawValue();
 			const formData = new FormData();
@@ -163,6 +186,39 @@ export class CitiesComponent implements OnInit {
 		} else {
 			this.cityForm.markAllAsTouched();
 		}
+	}
+
+	private updateCity() {
+		if (this.cityForm.invalid || !this.editingCity) {
+			this.cityForm.markAllAsTouched();
+			return;
+		}
+
+		if (!this.cityImage.value) {
+			this.notificationService.showError("Select a new image to update");
+			return;
+		}
+
+		const city = this.editingCity;
+		const formData = new FormData();
+		formData.append("image", this.cityImage.value, "city-image.png");
+
+		this.loadingService.loadingOn();
+		this.citiesService.updateCity(city._id!, formData).subscribe({
+			next: (response) => {
+				if (response.status) {
+					const updated = { ...city, ...response.data };
+					this.cities = this.cities.map((c) => (c._id === city._id ? updated : c));
+					this.notificationService.showSuccess("City updated successfully");
+					this.cancelDialog();
+				}
+				this.loadingService.loadingOff();
+			},
+			error: (error) => {
+				this.notificationService.showError(error.error?.message || "Failed to update city");
+				this.loadingService.loadingOff();
+			},
+		});
 	}
 
 	deleteCity(city: City) {
@@ -230,6 +286,9 @@ export class CitiesComponent implements OnInit {
 		this.cityDialogVisible = false;
 		this.editingCity = null;
 		this.cityForm.reset();
+		this.cityForm.get("city")?.enable();
+		this.cityForm.get("image")?.setValidators([Validators.required]);
+		this.cityForm.get("image")?.updateValueAndValidity();
 		this.cityImage.next(null);
 	}
 

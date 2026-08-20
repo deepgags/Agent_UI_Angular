@@ -70,13 +70,30 @@
 						(click)="getLeads()">Retry</button>
 			</div>
 
+			<!-- Search -->
+			<div *ngIf="!loading && !error"
+				 class="d-flex gap-2 p-3">
+				<p-select [options]="searchFields"
+						  [(ngModel)]="selectedField"
+						  (ngModelChange)="applyFilter()"
+						  optionLabel="label"
+						  optionValue="value"
+						  class="w-auto"
+						  appendTo="body" />
+				<input type="text"
+					   class="form-control w-auto"
+					   placeholder="Search leads..."
+					   [(ngModel)]="searchText"
+					   (ngModelChange)="applyFilter()" />
+			</div>
+
 			<!-- Data Table -->
 			<div *ngIf="!loading && !error">
 				<app-simple-table [columns]="columns"
-								  [data]="leads"
+								  [data]="filteredLeads"
 								  [paginator]="true"
 								  [rows]="25"
-								  [showFilter]="true"
+								  [showFilter]="false"
 								  [showActions]="true"
 								  [showEditAction]="false"
 								  [showDeleteAction]="true"

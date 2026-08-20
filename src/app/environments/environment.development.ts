@@ -1,6 +1,6 @@
 export const environment = {
-	production: true,
-	baseUrl: "https://agentuiuxapi.sonnetinfotech.com",
-    localImageUrl: "https://agentuiuxapi.sonnetinfotech.com",
-    propertyImageUrl: "https://images.sonnetinfotech.com/",
+	production: false,
+	baseUrl: "https://api-agentwebsites.dealcentre.email",
+    localImageUrl: "https://api-agentwebsites.dealcentre.email",
+    propertyImageUrl: "https://images.dealcentre.email/",
 };

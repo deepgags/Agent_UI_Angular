@@ -42,6 +42,12 @@
 						style="width: 60px; height: 40px; object-fit: cover"
 						alt="{{ city.name }}" />
 					<p-button
+						icon="bi bi-pencil"
+						styleClass="p-button-text p-button-sm"
+						pTooltip="Edit Image"
+						[disabled]="savingOrder"
+						(onClick)="editCity(city)"></p-button>
+					<p-button
 						icon="bi bi-trash"
 						styleClass="p-button-text p-button-danger p-button-sm"
 						pTooltip="Delete"
@@ -59,7 +65,7 @@
 </div>
 
 	<p-dialog
-		header="Add New City"
+		[header]="editingCity ? 'Edit City Image' : 'Add New City'"
 		[(visible)]="cityDialogVisible"
 		[modal]="true"
 		[style]="{ width: '600px' }"
@@ -94,7 +100,7 @@
 				</div>
 
 				<div class="col-md-12">
-					<label for="cityImageUpload">Select City Image</label>
+					<label for="cityImageUpload">{{ editingCity ? 'Replace City Image (optional)' : 'Select City Image' }}</label>
 					<p-iftalabel>
 						<input
 							type="file"
@@ -103,7 +109,7 @@
 							class="form-control upload-btn w-100"
 							id="cityImageUpload"
 							accept="image/*"
-							required
+							[required]="!editingCity"
 							placeholder="Select Image" />
 					</p-iftalabel>
 					@if (image?.invalid && (image?.dirty || image?.touched)) {
@@ -126,6 +132,16 @@
 								alt="City Image Preview" />
 						</div>
 					</div>
+					} @else if (editingCity) {
+					<div class="mt-3 p-2 border rounded bg-white shadow-sm">
+						<div class="text-center">
+							<h6 class="text-dark fw-bold mb-2">Current City Image</h6>
+							<img
+								[src]="localImageBaseUrl + editingCity.image"
+								class="rounded border image-preview"
+								alt="Current City Image" />
+						</div>
+					</div>
 					}
 				</div>
 			</div>
@@ -137,7 +153,7 @@
 				styleClass="p-button-text"
 				(onClick)="cancelDialog()" />
 			<p-button
-				label="Add City"
+				[label]="editingCity ? 'Save Changes' : 'Add City'"
 				styleClass="p-button-success"
 				(onClick)="saveCity()" />
 		</ng-template>

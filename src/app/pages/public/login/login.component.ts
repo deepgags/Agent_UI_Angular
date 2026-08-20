@@ -38,7 +38,7 @@ export class LoginComponent {
 		if (this.loginForm.valid) {
 			const { email, password } = this.loginForm.value;
 			const hostname = this.document.location.hostname;
-			this.customerService.login({ emailAddress: email, password, domain: hostname }).subscribe({
+			this.customerService.login({ emailAddress: email, password, domain: hostname.replace('www.','') }).subscribe({
 				next: (response: any) => {
 					localStorage.setItem("token", response.token);
 					this.router.navigate([Pages.SETTINGS]);

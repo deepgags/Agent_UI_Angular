@@ -58,10 +58,10 @@
 <!-- Agent info strip — below the banner, aligned under each photo -->
 <div class="t2-agent-strip">
 	<div class="container-fluid px-4">
-		<div class="d-flex justify-content-between align-items-start">
+		<div class="d-flex justify-content-between align-items-center">
 
 			<!-- Secondary agent info: LEFT side, below overlay-image2 -->
-			<div>
+			<div class="flex-fill">
 				@if (siteConfig && siteConfig.secondaryAgent && siteConfig.secondaryAgent.enableSecondaryAgent) {
 					<div class="t2-agent-info-block">
 						<div class="t2-agent-name">
@@ -78,13 +78,26 @@
 			}
 			</div>
 
+			<!-- Personal branding logo: CENTRE, between both agents -->
+			<div class="flex-fill d-flex justify-content-center align-items-center">
+				@if (siteConfig.websiteSettings.personalBrandingLogo) {
+					<img
+						[src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
+						alt="Personal Branding"
+						class="t2-personal-branding-logo" />
+				}
+			</div>
+
 			<!-- Primary agent info: RIGHT side, below overlay-image -->
-			<div>
+			<div class="flex-fill">
 				<div class="t2-agent-info-block text-end">
 					<div class="t2-agent-name">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</div>
 					<div class="t2-agent-role">{{ siteConfig.designation }}</div>
 					<a class="t2-agent-phone" [href]="'tel:' + siteConfig.websiteSettings.contactInfo.phone">
 						<i class="fa-solid fa-phone me-1"></i>{{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+					</a>
+					<a class="t2-agent-phone" [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+						<i class="bi bi-envelope-fill me-1"></i>{{ siteConfig.websiteSettings.contactInfo.email }}
 					</a>
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { HeroContactFormComponent } from "../../../components/hero-contact-form/hero-contact-form.component";
@@ -15,6 +15,8 @@ import { SharedDataService } from "../../../services/shared-data.service";
 import { StorageService } from "../../../services/storage.service";
 import { FeaturedPropertiesComponent } from "../../shared/featured-properties/featured-properties.component";
 import { SearchComponent } from "../../shared/search/search.component";
+
+declare var bootstrap: any;
 
 @Component({
 	selector: "app-t13-home",
@@ -32,7 +34,7 @@ import { SearchComponent } from "../../shared/search/search.component";
 	styleUrls: ["./t13-home.component.scss", "../t13.component.scss"],
 	providers: [Title, StorageService],
 })
-export class T13HomeComponent implements OnInit {
+export class T13HomeComponent implements OnInit, AfterViewInit {
 	customer!: CustomerModel | null;
 
 	siteConfig: SiteConfig = {} as SiteConfig;
@@ -65,6 +67,15 @@ export class T13HomeComponent implements OnInit {
 
 	get heroImages(): string[] {
 		return this.sharedDataService.heroImages();
+	}
+
+	ngAfterViewInit(): void {
+		setTimeout(() => {
+			const carouselEl = document.querySelector("#t13HeroCarousel");
+			if (carouselEl) {
+				new bootstrap.Carousel(carouselEl);
+			}
+		}, 200);
 	}
 
 	searchProperties = (selectedFilters: any, searchByMap: boolean = false) => {

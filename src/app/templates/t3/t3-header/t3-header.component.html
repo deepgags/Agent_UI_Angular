@@ -4,47 +4,25 @@
     <!-- Left band: primary color — brokerage logo + name -->
     <div class="col-lg-4 col-12 t3-band d-flex align-items-center px-4 py-3">
       @if (siteConfig) {
-      <a [routerLink]="['home']" class="flex-shrink-0 me-3">
+      <a [routerLink]="['home']" class="flex-shrink-0">
         <img [src]="siteConfig.websiteSettings.brokerageImage ? localImageUrl + siteConfig.websiteSettings.brokerageImage : '/images/Nologo.png'"
-             alt="Brokerage Logo" style="max-height:79px;max-width:219px;width:auto;object-fit:contain;" />
+             alt="Brokerage Logo" style="max-height:79px;max-width:370px;width:auto;object-fit:contain;" />
       </a>
       }
-      <div>
-        <h3 class="t3-biz-name mb-0">{{ siteConfig?.businessName }}</h3>
-        @if (siteConfig?.subheading) {
-          <p class="t3-subheading mb-0">{{ siteConfig?.subheading }}</p>
-        }
-      </div>
     </div>
 
-    <!-- Center: agent photo + name + designation + phone + email -->
-    <div class="col-lg-4 col-12 t3-content d-flex align-items-center justify-content-center px-4 py-3 gap-3">
+    <!-- Center: agent name + designation -->
+    <div class="col-lg-4 col-12 t3-content d-flex align-items-center justify-content-center justify-content-lg-start px-4 py-3 gap-3">
       @if (siteConfig) {
-      <img [src]="siteConfig.websiteSettings.profileImage ? localImageUrl + siteConfig.websiteSettings.profileImage : '/images/NoProfile.png'"
-           alt="Agent" class="t3-agent-img flex-shrink-0" />
       <div>
         <p class="t3-agent-name mb-0">{{ siteConfig.firstName }} {{ siteConfig.lastName }}</p>
-        <p class="t3-agent-desig mb-2">{{ siteConfig.designation }}</p>
-        @if (siteConfig.websiteSettings.contactInfo.phone) {
-        <a class="t3-agent-link d-flex align-items-center gap-2 mb-1"
-           [href]="'tel:' + (siteConfig.websiteSettings.contactInfo.phone | phone)">
-          <i class="bi bi-telephone-fill t3-agent-icon"></i>
-          {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
-        </a>
-        }
-        @if (siteConfig.websiteSettings.contactInfo.email) {
-        <a class="t3-agent-link d-flex align-items-center gap-2"
-           [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
-          <i class="bi bi-envelope-fill t3-agent-icon"></i>
-          {{ siteConfig.websiteSettings.contactInfo.email }}
-        </a>
-        }
+        <p class="t3-agent-desig mb-0">{{ siteConfig.designation }}</p>
       </div>
       }
     </div>
 
-    <!-- Right: social icons -->
-    <div class="col-lg-4 col-12 t3-content d-flex align-items-center justify-content-center justify-content-lg-end px-4 py-3">
+    <!-- Right: social icons + phone/email -->
+    <div class="col-lg-4 col-12 t3-content d-flex flex-column align-items-center align-items-lg-end justify-content-center px-4 py-3 gap-1">
       <div class="d-flex gap-2">
         @if (siteConfig.websiteSettings.socialLinks.facebook) {
         <a [href]="siteConfig.websiteSettings.socialLinks.facebook"
@@ -70,7 +48,27 @@
           <i class="bi bi-linkedin linkedin"></i>
         </a>
         }
+        @if (siteConfig.websiteSettings.socialLinks.youtube) {
+        <a [href]="siteConfig.websiteSettings.socialLinks.youtube"
+           target="_blank" rel="noopener noreferrer" class="t3-social-btn">
+          <i class="bi bi-youtube youtube"></i>
+        </a>
+        }
       </div>
+      @if (siteConfig.websiteSettings.contactInfo.phone) {
+      <a class="t3-agent-link d-flex align-items-center gap-2"
+         [href]="'tel:' + (siteConfig.websiteSettings.contactInfo.phone | phone)">
+        <i class="bi bi-telephone-fill t3-agent-icon"></i>
+        {{ siteConfig.websiteSettings.contactInfo.phone | phone }}
+      </a>
+      }
+      @if (siteConfig.websiteSettings.contactInfo.email) {
+      <a class="t3-agent-link d-flex align-items-center gap-2"
+         [href]="'mailto:' + siteConfig.websiteSettings.contactInfo.email">
+        <i class="bi bi-envelope-fill t3-agent-icon"></i>
+        {{ siteConfig.websiteSettings.contactInfo.email }}
+      </a>
+      }
       @if (siteConfig.websiteSettings?.personalBrandingLogo) {
         <img [src]="localImageUrl + siteConfig.websiteSettings.personalBrandingLogo"
              alt="Personal Branding" class="t3-personal-branding-logo" />

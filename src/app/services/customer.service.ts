@@ -119,4 +119,8 @@ export class CustomerService {
 	forgetPasswordUser(params: { email: string }): Observable<any> {
 		return this.http.post(`${this.baseUrl}/users/forgot-password`, params);
 	}
+
+	changePassword(params: { currentPassword: string; newPassword: string }): Observable<any> {
+		return this.http.post(`${this.baseUrl}/customer/change-password`, params);
+	}
 }

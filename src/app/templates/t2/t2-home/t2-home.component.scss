@@ -34,6 +34,13 @@
 	width: 441px;
 }
 
+@media (max-width: 768px) {
+	.overlay-image,
+	.overlay-image2 {
+		display: none;
+	}
+}
+
 /* ── Agent info strip (below banner) ── */
 .t2-agent-strip {
   background: #fff;
@@ -70,9 +77,17 @@
   &:hover { text-decoration: underline; }
 }
 
+.t2-personal-branding-logo {
+  height: 70px;
+  max-width: 160px;
+  width: auto;
+  object-fit: contain;
+}
+
 @media (max-width: 767px) {
   .t2-agent-strip .d-flex { flex-direction: column; gap: 8px; }
   .t2-agent-info-block.text-end { text-align: left !important; }
+  .t2-personal-branding-logo { order: -1; height: 56px; }
 }
 
 @media (max-width: 768px) {

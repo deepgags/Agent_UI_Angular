@@ -61,8 +61,25 @@ export class SimpleTableComponent {
 
 	constructor() {}
 
+	private phonePipe = new PhoneNumberFormatPipe();
+	private capitalizePipe = new CamelCaseToCapitalize();
+
 	get fieldTypes() {
 		return FieldsType;
+	}
+
+	formatContactField(rowData: any, field: string, col: any): string {
+		const value = rowData[field];
+		if (value === undefined || value === null || value === "") {
+			return "-";
+		}
+		if (col.phoneFields?.includes(field)) {
+			return this.phonePipe.transform(value);
+		}
+		if (col.capitalizeFields?.includes(field)) {
+			return this.capitalizePipe.transform(value) ?? value;
+		}
+		return value;
 	}
 
 	exportCSV(table: Table) {

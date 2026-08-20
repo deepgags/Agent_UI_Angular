@@ -16,6 +16,7 @@ import { SelectModule } from "primeng/select";
 import { TextareaModule } from "primeng/textarea";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ImageDialogComponent } from "../../../components/image-dialog/image-dialog.component";
+import { ChangePasswordComponent } from "../change-password/change-password.component";
 import { BrokerageTypeModel } from "../../../models/BrokerageTypeModel";
 import { CustomerModel } from "../../../models/CustomerModel";
 import { TemplateModel } from "../../../models/TemplateModel";
@@ -86,7 +87,15 @@ export class ProfileComponent {
 					{
 						label: "Change Password",
 						icon: "fas fa-key",
-						routerLink: "/change-password",
+						command: () => {
+							this.dialogService.open(ChangePasswordComponent, {
+								header: "Change Password",
+								width: "420px",
+								modal: true,
+								closable: true,
+								dismissableMask: true,
+							});
+						},
 					},
 					{
 						label: "Log Out",

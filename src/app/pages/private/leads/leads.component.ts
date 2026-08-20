@@ -1,10 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { ConfirmationService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
 import { PaginatorModule } from "primeng/paginator";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { SelectModule } from "primeng/select";
 import { TableModule } from "primeng/table";
 import { LeadDetailComponent } from "../../../components/dialogs/lead-detail/lead-detail.component";
 import { SimpleTableComponent } from "../../../components/simple-table/simple-table.component";
@@ -12,16 +14,29 @@ import { FieldsType } from "../../../enums/fields-type.enum";
 import { Lead, LeadsService } from "../../../services/leads.service";
 import { NotificationService } from "../../../services/notification.service";
 
+const SEARCHABLE_FIELDS = [
+	{ label: "Customer Name", value: "name" },
+	{ label: "Email", value: "email" },
+	{ label: "Phone", value: "phone" },
+	{ label: "User Type", value: "userType" },
+	{ label: "Message", value: "message" },
+	{ label: "MLS ID", value: "mlsId" },
+	{ label: "Created From", value: "leadSource" },
+	{ label: "Lead Type", value: "leadType" },
+];
+
 @Component({
 	selector: "app-leads",
 	standalone: true,
 	imports: [
 		CommonModule,
+		FormsModule,
 		TableModule,
 		ButtonModule,
 		PaginatorModule,
 		ProgressSpinnerModule,
 		DynamicDialogModule,
+		SelectModule,
 		SimpleTableComponent,
 	],
 	templateUrl: "./leads.component.html",
@@ -30,49 +45,19 @@ import { NotificationService } from "../../../services/notification.service";
 })
 export class LeadsComponent implements OnInit {
 	leads: Lead[] = [];
+	filteredLeads: Lead[] = [];
+
+	searchFields = [{ label: "All Fields", value: "all" }, ...SEARCHABLE_FIELDS];
+	selectedField: string = "all";
+	searchText: string = "";
 
 	columns = [
-		{
-			field: "name",
-			header: "Customer Name",
-			disableSort: false,
-			fieldType: FieldsType.Text,
-			// width: "190px",
-		},
-		{
-			field: "email",
-			header: "Email",
-			disableSort: false,
-			fieldType: FieldsType.Text,
-			// width: '180px'
-		},
-		{
-			field: "phone",
-			header: "Phone",
-			disableSort: false,
-			fieldType: FieldsType.Text,
-			// width: '180px'
-		},
 		{
 			field: "userType",
 			header: "User Type",
 			disableSort: false,
 			fieldType: FieldsType.Text,
 			// width: '130px'
-		},
-		{
-			field: "message",
-			header: "Message",
-			disableSort: true,
-			fieldType: FieldsType.Text,
-			// width: '180px'
-		},
-		{
-			field: "mlsId",
-			header: "MLS ID",
-			disableSort: true,
-			fieldType: FieldsType.Text,
-			// width: '180px'
 		},
 		{
 			field: "createdAt",
@@ -82,16 +67,35 @@ export class LeadsComponent implements OnInit {
 			// width: '80px'
 		},
 		{
-			field: "leadSource",
-			header: "Created From",
+			field: "name",
+			secondaryFields: ["email", "phone"],
+			phoneFields: ["phone"],
+			header: "Customer",
 			disableSort: false,
-			fieldType: FieldsType.Capitalize,
+			fieldType: FieldsType.Contact,
+			// width: '220px'
 		},
 		{
-			field: "leadType",
-			header: "Lead Type",
-			disableSort: false,
+			field: "message",
+			header: "Message",
+			disableSort: true,
 			fieldType: FieldsType.Text,
+			width: "550px",
+		},
+		{
+			field: "mlsId",
+			header: "MLS ID",
+			disableSort: true,
+			fieldType: FieldsType.Text,
+			// width: '180px'
+		},
+		{
+			field: "leadSource",
+			secondaryFields: ["leadType"],
+			capitalizeFields: ["leadSource"],
+			header: "Created From / Lead Type",
+			disableSort: false,
+			fieldType: FieldsType.Contact,
 		},
 		{
 			field: "Action",
@@ -127,6 +131,7 @@ export class LeadsComponent implements OnInit {
 		this.leadsService.getLeads().subscribe({
 			next: (res: any) => {
 				this.leads = res.data;
+				this.applyFilter();
 				this.loading = false;
 			},
 			error: (error) => {
@@ -135,6 +140,21 @@ export class LeadsComponent implements OnInit {
 				console.error("Error loading leads:", error);
 			},
 		});
+	}
+
+	applyFilter(): void {
+		const term = this.searchText.trim().toLowerCase();
+
+		if (!term) {
+			this.filteredLeads = this.leads;
+			return;
+		}
+
+		const fields = this.selectedField === "all" ? SEARCHABLE_FIELDS.map((f) => f.value) : [this.selectedField];
+
+		this.filteredLeads = this.leads.filter((lead: any) =>
+			fields.some((field) => (lead[field] ?? "").toString().toLowerCase().includes(term)),
+		);
 	}
 
 	deleteLead = (lead: any, index: number) => {
@@ -164,7 +184,8 @@ export class LeadsComponent implements OnInit {
 		this.loading = true;
 		this.leadsService.deleteLead(lead._id).subscribe({
 			next: () => {
-				this.leads.splice(index, 1);
+				this.leads = this.leads.filter((l: any) => l._id !== lead._id);
+				this.applyFilter();
 				this.loading = false;
 				this.notificationService.showSuccess("Lead removed.");
 			},

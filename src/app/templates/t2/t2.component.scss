@@ -83,10 +83,16 @@ p {
 	transform: translateY(-20px);
 }
 .pro-card-text {
-	top: 265px;
+	bottom: 15px;
 	font-weight: 600;
 	font-size: 30px;
 	position: absolute;
+}
+
+@media (max-width: 767px) {
+	.pro-card-text {
+		font-size: 22px;
+	}
 }
 .pro_card .content {
 	display: flex;

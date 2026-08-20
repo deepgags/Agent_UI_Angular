@@ -20,7 +20,7 @@ import { SelectModule } from "primeng/select";
 import { TabsModule } from "primeng/tabs";
 import { CaptchaComponent } from "../../../components/captcha/captcha.component";
 import { PropertyComponent } from "../../../components/property/property.component";
-import { environment } from "../../../environments/environment";
+import { environment } from "../../../environments/environment.development";
 import { InterestedUserModel } from "../../../models/InterestedUserModel";
 import { PropertyModel } from "../../../models/PropertyModel";
 import { SiteConfig } from "../../../models/SiteConfig";
@@ -292,6 +292,19 @@ export class PropertyDetailPageComponent {
 	ngAfterViewInit(): void {
 		this.initShareWidget();
 		this.addMapControls();
+		this.setupMapTabListener();
+	}
+
+	// Google Maps renders incorrectly if initialized while its tab is hidden (display: none).
+	// Force a resize + recenter once the "View on map" tab is actually shown.
+	private setupMapTabListener(): void {
+		const mapTabButton = document.getElementById("pills-profile-tab");
+		mapTabButton?.addEventListener("shown.bs.tab", () => {
+			if (this.map?.googleMap) {
+				google.maps.event.trigger(this.map.googleMap, "resize");
+				this.map.googleMap.setCenter({ lat: this.property.Latitude, lng: this.property.Longitude });
+			}
+		});
 	}
 
 	openInfoWindow(property: PropertyModel, marker: MapMarker): void {

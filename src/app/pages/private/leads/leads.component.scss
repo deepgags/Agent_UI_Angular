@@ -18,8 +18,27 @@ label.btn:hover {
   border-color: #0d6efd;
 }
 
-#seller:checked + label { background-color: #198754; color: #fff;border: 0px; } 
+#seller:checked + label { background-color: #198754; color: #fff;border: 0px; }
 #buyer:checked + label { background-color: #0d6efd; color: #fff; }
-#renter:checked + label { background-color: #ffc107; color: #000;border: 0px; } 
+#renter:checked + label { background-color: #ffc107; color: #000;border: 0px; }
 #buyerSeller:checked + label { background-color: #6f42c1; color: #fff;border: 0px; }
 #investor:checked + label { background-color: #dc3545; color: #fff;border: 0px; }
+
+/* Grow all text on the leads page by 2px relative to its default size */
+:host {
+	font-size: calc(1em + 2px);
+}
+
+h2 {
+	font-size: calc(1.75rem + 2px);
+}
+
+::ng-deep {
+	.p-datatable-thead > tr > th,
+	.p-datatable-tbody > tr > td,
+	.p-paginator,
+	.p-select-label,
+	.p-select {
+		font-size: calc(1em + 2px) !important;
+	}
+}

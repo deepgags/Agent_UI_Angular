@@ -14,4 +14,5 @@ export enum FieldsType {
 	Currency = 'currency',
 	Percentage = 'percentage',
 	Capitalize = 'capitalize',
+	Contact = 'contact',
 }

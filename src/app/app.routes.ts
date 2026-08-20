@@ -116,13 +116,6 @@ export const routes: Routes = [
 					import("./pages/private/menu-manager/menu-manager.component").then((c) => c.MenuManagerComponent),
 			},
 			{
-				path: "change-password",
-				loadComponent: () =>
-					import("./pages/private/change-password/change-password.component").then(
-						(c) => c.ChangePasswordComponent,
-					),
-			},
-			{
 				path: "template",
 				loadComponent: () =>
 					import("./pages/private/template/template.component").then((c) => c.TemplateComponent),

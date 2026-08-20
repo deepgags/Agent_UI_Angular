@@ -117,7 +117,7 @@ export class RoutesConfigService {
 		const hostname = this.document.location.hostname;
 		try {
 			const response = (await this.http
-				.get(`${environment.baseUrl}/customer/web`, { params: { domain: hostname } })
+				.get(`${environment.baseUrl}/customer/web`, { params: { domain: hostname.replace('www.','') } })
 				.toPromise()) as any;
 
 			const { customer, mainMenu, sideMenu, team, cities, heroImages, meta, homeSections } = response.data;

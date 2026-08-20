@@ -2,7 +2,9 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { MenuItem } from "primeng/api";
+import { DialogService } from "primeng/dynamicdialog";
 import { MenuModule } from "primeng/menu";
+import { ChangePasswordComponent } from "../../change-password/change-password.component";
 import { environment } from "../../../../environments/environment.development";
 import { CustomerModel } from "../../../../models/CustomerModel";
 import { CustomerService } from "../../../../services/customer.service";
@@ -14,6 +16,7 @@ import { SharedDataService } from "../../../../services/shared-data.service";
 	imports: [CommonModule, RouterModule, MenuModule],
 	templateUrl: "./navbar.component.html",
 	styleUrls: ["./navbar.component.scss"],
+	providers: [DialogService],
 })
 export class NavbarComponent {
 	localImageUrl = environment.localImageUrl;
@@ -24,6 +27,7 @@ export class NavbarComponent {
 		private router: Router,
 		private customerService: CustomerService,
 		private sharedDataService: SharedDataService,
+		private dialogService: DialogService,
 	) {
 		this.items = [
 			{
@@ -32,7 +36,9 @@ export class NavbarComponent {
 					{
 						label: "Change Password",
 						icon: "fas fa-key",
-						routerLink: "/change-password",
+						command: () => {
+							this.openChangePasswordDialog();
+						},
 					},
 					{
 						label: "Log Out",
@@ -45,6 +51,16 @@ export class NavbarComponent {
 			},
 		];
 		this.getProfile();
+	}
+
+	openChangePasswordDialog(): void {
+		this.dialogService.open(ChangePasswordComponent, {
+			header: "Change Password",
+			width: "420px",
+			modal: true,
+			closable: true,
+			dismissableMask: true,
+		});
 	}
 
 	logout() {

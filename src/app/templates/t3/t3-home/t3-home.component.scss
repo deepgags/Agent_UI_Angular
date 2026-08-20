@@ -12,8 +12,20 @@
   position: relative;
 }
 #heroCarousel {
-	height: 70vh;
+	height: calc(70vh + 100px);
 	overflow: hidden;
+}
+
+/* Pull the hero up under the fixed, semi-transparent header so the banner shows through it (desktop only — on mobile the header stacks tall and would cover most of the hero). Uses the same --t3-header-height custom property the header's own .top-pad tracks, so this stays correct if the header's height changes. */
+@media (min-width: 992px) {
+	.t3-hero-container {
+		margin-top: calc(-1 * var(--t3-header-height, 108px));
+	}
+}
+
+#heroCarousel .carousel-inner,
+#heroCarousel .carousel-item {
+	height: 100%;
 }
 
 #heroCarousel .carousel-item img {
@@ -69,7 +81,7 @@
   }
 
 	#heroCarousel {
-	height: 30vh;
+	height: calc(30vh + 100px);
 	overflow: hidden;
 	/* position: relative; */
 }
@@ -277,76 +289,34 @@
   }
 }
 
-#card1 {
-  /* From Uiverse.io by Daniel1227k */ 
-.card {
-  position: relative;
-      cursor: pointer;
-  height: 376px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.pro_card {
+	position: relative;
+	color: #fff;
+	transition: 0.5s;
+	cursor: pointer;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.pro_card:hover {
+	transform: translateY(-20px);
 }
 
-.card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  // filter: blur(30px);
+.pro-card-text {
+	bottom: 15px;
+	font-weight: 600;
+	font-size: 30px;
+	position: absolute;
 }
 
-.card img {
-  position: absolute;
-  z-index: 3;
-  scale: 0.9;
-  transition: 0.5s;
-  border-radius: 10px;
+@media (max-width: 767px) {
+	.pro-card-text {
+		font-size: 22px;
+	}
 }
 
-.card:hover img {
-  scale: 0.5;
-  opacity: 0.9;
-  transform: translateY(-70px);
-}
-
-.card .content {
-  position: absolute;
-  z-index: 3;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform: scale(0);
-  transition: 0.5s;
-}
-
-.card:hover .content {
-  transform: scale(1);
-  bottom: 25px;
-}
-
-.content .title {
-  position: relative;
-  color: #000;
-  font-weight: 500;
-  line-height: 1em;
-  font-size: 1em;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-}
+.pro_card .content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .word-break {
   word-break: break-word;

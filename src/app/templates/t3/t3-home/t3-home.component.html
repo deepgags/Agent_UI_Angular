@@ -1,4 +1,4 @@
-﻿<div class="search-container position-relative">
+<div class="search-container t3-hero-container position-relative">
 	<div
 		id="heroCarousel"
 		class="carousel slide"
@@ -115,6 +115,157 @@
 		}
 	</div>
 </div>
+
+<div class="container-fluid sec-3 py-5">
+	<div class="container">
+		<div class="row p-lg-4 p-3">
+			<p class="text mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
+			<div class="col">
+				<p class="estate text-center">
+					@if (siteConfig.secondaryAgent?.enableSecondaryAgent && siteConfig.websiteSettings.personalBrandingName) {
+					{{ siteConfig.websiteSettings.personalBrandingName }}
+				} @else {
+					{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
+				}
+				</p>
+				<p
+					class="text-center fw-semibold small text-secondary word-break"
+					[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+@if (cities.length > 0) {
+	<div class="container p-lg-0 p-4">
+		<div class="">
+			<p class="text text-center mb-0 mt-4 fw-semibold">Find Properties in These Cities</p>
+			<p class="text-center fw-normal"></p>
+		</div>
+		<div class="row pb-lg-5 p-4 p-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+			@if (cities[0].name) {
+				<div class="col">
+					<div
+						class="pro_card"
+						(click)="searchProperties({ city: cities[0].name })">
+						<div class="content text-center">
+							<img
+								class="img-fluid rounded mb-2"
+								[src]="localImageUrl + cities[0].image"
+								alt="" />
+							<p class="pro-card-text">{{ cities[0].name }}</p>
+						</div>
+					</div>
+				</div>
+			}
+			@if (cities[1] && cities[1].name) {
+				<div class="col">
+					<div
+						class="pro_card"
+						(click)="searchProperties({ city: cities[1].name })">
+						<div class="content text-center">
+							<img
+								class="img-fluid rounded mb-2"
+								[src]="localImageUrl + cities[1].image"
+								alt="" />
+							<p class="pro-card-text">{{ cities[1].name }}</p>
+						</div>
+					</div>
+				</div>
+			}
+			@if (cities[2] && cities[2].name) {
+				<div class="col">
+					<div
+						class="pro_card"
+						(click)="searchProperties({ city: cities[2].name })">
+						<div class="content text-center">
+							<img
+								class="img-fluid rounded mb-2"
+								[src]="localImageUrl + cities[2].image"
+								alt="" />
+							<p class="pro-card-text">{{ cities[2].name }}</p>
+						</div>
+					</div>
+				</div>
+			}
+			@if (cities[3] && cities[3].name) {
+				<div class="col">
+					<div
+						class="pro_card"
+						(click)="searchProperties({ city: cities[3].name })">
+						<div class="content text-center">
+							<img
+								class="img-fluid rounded mb-2"
+								[src]="localImageUrl + cities[3].image"
+								alt="" />
+							<p class="pro-card-text">{{ cities[3].name }}</p>
+						</div>
+					</div>
+				</div>
+			}
+			@if (cities[4] && cities[4].name) {
+				<div class="col">
+					<div
+						class="pro_card"
+						(click)="searchProperties({ city: cities[4].name })">
+						<div class="content text-center">
+							<img
+								class="img-fluid rounded mb-2"
+								[src]="localImageUrl + cities[4].image"
+								alt="" />
+							<p class="pro-card-text">{{ cities[4].name }}</p>
+						</div>
+					</div>
+				</div>
+			}
+			@if (cities[5] && cities[5].name) {
+				<div class="col">
+					<div
+						class="pro_card"
+						(click)="searchProperties({ city: cities[5].name })">
+						<div class="content text-center">
+							<img
+								class="img-fluid rounded mb-2"
+								[src]="localImageUrl + cities[5].image"
+								alt="" />
+							<p class="pro-card-text">{{ cities[5].name }}</p>
+						</div>
+					</div>
+				</div>
+			}
+			@if (cities[6] && cities[6].name) {
+				<div class="col">
+					<div
+						class="pro_card"
+						(click)="searchProperties({ city: cities[6].name })">
+						<div class="content text-center">
+							<img
+								class="img-fluid rounded mb-2"
+								[src]="localImageUrl + cities[6].image"
+								alt="" />
+							<p class="pro-card-text">{{ cities[6].name }}</p>
+						</div>
+					</div>
+				</div>
+			}
+			@if (cities[7] && cities[7].name) {
+				<div class="col">
+					<div
+						class="pro_card"
+						(click)="searchProperties({ city: cities[7].name })">
+						<div class="content text-center">
+							<img
+								class="img-fluid rounded mb-2"
+								[src]="localImageUrl + cities[7].image"
+								alt="" />
+							<p class="pro-card-text">{{ cities[7].name }}</p>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+}
 <div class="container-fluid bg-secondary-subtle pt-2">
 	<div class="">
 		<div class="row justify-content-center">
@@ -214,171 +365,6 @@
 		</div>
 	</section>
 }
-@if (cities.length > 0) {
-	<div class="container">
-		<p class="text text-center mb-0 mt-4 fw-semibold">Find Properties in These Cities</p>
-		<div class="row pt-lg-5 p-lg-0 p-4">
-			@if (cities[0] && cities[0].name) {
-				<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-					<div id="card1">
-						<div
-							class="card"
-							(click)="searchProperties({ city: cities[0].name })">
-							<img
-								class="w-100"
-								[src]="localImageUrl + cities[0].image"
-								alt="" />
-							<div class="content">
-								<p class="title">{{ cities[0].name }}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			}
-			@if (cities[1] && cities[1].name) {
-				<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-					<div id="card1">
-						<div
-							class="card"
-							(click)="searchProperties({ city: cities[1].name })">
-							<img
-								class="w-100"
-								[src]="localImageUrl + cities[1].image"
-								alt="" />
-							<div class="content">
-								<p class="title">{{ cities[1].name }}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			}
-			@if (cities[2] && cities[2].name) {
-				<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-					<div id="card1">
-						<div
-							class="card"
-							(click)="searchProperties({ city: cities[2].name })">
-							<img
-								class="w-100"
-								[src]="localImageUrl + cities[2].image"
-								alt="" />
-							<div class="content">
-								<p class="title">{{ cities[2].name }}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			}
-			@if (cities[3] && cities[3].name) {
-				<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-					<div id="card1">
-						<div
-							class="card"
-							(click)="searchProperties({ city: cities[3].name })">
-							<img
-								class="w-100"
-								[src]="localImageUrl + cities[3].image"
-								alt="" />
-							<div class="content">
-								<p class="title">{{ cities[3].name }}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			}
-		</div>
-		<div class="row pt-4">
-			@if (cities[4] && cities[4].name) {
-				<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-					<div id="card1">
-						<div
-							class="card"
-							(click)="searchProperties({ city: cities[4].name })">
-							<img
-								class="w-100"
-								[src]="localImageUrl + cities[4].image"
-								alt="" />
-							<div class="content">
-								<p class="title">{{ cities[4].name }}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			}
-			@if (cities[5] && cities[5].name) {
-				<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-					<div id="card1">
-						<div
-							class="card"
-							(click)="searchProperties({ city: cities[5].name })">
-							<img
-								class="w-100"
-								[src]="localImageUrl + cities[5].image"
-								alt="" />
-							<div class="content">
-								<p class="title">{{ cities[5].name }}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			}
-			@if (cities[6] && cities[6].name) {
-				<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-					<div id="card1">
-						<div
-							class="card"
-							(click)="searchProperties({ city: cities[6].name })">
-							<img
-								class="w-100"
-								[src]="localImageUrl + cities[6].image"
-								alt="" />
-							<div class="content">
-								<p class="title">{{ cities[6].name }}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			}
-			@if (cities[7] && cities[7].name) {
-				<div class="col-lg-3 col-12 mb-lg-0 mb-3">
-					<div id="card1">
-						<div
-							class="card"
-							(click)="searchProperties({ city: cities[7].name })">
-							<img
-								class="w-100"
-								[src]="localImageUrl + cities[7].image"
-								alt="" />
-							<div class="content">
-								<p class="title">{{ cities[7].name }}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			}
-		</div>
-	</div>
-}
-
-<div class="container-fluid sec-3 py-5">
-	<div class="container">
-		<div class="row p-lg-4 p-3">
-			<p class="text mb-0 fw-semibold">"Enjoy a clear and simple home-buying experience"</p>
-			<div class="col">
-				<p class="estate text-center">
-					@if (siteConfig.secondaryAgent?.enableSecondaryAgent && siteConfig.websiteSettings.personalBrandingName) {
-					{{ siteConfig.websiteSettings.personalBrandingName }}
-				} @else {
-					{{ siteConfig.firstName }} {{ siteConfig.lastName }} {{ siteConfig.designation }}
-				}
-				</p>
-				<p
-					class="text-center fw-semibold small text-secondary word-break"
-					[innerHTML]="sharedDataService.homeSections().homeSectionText1"></p>
-			</div>
-		</div>
-	</div>
-</div>
 
 <section class="buy-sell-section container-fluid py-5">
 	<div class="container">

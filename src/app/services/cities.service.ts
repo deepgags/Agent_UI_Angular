@@ -24,6 +24,13 @@ export class CitiesService {
 		return this.http.post(`${environment.baseUrl}/cities`, cityData, { headers });
 	}
 
+	updateCity(cityId: string, cityData: FormData): Observable<any> {
+		const headers = new HttpHeaders({
+			Authorization: `Bearer ${this.sharedDataService.userToken()}`,
+		});
+		return this.http.put(`${environment.baseUrl}/cities/${cityId}`, cityData, { headers });
+	}
+
 	deleteCity(cityId: string): Observable<any> {
 		const headers = new HttpHeaders({
 			Authorization: `Bearer ${this.sharedDataService.userToken()}`,
